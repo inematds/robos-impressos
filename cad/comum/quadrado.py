@@ -80,6 +80,10 @@ def nervura(p, ao_longo, para, cateto, esp=2.4):
     return casco(*[cil(q - n * esp / 2, q + n * esp / 2, 0.02, seg=8) for q in pts])
 
 
+def T_(m, pos):
+    return m.translate(list(pos))
+
+
 # ------------------------------------------------------------------ cabeça
 def cabeca(K, tela, pos, nome_tela="tela 3,5 pol.", lidar=None):
     """Cabeça-cubo completa. Referencial LOCAL: origem no cruzamento do eixo do pan com o eixo do tilt; X = lados,
@@ -171,6 +175,7 @@ def cabeca(K, tela, pos, nome_tela="tela 3,5 pol.", lidar=None):
     col_d = [(ld1 + 1.5, zcs - jl / 2 - 5.6), (ld1 + 1.5, zcs + jl / 2 + 5.6)]                 # colunas dos insertos de trás
     col_e = [(le0 - 1.5, K.lat_e_z[0] + 21.0), (le0 - 1.5, K.lat_e_z[1] - 6.0)]
     quadro = uniao(trav, trav_pes(), lat_d, lat_e, *[cil((cx_, yq, cz_), (cx_, yt0 + 0.01, cz_), 5.0, seg=32) for (cx_, cz_) in col_d + col_e])
+    quadro = quadro ^ secao(sec(pc + 0.6), "y", yq - 1, yt1 + 1)                               # cabe nos cantos arredondados do copo
     quadro = quadro - caixa(ld1 - 0.01, xq + 1, yq - 1, jw / 2, zcs - jl / 2, zcs + jl / 2)    # as colunas não invadem o corpo do servo
     for sy in (1, -1):
         for sz in (1, -1):                                                                 # 4 furos piloto das abas do servo
@@ -226,6 +231,8 @@ def cabeca(K, tela, pos, nome_tela="tela 3,5 pol.", lidar=None):
     for sx in (1, -1):                                                                        # microfones (fase 2): por baixo
         corpo = corpo - furo((sx * K.mic_x, yf - 12.0, zb - 1), (0, 0, 1), pc + 2, 2.0)
     comps_extra = []
+    if lidar is not None and "comp" in lidar:
+        comps_extra.append(Comp(lidar["comp"], T_(lidar["solido"].translate([lidar["xy"][0], lidar["xy"][1], zt]), pos), "cabeca", lidar["massa"], "preto", fase2=True))
     if lidar is not None:
         # trilho por dentro do teto (vertical na impressão) com furos CEGOS: por fora não aparece nada. Na fase 2,
         # fura-se a pele de 0,8 mm por dentro com o próprio parafuso.
@@ -233,6 +240,8 @@ def cabeca(K, tela, pos, nome_tela="tela 3,5 pol.", lidar=None):
             corpo = corpo + caixa(lx - 4.0, lx + 4.0, yb + pc - 0.01, ly + 5.0, zi1 - 3.2, zi1 + 0.01)
         for (lx, ly) in lidar["furos"]:
             corpo = corpo - furo((lx, ly, zi1 - 3.3), (0, 0, 1), 3.2 + pc - 0.8 + 0.1, lidar["piloto"])
+        if "cabo" in lidar:                                # passagem do cabo: rebaixo cego Ø8 por dentro (pele de 0,8 mm a romper)
+            corpo = corpo - furo((lidar["cabo"][0], lidar["cabo"][1], zi1 - 0.01), (0, 0, 1), pc - 0.8, 8.0)
 
     # ---------------- peças
     def T(m):
@@ -263,7 +272,12 @@ def cabeca(K, tela, pos, nome_tela="tela 3,5 pol.", lidar=None):
     M_tilt = C.M([(0, 0, 1), (0, 1, 0), (-1, 0, 0)], (x_aba, 0, 0))
     M_pi = C.M([(1, 0, 0), (0, 0, -1), (0, 1, 0)], (-P.PI.placa[0] / 2, y_pi, zs + P.PI.placa[1] / 2))   # USB à direita
     tw, th = tela.placa
-    tela_s = caixa(-tw / 2, tw / 2, yg - tela.esp_conjunto, yg, zs - th / 2, zs + th / 2)
+    if gpio:
+        tela_s = caixa(-tw / 2, tw / 2, yg - tela.esp_conjunto, yg, zs - th / 2, zs + th / 2)
+    else:                                     # tela HDMI: placa com orelhas atrás + painel LCD (mais baixo) na frente
+        lw, lh = tela.lcd
+        tela_s = caixa(-tw / 2, tw / 2, yg - tela.esp_conjunto, yg - tela.esp_conjunto + tela.pcb_esp, zs - th / 2, zs + th / 2) + \
+            caixa(-lw / 2, lw / 2, yg - tela.esp_conjunto + tela.pcb_esp - 0.01, yg, zs - lh / 2, zs + lh / 2)
     # o que a tela mostra (olhos e boca, como na referência): lâminas de 0,2 mm sobre o vidro, só para o render
     ex, er = aw * 0.21, ah * 0.11
     rosto = uniao(*[casco(cil((sx * ex, yg + 0.05, zs + ah * 0.10), (sx * ex, yg + 0.25, zs + ah * 0.10), er, seg=24),
@@ -362,3 +376,63 @@ def servo_pan(Q, pan_xy, ang_servo, ang_corpo, z_piso):
     Mp = C.M([(u[0], u[1], 0), (v[0], v[1], 0), (0, 0, 1)], (sx, sy, za))
     comp = Comp("servo-pan MG996R", C.servo_padrao().transform(Mp[:3, :]), "corpo", S9.massa, "preto")
     return NS(soma=uniao(*soma), corte=uniao(*corte), eng=p_eng, comp=comp, xy=(sx, sy), za=za)
+
+
+# ------------------------------------------------------------------ estabilidade (robô que roda)
+def _centroide(m):
+    me = m.to_mesh()
+    v = np.asarray(me.vert_properties)[:, :3].astype(float)
+    t = np.asarray(me.tri_verts)
+    v0, v1, v2 = v[t[:, 0]], v[t[:, 1]], v[t[:, 2]]
+    vt = np.einsum("ij,ij->i", v0, np.cross(v1, v2)) / 6.0
+    return ((v0 + v1 + v2) / 4.0 * vt[:, None]).sum(axis=0) / vt.sum()
+
+
+def _alcance(apoios, p, d):
+    """Distância de p até a borda do polígono convexo de apoio andando na direção d (0 se p está fora)."""
+    from scipy.spatial import ConvexHull
+
+    h = ConvexHull(np.asarray(apoios, float))
+    d = np.asarray(d, float) / np.linalg.norm(d)
+    melhor = np.inf
+    for (a, b, c) in h.equations:                      # a*x + b*y + c <= 0 dentro
+        f = a * p[0] + b * p[1] + c
+        if f > 0:
+            return 0.0
+        den = a * d[0] + b * d[1]
+        if den > 1e-12:
+            melhor = min(melhor, -f / den)
+    return float(melhor)
+
+
+def estabilidade(mod, g=9.81):
+    """CG (mesma estimativa de massa do gerar.py), margem de tombamento e aceleração máxima sem tombar em cada pose:
+    a = g * alcance / altura do CG, onde alcance = distância horizontal do CG até a borda do polígono de apoio NA
+    DIREÇÃO da força de inércia. Frear andando para a frente joga o robô para a FRENTE (alcance até a linha das rodas);
+    arrancar para a frente (ou frear de ré) joga para TRÁS (alcance até a bola); curva joga para o LADO.
+    Devolve {pose: {...}} e o resumo do pior caso. Estimativa de corpo rígido: não conta folga, pneu nem piso inclinado."""
+    from cad.gerar import estimar   # import tardio (gerar.py importa os modelos)
+
+    itens = []
+    for p in mod.pecas:
+        _, massa, _ = estimar(p.solido, p)
+        c0 = _centroide(p.solido)
+        grupos = p.grupos or [p.grupo] * len(p.copias)
+        for M, gr in zip(p.copias, grupos):
+            itens.append((massa, (np.asarray(M) @ np.append(c0, 1.0))[:3], gr))
+    for c in mod.comps:
+        if c.massa > 0:
+            itens.append((c.massa, _centroide(c.solido), c.grupo))
+    res = {}
+    for (nome, ang) in mod.poses:
+        mt, soma = 0.0, np.zeros(3)
+        for (m, c, gr) in itens:
+            Mg = mod.matriz_grupo(gr, ang)
+            soma += m * (Mg @ np.append(c, 1.0))[:3]
+            mt += m
+        cg = soma / mt
+        al = {k: _alcance(mod.apoios, cg[:2], d) for k, d in (("frente", (0, 1)), ("tras", (0, -1)), ("esq", (-1, 0)), ("dir", (1, 0)))}
+        res[nome] = {"cg": [round(float(v), 1) for v in cg], "massa_g": round(mt), "alcance_mm": {k: round(v, 1) for k, v in al.items()},
+                     "a_max_m_s2": {k: round(g * v / cg[2], 2) for k, v in al.items()}}
+    pior = {k: min(res[n]["a_max_m_s2"][k] for n in res) for k in ("frente", "tras", "esq", "dir")}
+    return res, pior

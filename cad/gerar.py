@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Gera as peças de um modelo: STL (já na orientação de impressão), 3MF, montagem.json e mesas.json.
 
-Uso:  .venv/bin/python cad/gerar.py dino|capivara|cubo|todos
+Uso:  .venv/bin/python cad/gerar.py dino|capivara|cubo|cubo_rodas|todos
 
 Saída (por modelo):
   pecas/<modelo>/stl/<modelo>-<peca>.stl     peças só deste modelo
@@ -29,7 +29,7 @@ sys.path.insert(0, str(RAIZ))
 from cad import parametros as P  # noqa: E402
 from cad.comum.geo import desbeliscar, limites, limpar, para_numpy  # noqa: E402
 
-MODELOS = ["dino", "capivara", "cubo"]
+MODELOS = ["dino", "capivara", "cubo", "cubo_rodas"]
 I = P.IMPRESSORA
 
 

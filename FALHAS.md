@@ -2,6 +2,8 @@
 
 | data | o que quebrou | menor correção | prompt \| infra |
 |---|---|---|---|
+| 2026-11-14 | cubo_rodas: a travessa do quadro (tela de 5") saía pelos cantos arredondados do copo da cabeça (115 mm³); na cabeça de 3,5" passava por sorte | o quadro é recortado pela seção interna do copo (com 0,6 mm de folga) em qualquer tamanho de cabeça | prompt |
+| 2026-11-14 | `inema-traduz` traduziu "Robô quadrado que roda" como "Spinning square robot" / "que gira" | pedir de novo dizendo o sentido ("anda sobre rodas, não gira") → "Square robot on wheels" / "Robot cuadrado con ruedas"; conferir sempre o sentido de nome curto | prompt |
 | 2026-11-14 | Cubo: 7 de 11 peças reprovadas no teste 10 (teto da cabeça = ponte de 107 mm, face 103 mm, quadro 86 mm, anel do alto-falante, rebaixo da engrenagem para baixo) | cabeça vira COPO impresso com as costas na mesa; painel do rosto e quadro com a face plana na mesa; engrenagem do servo de cabeça para baixo; grade de fendas verticais; chanfro de 45° onde encosta na mesa | prompt |
 | 2026-11-14 | Garfo interno: com a cabeça baixa a quina de baixo da travessa entrava no bloco do garfo (conferi os cantos do garfo contra a travessa e esqueci o contrário); o teste 5 pegou na pose tilt-baixo | recorte na travessa na faixa do garfo (calculado do ângulo) + Raspberry Pi virado para tirar o furo dele dessa faixa | prompt |
 | 2026-11-14 | Rasgo do pescoço no fundo da cabeça curto: tratei o tubo inclinado como um ponto + raio; a seção na parede é uma elipse (raio / cos) e a quina de trás da cabeça desce na flange | rasgo calculado com raio/cos(tilt); flange do tubo de Ø46 para Ø40 | prompt |

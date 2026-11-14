@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Verifica um modelo a partir dos ARQUIVOS exportados (STL + montagem.json), não dos objetos em memória.
 
-Uso:  .venv/bin/python cad/verificar.py dino|capivara|cubo|todos [--rapido]
+Uso:  .venv/bin/python cad/verificar.py dino|capivara|cubo|cubo_rodas|todos [--rapido]
 
 Testes (cada um diz PASSOU ou FALHOU; o script sai com código 1 se algum falhar):
   1 contagem       nº de peças impressas = o declarado em cad/parametros.py; todo STL listado existe; nenhum STL sobrando
@@ -36,7 +36,7 @@ sys.path.insert(0, str(RAIZ))
 from cad import parametros as P  # noqa: E402
 from cad.comum.geo import mat_giro  # noqa: E402
 
-MODELOS = ["dino", "capivara", "cubo"]
+MODELOS = ["dino", "capivara", "cubo", "cubo_rodas"]
 TOL_INTERF = 1.0      # mm³: abaixo disso é ruído numérico de malha
 TOL_SOLTA = 1.5       # mm
 

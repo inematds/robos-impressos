@@ -16,7 +16,7 @@ import sys
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent.parent
-MODELOS = ["dino", "capivara", "cubo"]
+MODELOS = ["dino", "capivara", "cubo", "cubo_rodas"]
 T = {
     "pt": dict(peca="Peça", dim="Tamanho deitada (mm)", qtd="Qtd", mat="Material", cor="Cor", sup="Suporte", massa="Filamento (g)*", tempo="Tempo (h)*",
                comum="comum", total="Total", teste="Teste", res="Resultado", passou="PASSOU", falhou="FALHOU", modelo="Modelo", altura="Altura (mm)",
@@ -31,9 +31,9 @@ T = {
                pecas="Piezas", mesas="Cama", massa_t="Filamento total (g)*", tempo_t="Impresión total (h)*", massa_robo="Robot armado (g)*",
                nao="no", sim="sí", est="* estimación por volumen, sin laminador"),
 }
-NOMES = {"pt": {"dino": "Dinossauro", "capivara": "Capivara", "cubo": "Robô quadrado"},
-         "en": {"dino": "Dinosaur", "capivara": "Capybara", "cubo": "Square robot"},
-         "es": {"dino": "Dinosaurio", "capivara": "Carpincho", "cubo": "Robot cuadrado"}}
+NOMES = {"pt": {"dino": "Dinossauro", "capivara": "Capivara", "cubo": "Robô quadrado", "cubo_rodas": "Robô quadrado que roda"},
+         "en": {"dino": "Dinosaur", "capivara": "Capybara", "cubo": "Square robot", "cubo_rodas": "Square robot on wheels"},
+         "es": {"dino": "Dinosaurio", "capivara": "Carpincho", "cubo": "Robot cuadrado", "cubo_rodas": "Robot cuadrado con ruedas"}}
 CORES = {"en": {"verde": "green", "creme": "cream", "azul": "blue", "branco": "white", "preto": "black", "cinza": "grey", "laranja": "orange",
                 "marrom": "brown", "verde-bandana": "green", "ciano": "cyan", "grafite": "graphite", "prata": "silver", "amarelo": "yellow"},
          "es": {"verde": "verde", "creme": "crema", "azul": "azul", "branco": "blanco", "preto": "negro", "cinza": "gris", "laranja": "naranja",

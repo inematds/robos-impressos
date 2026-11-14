@@ -28,6 +28,15 @@ Protocolo v1: projeção ortográfica, silhuetas com 400 px de altura, base na m
 - `antes`: .preview/v102/pecas/cubo · 2026-11-14 · tag v1.0.2
 - `depois`: pecas/cubo · 2026-11-14
 
+## cubo_rodas
+
+| vista | depois: IoU | depois: ajustado | depois: az/el |
+|---|---:|---:|---|
+| tres-quartos | 0,669 | 0,709 | 45°/12° |
+| **média** | **0,669** | **0,709** |  |
+
+- `depois`: pecas/cubo_rodas · 2026-11-14
+
 ## dino
 
 | vista | antes: IoU | antes: ajustado | antes: az/el | malha-dino-hy2mv-fl-s1: IoU | malha-dino-hy2mv-fl-s1: ajustado | malha-dino-hy2mv-fl-s1: az/el | malha-dino-hy2mv-fl-s2: IoU | malha-dino-hy2mv-fl-s2: ajustado | malha-dino-hy2mv-fl-s2: az/el |

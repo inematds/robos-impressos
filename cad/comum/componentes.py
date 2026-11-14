@@ -116,6 +116,41 @@ def modulo(c):
     return caixa(-L / 2, L / 2, -W / 2, W / 2, 0, H)
 
 
+def motor_jgb37(m=P.JGB37):
+    """Motor JGB37-520 com encoder. Local: eixo de saída em +X; origem no EIXO, sobre a face da caixa de redução
+    (o corpo vai para -X). O centro da caixa fica `eixo_desloc` ACIMA do eixo (+Z)."""
+    dz = m.eixo_desloc
+    cx = cil((-m.caixa_comp, 0, dz), (0, 0, dz), m.caixa_d / 2)
+    mot = cil((-m.caixa_comp - m.motor_comp - m.encoder_comp, 0, dz), (-m.caixa_comp, 0, dz), m.motor_d / 2)
+    res = cil((0, 0, 0), (m.ressalto[1], 0, 0), m.ressalto[0] / 2)
+    eixo = cil((0, 0, 0), (m.eixo_proj, 0, 0), m.eixo_d / 2, seg=24)
+    return uniao(cx, mot, res, eixo)
+
+
+def adaptador_hex(h=P.HEX12):
+    """Adaptador sextavado. Local: eixo em X, de x=0 a x=comp; furo do eixo do motor vazado."""
+    r = h.entre_faces / 2 / np.cos(np.pi / 6)
+    return cil((0, 0, 0), (h.comp, 0, 0), r, seg=6) - cil((-1, 0, 0), (h.comp + 1, 0, 0), h.eixo_d / 2 + 0.15, seg=24)
+
+
+def roda_sextavada(r=P.RODA85, h=P.HEX12):
+    """Roda com cubo sextavado. Local: eixo em X, face de dentro em x=0; o miolo (adaptador) é vazado."""
+    return cil((0, 0, 0), (r.larg, 0, 0), r.d / 2, seg=64) - cil((-1, 0, 0), (r.larg + 1, 0, 0), h.entre_faces / 2 / np.cos(np.pi / 6) + 0.3, seg=24)
+
+
+def bola(b=P.BOLA40):
+    from cad.comum.geo import esfera
+
+    return esfera((0, 0, 0), b.d / 2, seg=48)
+
+
+def lidar_ld19(l=P.LD19):
+    """LiDAR LD19. Local: base em z=0, centrado em XY (54 em X); tampa giratória por cima."""
+    L, W, H = l.cx
+    td, th = l.tampa
+    return uniao(caixa(-L / 2, L / 2, -W / 2, W / 2, 0, H - th), cil((0, 0, H - th), (0, 0, H), td / 2))
+
+
 def M(R=None, t=(0, 0, 0)):
     """Matriz 4x4 a partir de colunas (para onde vão os eixos locais x, y, z) e translação."""
     m = np.eye(4)

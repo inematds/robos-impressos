@@ -242,6 +242,53 @@ BMS2S = NS(
     furos="não tem: bolso raso + fita dupla-face (vai soldada nos fios da bateria)",
 )
 
+# ------------------------------------------------------------------ COMPONENTES DO CUBO QUE RODA (rodada 2, etapa E1)
+BATERIA3S = NS(
+    nome="suporte 3x18650 lado a lado (pack 3S, 12 V)",
+    cx=(75.0, 61.0, 20.0),             # T: 75 x 61 x 20 mm, 19 g, com fios  https://www.usinainfo.com.br/suporte-para-pilhas/suporte-para-3-baterias-18650-litio-5654.html
+    massa_suporte=19.0, massa_celula=47.0,
+)
+BMS3S = NS(
+    nome="placa de proteção BMS 3S 10 A (HX-3S-FL10, sem balanceamento: quem balanceia é o carregador)",
+    cx=(50.0, 15.0, 3.0),              # T: 50 x 15 x 3 mm, 3 g  https://www.usinainfo.com.br/controladores-de-carga-e-bms/placa-de-protecao-para-bateria-bms-18650-3s-10a-12v-hx-3s-fl10-8309.html
+    massa=3.0,
+)
+JGB37 = NS(
+    nome="motor JGB37-520 12 V com encoder Hall, redução 1:56 (107 rpm sem carga)",
+    # T (revenda com a tabela do fabricante): https://rcdrone.top/products/jgb37-520-dc-gear-motor-with-encoder
+    caixa_d=37.0, caixa_comp=24.0,     # caixa de redução Ø37; 24 mm de comprimento nas reduções 56–90
+    motor_d=33.0, motor_comp=22.0,     # motor Ø32–32,8 (usado 33) x 22
+    encoder_comp=11.75,                # disco + placa do encoder atrás do motor (Ø32)
+    eixo_d=6.0, eixo_proj=21.0,        # eixo Ø6 em D; projeção 15,5 (página A) a 21 ± 0,5 (página B, Chihai): usado o maior
+    eixo_desloc=7.0,                   # o eixo fica 7 mm fora do centro da caixa
+    ressalto=(12.0, 6.0),              # ressalto central Ø12 x 6 em volta do eixo
+    furos_circ=31.0, n_furos=6,        # 6 x M3 num círculo de Ø31 na face, profundidade 3,5–4 mm
+    massa=158.0,                       # 1:56 (144–170 g conforme a redução)
+    torque_trav=4.8, rpm=107.0,        # kgf·cm de bloqueio e rpm sem carga a 12 V, 1:56
+)
+RODA85 = NS(nome="roda 85 x 38 mm off-road, sextavado 12 mm (ND031)", d=85.0, larg=38.0, massa=52.0, sextavado=12.0)
+#   T: https://www.usinainfo.com.br/rodas-roboticas/roda-85x38mm-azul-off-road-de-borracha-para-carrinho-robotico-nd031-8706.html
+HEX12 = NS(nome="adaptador sextavado 12 mm para eixo de 6 mm", comp=20.0, entre_faces=12.0, eixo_d=6.0, massa=5.4)
+#   P: https://www.pololu.com/product/2686/specs  (o de latão comum no Brasil: 18 mm e ~14 g, NC)
+BOLA40 = NS(nome="bola de tênis de mesa 40 mm (apoio de trás)", d=40.0, massa=2.7)
+#   P: regra 2.3 da ITTF (40 mm, 2,7 g; as "40+" medem 40,0–40,6: o poço tem Ø41,2). Não reli a página nesta sessão: NC
+TELA5 = NS(
+    nome='tela 5" HDMI 800x480 (Waveshare 5inch HDMI LCD (B))',
+    placa=(121.0, 89.55),              # P: placa com as orelhas  https://www.waveshare.com/img/devkit/LCD/5BP/Exterior-Size.jpg
+    lcd=(120.7, 75.8),                 # P: painel LCD            https://files.waveshare.com/upload/e/e6/5inch-hdmi-lcd-%26-5inch-hdmi-lcd-b-panel-dimension.pdf
+    ativa=(108.0, 64.8),               # P: área ativa
+    furos=(115.0, 84.0), furo_d=3.0,   # P: 4 furos nos cantos em 115 x 84 (lido das cotas); diâmetro NC
+    esp_conjunto=14.0, pcb_esp=1.6,    # NC: espessura total ~14 (caixa do STEP oficial); placa 1,6
+    massa=150.0,                       # NC: a loja só dá o pacote com cabos (255 g)  https://www.waveshare.com/5inch-hdmi-lcd-b.htm
+)
+LD19 = NS(
+    nome="LiDAR LDROBOT LD19 (fase 2)",
+    cx=(54.0, 46.29, 34.8),            # P: https://www.waveshare.com/dtof-lidar-ld19.htm (desenho DTOF-LIDAR-LD19-details-size.jpg)
+    tampa=(35.29, 12.6),               # P: tampa giratória Ø35,29 x 12,6; centro óptico a 7,8 do topo (27 mm da base)
+    furos=((-23.4, 0.0), (23.4, 0.0), (0.0, 31.92)),   # P: 3 furos Ø2,5 sem rosca: 2 a 46,8 e o 3º a 31,92 da linha deles (posição no corpo: NC)
+    massa=47.0,                        # P
+)
+
 # ------------------------------------------------------------------ BASE (esqueleto comum dos bichos que rodam)
 BASE = NS(
     piso_z=(9.0, 13.0),                # o piso fica 9 mm acima do chão
@@ -412,6 +459,41 @@ CUBO = NS(
 CUBO.tilt = CUBO.cab.tilt
 # altura do eixo do tilt: tampa + vão do pescoço + distância do eixo ao fundo da cabeça
 CUBO.tilt_z = CUBO.base[2] + CUBO.folga_pescoco - CUBO.cab.z[0]
+
+# ------------------------------------------------------------------ CUBO_RODAS (modelo 4: o cubo que roda, ≥ 30 cm)
+# Mesma linguagem do cubo de mesa (cad/comum/quadrado.py): cabeça-cubo maior com tela de 5" HDMI, pescoço estreito,
+# pan ±170° por engrenagens 2:1 + tubo oco, tilt por dentro. Embaixo, base móvel: 2 motores JGB37 com encoder + rodas de
+# 85 mm (tração diferencial) e uma bola de 40 mm atrás. Pack 3S (12 V): bateria e motores no fundo.
+CUBO_RODAS = NS(
+    larg=130.0, y=(-150.0, 32.0),      # corpo: largura e (trás, frente); o eixo das rodas é Y=0 (rodas na FRENTE, bola atrás)
+    raio=20.0, parede=3.0, chanfro=3.0,
+    chao=20.0,                         # vão livre sob o piso (soleira/tapete: ver Modelo.obs)
+    z_deck=92.0, deck_esp=3.0, deck_recuo=1.5,   # o deck fica entre a base e o tronco, 1,5 mm para dentro (fresta de sombra dos ToF)
+    tampa_esp=4.0, chanfro_topo=6.0,
+    eixo_y=-62.0,                      # eixo do pescoço (pan)
+    ang_servo=90.0, ang_corpo=0.0,     # servo de pan na frente do eixo, corpo para +X
+    modulo=1.5, dentes=(22, 44), eng_folga=0.25,
+    flange=(20.0, 1.5), folga_pescoco=26.0,
+    cab=_cabeca_cubo(larg=152.0, y=(-45.0, 65.0), z=(-36.8, 91.2), zs=16.0, zcam=74.3, pilar_x=67.5, pilar_dz=30.0, lat_e_z=(-9.0, 60.0)),
+    pan=(-170.0, 170.0),
+    flange_motor=(62.0, 4.0, 52.0),    # Ø, espessura e círculo dos 4 parafusos da flange que prende cada motor por FORA (fica atrás da roda)
+    furo_motor=40.6,                   # o motor inteiro entra pela lateral por este furo (em gota)
+    roda_folga=2.5,                    # da flange à face de dentro da roda
+    bola_y=-120.0,
+    bateria_y=-50.0, alcapao=(108.0, 84.0),   # a bateria sai POR BAIXO num alçapão (tampa-bateria)
+    bms_xy=(50.0, -50.0), carregador_x=40.0, chave_xz=(-32.0, 62.0),
+    postes=((56.0, 25.5), (57.0, -100.0)),   # (|x|, y) dos 4 postes: parafuso M3 por baixo → deck → tronco
+    uno_xy=(-34.3, -125.0), l298_xy=(-35.5, -48.0), stepdown_xy=(0.0, 14.0), ubec_xy=(48.5, -53.5),
+    falante_z=122.0,
+    n_pecas=19,
+)
+CUBO_RODAS.cab.espacador = 4.0
+CUBO_RODAS.cab.vao_tela_pi = 4.0
+CUBO_RODAS.tilt = CUBO_RODAS.cab.tilt
+_zdk = CUBO_RODAS.z_deck + CUBO_RODAS.deck_esp
+CUBO_RODAS.eng_z = (_zdk + MG996R.base_ate_aba + MG996R.aba_ate_topo_horn - MG996R.horn_esp, _zdk + MG996R.base_ate_aba + MG996R.aba_ate_topo_horn - MG996R.horn_esp + 8.0)
+CUBO_RODAS.z_topo = CUBO_RODAS.eng_z[1] + 0.3 + CUBO_RODAS.tampa_esp          # topo do tronco
+CUBO_RODAS.tilt_z = CUBO_RODAS.z_topo + CUBO_RODAS.folga_pescoco - CUBO_RODAS.cab.z[0]
 
 CORES = {
     "verde": (0.36, 0.72, 0.16), "creme": (0.96, 0.89, 0.62), "azul": (0.20, 0.55, 0.86),

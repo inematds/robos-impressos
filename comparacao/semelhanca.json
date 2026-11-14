@@ -663,6 +663,50 @@
     "media": 0.9265,
     "media_ajustado": 0.9265
    }
+  },
+  "cubo_rodas": {
+   "depois": {
+    "referencia": "cubo",
+    "origem": "pecas/cubo_rodas",
+    "data": "2026-11-14",
+    "nota": "",
+    "triangulos": 36906,
+    "entram": [
+     "base-rodas x1",
+     "tampa-bateria x1",
+     "capa-esfera x1",
+     "flange-motor x2",
+     "deck x1",
+     "tronco x1",
+     "tubo-pescoco x1",
+     "engrenagem-pescoco x1",
+     "engrenagem-servo x1",
+     "garfo x1",
+     "quadro-cabeca x1",
+     "cabeca-corpo x1",
+     "cabeca-face x1",
+     "espacador-pi x4",
+     "componente roda-dir 85 mm x1",
+     "componente roda-esq 85 mm x1"
+    ],
+    "vistas": [
+     {
+      "vista": "tres-quartos",
+      "az_nominal": 35,
+      "el_nominal": 22,
+      "az": 45,
+      "el": 12,
+      "iou": 0.6692,
+      "iou_ajustado": 0.7092,
+      "ajuste_escala": 1.06,
+      "mascara_toca_borda": false,
+      "az_no_limite_da_busca": false,
+      "el_no_limite_da_busca": true
+     }
+    ],
+    "media": 0.6692,
+    "media_ajustado": 0.7092
+   }
   }
  }
 }

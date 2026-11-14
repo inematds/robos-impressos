@@ -1,0 +1,896 @@
+{
+ "modelo": "cubo_rodas",
+ "testes": {
+  "1 contagem": {
+   "ok": true,
+   "texto": "15 peças distintas, 19 no total (esperado 19); faltando 0; sobrando 0"
+  },
+  "2 malha": {
+   "ok": true,
+   "texto": "15 STL fechados, 1 corpo cada"
+  },
+  "3 mesa": {
+   "ok": true,
+   "texto": "todas cabem em 256 x 256 x 256 mm; maior dimensão 182.0 mm (base-rodas)"
+  },
+  "4 parede": {
+   "ok": true,
+   "texto": "modelo sem casca orgânica (paredes são sólidos exatos ≥ 2,4 mm)"
+  },
+  "5 interferência": {
+   "ok": true,
+   "texto": "41 sólidos (18 impressos + 23 componentes), 11 poses, 0 sobreposições; 1 encaixe(s) previsto(s) fora da conta: engrenagem-servo x servo-pan MG996R (horn do servo fica no rebaixo da engrenagem)"
+  },
+  "6 teste negativo": {
+   "ok": true,
+   "texto": "'quadro-cabeca' deslocada 3 mm em X → 2 sobreposições acusadas (tem que ser > 0)"
+  },
+  "7 peça solta": {
+   "ok": true,
+   "texto": "as 18 peças montadas encostam (≤ 1.5 mm) em outra"
+  },
+  "8 equilíbrio": {
+   "ok": true,
+   "texto": "massa estimada 2197 g; CG neutro em x=1.0 y=-41.6 z=127.7 mm, margem 41.6 mm (tomba com 18°); pior pose 'pan+170+tilt-baixo': margem 37.2 mm (17°); mínimo exigido 10 mm"
+  },
+  "9 caminho": {
+   "ok": true,
+   "texto": "26 passos (montagem + abertura para manutenção), cada peça entra ou sai pela direção declarada sem atravessar o que está montado"
+  },
+  "10 imprimibilidade": {
+   "ok": true,
+   "texto": "15 peças distintas: 15 saem sem suporte; 0 com suporte declarado; 0 REPROVADA(S) (declaradas sem suporte, mas com área sem apoio acima de max(30 mm², 0.2 % da área) a mais de 45° ou ponto que nasce no ar)"
+  },
+  "11 negativo impr.": {
+   "ok": true,
+   "texto": "'deck' na orientação declarada: 0 mm² sem apoio (limite 106); girada 180° em X → 19078 mm² = 36.1 % (acusou; tem que acusar)"
+  }
+ },
+ "interferencias": [],
+ "caminho": [],
+ "imprimibilidade": {
+  "limites": {
+   "angulo_max": 45.0,
+   "tol_angulo": 1.0,
+   "z_mesa": 0.3,
+   "ponte_max": 20.0,
+   "furo_max": 6.0,
+   "balanco_curto": 1.0,
+   "fragmento_mm2": 4.0,
+   "area_max_mm2": 30.0,
+   "area_max_pct": 0.2,
+   "inicio_no_ar_mm": 0.6
+  },
+  "pecas": {
+   "base-rodas": {
+    "area_total_mm2": 130692.8,
+    "mesa_mm2": 14554.2,
+    "balanco_bruto_mm2": 613.5,
+    "sem_apoio_mm2": 37.0,
+    "sem_apoio_pct": 0.03,
+    "limite_mm2": 261.4,
+    "tolerado_mm2": {
+     "fragmentos": 22.3,
+     "furos": 473.4,
+     "pontes": 50.4,
+     "beiras": 30.4
+    },
+    "por_tipo_mm2": {
+     "ponte longa": 0.0,
+     "balanço livre": 37.0,
+     "teto": 0.0
+    },
+    "maior_ponte_mm": 18.5,
+    "maior_balanco_mm": 5.0,
+    "pontes_longas": [],
+    "inicios_no_ar": [],
+    "n_inicios_no_ar": 0,
+    "n_regioes": 5,
+    "regioes": [
+     {
+      "tipo": "balanço livre",
+      "area_mm2": 17.7,
+      "caixa": [
+       [
+        58.0,
+        83.8,
+        3.0
+       ],
+       [
+        62.0,
+        89.6,
+        3.0
+       ]
+      ],
+      "fundo_mm": 4.9,
+      "caixa_montagem": [
+       [
+        58.0,
+        24.8,
+        23.0
+       ],
+       [
+        62.0,
+        30.6,
+        23.0
+       ]
+      ]
+     },
+     {
+      "tipo": "balanço livre",
+      "area_mm2": 17.6,
+      "caixa": [
+       [
+        -62.0,
+        83.8,
+        3.0
+       ],
+       [
+        -58.4,
+        89.7,
+        3.0
+       ]
+      ],
+      "fundo_mm": 5.0,
+      "caixa_montagem": [
+       [
+        -62.0,
+        24.8,
+        23.0
+       ],
+       [
+        -58.4,
+        30.7,
+        23.0
+       ]
+      ]
+     },
+     {
+      "tipo": "balanço livre",
+      "area_mm2": 0.9,
+      "caixa": [
+       [
+        55.3,
+        83.6,
+        68.0
+       ],
+       [
+        58.1,
+        86.6,
+        68.0
+       ]
+      ],
+      "fundo_mm": 1.5,
+      "caixa_montagem": [
+       [
+        55.3,
+        24.6,
+        88.0
+       ],
+       [
+        58.1,
+        27.6,
+        88.0
+       ]
+      ]
+     },
+     {
+      "tipo": "balanço livre",
+      "area_mm2": 0.7,
+      "caixa": [
+       [
+        -58.0,
+        83.8,
+        68.0
+       ],
+       [
+        -57.8,
+        84.7,
+        68.0
+       ]
+      ],
+      "fundo_mm": 1.5,
+      "caixa_montagem": [
+       [
+        -58.0,
+        24.8,
+        88.0
+       ],
+       [
+        -57.8,
+        25.7,
+        88.0
+       ]
+      ]
+     },
+     {
+      "tipo": "balanço livre",
+      "area_mm2": 0.0,
+      "caixa": [
+       [
+        63.9,
+        77.6,
+        49.9
+       ],
+       [
+        63.9,
+        77.6,
+        49.9
+       ]
+      ],
+      "fundo_mm": 1.3,
+      "caixa_montagem": [
+       [
+        63.9,
+        18.6,
+        69.9
+       ],
+       [
+        63.9,
+        18.6,
+        69.9
+       ]
+      ]
+     }
+    ],
+    "precisa_suporte": false,
+    "motivos": [],
+    "suporte": "não",
+    "veredito": "ok sem suporte",
+    "onde": "balanço livre 18 mm² em x 58..62, y 84..90, z 3..3, fundo 5; balanço livre 18 mm² em x -62..-58, y 84..90, z 3..3, fundo 5; balanço livre 1 mm² em x 55..58, y 84..87, z 68..68, fundo 2; +2 regiões",
+    "material": "PETG",
+    "perimetros": 5,
+    "infill": 25,
+    "reforco": "paredes dos motores com reforço de 4 mm e furo em gota; 4 postes Ø12 nos cantos; ressaltos nervurados do alçapão e da capa; assento cônico da bola a 45°; chanfro de 45° embaixo",
+    "orientacao": "piso na mesa"
+   },
+   "tampa-bateria": {
+    "area_total_mm2": 20089.8,
+    "mesa_mm2": 8728.1,
+    "balanco_bruto_mm2": 288.6,
+    "sem_apoio_mm2": 0.0,
+    "sem_apoio_pct": 0.0,
+    "limite_mm2": 40.2,
+    "tolerado_mm2": {
+     "fragmentos": 0.0,
+     "furos": 288.6,
+     "pontes": 0.0,
+     "beiras": 0.0
+    },
+    "por_tipo_mm2": {
+     "ponte longa": 0.0,
+     "balanço livre": 0.0,
+     "teto": 0.0
+    },
+    "maior_ponte_mm": 0.0,
+    "maior_balanco_mm": 0.0,
+    "pontes_longas": [],
+    "inicios_no_ar": [],
+    "n_inicios_no_ar": 0,
+    "n_regioes": 0,
+    "regioes": [],
+    "precisa_suporte": false,
+    "motivos": [],
+    "suporte": "não",
+    "veredito": "ok sem suporte",
+    "onde": "",
+    "material": "PETG",
+    "perimetros": 4,
+    "infill": 25,
+    "reforco": "4 cantoneiras + abraçadeira seguram o suporte 3x18650",
+    "orientacao": "face de baixo na mesa, cantoneiras para cima"
+   },
+   "capa-esfera": {
+    "area_total_mm2": 5886.0,
+    "mesa_mm2": 804.7,
+    "balanco_bruto_mm2": 1.3,
+    "sem_apoio_mm2": 0.0,
+    "sem_apoio_pct": 0.0,
+    "limite_mm2": 30.0,
+    "tolerado_mm2": {
+     "fragmentos": 1.3,
+     "furos": 0.0,
+     "pontes": 0.0,
+     "beiras": 0.0
+    },
+    "por_tipo_mm2": {
+     "ponte longa": 0.0,
+     "balanço livre": 0.0,
+     "teto": 0.0
+    },
+    "maior_ponte_mm": 0.0,
+    "maior_balanco_mm": 0.0,
+    "pontes_longas": [],
+    "inicios_no_ar": [],
+    "n_inicios_no_ar": 0,
+    "n_regioes": 0,
+    "regioes": [],
+    "precisa_suporte": false,
+    "motivos": [],
+    "suporte": "não",
+    "veredito": "ok sem suporte",
+    "onde": "",
+    "material": "PETG",
+    "perimetros": 4,
+    "infill": 40,
+    "reforco": "4 orelhas; boca cônica a 45°",
+    "orientacao": "de cabeça para baixo: a face que encosta no piso na mesa; a boca fecha a 45°"
+   },
+   "flange-motor": {
+    "area_total_mm2": 7025.4,
+    "mesa_mm2": 2789.5,
+    "balanco_bruto_mm2": 0.0,
+    "sem_apoio_mm2": 0.0,
+    "sem_apoio_pct": 0.0,
+    "limite_mm2": 30.0,
+    "tolerado_mm2": {
+     "fragmentos": 0.0,
+     "furos": 0.0,
+     "pontes": 0.0,
+     "beiras": 0.0
+    },
+    "por_tipo_mm2": {
+     "ponte longa": 0.0,
+     "balanço livre": 0.0,
+     "teto": 0.0
+    },
+    "maior_ponte_mm": 0.0,
+    "maior_balanco_mm": 0.0,
+    "pontes_longas": [],
+    "inicios_no_ar": [],
+    "n_inicios_no_ar": 0,
+    "n_regioes": 0,
+    "regioes": [],
+    "precisa_suporte": false,
+    "motivos": [],
+    "suporte": "não",
+    "veredito": "ok sem suporte",
+    "onde": "",
+    "material": "PETG",
+    "perimetros": 5,
+    "infill": 60,
+    "reforco": "disco quase maciço (5 perímetros, 60 %): leva o peso e o torque do motor",
+    "orientacao": "deitada, a face que encosta na parede na mesa"
+   },
+   "deck": {
+    "area_total_mm2": 52848.8,
+    "mesa_mm2": 21868.2,
+    "balanco_bruto_mm2": 0.0,
+    "sem_apoio_mm2": 0.0,
+    "sem_apoio_pct": 0.0,
+    "limite_mm2": 105.7,
+    "tolerado_mm2": {
+     "fragmentos": 0.0,
+     "furos": 0.0,
+     "pontes": 0.0,
+     "beiras": 0.0
+    },
+    "por_tipo_mm2": {
+     "ponte longa": 0.0,
+     "balanço livre": 0.0,
+     "teto": 0.0
+    },
+    "maior_ponte_mm": 0.0,
+    "maior_balanco_mm": 0.0,
+    "pontes_longas": [],
+    "inicios_no_ar": [],
+    "n_inicios_no_ar": 0,
+    "n_regioes": 0,
+    "regioes": [],
+    "precisa_suporte": false,
+    "motivos": [],
+    "suporte": "não",
+    "veredito": "ok sem suporte",
+    "onde": "",
+    "material": "PETG",
+    "perimetros": 4,
+    "infill": 25,
+    "reforco": "postes do servo de pan com mãos-francesas; ressaltos nervurados do Uno e do L298N; berços com abraçadeira",
+    "orientacao": "face de baixo na mesa"
+   },
+   "tronco": {
+    "area_total_mm2": 111954.0,
+    "mesa_mm2": 19255.2,
+    "balanco_bruto_mm2": 46.2,
+    "sem_apoio_mm2": 0.0,
+    "sem_apoio_pct": 0.0,
+    "limite_mm2": 223.9,
+    "tolerado_mm2": {
+     "fragmentos": 0.0,
+     "furos": 46.2,
+     "pontes": 0.0,
+     "beiras": 0.0
+    },
+    "por_tipo_mm2": {
+     "ponte longa": 0.0,
+     "balanço livre": 0.0,
+     "teto": 0.0
+    },
+    "maior_ponte_mm": 0.0,
+    "maior_balanco_mm": 0.0,
+    "pontes_longas": [],
+    "inicios_no_ar": [],
+    "n_inicios_no_ar": 0,
+    "n_regioes": 0,
+    "regioes": [],
+    "precisa_suporte": false,
+    "motivos": [],
+    "suporte": "não",
+    "veredito": "ok sem suporte",
+    "onde": "",
+    "material": "PETG",
+    "perimetros": 4,
+    "infill": 15,
+    "reforco": "4 colunas Ø12 fundidas nas paredes (inserto na ponta); chanfro de 45° de 6 mm no topo; trilhos do alto-falante nascem do topo",
+    "orientacao": "de cabeça para baixo: o topo na mesa"
+   },
+   "tubo-pescoco": {
+    "area_total_mm2": 7540.5,
+    "mesa_mm2": 523.9,
+    "balanco_bruto_mm2": 0.0,
+    "sem_apoio_mm2": 0.0,
+    "sem_apoio_pct": 0.0,
+    "limite_mm2": 30.0,
+    "tolerado_mm2": {
+     "fragmentos": 0.0,
+     "furos": 0.0,
+     "pontes": 0.0,
+     "beiras": 0.0
+    },
+    "por_tipo_mm2": {
+     "ponte longa": 0.0,
+     "balanço livre": 0.0,
+     "teto": 0.0
+    },
+    "maior_ponte_mm": 0.0,
+    "maior_balanco_mm": 0.0,
+    "pontes_longas": [],
+    "inicios_no_ar": [],
+    "n_inicios_no_ar": 0,
+    "n_regioes": 0,
+    "regioes": [],
+    "precisa_suporte": false,
+    "motivos": [],
+    "suporte": "não",
+    "veredito": "ok sem suporte",
+    "onde": "",
+    "material": "PETG",
+    "perimetros": 5,
+    "infill": 40,
+    "reforco": "3 tirantes M3 de aço atravessam o tubo inteiro: as camadas trabalham só em compressão; flange cônica a 45°",
+    "orientacao": "de cabeça para baixo: o topo (lado do garfo) na mesa, a flange cônica abre a 45°"
+   },
+   "engrenagem-pescoco": {
+    "area_total_mm2": 3686.9,
+    "mesa_mm2": 737.2,
+    "balanco_bruto_mm2": 0.0,
+    "sem_apoio_mm2": 0.0,
+    "sem_apoio_pct": 0.0,
+    "limite_mm2": 30.0,
+    "tolerado_mm2": {
+     "fragmentos": 0.0,
+     "furos": 0.0,
+     "pontes": 0.0,
+     "beiras": 0.0
+    },
+    "por_tipo_mm2": {
+     "ponte longa": 0.0,
+     "balanço livre": 0.0,
+     "teto": 0.0
+    },
+    "maior_ponte_mm": 0.0,
+    "maior_balanco_mm": 0.0,
+    "pontes_longas": [],
+    "inicios_no_ar": [],
+    "n_inicios_no_ar": 0,
+    "n_regioes": 0,
+    "regioes": [],
+    "precisa_suporte": false,
+    "motivos": [],
+    "suporte": "não",
+    "veredito": "ok sem suporte",
+    "onde": "",
+    "material": "PETG",
+    "perimetros": 5,
+    "infill": 60,
+    "reforco": "dentes módulo 1.5 com 5 perímetros (dente quase maciço); presa pelos 3 tirantes",
+    "orientacao": "deitada"
+   },
+   "engrenagem-servo": {
+    "area_total_mm2": 10555.2,
+    "mesa_mm2": 3302.0,
+    "balanco_bruto_mm2": 0.0,
+    "sem_apoio_mm2": 0.0,
+    "sem_apoio_pct": 0.0,
+    "limite_mm2": 30.0,
+    "tolerado_mm2": {
+     "fragmentos": 0.0,
+     "furos": 0.0,
+     "pontes": 0.0,
+     "beiras": 0.0
+    },
+    "por_tipo_mm2": {
+     "ponte longa": 0.0,
+     "balanço livre": 0.0,
+     "teto": 0.0
+    },
+    "maior_ponte_mm": 0.0,
+    "maior_balanco_mm": 0.0,
+    "pontes_longas": [],
+    "inicios_no_ar": [],
+    "n_inicios_no_ar": 0,
+    "n_regioes": 0,
+    "regioes": [],
+    "precisa_suporte": false,
+    "motivos": [],
+    "suporte": "não",
+    "veredito": "ok sem suporte",
+    "onde": "",
+    "material": "PETG",
+    "perimetros": 5,
+    "infill": 60,
+    "reforco": "dentes módulo 1.5 com 5 perímetros; 4 parafusos no horn redondo",
+    "orientacao": "de cabeça para baixo: a face de cima na mesa, o rebaixo do horn para cima"
+   },
+   "garfo": {
+    "area_total_mm2": 8359.5,
+    "mesa_mm2": 1005.5,
+    "balanco_bruto_mm2": 198.1,
+    "sem_apoio_mm2": 0.0,
+    "sem_apoio_pct": 0.0,
+    "limite_mm2": 30.0,
+    "tolerado_mm2": {
+     "fragmentos": 0.7,
+     "furos": 197.3,
+     "pontes": 0.0,
+     "beiras": 0.0
+    },
+    "por_tipo_mm2": {
+     "ponte longa": 0.0,
+     "balanço livre": 0.0,
+     "teto": 0.0
+    },
+    "maior_ponte_mm": 0.0,
+    "maior_balanco_mm": 0.0,
+    "pontes_longas": [],
+    "inicios_no_ar": [],
+    "n_inicios_no_ar": 0,
+    "n_regioes": 0,
+    "regioes": [],
+    "precisa_suporte": false,
+    "motivos": [],
+    "suporte": "não",
+    "veredito": "ok sem suporte",
+    "onde": "",
+    "material": "PETG",
+    "perimetros": 5,
+    "infill": 40,
+    "reforco": "camadas ao longo dos braços (flexão); bloco maciço com 3 insertos dos tirantes; furos em gota",
+    "orientacao": "deitado, costas na mesa: as camadas correm do bloco para os braços"
+   },
+   "quadro-cabeca": {
+    "area_total_mm2": 40823.6,
+    "mesa_mm2": 11329.7,
+    "balanco_bruto_mm2": 97.8,
+    "sem_apoio_mm2": 0.0,
+    "sem_apoio_pct": 0.0,
+    "limite_mm2": 81.6,
+    "tolerado_mm2": {
+     "fragmentos": 0.0,
+     "furos": 97.8,
+     "pontes": 0.0,
+     "beiras": 0.0
+    },
+    "por_tipo_mm2": {
+     "ponte longa": 0.0,
+     "balanço livre": 0.0,
+     "teto": 0.0
+    },
+    "maior_ponte_mm": 0.0,
+    "maior_balanco_mm": 0.0,
+    "pontes_longas": [],
+    "inicios_no_ar": [],
+    "n_inicios_no_ar": 0,
+    "n_regioes": 0,
+    "regioes": [],
+    "precisa_suporte": false,
+    "motivos": [],
+    "suporte": "não",
+    "veredito": "ok sem suporte",
+    "onde": "",
+    "material": "PETG",
+    "perimetros": 4,
+    "infill": 30,
+    "reforco": "laterais inteiras até o fundo com colunas Ø10 nos 4 insertos e mãos-francesas a 45° na travessa; servo de tilt em rasgo em U (sem ponte), 4 parafusos",
+    "orientacao": "frente da travessa na mesa, laterais para cima"
+   },
+   "cabeca-corpo": {
+    "area_total_mm2": 145929.7,
+    "mesa_mm2": 17023.8,
+    "balanco_bruto_mm2": 48.1,
+    "sem_apoio_mm2": 0.0,
+    "sem_apoio_pct": 0.0,
+    "limite_mm2": 291.9,
+    "tolerado_mm2": {
+     "fragmentos": 0.0,
+     "furos": 48.1,
+     "pontes": 0.0,
+     "beiras": 0.0
+    },
+    "por_tipo_mm2": {
+     "ponte longa": 0.0,
+     "balanço livre": 0.0,
+     "teto": 0.0
+    },
+    "maior_ponte_mm": 0.0,
+    "maior_balanco_mm": 0.0,
+    "pontes_longas": [],
+    "inicios_no_ar": [],
+    "n_inicios_no_ar": 0,
+    "n_regioes": 0,
+    "regioes": [],
+    "precisa_suporte": false,
+    "motivos": [],
+    "suporte": "não",
+    "veredito": "ok sem suporte",
+    "onde": "",
+    "material": "PLA",
+    "perimetros": 3,
+    "infill": 15,
+    "reforco": "arestas compridas com raio de 20 mm (verticais na impressão) e chanfro de 45° na aresta de trás; rasgo do pescoço em gota; sem ponte nem teto",
+    "orientacao": "costas na mesa, boca (frente) para cima, como um copo"
+   },
+   "cabeca-face": {
+    "area_total_mm2": 31135.8,
+    "mesa_mm2": 10316.0,
+    "balanco_bruto_mm2": 0.0,
+    "sem_apoio_mm2": 0.0,
+    "sem_apoio_pct": 0.0,
+    "limite_mm2": 62.3,
+    "tolerado_mm2": {
+     "fragmentos": 0.0,
+     "furos": 0.0,
+     "pontes": 0.0,
+     "beiras": 0.0
+    },
+    "por_tipo_mm2": {
+     "ponte longa": 0.0,
+     "balanço livre": 0.0,
+     "teto": 0.0
+    },
+    "maior_ponte_mm": 0.0,
+    "maior_balanco_mm": 0.0,
+    "pontes_longas": [],
+    "inicios_no_ar": [],
+    "n_inicios_no_ar": 0,
+    "n_regioes": 0,
+    "regioes": [],
+    "precisa_suporte": false,
+    "motivos": [],
+    "suporte": "não",
+    "veredito": "ok sem suporte",
+    "onde": "",
+    "material": "PLA",
+    "perimetros": 3,
+    "infill": 20,
+    "reforco": "4 pilares Ø10 com 2 nervuras a 45° cada (insertos M3 na ponta); postes da câmera",
+    "orientacao": "face da frente (a que aparece) na mesa, pilares para cima"
+   },
+   "espacador-pi": {
+    "area_total_mm2": 154.8,
+    "mesa_mm2": 21.1,
+    "balanco_bruto_mm2": 0.0,
+    "sem_apoio_mm2": 0.0,
+    "sem_apoio_pct": 0.0,
+    "limite_mm2": 30.0,
+    "tolerado_mm2": {
+     "fragmentos": 0.0,
+     "furos": 0.0,
+     "pontes": 0.0,
+     "beiras": 0.0
+    },
+    "por_tipo_mm2": {
+     "ponte longa": 0.0,
+     "balanço livre": 0.0,
+     "teto": 0.0
+    },
+    "maior_ponte_mm": 0.0,
+    "maior_balanco_mm": 0.0,
+    "pontes_longas": [],
+    "inicios_no_ar": [],
+    "n_inicios_no_ar": 0,
+    "n_regioes": 0,
+    "regioes": [],
+    "precisa_suporte": false,
+    "motivos": [],
+    "suporte": "não",
+    "veredito": "ok sem suporte",
+    "onde": "",
+    "material": "PLA",
+    "perimetros": 3,
+    "infill": 15,
+    "reforco": "",
+    "orientacao": "em pé"
+   },
+   "teste-encaixe": {
+    "area_total_mm2": 7154.6,
+    "mesa_mm2": 2030.6,
+    "balanco_bruto_mm2": 0.0,
+    "sem_apoio_mm2": 0.0,
+    "sem_apoio_pct": 0.0,
+    "limite_mm2": 30.0,
+    "tolerado_mm2": {
+     "fragmentos": 0.0,
+     "furos": 0.0,
+     "pontes": 0.0,
+     "beiras": 0.0
+    },
+    "por_tipo_mm2": {
+     "ponte longa": 0.0,
+     "balanço livre": 0.0,
+     "teto": 0.0
+    },
+    "maior_ponte_mm": 0.0,
+    "maior_balanco_mm": 0.0,
+    "pontes_longas": [],
+    "inicios_no_ar": [],
+    "n_inicios_no_ar": 0,
+    "n_regioes": 0,
+    "regioes": [],
+    "precisa_suporte": false,
+    "motivos": [],
+    "suporte": "não",
+    "veredito": "ok sem suporte",
+    "onde": "",
+    "material": "PLA",
+    "perimetros": 3,
+    "infill": 15,
+    "reforco": "",
+    "orientacao": ""
+   }
+  },
+  "teste_negativo": {
+   "peca": "deck",
+   "antes_mm2": 0.0,
+   "tentativas": [
+    {
+     "giro": "180° em X",
+     "sem_apoio_mm2": 19077.6,
+     "sem_apoio_pct": 36.1,
+     "limite_mm2": 105.7,
+     "acusou": true
+    }
+   ]
+  }
+ },
+ "cg": [
+  {
+   "pose": "neutra",
+   "cg": [
+    1.0,
+    -41.6,
+    127.7
+   ],
+   "margem_mm": 41.6,
+   "tomba_graus": 18.1,
+   "massa_g": 2197.0
+  },
+  {
+   "pose": "pan+170",
+   "cg": [
+    -1.6,
+    -52.2,
+    127.7
+   ],
+   "margem_mm": 39.6,
+   "tomba_graus": 17.2,
+   "massa_g": 2197.0
+  },
+  {
+   "pose": "pan-170",
+   "cg": [
+    0.3,
+    -52.5,
+    127.7
+   ],
+   "margem_mm": 40.4,
+   "tomba_graus": 17.6,
+   "massa_g": 2197.0
+  },
+  {
+   "pose": "pan+90",
+   "cg": [
+    -5.2,
+    -46.2,
+    127.7
+   ],
+   "margem_mm": 40.3,
+   "tomba_graus": 17.5,
+   "massa_g": 2197.0
+  },
+  {
+   "pose": "pan-90",
+   "cg": [
+    5.5,
+    -47.8,
+    127.7
+   ],
+   "margem_mm": 39.0,
+   "tomba_graus": 17.0,
+   "massa_g": 2197.0
+  },
+  {
+   "pose": "tilt-cima",
+   "cg": [
+    1.0,
+    -46.9,
+    129.2
+   ],
+   "margem_mm": 43.3,
+   "tomba_graus": 18.5,
+   "massa_g": 2197.0
+  },
+  {
+   "pose": "tilt-baixo",
+   "cg": [
+    1.0,
+    -38.3,
+    124.6
+   ],
+   "margem_mm": 38.3,
+   "tomba_graus": 17.1,
+   "massa_g": 2197.0
+  },
+  {
+   "pose": "pan+90+tilt-baixo",
+   "cg": [
+    -8.5,
+    -46.2,
+    124.6
+   ],
+   "margem_mm": 37.6,
+   "tomba_graus": 16.8,
+   "massa_g": 2197.0
+  },
+  {
+   "pose": "pan-90+tilt-cima",
+   "cg": [
+    0.3,
+    -47.8,
+    129.2
+   ],
+   "margem_mm": 43.2,
+   "tomba_graus": 18.5,
+   "massa_g": 2197.0
+  },
+  {
+   "pose": "pan+170+tilt-baixo",
+   "cg": [
+    -2.1,
+    -55.4,
+    124.6
+   ],
+   "margem_mm": 37.2,
+   "tomba_graus": 16.6,
+   "massa_g": 2197.0
+  },
+  {
+   "pose": "pan+170+tilt-cima",
+   "cg": [
+    -0.6,
+    -47.0,
+    129.2
+   ],
+   "margem_mm": 43.4,
+   "tomba_graus": 18.6,
+   "massa_g": 2197.0
+  }
+ ],
+ "resumo": {
+  "pecas_distintas": 15,
+  "pecas_total": 19,
+  "massa_impressa_g": 1125.0,
+  "tempo_total_h": 42.8,
+  "ok": true
+ }
+}
