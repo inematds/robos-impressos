@@ -74,3 +74,6 @@ guia/                     guia (E5d)
   `inema-traduz` com cache. Leia `~/.claude/skills/projetos-landing-guia/SKILL.md` e `~/projetos/inema-design/DESIGN.md`.
 - Banners novos da E5b. hreflang e links de idioma em todas as páginas.
 - Revisor independente conforme `~/.claude/runbooks/revisor-independente.md` é chamado pelo ORQUESTRADOR, não por você.
+
+## Acréscimo (ordem 12): página `/guia/evolucao/` na E5d
+Capivara e dino: renders próprios antes (worktree `.preview/v102` da tag v1.0.2, receita no canal) × depois, nas mesmas 4 vistas da régua; tabela de IoU por vista (antes, depois, teto da malha, alvo); explicação curta de como ler o IoU. NÃO publicar os lado a lado, máscaras ou renders da malha crua (contêm/derivam da referência do Nei), salvo autorização dele registrada em decisions.md. A página `/guia/cubo/` já existe (feita na etapa "cubo primeiro"): a E5d integra, não refaz.

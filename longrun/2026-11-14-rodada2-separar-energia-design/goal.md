@@ -69,3 +69,13 @@
     com resumo curto dos 4 robôs, semelhança antes × depois, resultado do teste de imprimibilidade, links do guia
     (PT/EN/ES) e do repo, e pendências. Guardar o "msg N" devolvido para o relatório final. Se parar no meio por falha,
     avisar do mesmo jeito ("Falhou: … — motivo").
+
+## Ordens 11 e 12 (Nei, 14/11 noite)
+11. **Cubo primeiro, para imprimir.** "Assim que tiver tudo pronto do cubo e postar no portal me avisa para verificar; também
+    quero a lista de material para criar ele e os STL para mim imprimir." Cubo = robô quadrado de mesa (`cubo`).
+    Pronto = `projetos/cubo/LISTA-DE-COMPRAS.md` (itens dos `Comp` + decisões da E1, links ML, NC marcado) + STL/3MF na
+    orientação de impressão com link direto + página `/guia/cubo/` (+ en, es) → 200 + revisor independente + push +
+    portal com texto que bate com o que está no ar + `avisa-v3.sh` próprio (msg N guardado). Sem tag (a v1.1.2 é no fim).
+12. **Página de referência da evolução da capivara e do dino** (didática): imagens antes (v1.0.2) × depois nas mesmas
+    4 vistas + tabela de IoU por vista (antes, depois, teto da malha, alvo) + como ler o IoU. Fica em `/guia/evolucao/`
+    (PT/EN/ES), feita na E5d depois da E3b. Imagens da referência do Nei só se ele autorizar (pergunta feita em 14/11).

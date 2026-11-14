@@ -13,3 +13,7 @@ Não edite `cad/modelos/cubo.py`, `cad/modelos/cubo_rodas.py`, nem as seções C
 Se o contexto apertar, feche o pacote em que está (commit + `state.md` + o que falta em `canal.md`) e relate.
 
 Relatório final (curto): IoU antes × depois por vista; caminhos das imagens lado a lado; o que mudou no esqueleto; olhos; furos disfarçados; energia; altura/largura/massa; saída REAL do `verificar.py todos` (linhas `=>` dos 4 e as 11 do dino); hashes; pendências sem enfeite.
+
+## Regra nova do Nei (14/11): nenhum modelo local novo sem aprovação
+Não rode Hunyuan3D, rembg nem qualquer modelo local (nem `pip install` de torch/diffusers): a malha `referencia/malhas/dino-hy2mv-fl-s2.glb` e as máscaras já existem. Se achar que precisa gerar malha nova, PARE e relate.
+Em paralelo roda a etapa "cubo primeiro" (só `projetos/cubo/`, `guia/cubo/`, `pecas/cubo/`): não mexa nisso.
