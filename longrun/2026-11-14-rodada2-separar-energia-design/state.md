@@ -6,14 +6,17 @@
 - 14/11: ordem 9 (imprimibilidade + reforços + teste 10) registrada; E6 (teste 10) lançada; E1 avisada por mensagem; E3-brief atualizado.
 - 14/11: ordem 10 (avisa-v3 no fim, guardar msg N) registrada.
 
-## Agentes vivos (atualizado 14/11 ~10:00) — o orquestrador NÃO edita cad/ enquanto rodam
-| Etapa | O que faz | Arquivos de que é dona | Situação |
-|---|---|---|---|
-| E1 | cubo (energia + redesenho) e cubo_rodas (novo) | `cad/modelos/cubo.py`, `cubo_rodas.py`, seções CUBO/CUBO_RODAS e componentes NOVOS em `parametros.py`/`componentes.py`, `MODELOS` em gerar/verificar/tabelas, helper `ressalto_nervurado` em `geo.py` | rodando; recebeu ordem 9 por mensagem |
-| E2 | régua `cad/comparar.py` + números "antes" + image-to-3D local | só arquivos novos; `.venv-i23d`, `referencia/malhas`, `referencia/comparacao`, `comparacao/` | rodando |
-| E6 | `cad/comum/imprimibilidade.py`, teste 10, campos novos em `Peca`, diagnóstico `imprimibilidade-antes.md` | arquivo novo + edições mínimas em `modelo.py`, `gerar.py`, `verificar.py`, bloco `IMPRESSAO_LIMITES` em `parametros.py` | rodando |
-Arquivos compartilhados sem dono único: `gerar.py`, `verificar.py`, `parametros.py`. Commits e saídas dos agentes são PROVISÓRIOS.
-**Quando os três terminarem:** eu rodo `gerar.py todos` + `verificar.py todos`, confiro que o limite do teste 10 não foi afrouxado, e faço o commit de consolidação. Só então lanço a E3 (um bicho por vez: capivara primeiro).
+## Situação (atualizado 14/11 17:00, depois da queda das 10:20)
+- FEITO e em commit: régua + "antes" (fe5b50f); teste 10/11 de imprimibilidade (48c9bb5); helper `ressalto_nervurado`, `imagem3d.py`, malhas medidas (fd85379; teto: capivara 0,927, dino 0,897).
+- PERDIDO na queda: todo o trabalho do cubo/cubo_rodas (E1). Relançado às 17:0x.
+- Regra nova: cada agente faz commit a cada pacote verificado e escreve uma linha aqui.
+
+## Agentes lançados às 17:0x
+| Etapa | O que faz | Dona de |
+|---|---|---|
+| E1 (refeita) | cubo (energia + redesenho + imprimibilidade) → commit → cubo_rodas → commit | `cad/modelos/cubo.py`, `cubo_rodas.py`, seções CUBO/CUBO_RODAS + componentes novos, `MODELOS` |
+| E3a | capivara: esqueleto + casca da malha → furos/olhos/energia → imprimibilidade (3 pacotes, 3 commits) | `base.py`, `bicho.py`, `capivara.py`, seções BASE/PESCOCO/CAPIVARA, `cad/peles/` |
+Depois: E3b dino (mesma receita), consolidação (`gerar todos` + `verificar todos` por mim), E4, E5a–d, publicar, avisa-v3.
 
 ## Próximas etapas (ainda não lançadas)
 - E3a capivara → E3b dino (brief em `E3-brief.md`; sequência: esqueleto+forma → furos/olhos/energia → imprimibilidade; commit + verificador a cada pacote).

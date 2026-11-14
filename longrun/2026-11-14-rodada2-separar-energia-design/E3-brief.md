@@ -119,3 +119,20 @@ Largura da silhueta a 10/25/40/50/60/75/90 % da altura, contada de cima para bai
   altura com 0,34 H, pés abertos com 0,61 H. Para 300 mm: cabeça ~132 × 180 mm (frente × lado), pescoço ~100 mm em
   Z ≈ 160–170, largura nos pés ~185 mm, profundidade total ~258 mm (a cauda pode precisar encurtar ou sair em peça à parte).
 Cada peça continua limitada a 256 mm na orientação de impressão.
+
+## ATUALIZAÇÃO 17:00 — a malha existe e é boa: o caminho é (a)
+Leia o bloco "Retomada depois da queda" do `canal.md`. As malhas `referencia/malhas/<bicho>-hy2mv-*-s2.glb` são fechadas,
+1 corpo, e batem 0,93 (capivara) / 0,90 (dino) com a referência. Abra o lado a lado delas em
+`referencia/comparacao/<bicho>-malha-*-s2.png` para ver a forma. Use a malha como casca externa de TUDO o que ela
+representa bem (torso com braços/patas/bandana/rabo em relevo, cabeça com focinho e orelhas); as peças coloridas
+(olhos com pupila separada, focinho, bandana, mãos, patas, anel ciano, barriga, crista, dedos) podem ser recortadas da
+própria malha por região (interseção da casca com um volume) em vez de blobs novos: assim a cor muda e a forma continua
+a da referência. Sugestão de implementação: voxelizar a malha escalada numa grade (passo ~1,25 mm) → campo de distância
+com sinal → `Pele`-compatível por interpolação trilinear; regiões = max(campo, máscara). Grave a pele processada no
+repo (`cad/peles/`), porque `referencia/` fica fora do git e o build tem que rodar só com o repo.
+Alvo da régua: capivara ≥ 0,852; dino ≥ 0,856 (metade do caminho até o teto), mais a semelhança clara a olho.
+Com a ordem de energia: os módulos (step-down 5 V do Pi, UBEC 6 V dos servos, carregador) estão sendo criados pela E1
+em `parametros.py`/`componentes.py` AGORA; se ainda não existirem quando você chegar ao pacote 2, veja `canal.md`; se
+não houver nada lá, crie-os você com fonte citada e avise no canal (nomes: `STEPDOWN5V`, `UBEC6V`, `CARREGADOR2S`).
+Enquanto a E1 roda: verifique só o SEU modelo (`verificar.py capivara` ou `dino`, e o outro bicho nos testes 1–9);
+não rode `todos`; `git add` só dos seus arquivos; `parametros.py` é compartilhado (releia antes de cada edição).
