@@ -27,6 +27,7 @@ CSS_EXTRA = """
   .numero{text-align:center} .numero b{display:block;font-family:Sora;font-size:2.1rem;color:var(--amb);line-height:1.15} .numero span{display:block;font-size:.9rem;color:var(--mut);margin-top:6px}
   .arraste{display:none;font-size:.8rem;color:var(--mut);margin:18px 0 -14px}
   .sep4{font-family:Sora;margin:22px 0 10px}
+  #pecas,#compras,section{scroll-margin-top:76px} .hero figcaption.mini{padding:8px 12px 10px}
   .glossario{margin:18px 0 0;display:grid;grid-template-columns:max-content 1fr;gap:8px 18px} .glossario dt{font-weight:700;color:var(--amb)} .glossario dd{margin:0}
   .tabela-wrap{overflow-x:auto;margin:22px 0 6px;border:1px solid var(--line);border-radius:12px}
   .tabela{border-collapse:collapse;width:100%;font-size:.9rem;min-width:560px}

@@ -244,7 +244,7 @@ média de 6 mm³/s (suposição conservadora) e densidade do filamento; peça ma
 | Driver L298N | 1 | 1 | — | 20–35 |
 | Inserto M3 a quente (compre 30) | 25 | 25 | 14 | 0,40–0,80 |
 | Parafusos M3 (6, 8, 10, 12, 16, 25 mm), porcas e arruelas M3 | kit | kit | kit | 25–40 o kit |
-| Parafuso M3×12 cabeça chata | 2 | 2 | 8 | — |
+| Parafuso M3 de cabeça chata (M3×12 nos bichos, M3×10 no robô quadrado) | 2 | 2 | 8 | — |
 | Parafuso M3×35 + porca (tubo do pescoço) | — | — | 3 | — |
 | Parafuso M2,5×8 (bandeja do Pi) / M2,5×12 + porca (cubo) | 4 | 4 | 4 | — |
 | 4 pés de borracha adesivos | — | — | 4 | 5–10 |

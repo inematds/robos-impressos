@@ -110,6 +110,7 @@
   .numero{text-align:center} .numero b{display:block;font-family:Sora;font-size:2.1rem;color:var(--amb);line-height:1.15} .numero span{display:block;font-size:.9rem;color:var(--mut);margin-top:6px}
   .arraste{display:none;font-size:.8rem;color:var(--mut);margin:18px 0 -14px}
   .sep4{font-family:Sora;margin:22px 0 10px}
+  #pecas,#compras,section{scroll-margin-top:76px} .hero figcaption.mini{padding:8px 12px 10px}
   .glossario{margin:18px 0 0;display:grid;grid-template-columns:max-content 1fr;gap:8px 18px} .glossario dt{font-weight:700;color:var(--amb)} .glossario dd{margin:0}
   .tabela-wrap{overflow-x:auto;margin:22px 0 6px;border:1px solid var(--line);border-radius:12px}
   .tabela{border-collapse:collapse;width:100%;font-size:.9rem;min-width:560px}
@@ -153,10 +154,11 @@
   <div class="wrap">
     <div>
       <span class="chip">Robôs para imprimir em casa · fase 1: o corpo · projeto ainda não impresso</span>
-      <h1>Seu robô de estimação sai da <span class="amb">sua impressora 3D</span></h1>
+      <h1>O corpo do seu robô de estimação sai da <span class="amb">sua impressora 3D</span></h1>
       <p class="lead">Você quer um robô com cara de bicho em casa. Kit pronto é caro, e projeto solto da internet costuma não encaixar: são horas de impressão e filamento no lixo. O <strong>robos-impressos</strong> entrega o corpo: três modelos com o lugar de cada motor e de cada placa, conferidos por um programa antes de você imprimir (o encaixe na sua impressora você confirma com uma peça de teste pequena). Fazer ele se mexer sozinho, com fiação e programação, é a próxima fase.</p>
       <div class="cta">
         <a class="btn" href="#modelos">Ver os 3 robôs</a>
+        <a class="btn ghost" href="#guia">Baixar as peças</a>
         <a class="btn ghost" href="https://github.com/inematds/robos-impressos" target="_blank" rel="noopener">Ver no GitHub</a>
       </div>
     </div>
@@ -168,7 +170,7 @@
   <span class="chip">Em resumo</span>
   <p>Você quer montar um robô simpático em casa e não sabe por onde começar o corpo. O <strong>robos-impressos</strong> é um conjunto de três corpos de robô para imprimir em 3D: um dinossauro e uma capivara de uns 33 cm, que rodam pelo chão, e um robô quadrado de mesa com tela no rosto. Cada um já tem o lugar certo para os motores, os servos (motorzinhos que giram até um ângulo e param), a bateria e as placas Arduino e Raspberry Pi. Serve para quem tem acesso a uma impressora 3D com mesa de 256 mm e quer montar, aprender ou ensinar robótica. Esta é a fase 1, só o corpo e os encaixes: fiação, voz e inteligência ficam para a fase 2. E um aviso honesto: é um projeto digital conferido por script, ninguém imprimiu estas peças ainda.</p>
   <figure style="margin:26px 0 0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000"><img src="assets/banner-grade.jpg" alt="Ilustração com as seis etapas: escolher o modelo, imprimir, encaixar os servos, montar a casca, cabeça que vira, pronto para a fase 2" style="display:block;width:100%"></figure>
-  <p class="nota">Os dois banners acima são ilustrações feitas por IA. Todas as outras imagens desta página são renders: imagens de computador feitas a partir dos arquivos do projeto, não fotos de um robô montado.</p>
+  <p class="nota">Os dois banners acima são ilustrações feitas por IA. As outras imagens desta página são renders (imagens de computador feitas a partir dos arquivos do projeto, não fotos de um robô montado) e um desenho da peça de teste.</p>
 </div></section>
 
 <!-- VIDEO: entra o explicavideo do projeto quando publicado -->
@@ -247,7 +249,7 @@
   <div class="phase"><div class="tag">3</div><div class="d"><strong>Imprima primeiro a peça de teste</strong><span>É uma plaquinha de 7 cm que testa na sua impressora o encaixe do micro servo, dos insertos, dos parafusos e do pino-guia. Menos de uma hora de impressão que evita refazer uma peça de cinco horas. Se tudo encaixar, você segue sem instalar nada.</span></div></div>
   <div class="phase"><div class="tag">4</div><div class="d"><strong>Imprima por cor</strong><span>As peças já vêm deitadas na posição certa e separadas por cor. O esqueleto vai em PETG, que aguenta mais; a casca em PLA.</span></div></div>
   <div class="phase"><div class="tag">5</div><div class="d"><strong>Monte de dentro para fora</strong><span>Primeiro o esqueleto com motores e servos, depois a casca, por último a cabeça. A ordem, parafuso por parafuso, está no plano do projeto.</span></div></div>
-  <p class="nota">Arquivos, comandos e a lista de compras estão na parte técnica: <a href="#compras">ver no guia técnico ↓</a></p>
+  <p class="nota">Arquivos, comandos e a lista de compras estão na parte técnica: <a href="#guia">ver no guia técnico ↓</a></p>
 </div></section>
 
 <section id="palavras"><div class="wrap">
@@ -320,10 +322,11 @@
 <span class="k">ls</span> pecas/dino/stl pecas/capivara/stl pecas/cubo/stl pecas/comum/stl</pre>
   </div></div>
   <div class="step"><div class="b">2</div><div>
-    <h3>Imprima a peça de teste</h3><p>Imprima a peça de teste e um pino-guia (<code>pecas/comum/stl/comum-pino-guia.stl</code>). O desenho abaixo mostra cada furo, visto de cima. Ao lado da janela do micro servo ficam três furos de inserto (3,9, 4,0 e 4,1 mm) e, na ponta, o furo maior, do eixo do motor amarelo (o eixo tem que girar solto). Na outra fileira ficam três soquetes do pino-guia (folgas de 0,20, 0,25 e 0,30 mm) e quatro furos de parafuso: M3 que passa livre, M3 que faz rosca no plástico (M3* no desenho), M2,5 e M2. O projeto usa o furo de 4,0 mm e o soquete de 0,25 mm, os do meio, marcados com uma covinha (● no desenho). O inserto M3 (a bucha de latão que entra a quente, com ferro de solda, e vira rosca) tem que entrar firme; o pino tem que entrar justo, sem martelar. Se esses dois servirem, siga em frente. Se o vizinho servir melhor, ajuste a folga em <code>cad/parametros.py</code>, no bloco <code>FOLGA</code> (<code>componente</code> para o servo, <code>encaixe</code> para o pino, <code>inserto_d</code> para o inserto), e gere de novo pelo passo 3: só aí você precisa do Python.</p>
+    <h3>Imprima a peça de teste</h3><p>Imprima a peça de teste e, para o dinossauro ou a capivara, um pino-guia (<code>pecas/comum/stl/comum-pino-guia.stl</code>). O desenho abaixo mostra cada furo, visto de cima. Ao lado da janela do micro servo ficam três furos de inserto (3,9, 4,0 e 4,1 mm) e, na ponta, o furo maior, do eixo do motor amarelo (o eixo tem que girar solto). Na outra fileira ficam três soquetes do pino-guia (folgas de 0,20, 0,25 e 0,30 mm) e quatro furos de parafuso: M3 que passa livre, M3 que faz rosca no plástico (M3* no desenho), M2,5 e M2. O projeto usa o furo de 4,0 mm e o soquete de 0,25 mm, os do meio, marcados com uma covinha (● no desenho). O inserto M3 (a bucha de latão que entra a quente, com ferro de solda, e vira rosca) tem que entrar firme; o pino tem que entrar justo, sem martelar. O micro servo tem que entrar na janela com a mão, sem forçar e sem ficar sambando. Os parafusos têm que passar soltos no furo M3 livre e fazer rosca nos outros três. Se tudo isso servir, siga em frente. Se o furo ou o soquete vizinho servir melhor, ou se o servo ficar apertado, ajuste a folga em <code>cad/parametros.py</code>, no bloco <code>FOLGA</code> (<code>componente</code> para o servo, <code>encaixe</code> para o pino, <code>inserto_d</code> para o inserto), e gere de novo pelo passo 3: só aí você precisa do Python.</p>
 <pre><span class="c"># abra este arquivo no fatiador</span>
 pecas/comum/stl/comum-teste-encaixe.stl</pre>
-    <img class="shot" src="assets/teste-encaixe.png" alt="Desenho da peça de teste vista de cima, com a medida de cada furo" style="max-width:640px;background:#fff">
+    <a href="assets/teste-encaixe.png" target="_blank" rel="noopener"><img class="shot" src="assets/teste-encaixe.png" alt="Desenho da peça de teste vista de cima, com a medida de cada furo" style="max-width:640px;background:#fff"></a>
+    <p class="mini">toque no desenho para ampliar</p>
     <p class="mini"><a href="https://github.com/inematds/robos-impressos/blob/main/pecas/comum/stl/comum-teste-encaixe.stl">ver a peça de teste no GitHub (botão de download na página)</a></p>
   </div></div>
   <div class="step"><div class="b">3</div><div>
@@ -336,7 +339,7 @@ pecas/comum/stl/comum-teste-encaixe.stl</pre>
     <p class="mini">Estes comandos são de Linux e macOS. No Windows, use <code>python</code> no lugar de <code>python3</code>, <code>dir</code> no lugar de <code>ls</code>, <code>.venv\Scripts\pip</code> no lugar de <code>.venv/bin/pip</code> e <code>.venv\Scripts\python</code> no lugar de <code>.venv/bin/python</code>.</p>
   </div></div>
   <div class="step"><div class="b">4</div><div>
-    <h3>Imprima as mesas</h3><p>Cada mesa abaixo é uma impressão: as peças já estão deitadas, juntas por cor e material, num arquivo 3MF com a geometria (o arquivo não leva configuração de fatiamento, e ainda não foi aberto num fatiador; se o seu não abrir, use os STL avulsos de <code>pecas/&lt;modelo&gt;/stl</code> e a tabela). O nome do arquivo é <code>&lt;modelo&gt;-mesa-NN-material-cor.3mf</code>. Ponto de partida, ainda não testado: camada de 0,2 mm, bico de 0,4 mm, 3 paredes e 15 % de preenchimento. As cascas arredondadas pedem suporte em árvore; o esqueleto imprime sem suporte, menos o <code>berco-tilt</code>. A peça de teste e os pinos-guia se repetem na mesa cinza: se já imprimiu, apague do prato. As cores são só aparência: o mínimo é um rolo de PETG para o esqueleto e um de PLA para a casca. Nas tabelas, <code>mesa-cabeca</code> é o nome de uma peça (a que sustenta a cabeça por dentro).</p>
+    <h3>Imprima as mesas</h3><p>Cada mesa abaixo é uma impressão: as peças já estão deitadas, juntas por cor e material, num arquivo 3MF com a geometria (o arquivo não leva configuração de fatiamento, e ainda não foi aberto num fatiador; se o seu não abrir, use os STL avulsos de <code>pecas/&lt;modelo&gt;/stl</code> e de <code>pecas/comum/stl</code> (chassi, bandejas e peças do pescoço dos bichos) e a tabela). O nome do arquivo é <code>&lt;modelo&gt;-mesa-NN-material-cor.3mf</code>. Ponto de partida, ainda não testado: camada de 0,2 mm, bico de 0,4 mm, 3 paredes e 15 % de preenchimento. As cascas arredondadas pedem suporte em árvore; o esqueleto imprime sem suporte, menos o <code>berco-tilt</code>. A peça de teste e os pinos-guia se repetem na mesa cinza: se já imprimiu, apague do prato. As cores são só aparência: o mínimo é um rolo de PETG para o esqueleto e um de PLA para a casca. Nas tabelas, <code>mesa-cabeca</code> é o nome de uma peça (a que sustenta a cabeça por dentro).</p>
 <pre><span class="c"># um arquivo 3MF por mesa, em cada modelo</span>
 pecas/dino/mesas/     pecas/capivara/mesas/     pecas/cubo/mesas/</pre>
     <h4 class="sep4">🦖 Dinossauro</h4>
@@ -393,7 +396,7 @@ pecas/dino/mesas/     pecas/capivara/mesas/     pecas/cubo/mesas/</pre>
   </div></div>
   <div class="step"><div class="b">5</div><div>
     <h3>Monte um dos bichos</h3><p>Resumo da ordem para o dinossauro e a capivara:</p>
-    <ol class="lista"><li>Coloque os insertos M3 a quente nas peças.</li><li>Aparafuse os dois motores nas paredes do chassi (a peça escura grande, que é o esqueleto), por fora, com o motor para cima.</li><li>Prenda a esfera de apoio com a capa, por baixo.</li><li>Monte o servo de virar a cabeça no alto do chassi, depois o garfo, o segundo servo e o berço (as duas peças do pescoço).</li><li>Ponha a bateria e as bandejas das placas, por trás.</li><li>Feche o torso pela frente, e só então encaixe as rodas pelos lados.</li><li>Painel da barriga, costas, pernas ou coxas, cauda ou rabo.</li><li>Monte a cabeça na bancada (a peça <code>mesa-cabeca</code> entra por baixo do crânio; depois o servo da boca, a mandíbula e os olhos) e desça ela inteira sobre o pescoço: dois parafusos por cima, escondidos sob a crista.</li><li>Espinhos, unhas, orelhas e bandana entram por pressão ou cola.</li></ol>
+    <ol class="lista"><li>Coloque os insertos M3 a quente nas peças.</li><li>Aparafuse os dois motores nas paredes do chassi (a peça escura grande, que é o esqueleto), por fora, com o motor para cima.</li><li>Prenda a esfera de apoio com a capa, por baixo, e encaixe a chave de liga e desliga no piso.</li><li>Monte o servo de virar a cabeça no alto do chassi, depois o garfo, o segundo servo e o berço (as duas peças do pescoço).</li><li>No dinossauro, ponha agora os dois micro servos dos braços nas janelas das paredes.</li><li>Ponha a bateria, o driver do motor e as bandejas das placas.</li><li>Feche o torso pela frente, e só então encaixe as rodas pelos lados.</li><li>Painel da barriga, costas, pernas ou coxas, cauda ou rabo.</li><li>Monte a cabeça na bancada (a peça <code>mesa-cabeca</code> entra por baixo do crânio; depois o servo da boca, a mandíbula e os olhos) e desça ela inteira sobre o pescoço: dois parafusos por cima.</li><li>A crista da cabeça (ou o topete) e a crista das costas tampam parafusos: encaixe por pressão, sem cola. Unhas, orelhas, mãos e bandana podem ir com cola.</li><li>No dinossauro, por último os braços, nos micro servos.</li><li>São 20 etapas no <a href="https://github.com/inematds/robos-impressos/blob/main/PLANO.md">PLANO.md</a> (em português), seção 6.</li></ol>
   </div></div>
   <div class="step"><div class="b">6</div><div>
     <h3>Ou monte o robô quadrado</h3><p>Resumo da ordem:</p>
@@ -509,12 +512,12 @@ pecas/dino/mesas/     pecas/capivara/mesas/     pecas/cubo/mesas/</pre>
       <tr><td>Raspberry Pi 4 ou 5</td><td>opcional</td><td>opcional</td><td>1</td></tr>
       <tr><td>Tela de 3,5 polegadas para Raspberry Pi, modelo MPI3501 (encaixa nos pinos da placa; tela HDMI não serve)</td><td>—</td><td>—</td><td>1</td></tr>
       <tr><td>Driver de motor L298N</td><td>1</td><td>1</td><td>—</td></tr>
-      <tr><td>Insertos M3 a quente</td><td>25</td><td>25</td><td>14</td></tr>
-      <tr><td>Parafusos, porcas e arruelas M3 (e alguns M2,5)</td><td>kit</td><td>kit</td><td>kit</td></tr>
+      <tr><td>Insertos M3 a quente (5,7 mm de comprimento, para furo de 4,0 mm)</td><td>25</td><td>25</td><td>14</td></tr>
+      <tr><td>Parafusos M3 de 6 a 25 mm, porcas e arruelas M3 (e alguns M2,5)</td><td>kit</td><td>kit</td><td>kit</td></tr>
       <tr><td>Arduino Uno com shield de servos</td><td>opcional</td><td>opcional</td><td>opcional</td></tr>
       <tr><td>4 pés de borracha adesivos</td><td>—</td><td>—</td><td>4</td></tr>
     </tbody></table></div>
-  <p class="nota">Na fase 1 nada liga: Arduino e Raspberry Pi só servem para conferir o encaixe, por isso são opcionais (no robô quadrado o Raspberry Pi segura a tela). Parafusos fora do kit comum: nos bichos, 2 M3×12 de cabeça chata e 4 M2,5×8; no robô quadrado, 3 M3×35, 8 M3×12 de cabeça chata e 4 M2,5×12. A lista completa está no <a href="https://github.com/inematds/robos-impressos/blob/main/PLANO.md">PLANO.md</a> (em português), seção 3, e a quantidade por etapa na seção 6.</p>
+  <p class="nota">Na fase 1 nada liga: Arduino e Raspberry Pi só servem para conferir o encaixe, por isso são opcionais (no robô quadrado o Raspberry Pi segura a tela). Parafusos fora do kit comum: nos bichos, 2 M3×12 de cabeça chata e 4 M2,5×8; no robô quadrado, 3 M3×35, 8 M3×10 de cabeça chata e 4 M2,5×12. Em M3×12, 3 é o diâmetro e 12 o comprimento, em milímetros. A lista completa está no <a href="https://github.com/inematds/robos-impressos/blob/main/PLANO.md">PLANO.md</a> (em português), seção 3, e a quantidade por etapa na seção 6.</p>
   <p class="nota">Custo estimado dos componentes, já com Arduino e shield, sem a impressora e o filamento: R$ 330 a 560 por bicho. No robô quadrado, R$ 260 a 430 mais o Raspberry Pi e a tela, que nele são obrigatórios (estimativa de R$ 490 a 850 a mais). Preços de lojas brasileiras em novembro de 2026; estimativa.</p>
   <p class="nota">Ferramentas: ferro de solda (para os insertos), chave Phillips pequena, chave Allen de 2,5 mm, paquímetro (para medir os seus componentes) e cola instantânea.</p>
   <p class="nota">Cuidado com as pilhas 18650: são de lítio. Use suporte e carregador próprios, não deixe os polos encostarem em metal e não carregue sem supervisão, principalmente com crianças por perto.</p>
