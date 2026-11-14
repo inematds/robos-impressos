@@ -11,6 +11,7 @@
     <a class="sec" href="#comprar">[[nav_comprar]]</a>
     <a class="sec" href="#caminho">[[nav_caminho]]</a>
     <a class="sec" href="#tecnico">[[nav_tecnico]]</a>
+    <a class="sec" href="#energia">[[nav_energia]]</a>
     [[LANG]]
     <button class="tgl" id="themeToggle" aria-label="[[aria_tema]]" title="[[aria_tema]]">🌙</button>
     <a class="btn" href="[[REPO]]" target="_blank" rel="noopener">GitHub</a>
@@ -24,6 +25,7 @@
       <span class="chip">[[hero_chip]]</span>
       <h1>[[hero_h1]]</h1>
       <p class="lead">[[hero_lead]]</p>
+      <p class="fase">[[hero_fase]]</p>
       <div class="cta">
         <a class="btn" href="#robo">[[cta_robo]]</a>
         <a class="btn ghost" href="#comprar">[[cta_comprar]]</a>
@@ -75,10 +77,10 @@
     <div class="card numero"><b>[[CUSTO_FIL]]</b><span>[[custo_3]]</span></div>
   </div>
   <p class="nota">[[comprar_nota_preco]]</p>
-  <p class="arraste">[[arraste]]</p>
+  <div class="card aviso" id="riscos"><h3>⚠️ [[riscos_t]]</h3><p>[[riscos_p]]</p><ul>[[RISCOS]]</ul></div>
   [[COMPRAS]]
   <p class="nota">[[comprar_nota_nc]]</p>
-  <p class="nota">[[comprar_nota_md]] <a href="[[BLOB]][[DOCS]]/LISTA-DE-COMPRAS.md" target="_blank" rel="noopener">LISTA-DE-COMPRAS.md</a></p>
+  <p class="nota">[[comprar_nota_md]] <a href="[[DOC_LISTA]]" target="_blank" rel="noopener">[[DOC_LISTA_NOME]]</a></p>
 </div></section>
 
 <section id="caminho"><div class="wrap">
@@ -90,6 +92,13 @@
   <div class="phase"><div class="tag">3</div><div class="d"><strong>[[cam3_t]]</strong><span>[[cam3_p]]</span></div></div>
   <div class="phase"><div class="tag">4</div><div class="d"><strong>[[cam4_t]]</strong><span>[[cam4_p]]</span></div></div>
   <p class="nota">[[cam_nota]] <a href="#imprimir">[[link_passo]]</a></p>
+</div></section>
+
+<section id="glossario"><div class="wrap">
+  <span class="chip">[[glo_chip]]</span>
+  <h2>[[glo_h2]]</h2>
+  <p class="sub">[[glo_sub]]</p>
+  <dl class="glossario">[[GLOSSARIO]]</dl>
 </div></section>
 
 <div id="tecnico" class="techhead"><div class="wrap">
@@ -124,13 +133,11 @@
   <div class="step"><div class="b">2</div><div>
     <h3>[[imp2_t]]</h3><p>[[imp2_p]]</p>
     <img class="shot" src="[[A]][[ID]]-mesas.jpg" alt="[[mesas_alt]]">
-    <p class="arraste">[[arraste]]</p>
     [[TAB_MESAS]]
     <p class="mini">[[imp2_mini]]</p>
   </div></div>
   <div class="step"><div class="b">3</div><div>
     <h3>[[imp3_t]]</h3><p>[[imp3_p]]</p>
-    <p class="arraste">[[arraste]]</p>
     [[TAB_PECAS]]
     <p class="mini">[[estimativa]]</p>
   </div></div>
@@ -141,21 +148,25 @@
   </div></div>
   <h3 class="sep3">[[reforcos_t]]</h3>
   <p class="sub">[[reforcos_p]]</p>
-  <p class="arraste">[[arraste]]</p>
   [[TAB_REFORCOS]]
+  <p class="nota">[[imp_nota_md]] <a href="[[DOC_IMPRIMIR]]" target="_blank" rel="noopener">[[DOC_IMPRIMIR_NOME]]</a></p>
 </div></section>
 
 <section id="montar"><div class="wrap">
   <span class="chip">[[mon_chip]]</span>
   <h2>[[mon_h2]]</h2>
   <p class="sub">[[mon_sub]]</p>
+  <h3 class="sep3" id="preparos">[[prep_t]]</h3>
+  <p class="sub">[[prep_p]]</p>
+  <div class="step"><div class="b">1</div><div><h3>[[prep1_t]]</h3><p>[[prep1_p]]</p></div></div>
+  <div class="step"><div class="b">2</div><div><h3>[[prep2_t]]</h3><p>[[prep2_p]]</p></div></div>
+  <div class="step"><div class="b">3</div><div><h3>[[prep3_t]]</h3><p>[[prep3_p]]</p></div></div>
   <h3 class="sep3">[[mon_paraf_t]]</h3>
   <p class="sub">[[mon_paraf_p]]</p>
-  <p class="arraste">[[arraste]]</p>
+  <p class="nota">[[prep_nota]]</p>
   [[TAB_PARAFUSOS]]
   <h3 class="sep3">[[mon_passos_t]]</h3>
   <p class="sub">[[mon_passos_p]]</p>
-  <p class="arraste">[[arraste]]</p>
   [[TAB_PASSOS]]
   <h3 class="sep3">[[mon_abrir_t]]</h3>
   <p class="sub">[[mon_abrir_p]]</p>
@@ -166,24 +177,33 @@
   <span class="chip">[[en_chip]]</span>
   <h2>[[en_h2]]</h2>
   <p class="sub">[[en_sub]]</p>
-  <div class="flow">
+  <div class="card aviso"><h3>⚠️ [[seg_t]]</h3><ul>[[seg_li]]</ul></div>
+  <div class="flow" style="margin-top:22px">
     <span>[[en_f1]]</span><span class="arr">→</span>
     <span>[[en_f2]]</span><span class="arr">→</span>
     <span>[[en_f3]]</span>
   </div>
-  <div class="grid g3" style="margin-top:22px">
+  <div class="grid g2" style="margin-top:22px">
     <div class="card"><h3>[[en1_t]]</h3><p>[[en1_p]]</p></div>
     <div class="card"><h3>[[en2_t]]</h3><p>[[en2_p]]</p></div>
     <div class="card"><h3>[[en3_t]]</h3><p>[[en3_p]]</p></div>
+    <div class="card"><h3>[[en4_t]]</h3><p>[[en4_p]]</p></div>
   </div>
+  <h3 class="sep3" id="esquema">[[esq_t]]</h3>
+  <p class="sub">[[esq_p]]</p>
+  <a class="esquema" href="[[A]]ligacao.[[LG]].svg" target="_blank" rel="noopener"><img src="[[A]]ligacao.[[LG]].svg" alt="[[esq_img_alt]]"></a>
+  <p class="mini"><a href="[[A]]ligacao.[[LG]].svg" target="_blank" rel="noopener">[[abrir_grande]]</a></p>
+  <h3 class="sep3">[[lig_t]]</h3>
+  <p class="sub">[[lig_p]]</p>
+  [[LIGACOES]]
   <p class="nota">[[en_nota]]</p>
+  <p class="nota">[[en_nota_md]] <a href="[[DOC_LIGACAO]]" target="_blank" rel="noopener">[[DOC_LIGACAO_NOME]]</a></p>
 </div></section>
 
 <section id="fase2"><div class="wrap">
   <span class="chip">[[f2_chip]]</span>
   <h2>[[f2_h2]]</h2>
   <p class="sub">[[f2_sub]]</p>
-  <p class="arraste">[[arraste]]</p>
   [[TAB_FASE2]]
   <p class="nota">[[f2_nota]]</p>
 </div></section>

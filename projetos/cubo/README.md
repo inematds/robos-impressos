@@ -2,9 +2,10 @@
 
 Robô de mesa para imprimir na Bambu Lab A1 e montar em casa. A cabeça é um cubo com tela de 3,5" no rosto; gira
 ±170° e inclina de −25° a +30°. Dentro vão um Raspberry Pi, um Arduino Uno, dois servos MG996R e um pack de duas
-baterias 18650 que carrega por USB-C. Não roda. Fase 1 = mecânica e encaixe; a programação é a fase 2.
+baterias 18650 que carrega por USB-C. Não roda. Fase 1 = corpo montado e ligado; o programa vem depois, na fase 2.
 
-**Nada foi impresso ainda.** As peças foram conferidas por 11 testes no computador (resultado no fim).
+**Nada foi impresso ainda, e a parte elétrica não foi testada na bancada.** As peças foram conferidas por 11 testes
+no computador (resultado no fim).
 
 <!-- GERADO:numeros -->
 - Altura montado: 200,5 mm.
@@ -16,16 +17,20 @@ baterias 18650 que carrega por USB-C. Não roda. Fase 1 = mecânica e encaixe; a
 | Para | Onde |
 |---|---|
 | Ver o robô e seguir o guia | https://inematds.github.io/robos-impressos/guia/cubo/ (também em `/guia/en/cubo/` e `/guia/es/cubo/`) |
-| Comprar | [LISTA-DE-COMPRAS.md](LISTA-DE-COMPRAS.md) |
-| Imprimir | [IMPRIMIR.md](IMPRIMIR.md) |
-| Baixar tudo | [cubo-stl.zip](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo/cubo-stl.zip) (STL + 3MF das mesas) |
+| Comprar | [LISTA-DE-COMPRAS.md](LISTA-DE-COMPRAS.md) · [English](LISTA-DE-COMPRAS.en.md) · [Español](LISTA-DE-COMPRAS.es.md) |
+| Imprimir | [IMPRIMIR.md](IMPRIMIR.md) · [English](IMPRIMIR.en.md) · [Español](IMPRIMIR.es.md) |
+| Ligar os fios | [LIGACAO.md](LIGACAO.md) · [English](LIGACAO.en.md) · [Español](LIGACAO.es.md) |
+| Pôr os servos no centro | [firmware/centrar_servos/centrar_servos.ino](firmware/centrar_servos/centrar_servos.ino) |
+| Baixar tudo | [cubo-stl.zip](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo/cubo-stl.zip) (STL, 3MF das mesas, sketch e guias nos 3 idiomas) |
 | STL, 3MF, mesas | `pecas/cubo/stl/`, `pecas/cubo/3mf/`, `pecas/cubo/mesas/` (+ `pecas/comum/stl/comum-teste-encaixe.stl`) |
 | Modelo | `cad/modelos/cubo.py`, `cad/comum/quadrado.py`, seção `CUBO` de `cad/parametros.py` |
 
 ## Montagem
 
-Comece pelos 16 insertos M3 a quente. Depois siga a ordem abaixo, que é a que o verificador testou (teste 9): cada
-peça entra pelo lado indicado sem bater no que já está montado. Os passos com "(bancada)" são feitos fora do robô.
+Antes de montar, faça os 3 preparos da bancada descritos em [LIGACAO.md](LIGACAO.md): energia soldada e ajustada
+(5,1 V e 6 V), programa gravado no Arduino com os 2 servos em 90°, cartão microSD gravado. Depois assente os 16
+insertos M3 a quente e siga a ordem abaixo, que é a que o verificador testou (teste 9): cada peça entra pelo lado
+indicado sem bater no que já está montado. Os passos com "(bancada)" são feitos fora do robô.
 
 ### Parafusos
 
@@ -50,23 +55,23 @@ peça entra pelo lado indicado sem bater no que já está montado. Os passos com
 <!-- GERADO:passos -->
 | # | Passo | Entra | Parafusos e atenção |
 |---|---|---|---|
-| 1 | base | por cima | Antes de começar, assente os 16 insertos a quente (lista na tabela de parafusos). |
-| 2 | servo de pan nos 2 postes | por cima | 4 × M3 × 12, eixo para cima. Ligue o servo e deixe-o no centro (90°) antes de pôr a engrenagem. |
-| 3 | Arduino Uno nos 4 ressaltos | por cima | 4 × M3 × 8, USB virado para a esquerda. O shield encaixa por cima. |
-| 4 | módulos de energia nos berços (1 abraçadeira cada) | por cima | Solde os fios antes de prender. 3 abraçadeiras (conversor, UBEC, carregador) e fita dupla-face na placa de proteção. A boca USB-C do carregador encosta na janela de trás. |
-| 5 | chave (por fora, atrás) | por trás | Encaixa por pressão no recorte. |
-| 6 | alto-falante nos trilhos da parede de trás | por cima | Fase 2: pode pular agora. |
-| 7 | engrenagem do servo no horn | por cima | Horn redondo no rebaixo da engrenagem, 4 × M2 × 8 pelos rasgos e o parafuso central do servo pelo furo de 6 mm. |
-| 8 | bateria (pela porta de trás) | por trás | Confira a polaridade com o multímetro antes de ligar a chave. |
-| 9 | Raspberry Pi e espaçadores no quadro (bancada) | pela frente | 4 × M2,5 × 12 com porca; os 4 espaçadores ficam entre o Pi e a travessa. Grave o cartão microSD antes. |
-| 10 | tela, painel do rosto e câmera pela frente; 4 M3 por trás do quadro, ANTES do servo (bancada) | pela frente | A tela encaixa nos pinos do Pi. 4 × M3 × 8 por trás da travessa, nos insertos dos pilares do painel. Depois que o servo entra, esses parafusos ficam sem acesso. |
-| 11 | servo de tilt no rasgo do quadro, por trás; 4 parafusos pela esquerda (bancada) | por trás | 4 × M3 × 12. Os 2 de cima são apertados pelos furos de acesso da lateral esquerda. |
-| 12 | garfo (com o horn já preso no braço) no eixo do tilt, por baixo; parafuso central do horn pelo furo do pino; pino M5 (bancada) | por baixo | Prenda o horn no braço direito do garfo com 4 × M2 × 8. O parafuso central do horn entra pelo furo do pino. Por último, o M5 × 16: aperte até encostar e volte um quarto de volta, porque a cabeça gira nele. |
+| 1 | base | por cima | Antes deste passo, faça os 3 preparos da bancada (energia ajustada, servos em 90°, cartão gravado) e assente os 16 insertos a quente. |
+| 2 | servo de pan nos 2 postes | por cima | 4 × M3 × 12, eixo para cima. O servo já está em 90° (preparo 2): não gire o eixo com a mão. |
+| 3 | Arduino Uno nos 4 ressaltos | por cima | 4 × M3 × 8, USB virado para a esquerda. O sketch já tem de estar gravado (preparo 2): com o Uno parafusado, o cabo USB não entra. O shield encaixa por cima, com o jumper SEL retirado. |
+| 4 | módulos de energia nos berços (1 abraçadeira cada) | por cima | O chicote já vem soldado e conferido do preparo 1. 3 abraçadeiras (conversor, UBEC, carregador) e fita dupla-face na placa de proteção. A boca USB-C do carregador encosta na janela de trás. |
+| 5 | chave (por fora, atrás) | por trás | Já está no lugar desde o preparo 1. Ela encaixa por pressão no recorte, por fora, com os 2 fios passando pelo recorte. |
+| 6 | alto-falante nos trilhos da parede de trás | por cima | Fase 2: é opcional agora, pode pular. |
+| 7 | engrenagem do servo no horn | por cima | Horn redondo no rebaixo da engrenagem, 4 × M2 × 8 pelos rasgos e o parafuso central do servo pelo furo de 6 mm. Não gire o eixo: ele está em 90°. |
+| 8 | bateria (pela porta de trás) | por trás | Chave desligada. Confira a polaridade com o multímetro antes de ligar. |
+| 9 | Raspberry Pi e espaçadores no quadro (bancada) | pela frente | 4 × M2,5 × 12 com porca; os 4 espaçadores ficam entre o Pi e a travessa. O cartão microSD já gravado (preparo 3) entra antes. Encaixe o conector baixo da serial nos pinos 31 a 34 antes de pôr a tela. |
+| 10 | tela, painel do rosto e câmera pela frente; 4 M3 por trás do quadro, ANTES do servo (bancada) | pela frente | A tela encaixa nos pinos 1 a 26 do Pi. A câmera é da fase 2: é opcional agora, e o furo dela fica vazio. 4 × M3 × 8 por trás da travessa, nos insertos dos pilares do painel. Depois que o servo entra, esses parafusos ficam sem acesso. |
+| 11 | servo de tilt no rasgo do quadro, por trás; 4 parafusos pela esquerda (bancada) | por trás | 4 × M3 × 12. O servo já está em 90° (preparo 2). Os 2 parafusos de cima são apertados pelos furos de acesso da lateral esquerda. |
+| 12 | garfo (com o horn já preso no braço) no eixo do tilt, por baixo; parafuso central do horn pelo furo do pino; pino M5 (bancada) | por baixo | Prenda o horn no braço direito do garfo com 4 × M2 × 8. Com o servo em 90°, encaixe o garfo apontando para baixo, com o rosto na vertical. O parafuso central do horn entra pelo furo do pino. Por último, o M5 × 16: aperte até encostar e volte um quarto de volta, porque a cabeça gira nele. |
 | 13 | copo da cabeça por trás; 4 M3 na parede de trás (bancada) | por trás | 4 × M3 × 8. |
 | 14 | tubo do pescoço na tampa, por cima (bancada) | por cima | A flange cônica apoia na tampa. |
 | 15 | engrenagem do pescoço por baixo da tampa (bancada) | por baixo | Alinhe os 3 furos com os do tubo. |
-| 16 | cabeça sobre o tubo; 3 tirantes M3 por baixo (bancada) | por cima | Passe os cabos pelo furo de 9 mm do pescoço ANTES de fechar. 3 × M3 × 45 por baixo da engrenagem, até os insertos do garfo. |
-| 17 | tampa + pescoço + cabeça sobre a base; 4 M3 por baixo | por cima | Com a cabeça olhando para a frente e o servo no centro, engrene os dentes. 4 × M3 × 10 por baixo, com a chave Allen longa. |
+| 16 | cabeça sobre o tubo; 3 tirantes M3 por baixo (bancada) | por cima | Passe os 8 fios pelo furo de 9 mm do pescoço ANTES de fechar: primeiro a extensão do servo de tilt (o conector de 3 pinos passa justo), depois os 2 fios de 5 V do Pi e os 3 fios da serial. Deixe 10 cm de folga para o giro. 3 × M3 × 45 por baixo da engrenagem, até os insertos do garfo. |
+| 17 | tampa + pescoço + cabeça sobre a base; 4 M3 por baixo | por cima | Ligue os fios que desceram pelo pescoço (tabela de ligações). Com a cabeça olhando para a frente e o servo de pan em 90°, engrene os dentes. 4 × M3 × 10 por baixo, com a chave Allen longa. |
 | 18 | porta traseira (1 M3) | por trás | 1 × M3 × 8 na orelha da tampa; o pé da porta encosta nos 2 batentes do piso. |
 <!-- /GERADO -->
 
@@ -79,20 +84,22 @@ Trocar a bateria ou mexer nas placas não exige desmontar a cabeça.
 |---|---|---|
 | 1 | abrir: porta traseira | Solte 1 parafuso. |
 | 2 | abrir: bateria sai por trás | Desligue a chave antes. |
-| 3 | abrir: tampa + pescoço + cabeça saem por cima (placas à mostra) | Solte os 4 parafusos por baixo da base e levante o conjunto inteiro. |
+| 3 | abrir: tampa + pescoço + cabeça saem por cima (placas à mostra) | Solte os 4 parafusos por baixo da base e levante o conjunto inteiro, devagar: os fios do pescoço continuam ligados. |
 <!-- /GERADO -->
 
-## Energia
+## Energia e ligação
 
-Pack 2S (2 × 18650, 6 a 8,4 V) → placa de proteção BMS 2S e chave → duas linhas separadas:
+Pack 2S (2 × 18650, 6 a 8,4 V) → fusível de 5 A → placa de proteção BMS 2S → chave → duas linhas separadas:
 
-- **5 V do Raspberry Pi:** conversor LM2596. Mantém os 5 V até o pack cair a cerca de 6,5 V. Ajuste em 5,1 V com o
-  multímetro antes de ligar o Pi. Limite de 3 A: Pi 4, ou Pi 5 sem USB pesada.
-- **6 V dos 2 servos:** UBEC de 3 A, com capacitor de 1000 µF na saída.
-- **Carga:** módulo USB-C com balanceamento, com a boca numa janela atrás da base. Pede um 3º fio no ponto que une
-  as duas células.
+- **5,1 V do Raspberry Pi e do Arduino:** conversor LM2596. Mantém os 5 V até o pack cair a cerca de 6,5 V.
+- **6 V dos 2 servos:** UBEC de 3 A, pelo borne azul do Sensor Shield (jumper SEL retirado), com capacitor de 1000 µF.
+- **Carga:** módulo USB-C com balanceamento, antes da chave, com a boca numa janela atrás da base e um 3º fio no
+  ponto que une as duas células.
+- **Raspberry Pi ↔ Arduino:** serial (UART) de 3 fios pelo pescoço. Pi: pinos 32 (TX), 33 (RX) e 34 (GND). Arduino:
+  D0 e D1, com um divisor de 3 resistores de 1 kΩ no fio que vai do Arduino para o Pi.
 
-O esquema fio a fio e o teste elétrico ainda não foram feitos.
+O esquema, a tabela fio a fio e os avisos de segurança estão em [LIGACAO.md](LIGACAO.md). Nada disso foi testado na
+bancada.
 
 ## Verificação
 
@@ -120,18 +127,25 @@ Saída real de `.venv/bin/python cad/verificar.py cubo` (cópia completa em `ver
 ```
 .venv/bin/python cad/gerar.py cubo                      # STL, 3MF, mesas, montagem.json
 .venv/bin/python cad/verificar.py cubo                  # 11 testes
-.venv/bin/python guia/src/pagina_robo.py docs cubo      # tabelas destes arquivos
+.venv/bin/python guia/src/pagina_robo.py docs cubo pt   # blocos GERADO destes arquivos
+.venv/bin/python guia/src/pagina_robo.py traduzir cubo  # EN e ES pelo inema-traduz (só o que mudou)
+.venv/bin/python guia/src/pagina_robo.py docs cubo      # versões .en.md e .es.md
+.venv/bin/python guia/src/pagina_robo.py pagina cubo    # guia/cubo/ + en + es + esquema ligacao.<idioma>.svg
 .venv/bin/python guia/src/pagina_robo.py zip cubo       # cubo-stl.zip
-.venv/bin/python guia/src/pagina_robo.py pagina cubo    # guia/cubo/ + en + es
+.venv/bin/python guia/src/pagina_robo.py conferir cubo  # links, tags, idiomas, zip
 ```
+
+Os arquivos `*.en.md`, `*.es.md` e `ligacao.*.svg` são gerados: mude o texto em português (ou
+`guia/src/robos/cubo.dados.json`) e rode os comandos acima.
 
 ## Pendências
 
-- Imprimir e montar: comece pelo `teste-encaixe`.
+- Imprimir e montar: comece pelo cupom de teste.
+- Testar a parte elétrica na bancada (nenhum fio foi ligado ainda).
 - Medidas NC dos componentes (tela, abas e horn do MG996R, chave, boca do USB-C): medir e corrigir `cad/parametros.py`.
 - Abrir os 3MF das mesas no Bambu Studio.
-- O cupom `teste-encaixe` é comum aos bichos: não testa a janela do MG996R nem o furo do pino M5 (falta um cupom próprio do robô quadrado).
+- O cupom de teste é comum aos outros robôs: não testa a janela do MG996R nem o furo do pino M5 (falta um cupom próprio do robô quadrado).
 - O plugue USB-C que alimenta o Raspberry Pi não está no modelo 3D: conferir se cabe ao lado do Pi, dentro da cabeça.
-- Esquema elétrico fio a fio e ligação Raspberry Pi ↔ Arduino (o furo de cabos do pescoço tem 9 mm: plugue USB não
-  passa; passe os fios soltos e ponha os conectores depois).
-- Amplificador de áudio e microfones da fase 2 ainda não têm fixação modelada.
+- Os pinos 31 a 34 do Raspberry Pi ficam embaixo da tela: conferir se o conector baixo da serial cabe.
+- Com o Arduino parafusado na base o cabo USB não entra: para regravar é preciso soltar os 4 parafusos dele.
+- Porta-fusível, resistores da serial, amplificador de áudio e microfones ainda não têm fixação modelada.

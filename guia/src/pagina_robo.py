@@ -1,24 +1,30 @@
 #!/usr/bin/env python3
-"""Página própria de UM robô no guia (PT/EN/ES) + tabelas dos docs do robô + zip dos arquivos de impressão.
+"""Página própria de UM robô no guia (PT/EN/ES) + docs do robô nos 3 idiomas + esquema de ligação (SVG) + zip.
 Não toca nas outras páginas do guia (quem monta a entrada /guia/ continua sendo montar.py).
 
 Fontes:
   pecas/<id>/montagem.json · mesas.json · verificacao.json     números das peças (gerados por cad/gerar.py e verificar.py)
-  guia/src/robos/<robo>.dados.json     lista de compras, parafusos, notas dos passos (o que o montagem.json não tem)
+  guia/src/robos/<robo>.dados.json     compras, parafusos, notas dos passos, rótulos das peças, LIGAÇÕES (fonte única do
+                                       esquema, da tabela da página e do LIGACAO.md), glossário e riscos
   guia/src/robos/_comum.pt.json        rótulos iguais em todas as páginas de robô
-  guia/src/robos/<robo>.pt.json        textos da página deste robô
+  guia/src/robos/<robo>.pt.json        textos da página deste robô (e os rótulos do esquema, chaves sv_*)
   guia/src/robo.html                   estrutura única da página (os textos entram por [[chave]])
+  projetos/<robo>/*.md                 docs em português; os blocos <!-- GERADO:x --> são preenchidos aqui. Os arquivos
+                                       <nome>.en.md e <nome>.es.md são GERADOS (prosa pelo inema-traduz, tabelas daqui)
 
 Uso (sempre com o venv do repo):
-  .venv/bin/python guia/src/pagina_robo.py docs cubo        preenche os blocos <!-- GERADO:x --> de projetos/cubo/*.md
-  .venv/bin/python guia/src/pagina_robo.py zip cubo         projetos/cubo/cubo-stl.zip (STL + mesas 3MF + LEIA-ME)
-  .venv/bin/python guia/src/pagina_robo.py traduzir cubo    EN e ES pelo inema-traduz (só o que falta ou mudou)
-  .venv/bin/python guia/src/pagina_robo.py pagina cubo      guia/cubo/, guia/en/cubo/, guia/es/cubo/
-  .venv/bin/python guia/src/pagina_robo.py entrada cubo     botão "página nova" no cartão do robô em /guia/ (+ en, es)
-  .venv/bin/python guia/src/pagina_robo.py conferir cubo    links relativos, chaves e tags das 3 páginas
+  .venv/bin/python guia/src/pagina_robo.py docs cubo [pt en es]   blocos GERADO dos .md + versões .en.md/.es.md
+  .venv/bin/python guia/src/pagina_robo.py traduzir cubo [en es]  EN e ES pelo inema-traduz (só o que falta ou mudou)
+  .venv/bin/python guia/src/pagina_robo.py esquema cubo [pt en es] ligacao.<lg>.svg (docs e guia/<robô>/assets/)
+  .venv/bin/python guia/src/pagina_robo.py pagina cubo [pt en es] guia/cubo/, guia/en/cubo/, guia/es/cubo/
+  .venv/bin/python guia/src/pagina_robo.py zip cubo               projetos/cubo/cubo-stl.zip
+  .venv/bin/python guia/src/pagina_robo.py entrada cubo           botão "página nova" no cartão do robô em /guia/ (+ en, es)
+  .venv/bin/python guia/src/pagina_robo.py conferir cubo          links, tags, vírgula decimal no inglês, notas internas, zip
+Ordem depois de mudar texto em português: docs pt → traduzir → docs → esquema → pagina → zip → conferir.
 """
 import hashlib
 import html
+import io
 import json
 import re
 import subprocess
@@ -34,6 +40,7 @@ import montar            # noqa: E402  (cabeça/CSS/rodapé do template do guia)
 import traduzir as TR    # noqa: E402  (pedido ao inema-traduz e conferência de tags)
 
 REPO = "https://github.com/inematds/robos-impressos"
+SITE = "https://inematds.github.io/robos-impressos/guia/"
 RAW = REPO + "/raw/main/"
 BLOB = REPO + "/blob/main/"
 TREE = REPO + "/tree/main/"
@@ -41,15 +48,45 @@ ML = "https://lista.mercadolivre.com.br/"
 # robô → onde estão os arquivos. Quando a E5a mover pecas/<id>/ para projetos/<robô>/, muda só aqui.
 ROBOS = {"cubo": dict(id="cubo", pecas="pecas/cubo", docs="projetos/cubo", emoji="🤖")}
 IDIOMAS = ("pt", "en", "es")
+DOCS_LG = ("LISTA-DE-COMPRAS", "IMPRIMIR", "LIGACAO")            # docs que ganham versão .en.md e .es.md
+LEIA = {"pt": "LEIA-ME.md", "en": "README.en.md", "es": "LEEME.es.md"}   # o guia de impressão dentro do zip
+BANDEIRA = {"pt": "🇧🇷 Português", "en": "🇺🇸 English", "es": "🇪🇸 Español"}
 # termos das páginas de robô que o pedido geral de guia/src/traduzir.py não cobre
 GLOSSARIO = ('- "horn" (a peça que encaixa no eixo do servo) fica "horn": "servo horn" / "horn del servo"; nunca "arm" nem "brazo". '
              '"garfo" = fork / horquilla. "braço do garfo" = fork arm / brazo de la horquilla. "bancada" = workbench / mesa de trabajo. '
-             '"copo da cabeça" = head shell / carcasa de la cabeza. "tirante" = tie rod / tirante. "cupom de teste" = test coupon / cupón de prueba.')
+             '"copo da cabeça" = head shell / carcasa de la cabeza. "tirante" = tie rod / tirante. "cupom de teste" = test coupon / cupón de prueba. '
+             '"chicote" (de fios) = wiring harness / mazo de cables. "borne" = screw terminal / borne. "ilha" (de solda) = solder pad / pad de soldadura. '
+             '"preparo" = prep step / preparativo. "placa de proteção" = protection board / placa de protección. "ponto do meio" = middle point / punto medio. '
+             '"termo-retrátil" = heat-shrink tubing / tubo termorretráctil. "esquema de ligação" = wiring diagram / esquema de conexión. '
+             '"não testado na bancada" = not bench-tested / no probado en el banco de trabajo.\n'
+             '- Não traduza: Sensor Shield, UBEC, BMS, LM2596, GPIO, Dupont, SEL, VCC, GND, COM, IIC, NC, Mercado Livre, Raspberry Pi Imager, Raspberry Pi OS, Arduino IDE, LCD-show, MPI3501.')
+MD_REGRA = ('- Os valores com chave "d_" são trechos de Markdown: mantenha idênticos os marcadores (#, -, 1., **, >), o que estiver entre crases, '
+            'os nomes de arquivo, os caminhos e as URLs dos links; traduza só o texto.')
+
+
+def PONTO(s):
+    """Vírgula decimal → ponto (só no inglês): 5,1 V → 5.1 V; M2,5 → M2.5. Lista "3,9, 4,0" continua lista."""
+    return re.sub(r"(?<=\d),(?=\d)", ".", s)
+
+
+def sha(s, n=12):
+    return hashlib.sha1(s.encode()).hexdigest()[:n]
 
 
 # ------------------------------------------------------------------ dados
 def ler(p):
     return json.loads(Path(p).read_text())
+
+
+def reparte(vals, casas=0):
+    """Arredonda cada valor de modo que a soma exibida feche com o total arredondado (maiores restos)."""
+    f = 10 ** casas
+    alvo = round(sum(vals) * f)
+    base = [int(v * f + 1e-9) for v in vals]
+    resto = sorted(range(len(vals)), key=lambda i: vals[i] * f - base[i], reverse=True)
+    for i in resto[:max(0, alvo - sum(base))]:
+        base[i] += 1
+    return [b / f for b in base]
 
 
 class Robo:
@@ -68,16 +105,21 @@ class Robo:
         assert not sobra, f"passos_nota com passo que não existe mais no modelo: {sorted(sobra)}"
         assert len(self.d["ordem_impressao"]) == len(self.mesas), "ordem_impressao não cobre todas as mesas"
         assert sum(p["qtd"] for p in self.d["parafusos"] if "inserto" in p["rosca"]) == self.d["insertos"], "insertos: tabela de parafusos não bate"
+        assert set(self.d["rotulos"]) == set(self.pecas), "rotulos: falta ou sobra peça"
+        # gramas e horas EXIBIDOS por peça (a linha soma as cópias): as 3 tabelas saem daqui e fecham no mesmo total
+        nomes = [p["nome"] for p in self.mj["pecas"]]
+        self.g = dict(zip(nomes, reparte([p["massa_g"] * p["qtd"] for p in self.mj["pecas"]], 0)))
+        self.h = dict(zip(nomes, reparte([p["tempo_h"] * p["qtd"] for p in self.mj["pecas"]], 1)))
 
     def caminho(self, p):
         """Caminho no repo do arquivo de uma peça (o montagem.json guarda relativo à pasta do modelo)."""
         return str((self.pasta / p["arquivo"]).resolve().relative_to(RAIZ))
 
     def gramas(self):
-        return sum(p["massa_g"] * p["qtd"] for p in self.mj["pecas"])
+        return sum(self.g.values())
 
     def horas(self):
-        return sum(p["tempo_h"] * p["qtd"] for p in self.mj["pecas"])
+        return round(sum(self.h.values()), 1)
 
     def n_pecas(self):
         return sum(p["qtd"] for p in self.mj["pecas"])
@@ -87,11 +129,20 @@ class Robo:
         for p in self.mj["pecas"]:
             k = (p["material"], p["cor"])
             g, h = o.get(k, (0.0, 0.0))
-            o[k] = (g + p["massa_g"] * p["qtd"], h + p["tempo_h"] * p["qtd"])
+            o[k] = (g + self.g[p["nome"]], round(h + self.h[p["nome"]], 1))
         return sorted(o.items())
 
+    def da_mesa(self, m):
+        """(gramas, horas, {peça: cópias}) de uma mesa, pelos mesmos números exibidos na tabela de peças."""
+        itens = {}
+        for x in m["itens"]:
+            itens[x] = itens.get(x, 0) + 1
+        g = sum(self.g[x] * q / self.pecas[x]["qtd"] for x, q in itens.items())
+        h = sum(self.h[x] * q / self.pecas[x]["qtd"] for x, q in itens.items())
+        return g, round(h, 1), itens
+
     def custo(self):
-        """(mín, máx) da fase 1 sem ferramentas; (mín, máx) do que o dono já tem; (mín, máx) do filamento pelo peso."""
+        """(mín, máx) da fase 1 sem ferramentas; (mín, máx) do que o dono talvez já tenha; (mín, máx) do filamento pelo peso."""
         a = b = ta = tb = 0
         for bl in self.d["compras"]:
             if bl.get("ferramenta"):
@@ -119,17 +170,23 @@ def frases_auto(R):
         f += [p["material"], p["cor"], p["suporte"], p.get("orientacao", ""), p.get("reforco", ""), p.get("obs", "")]
     for o in R.mj["ordem_montagem"]:
         f.append(o["passo"])
-    f += list(R.d["passos_nota"].values())
+    f += list(R.d["passos_nota"].values()) + list(R.d["rotulos"].values()) + list(R.d["riscos"])
     for bl in R.d["compras"]:
         f.append(bl["bloco"])
         for it in bl["itens"]:
-            f += [it["item"], it["qtd"], it["para"], it["base"], it.get("conf", ""), it.get("nc", "")]
+            f += [it["item"], it["usa"], it["comprar"], it["para"], it["base"], it.get("conf", ""), it.get("nc", "")]
     for it in R.d["fase2"]:
         f += [it["item"], it["qtd"], it["onde"], it.get("conf", ""), it.get("nc", "")]
     for p in R.d["parafusos"]:
         f += [p["onde"], p["tipo"], p["rosca"]]
     for o in R.d["ordem_impressao"]:
         f.append(o["porque"])
+    for g in R.d["ligacoes"]:
+        f.append(g["grupo"])
+        for w in g["fios"]:
+            f += [w["de"], w["para"], w["cor"], w["fio"], w["nota"]]
+    for g in R.d["glossario"]:
+        f += [g["termo"], g["def"]]
     return {chave_auto(s): s for s in dict.fromkeys(f) if s and not re.fullmatch(r"[\d\s+.,×x–-]*", s)}
 
 
@@ -140,24 +197,56 @@ def textos_pt(R):
     return t
 
 
-def arq_lg(R, lg):
-    return AQUI / "robos" / f"{R.nome}.{lg}.json"
+def partes_md(s):
+    """Quebra um .md em [(tipo, texto)]: 'ger' = nome de um bloco GERADO, 'cod' = cerca de código, 'txt' = parágrafo
+    (título, texto ou lista) que vai ao tradutor, 'sep' = linhas em branco."""
+    o = []
+    for i, tr in enumerate(re.split(r"(<!-- GERADO:[a-z0-9_]+ -->.*?<!-- /GERADO -->)", s, flags=re.S)):
+        if i % 2:
+            o.append(("ger", re.match(r"<!-- GERADO:([a-z0-9_]+)", tr).group(1)))
+            continue
+        for j, c in enumerate(re.split(r"(```.*?```)", tr, flags=re.S)):
+            if j % 2:
+                o.append(("cod", c))
+                continue
+            for par in re.split(r"(\n[ \t]*\n)", c):
+                o.append(("txt" if par.strip() else "sep", par))
+    return o
 
 
-def traduzir(R, lg, lote=40):
-    pt = textos_pt(R)
-    dest, cache = arq_lg(R, lg), AQUI / "robos" / f".cache.{R.nome}.{lg}.json"
+def docs_pt(R):
+    """Parágrafos em português dos docs que têm versão EN/ES: chave d_<hash> → texto."""
+    o = {}
+    for nome in DOCS_LG:
+        for tipo, x in partes_md((R.docs / f"{nome}.md").read_text()):
+            if tipo == "txt":
+                o["d_" + sha(x.strip(), 10)] = x.strip()
+    return o
+
+
+def arq_lg(R, lg, docs=False):
+    return AQUI / "robos" / (f"{R.nome}.docs.{lg}.json" if docs else f"{R.nome}.{lg}.json")
+
+
+def arq_cache(R, lg, docs=False):
+    return AQUI / "robos" / (f".cache.{R.nome}.docs.{lg}.json" if docs else f".cache.{R.nome}.{lg}.json")
+
+
+def _traduz(pt, dest, cache, lg, lote=36):
     feito = ler(dest) if dest.exists() else {}
     marcas = ler(cache) if cache.exists() else {}
-    h = lambda t: hashlib.sha1(t.encode()).hexdigest()[:12]
-    pend = [k for k in pt if k not in feito or marcas.get(k) != h(pt[k])]
-    print(f"{lg}: {len(pend)} de {len(pt)} textos a traduzir", flush=True)
+    pend = [k for k in pt if k not in feito or marcas.get(k) != sha(pt[k])]
+    print(f"{lg}: {len(pend)} de {len(pt)} textos a traduzir ({dest.name})", flush=True)
+    cod = lambda s: sorted(re.findall(r"`[^`]*`", s))
+    url = lambda s: sorted(re.findall(r"\]\(([^)]+)\)", s))
+    itens = lambda s: len(re.findall(r"^(?:\s*[-*] |\s*\d+\. |#+ )", s, flags=re.M))
     for i in range(0, len(pend), lote):
         chaves = pend[i:i + lote]
         bloco = {k: pt[k] for k in chaves}
+        regras = GLOSSARIO + ("\n" + MD_REGRA if any(k.startswith("d_") for k in bloco) else "")
         out = None
         for tentativa in range(3):
-            r = subprocess.run(["inema-traduz"], input=TR.pedido(lg, bloco).replace("- Números, unidades", GLOSSARIO + "\n- Números, unidades", 1), capture_output=True, text=True, timeout=1500)
+            r = subprocess.run(["inema-traduz"], input=TR.pedido(lg, bloco).replace("- Números, unidades", regras + "\n- Números, unidades", 1), capture_output=True, text=True, timeout=1500)
             mo = re.search(r"\{.*\}", r.stdout.strip(), re.S)
             try:
                 out = json.loads(mo.group(0))
@@ -166,6 +255,8 @@ def traduzir(R, lg, lote=40):
                 assert not ruins, f"tags diferentes em {ruins}"
                 marc = [k for k in bloco if sorted(re.findall(r"\[\[\w+\]\]", out[k])) != sorted(re.findall(r"\[\[\w+\]\]", bloco[k]))]
                 assert not marc, f"marcadores [[ ]] diferentes em {marc}"
+                md = [k for k in bloco if k.startswith("d_") and (cod(out[k]) != cod(bloco[k]) or url(out[k]) != url(bloco[k]) or itens(out[k]) != itens(bloco[k]))]
+                assert not md, f"Markdown diferente (crases, links ou itens de lista) em {md}"
                 break
             except Exception as e:
                 print(f"  {lg} bloco {i}: tentativa {tentativa + 1} falhou ({e})", flush=True)
@@ -174,21 +265,37 @@ def traduzir(R, lg, lote=40):
             raise SystemExit(f"Falhou: tradução {lg} bloco {i}")
         feito.update(out)
         for k in chaves:
-            marcas[k] = h(pt[k])
+            marcas[k] = sha(pt[k])
         dest.write_text(json.dumps({k: feito[k] for k in pt if k in feito}, ensure_ascii=False, indent=1) + "\n")
-        cache.write_text(json.dumps(marcas))
+        cache.write_text(json.dumps({k: marcas[k] for k in pt if k in marcas}))
         print(f"  {lg}: {min(i + lote, len(pend))}/{len(pend)}", flush=True)
+    # o que saiu do português sai também da tradução e do cache
+    dest.write_text(json.dumps({k: feito[k] for k in pt if k in feito}, ensure_ascii=False, indent=1) + "\n")
+    cache.write_text(json.dumps({k: marcas[k] for k in pt if k in marcas}))
+
+
+def traduzir(R, lg):
+    _traduz(textos_pt(R), arq_lg(R, lg), arq_cache(R, lg), lg)
+    _traduz(docs_pt(R), arq_lg(R, lg, True), arq_cache(R, lg, True), lg)
+
+
+def _carrega(pt, dest, cache, lg):
+    """Tradução pronta de um dicionário PT; para se faltar texto ou se o português mudou depois da tradução."""
+    d = ler(dest) if dest.exists() else {}
+    marcas = ler(cache) if cache.exists() else {}
+    falta = [k for k in pt if k not in d or marcas.get(k) != sha(pt[k])]
+    if falta:
+        raise SystemExit(f"{lg}: {len(falta)} textos sem tradução ou com o português alterado em {dest.name} (rode 'traduzir'): {falta[:5]}")
+    return {k: PONTO(v) for k, v in d.items()} if lg == "en" else d
 
 
 class Tx:
-    """Textos de um idioma. t(chave) = texto manual; a(frase em PT) = a mesma frase no idioma."""
+    """Textos de um idioma. t(chave) = texto manual; a(frase em PT) = a mesma frase no idioma; n(x) = número."""
 
     def __init__(self, R, lg):
         self.lg = lg
         self.pt = textos_pt(R)
-        self.d = self.pt if lg == "pt" else ler(arq_lg(R, lg))
-        falta = [k for k in self.pt if k not in self.d]
-        assert not falta, f"{lg}: {len(falta)} textos sem tradução (rode 'traduzir'): {falta[:5]}"
+        self.d = self.pt if lg == "pt" else _carrega(self.pt, arq_lg(R, lg), arq_cache(R, lg), lg)
 
     def t(self, k):
         return self.d[k]
@@ -196,7 +303,7 @@ class Tx:
     def a(self, s):
         if not s or self.lg == "pt":
             return s
-        return self.d.get(chave_auto(s), s)
+        return self.d.get(chave_auto(s), PONTO(s) if self.lg == "en" else s)
 
     def n(self, x, casas=0):
         s = f"{x:.{casas}f}"
@@ -208,56 +315,60 @@ def L(texto, url):
     return ("link", texto, url)
 
 
+def B(texto):
+    return ("b", texto)
+
+
 def faixa(f):
     return f"R$ {f[0]}–{f[1]}"
 
 
+def rotulo(R, X, nome):
+    """Nome exibido de uma peça: rótulo traduzido + nome do arquivo entre parênteses."""
+    return f'{X.a(R.d["rotulos"][nome])} ({nome})'
+
+
 def tabelas(R, X):
-    """Devolve {nome: (cabeçalho, linhas)}; célula = texto ou L(texto, url) ou lista de pedaços."""
+    """Devolve {nome: (cabeçalho, linhas)}; célula = texto, L(texto, url), B(texto) ou lista de pedaços."""
     t, a, n = X.t, X.a, X.n
     T = {}
     conf = lambda it: (a(it["conf"]) if it.get("conf") else t("nao_conferido"))
-    # --- compras, um bloco por tabela
+    nc = lambda it: ([" " + t("nc_rotulo") + " " + a(it["nc"]) + "."] if it.get("nc") else [])
+    gr = lambda v: "<1" if v == 0 else n(v, 0)
+    # --- compras, um bloco por tabela: o nome do item é o link de busca
     for i, bl in enumerate(R.d["compras"]):
         linhas = []
         for it in bl["itens"]:
-            nome = [a(it["item"])]
-            if it.get("tem"):
-                nome.append(" (" + t("ja_tem") + ")")
-            para = [a(it["para"])]
-            if it.get("nc"):
-                para.append(" " + t("nc_rotulo") + " " + a(it["nc"]) + ".")
-            linhas.append([nome, a(it["qtd"]), para, faixa(it["faixa"]) + " (" + a(it["base"]) + ")", conf(it), L(t("buscar"), ML + it["ml"])])
-        T[f"compras{i}"] = ([t("th_item"), t("th_qtd"), t("th_para"), t("th_preco"), t("th_conf"), t("th_link")], linhas)
-    T["fase2"] = ([t("th_item"), t("th_qtd"), t("th_onde"), t("th_preco"), t("th_conf"), t("th_link")],
-                  [[a(it["item"]), a(it["qtd"]), [a(it["onde"])] + ([" " + t("nc_rotulo") + " " + a(it["nc"]) + "."] if it.get("nc") else []),
-                    faixa(it["faixa"]), conf(it), L(t("buscar"), ML + it["ml"])] for it in R.d["fase2"]])
+            nome = [L(a(it["item"]), ML + it["ml"])] + ([" (" + t("ja_tem") + ")"] if it.get("tem") else [])
+            linhas.append([nome, a(it["usa"]) + " / " + a(it["comprar"]), [a(it["para"])] + nc(it), faixa(it["faixa"]) + " (" + a(it["base"]) + ")", conf(it)])
+        T[f"compras{i}"] = ([t("th_item"), t("th_usa"), t("th_para"), t("th_preco"), t("th_conf")], linhas)
+    T["fase2"] = ([t("th_item"), t("th_qtd"), t("th_onde"), t("th_preco"), t("th_conf")],
+                  [[L(a(it["item"]), ML + it["ml"]), a(it["qtd"]), [a(it["onde"])] + nc(it), faixa(it["faixa"]), conf(it)] for it in R.d["fase2"]])
     # --- peças
     linhas = []
     for p in R.mj["pecas"]:
         arq = R.caminho(p)
-        linhas.append([L(Path(arq).name, RAW + arq), str(p["qtd"]), a(p["material"]) + " " + a(p["cor"]), " × ".join(n(v, 0 if abs(v - round(v)) < 0.05 else 1) for v in p["dim"]),
+        linhas.append([rotulo(R, X, p["nome"]), L(Path(arq).name, RAW + arq), str(p["qtd"]), a(p["material"]) + " " + a(p["cor"]),
+                       " × ".join(n(v, 0 if abs(v - round(v)) < 0.05 else 1) for v in p["dim"]),
                        a(p.get("orientacao", "")) or t("deitada"), a(p["suporte"]), str(p.get("perimetros", 3)), f'{p.get("infill", 15)} %',
-                       n(p["massa_g"] * p["qtd"], 0), n(p["tempo_h"] * p["qtd"], 1)])
-    linhas.append([t("total"), str(R.n_pecas()), "", "", "", "", "", "", n(R.gramas(), 0), n(R.horas(), 1)])
-    T["pecas"] = ([t("th_arquivo"), t("th_qtd"), t("th_material"), t("th_dim"), t("th_orient"), t("th_suporte"), t("th_perim"), t("th_infill"), t("th_g"), t("th_h")], linhas)
-    T["reforcos"] = ([t("th_peca"), t("th_reforco"), t("th_obs")], [[p["nome"], a(p.get("reforco", "")) or "—", a(p.get("obs", ""))] for p in R.mj["pecas"]])
+                       gr(R.g[p["nome"]]), n(R.h[p["nome"]], 1)])
+    linhas.append([t("total"), "", str(R.n_pecas()), "", "", "", "", "", "", n(R.gramas(), 0), n(R.horas(), 1)])
+    T["pecas"] = ([t("th_peca"), t("th_arquivo"), t("th_qtd"), t("th_material"), t("th_dim"), t("th_orient"), t("th_suporte"), t("th_perim"), t("th_infill"), t("th_g"), t("th_h")], linhas)
+    T["reforcos"] = ([t("th_peca"), t("th_reforco"), t("th_obs")], [[rotulo(R, X, p["nome"]), a(p.get("reforco", "")) or "—", a(p.get("obs", ""))] for p in R.mj["pecas"]])
     # --- mesas, na ordem sugerida de impressão
     mesa = {m["mesa"]: m for m in R.mesas}
     linhas = []
     for k, o in enumerate(R.d["ordem_impressao"], 1):
         m = mesa[o["mesa"]]
-        g = sum(R.pecas[x]["massa_g"] for x in m["itens"])
-        h = sum(R.pecas[x]["tempo_h"] for x in m["itens"])
-        itens = {}
-        for x in m["itens"]:
-            itens[x] = itens.get(x, 0) + 1
+        g, h, itens = R.da_mesa(m)
         arq = f'{R.cfg["pecas"]}/{m["arquivo"]}'
-        linhas.append([str(k), L(Path(arq).name, RAW + arq), a(m["material"]) + " " + a(m["cor"]), ", ".join(x if q == 1 else f"{q} × {x}" for x, q in itens.items()),
-                       n(g, 0), n(h, 1), a(o["porque"])])
+        linhas.append([str(k), L(Path(arq).name, RAW + arq), a(m["material"]) + " " + a(m["cor"]),
+                       ", ".join((rotulo(R, X, x) if q == 1 else f"{q} × {rotulo(R, X, x)}") for x, q in itens.items()),
+                       gr(g), n(h, 1), a(o["porque"])])
+    linhas.append([t("total"), "", "", "", n(sum(R.da_mesa(m)[0] for m in R.mesas), 0), n(sum(R.da_mesa(m)[1] for m in R.mesas), 1), ""])
     T["mesas"] = ([t("th_ordem"), t("th_mesa"), t("th_material"), t("th_pecas"), t("th_g"), t("th_h"), t("th_porque")], linhas)
     T["filamento"] = ([t("th_material"), t("th_g"), t("th_h")],
-                      [[a(m) + " " + a(c), n(g, 0), n(h, 1)] for (m, c), (g, h) in R.por_cor()] + [[t("total"), n(R.gramas(), 0), n(R.horas(), 1)]])
+                      [[a(m) + " " + a(c), gr(g), n(h, 1)] for (m, c), (g, h) in R.por_cor()] + [[t("total"), n(R.gramas(), 0), n(R.horas(), 1)]])
     T["parafusos"] = ([t("th_onde"), t("th_qtd"), t("th_parafuso"), t("th_rosca")], [[a(p["onde"]), str(p["qtd"]), a(p["tipo"]), a(p["rosca"])] for p in R.d["parafusos"]])
     mont, abre = [], []
     for o in R.mj["ordem_montagem"]:
@@ -270,12 +381,17 @@ def tabelas(R, X):
             mont.append([str(len(mont) + 1), a(o["passo"]), como, a(R.d["passos_nota"].get(o["passo"], ""))])
     T["passos"] = ([t("th_num"), t("th_passo"), t("th_vem"), t("th_nota")], mont)
     T["abrir"] = ([t("th_num"), t("th_passo"), t("th_nota")], abre)
+    for i, g in enumerate(R.d["ligacoes"]):
+        T[f"lig{i}"] = ([t("th_de"), t("th_para_fio"), t("th_cor"), t("th_fio"), t("th_atencao")],
+                        [[a(w["de"]), a(w["para"]), a(w["cor"]), a(w["fio"]), a(w["nota"])] for w in g["fios"]])
     return T
 
 
 def cel_html(c):
     if isinstance(c, tuple):
-        return f'<a href="{html.escape(c[2])}" target="_blank" rel="noopener">{html.escape(c[1])}</a>'
+        if c[0] == "b":
+            return f"<b>{html.escape(c[1], quote=False)}</b>"
+        return f'<a href="{html.escape(c[2])}" target="_blank" rel="noopener">{html.escape(c[1], quote=False)}</a>'
     if isinstance(c, list):
         return "".join(cel_html(x) for x in c)
     return html.escape(c, quote=False)
@@ -283,17 +399,28 @@ def cel_html(c):
 
 def cel_md(c):
     if isinstance(c, tuple):
-        return f"[{c[1]}]({c[2]})"
+        return f"**{c[1]}**" if c[0] == "b" else f"[{c[1]}]({c[2]})"
     if isinstance(c, list):
         return "".join(cel_md(x) for x in c)
     return c.replace("|", "\\|")
 
 
-def tab_html(cab, linhas, total=False):
-    o = ['<div class="tabela-wrap"><table class="tabela">', "<thead><tr>" + "".join(f"<th>{cel_html(c)}</th>" for c in cab) + "</tr></thead>", "<tbody>"]
+def tab_html(cab, linhas, total=False, junta=False, estreita=False):
+    """Tabela que vira cartões no celular (cada linha um cartão, cada célula com o nome da coluna).
+    junta=True funde a 1ª coluna (número) na 2ª; estreita=True fica tabela mesmo no celular (poucas colunas curtas)."""
+    if junta:
+        cab = cab[1:]
+        linhas = [[[B(l[0] + "."), " ", l[1]] if l[0].isdigit() else [B(l[0])]] + list(l[2:]) for l in linhas]
+    cls = "estreita" if estreita else "cartoes"
+    o = [f'<div class="tabela-wrap {cls}"><table class="tabela {cls}">', "<thead><tr>" + "".join(f"<th>{cel_html(c)}</th>" for c in cab) + "</tr></thead>", "<tbody>"]
     for i, l in enumerate(linhas):
         forte = total and i == len(linhas) - 1
-        o.append("<tr>" + "".join(f"<td>{'<strong>' if forte and c else ''}{cel_html(c)}{'</strong>' if forte and c else ''}</td>" for c in l) + "</tr>")
+        tds = []
+        for j, c in enumerate(l):
+            rot = "" if j == 0 else f' data-l="{html.escape(cab[j])}"'
+            miolo = cel_html(c)
+            tds.append(f"<td{rot}>{'<strong>' + miolo + '</strong>' if forte and miolo else miolo}</td>")
+        o.append("<tr>" + "".join(tds) + "</tr>")
     o.append("</tbody></table></div>")
     return "\n".join(o)
 
@@ -306,7 +433,9 @@ def tab_md(cab, linhas, total=False):
     return "\n".join(o)
 
 
-COM_TOTAL = {"pecas", "filamento"}
+COM_TOTAL = {"pecas", "filamento", "mesas"}
+JUNTA = {"passos", "abrir", "mesas"}
+ESTREITA = {"filamento"}
 
 
 def saida_verif(R):
@@ -316,28 +445,239 @@ def saida_verif(R):
     return "\n".join(o)
 
 
+def doc_url(R, nome, lg):
+    arq = f"{nome}.md" if lg == "pt" else f"{nome}.{lg}.md"
+    return BLOB + f'{R.cfg["docs"]}/{arq}', arq
+
+
+# ------------------------------------------------------------------ esquema de ligação (SVG, um por idioma)
+COR = {"v": "#d62828", "p": "#22232b", "a": "#e3a500", "g": "#2a9d4b", "z": "#1d6fd6", "l": "#e07a1f", "c": "#8a8f9c"}
+
+
+def esquema_svg(X):
+    """Desenho único das ligações do robô quadrado de mesa. As posições são fixas aqui; todo texto vem das chaves sv_*
+    (traduzidas). Os fios seguem a lista 'ligacoes' do <robô>.dados.json: mudou um, mude o outro."""
+    t = X.t
+    e = lambda s: html.escape(s, quote=False)
+    o = []
+
+    def txt(x, y, s, tam=12, anc="start", peso=400, cor="#1a1a22", extra=""):
+        o.append(f'<text x="{x}" y="{y}" font-size="{tam}" text-anchor="{anc}" font-weight="{peso}" fill="{cor}"{extra}>{e(s)}</text>')
+
+    def caixa(x, y, w, h, fundo="#f4f5f8", borda="#3b3d4a", raio=8, traco=""):
+        o.append(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="{raio}" fill="{fundo}" stroke="{borda}" stroke-width="1.5"{traco}/>')
+
+    def fio(pts, cor, esp=3.2):
+        p = " ".join(f"{x},{y}" for x, y in pts)
+        o.append(f'<polyline points="{p}" fill="none" stroke="#fff" stroke-width="{esp + 3.6}" stroke-linejoin="round"/>')
+        o.append(f'<polyline points="{p}" fill="none" stroke="{COR[cor]}" stroke-width="{esp}" stroke-linejoin="round" stroke-linecap="round"/>')
+
+    def no(x, y, cor):
+        o.append(f'<circle cx="{x}" cy="{y}" r="4.6" fill="{COR[cor]}" stroke="#fff" stroke-width="1"/>')
+
+    # ---- fundo, título, zonas
+    o.append('<rect x="0" y="0" width="760" height="1004" fill="#ffffff"/>')
+    txt(20, 28, t("sv_titulo"), 17, peso=700)
+    txt(20, 47, t("sv_aviso"), 12, cor="#a14a00", peso=600)
+    tr = ' stroke-dasharray="6 5"'
+    caixa(10, 58, 740, 690, fundo="none", borda="#9aa0ad", raio=12, traco=tr)
+    txt(22, 75, t("sv_base"), 11, cor="#6b7080", peso=700, extra=' letter-spacing="1.5"')
+    o.append('<rect x="10" y="756" width="740" height="30" rx="6" fill="#e9ecf2"/>')
+    caixa(10, 794, 740, 150, fundo="none", borda="#9aa0ad", raio=12, traco=tr)
+    txt(62, 811, t("sv_cabeca"), 11, cor="#6b7080", peso=700, extra=' letter-spacing="1.5"')
+    # ---- fios (antes das caixas: as pontas ficam por baixo da borda)
+    fio([(214, 106), (236, 106)], "v")
+    fio([(314, 106), (340, 106)], "v")                                   # suporte + → fusível → B+
+    fio([(214, 174), (340, 174)], "p")                                   # suporte − → B−
+    fio([(214, 140), (340, 140)], "a")                                   # ponto do meio → BM
+    fio([(326, 140), (326, 82), (548, 82), (548, 140), (570, 140)], "a")  # BM → carregador (meio)
+    fio([(500, 174), (570, 174)], "p")                                   # P− → carregador −
+    fio([(500, 106), (570, 106)], "v")                                   # P+ → carregador +
+    fio([(555, 174), (555, 300), (160, 300), (160, 330)], "p")           # P− → GND geral → LM2596 IN−
+    fio([(520, 300), (520, 330)], "p")                                   # GND → UBEC IN−
+    fio([(505, 106), (505, 222)], "v")                                   # P+ → chave
+    fio([(505, 252), (505, 280), (110, 280), (110, 330)], "v")           # chave → LM2596 IN+
+    fio([(430, 280), (430, 330)], "v")                                   # → UBEC IN+
+    fio([(160, 406), (160, 470)], "p")                                   # LM2596 OUT− → shield G
+    fio([(160, 448), (48, 448), (48, 904), (110, 904)], "p")             # OUT− → pescoço → adaptador USB-C −
+    fio([(110, 406), (110, 470)], "v")                                   # LM2596 OUT+ → pino 5 V do shield
+    fio([(110, 430), (34, 430), (34, 876), (110, 876)], "v")             # OUT+ → pescoço → adaptador USB-C +
+    fio([(430, 406), (430, 470)], "v")                                   # UBEC + → borne VCC
+    fio([(520, 406), (520, 470)], "p")                                   # UBEC − → borne GND
+    fio([(430, 440), (442, 440)], "v", 2.4)
+    fio([(508, 440), (520, 440)], "p", 2.4)                              # capacitor nos 6 V
+    fio([(630, 500), (660, 500)], "l", 4.4)                              # D9 → servo de pan
+    fio([(630, 580), (700, 580), (700, 850)], "l", 4.4)                  # D10 → pescoço → servo de tilt
+    fio([(200, 620), (200, 840)], "g")                                   # D0 (RX) ← pino 32 (TX)
+    fio([(300, 620), (300, 642)], "z")
+    fio([(300, 664), (300, 840)], "z")                                   # D1 (TX) → 1 kΩ → pino 33 (RX)
+    fio([(300, 692), (326, 692)], "p", 2.4)
+    fio([(388, 692), (400, 692)], "p", 2.4)                              # divisor: nó → 2 × 1 kΩ → GND
+    fio([(400, 620), (400, 840)], "p")                                   # G ↔ pino 34 (GND)
+    fio([(530, 877), (540, 877)], "c", 9)                                # tela encaixada no Pi
+    for x, y, c in ((326, 140, "a"), (505, 106, "v"), (555, 174, "p"), (520, 300, "p"), (430, 280, "v"), (110, 430, "v"), (160, 448, "p"),
+                    (430, 440, "v"), (520, 440, "p"), (300, 692, "z"), (400, 692, "p")):
+        no(x, y, c)
+    # ---- faixa do pescoço (texto por cima dos fios)
+    txt(545, 776, t("sv_pescoco"), 11, anc="middle", cor="#3b3d4a", peso=700)
+    # ---- caixas
+    caixa(24, 92, 190, 96)
+    txt(34, 110, t("sv_suporte"), 12, peso=700)
+    for y, k in ((120, "sv_cel1"), (152, "sv_cel2")):
+        caixa(34, y, 92, 26, fundo="#dfe6f3", borda="#6b7896", raio=12)
+        txt(80, y + 17, t(k), 11, anc="middle")
+    txt(206, 110, "+", 14, anc="end", peso=700, cor=COR["v"])
+    txt(206, 144, t("sv_meio"), 11, anc="end", cor="#8a6500", peso=700)
+    txt(206, 179, "−", 14, anc="end", peso=700)
+    caixa(236, 94, 78, 24, fundo="#fff4d6", borda="#a17400", raio=5)
+    txt(275, 110, t("sv_fusivel"), 11, anc="middle", peso=600)
+    caixa(340, 92, 160, 96)
+    for y, a, b in ((110, "B+", "P+"), (144, "BM", ""), (179, "B−", "P−")):
+        txt(347, y, a, 11, peso=700)
+        txt(493, y, b, 11, anc="end", peso=700)
+    txt(424, 136, t("sv_bms"), 12, anc="middle", peso=700)
+    txt(424, 152, t("sv_bms2"), 11, anc="middle", cor="#4c4f5c")
+    caixa(570, 92, 176, 96)
+    for y, a, c in ((110, "+", COR["v"]), (144, t("sv_meio"), "#8a6500"), (179, "−", "#1a1a22")):
+        txt(577, y, a, 11 if len(a) > 1 else 14, peso=700, cor=c)
+    txt(672, 136, t("sv_carregador"), 12, anc="middle", peso=700)
+    txt(672, 152, t("sv_carregador2"), 10.5, anc="middle", cor="#4c4f5c")
+    caixa(470, 222, 70, 30, fundo="#e8eaf0")
+    txt(505, 242, t("sv_chave"), 12, anc="middle", peso=700)
+    txt(300, 273, t("sv_bat"), 11, anc="middle", cor=COR["v"], peso=600)
+    caixa(60, 330, 240, 76)
+    txt(110, 347, "IN+", 11, anc="middle", peso=700)
+    txt(160, 347, "IN−", 11, anc="middle", peso=700)
+    txt(110, 399, "OUT+", 11, anc="middle", peso=700)
+    txt(160, 399, "OUT−", 11, anc="middle", peso=700)
+    txt(240, 366, t("sv_lm"), 13, anc="middle", peso=700)
+    txt(240, 383, t("sv_lm2"), 10.5, anc="middle", cor="#a14a00", peso=600)
+    caixa(400, 330, 240, 76)
+    txt(430, 347, "IN+", 11, anc="middle", peso=700)
+    txt(520, 347, "IN−", 11, anc="middle", peso=700)
+    txt(430, 399, "+", 13, anc="middle", peso=700, cor=COR["v"])
+    txt(520, 399, "−", 13, anc="middle", peso=700)
+    txt(585, 366, t("sv_ubec"), 13, anc="middle", peso=700)
+    txt(585, 383, t("sv_ubec2"), 10.5, anc="middle", cor="#a14a00", peso=600)
+    txt(118, 424, t("sv_51"), 11, cor=COR["v"], peso=600)
+    txt(424, 462, t("sv_6"), 11, anc="end", cor=COR["v"], peso=600)
+    caixa(442, 429, 66, 22, fundo="#e6f1ff", borda="#3565a8", raio=5)
+    txt(475, 444, t("sv_cap"), 10.5, anc="middle", peso=600)
+    txt(475, 423, t("sv_capn"), 10.5, anc="middle", cor="#3565a8", peso=600)
+    caixa(60, 470, 570, 150, fundo="#eef6ee", borda="#2f6b3a")
+    txt(110, 488, t("sv_5v"), 11, anc="middle", peso=700)
+    txt(160, 488, "G", 11, anc="middle", peso=700)
+    txt(430, 488, t("sv_vcc"), 11, anc="middle", peso=700)
+    txt(520, 488, t("sv_bgnd"), 11, anc="middle", peso=700)
+    txt(345, 540, t("sv_shield"), 15, anc="middle", peso=700)
+    txt(345, 560, t("sv_shield2"), 12, anc="middle", cor="#a14a00", peso=600)
+    txt(622, 504, "D9", 11, anc="end", peso=700)
+    txt(622, 584, "D10", 11, anc="end", peso=700)
+    txt(200, 611, "D0 (RX)", 11, anc="middle", peso=700)
+    txt(300, 611, "D1 (TX)", 11, anc="middle", peso=700)
+    txt(400, 611, "G", 11, anc="middle", peso=700)
+    caixa(279, 642, 42, 22, fundo="#fff", borda="#3b3d4a", raio=3)
+    txt(300, 657, t("sv_r1"), 10.5, anc="middle", peso=600)
+    caixa(326, 681, 62, 22, fundo="#fff", borda="#3b3d4a", raio=3)
+    txt(357, 696, t("sv_r2"), 10.5, anc="middle", peso=600)
+    caixa(660, 478, 90, 44, fundo="#fdebd9", borda="#a8581a")
+    txt(705, 504, t("sv_pan"), 11, anc="middle", peso=700)
+    txt(692, 700, t("sv_ext"), 11, anc="end", cor="#a8581a", peso=600)
+    caixa(110, 840, 420, 80, fundo="#e9f6ea", borda="#2f6b3a")
+    txt(200, 857, "32 (TX)", 11, anc="middle", peso=700)
+    txt(300, 857, "33 (RX)", 11, anc="middle", peso=700)
+    txt(400, 857, "34 (GND)", 11, anc="middle", peso=700)
+    txt(118, 880, "+", 14, peso=700, cor=COR["v"])
+    txt(118, 909, "−", 14, peso=700)
+    txt(134, 894, t("sv_usbc"), 11, cor="#4c4f5c")
+    txt(450, 898, t("sv_pi"), 14, anc="middle", peso=700)
+    caixa(540, 852, 92, 50, fundo="#e8eaf0")
+    txt(586, 881, t("sv_tela"), 11, anc="middle", peso=700)
+    txt(632, 936, t("sv_tela2"), 10.5, anc="end", cor="#4c4f5c")
+    caixa(646, 850, 100, 44, fundo="#fdebd9", borda="#a8581a")
+    txt(696, 876, t("sv_tilt"), 11, anc="middle", peso=700)
+    # ---- legenda
+    for k, (x, y, cores, chave) in enumerate(((20, 966, "v", "sv_leg1"), (265, 966, "p", "sv_leg2"), (510, 966, "a", "sv_leg3"),
+                                              (20, 988, "gz", "sv_leg4"), (265, 988, "l", "sv_leg5"), (510, 988, "", "sv_leg6"))):
+        if not cores:
+            o.append(f'<circle cx="{x + 12}" cy="{y - 4}" r="4.6" fill="#22232b"/>')
+        for i, c in enumerate(cores):
+            w = 24 / len(cores)
+            o.append(f'<line x1="{x + i * w}" y1="{y - 4}" x2="{x + (i + 1) * w}" y2="{y - 4}" stroke="{COR[c]}" stroke-width="4"/>')
+        txt(x + 32, y, t(chave), 11.5)
+    corpo = "\n".join(o)
+    return ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 1004" width="760" height="1004" '
+            f'font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" role="img"><title>{e(t("sv_titulo"))}</title>\n{corpo}\n</svg>\n')
+
+
+def esquema(R, lg):
+    svg = esquema_svg(Tx(R, lg))
+    for d in (R.docs, GUIA / R.nome / "assets"):
+        d.mkdir(parents=True, exist_ok=True)
+        (d / f"ligacao.{lg}.svg").write_text(svg)
+    print(f'{R.cfg["docs"]}/ligacao.{lg}.svg', len(svg))
+
+
 # ------------------------------------------------------------------ página
+CSS = """
+.fase{margin:-.5em 0 1.5em;padding:.7em .95em;border-left:3px solid var(--amb);background:var(--bg2);border-radius:0 10px 10px 0;font-size:.98rem;max-width:46ch}
+.aviso{border-color:var(--amb);margin-top:22px}
+.aviso ul{margin:.6em 0 0 1.1em;padding:0;color:var(--mut);font-size:.92rem}
+.aviso li{margin:.45em 0}
+.aviso li strong{color:var(--txt)}
+.glossario{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:22px 0 0}
+.glossario div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;min-width:0}
+.glossario dt{font-family:Sora;font-weight:700;color:var(--amb)}
+.glossario dd{margin:.3em 0 0;color:var(--mut);font-size:.92rem}
+.esquema{display:block;background:#fff;border:1px solid var(--line);border-radius:12px;padding:6px;margin:18px 0 0;max-width:820px}
+.esquema img{display:block;width:100%;height:auto}
+.sep4{font-family:Sora;font-size:1rem;margin:26px 0 0;color:var(--txt)}
+.tabela.estreita{min-width:0}
+.tabela td b{font-family:Sora}
+.step p a,.nota a,.mini a{text-decoration:underline}
+@media(max-width:720px){
+  .glossario{grid-template-columns:1fr}
+  .tabela-wrap.cartoes{border:0;overflow:visible}
+  .tabela.cartoes{min-width:0;display:block}
+  .tabela.cartoes thead{display:none}
+  .tabela.cartoes tbody{display:block}
+  .tabela.cartoes tr{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:0 0 10px}
+  .tabela.cartoes td{display:block;border:0;padding:4px 0;overflow-wrap:anywhere}
+  .tabela.cartoes td:empty{display:none}
+  .tabela.cartoes td[data-l]::before{content:attr(data-l) ": ";font-family:Sora;font-size:.7rem;font-weight:600;color:var(--mut);text-transform:uppercase;letter-spacing:.05em}
+  .tabela.cartoes td:first-child{font-weight:600;font-size:1rem;padding-bottom:6px}
+}
+"""
+
+
 def pagina(R, lg):
     X = Tx(R, lg)
     head, script = montar.cabeca_rodape()
     corpo = (AQUI / "robo.html").read_text()
     T = tabelas(R, X)
+    esc = lambda s: html.escape(s, quote=False)
     sub = f"{R.nome}/" if lg == "pt" else f"{lg}/{R.nome}/"
     fundo = "../" if lg == "pt" else "../../"                      # da página até guia/
     A = "assets/" if lg == "pt" else f"../../{R.nome}/assets/"     # imagens do robô ficam em guia/<robô>/assets/
     lang = "".join(f'<a{" class=\"on\"" if k == lg else ""} href="{"./" if k == lg else fundo + ("" if k == "pt" else k + "/") + R.nome + "/"}">{k.upper()}</a>' for k in IDIOMAS)
     (ca, cb), (ta, tb), (fa, fb) = R.custo()
-    fixos = {"LANG": f'<span class="lang">{lang}</span>', "A": A, "GA": fundo + "assets/", "G": "../", "RAW": RAW, "BLOB": BLOB, "TREE": TREE, "REPO": REPO,
+    fixos = {"LANG": f'<span class="lang">{lang}</span>', "LG": lg, "A": A, "GA": fundo + "assets/", "G": "../", "RAW": RAW, "BLOB": BLOB, "TREE": TREE, "REPO": REPO,
              "EMOJI": R.cfg["emoji"], "ID": R.cfg["id"], "PECAS": R.cfg["pecas"], "DOCS": R.cfg["docs"], "ZIP": RAW + f'{R.cfg["docs"]}/{R.nome}-stl.zip',
              "N_ALTURA": X.n(R.mj["obs"]["altura_mm"] / 10, 0), "N_PECAS": str(R.n_pecas()), "N_DISTINTAS": str(len(R.mj["pecas"])), "N_MESAS": str(len(R.mesas)),
              "N_HORAS": X.n(R.horas(), 0), "N_GRAMAS": X.n(R.gramas(), 0), "N_INSERTOS": str(R.d["insertos"]), "N_TESTES": str(len(R.verif["testes"])),
              "CUSTO": f"R$ {ca}–{cb}", "CUSTO_TEM": f"R$ {ta}–{tb}", "CUSTO_SEM": f"R$ {ca - ta}–{cb - tb}", "CUSTO_FIL": f"R$ {fa}–{fb}",
              "PRECO_DATA": R.d["preco_data"], "PRECO_FONTE": R.d["preco_fonte"],
              "SAIDA_VERIF": html.escape(saida_verif(R), quote=False),
-             "COMPRAS": "\n".join(f'<h3 class="sep3">{html.escape(X.a(bl["bloco"]))}</h3>\n' + tab_html(*T[f"compras{i}"]) for i, bl in enumerate(R.d["compras"]))}
+             "COMPRAS": "\n".join(f'<h3 class="sep3">{esc(X.a(bl["bloco"]))}</h3>\n' + tab_html(*T[f"compras{i}"]) for i, bl in enumerate(R.d["compras"])),
+             "LIGACOES": "\n".join(f'<h4 class="sep4">{esc(X.a(g["grupo"]))}</h4>\n' + tab_html(*T[f"lig{i}"]) for i, g in enumerate(R.d["ligacoes"])),
+             "RISCOS": "".join(f"<li>{esc(X.a(r))}</li>" for r in R.d["riscos"]),
+             "GLOSSARIO": "".join(f'<div><dt>{esc(X.a(g["termo"]))}</dt><dd>{esc(X.a(g["def"]))}</dd></div>' for g in R.d["glossario"])}
+    for nome in DOCS_LG:
+        k = "DOC_" + nome.split("-")[0]
+        fixos[k], fixos[k + "_NOME"] = doc_url(R, nome, lg)
     for k, v in T.items():
-        if not k.startswith("compras"):
-            fixos["TAB_" + k.upper()] = tab_html(*v, total=k in COM_TOTAL)
+        if not k.startswith(("compras", "lig")):
+            fixos["TAB_" + k.upper()] = tab_html(*v, total=k in COM_TOTAL, junta=k in JUNTA, estreita=k in ESTREITA)
     faltam = set()
 
     def troca(mo):
@@ -356,6 +696,9 @@ def pagina(R, lg):
     for k in ("en/", "es/", ""):                # hreflang desta página, não o da entrada do guia
         head = head.replace(f'/guia/{k}">', f'/guia/{k}{R.nome}/">')
     head = head.replace('<html lang="pt-BR">', {"pt": '<html lang="pt-BR">', "en": '<html lang="en">', "es": '<html lang="es">'}[lg])
+    assert head.count("</style>") >= 1, "template sem </style>"
+    i = head.rindex("</style>")
+    head = head[:i] + CSS + head[i:]
     script = script.replace("{{SLUG}}", "robos-impressos")
     pag = head + "\n\n" + corpo + "\n" + script
     assert "{{" not in pag.replace("${{", ""), "placeholder do template sobrando"
@@ -366,9 +709,19 @@ def pagina(R, lg):
     return destino
 
 
+INTERNAS = (r"\bNei\b", r"\brodada\b", r"lista antiga", r"\bE[1-6][a-d]?\b(?! ?=)", r"orquestrador")
+
+
 def conferir(R):
-    """Sem servidor: todo src/href relativo existe em disco; mesmas tags nos 3 idiomas; nada de [[ ]] sobrando."""
+    """Sem servidor: todo src/href relativo existe em disco; mesmas tags nos 3 idiomas; nada de [[ ]] sobrando; inglês sem
+    vírgula decimal; nenhuma nota interna em texto público; docs EN/ES e zip no lugar."""
     ok = True
+
+    def falha(msg):
+        nonlocal ok
+        ok = False
+        print("  " + msg)
+
     conta = {}
     for lg in IDIOMAS:
         f = GUIA / (f"{R.nome}/index.html" if lg == "pt" else f"{lg}/{R.nome}/index.html")
@@ -379,56 +732,157 @@ def conferir(R):
             alvo = (f.parent / u)
             alvo = alvo / "index.html" if u.endswith("/") else alvo
             if not alvo.exists():
-                ok = False
-                print(f"  {lg}: link quebrado {u}")
-        for u in sorted(set(re.findall(re.escape(RAW) + r'([^"]+)', h))):
+                falha(f"{lg}: link quebrado {u}")
+        for u in sorted(set(re.findall(re.escape(RAW) + r'([^"]+)', h)) | set(re.findall(re.escape(BLOB) + r'([^"#]+)', h))):
             if not (RAIZ / u).exists():
-                ok = False
-                print(f"  {lg}: arquivo do link raw não existe no repo: {u}")
-        if "[[" in h:
-            ok = False
-            print(f"  {lg}: [[ ]] sobrando")
-        conta[lg] = {tg: len(re.findall(f"<{tg}[ >]", h)) for tg in ("section", "div", "tr", "td", "li", "img", "a", "h2", "h3")}
+                falha(f"{lg}: arquivo do link do GitHub não existe no repo: {u}")
+        for ancora in set(re.findall(r'href="#([^"]+)"', h)):
+            if f'id="{ancora}"' not in h:
+                falha(f"{lg}: âncora #{ancora} sem destino")
+        if "[[" in h or "{{" in h.replace("${{", ""):
+            falha(f"{lg}: [[ ]] ou {{{{ }}}} sobrando")
+        conta[lg] = {tg: len(re.findall(f"<{tg}[ >]", h)) for tg in ("section", "div", "tr", "td", "li", "img", "a", "h2", "h3", "h4", "dt")}
         assert f'/guia/{"" if lg == "pt" else lg + "/"}{R.nome}/"' in h, "hreflang da própria página"
+        visivel = re.sub(r"<pre.*?</pre>|<script.*?</script>|<style.*?</style>|<[^>]+>", " ", h[h.index("<body"):], flags=re.S)
+        if lg == "en":
+            for m in sorted(set(re.findall(r"\S*\d,\d\S*", visivel))):
+                falha(f"en: vírgula decimal ou milhar em '{m}'")
+        for pad in INTERNAS:
+            for m in sorted(set(re.findall(pad, visivel))):
+                falha(f"{lg}: nota interna na página: '{m}'")
     for lg in ("en", "es"):
         if conta[lg] != conta["pt"]:
-            ok = False
-            print(f"  {lg}: contagem de tags diferente do PT: {conta[lg]} x {conta['pt']}")
+            falha(f"{lg}: contagem de tags diferente do PT: {conta[lg]} x {conta['pt']}")
+    # docs: versões por idioma, blocos preenchidos, sem nota interna
+    for nome in DOCS_LG:
+        for lg in IDIOMAS:
+            f = R.docs / doc_url(R, nome, lg)[1]
+            if not f.exists():
+                falha(f"falta {f.relative_to(RAIZ)}")
+                continue
+            s = f.read_text()
+            if re.search(r"<!-- GERADO:[a-z0-9_]+ -->\n<!-- /GERADO -->", s):
+                falha(f"{f.name}: bloco GERADO vazio")
+            for pad in INTERNAS:
+                for m in sorted(set(re.findall(pad, s))):
+                    falha(f"{f.name}: nota interna '{m}'")
+            if lg == "en":
+                sem_url = re.sub(r"\]\([^)]*\)|`[^`]*`", " ", s)
+                for m in sorted(set(re.findall(r"\S*\d,\d\S*", sem_url))):
+                    falha(f"{f.name}: vírgula decimal em '{m}'")
+            for u in re.findall(r"\]\((?!https?:)([^)#]+)\)", s):
+                if not (f.parent / u).exists():
+                    falha(f"{f.name}: link relativo quebrado {u}")
+    z = R.docs / f"{R.nome}-stl.zip"
+    nomes = set(zipfile.ZipFile(z).namelist())
+    for n in list(LEIA.values()) + [f"stl/{Path(R.caminho(p)).name}" for p in R.mj["pecas"]] + ["firmware/centrar_servos/centrar_servos.ino"]:
+        if f"{R.nome}/{n}" not in nomes:
+            falha(f"zip sem {n}")
+    for lg in IDIOMAS:
+        leia = zipfile.ZipFile(z).read(f"{R.nome}/{LEIA[lg]}").decode()
+        if f'{R.cfg["pecas"]}/stl/' in re.sub(r"https?://[^\s)]+", "", leia.split("\n\n", 4)[-1]):
+            falha(f"zip/{LEIA[lg]}: ainda manda abrir {R.cfg['pecas']}/stl/")
     print("conferir:", "OK" if ok else "FALHOU", conta["pt"])
     return ok
 
 
-# ------------------------------------------------------------------ docs do robô (blocos gerados) e zip
-def docs(R):
-    X = Tx(R, "pt")
+# ------------------------------------------------------------------ docs do robô (blocos gerados, versões EN/ES) e zip
+def blocos(R, X):
     T = tabelas(R, X)
+    t, a = X.t, X.a
     (ca, cb), (ta, tb), (fa, fb) = R.custo()
-    B = {k: tab_md(*v, total=k in COM_TOTAL) for k, v in T.items() if not k.startswith("compras")}
-    B["compras"] = "\n\n".join(f'### {bl["bloco"]}\n\n' + tab_md(*T[f"compras{i}"]) for i, bl in enumerate(R.d["compras"]))
-    B["custo"] = (f"- Peças compradas da fase 1 (sem ferramentas e sem filamento): **R$ {ca}–{cb}**.\n"
-                  f"- Tirando o que já está marcado como \"já tem\" (R$ {ta}–{tb}): **R$ {ca - ta}–{cb - tb}**.\n"
-                  f"- Filamento, pelo peso ({X.n(R.gramas(), 0)} g a R$ {R.d['filamento_preco_kg'][0]}–{R.d['filamento_preco_kg'][1]} o quilo): R$ {fa}–{fb}.")
-    B["verificacao"] = "```\n" + saida_verif(R) + "\n```"
-    B["numeros"] = (f"- Altura montado: {X.n(R.mj['obs']['altura_mm'], 1)} mm.\n- Peças impressas: {R.n_pecas()} ({len(R.mj['pecas'])} arquivos diferentes), em {len(R.mesas)} mesas.\n"
-                    f"- Filamento: {X.n(R.gramas(), 0)} g. Tempo de impressão: {X.n(R.horas(), 1)} h. As duas contas são estimativas por volume, sem fatiador.\n"
-                    f"- Insertos M3 a quente: {R.d['insertos']}.")
-    for f in sorted(R.docs.glob("*.md")):
-        s = f.read_text()
-        usados = []
+    Bk = {k: tab_md(*v, total=k in COM_TOTAL) for k, v in T.items() if not k.startswith(("compras", "lig"))}
+    Bk["compras"] = "\n\n".join(f'### {a(bl["bloco"])}\n\n' + tab_md(*T[f"compras{i}"]) for i, bl in enumerate(R.d["compras"]))
+    Bk["ligacoes"] = "\n\n".join(f'### {a(g["grupo"])}\n\n' + tab_md(*T[f"lig{i}"]) for i, g in enumerate(R.d["ligacoes"]))
+    Bk["glossario"] = "\n".join(f'- **{a(g["termo"])}:** {a(g["def"])}' for g in R.d["glossario"])
+    Bk["riscos"] = "\n".join(f"- {a(r)}" for r in R.d["riscos"])
+    Bk["custo"] = (f"- {t('doc_custo_1')} **R$ {ca}–{cb}**.\n"
+                   f"- {t('doc_custo_2')} **R$ {ca - ta}–{cb - tb}**.\n"
+                   f"- {t('doc_custo_3')} R$ {fa}–{fb} ({X.n(R.gramas(), 0)} g; R$ {R.d['filamento_preco_kg'][0]}–{R.d['filamento_preco_kg'][1]} {t('doc_custo_3b')}).")
+    Bk["verificacao"] = "```\n" + saida_verif(R) + "\n```"
+    Bk["numeros"] = (f"- Altura montado: {X.n(R.mj['obs']['altura_mm'], 1)} mm.\n- Peças impressas: {R.n_pecas()} ({len(R.mj['pecas'])} arquivos diferentes), em {len(R.mesas)} mesas.\n"
+                     f"- Filamento: {X.n(R.gramas(), 0)} g. Tempo de impressão: {X.n(R.horas(), 1)} h. As duas contas são estimativas por volume, sem fatiador.\n"
+                     f"- Insertos M3 a quente: {R.d['insertos']}.")
+    return Bk
 
-        def troca(mo):
-            usados.append(mo.group(1))
-            assert mo.group(1) in B, f"{f.name}: bloco GERADO desconhecido '{mo.group(1)}'"
-            return f"<!-- GERADO:{mo.group(1)} -->\n{B[mo.group(1)]}\n<!-- /GERADO -->"
 
-        n = re.sub(r"<!-- GERADO:([a-z0-9_]+) -->.*?<!-- /GERADO -->", troca, s, flags=re.S)
-        if n != s:
-            f.write_text(n)
-        print(f.relative_to(RAIZ), "blocos:", ", ".join(usados) or "nenhum")
+def idiomas_md(R, nome):
+    return " · ".join(f"[{BANDEIRA[lg]}]({doc_url(R, nome, lg)[1]})" for lg in IDIOMAS)
+
+
+def preenche(s, Bk, arq):
+    usados = []
+
+    def troca(mo):
+        usados.append(mo.group(1))
+        assert mo.group(1) in Bk, f"{arq}: bloco GERADO desconhecido '{mo.group(1)}'"
+        return f"<!-- GERADO:{mo.group(1)} -->\n{Bk[mo.group(1)]}\n<!-- /GERADO -->"
+
+    return re.sub(r"<!-- GERADO:([a-z0-9_]+) -->.*?<!-- /GERADO -->", troca, s, flags=re.S), usados
+
+
+def doc_lg(R, nome, lg, Bk, trad):
+    """Versão EN/ES de um doc: prosa traduzida parágrafo a parágrafo, blocos GERADO refeitos no idioma, links trocados."""
+    o = []
+    for tipo, x in partes_md((R.docs / f"{nome}.md").read_text()):
+        if tipo == "ger":
+            o.append(f"<!-- GERADO:{x} -->\n{Bk[x]}\n<!-- /GERADO -->")
+        elif tipo == "txt":
+            p = trad["d_" + sha(x.strip(), 10)]
+            p = re.sub(r"\b(" + "|".join(DOCS_LG) + r")\.md\b", rf"\1.{lg}.md", p)
+            p = p.replace(f"/guia/{R.nome}/", f"/guia/{lg}/{R.nome}/").replace("ligacao.pt.svg", f"ligacao.{lg}.svg")
+            o.append(x.replace(x.strip(), p))
+        else:
+            o.append(x)
+    return "".join(o)
+
+
+def docs(R, lgs=IDIOMAS):
+    if "pt" in lgs:
+        Bk = blocos(R, Tx(R, "pt"))
+        for f in sorted(R.docs.glob("*.md")):
+            if re.search(r"\.(en|es)\.md$", f.name):
+                continue
+            s = f.read_text()
+            n, usados = preenche(s, dict(Bk, idiomas=idiomas_md(R, f.stem)), f.name)
+            if n != s:
+                f.write_text(n)
+            print(f.relative_to(RAIZ), "blocos:", ", ".join(usados) or "nenhum")
+    for lg in lgs:
+        if lg == "pt":
+            continue
+        Bk = blocos(R, Tx(R, lg))
+        trad = _carrega(docs_pt(R), arq_lg(R, lg, True), arq_cache(R, lg, True), lg)
+        for nome in DOCS_LG:
+            f = R.docs / f"{nome}.{lg}.md"
+            f.write_text(doc_lg(R, nome, lg, dict(Bk, idiomas=idiomas_md(R, nome)), trad))
+            print(f.relative_to(RAIZ))
+
+
+def leia_zip(R, lg):
+    """O guia de impressão como ele vale DENTRO do zip: mesmos textos do IMPRIMIR, com os caminhos do zip."""
+    X = Tx(R, lg)
+    s = (R.docs / doc_url(R, "IMPRIMIR", lg)[1]).read_text()
+    s = re.sub(r"<!-- GERADO:idiomas -->.*?<!-- /GERADO -->\n*", "", s, flags=re.S)
+    pecas = R.cfg["pecas"]
+    cupom = "pecas/comum/stl/comum-teste-encaixe.stl"
+    urls = []                                                               # links do GitHub ficam como estão
+
+    def guarda(mo):
+        urls.append(mo.group(0))
+        return f"\0{len(urls) - 1}\0"
+
+    s = re.sub(r"https?://[^\s)]+", guarda, s)
+    s = s.replace(cupom, "stl/comum-teste-encaixe.stl").replace(f"{pecas}/stl/", "stl/").replace(f"{pecas}/mesas/", "mesas/")
+    s = re.sub(r"\0(\d+)\0", lambda mo: urls[int(mo.group(1))], s)
+    site = SITE + ("" if lg == "pt" else lg + "/") + R.nome + "/"
+    cab = (f"{X.t('zip_1')}\n\n{X.t('zip_2')}\n\n{X.t('zip_3')} {X.t('zip_4')} {site}\n\n"
+           f"{X.t('zip_5')} `{pecas}/stl/`, `{pecas}/mesas/`, `{cupom}`.\n\n")
+    return cab + s
 
 
 def zipar(R):
-    """Zip estável (ordem e datas fixas): STL de cada peça + 3MF de cada mesa + LEIA-ME."""
+    """Zip estável (ordem e datas fixas): STL de cada peça + 3MF de cada mesa + sketch + guias nos 3 idiomas."""
     dest = R.docs / f"{R.nome}-stl.zip"
     itens = []
     for p in R.mj["pecas"]:
@@ -437,16 +891,22 @@ def zipar(R):
     for m in R.mesas:
         arq = R.pasta / m["arquivo"]
         itens.append((f"mesas/{arq.name}", arq.read_bytes()))
-    leia = (R.docs / "IMPRIMIR.md").read_text()
-    itens.append(("LEIA-ME.md", ("Arquivos de impressão do robô quadrado de mesa (robos-impressos).\n"
-                                 "stl/ = uma peça por arquivo, já deitada na posição de impressão. mesas/ = 3MF com as peças já arrumadas por cor.\n"
-                                 "Comece pela mesa 06 (cupom de teste). Guia: https://inematds.github.io/robos-impressos/guia/cubo/\n\n" + leia).encode()))
-    with zipfile.ZipFile(dest, "w", zipfile.ZIP_DEFLATED, compresslevel=9) as z:
+    for f in sorted((R.docs / "firmware").rglob("*.ino")):
+        itens.append((str(f.relative_to(R.docs)), f.read_bytes()))
+    for lg in IDIOMAS:
+        itens.append((LEIA[lg], leia_zip(R, lg).encode()))
+        for nome in ("LISTA-DE-COMPRAS", "LIGACAO"):
+            f = R.docs / doc_url(R, nome, lg)[1]
+            itens.append((f.name, f.read_bytes()))
+        itens.append((f"ligacao.{lg}.svg", (R.docs / f"ligacao.{lg}.svg").read_bytes()))
+    buf = io.BytesIO()
+    with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED, compresslevel=9) as z:
         for nome, dados in sorted(itens):
             zi = zipfile.ZipInfo(f"{R.nome}/{nome}", date_time=(2026, 11, 14, 0, 0, 0))
             zi.compress_type = zipfile.ZIP_DEFLATED
             zi.external_attr = 0o644 << 16
             z.writestr(zi, dados)
+    dest.write_bytes(buf.getvalue())
     print(dest.relative_to(RAIZ), f"{dest.stat().st_size / 1e6:.2f} MB", len(itens), "arquivos")
 
 
@@ -479,17 +939,22 @@ def entrada(R):
 if __name__ == "__main__":
     cmd, nome = sys.argv[1], sys.argv[2]
     R = Robo(nome)
+    lgs = sys.argv[3:]
     if cmd == "docs":
-        docs(R)
+        docs(R, lgs or IDIOMAS)
     elif cmd == "zip":
         zipar(R)
     elif cmd == "imagens":
         imagens(R)
     elif cmd == "traduzir":
-        for lg in (sys.argv[3:] or ["en", "es"]):
+        for lg in (lgs or ["en", "es"]):
             traduzir(R, lg)
+    elif cmd == "esquema":
+        for lg in (lgs or IDIOMAS):
+            esquema(R, lg)
     elif cmd == "pagina":
-        for lg in (sys.argv[3:] or IDIOMAS):
+        for lg in (lgs or IDIOMAS):
+            esquema(R, lg)
             pagina(R, lg)
     elif cmd == "entrada":
         entrada(R)

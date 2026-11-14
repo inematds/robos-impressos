@@ -1,46 +1,56 @@
 {
- "_": "Dados do robô quadrado de mesa que NÃO saem do montagem.json: lista de compras, parafusos, notas dos passos, ordem de impressão. Fonte: cad/modelos/cubo.py, cad/comum/quadrado.py, cad/parametros.py e canal.md da rodada 2 (E1). Quem lê: guia/src/pagina_robo.py.",
+ "_": "Dados do robô quadrado de mesa que NÃO saem do montagem.json: lista de compras (usa / comprar), parafusos, notas dos passos, ordem de impressão, rótulos das peças, ligações elétricas (fonte única do esquema SVG, da tabela da página e do LIGACAO.md), glossário e riscos. Fonte: cad/modelos/cubo.py, cad/comum/quadrado.py, cad/parametros.py. Quem lê: guia/src/pagina_robo.py.",
  "preco_data": "14/11/2026",
  "preco_fonte": "usinainfo.com.br",
  "compras": [
   {"bloco": "Cérebro, tela e movimento", "itens": [
-   {"item": "Raspberry Pi 4 Model B, 4 GB", "qtd": "1", "n": 1, "para": "Cérebro do robô. Fica dentro da cabeça, atrás da tela. O Pi 5 também serve, mas o conversor de 3 A limita as portas USB dele a 0,6 A.", "faixa": [450, 800], "base": "cada", "conf": "", "ml": "raspberry-pi-4-model-b-4gb"},
-   {"item": "Cartão microSD 32 GB classe 10", "qtd": "1", "n": 1, "para": "Sistema do Raspberry Pi.", "faixa": [25, 50], "base": "cada", "conf": "", "ml": "cartao-micro-sd-32gb-classe-10"},
-   {"item": "Tela TFT 3,5\" 480 × 320 para Raspberry Pi (MPI3501, encaixa no GPIO)", "qtd": "1", "n": 1, "para": "O rosto do robô. Encaixa direto nos pinos do Pi, sem parafuso.", "faixa": [90, 200], "base": "cada", "conf": "R$ 193,57", "ml": "display-lcd-tft-3.5-raspberry-pi-mpi3501", "nc": "espessura do conjunto (7 mm) e altura sobre o Pi (24,5 mm)"},
-   {"item": "Servo MG996R de 180° (posição, não o de rotação contínua)", "qtd": "2", "n": 2, "para": "Um gira o pescoço (pan), o outro inclina a cabeça (tilt). O kit do servo precisa trazer o horn redondo (disco).", "faixa": [30, 75], "base": "cada", "conf": "R$ 70,45", "ml": "servo-mg996r-180-graus", "nc": "espessura e furos das abas, diâmetro e espessura do horn redondo"},
-   {"item": "Arduino Uno R3", "qtd": "1", "n": 1, "para": "Comanda os 2 servos. Fica no piso da base, em 4 ressaltos.", "faixa": [43, 90], "base": "cada", "conf": "R$ 43,28 a R$ 89,95", "ml": "arduino-uno-r3", "tem": true},
-   {"item": "Sensor Shield V5.0 para Arduino", "qtd": "1", "n": 1, "para": "Encaixa em cima do Uno e dá os conectores de 3 pinos dos servos, com alimentação separada.", "faixa": [11, 35], "base": "cada", "conf": "R$ 18,13", "ml": "sensor-shield-v5-arduino"}
+   {"item": "Raspberry Pi 4 Model B, 4 GB", "usa": "1", "comprar": "1", "n": 1, "para": "Cérebro do robô. Fica dentro da cabeça, atrás da tela. O Pi 5 também serve, mas o conversor de 3 A limita as portas USB dele a 0,6 A.", "faixa": [450, 800], "base": "cada", "conf": "", "ml": "raspberry-pi-4-model-b-4gb"},
+   {"item": "Cartão microSD 32 GB classe 10", "usa": "1", "comprar": "1", "n": 1, "para": "Sistema do Raspberry Pi.", "faixa": [25, 50], "base": "cada", "conf": "", "ml": "cartao-micro-sd-32gb-classe-10"},
+   {"item": "Tela TFT 3,5\" 480 × 320 para Raspberry Pi (MPI3501, encaixa no GPIO)", "usa": "1", "comprar": "1", "n": 1, "para": "O rosto do robô. Encaixa direto nos pinos 1 a 26 do Pi, sem parafuso.", "faixa": [90, 200], "base": "cada", "conf": "R$ 193,57", "ml": "display-lcd-tft-3.5-raspberry-pi-mpi3501", "nc": "espessura do conjunto (7 mm) e altura sobre o Pi (24,5 mm)"},
+   {"item": "Servo MG996R de 180° (posição, não o de rotação contínua)", "usa": "2", "comprar": "2", "n": 2, "para": "Um gira o pescoço (pan), o outro inclina a cabeça (tilt). O kit do servo precisa trazer o horn redondo (disco).", "faixa": [30, 75], "base": "cada", "conf": "R$ 70,45", "ml": "servo-mg996r-180-graus", "nc": "espessura e furos das abas, diâmetro e espessura do horn redondo"},
+   {"item": "Extensão de servo de 30 cm (cabo extensor de 3 fios, macho-fêmea)", "usa": "1", "comprar": "1", "n": 1, "para": "Leva o cabo do servo de tilt, que fica na cabeça, pelo pescoço até o shield, que fica na base, com folga para a cabeça girar.", "faixa": [5, 15], "base": "cada", "conf": "", "ml": "extensao-servo-30cm", "nc": "comprimento do cabo de fábrica do servo (em geral 30 cm)"},
+   {"item": "Arduino Uno R3", "usa": "1", "comprar": "1", "n": 1, "para": "Comanda os 2 servos. Fica no piso da base, em 4 ressaltos.", "faixa": [43, 90], "base": "cada", "conf": "R$ 43,28 a R$ 89,95", "ml": "arduino-uno-r3", "tem": true},
+   {"item": "Sensor Shield V5.0 para Arduino", "usa": "1", "comprar": "1", "n": 1, "para": "Encaixa em cima do Uno e dá os conectores de 3 pinos dos servos, com alimentação separada pelo borne azul.", "faixa": [11, 35], "base": "cada", "conf": "R$ 18,13", "ml": "sensor-shield-v5-arduino", "nc": "nome impresso dos pinos de 5 V; confira com o multímetro"},
+   {"item": "Resistor de 1 kΩ, 1/4 W", "usa": "3", "comprar": "1 pacote de 10", "n": 1, "para": "Divisor de tensão na serial: baixa os 5 V do Arduino para os 3,3 V que o Raspberry Pi aceita.", "faixa": [1, 5], "base": "pacote", "conf": "", "ml": "resistor-1k-1-4w"},
+   {"item": "Barra de pinos fêmea de 2 fileiras, passo 2,54 mm (2 × 20)", "usa": "1 pedaço de 2 × 2", "comprar": "1 barra", "n": 1, "para": "Conector baixo para os pinos 31 a 34 do Raspberry Pi, que ficam embaixo da tela. O fio Dupont comum não cabe em pé ali.", "faixa": [3, 10], "base": "cada", "conf": "", "ml": "barra-pinos-femea-2x20-2.54mm", "nc": "folga entre o Pi e a placa da tela (17,5 mm no modelo)"}
   ]},
   {"bloco": "Energia", "itens": [
-   {"item": "Bateria 18650 de íon de lítio 3,7 V (célula solta)", "qtd": "2", "n": 2, "para": "Pack 2S: 7,4 V nominais (8,4 V cheio). Compre células de marca conhecida.", "faixa": [13, 45], "base": "cada", "conf": "R$ 26,08 o kit com 2", "ml": "bateria-18650-3.7v"},
-   {"item": "Suporte para 2 baterias 18650 lado a lado, com fios", "qtd": "1", "n": 1, "para": "Segura as 2 células. Desliza no berço da base e sai pela porta de trás.", "faixa": [5, 15], "base": "cada", "conf": "R$ 6,22", "ml": "suporte-2-baterias-18650", "nc": "o berço aceita até 78 × 41 × 22 mm"},
-   {"item": "Placa de proteção BMS 2S 10 A (modelo 10A2S, ~24 × 11 mm)", "qtd": "1", "n": 1, "para": "Corta a descarga funda, a sobrecarga e o curto. Vai soldada nos fios da bateria, presa com fita dupla-face.", "faixa": [8, 20], "base": "cada", "conf": "", "ml": "bms-2s-10a-18650"},
-   {"item": "Carregador USB-C 2S/3S com balanceamento (LX-USC-V2)", "qtd": "1", "n": 1, "para": "Carrega o pack com qualquer fonte USB-C de celular, sem abrir o robô. Pede um 3º fio soldado no ponto do meio do suporte (entre as duas células).", "faixa": [15, 30], "base": "cada", "conf": "R$ 17,90", "ml": "carregador-usb-c-2s-18650-balanceamento", "nc": "tamanho da boca USB-C na janela de trás (9,2 × 3,4 mm)"},
-   {"item": "Conversor step-down LM2596 ajustável (placa azul, 3 A)", "qtd": "1", "n": 1, "para": "Baixa a tensão do pack para os 5 V do Raspberry Pi. Ajuste para 5,1 V com o multímetro ANTES de ligar o Pi. O XL4015 não serve aqui: pede no mínimo 8 V.", "faixa": [8, 20], "base": "cada", "conf": "R$ 10,22", "ml": "modulo-step-down-lm2596"},
-   {"item": "UBEC 6 V 3 A (Hobbywing UBEC 3A 2-6S ou equivalente)", "qtd": "1", "n": 1, "para": "Alimenta os 2 servos em 6 V, separado do Pi.", "faixa": [25, 60], "base": "cada", "conf": "", "ml": "ubec-3a-5v-6v-hobbywing"},
-   {"item": "Capacitor eletrolítico 1000 µF 16 V", "qtd": "1", "n": 1, "para": "No barramento de 6 V dos servos: segura o pico de corrente da partida.", "faixa": [1, 4], "base": "cada", "conf": "R$ 2,33", "ml": "capacitor-eletrolitico-1000uf-16v"},
-   {"item": "Chave gangorra KCD11 (recorte de 13,5 × 9 mm)", "qtd": "1", "n": 1, "para": "Liga e desliga. Encaixa por pressão na parede de trás.", "faixa": [3, 8], "base": "cada", "conf": "R$ 3,74 a R$ 5,40 (modelos KCD1; confira o recorte)", "ml": "chave-gangorra-kcd11", "nc": "espessura de painel que a trava da chave aceita"},
-   {"item": "Adaptador USB-C macho com bornes (2 pinos)", "qtd": "1", "n": 1, "para": "Leva os 5 V do conversor até a entrada USB-C do Raspberry Pi (os pinos do GPIO ficam ocupados pela tela). O plugue não está no modelo 3D: confira se ele cabe ao lado do Pi, dentro da cabeça.", "faixa": [8, 20], "base": "cada", "conf": "R$ 13,11", "ml": "adaptador-usb-c-macho-borne"},
-   {"item": "Fio flexível 22 AWG, vermelho e preto (2 m de cada)", "qtd": "1", "n": 1, "para": "Ligações de energia e o 3º fio do balanceamento.", "faixa": [10, 25], "base": "total", "conf": "R$ 22,40 (5 m bicolor)", "ml": "fio-flexivel-22awg-vermelho-preto"},
-   {"item": "Jumpers Dupont de 20 cm (kit com 20, fêmea-fêmea e macho-fêmea)", "qtd": "2 kits", "n": 2, "para": "Sinais entre as placas. O cabo do servo de tilt desce pelo pescoço: use uma extensão de servo de 30 cm se o cabo dele não alcançar o shield.", "faixa": [6, 12], "base": "kit", "conf": "R$ 6,61 o kit", "ml": "jumper-dupont-20cm"}
+   {"item": "Bateria 18650 de íon de lítio 3,7 V (célula solta)", "usa": "2", "comprar": "2", "n": 2, "para": "Pack 2S: 7,4 V nominais (8,4 V cheio). Compre as duas iguais, novas e de marca conhecida.", "faixa": [13, 45], "base": "cada", "conf": "R$ 26,08 o kit com 2", "ml": "bateria-18650-3.7v"},
+   {"item": "Suporte para 2 baterias 18650 lado a lado, com fios", "usa": "1", "comprar": "1", "n": 1, "para": "Segura as 2 células em série. Desliza no berço da base e sai pela porta de trás.", "faixa": [5, 15], "base": "cada", "conf": "R$ 6,22", "ml": "suporte-2-baterias-18650", "nc": "o berço aceita até 78 × 41 × 22 mm"},
+   {"item": "Porta-fusível de fio para fusível de vidro 5 × 20 mm, com fusível de 5 A", "usa": "1", "comprar": "1 (e 1 fusível de reserva)", "n": 1, "para": "No fio positivo, logo depois do suporte das baterias. Abre o circuito num curto, antes de o fio esquentar. Não tem lugar modelado: fica solto no fio.", "faixa": [4, 12], "base": "conjunto", "conf": "", "ml": "porta-fusivel-5x20-fio"},
+   {"item": "Placa de proteção BMS 2S 10 A (modelo 10A2S, ~24 × 11 mm)", "usa": "1", "comprar": "1", "n": 1, "para": "Corta a descarga funda, a sobrecarga e o curto. Vai soldada nos fios da bateria, presa com fita dupla-face.", "faixa": [8, 20], "base": "cada", "conf": "", "ml": "bms-2s-10a-18650", "nc": "nome impresso das ilhas de solda (em geral B+, BM, B−, P+, P−)"},
+   {"item": "Carregador USB-C 2S/3S com balanceamento (LX-USC-V2)", "usa": "1", "comprar": "1", "n": 1, "para": "Carrega o pack sem abrir o robô. Pede um 3º fio soldado no ponto do meio do suporte (entre as duas células).", "faixa": [15, 30], "base": "cada", "conf": "R$ 17,90", "ml": "carregador-usb-c-2s-18650-balanceamento", "nc": "tamanho da boca USB-C na janela de trás (9,2 × 3,4 mm) e nome impresso dos bornes"},
+   {"item": "Conversor step-down LM2596 ajustável (placa azul, 3 A)", "usa": "1", "comprar": "1", "n": 1, "para": "Baixa a tensão do pack para os 5 V do Raspberry Pi e do Arduino. Ajuste para 5,1 V com o multímetro ANTES de ligar qualquer placa. O XL4015 não serve aqui: pede no mínimo 8 V.", "faixa": [8, 20], "base": "cada", "conf": "R$ 10,22", "ml": "modulo-step-down-lm2596"},
+   {"item": "UBEC 6 V 3 A (Hobbywing UBEC 3A 2-6S ou equivalente)", "usa": "1", "comprar": "1", "n": 1, "para": "Alimenta os 2 servos em 6 V, separado do Pi. Ponha o jumper dele em 6 V.", "faixa": [25, 60], "base": "cada", "conf": "", "ml": "ubec-3a-5v-6v-hobbywing"},
+   {"item": "Capacitor eletrolítico 1000 µF 16 V", "usa": "1", "comprar": "1", "n": 1, "para": "No borne de 6 V dos servos: segura o pico de corrente da partida.", "faixa": [1, 4], "base": "cada", "conf": "R$ 2,33", "ml": "capacitor-eletrolitico-1000uf-16v"},
+   {"item": "Chave gangorra KCD11 (recorte de 13,5 × 9 mm)", "usa": "1", "comprar": "1", "n": 1, "para": "Liga e desliga. Encaixa por pressão na parede de trás, por fora.", "faixa": [3, 8], "base": "cada", "conf": "R$ 3,74 a R$ 5,40 (modelos KCD1; confira o recorte)", "ml": "chave-gangorra-kcd11", "nc": "espessura de painel que a trava aceita e corrente da chave (em geral 3 A)"},
+   {"item": "Adaptador USB-C macho com bornes (2 pinos)", "usa": "1", "comprar": "1", "n": 1, "para": "Leva os 5 V do conversor até a entrada USB-C do Raspberry Pi (os pinos de 5 V do GPIO ficam embaixo da tela). O plugue não está no modelo 3D: confira se ele cabe ao lado do Pi, dentro da cabeça.", "faixa": [8, 20], "base": "cada", "conf": "R$ 13,11", "ml": "adaptador-usb-c-macho-borne"},
+   {"item": "Fio flexível 22 AWG (0,33 mm²): vermelho, preto e uma terceira cor", "usa": "cerca de 1,5 m de vermelho, 1,5 m de preto e 30 cm de amarelo", "comprar": "2 m de vermelho, 2 m de preto, 1 m de amarelo", "n": 1, "para": "Toda a parte de energia. O amarelo é o 3º fio, do ponto do meio do pack.", "faixa": [12, 30], "base": "total", "conf": "R$ 22,40 (5 m bicolor)", "ml": "fio-flexivel-22awg-vermelho-preto"},
+   {"item": "Jumpers Dupont de 20 cm (kits com 20: um fêmea-fêmea, um macho-fêmea)", "usa": "cerca de 8 fios", "comprar": "2 kits de 20", "n": 2, "para": "Sinais da serial e os 5 V do Arduino. Para descer pelo pescoço, emende dois jumpers ou use fio de 40 cm com um conector Dupont numa ponta.", "faixa": [6, 12], "base": "kit", "conf": "R$ 6,61 o kit", "ml": "jumper-dupont-20cm"}
   ]},
   {"bloco": "Fixação", "itens": [
-   {"item": "Inserto de latão M3 a quente (para furo de 4,0 mm, até 5,7 mm de comprimento)", "qtd": "16 (compre 20)", "n": 1, "para": "A rosca de metal das peças: 4 na tampa, 1 na orelha da porta, 4 nos pilares do painel do rosto, 4 nas colunas do quadro, 3 no garfo.", "faixa": [15, 40], "base": "pacote", "conf": "", "ml": "inserto-latao-m3-impressao-3d"},
-   {"item": "Parafuso M3 × 8 mm, cabeça cilíndrica Allen", "qtd": "13", "n": 2, "para": "4 do Arduino, 4 do painel do rosto, 4 do copo da cabeça, 1 da porta.", "faixa": [3, 8], "base": "kit com 10", "conf": "R$ 6,14 o kit com 10 (tipo de cabeça não informado)", "ml": "parafuso-allen-m3x8"},
-   {"item": "Parafuso M3 × 10 mm, cabeça cilíndrica Allen", "qtd": "4", "n": 1, "para": "Tampa da base, por baixo. Tem de ser Allen de cabeça cilíndrica: a cabeça fica no fundo de um furo de 44 mm.", "faixa": [3, 8], "base": "kit com 10", "conf": "R$ 3,55 o kit com 10 (Phillips)", "ml": "parafuso-allen-m3x10"},
-   {"item": "Parafuso M3 × 12 mm", "qtd": "8", "n": 1, "para": "4 em cada servo MG996R, rosqueados direto no plástico (furo de 2,7 mm).", "faixa": [3, 8], "base": "kit com 10", "conf": "", "ml": "parafuso-m3x12"},
-   {"item": "Parafuso M3 × 45 mm, cabeça cilíndrica Allen", "qtd": "3", "n": 3, "para": "Tirantes do pescoço: entram por baixo da engrenagem, atravessam o tubo e rosqueiam nos insertos do garfo.", "faixa": [1, 3], "base": "cada", "conf": "", "ml": "parafuso-allen-m3x45"},
-   {"item": "Parafuso M5 × 16 mm", "qtd": "1", "n": 1, "para": "Pino do tilt: passa pela lateral do quadro e rosqueia no braço do garfo. A cabeça inclina em volta dele.", "faixa": [3, 8], "base": "kit com 10", "conf": "R$ 6,04 o kit com 10 (Phillips)", "ml": "parafuso-m5x16"},
-   {"item": "Parafuso M2,5 × 12 mm com porca M2,5", "qtd": "4 + 4", "n": 1, "para": "Prende o Raspberry Pi no quadro, com os 4 espaçadores impressos no meio.", "faixa": [5, 15], "base": "kit", "conf": "", "ml": "parafuso-m2.5x12-porca"},
-   {"item": "Parafuso M2 × 8 mm auto-atarraxante", "qtd": "8", "n": 1, "para": "4 em cada horn redondo: prende a engrenagem no servo de pan e o garfo no servo de tilt.", "faixa": [3, 8], "base": "kit com 10", "conf": "R$ 3,31 o kit com 10 (confira se é auto-atarraxante)", "ml": "parafuso-m2x8-auto-atarraxante", "nc": "diâmetro dos furos do horn redondo"},
-   {"item": "Abraçadeira de nylon de 3,6 mm de largura (150 a 200 mm)", "qtd": "3 (pacote com 100)", "n": 1, "para": "Uma em cada berço: conversor de 5 V, UBEC e carregador.", "faixa": [8, 20], "base": "pacote", "conf": "", "ml": "abracadeira-nylon-3.6x200"},
-   {"item": "Fita dupla-face de espuma", "qtd": "1 rolo", "n": 1, "para": "Prende a placa de proteção (BMS) no bolso raso do piso.", "faixa": [8, 20], "base": "rolo", "conf": "", "ml": "fita-dupla-face-espuma"}
+   {"item": "Inserto de latão M3 a quente (para furo de 4,0 mm, até 5,7 mm de comprimento)", "usa": "16", "comprar": "1 pacote de 20 ou mais", "n": 1, "para": "A rosca de metal das peças: 4 na tampa, 1 na orelha da porta, 4 nos pilares do painel do rosto, 4 nas colunas do quadro, 3 no garfo.", "faixa": [15, 40], "base": "pacote", "conf": "", "ml": "inserto-latao-m3-impressao-3d"},
+   {"item": "Parafuso M3 × 8 mm, cabeça cilíndrica Allen", "usa": "13", "comprar": "2 kits de 10", "n": 2, "para": "4 do Arduino, 4 do painel do rosto, 4 do copo da cabeça, 1 da porta.", "faixa": [3, 8], "base": "kit com 10", "conf": "R$ 6,14 o kit com 10 (tipo de cabeça não informado)", "ml": "parafuso-allen-m3x8"},
+   {"item": "Parafuso M3 × 10 mm, cabeça cilíndrica Allen", "usa": "4", "comprar": "1 kit de 10", "n": 1, "para": "Tampa da base, por baixo. Tem de ser Allen de cabeça cilíndrica: a cabeça fica no fundo de um furo de 44 mm.", "faixa": [3, 8], "base": "kit com 10", "conf": "R$ 3,55 o kit com 10 (Phillips)", "ml": "parafuso-allen-m3x10"},
+   {"item": "Parafuso M3 × 12 mm", "usa": "8", "comprar": "1 kit de 10", "n": 1, "para": "4 em cada servo MG996R, rosqueados direto no plástico (furo de 2,7 mm).", "faixa": [3, 8], "base": "kit com 10", "conf": "", "ml": "parafuso-m3x12"},
+   {"item": "Parafuso M3 × 45 mm, cabeça cilíndrica Allen", "usa": "3", "comprar": "3 (vendido por unidade)", "n": 3, "para": "Tirantes do pescoço: entram por baixo da engrenagem, atravessam o tubo e rosqueiam nos insertos do garfo.", "faixa": [1, 3], "base": "cada", "conf": "", "ml": "parafuso-allen-m3x45"},
+   {"item": "Parafuso M5 × 16 mm", "usa": "1", "comprar": "1 kit de 10 (ou 1 avulso)", "n": 1, "para": "Pino do tilt: passa pela lateral do quadro e rosqueia no braço do garfo. A cabeça inclina em volta dele.", "faixa": [3, 8], "base": "kit com 10", "conf": "R$ 6,04 o kit com 10 (Phillips)", "ml": "parafuso-m5x16"},
+   {"item": "Parafuso M2,5 × 12 mm com porca M2,5", "usa": "4 parafusos e 4 porcas", "comprar": "1 kit", "n": 1, "para": "Prende o Raspberry Pi no quadro, com os 4 espaçadores impressos no meio.", "faixa": [5, 15], "base": "kit", "conf": "", "ml": "parafuso-m2.5x12-porca"},
+   {"item": "Parafuso M2 × 8 mm auto-atarraxante", "usa": "8", "comprar": "1 kit de 10", "n": 1, "para": "4 em cada horn redondo: prende a engrenagem no servo de pan e o garfo no servo de tilt.", "faixa": [3, 8], "base": "kit com 10", "conf": "R$ 3,31 o kit com 10 (confira se é auto-atarraxante)", "ml": "parafuso-m2x8-auto-atarraxante", "nc": "diâmetro dos furos do horn redondo"},
+   {"item": "Abraçadeira de nylon de 3,6 mm de largura (150 a 200 mm)", "usa": "3", "comprar": "1 pacote de 100", "n": 1, "para": "Uma em cada berço: conversor de 5 V, UBEC e carregador.", "faixa": [8, 20], "base": "pacote", "conf": "", "ml": "abracadeira-nylon-3.6x200"},
+   {"item": "Fita dupla-face de espuma", "usa": "cerca de 5 cm", "comprar": "1 rolo", "n": 1, "para": "Prende a placa de proteção (BMS) no bolso raso do piso.", "faixa": [8, 20], "base": "rolo", "conf": "", "ml": "fita-dupla-face-espuma"}
   ]},
-  {"bloco": "Ferramentas (se você não tiver)", "ferramenta": true, "itens": [
-   {"item": "Chave Allen de 2,5 mm longa (haste de 50 mm ou mais)", "qtd": "1", "n": 1, "para": "Aperta os 4 parafusos da tampa pelo fundo dos furos da base e os 3 tirantes do pescoço.", "faixa": [8, 25], "base": "cada", "conf": "", "ml": "chave-allen-2.5mm-longa"},
-   {"item": "Ferro de solda", "qtd": "1", "n": 0, "para": "Assenta os 16 insertos a quente e solda os fios de energia.", "faixa": [40, 120], "base": "cada", "conf": "", "ml": "ferro-de-solda-60w"},
-   {"item": "Multímetro", "qtd": "1", "n": 0, "para": "Ajusta o conversor em 5,1 V e confere a polaridade antes de ligar as placas.", "faixa": [40, 100], "base": "cada", "conf": "", "ml": "multimetro-digital"},
-   {"item": "Paquímetro", "qtd": "1", "n": 0, "para": "Confere as medidas marcadas como NC antes de imprimir.", "faixa": [25, 80], "base": "cada", "conf": "", "ml": "paquimetro-digital-150mm"}
+  {"bloco": "Ferramentas e material de solda (se você não tiver)", "ferramenta": true, "itens": [
+   {"item": "Ferro de solda de 30 a 60 W, de preferência com ajuste de temperatura", "usa": "1", "comprar": "1", "n": 0, "para": "Solda os fios de energia e assenta os 16 insertos a quente.", "faixa": [40, 150], "base": "cada", "conf": "", "ml": "ferro-de-solda-60w-temperatura-ajustavel"},
+   {"item": "Ponta de ferro de solda para inserto M3 (opcional)", "usa": "1", "comprar": "1", "n": 0, "para": "Guia o inserto reto no furo. A ponta cônica comum também serve: apoie a ponta dentro do inserto e empurre devagar.", "faixa": [15, 40], "base": "cada", "conf": "", "ml": "ponta-ferro-de-solda-inserto-m3"},
+   {"item": "Estanho de solda com fluxo, 0,8 a 1 mm (tubo pequeno)", "usa": "menos de 1 m", "comprar": "1 tubo", "n": 0, "para": "Todas as emendas de fio e as ilhas da placa de proteção.", "faixa": [8, 25], "base": "tubo", "conf": "", "ml": "estanho-solda-1mm-tubo"},
+   {"item": "Tubo termo-retrátil de 2 a 3 mm e de 5 a 6 mm (ou fita isolante)", "usa": "cerca de 30 cm de cada", "comprar": "1 m de cada", "n": 0, "para": "Isola cada emenda de fio. Nenhum metal pode ficar à mostra perto da bateria.", "faixa": [5, 20], "base": "total", "conf": "", "ml": "tubo-termo-retratil-3mm"},
+   {"item": "Multímetro", "usa": "1", "comprar": "1", "n": 0, "para": "Ajusta o conversor em 5,1 V, confere os 6 V do UBEC e a polaridade antes de ligar as placas.", "faixa": [40, 100], "base": "cada", "conf": "", "ml": "multimetro-digital"},
+   {"item": "Chave de fenda de precisão de 2 mm", "usa": "1", "comprar": "1", "n": 0, "para": "Gira o parafuso de ajuste do LM2596 e aperta os bornes.", "faixa": [5, 20], "base": "cada", "conf": "", "ml": "chave-de-fenda-precisao-2mm"},
+   {"item": "Chave Allen de 2,5 mm longa (haste de 50 mm ou mais)", "usa": "1", "comprar": "1", "n": 0, "para": "Aperta os 4 parafusos da tampa pelo fundo dos furos da base e os 3 tirantes do pescoço.", "faixa": [8, 25], "base": "cada", "conf": "", "ml": "chave-allen-2.5mm-longa"},
+   {"item": "Paquímetro", "usa": "1", "comprar": "1", "n": 0, "para": "Confere as medidas marcadas como NC antes de imprimir.", "faixa": [25, 80], "base": "cada", "conf": "", "ml": "paquimetro-digital-150mm"},
+   {"item": "Fonte USB-C de 15 W ou mais (5 V 3 A; a de celular serve) com cabo USB-C", "usa": "1", "comprar": "1", "n": 0, "para": "Carrega o pack pela boca USB-C de trás. O carregador aceita até 15 W.", "faixa": [25, 80], "base": "cada", "conf": "", "ml": "carregador-usb-c-20w"},
+   {"item": "Cabo USB A-B (o de impressora) e um computador com a Arduino IDE", "usa": "1", "comprar": "1", "n": 0, "para": "Grava o sketch no Arduino Uno, antes de parafusá-lo na base.", "faixa": [8, 25], "base": "cada", "conf": "", "ml": "cabo-usb-a-b-arduino-uno"}
   ]}
  ],
  "fase2": [
@@ -50,10 +60,23 @@
   {"item": "Alto-falante de 40 mm, 3 W", "qtd": "1", "onde": "Desliza nos 2 trilhos da parede de trás da base, contra a grade de fendas verticais.", "faixa": [7, 20], "conf": "", "ml": "alto-falante-40mm-3w-4-ohms", "nc": "diâmetro e profundidade"},
   {"item": "Amplificador de áudio pequeno (PAM8403 ou MAX98357A)", "qtd": "1", "onde": "Sem lugar modelado ainda: vai solto na base, com fita dupla-face.", "faixa": [5, 35], "conf": "R$ 5,47 a R$ 11,34 (PAM8403)", "ml": "amplificador-pam8403"},
   {"item": "Sensor de movimento IMU MPU-6050", "qtd": "1", "onde": "No ponto universal do piso da base (par de furos M3 a 20 mm).", "faixa": [15, 35], "conf": "R$ 34,09", "ml": "mpu-6050-gy-521"},
-  {"item": "LiDAR LD19 ou LD06", "qtd": "1", "onde": "No topo da cabeça: 2 furos cegos por dentro; a pele de 0,8 mm só é furada quando o sensor for instalado.", "faixa": [400, 900], "conf": "", "ml": "lidar-ld19", "nc": "padrão de furos do sensor"},
-  {"item": "Conversor de nível lógico 3,3 V / 5 V", "qtd": "1", "onde": "Na conversa serial entre o Raspberry Pi (3,3 V) e o Arduino (5 V), se você não usar o cabo USB.", "faixa": [5, 12], "conf": "R$ 5,59 a R$ 8,55", "ml": "conversor-nivel-logico-3.3v-5v"}
+  {"item": "LiDAR LD19 ou LD06", "qtd": "1", "onde": "No topo da cabeça: 2 furos cegos por dentro; a pele de 0,8 mm só é furada quando o sensor for instalado.", "faixa": [400, 900], "conf": "", "ml": "lidar-ld19", "nc": "padrão de furos do sensor"}
  ],
  "filamento_preco_kg": [90, 150],
+ "rotulos": {
+  "base": "Base",
+  "tampa-base": "Tampa da base",
+  "porta-traseira": "Porta traseira",
+  "tubo-pescoco": "Tubo do pescoço",
+  "engrenagem-pescoco": "Engrenagem do pescoço",
+  "engrenagem-servo": "Engrenagem do servo",
+  "garfo": "Garfo",
+  "quadro-cabeca": "Quadro da cabeça",
+  "cabeca-corpo": "Copo da cabeça",
+  "cabeca-face": "Painel do rosto",
+  "espacador-pi": "Espaçador do Raspberry Pi",
+  "teste-encaixe": "Cupom de teste"
+ },
  "parafusos": [
   {"onde": "Tampa na base (por baixo)", "qtd": 4, "tipo": "M3 × 10 Allen", "rosca": "inserto na tampa"},
   {"onde": "Porta traseira", "qtd": 1, "tipo": "M3 × 8", "rosca": "inserto na orelha da tampa"},
@@ -69,27 +92,27 @@
  ],
  "insertos": 16,
  "passos_nota": {
-  "base": "Antes de começar, assente os 16 insertos a quente (lista na tabela de parafusos).",
-  "servo de pan nos 2 postes": "4 × M3 × 12, eixo para cima. Ligue o servo e deixe-o no centro (90°) antes de pôr a engrenagem.",
-  "Arduino Uno nos 4 ressaltos": "4 × M3 × 8, USB virado para a esquerda. O shield encaixa por cima.",
-  "módulos de energia nos berços (1 abraçadeira cada)": "Solde os fios antes de prender. 3 abraçadeiras (conversor, UBEC, carregador) e fita dupla-face na placa de proteção. A boca USB-C do carregador encosta na janela de trás.",
-  "chave (por fora, atrás)": "Encaixa por pressão no recorte.",
-  "alto-falante nos trilhos da parede de trás": "Fase 2: pode pular agora.",
-  "engrenagem do servo no horn": "Horn redondo no rebaixo da engrenagem, 4 × M2 × 8 pelos rasgos e o parafuso central do servo pelo furo de 6 mm.",
-  "bateria (pela porta de trás)": "Confira a polaridade com o multímetro antes de ligar a chave.",
-  "Raspberry Pi e espaçadores no quadro (bancada)": "4 × M2,5 × 12 com porca; os 4 espaçadores ficam entre o Pi e a travessa. Grave o cartão microSD antes.",
-  "tela, painel do rosto e câmera pela frente; 4 M3 por trás do quadro, ANTES do servo (bancada)": "A tela encaixa nos pinos do Pi. 4 × M3 × 8 por trás da travessa, nos insertos dos pilares do painel. Depois que o servo entra, esses parafusos ficam sem acesso.",
-  "servo de tilt no rasgo do quadro, por trás; 4 parafusos pela esquerda (bancada)": "4 × M3 × 12. Os 2 de cima são apertados pelos furos de acesso da lateral esquerda.",
-  "garfo (com o horn já preso no braço) no eixo do tilt, por baixo; parafuso central do horn pelo furo do pino; pino M5 (bancada)": "Prenda o horn no braço direito do garfo com 4 × M2 × 8. O parafuso central do horn entra pelo furo do pino. Por último, o M5 × 16: aperte até encostar e volte um quarto de volta, porque a cabeça gira nele.",
+  "base": "Antes deste passo, faça os 3 preparos da bancada (energia ajustada, servos em 90°, cartão gravado) e assente os 16 insertos a quente.",
+  "servo de pan nos 2 postes": "4 × M3 × 12, eixo para cima. O servo já está em 90° (preparo 2): não gire o eixo com a mão.",
+  "Arduino Uno nos 4 ressaltos": "4 × M3 × 8, USB virado para a esquerda. O sketch já tem de estar gravado (preparo 2): com o Uno parafusado, o cabo USB não entra. O shield encaixa por cima, com o jumper SEL retirado.",
+  "módulos de energia nos berços (1 abraçadeira cada)": "O chicote já vem soldado e conferido do preparo 1. 3 abraçadeiras (conversor, UBEC, carregador) e fita dupla-face na placa de proteção. A boca USB-C do carregador encosta na janela de trás.",
+  "chave (por fora, atrás)": "Já está no lugar desde o preparo 1. Ela encaixa por pressão no recorte, por fora, com os 2 fios passando pelo recorte.",
+  "alto-falante nos trilhos da parede de trás": "Fase 2: é opcional agora, pode pular.",
+  "engrenagem do servo no horn": "Horn redondo no rebaixo da engrenagem, 4 × M2 × 8 pelos rasgos e o parafuso central do servo pelo furo de 6 mm. Não gire o eixo: ele está em 90°.",
+  "bateria (pela porta de trás)": "Chave desligada. Confira a polaridade com o multímetro antes de ligar.",
+  "Raspberry Pi e espaçadores no quadro (bancada)": "4 × M2,5 × 12 com porca; os 4 espaçadores ficam entre o Pi e a travessa. O cartão microSD já gravado (preparo 3) entra antes. Encaixe o conector baixo da serial nos pinos 31 a 34 antes de pôr a tela.",
+  "tela, painel do rosto e câmera pela frente; 4 M3 por trás do quadro, ANTES do servo (bancada)": "A tela encaixa nos pinos 1 a 26 do Pi. A câmera é da fase 2: é opcional agora, e o furo dela fica vazio. 4 × M3 × 8 por trás da travessa, nos insertos dos pilares do painel. Depois que o servo entra, esses parafusos ficam sem acesso.",
+  "servo de tilt no rasgo do quadro, por trás; 4 parafusos pela esquerda (bancada)": "4 × M3 × 12. O servo já está em 90° (preparo 2). Os 2 parafusos de cima são apertados pelos furos de acesso da lateral esquerda.",
+  "garfo (com o horn já preso no braço) no eixo do tilt, por baixo; parafuso central do horn pelo furo do pino; pino M5 (bancada)": "Prenda o horn no braço direito do garfo com 4 × M2 × 8. Com o servo em 90°, encaixe o garfo apontando para baixo, com o rosto na vertical. O parafuso central do horn entra pelo furo do pino. Por último, o M5 × 16: aperte até encostar e volte um quarto de volta, porque a cabeça gira nele.",
   "copo da cabeça por trás; 4 M3 na parede de trás (bancada)": "4 × M3 × 8.",
   "tubo do pescoço na tampa, por cima (bancada)": "A flange cônica apoia na tampa.",
   "engrenagem do pescoço por baixo da tampa (bancada)": "Alinhe os 3 furos com os do tubo.",
-  "cabeça sobre o tubo; 3 tirantes M3 por baixo (bancada)": "Passe os cabos pelo furo de 9 mm do pescoço ANTES de fechar. 3 × M3 × 45 por baixo da engrenagem, até os insertos do garfo.",
-  "tampa + pescoço + cabeça sobre a base; 4 M3 por baixo": "Com a cabeça olhando para a frente e o servo no centro, engrene os dentes. 4 × M3 × 10 por baixo, com a chave Allen longa.",
+  "cabeça sobre o tubo; 3 tirantes M3 por baixo (bancada)": "Passe os 8 fios pelo furo de 9 mm do pescoço ANTES de fechar: primeiro a extensão do servo de tilt (o conector de 3 pinos passa justo), depois os 2 fios de 5 V do Pi e os 3 fios da serial. Deixe 10 cm de folga para o giro. 3 × M3 × 45 por baixo da engrenagem, até os insertos do garfo.",
+  "tampa + pescoço + cabeça sobre a base; 4 M3 por baixo": "Ligue os fios que desceram pelo pescoço (tabela de ligações). Com a cabeça olhando para a frente e o servo de pan em 90°, engrene os dentes. 4 × M3 × 10 por baixo, com a chave Allen longa.",
   "porta traseira (1 M3)": "1 × M3 × 8 na orelha da tampa; o pé da porta encosta nos 2 batentes do piso.",
   "abrir: porta traseira": "Solte 1 parafuso.",
   "abrir: bateria sai por trás": "Desligue a chave antes.",
-  "abrir: tampa + pescoço + cabeça saem por cima (placas à mostra)": "Solte os 4 parafusos por baixo da base e levante o conjunto inteiro."
+  "abrir: tampa + pescoço + cabeça saem por cima (placas à mostra)": "Solte os 4 parafusos por baixo da base e levante o conjunto inteiro, devagar: os fios do pescoço continuam ligados."
  },
  "ordem_impressao": [
   {"mesa": 6, "porque": "Comece por aqui. O cupom de teste mostra se os insertos e os parafusos M3 entram com a folga certa na SUA impressora. Menos de 1 hora."},
@@ -99,5 +122,59 @@
   {"mesa": 2, "porque": "Base: a impressão mais longa em PETG."},
   {"mesa": 7, "porque": "Painel do rosto: a face que aparece vai na mesa, então limpe bem a mesa antes."},
   {"mesa": 5, "porque": "Copo da cabeça: a impressão mais longa em PLA. Deixe por último, com a impressora já ajustada."}
+ ],
+ "ligacoes": [
+  {"grupo": "Bateria, proteção e carga", "fios": [
+   {"de": "Suporte das baterias: fio vermelho (positivo do pack)", "para": "Porta-fusível de 5 A e, depois dele, ilha B+ da placa de proteção", "cor": "vermelho", "fio": "22 AWG", "nota": "O fusível fica a poucos centímetros do suporte."},
+   {"de": "Suporte das baterias: fio preto (negativo do pack)", "para": "Ilha B− da placa de proteção", "cor": "preto", "fio": "22 AWG", "nota": ""},
+   {"de": "Suporte das baterias: lâmina de metal que une as 2 células (ponto do meio)", "para": "Ilha BM da placa de proteção", "cor": "amarelo", "fio": "22 AWG", "nota": "É o 3º fio. Solde-o na lâmina com as células FORA do suporte."},
+   {"de": "Ilha BM da placa de proteção", "para": "Carregador USB-C: borne do meio (ponto do meio do pack)", "cor": "amarelo", "fio": "22 AWG", "nota": "Sem este fio o carregador não equilibra as duas células."},
+   {"de": "Carregador USB-C: saída positiva", "para": "Ilha P+ da placa de proteção", "cor": "vermelho", "fio": "22 AWG", "nota": "O carregador fica antes da chave: o robô carrega desligado."},
+   {"de": "Carregador USB-C: saída negativa", "para": "Ilha P− da placa de proteção", "cor": "preto", "fio": "22 AWG", "nota": ""}
+  ]},
+  {"grupo": "Chave e conversores", "fios": [
+   {"de": "Ilha P+ da placa de proteção", "para": "Chave liga/desliga e, depois dela, entrada IN+ do LM2596 e fio vermelho de entrada do UBEC", "cor": "vermelho", "fio": "22 AWG", "nota": "A chave corta só o positivo."},
+   {"de": "Ilha P− da placa de proteção", "para": "Entrada IN− do LM2596 e fio preto de entrada do UBEC", "cor": "preto", "fio": "22 AWG", "nota": "Este é o negativo comum (GND) de todo o robô."}
+  ]},
+  {"grupo": "5 V: Raspberry Pi e Arduino", "fios": [
+   {"de": "Saída OUT+ do LM2596 (5,1 V)", "para": "Pelo pescoço, até o borne + do adaptador USB-C, que entra na porta USB-C do Raspberry Pi", "cor": "vermelho", "fio": "22 AWG", "nota": "Ajuste os 5,1 V ANTES de ligar este fio."},
+   {"de": "Saída OUT− do LM2596", "para": "Pelo pescoço, até o borne − do adaptador USB-C", "cor": "preto", "fio": "22 AWG", "nota": ""},
+   {"de": "Saída OUT+ do LM2596 (5,1 V)", "para": "Pino de 5 V do Sensor Shield (o + do conector COM ou IIC)", "cor": "vermelho", "fio": "Dupont", "nota": "É por aqui que o Arduino recebe energia. Antes, confirme com o multímetro que esse pino NÃO tem continuidade com o borne azul VCC."},
+   {"de": "Saída OUT− do LM2596", "para": "Pino − (GND) do mesmo conector do Sensor Shield", "cor": "preto", "fio": "Dupont", "nota": ""}
+  ]},
+  {"grupo": "6 V: servos", "fios": [
+   {"de": "Fio vermelho de saída do UBEC (6 V)", "para": "Borne azul VCC do Sensor Shield", "cor": "vermelho", "fio": "fio do UBEC", "nota": "Jumper SEL do shield RETIRADO e jumper do UBEC em 6 V."},
+   {"de": "Fio preto de saída do UBEC", "para": "Borne azul GND do Sensor Shield", "cor": "preto", "fio": "fio do UBEC", "nota": ""},
+   {"de": "Capacitor de 1000 µF: perna comprida (+)", "para": "Borne azul VCC; a perna da listra (−) vai no borne azul GND", "cor": "sem fio", "fio": "pernas do capacitor", "nota": "Capacitor invertido estoura."},
+   {"de": "Servo de pan (na base)", "para": "Conector D9 do Sensor Shield", "cor": "cabo do servo", "fio": "cabo de 3 fios do servo", "nota": "G = marrom ou preto, V = vermelho, S = laranja ou amarelo."},
+   {"de": "Servo de tilt (na cabeça)", "para": "Pelo pescoço, com a extensão de 30 cm, até o conector D10 do Sensor Shield", "cor": "cabo do servo", "fio": "cabo de 3 fios do servo", "nota": "Mesma ordem de cores do D9."}
+  ]},
+  {"grupo": "Serial entre o Raspberry Pi e o Arduino", "fios": [
+   {"de": "Raspberry Pi: pino 32 (GPIO12, TX)", "para": "Pelo pescoço, até o pino S do D0 (RX) do Sensor Shield", "cor": "verde", "fio": "Dupont", "nota": "Direto: os 3,3 V do Pi já valem como nível alto para o Arduino."},
+   {"de": "Pino S do D1 (TX) do Sensor Shield", "para": "Resistor de 1 kΩ e, depois dele, pelo pescoço até o pino 33 (GPIO13, RX) do Raspberry Pi", "cor": "azul", "fio": "Dupont", "nota": "Nunca ligue o D1 direto no Pi: são 5 V num pino de 3,3 V."},
+   {"de": "Ponto entre o resistor de 1 kΩ e o fio azul", "para": "2 resistores de 1 kΩ em série e, depois deles, um pino G (GND) do Sensor Shield", "cor": "preto", "fio": "pernas dos resistores", "nota": "Os 3 resistores formam o divisor: 5 V viram 3,3 V."},
+   {"de": "Raspberry Pi: pino 34 (GND)", "para": "Pelo pescoço, até um pino G (GND) do Sensor Shield", "cor": "preto", "fio": "Dupont", "nota": ""},
+   {"de": "Tela MPI3501", "para": "Encaixada nos pinos 1 a 26 do Raspberry Pi", "cor": "sem fio", "fio": "conector da própria tela", "nota": "Usa SPI e os 5 V dos pinos 2 e 4."}
+  ]}
+ ],
+ "glossario": [
+  {"termo": "GPIO", "def": "A fileira de 40 pinos do Raspberry Pi, onde se ligam a tela e os fios de sinal."},
+  {"termo": "UBEC", "def": "Conversor pequeno, usado em aeromodelos, que baixa a tensão da bateria para um valor fixo. Aqui, 6 V para os servos."},
+  {"termo": "BMS", "def": "Placa de proteção da bateria de lítio. Desliga a bateria antes de ela descarregar demais, carregar demais ou entrar em curto."},
+  {"termo": "2S", "def": "Duas células de lítio ligadas em série, uma depois da outra. As tensões somam: de 6 V (vazio) a 8,4 V (cheio)."},
+  {"termo": "Horn", "def": "A peça de plástico que encaixa no eixo do servo e gira com ele. Este robô usa o horn redondo, em forma de disco."},
+  {"termo": "Inserto a quente", "def": "Bucha de latão com rosca por dentro. Entra no furo do plástico empurrada com o ferro de solda e vira uma rosca de metal."},
+  {"termo": "NC", "def": "Não confirmado: uma medida que veio de anúncio de loja e ainda não foi conferida com a peça na mão."},
+  {"termo": "Fatiador", "def": "O programa que transforma o arquivo 3D nas camadas que a impressora imprime. O da Bambu Lab se chama Bambu Studio."}
+ ],
+ "riscos": [
+  "Nada foi impresso nem montado ainda. A parte elétrica desta página não foi testada na bancada: ela saiu das fichas dos componentes.",
+  "Os arquivos 3MF das mesas nunca foram abertos no Bambu Studio. Se algum não abrir, use os STL.",
+  "O plugue USB-C que alimenta o Raspberry Pi não está no modelo 3D. Pode não haver espaço para ele ao lado do Pi, dentro da cabeça.",
+  "Os pinos 31 a 34 do Raspberry Pi ficam embaixo da placa da tela. A folga ali (17,5 mm no modelo) é uma medida não confirmada: se o conector baixo não couber, os 3 fios da serial terão de ser soldados.",
+  "O cupom de teste não confere a janela do servo MG996R nem o furo do pino M5. Você confere os dois na mesa 01, antes das impressões longas.",
+  "Com o Arduino parafusado na base, o cabo USB não entra: sobram cerca de 10 mm até a parede. Para regravar o programa é preciso soltar os 4 parafusos dele.",
+  "O porta-fusível e os 3 resistores da serial não têm lugar modelado: ficam soltos nos fios, isolados com termo-retrátil.",
+  "As medidas marcadas como NC vêm de anúncios de loja. Meça a sua peça antes de imprimir a parte que encosta nela."
  ]
 }
