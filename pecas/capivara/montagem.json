@@ -3,8 +3,8 @@
  "titulo": "Capivara",
  "pecas": [
   {
-   "nome": "torso-frente",
-   "arquivo": "stl/capivara-torso-frente.stl",
+   "nome": "corpo",
+   "arquivo": "stl/capivara-corpo.stl",
    "material": "PLA",
    "cor": "laranja",
    "rgb": [
@@ -24,19 +24,19 @@
       1.0,
       0.0,
       0.0,
-      2.3060634909199962e-05
+      3.814697265625e-06
      ],
      [
       0.0,
-      1.1102230246251565e-16,
       1.0,
-      -38.00000000000001
+      0.0,
+      14.921576516595515
      ],
      [
       0.0,
-      -1.0,
-      1.1102230246251565e-16,
-      120.20056121208542
+      0.0,
+      1.0,
+      5.0
      ],
      [
       0.0,
@@ -48,27 +48,31 @@
    ],
    "explode": [
     0,
-    110,
-    0
+    0,
+    60
    ],
-   "suporte": "sim (árvore, por dentro)",
+   "suporte": "sim (provisório)",
    "comum": false,
    "macica": false,
    "dim": [
-    156.0,
-    226.4,
-    96.0
+    207.3,
+    188.6,
+    119.0
    ],
-   "tris": 78536,
-   "plastico_cm3": 106.9,
-   "massa_g": 132.6,
-   "tempo_h": 5.03,
-   "obs": "metade da frente; 1 M3 por baixo + 2 M3 cabeça chata nos postes (sob o painel)",
-   "liso": true
+   "tris": 163006,
+   "plastico_cm3": 170.0,
+   "massa_g": 210.8,
+   "tempo_h": 7.95,
+   "obs": "bacia inteira do corpo; entra por cima do chassi; 4 M3 por baixo",
+   "liso": true,
+   "perimetros": 3,
+   "infill": 15,
+   "reforco": "",
+   "orientacao": "borda de baixo (z=5) na mesa, como um vaso"
   },
   {
-   "nome": "torso-costas",
-   "arquivo": "stl/capivara-torso-costas.stl",
+   "nome": "porta",
+   "arquivo": "stl/capivara-porta.stl",
    "material": "PLA",
    "cor": "laranja",
    "rgb": [
@@ -88,19 +92,19 @@
       1.0,
       0.0,
       0.0,
-      7.62939453125e-06
-     ],
-     [
-      0.0,
-      1.1102230246251565e-16,
-      -1.0,
-      -37.999999999999986
+      -0.07881666809317167
      ],
      [
       0.0,
       1.0,
-      1.1102230246251565e-16,
-      120.20004479100152
+      0.0,
+      -63.92076628842477
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      5.40530341882257
      ],
      [
       0.0,
@@ -112,91 +116,31 @@
    ],
    "explode": [
     0,
-    -130,
+    -120,
     0
    ],
-   "suporte": "sim (árvore, por dentro)",
+   "suporte": "sim (provisório)",
    "comum": false,
    "macica": false,
    "dim": [
-    156.0,
-    226.4,
-    74.0
+    76.1,
+    96.6,
+    118.6
    ],
-   "tris": 70286,
-   "plastico_cm3": 112.2,
-   "massa_g": 139.1,
-   "tempo_h": 5.27,
-   "obs": "metade de trás (tampa de acesso às bandejas); 2 M3 por baixo + 1 M3 no alto",
-   "liso": true
+   "tris": 40990,
+   "plastico_cm3": 36.5,
+   "massa_g": 45.2,
+   "tempo_h": 1.77,
+   "obs": "porta traseira: bateria e bandejas saem por aqui; 2 M3 por trás",
+   "liso": true,
+   "perimetros": 3,
+   "infill": 15,
+   "reforco": "",
+   "orientacao": "borda de baixo na mesa, em pé"
   },
   {
-   "nome": "barriga",
-   "arquivo": "stl/capivara-barriga.stl",
-   "material": "PLA",
-   "cor": "laranja",
-   "rgb": [
-    0.93,
-    0.52,
-    0.13
-   ],
-   "grupo": "corpo",
-   "grupos": [
-    "corpo"
-   ],
-   "qtd": 1,
-   "na_montagem": 1,
-   "para_montagem": [
-    [
-     [
-      1.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     [
-      0.0,
-      1.1102230246251565e-16,
-      -1.0,
-      47.99703598022461
-     ],
-     [
-      0.0,
-      1.0,
-      1.1102230246251565e-16,
-      88.0000000000002
-     ],
-     [
-      0.0,
-      0.0,
-      0.0,
-      1.0
-     ]
-    ]
-   ],
-   "explode": [
-    0,
-    185,
-    0
-   ],
-   "suporte": "sim (árvore)",
-   "comum": false,
-   "macica": false,
-   "dim": [
-    79.4,
-    87.4,
-    28.7
-   ],
-   "tris": 13334,
-   "plastico_cm3": 21.2,
-   "massa_g": 26.3,
-   "tempo_h": 1.06,
-   "obs": "painel da frente = grade do alto-falante e tampa; 2 M3",
-   "liso": true
-  },
-  {
-   "nome": "bandana-frente",
-   "arquivo": "stl/capivara-bandana-frente.stl",
+   "nome": "gola",
+   "arquivo": "stl/capivara-gola.stl",
    "material": "PLA",
    "cor": "verde-bandana",
    "rgb": [
@@ -216,19 +160,19 @@
       1.0,
       0.0,
       0.0,
-      -0.000915416839244898
-     ],
-     [
-      0.0,
-      1.1102230246251565e-16,
-      -1.0,
-      22.18453065604895
+      -3.814697265625e-06
      ],
      [
       0.0,
       1.0,
-      1.1102230246251565e-16,
-      158.5
+      0.0,
+      32.53650726190344
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      123.62671415988076
      ],
      [
       0.0,
@@ -240,734 +184,27 @@
    ],
    "explode": [
     0,
-    150,
-    30
+    0,
+    100
    ],
-   "suporte": "sim (árvore)",
+   "suporte": "sim (provisório)",
    "comum": false,
    "macica": false,
    "dim": [
-    119.4,
-    47.0,
-    60.0
+    159.4,
+    137.6,
+    71.6
    ],
-   "tris": 10642,
-   "plastico_cm3": 7.1,
-   "massa_g": 8.8,
-   "tempo_h": 0.41,
-   "obs": "faixa da frente + triângulo; colar no torso-frente",
-   "liso": true
-  },
-  {
-   "nome": "bandana-costas",
-   "arquivo": "stl/capivara-bandana-costas.stl",
-   "material": "PLA",
-   "cor": "verde-bandana",
-   "rgb": [
-    0.3,
-    0.66,
-    0.16
-   ],
-   "grupo": "corpo",
-   "grupos": [
-    "corpo"
-   ],
-   "qtd": 1,
-   "na_montagem": 1,
-   "para_montagem": [
-    [
-     [
-      1.0,
-      0.0,
-      0.0,
-      -0.0011684641729772238
-     ],
-     [
-      0.0,
-      1.1102230246251565e-16,
-      1.0,
-      -104.84587097167969
-     ],
-     [
-      0.0,
-      -1.0,
-      1.1102230246251565e-16,
-      165.01009191587283
-     ],
-     [
-      0.0,
-      0.0,
-      0.0,
-      1.0
-     ]
-    ]
-   ],
-   "explode": [
-    0,
-    -170,
-    30
-   ],
-   "suporte": "sim (árvore)",
-   "comum": false,
-   "macica": false,
-   "dim": [
-    119.4,
-    37.5,
-    66.6
-   ],
-   "tris": 8896,
-   "plastico_cm3": 8.2,
-   "massa_g": 10.2,
-   "tempo_h": 0.46,
-   "obs": "faixa de trás + laço; colar no torso-costas",
-   "liso": true
-  },
-  {
-   "nome": "mao",
-   "arquivo": "stl/capivara-mao.stl",
-   "material": "PLA",
-   "cor": "marrom",
-   "rgb": [
-    0.36,
-    0.19,
-    0.1
-   ],
-   "grupo": "corpo",
-   "grupos": [
-    "corpo",
-    "corpo"
-   ],
-   "qtd": 2,
-   "na_montagem": 2,
-   "para_montagem": [
-    [
-     [
-      1.0,
-      0.0,
-      0.0,
-      50.0
-     ],
-     [
-      0.0,
-      -0.3162277660168378,
-      0.9486832980505139,
-      28.53843009000792
-     ],
-     [
-      0.0,
-      -0.9486832980505139,
-      -0.3162277660168378,
-      93.1538604513613
-     ],
-     [
-      0.0,
-      0.0,
-      0.0,
-      1.0
-     ]
-    ],
-    [
-     [
-      1.0,
-      0.0,
-      0.0,
-      -50.0
-     ],
-     [
-      0.0,
-      -0.3162277660168378,
-      0.9486832980505139,
-      28.537709112224718
-     ],
-     [
-      0.0,
-      -0.9486832980505139,
-      -0.3162277660168378,
-      93.15409696259177
-     ],
-     [
-      0.0,
-      0.0,
-      0.0,
-      1.0
-     ]
-    ]
-   ],
-   "explode": [
-    0,
-    70,
-    0
-   ],
-   "suporte": "não",
-   "comum": false,
-   "macica": true,
-   "dim": [
-    20.0,
-    20.0,
-    11.4
-   ],
-   "tris": 904,
-   "plastico_cm3": 1.8,
-   "massa_g": 2.3,
-   "tempo_h": 0.16,
-   "obs": "2 mãos; cola ou pressão",
-   "liso": true
-  },
-  {
-   "nome": "pino-guia",
-   "arquivo": "../comum/stl/comum-pino-guia.stl",
-   "material": "PLA",
-   "cor": "cinza",
-   "rgb": [
-    0.42,
-    0.44,
-    0.47
-   ],
-   "grupo": "corpo",
-   "grupos": [
-    "corpo",
-    "corpo",
-    "corpo",
-    "corpo"
-   ],
-   "qtd": 4,
-   "na_montagem": 4,
-   "para_montagem": [
-    [
-     [
-      1.0,
-      0.0,
-      0.0,
-      57.31020736694336
-     ],
-     [
-      0.0,
-      1.1102230246251565e-16,
-      -1.0,
-      -33.5
-     ],
-     [
-      0.0,
-      1.0,
-      1.1102230246251565e-16,
-      100.0
-     ],
-     [
-      0.0,
-      0.0,
-      0.0,
-      1.0
-     ]
-    ],
-    [
-     [
-      1.0,
-      0.0,
-      0.0,
-      -57.31020736694336
-     ],
-     [
-      0.0,
-      1.1102230246251565e-16,
-      -1.0,
-      -33.5
-     ],
-     [
-      0.0,
-      1.0,
-      1.1102230246251565e-16,
-      100.0
-     ],
-     [
-      0.0,
-      0.0,
-      0.0,
-      1.0
-     ]
-    ],
-    [
-     [
-      1.0,
-      0.0,
-      0.0,
-      49.1
-     ],
-     [
-      0.0,
-      1.1102230246251565e-16,
-      -1.0,
-      -33.5
-     ],
-     [
-      0.0,
-      1.0,
-      1.1102230246251565e-16,
-      183.0
-     ],
-     [
-      0.0,
-      0.0,
-      0.0,
-      1.0
-     ]
-    ],
-    [
-     [
-      1.0,
-      0.0,
-      0.0,
-      -49.1
-     ],
-     [
-      0.0,
-      1.1102230246251565e-16,
-      -1.0,
-      -33.5
-     ],
-     [
-      0.0,
-      1.0,
-      1.1102230246251565e-16,
-      183.0
-     ],
-     [
-      0.0,
-      0.0,
-      0.0,
-      1.0
-     ]
-    ]
-   ],
-   "explode": [
-    0.0,
-    0.0,
-    0.0
-   ],
-   "suporte": "não",
-   "comum": true,
-   "macica": true,
-   "dim": [
-    3.8,
-    3.8,
-    9.0
-   ],
-   "tris": 92,
-   "plastico_cm3": 0.1,
-   "massa_g": 0.1,
-   "tempo_h": 0.08,
-   "obs": "pino Ø4 x 9 entre as metades do torso",
-   "liso": true
-  },
-  {
-   "nome": "coxa-dir",
-   "arquivo": "stl/capivara-coxa-dir.stl",
-   "material": "PLA",
-   "cor": "laranja",
-   "rgb": [
-    0.93,
-    0.52,
-    0.13
-   ],
-   "grupo": "corpo",
-   "grupos": [
-    "corpo"
-   ],
-   "qtd": 1,
-   "na_montagem": 1,
-   "para_montagem": [
-    [
-     [
-      1.0,
-      0.0,
-      0.0,
-      76.83049407042408
-     ],
-     [
-      0.0,
-      1.0,
-      0.0,
-      1.3539077550872456
-     ],
-     [
-      0.0,
-      0.0,
-      1.0,
-      3.0
-     ],
-     [
-      0.0,
-      0.0,
-      0.0,
-      1.0
-     ]
-    ]
-   ],
-   "explode": [
-    95,
-    0,
-    0
-   ],
-   "suporte": "sim (só sob as 2 orelhas)",
-   "comum": false,
-   "macica": false,
-   "dim": [
-    46.5,
-    118.6,
-    81.7
-   ],
-   "tris": 21488,
-   "plastico_cm3": 29.8,
-   "massa_g": 37.0,
-   "tempo_h": 1.46,
-   "obs": "cobre a roda direita; 2 M3 por baixo",
-   "liso": true
-  },
-  {
-   "nome": "coxa-esq",
-   "arquivo": "stl/capivara-coxa-esq.stl",
-   "material": "PLA",
-   "cor": "laranja",
-   "rgb": [
-    0.93,
-    0.52,
-    0.13
-   ],
-   "grupo": "corpo",
-   "grupos": [
-    "corpo"
-   ],
-   "qtd": 1,
-   "na_montagem": 1,
-   "para_montagem": [
-    [
-     [
-      1.0,
-      0.0,
-      0.0,
-      -76.83049407042408
-     ],
-     [
-      0.0,
-      1.0,
-      0.0,
-      1.3539077550872456
-     ],
-     [
-      0.0,
-      0.0,
-      1.0,
-      3.0
-     ],
-     [
-      0.0,
-      0.0,
-      0.0,
-      1.0
-     ]
-    ]
-   ],
-   "explode": [
-    -95,
-    0,
-    0
-   ],
-   "suporte": "sim (só sob as 2 orelhas)",
-   "comum": false,
-   "macica": false,
-   "dim": [
-    46.5,
-    118.6,
-    81.7
-   ],
-   "tris": 21488,
-   "plastico_cm3": 29.8,
-   "massa_g": 37.0,
-   "tempo_h": 1.46,
-   "obs": "cobre a roda esquerda; 2 M3 por baixo",
-   "liso": true
-  },
-  {
-   "nome": "aro",
-   "arquivo": "stl/capivara-aro.stl",
-   "material": "PLA",
-   "cor": "ciano",
-   "rgb": [
-    0.25,
-    0.85,
-    0.95
-   ],
-   "grupo": "corpo",
-   "grupos": [
-    "corpo",
-    "corpo"
-   ],
-   "qtd": 2,
-   "na_montagem": 2,
-   "para_montagem": [
-    [
-     [
-      1.1102230246251565e-16,
-      0.0,
-      1.0,
-      97.5454833984375
-     ],
-     [
-      0.0,
-      1.0,
-      0.0,
-      0.0
-     ],
-     [
-      -1.0,
-      0.0,
-      1.1102230246251565e-16,
-      34.5
-     ],
-     [
-      0.0,
-      0.0,
-      0.0,
-      1.0
-     ]
-    ],
-    [
-     [
-      -1.1102230246251565e-16,
-      0.0,
-      -1.0,
-      -97.5454833984375
-     ],
-     [
-      0.0,
-      1.0,
-      0.0,
-      0.0
-     ],
-     [
-      -1.0,
-      0.0,
-      1.1102230246251565e-16,
-      34.5
-     ],
-     [
-      0.0,
-      0.0,
-      0.0,
-      1.0
-     ]
-    ]
-   ],
-   "explode": [
-    130,
-    0,
-    0
-   ],
-   "suporte": "não",
-   "comum": false,
-   "macica": true,
-   "dim": [
-    40.0,
-    40.0,
-    3.0
-   ],
-   "tris": 384,
-   "plastico_cm3": 1.8,
-   "massa_g": 2.2,
-   "tempo_h": 0.16,
-   "obs": "aro das coxas (use filamento translúcido para o LED da fase 2); cola",
-   "liso": true
-  },
-  {
-   "nome": "pata-dir",
-   "arquivo": "stl/capivara-pata-dir.stl",
-   "material": "PLA",
-   "cor": "marrom",
-   "rgb": [
-    0.36,
-    0.19,
-    0.1
-   ],
-   "grupo": "corpo",
-   "grupos": [
-    "corpo"
-   ],
-   "qtd": 1,
-   "na_montagem": 1,
-   "para_montagem": [
-    [
-     [
-      1.0,
-      0.0,
-      0.0,
-      72.21409208372377
-     ],
-     [
-      0.0,
-      1.0,
-      0.0,
-      53.45834877182817
-     ],
-     [
-      0.0,
-      0.0,
-      1.0,
-      3.0
-     ],
-     [
-      0.0,
-      0.0,
-      0.0,
-      1.0
-     ]
-    ]
-   ],
-   "explode": [
-    95,
-    60,
-    0
-   ],
-   "suporte": "não",
-   "comum": false,
-   "macica": true,
-   "dim": [
-    43.6,
-    37.0,
-    24.9
-   ],
-   "tris": 2428,
-   "plastico_cm3": 8.0,
-   "massa_g": 9.9,
-   "tempo_h": 0.45,
-   "obs": "pata traseira; cola",
-   "liso": true
-  },
-  {
-   "nome": "pata-esq",
-   "arquivo": "stl/capivara-pata-esq.stl",
-   "material": "PLA",
-   "cor": "marrom",
-   "rgb": [
-    0.36,
-    0.19,
-    0.1
-   ],
-   "grupo": "corpo",
-   "grupos": [
-    "corpo"
-   ],
-   "qtd": 1,
-   "na_montagem": 1,
-   "para_montagem": [
-    [
-     [
-      1.0,
-      0.0,
-      0.0,
-      -72.21409208372377
-     ],
-     [
-      0.0,
-      1.0,
-      0.0,
-      53.45834877182817
-     ],
-     [
-      0.0,
-      0.0,
-      1.0,
-      3.0
-     ],
-     [
-      0.0,
-      0.0,
-      0.0,
-      1.0
-     ]
-    ]
-   ],
-   "explode": [
-    -95,
-    60,
-    0
-   ],
-   "suporte": "não",
-   "comum": false,
-   "macica": true,
-   "dim": [
-    43.6,
-    37.0,
-    24.9
-   ],
-   "tris": 2428,
-   "plastico_cm3": 8.0,
-   "massa_g": 9.9,
-   "tempo_h": 0.45,
-   "obs": "pata traseira; cola",
-   "liso": true
-  },
-  {
-   "nome": "rabo",
-   "arquivo": "stl/capivara-rabo.stl",
-   "material": "PLA",
-   "cor": "marrom",
-   "rgb": [
-    0.36,
-    0.19,
-    0.1
-   ],
-   "grupo": "corpo",
-   "grupos": [
-    "corpo"
-   ],
-   "qtd": 1,
-   "na_montagem": 1,
-   "para_montagem": [
-    [
-     [
-      1.0,
-      0.0,
-      0.0,
-      1.9073486328125e-06
-     ],
-     [
-      0.0,
-      1.0,
-      0.0,
-      -127.73272177219403
-     ],
-     [
-      0.0,
-      0.0,
-      1.0,
-      3.0
-     ],
-     [
-      0.0,
-      0.0,
-      0.0,
-      1.0
-     ]
-    ]
-   ],
-   "explode": [
-    0,
-    -150,
-    0
-   ],
-   "suporte": "sim (só sob as 2 orelhas)",
-   "comum": false,
-   "macica": false,
-   "dim": [
-    84.3,
-    72.5,
-    50.0
-   ],
-   "tris": 20652,
-   "plastico_cm3": 27.8,
-   "massa_g": 34.5,
-   "tempo_h": 1.37,
-   "obs": "cobre a esfera de apoio, a chave e o conector de carga; 2 M3 por baixo",
-   "liso": true
+   "tris": 56606,
+   "plastico_cm3": 74.5,
+   "massa_g": 92.4,
+   "tempo_h": 3.53,
+   "obs": "gola-bandana: esfera em que a cabeça gira; assenta na borda da bacia",
+   "liso": true,
+   "perimetros": 3,
+   "infill": 15,
+   "reforco": "",
+   "orientacao": "borda de baixo (z=124) na mesa"
   },
   {
    "nome": "cranio",
@@ -991,19 +228,19 @@
       1.0,
       0.0,
       0.0,
-      3.814697265625e-06
+      0.0
      ],
      [
       0.0,
       1.0,
       0.0,
-      -11.419682751831985
+      48.69328689575195
      ],
      [
       0.0,
       0.0,
       1.0,
-      199.82913230029234
+      152.0
      ],
      [
       0.0,
@@ -1018,20 +255,24 @@
     0,
     150
    ],
-   "suporte": "sim (árvore)",
+   "suporte": "sim (provisório)",
    "comum": false,
    "macica": false,
    "dim": [
-    160.0,
-    185.2,
-    114.1
+    181.2,
+    225.1,
+    147.9
    ],
-   "tris": 81284,
-   "plastico_cm3": 144.0,
-   "massa_g": 178.6,
-   "tempo_h": 6.75,
+   "tris": 205180,
+   "plastico_cm3": 218.8,
+   "massa_g": 271.4,
+   "tempo_h": 10.21,
    "obs": "3 M3x12 por baixo, pela mesa (na bancada); 2 furos no alto dão acesso aos parafusos da coluna",
-   "liso": true
+   "liso": true,
+   "perimetros": 3,
+   "infill": 15,
+   "reforco": "",
+   "orientacao": "borda de baixo (z=152) na mesa"
   },
   {
    "nome": "mandibula",
@@ -1055,19 +296,19 @@
       1.0,
       0.0,
       0.0,
-      0.0007411409079907116
+      -3.1737811170273744e-06
      ],
      [
       0.0,
       1.0,
       0.0,
-      50.72500902781739
+      124.45149690393536
      ],
      [
       0.0,
       0.0,
       1.0,
-      203.1111974213476
+      152.60039348308285
      ],
      [
       0.0,
@@ -1082,84 +323,24 @@
     70,
     85
    ],
-   "suporte": "sim (árvore, por fora)",
+   "suporte": "sim (provisório)",
    "comum": false,
    "macica": false,
    "dim": [
-    119.1,
-    57.5,
-    44.1
+    131.6,
+    44.9,
+    42.2
    ],
-   "tris": 12982,
-   "plastico_cm3": 16.7,
-   "massa_g": 20.7,
-   "tempo_h": 0.85,
+   "tris": 12528,
+   "plastico_cm3": 17.4,
+   "massa_g": 21.5,
+   "tempo_h": 0.88,
    "obs": "horn do servo na direita (parafuso central por fora); M3x16 + bucha na esquerda",
-   "liso": true
-  },
-  {
-   "nome": "focinho",
-   "arquivo": "stl/capivara-focinho.stl",
-   "material": "PLA",
-   "cor": "marrom",
-   "rgb": [
-    0.36,
-    0.19,
-    0.1
-   ],
-   "grupo": "cabeca",
-   "grupos": [
-    "cabeca"
-   ],
-   "qtd": 1,
-   "na_montagem": 1,
-   "para_montagem": [
-    [
-     [
-      1.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     [
-      0.0,
-      1.1102230246251565e-16,
-      -1.0,
-      81.99163818359375
-     ],
-     [
-      0.0,
-      1.0,
-      1.1102230246251565e-16,
-      258.00000000000006
-     ],
-     [
-      0.0,
-      0.0,
-      0.0,
-      1.0
-     ]
-    ]
-   ],
-   "explode": [
-    0,
-    110,
-    160
-   ],
-   "suporte": "sim (árvore)",
-   "comum": false,
-   "macica": false,
-   "dim": [
-    79.4,
-    41.4,
-    39.5
-   ],
-   "tris": 8482,
-   "plastico_cm3": 9.5,
-   "massa_g": 11.7,
-   "tempo_h": 0.52,
-   "obs": "painel marrom do focinho; cola",
-   "liso": true
+   "liso": true,
+   "perimetros": 3,
+   "infill": 15,
+   "reforco": "",
+   "orientacao": ""
   },
   {
    "nome": "mesa-cabeca",
@@ -1183,19 +364,19 @@
       1.0,
       0.0,
       0.0,
-      -0.003977971588227547
+      0.0015916373106179549
      ],
      [
       0.0,
       -1.0,
       1.2246467991473532e-16,
-      -18.539863965000006
+      58.25
      ],
      [
       0.0,
       -1.2246467991473532e-16,
       -1.0,
-      247.5
+      212.5
      ],
      [
       0.0,
@@ -1214,171 +395,20 @@
    "comum": false,
    "macica": true,
    "dim": [
-    97.8,
-    140.1,
-    33.0
+    97.7,
+    146.5,
+    46.0
    ],
-   "tris": 1698,
-   "plastico_cm3": 31.4,
-   "massa_g": 39.9,
-   "tempo_h": 1.53,
+   "tris": 2038,
+   "plastico_cm3": 33.9,
+   "massa_g": 43.0,
+   "tempo_h": 1.65,
    "obs": "mesa da cabeça: 2 M3x10 na coluna do berço (por cima); segura o servo da boca",
-   "liso": true
-  },
-  {
-   "nome": "orelha",
-   "arquivo": "stl/capivara-orelha.stl",
-   "material": "PLA",
-   "cor": "marrom",
-   "rgb": [
-    0.36,
-    0.19,
-    0.1
-   ],
-   "grupo": "cabeca",
-   "grupos": [
-    "cabeca",
-    "cabeca"
-   ],
-   "qtd": 2,
-   "na_montagem": 2,
-   "para_montagem": [
-    [
-     [
-      0.7852517522080826,
-      0.041564176991984024,
-      0.6177799809358628,
-      39.76723953930102
-     ],
-     [
-      0.041564176991984024,
-      0.9919553205821966,
-      -0.11957031889081217,
-      -35.69688593350603
-     ],
-     [
-      -0.6177799809358628,
-      0.11957031889081217,
-      0.7772070727902792,
-      304.0297642898351
-     ],
-     [
-      0.0,
-      0.0,
-      0.0,
-      1.0
-     ]
-    ],
-    [
-     [
-      0.7852517522080826,
-      -0.041564176991984024,
-      -0.6177799809358628,
-      -39.76667877880298
-     ],
-     [
-      -0.041564176991984024,
-      0.9919553205821966,
-      -0.11957031889081217,
-      -35.69677530728533
-     ],
-     [
-      0.6177799809358628,
-      0.11957031889081217,
-      0.7772070727902792,
-      304.0290318679601
-     ],
-     [
-      0.0,
-      0.0,
-      0.0,
-      1.0
-     ]
-    ]
-   ],
-   "explode": [
-    0,
-    0,
-    200
-   ],
-   "suporte": "não",
-   "comum": false,
-   "macica": true,
-   "dim": [
-    28.0,
-    28.0,
-    15.4
-   ],
-   "tris": 904,
-   "plastico_cm3": 3.7,
-   "massa_g": 4.6,
-   "tempo_h": 0.25,
-   "obs": "2 orelhas; cola ou pressão",
-   "liso": true
-  },
-  {
-   "nome": "topete",
-   "arquivo": "stl/capivara-topete.stl",
-   "material": "PLA",
-   "cor": "laranja",
-   "rgb": [
-    0.93,
-    0.52,
-    0.13
-   ],
-   "grupo": "cabeca",
-   "grupos": [
-    "cabeca"
-   ],
-   "qtd": 1,
-   "na_montagem": 1,
-   "para_montagem": [
-    [
-     [
-      1.1102230246251565e-16,
-      0.0,
-      -1.0,
-      3.000000000000001
-     ],
-     [
-      0.0,
-      1.0,
-      0.0,
-      -34.027975622564554
-     ],
-     [
-      1.0,
-      0.0,
-      1.1102230246251565e-16,
-      316.34890954196453
-     ],
-     [
-      0.0,
-      0.0,
-      0.0,
-      1.0
-     ]
-    ]
-   ],
-   "explode": [
-    0,
-    -20,
-    215
-   ],
-   "suporte": "não",
-   "comum": false,
-   "macica": true,
-   "dim": [
-    15.7,
-    26.2,
-    6.0
-   ],
-   "tris": 184,
-   "plastico_cm3": 1.7,
-   "massa_g": 2.1,
-   "tempo_h": 0.16,
-   "obs": "pressão ou cola",
-   "liso": true
+   "liso": true,
+   "perimetros": 3,
+   "infill": 15,
+   "reforco": "",
+   "orientacao": ""
   },
   {
    "nome": "olho",
@@ -1402,19 +432,19 @@
       1.0,
       0.0,
       0.0,
-      42.0
+      46.49223503690335
      ],
      [
       0.0,
       1.0,
       0.0,
-      15.419456248370073
+      93.16218502034883
      ],
      [
       0.0,
       0.0,
       1.0,
-      251.0
+      207.3705136644701
      ],
      [
       0.0,
@@ -1434,15 +464,19 @@
    "macica": true,
    "dim": [
     42.0,
-    28.8,
-    42.0
+    35.3,
+    41.9
    ],
-   "tris": 1592,
+   "tris": 1616,
    "plastico_cm3": 10.3,
    "massa_g": 12.8,
    "tempo_h": 0.56,
    "obs": "direito",
-   "liso": true
+   "liso": true,
+   "perimetros": 3,
+   "infill": 15,
+   "reforco": "",
+   "orientacao": ""
   },
   {
    "nome": "olho-esq",
@@ -1466,19 +500,19 @@
       1.0,
       0.0,
       0.0,
-      -42.0
+      -46.49223503690335
      ],
      [
       0.0,
       1.0,
       0.0,
-      15.419456248370071
+      93.16218502034883
      ],
      [
       0.0,
       0.0,
       1.0,
-      251.0
+      207.3705136644701
      ],
      [
       0.0,
@@ -1498,15 +532,19 @@
    "macica": true,
    "dim": [
     42.0,
-    28.8,
-    42.0
+    35.3,
+    41.9
    ],
-   "tris": 1592,
+   "tris": 1616,
    "plastico_cm3": 10.3,
    "massa_g": 12.8,
    "tempo_h": 0.56,
    "obs": "esquerdo (espelhado)",
-   "liso": true
+   "liso": true,
+   "perimetros": 3,
+   "infill": 15,
+   "reforco": "",
+   "orientacao": ""
   },
   {
    "nome": "iris",
@@ -1530,19 +568,19 @@
       1.0,
       0.0,
       0.0,
-      43.68648397805221
+      50.517295468343434
      ],
      [
       0.0,
       1.0,
       0.0,
-      24.894959255545395
+      101.71980360550126
      ],
      [
       0.0,
       0.0,
       1.0,
-      259.1935734698806
+      217.59189037070934
      ],
      [
       0.0,
@@ -1561,16 +599,20 @@
    "comum": false,
    "macica": true,
    "dim": [
-    30.4,
-    14.8,
-    30.4
+    30.0,
+    20.0,
+    29.9
    ],
-   "tris": 818,
+   "tris": 842,
    "plastico_cm3": 3.8,
    "massa_g": 4.7,
    "tempo_h": 0.25,
    "obs": "",
-   "liso": true
+   "liso": true,
+   "perimetros": 3,
+   "infill": 15,
+   "reforco": "",
+   "orientacao": ""
   },
   {
    "nome": "iris-esq",
@@ -1594,19 +636,19 @@
       1.0,
       0.0,
       0.0,
-      -43.68648397805221
+      -50.517295468343434
      ],
      [
       0.0,
       1.0,
       0.0,
-      24.894959255545395
+      101.71980360550126
      ],
      [
       0.0,
       0.0,
       1.0,
-      259.1935734698806
+      217.59189037070934
      ],
      [
       0.0,
@@ -1625,16 +667,20 @@
    "comum": false,
    "macica": true,
    "dim": [
-    30.4,
-    14.8,
-    30.4
+    30.0,
+    20.0,
+    29.9
    ],
-   "tris": 818,
+   "tris": 842,
    "plastico_cm3": 3.8,
    "massa_g": 4.7,
    "tempo_h": 0.25,
    "obs": "",
-   "liso": true
+   "liso": true,
+   "perimetros": 3,
+   "infill": 15,
+   "reforco": "",
+   "orientacao": ""
   },
   {
    "nome": "pupila",
@@ -1658,19 +704,19 @@
       1.0,
       0.0,
       0.0,
-      44.20064059037907
+      51.75372588566034
      ],
      [
       0.0,
       1.0,
       0.0,
-      27.593832873380393
+      104.48427525190061
      ],
      [
       0.0,
       0.0,
       1.0,
-      264.8060464392013
+      223.5258578658449
      ],
      [
       0.0,
@@ -1690,15 +736,19 @@
    "macica": true,
    "dim": [
     20.6,
-    10.8,
-    20.7
+    14.5,
+    20.6
    ],
-   "tris": 428,
+   "tris": 430,
    "plastico_cm3": 1.7,
    "massa_g": 2.1,
    "tempo_h": 0.16,
    "obs": "",
-   "liso": true
+   "liso": true,
+   "perimetros": 3,
+   "infill": 15,
+   "reforco": "",
+   "orientacao": ""
   },
   {
    "nome": "pupila-esq",
@@ -1722,19 +772,19 @@
       1.0,
       0.0,
       0.0,
-      -44.20064059037907
+      -51.75372588566034
      ],
      [
       0.0,
       1.0,
       0.0,
-      27.593832873380393
+      104.48427525190061
      ],
      [
       0.0,
       0.0,
       1.0,
-      264.8060464392013
+      223.5258578658449
      ],
      [
       0.0,
@@ -1754,15 +804,19 @@
    "macica": true,
    "dim": [
     20.6,
-    10.8,
-    20.7
+    14.5,
+    20.6
    ],
-   "tris": 428,
+   "tris": 430,
    "plastico_cm3": 1.7,
    "massa_g": 2.1,
    "tempo_h": 0.16,
    "obs": "",
-   "liso": true
+   "liso": true,
+   "perimetros": 3,
+   "infill": 15,
+   "reforco": "",
+   "orientacao": ""
   },
   {
    "nome": "bucha-eixo",
@@ -1786,19 +840,19 @@
       1.1102230246251565e-16,
       0.0,
       1.0,
-      -37.17118835449219
+      -48.76350021362305
      ],
      [
       0.0,
       1.0,
       0.0,
-      28.0
+      108.0
      ],
      [
       -1.0,
       0.0,
       1.1102230246251565e-16,
-      223.0
+      175.0
      ],
      [
       0.0,
@@ -1826,11 +880,15 @@
    "massa_g": 0.1,
    "tempo_h": 0.08,
    "obs": "bucha do eixo livre da mandíbula",
-   "liso": true
+   "liso": true,
+   "perimetros": 3,
+   "infill": 15,
+   "reforco": "",
+   "orientacao": ""
   },
   {
    "nome": "chassi",
-   "arquivo": "../comum/stl/comum-chassi.stl",
+   "arquivo": "stl/capivara-chassi.stl",
    "material": "PETG",
    "cor": "grafite",
    "rgb": [
@@ -1856,7 +914,7 @@
       0.0,
       1.0,
       0.0,
-      -49.25
+      7.577866714447737
      ],
      [
       0.0,
@@ -1878,19 +936,23 @@
     0
    ],
    "suporte": "não",
-   "comum": true,
+   "comum": false,
    "macica": true,
    "dim": [
-    152.0,
-    190.5,
-    148.0
+    149.0,
+    131.1,
+    93.2
    ],
-   "tris": 8146,
-   "plastico_cm3": 162.6,
-   "massa_g": 206.5,
-   "tempo_h": 7.61,
-   "obs": "piso + rack das bandejas + deck do servo de pan; imprime em pé, piso na mesa",
-   "liso": true
+   "tris": 6358,
+   "plastico_cm3": 128.9,
+   "massa_g": 163.7,
+   "tempo_h": 6.05,
+   "obs": "piso recortado da seção da pele + rack das bandejas (atrás) + torre e deck do servo de pan (frente) + ressaltos das 2 esferas",
+   "liso": true,
+   "perimetros": 4,
+   "infill": 25,
+   "reforco": "mísulas e arco a 45° sob o deck do pan; travessa inteira do piso ao deck; postes da porta engrossados para o inserto",
+   "orientacao": "piso na mesa (em pé)"
   },
   {
    "nome": "capa-esfera",
@@ -1904,23 +966,50 @@
    ],
    "grupo": "corpo",
    "grupos": [
+    "corpo",
     "corpo"
    ],
-   "qtd": 1,
-   "na_montagem": 1,
+   "qtd": 2,
+   "na_montagem": 2,
    "para_montagem": [
     [
      [
       1.0,
       0.0,
       0.0,
-      0.0
+      60.0
      ],
      [
       0.0,
       -1.0,
       1.2246467991473532e-16,
-      -130.0
+      54.0
+     ],
+     [
+      0.0,
+      -1.2246467991473532e-16,
+      -1.0,
+      8.800000000000002
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ],
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      -60.0
+     ],
+     [
+      0.0,
+      -1.0,
+      1.2246467991473532e-16,
+      54.0
      ],
      [
       0.0,
@@ -1954,75 +1043,15 @@
    "massa_g": 3.1,
    "tempo_h": 0.19,
    "obs": "anel que segura a esfera de apoio; 2 M3x8",
-   "liso": true
-  },
-  {
-   "nome": "bandeja-uno",
-   "arquivo": "../comum/stl/comum-bandeja-uno.stl",
-   "material": "PETG",
-   "cor": "amarelo",
-   "rgb": [
-    0.98,
-    0.8,
-    0.08
-   ],
-   "grupo": "corpo",
-   "grupos": [
-    "corpo"
-   ],
-   "qtd": 1,
-   "na_montagem": 1,
-   "para_montagem": [
-    [
-     [
-      1.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     [
-      0.0,
-      1.0,
-      0.0,
-      -53.98
-     ],
-     [
-      0.0,
-      0.0,
-      1.0,
-      29.299999999999997
-     ],
-     [
-      0.0,
-      0.0,
-      0.0,
-      1.0
-     ]
-    ]
-   ],
-   "explode": [
-    0,
-    -120,
-    0
-   ],
-   "suporte": "não",
-   "comum": true,
-   "macica": true,
-   "dim": [
-    61.4,
-    90.0,
-    16.0
-   ],
-   "tris": 954,
-   "plastico_cm3": 14.8,
-   "massa_g": 18.8,
-   "tempo_h": 0.76,
-   "obs": "bandeja deslizante do Arduino Uno (+ shield); 4 parafusos M3x8 auto-atarraxantes",
-   "liso": true
+   "liso": true,
+   "perimetros": 3,
+   "infill": 15,
+   "reforco": "",
+   "orientacao": ""
   },
   {
    "nome": "bandeja-pi",
-   "arquivo": "../comum/stl/comum-bandeja-pi.stl",
+   "arquivo": "stl/capivara-bandeja-pi.stl",
    "material": "PETG",
    "cor": "amarelo",
    "rgb": [
@@ -2048,13 +1077,13 @@
       0.0,
       1.0,
       0.0,
-      -54.25
+      -29.5
      ],
      [
       0.0,
       0.0,
       1.0,
-      78.3
+      37.3
      ],
      [
       0.0,
@@ -2066,23 +1095,95 @@
    ],
    "explode": [
     0,
-    -120,
+    -150,
     0
    ],
    "suporte": "não",
-   "comum": true,
+   "comum": false,
    "macica": true,
    "dim": [
     61.4,
-    89.5,
-    16.0
+    93.0,
+    8.0
    ],
-   "tris": 938,
-   "plastico_cm3": 13.0,
-   "massa_g": 16.5,
-   "tempo_h": 0.68,
-   "obs": "bandeja deslizante do Raspberry Pi 4/5; 4 parafusos M2,5x8 auto-atarraxantes",
-   "liso": true
+   "tris": 818,
+   "plastico_cm3": 13.5,
+   "massa_g": 17.1,
+   "tempo_h": 0.7,
+   "obs": "bandeja deslizante do Raspberry Pi 4/5 (nível de baixo); sai por trás, pela porta; 4 M2,5x8 auto-atarraxantes",
+   "liso": true,
+   "perimetros": 4,
+   "infill": 25,
+   "reforco": "placa de 3 mm apoiada nos dois trilhos em todo o comprimento do rack",
+   "orientacao": "placa na mesa, pilares para cima"
+  },
+  {
+   "nome": "bandeja-uno",
+   "arquivo": "stl/capivara-bandeja-uno.stl",
+   "material": "PETG",
+   "cor": "amarelo",
+   "rgb": [
+    0.98,
+    0.8,
+    0.08
+   ],
+   "grupo": "corpo",
+   "grupos": [
+    "corpo"
+   ],
+   "qtd": 1,
+   "na_montagem": 1,
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      -20.229999999999997
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      66.3
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "explode": [
+    0,
+    -150,
+    0
+   ],
+   "suporte": "não",
+   "comum": false,
+   "macica": true,
+   "dim": [
+    61.4,
+    77.5,
+    8.0
+   ],
+   "tris": 834,
+   "plastico_cm3": 12.3,
+   "massa_g": 15.6,
+   "tempo_h": 0.65,
+   "obs": "bandeja deslizante do Arduino Uno + shield (nível de cima); sai por trás, pela porta; 4 M3x8 auto-atarraxantes",
+   "liso": true,
+   "perimetros": 4,
+   "infill": 25,
+   "reforco": "placa de 3 mm apoiada nos dois trilhos em todo o comprimento do rack",
+   "orientacao": "placa na mesa, pilares para cima"
   },
   {
    "nome": "garfo-pescoco",
@@ -2112,13 +1213,13 @@
       0.0,
       1.0,
       0.0,
-      -38.0
+      37.0
      ],
      [
       0.0,
       0.0,
       1.0,
-      156.2
+      121.19999999999999
      ],
      [
       0.0,
@@ -2146,7 +1247,11 @@
    "massa_g": 17.4,
    "tempo_h": 0.71,
    "obs": "gira com o servo de pan (horn redondo) e segura o eixo do tilt",
-   "liso": true
+   "liso": true,
+   "perimetros": 3,
+   "infill": 15,
+   "reforco": "",
+   "orientacao": ""
   },
   {
    "nome": "berco-tilt",
@@ -2176,13 +1281,13 @@
       0.0,
       -1.0,
       1.2246467991473532e-16,
-      -38.5
+      36.49999999999999
      ],
      [
       0.0,
       -1.2246467991473532e-16,
       -1.0,
-      243.5
+      208.5
      ],
      [
       0.0,
@@ -2210,7 +1315,11 @@
    "massa_g": 15.1,
    "tempo_h": 0.63,
    "obs": "segura o servo de tilt (MG996R em pé) e sobe pela abertura da gola até a mesa da cabeça; cabos pela face chata da coluna",
-   "liso": true
+   "liso": true,
+   "perimetros": 3,
+   "infill": 15,
+   "reforco": "",
+   "orientacao": ""
   },
   {
    "nome": "teste-encaixe",
@@ -2245,59 +1354,14 @@
    "massa_g": 15.0,
    "tempo_h": 0.64,
    "obs": "cupom de folgas: janela do servo, 3 furos de inserto (3,9/4,0/4,1), eixo do motor TT, M3 passante/M3 piloto/M2,5/M2, 3 soquetes do pino (0,20/0,25/0,30); covinha = medida do projeto",
-   "liso": true
+   "liso": true,
+   "perimetros": 3,
+   "infill": 15,
+   "reforco": "",
+   "orientacao": ""
   }
  ],
  "componentes": [
-  {
-   "nome": "alto-falante (fase 2)",
-   "arquivo": "componentes/alto-falante.stl",
-   "grupo": "corpo",
-   "grupos": [
-    "corpo"
-   ],
-   "massa_g": 25.0,
-   "rgb": [
-    0.03,
-    0.03,
-    0.04
-   ],
-   "para_montagem": [
-    [
-     [
-      1.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     [
-      0.0,
-      1.0,
-      0.0,
-      0.0
-     ],
-     [
-      0.0,
-      0.0,
-      1.0,
-      0.0
-     ],
-     [
-      0.0,
-      0.0,
-      0.0,
-      1.0
-     ]
-    ]
-   ],
-   "fase2": true,
-   "explode": [
-    0.0,
-    0.0,
-    0.0
-   ],
-   "liso": false
-  },
   {
    "nome": "servo-boca MG90S",
    "arquivo": "componentes/servo-boca.stl",
@@ -2340,55 +1404,6 @@
     ]
    ],
    "fase2": false,
-   "explode": [
-    0,
-    0,
-    95
-   ],
-   "liso": false
-  },
-  {
-   "nome": "camera (fase 2)",
-   "arquivo": "componentes/camera.stl",
-   "grupo": "cabeca",
-   "grupos": [
-    "cabeca"
-   ],
-   "massa_g": 4.0,
-   "rgb": [
-    0.36,
-    0.72,
-    0.16
-   ],
-   "para_montagem": [
-    [
-     [
-      1.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     [
-      0.0,
-      1.0,
-      0.0,
-      0.0
-     ],
-     [
-      0.0,
-      0.0,
-      1.0,
-      0.0
-     ],
-     [
-      0.0,
-      0.0,
-      0.0,
-      1.0
-     ]
-    ]
-   ],
-   "fase2": true,
    "explode": [
     0,
     0,
@@ -2593,6 +1608,55 @@
    "liso": false
   },
   {
+   "nome": "esfera-dir",
+   "arquivo": "componentes/esfera-dir.stl",
+   "grupo": "corpo",
+   "grupos": [
+    "corpo"
+   ],
+   "massa_g": 17.0,
+   "rgb": [
+    0.78,
+    0.79,
+    0.8
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "fase2": false,
+   "explode": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "liso": false
+  },
+  {
    "nome": "motor-tt-esq",
    "arquivo": "componentes/motor-tt-esq.stl",
    "grupo": "corpo",
@@ -2691,57 +1755,8 @@
    "liso": false
   },
   {
-   "nome": "bateria 2x18650",
-   "arquivo": "componentes/bateria.stl",
-   "grupo": "corpo",
-   "grupos": [
-    "corpo"
-   ],
-   "massa_g": 112.0,
-   "rgb": [
-    0.78,
-    0.79,
-    0.8
-   ],
-   "para_montagem": [
-    [
-     [
-      1.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     [
-      0.0,
-      1.0,
-      0.0,
-      0.0
-     ],
-     [
-      0.0,
-      0.0,
-      1.0,
-      0.0
-     ],
-     [
-      0.0,
-      0.0,
-      0.0,
-      1.0
-     ]
-    ]
-   ],
-   "fase2": false,
-   "explode": [
-    0.0,
-    0.0,
-    0.0
-   ],
-   "liso": false
-  },
-  {
-   "nome": "esfera-apoio",
-   "arquivo": "componentes/esfera-apoio.stl",
+   "nome": "esfera-esq",
+   "arquivo": "componentes/esfera-esq.stl",
    "grupo": "corpo",
    "grupos": [
     "corpo"
@@ -2789,17 +1804,17 @@
    "liso": false
   },
   {
-   "nome": "chave",
-   "arquivo": "componentes/chave.stl",
+   "nome": "bateria 2x18650",
+   "arquivo": "componentes/bateria.stl",
    "grupo": "corpo",
    "grupos": [
     "corpo"
    ],
-   "massa_g": 3.0,
+   "massa_g": 112.0,
    "rgb": [
-    0.03,
-    0.03,
-    0.04
+    0.78,
+    0.79,
+    0.8
    ],
    "para_montagem": [
     [
@@ -2887,55 +1902,6 @@
    "liso": false
   },
   {
-   "nome": "Arduino Uno + shield",
-   "arquivo": "componentes/Arduino.stl",
-   "grupo": "corpo",
-   "grupos": [
-    "corpo"
-   ],
-   "massa_g": 45.0,
-   "rgb": [
-    0.2,
-    0.55,
-    0.86
-   ],
-   "para_montagem": [
-    [
-     [
-      1.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     [
-      0.0,
-      1.0,
-      0.0,
-      0.0
-     ],
-     [
-      0.0,
-      0.0,
-      1.0,
-      0.0
-     ],
-     [
-      0.0,
-      0.0,
-      0.0,
-      1.0
-     ]
-    ]
-   ],
-   "fase2": false,
-   "explode": [
-    0.0,
-    0.0,
-    0.0
-   ],
-   "liso": false
-  },
-  {
    "nome": "Raspberry Pi 4/5",
    "arquivo": "componentes/Raspberry.stl",
    "grupo": "corpo",
@@ -2983,6 +1949,55 @@
     0.0
    ],
    "liso": false
+  },
+  {
+   "nome": "Arduino Uno + shield",
+   "arquivo": "componentes/Arduino.stl",
+   "grupo": "corpo",
+   "grupos": [
+    "corpo"
+   ],
+   "massa_g": 45.0,
+   "rgb": [
+    0.2,
+    0.55,
+    0.86
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "fase2": false,
+   "explode": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "liso": false
   }
  ],
  "juntas": {
@@ -2990,8 +2005,8 @@
    "pai": "corpo",
    "origem": [
     0.0,
-    -38.0,
-    185.0
+    37.0,
+    150.0
    ],
    "eixo": [
     0.0,
@@ -3007,8 +2022,8 @@
    "pai": "pan",
    "origem": [
     0.0,
-    -38.0,
-    185.0
+    37.0,
+    150.0
    ],
    "eixo": [
     1.0,
@@ -3024,8 +2039,8 @@
    "pai": "cabeca",
    "origem": [
     0.0,
-    28.0,
-    223.0
+    108.0,
+    175.0
    ],
    "eixo": [
     -1.0,
@@ -3099,34 +2114,26 @@
    0.0
   ],
   [
-   0.0,
-   -130.0
+   60.0,
+   54.0
+  ],
+  [
+   -60.0,
+   54.0
   ]
  ],
  "obs": {
   "parede_medida": {
-   "torso": {
-    "min": 2.36,
+   "corpo": {
+    "min": 2.32,
     "med": 2.39,
-    "max": 2.41,
+    "max": 2.63,
     "amostras": 4000
    },
    "cabeça": {
-    "min": 2.36,
+    "min": 2.3,
     "med": 2.39,
-    "max": 2.41,
-    "amostras": 4000
-   },
-   "coxa": {
-    "min": 2.36,
-    "med": 2.39,
-    "max": 2.4,
-    "amostras": 4000
-   },
-   "rabo": {
-    "min": 2.36,
-    "med": 2.39,
-    "max": 2.41,
+    "max": 2.57,
     "amostras": 4000
    }
   },
@@ -3165,28 +2172,16 @@
   }
  ],
  "parede_medida": {
-  "torso": {
-   "min": 2.36,
+  "corpo": {
+   "min": 2.32,
    "med": 2.39,
-   "max": 2.41,
+   "max": 2.63,
    "amostras": 4000
   },
   "cabeça": {
-   "min": 2.36,
+   "min": 2.3,
    "med": 2.39,
-   "max": 2.41,
-   "amostras": 4000
-  },
-  "coxa": {
-   "min": 2.36,
-   "med": 2.39,
-   "max": 2.4,
-   "amostras": 4000
-  },
-  "rabo": {
-   "min": 2.36,
-   "med": 2.39,
-   "max": 2.41,
+   "max": 2.57,
    "amostras": 4000
   }
  },
@@ -3225,137 +2220,6 @@
    ]
   },
   {
-   "passo": "esfera + capa",
-   "move": [
-    "esfera-apoio",
-    "capa-esfera"
-   ],
-   "dir": [
-    0.0,
-    0.0,
-    -1.0
-   ],
-   "curso": 40
-  },
-  {
-   "passo": "chave",
-   "move": [
-    "chave"
-   ],
-   "dir": [
-    0.0,
-    0.0,
-    -1.0
-   ],
-   "curso": 40
-  },
-  {
-   "passo": "servo de pan",
-   "move": [
-    "servo-pan MG996R"
-   ],
-   "dir": [
-    0.0,
-    0.0,
-    1.0
-   ]
-  },
-  {
-   "passo": "garfo",
-   "move": [
-    "garfo-pescoco"
-   ],
-   "dir": [
-    0.0,
-    0.0,
-    1.0
-   ]
-  },
-  {
-   "passo": "berço + servo de tilt",
-   "move": [
-    "berco-tilt",
-    "servo-tilt MG996R"
-   ],
-   "dir": [
-    0.0,
-    0.0,
-    1.0
-   ]
-  },
-  {
-   "passo": "bateria (entra por trás, inclinada por cima da chave)",
-   "move": [
-    "bateria 2x18650"
-   ],
-   "dir": [
-    0.0,
-    -1.0,
-    0.0
-   ],
-   "curso": 15,
-   "depois": [
-    [
-     0.0,
-     -0.6,
-     0.8
-    ],
-    120.0
-   ]
-  },
-  {
-   "passo": "driver L298N",
-   "move": [
-    "driver L298N"
-   ],
-   "dir": [
-    0.0,
-    1.0,
-    0.0
-   ],
-   "curso": 80
-  },
-  {
-   "passo": "bandeja do Uno",
-   "move": [
-    "bandeja-uno",
-    "Arduino Uno + shield"
-   ],
-   "dir": [
-    0.0,
-    -1.0,
-    0.0
-   ],
-   "curso": 160
-  },
-  {
-   "passo": "bandeja do Pi",
-   "move": [
-    "bandeja-pi",
-    "Raspberry Pi 4/5"
-   ],
-   "dir": [
-    0.0,
-    -1.0,
-    0.0
-   ],
-   "curso": 160
-  },
-  {
-   "passo": "torso-frente",
-   "move": [
-    "torso-frente",
-    "bandana-frente",
-    "mao"
-   ],
-   "dir": [
-    0.0,
-    1.0,
-    0.0
-   ],
-   "curso": 160
-  },
-  {
    "passo": "roda direita",
    "move": [
     "roda-dir"
@@ -3378,69 +2242,140 @@
    ]
   },
   {
-   "passo": "painel da frente",
+   "passo": "esferas de apoio + capas",
    "move": [
-    "barriga",
-    "alto-falante (fase 2)"
+    "esfera-dir",
+    "esfera-esq",
+    "capa-esfera"
+   ],
+   "dir": [
+    0.0,
+    0.0,
+    -1.0
+   ],
+   "curso": 40
+  },
+  {
+   "passo": "driver L298N (pela frente da torre)",
+   "move": [
+    "driver L298N"
    ],
    "dir": [
     0.0,
     1.0,
     0.0
    ],
-   "curso": 80
+   "curso": 120
   },
   {
-   "passo": "torso-costas",
+   "passo": "servo de pan",
    "move": [
-    "torso-costas",
-    "pino-guia",
-    "bandana-costas"
+    "servo-pan MG996R"
    ],
    "dir": [
     0.0,
-    -1.0,
-    0.0
+    0.0,
+    1.0
+   ]
+  },
+  {
+   "passo": "corpo (bacia) desce por cima do chassi",
+   "move": [
+    "corpo"
+   ],
+   "dir": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "curso": 240
+  },
+  {
+   "passo": "garfo (por dentro da boca da bacia)",
+   "move": [
+    "garfo-pescoco"
+   ],
+   "dir": [
+    0.0,
+    0.0,
+    1.0
    ],
    "curso": 160
   },
   {
-   "passo": "perna direita",
+   "passo": "berço + servo de tilt",
    "move": [
-    "coxa-dir",
-    "aro#0",
-    "pata-dir"
-   ],
-   "dir": [
-    1.0,
-    0.0,
-    0.0
-   ]
-  },
-  {
-   "passo": "perna esquerda",
-   "move": [
-    "coxa-esq",
-    "aro#1",
-    "pata-esq"
-   ],
-   "dir": [
-    -1.0,
-    0.0,
-    0.0
-   ]
-  },
-  {
-   "passo": "traseira",
-   "move": [
-    "rabo"
+    "berco-tilt",
+    "servo-tilt MG996R"
    ],
    "dir": [
     0.0,
-    -1.0,
-    0.0
+    0.0,
+    1.0
    ],
    "curso": 160
+  },
+  {
+   "passo": "gola-bandana",
+   "move": [
+    "gola"
+   ],
+   "dir": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "curso": 160
+  },
+  {
+   "passo": "bateria (entra por trás, pelo piso)",
+   "move": [
+    "bateria 2x18650"
+   ],
+   "dir": [
+    0.0,
+    -1.0,
+    0.0
+   ],
+   "curso": 170
+  },
+  {
+   "passo": "bandeja do Pi",
+   "move": [
+    "bandeja-pi",
+    "Raspberry Pi 4/5"
+   ],
+   "dir": [
+    0.0,
+    -1.0,
+    0.0
+   ],
+   "curso": 170
+  },
+  {
+   "passo": "bandeja do Uno",
+   "move": [
+    "bandeja-uno",
+    "Arduino Uno + shield"
+   ],
+   "dir": [
+    0.0,
+    -1.0,
+    0.0
+   ],
+   "curso": 170
+  },
+  {
+   "passo": "porta traseira",
+   "move": [
+    "porta"
+   ],
+   "dir": [
+    0.0,
+    -1.0,
+    0.0
+   ],
+   "curso": 170
   },
   {
    "passo": "mesa dentro do crânio (na bancada)",
@@ -3466,10 +2401,6 @@
     "mandibula",
     "bucha-eixo",
     "servo-boca MG90S",
-    "camera (fase 2)",
-    "focinho",
-    "orelha",
-    "topete",
     "olho",
     "olho-esq",
     "iris",
@@ -3482,75 +2413,19 @@
     0.0,
     1.0
    ],
-   "curso": 140
+   "curso": 160
   },
   {
-   "passo": "ABRIR: cabeça sai para cima",
+   "passo": "ABRIR: porta traseira sai",
    "move": [
-    "cranio",
-    "mesa-cabeca",
-    "mandibula",
-    "bucha-eixo",
-    "servo-boca MG90S",
-    "camera (fase 2)",
-    "focinho",
-    "orelha",
-    "topete",
-    "olho",
-    "olho-esq",
-    "iris",
-    "iris-esq",
-    "pupila",
-    "pupila-esq"
-   ],
-   "dir": [
-    0.0,
-    0.0,
-    1.0
-   ],
-   "curso": 140,
-   "sai": true
-  },
-  {
-   "passo": "ABRIR: traseira sai",
-   "move": [
-    "rabo"
+    "porta"
    ],
    "dir": [
     0.0,
     -1.0,
     0.0
    ],
-   "curso": 160,
-   "sai": true
-  },
-  {
-   "passo": "ABRIR: torso-costas sai",
-   "move": [
-    "torso-costas",
-    "pino-guia",
-    "bandana-costas"
-   ],
-   "dir": [
-    0.0,
-    -1.0,
-    0.0
-   ],
-   "curso": 160,
-   "sai": true
-  },
-  {
-   "passo": "ABRIR: bandeja do Pi sai",
-   "move": [
-    "bandeja-pi",
-    "Raspberry Pi 4/5"
-   ],
-   "dir": [
-    0.0,
-    -1.0,
-    0.0
-   ],
-   "curso": 160,
+   "curso": 170,
    "sai": true
   },
   {
@@ -3564,7 +2439,34 @@
     -1.0,
     0.0
    ],
-   "curso": 160,
+   "curso": 170,
+   "sai": true
+  },
+  {
+   "passo": "ABRIR: bandeja do Pi sai",
+   "move": [
+    "bandeja-pi",
+    "Raspberry Pi 4/5"
+   ],
+   "dir": [
+    0.0,
+    -1.0,
+    0.0
+   ],
+   "curso": 170,
+   "sai": true
+  },
+  {
+   "passo": "ABRIR: bateria sai",
+   "move": [
+    "bateria 2x18650"
+   ],
+   "dir": [
+    0.0,
+    -1.0,
+    0.0
+   ],
+   "curso": 170,
    "sai": true
   }
  ]

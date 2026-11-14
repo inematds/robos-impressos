@@ -178,16 +178,20 @@ def traseiro(pele: Pele, torso_gordo: Manifold):
 
 
 # ---------------------------------------------------------------- cabeça
-def cabeca(pele: Pele, boca: dict, junta=None):
+def cabeca(pele: Pele, boca: dict, junta=None, r_soquete=None, cabeca_z=None):
     """Crânio e mandíbula a partir da pele da cabeça.
-    boca = {y_eixo, z_eixo, y_corte, z0, incl (dz/dy), raio_sorriso, folga}."""
+    boca = {y_eixo, z_eixo, y_corte, z0, incl (dz/dy), raio_sorriso, folga}.
+    Por bicho (padrão = PESCOCO): `r_soquete` = raio da esfera oca em volta da junta (padrão gola_r + junta);
+    `cabeca_z` = altura do plano de baixo da cabeça acima do centro da junta."""
     ext = pele.solido()
     inte = pele.deslocado(-F.parede)
     casca = ext - inte
     lo, hi = limites(ext)
-    zb = CZ + N.cabeca_z
+    zb = CZ + (N.cabeca_z if cabeca_z is None else cabeca_z)
     casca = casca - caixa(lo[0] - 5, hi[0] + 5, lo[1] - 5, hi[1] + 5, lo[2] - 5, zb)
     junta = F.junta_esfera if junta is None else junta
+    if r_soquete is not None:
+        junta = r_soquete - N.gola_r
     casca = casca - esfera((CX, CY, CZ), N.gola_r + junta, seg=96)
     g = boca.get("folga", 1.2)
 
@@ -325,9 +329,12 @@ def bolso_unha(casca, ext, p, n, r=9.0, assento=2.4, prof=1.6):
     return casca, mat_de_z_para(n, base + n * 0.02)
 
 
-def mecanica_cabeca(p_cab: Pele, cran, mand, c_ext, c_int, boca, zcam):
+def mecanica_cabeca(p_cab: Pele, cran, mand, c_ext, c_int, boca, zcam, camera=True, aparar_r=None):
     """Tudo o que prende e move a cabeça, igual nos bichos: pilares da câmera (fase 2), orelhas crânio->mesa,
     almofadas do eixo da mandíbula, mesa da cabeça (com o servo da boca) e os componentes.
+    `camera=False` deixa de fora o furo e os pilares da câmera na testa/focinho (bicho com os sensores nos olhos).
+    `aparar_r` (raio do soquete): apara o que pende da mesa (placa do servo, orelha do eixo) contra a parede de
+    dentro da cabeça e contra a esfera da junta (cabeça baixa e de queixo raso, como a da capivara).
     Devolve (cranio, mandibula, mesa, componentes, matriz_da_bucha)."""
     from cad.comum import componentes as C
     from cad.comum.modelo import Comp
@@ -339,14 +346,15 @@ def mecanica_cabeca(p_cab: Pele, cran, mand, c_ext, c_int, boca, zcam):
     fx, fz = P.CAMERA.furos
     cw, ch = P.CAMERA.placa
     # a testa/focinho é inclinada: usa o ponto mais recuado da pele sobre a área da câmera
-    ycam = min(p_cab.ponto_na_pele((sx * cw / 2, CY, zcam + sz * ch / 2), (0, 1, 0))[1] for sx in (1, -1) for sz in (1, -1))
-    y_placa = ycam - F.parede - P.CAMERA.lente_alt - 1.5          # face de trás da placa da câmera
-    pil = uniao(*[cil((sx * fx / 2, y_placa + 1.2, zcam + sz * fz / 2), (sx * fx / 2, ycam + 40, zcam + sz * fz / 2), 2.6, seg=20) for sx in (1, -1) for sz in (1, -1)]) ^ c_int
-    cran = cran + pil
-    for sx in (1, -1):
-        for sz in (1, -1):
-            cran = cran - cil((sx * fx / 2, y_placa, zcam + sz * fz / 2), (sx * fx / 2, y_placa + 7, zcam + sz * fz / 2), F.m2_piloto / 2, seg=12)
-    cran = cran - cil((0, y_placa + 1.3, zcam), (0, ycam + 40, zcam), 7.0, seg=32)
+    if camera:
+        ycam = min(p_cab.ponto_na_pele((sx * cw / 2, CY, zcam + sz * ch / 2), (0, 1, 0))[1] for sx in (1, -1) for sz in (1, -1))
+        y_placa = ycam - F.parede - P.CAMERA.lente_alt - 1.5          # face de trás da placa da câmera
+        pil = uniao(*[cil((sx * fx / 2, y_placa + 1.2, zcam + sz * fz / 2), (sx * fx / 2, ycam + 40, zcam + sz * fz / 2), 2.6, seg=20) for sx in (1, -1) for sz in (1, -1)]) ^ c_int
+        cran = cran + pil
+        for sx in (1, -1):
+            for sz in (1, -1):
+                cran = cran - cil((sx * fx / 2, y_placa, zcam + sz * fz / 2), (sx * fx / 2, y_placa + 7, zcam + sz * fz / 2), F.m2_piloto / 2, seg=12)
+        cran = cran - cil((0, y_placa + 1.3, zcam), (0, ycam + 40, zcam), 7.0, seg=32)
     # fixação crânio -> mesa (feita na BANCADA, antes de a cabeça ir para o pescoço): 2 orelhas na frente,
     # junto aos cantos da boca, + 1 atrás; os 3 parafusos M3 entram por baixo, pela mesa.
     fix = [(46.0, yp + 8.0), (-46.0, yp + 8.0), (0.0, CY - 46.0)]
@@ -392,6 +400,9 @@ def mecanica_cabeca(p_cab: Pele, cran, mand, c_ext, c_int, boca, zcam):
     orelha_e = caixa(xl, xl + 7.0, yp - 5.5, yp + 5.5, zp, zm + 0.01) + cil((xl, yp, zp), (xl + 7.0, yp, zp), 5.5) - inserto((xl, yp, zp), (1, 0, 0))
     mand = mand - cil((xl - 0.4, yp, zp), (xl + 8.0, yp, zp), 6.6)                 # alívio em volta da orelha do eixo
     mesa = mesa + (caixa(xl, 30, yp - 7, yp + 7, zm, zmt) ^ p_cab.deslocado(-F.parede - 1.2))
+    if aparar_r is not None:
+        dentro = p_cab.deslocado(-F.parede - 1.5) - esfera((CX, CY, CZ), aparar_r + 0.5, seg=96)
+        placa_s, orelha_e = placa_s ^ dentro, orelha_e ^ dentro
     mesa = mesa + placa_s + orelha_e
     for (mx, my) in BS.POS_MESA:
         mesa = mesa - furo((mx, my, zm - 1), (0, 0, 1), 6, F.m3_passante) - furo((mx, my, zmt - 2.2), (0, 0, 1), 3, F.cabeca_m3_d)
@@ -407,7 +418,8 @@ def mecanica_cabeca(p_cab: Pele, cran, mand, c_ext, c_int, boca, zcam):
     M_boca = C.M([(0, 1, 0), (0, 0, 1), (1, 0, 0)], (x_aba, yp, zp))
     comps = []
     comps.append(Comp("servo-boca MG90S", C.micro_servo().transform(M_boca[:3, :]), "cabeca", P.MICRO.massa, "azul"))
-    comps.append(Comp("camera (fase 2)", C.camera().translate([0, y_placa, zcam]), "cabeca", 4.0, "verde", fase2=True))
+    if camera:
+        comps.append(Comp("camera (fase 2)", C.camera().translate([0, y_placa, zcam]), "cabeca", 4.0, "verde", fase2=True))
 
     Mb = mat_trans((xi_e + 0.35, yp, zp)) @ mat_giro((0, 0, 0), (0, 1, 0), 90)
     return cran, mand, mesa, comps, Mb

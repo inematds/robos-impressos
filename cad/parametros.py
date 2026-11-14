@@ -341,19 +341,19 @@ CAPIVARA = NS(
     anca=[((52.0, -25.0, 32.0), (45.0, 56.0, 50.0))],   # blob (pele) que engorda a anca só onde a roda pede
     porta=NS(x=38.0, y_max=-30.0),     # porta traseira: faixa |x| < 38 da bacia, atrás de y (pele) = -30, altura inteira
     # boca (pele): eixo da mandíbula, plano de corte de trás, altura da boca em y_ref, inclinação, raio do sorriso
-    boca=dict(y_eixo=86.0, z_eixo=166.0, y_corte=80.0, z0=177.0, y_ref=118.0, incl=-0.08, raio_sorriso=150.0, folga=1.2),
+    boca=dict(y_eixo=83.0, z_eixo=175.0, y_corte=77.0, z0=177.0, y_ref=118.0, incl=-0.08, raio_sorriso=150.0, folga=1.2),
     olho=NS(x=50.0, z=232.0, r=21.0, afunda=0.5, iris_r=15.0, pupila_r=10.0),   # centro = ponto da pele recuado r x afunda
     aro=NS(r_fora=20.0, r_dentro=14.0),           # aro ciano na lateral da anca, no eixo da roda
     # esqueleto baixo (cad/comum/base_baixa.py). y em "pele"; z e x no robô
     esq=NS(
-        piso_z=(9.0, 13.0), piso_x=52.0, piso_nivel=-3.2,   # piso = seção da pele em z=9 (3,2 mm para dentro), |x| <= 52
+        piso_z=(9.0, 13.0), piso_x=53.0, piso_nivel=-3.2,   # piso = seção da pele em z=9 (3,2 mm para dentro), |x| <= 53
         parede_x0=29.0, parede_esp=5.0,    # paredes do rack/torre: X de 29 a 34 (58 livres entre elas)
-        parede_y=(-78.0, 49.5),            # pele: fundo do rack ... frente da torre do pan
+        parede_y=(-78.0, 25.5),            # pele: fundo do rack ... frente da torre do pan (até onde o piso existe: a bacia desce por cima)
+        torre_x1=38.0,                     # face interna da parede DIREITA da torre: o servo de pan vai deitado de lado (corpo para +X)
         rack_z=78.0,                       # topo das paredes na parte do rack (a torre sobe até o deck)
-        torre_chanfro=(22.0, 60.0),        # (y pele, z): à frente de y a base da parede sobe em rampa até z na ponta (acompanha a barriga)
         travessa_y=(-6.0, -3.0), travessa_z0=30.0,   # pele: parede transversal entre rack e torre (L298N na face da frente)
         deck_z=102.0, deck_esp=4.0,        # topo do deck = face de baixo da aba do servo de pan
-        driver_z=52.0,                     # centro do L298N
+        driver_z=44.0,                     # centro do L298N (sob o servo de pan)
         bateria_y=-45.5,                   # pele: centro do suporte 2x18650 (no piso, entre as paredes; sai por trás)
         trilho_z=(37.0, 66.0),             # fundo dos trilhos: nível de baixo = Pi, nível de cima = Uno + shield
         trilho_alt=3.6, trilho_prof=2.0,
@@ -361,11 +361,11 @@ CAPIVARA = NS(
         pi_y=(-97.0, -8.0), pi_placa_y=-10.0,     # pele: bandeja do Pi (fundo, frente) e borda da frente da placa
         uno_y=(-80.0, -7.0), uno_placa_y=-76.0,   # pele: bandeja do Uno e borda de trás da placa (USB para trás)
         esferas=((60.0, 29.0),),           # (|x|, y pele) das 2 esferas de apoio da frente, sob as patas
-        orelhas=((46.0, -62.0, -1), (42.0, 18.0, 1)),   # (|x|, y pele, sentido em Y) das 4 orelhas M3 da bacia no piso
+        orelhas=((46.0, -62.0, -1),),      # (|x|, y pele, sentido em Y) das 2 orelhas M3 de trás da bacia, no piso (na frente ela prende nas esferas)
         poste_porta=(24.0, 34.0, -78.0, -70.0, 32.0, 24.0),   # x0, x1, y0, y1 (pele), z do topo, z do parafuso da porta
         encoder_extra=12.0,
     ),
-    n_pecas=24,
+    n_pecas=21,
 )
 
 # ------------------------------------------------------------------ CUBO (modelo 3: robô quadrado de mesa)

@@ -38,3 +38,4 @@ Depois: E3b dino (mesma receita), consolidação (`gerar todos` + `verificar tod
 - E1 e E3a relançadas em paralelo (Fable, esforço high). Donos de arquivo: os mesmos da tabela "Agentes lançados às 17:0x".
 - 14/11 E1 pacote 1: componentes de energia (STEPDOWN5V, UBEC6V, CARREGADOR2S, BMS2S) em parametros.py + C.modulo + geo.berco_modulo; receita no canal.md.
 - 14/11 E1 pacote 2: cubo redesenhado (tilt interno, copo sem ponte, energia 2S, furos discretos); 11 testes passando; IoU 0,755 → 0,797. cad/comum/quadrado.py é o código comum com o cubo_rodas.
+- 14/11 E3a pacote 1a: capivara refeita sobre a pele da malha (bacia + porta traseira + gola + cabeça em vasos de corte horizontal) e esqueleto baixo novo (cad/comum/base_baixa.py, casca.py); verificador 1–9 passando (dino também), IoU médio 0,921 (antes 0,777, alvo 0,852); falta: peças coloridas, limpeza do pescoço, pacotes 2 e 3.
