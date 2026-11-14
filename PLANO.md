@@ -16,10 +16,10 @@ Por que o repo se chama `robos-impressos` e não `dinobot`: o pedido começou co
 que dividem as mesmas peças e o mesmo verificador. Um nome neutro evita ter uma capivara dentro de um "dinobot".
 
 <!-- TABELA:resumo -->
-| Modelo | Altura (mm) | Peças | Mesa (1 mesa = 1 impressão) | Filamento total (g)* | Impressão total (h)* | Robô montado (g)* |
+| Modelo | Altura (mm) | Peças | Mesa | Filamento total (g)* | Impressão total (h)* | Robô montado (g)* |
 |---|---|---|---|---|---|---|
-| Dinossauro | 329 | 38 | 12 | 1108 | 44 | 1668 |
-| Capivara | 326 | 39 | 13 | 1050 | 42 | 1583 |
+| Dinossauro | 329 | 38 | 12 | 1107 | 44 | 1666 |
+| Capivara | 326 | 39 | 13 | 1049 | 42 | 1581 |
 | Robô quadrado | 201 | 14 | 8 | 638 | 25 | 1020 |
 
 * estimativa por volume, sem fatiador
@@ -83,7 +83,10 @@ que dividem as mesmas peças e o mesmo verificador. Um nome neutro evita ter uma
 - **Bichos: rack de bandejas deslizantes.** Entre as duas paredes do chassi (58 mm) há 2 trilhos. Cada bandeja
   (`bandeja-uno`, `bandeja-pi`) tem o mesmo contorno e entra em qualquer trilho, por trás, travada por 1 parafuso M3.
   Na fase 1 usa-se uma; na fase 2 as duas ao mesmo tempo (Uno + shield embaixo, Pi em cima). A bateria passa por baixo.
-- **Acesso:** tirando a cauda ou o rabo (2 parafusos por baixo) e o `torso-costas` (3 parafusos), as bandejas saem por trás sem mexer no resto. As pernas ficam no lugar: a casca delas foi recortada pelo caminho que as costas fazem ao sair.
+- **Acesso:** para chegar às bandejas saem, nesta ordem, a cabeça (crista por pressão + 2 parafusos por cima), a cauda ou
+  o rabo (2 por baixo) e o `torso-costas` (3). A cabeça sai antes porque a metade de trás da esfera do pescoço fica
+  dentro dela. As pernas ficam no lugar: a casca delas foi recortada pelo caminho que as costas fazem ao sair.
+  Essa sequência é conferida pelo teste 9 do verificador (passos "ABRIR").
 - **Limite honesto:** o Pi fica com as portas USB-C/HDMI a 1 mm da parede. Na bandeja ele é alimentado pelos pinos
   de 5 V do GPIO; as USB grandes ficam livres, viradas para trás. Sob o servo de pan sobram 14 mm acima da placa do Pi.
 - **Cubo:** Uno + shield no piso da base (USB virado para a porta de trás); Pi dentro da cabeça, atrás da tela.
@@ -154,7 +157,7 @@ média de 6 mm³/s (suposição conservadora) e densidade do filamento; peça ma
 | garfo-pescoco (comum) | 65 × 48 × 51 | 1 | PETG | grafite | não | 17 | 0.7 |
 | berco-tilt (comum) | 38 × 23 × 77 | 1 | PETG | grafite | sim | 15 | 0.6 |
 | teste-encaixe (comum) | 70 × 34 × 8 | 1 | PLA | cinza | não | 15 | 0.6 |
-| **Total** |  | 38 |  |  |  | **1108** | **44** |
+| **Total** |  | 38 |  |  |  | **1107** | **44** |
 
 * estimativa por volume, sem fatiador
 <!-- /TABELA -->
@@ -171,8 +174,8 @@ média de 6 mm³/s (suposição conservadora) e densidade do filamento; peça ma
 | bandana-costas | 119 × 38 × 67 | 1 | PLA | verde-bandana | sim | 10 | 0.5 |
 | mao | 20 × 20 × 11 | 2 | PLA | marrom | não | 5 | 0.3 |
 | pino-guia (comum) | 4 × 4 × 9 | 4 | PLA | cinza | não | 0 | 0.3 |
-| coxa-dir | 46 × 119 × 82 | 1 | PLA | laranja | sim | 38 | 1.5 |
-| coxa-esq | 46 × 119 × 82 | 1 | PLA | laranja | sim | 38 | 1.5 |
+| coxa-dir | 46 × 119 × 82 | 1 | PLA | laranja | sim | 37 | 1.5 |
+| coxa-esq | 46 × 119 × 82 | 1 | PLA | laranja | sim | 37 | 1.5 |
 | aro | 40 × 40 × 3 | 2 | PLA | ciano | não | 4 | 0.3 |
 | pata-dir | 44 × 37 × 25 | 1 | PLA | marrom | não | 10 | 0.5 |
 | pata-esq | 44 × 37 × 25 | 1 | PLA | marrom | não | 10 | 0.5 |
@@ -197,7 +200,7 @@ média de 6 mm³/s (suposição conservadora) e densidade do filamento; peça ma
 | garfo-pescoco (comum) | 65 × 48 × 51 | 1 | PETG | grafite | não | 17 | 0.7 |
 | berco-tilt (comum) | 38 × 23 × 77 | 1 | PETG | grafite | sim | 15 | 0.6 |
 | teste-encaixe (comum) | 70 × 34 × 8 | 1 | PLA | cinza | não | 15 | 0.6 |
-| **Total** |  | 39 |  |  |  | **1050** | **42** |
+| **Total** |  | 39 |  |  |  | **1049** | **42** |
 
 * estimativa por volume, sem fatiador
 <!-- /TABELA -->
@@ -293,8 +296,9 @@ O script lê os **STL exportados** e o `montagem.json`. São 9 testes:
 - **Interferência (5):** volume da interseção booleana entre cada par de sólidos (peças impressas + envelopes dos
   componentes), em todas as poses declaradas. Encostar face com face não conta.
 - **Teste negativo (6):** desloca uma peça 3 mm de propósito e exige que a interferência apareça.
-- **Caminho de montagem (9):** para cada passo da ordem de montagem, a peça (ou o conjunto) é trazida de fora, na
-  direção declarada, de 2,5 em 2,5 mm, contra tudo o que já está montado. Foi este teste que mostrou que a mesa da
+- **Caminho de montagem e de abertura (9):** para cada passo da ordem de montagem, a peça (ou o conjunto) é trazida de
+  fora, na direção declarada, de 2,5 em 2,5 mm, contra tudo o que já está montado. Depois o script desmonta na ordem de
+  manutenção (cabeça, traseira, costas, bandejas) e confere que cada uma sai. Foi este teste que mostrou que a mesa da
   cabeça não entrava no crânio, que as rodas têm de ir depois do torso e que as costas não saíam com a chave no caminho.
 
 Saída completa da última rodada: [`pecas/verificacao-saida.txt`](pecas/verificacao-saida.txt).
@@ -310,8 +314,8 @@ Saída completa da última rodada: [`pecas/verificacao-saida.txt`](pecas/verific
 | 5 interferência | PASSOU | 54 sólidos (37 impressos + 17 componentes), 12 poses, 0 sobreposições; 2 encaixe(s) previsto(s) fora da conta: motor-tt-dir x roda-dir (eixo do motor entra no cubo da roda); motor-tt-esq x roda-esq (eixo do motor entra no cubo da roda) |
 | 6 teste negativo | PASSOU | 'chassi' deslocada 3 mm em X → 13 sobreposições acusadas (tem que ser > 0) |
 | 7 peça solta | PASSOU | as 37 peças montadas encostam (≤ 1.5 mm) em outra |
-| 8 equilíbrio | PASSOU | massa estimada 1668 g; CG neutro em x=0.1 y=-26.1 z=118.1 mm, margem 26.1 mm (tomba com 12°); pior pose 'tilt-baixo': margem 22.1 mm (11°); mínimo exigido 10 mm |
-| 9 caminho | PASSOU | 26 passos de montagem, cada peça entra pela direção declarada sem atravessar o que já está montado |
+| 8 equilíbrio | PASSOU | massa estimada 1666 g; CG neutro em x=0.1 y=-26.1 z=118.2 mm, margem 26.1 mm (tomba com 12°); pior pose 'tilt-baixo': margem 22.1 mm (11°); mínimo exigido 10 mm |
+| 9 caminho | PASSOU | 31 passos (montagem + abertura para manutenção), cada peça entra ou sai pela direção declarada sem atravessar o que está montado |
 <!-- /TABELA -->
 
 ### Capivara
@@ -325,8 +329,8 @@ Saída completa da última rodada: [`pecas/verificacao-saida.txt`](pecas/verific
 | 5 interferência | PASSOU | 53 sólidos (38 impressos + 15 componentes), 8 poses, 0 sobreposições; 2 encaixe(s) previsto(s) fora da conta: motor-tt-dir x roda-dir (eixo do motor entra no cubo da roda); motor-tt-esq x roda-esq (eixo do motor entra no cubo da roda) |
 | 6 teste negativo | PASSOU | 'chassi' deslocada 3 mm em X → 12 sobreposições acusadas (tem que ser > 0) |
 | 7 peça solta | PASSOU | as 38 peças montadas encostam (≤ 1.5 mm) em outra |
-| 8 equilíbrio | PASSOU | massa estimada 1583 g; CG neutro em x=-0.0 y=-24.9 z=117.3 mm, margem 24.9 mm (tomba com 12°); pior pose 'tilt-baixo': margem 21.0 mm (10°); mínimo exigido 10 mm |
-| 9 caminho | PASSOU | 22 passos de montagem, cada peça entra pela direção declarada sem atravessar o que já está montado |
+| 8 equilíbrio | PASSOU | massa estimada 1581 g; CG neutro em x=-0.0 y=-24.9 z=117.4 mm, margem 24.9 mm (tomba com 12°); pior pose 'tilt-baixo': margem 21.0 mm (10°); mínimo exigido 10 mm |
+| 9 caminho | PASSOU | 27 passos (montagem + abertura para manutenção), cada peça entra ou sai pela direção declarada sem atravessar o que está montado |
 <!-- /TABELA -->
 
 ### Robô quadrado
@@ -341,7 +345,7 @@ Saída completa da última rodada: [`pecas/verificacao-saida.txt`](pecas/verific
 | 6 teste negativo | PASSOU | 'quadro-cabeca' deslocada 3 mm em X → 1 sobreposições acusadas (tem que ser > 0) |
 | 7 peça solta | PASSOU | as 13 peças montadas encostam (≤ 1.5 mm) em outra |
 | 8 equilíbrio | PASSOU | massa estimada 1020 g; CG neutro em x=-2.2 y=5.0 z=74.5 mm, margem 59.0 mm (tomba com 38°); pior pose 'pan+37': margem 58.8 mm (38°); mínimo exigido 10 mm |
-| 9 caminho | PASSOU | 12 passos de montagem, cada peça entra pela direção declarada sem atravessar o que já está montado |
+| 9 caminho | PASSOU | 12 passos (montagem + abertura para manutenção), cada peça entra ou sai pela direção declarada sem atravessar o que está montado |
 <!-- /TABELA -->
 
 **O que o script NÃO confere** (só a montagem real confirma): o encaixe lateral de 3 mm dos horns e da mandíbula
@@ -380,7 +384,7 @@ A ordem abaixo é a mesma que o teste 9 do verificador percorre (`ordem_bicho` e
 | 19 | Cristas/topete, orelhas, mãos, bandana | pressão ou cola | — |
 | 20 | (Dino) braços nos horns | parafuso central pelo furo de fora | — |
 
-**Para abrir depois:** cauda/rabo (2 parafusos) → costas (3 parafusos) → bandejas (1 parafuso cada) → bateria.
+**Para abrir depois:** crista/topete (pressão) → cabeça (2 parafusos por cima; solte os conectores dos cabos) → cauda/rabo (2 parafusos) → costas (3 parafusos) → bandejas (1 parafuso cada) → bateria.
 
 ### 6.2 Robô quadrado
 
@@ -441,6 +445,9 @@ reaproveita `cad/comum/base.py` (esqueleto) e `cad/comum/bicho.py` (casca, cabe�
 
 ## 9. Pendências
 
+- **Abrir sem tirar a cabeça.** Hoje a calota de trás da esfera do pescoço pertence ao `torso-costas` e fica dentro da
+  cabeça, por isso a cabeça sai antes das costas. Melhoria prevista: transformar o topo da esfera numa peça própria, presa à frente.
+- **3MF por mesa** ainda não foi aberto num fatiador (só relido por script).
 - **Imprimir e montar.** Nada foi testado em plástico. Comece pelo cupom de teste e por uma peça pequena de cada tipo.
 - **Medidas NC** da tabela 4: medir com paquímetro e corrigir `cad/parametros.py`.
 - **Altura:** os bichos ficaram com ~33 cm, não 30. O que manda é a pilha bateria + Uno com shield + Pi sob o servo de pan.

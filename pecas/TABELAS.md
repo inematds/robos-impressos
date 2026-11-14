@@ -2,10 +2,10 @@
 
 ## Resumo
 
-| Modelo | Altura (mm) | Peças | Mesa (1 mesa = 1 impressão) | Filamento total (g)* | Impressão total (h)* | Robô montado (g)* |
+| Modelo | Altura (mm) | Peças | Mesa | Filamento total (g)* | Impressão total (h)* | Robô montado (g)* |
 |---|---|---|---|---|---|---|
-| Dinossauro | 329 | 38 | 12 | 1108 | 44 | 1668 |
-| Capivara | 326 | 39 | 13 | 1050 | 42 | 1583 |
+| Dinossauro | 329 | 38 | 12 | 1107 | 44 | 1666 |
+| Capivara | 326 | 39 | 13 | 1049 | 42 | 1581 |
 | Robô quadrado | 201 | 14 | 8 | 638 | 25 | 1020 |
 
 * estimativa por volume, sem fatiador
@@ -45,7 +45,7 @@
 | garfo-pescoco (comum) | 65 × 48 × 51 | 1 | PETG | grafite | não | 17 | 0.7 |
 | berco-tilt (comum) | 38 × 23 × 77 | 1 | PETG | grafite | sim | 15 | 0.6 |
 | teste-encaixe (comum) | 70 × 34 × 8 | 1 | PLA | cinza | não | 15 | 0.6 |
-| **Total** |  | 38 |  |  |  | **1108** | **44** |
+| **Total** |  | 38 |  |  |  | **1107** | **44** |
 
 * estimativa por volume, sem fatiador
 
@@ -60,8 +60,8 @@
 | 5 interferência | PASSOU | 54 sólidos (37 impressos + 17 componentes), 12 poses, 0 sobreposições; 2 encaixe(s) previsto(s) fora da conta: motor-tt-dir x roda-dir (eixo do motor entra no cubo da roda); motor-tt-esq x roda-esq (eixo do motor entra no cubo da roda) |
 | 6 teste negativo | PASSOU | 'chassi' deslocada 3 mm em X → 13 sobreposições acusadas (tem que ser > 0) |
 | 7 peça solta | PASSOU | as 37 peças montadas encostam (≤ 1.5 mm) em outra |
-| 8 equilíbrio | PASSOU | massa estimada 1668 g; CG neutro em x=0.1 y=-26.1 z=118.1 mm, margem 26.1 mm (tomba com 12°); pior pose 'tilt-baixo': margem 22.1 mm (11°); mínimo exigido 10 mm |
-| 9 caminho | PASSOU | 26 passos de montagem, cada peça entra pela direção declarada sem atravessar o que já está montado |
+| 8 equilíbrio | PASSOU | massa estimada 1666 g; CG neutro em x=0.1 y=-26.1 z=118.2 mm, margem 26.1 mm (tomba com 12°); pior pose 'tilt-baixo': margem 22.1 mm (11°); mínimo exigido 10 mm |
+| 9 caminho | PASSOU | 31 passos (montagem + abertura para manutenção), cada peça entra ou sai pela direção declarada sem atravessar o que está montado |
 
 ## Capivara — peças impressas
 
@@ -74,8 +74,8 @@
 | bandana-costas | 119 × 38 × 67 | 1 | PLA | verde-bandana | sim | 10 | 0.5 |
 | mao | 20 × 20 × 11 | 2 | PLA | marrom | não | 5 | 0.3 |
 | pino-guia (comum) | 4 × 4 × 9 | 4 | PLA | cinza | não | 0 | 0.3 |
-| coxa-dir | 46 × 119 × 82 | 1 | PLA | laranja | sim | 38 | 1.5 |
-| coxa-esq | 46 × 119 × 82 | 1 | PLA | laranja | sim | 38 | 1.5 |
+| coxa-dir | 46 × 119 × 82 | 1 | PLA | laranja | sim | 37 | 1.5 |
+| coxa-esq | 46 × 119 × 82 | 1 | PLA | laranja | sim | 37 | 1.5 |
 | aro | 40 × 40 × 3 | 2 | PLA | ciano | não | 4 | 0.3 |
 | pata-dir | 44 × 37 × 25 | 1 | PLA | marrom | não | 10 | 0.5 |
 | pata-esq | 44 × 37 × 25 | 1 | PLA | marrom | não | 10 | 0.5 |
@@ -100,7 +100,7 @@
 | garfo-pescoco (comum) | 65 × 48 × 51 | 1 | PETG | grafite | não | 17 | 0.7 |
 | berco-tilt (comum) | 38 × 23 × 77 | 1 | PETG | grafite | sim | 15 | 0.6 |
 | teste-encaixe (comum) | 70 × 34 × 8 | 1 | PLA | cinza | não | 15 | 0.6 |
-| **Total** |  | 39 |  |  |  | **1050** | **42** |
+| **Total** |  | 39 |  |  |  | **1049** | **42** |
 
 * estimativa por volume, sem fatiador
 
@@ -115,8 +115,8 @@
 | 5 interferência | PASSOU | 53 sólidos (38 impressos + 15 componentes), 8 poses, 0 sobreposições; 2 encaixe(s) previsto(s) fora da conta: motor-tt-dir x roda-dir (eixo do motor entra no cubo da roda); motor-tt-esq x roda-esq (eixo do motor entra no cubo da roda) |
 | 6 teste negativo | PASSOU | 'chassi' deslocada 3 mm em X → 12 sobreposições acusadas (tem que ser > 0) |
 | 7 peça solta | PASSOU | as 38 peças montadas encostam (≤ 1.5 mm) em outra |
-| 8 equilíbrio | PASSOU | massa estimada 1583 g; CG neutro em x=-0.0 y=-24.9 z=117.3 mm, margem 24.9 mm (tomba com 12°); pior pose 'tilt-baixo': margem 21.0 mm (10°); mínimo exigido 10 mm |
-| 9 caminho | PASSOU | 22 passos de montagem, cada peça entra pela direção declarada sem atravessar o que já está montado |
+| 8 equilíbrio | PASSOU | massa estimada 1581 g; CG neutro em x=-0.0 y=-24.9 z=117.4 mm, margem 24.9 mm (tomba com 12°); pior pose 'tilt-baixo': margem 21.0 mm (10°); mínimo exigido 10 mm |
+| 9 caminho | PASSOU | 27 passos (montagem + abertura para manutenção), cada peça entra ou sai pela direção declarada sem atravessar o que está montado |
 
 ## Robô quadrado — peças impressas
 
@@ -149,4 +149,4 @@
 | 6 teste negativo | PASSOU | 'quadro-cabeca' deslocada 3 mm em X → 1 sobreposições acusadas (tem que ser > 0) |
 | 7 peça solta | PASSOU | as 13 peças montadas encostam (≤ 1.5 mm) em outra |
 | 8 equilíbrio | PASSOU | massa estimada 1020 g; CG neutro em x=-2.2 y=5.0 z=74.5 mm, margem 59.0 mm (tomba com 38°); pior pose 'pan+37': margem 58.8 mm (38°); mínimo exigido 10 mm |
-| 9 caminho | PASSOU | 12 passos de montagem, cada peça entra pela direção declarada sem atravessar o que já está montado |
+| 9 caminho | PASSOU | 12 passos (montagem + abertura para manutenção), cada peça entra ou sai pela direção declarada sem atravessar o que está montado |

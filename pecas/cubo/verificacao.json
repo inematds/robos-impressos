@@ -35,7 +35,7 @@
   },
   "9 caminho": {
    "ok": true,
-   "texto": "12 passos de montagem, cada peça entra pela direção declarada sem atravessar o que já está montado"
+   "texto": "12 passos (montagem + abertura para manutenção), cada peça entra ou sai pela direção declarada sem atravessar o que está montado"
   }
  },
  "interferencias": [],

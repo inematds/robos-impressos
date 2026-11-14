@@ -123,7 +123,7 @@
   pre.saida{white-space:pre-wrap;font-size:.8rem;line-height:1.5}
   .card ul{margin:.5em 0 0 1.1em;padding:0} .card li{margin:.35em 0}
   @media(max-width:1180px){nav .links .sec{display:none}}
-  @media(max-width:860px){.g2,.g4{grid-template-columns:1fr}.barra{grid-template-columns:110px 1fr 50px}.arraste{display:block}pre{white-space:pre-wrap;word-break:break-all}.glossario{grid-template-columns:1fr;gap:2px 0}.glossario dd{margin:0 0 10px}}
+  @media(max-width:860px){.g2,.g4{grid-template-columns:1fr}.barra{grid-template-columns:110px 1fr 50px}.arraste{display:block}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:.74rem}figcaption.mini{padding:8px 4px 0}.glossario{grid-template-columns:1fr;gap:2px 0}.glossario dd{margin:0 0 10px}}
 </style>
 </head>
 <body>
@@ -160,7 +160,7 @@
         <a class="btn ghost" href="https://github.com/inematds/robos-impressos" target="_blank" rel="noopener">View on GitHub</a>
       </div>
     </div>
-    <figure><img src="../assets/banner-en.jpg" alt="Illustration: a dinosaur, a capybara, and a toy square robot beside a 3D printer"></figure>
+    <figure><img src="../assets/banner-en.jpg" alt="Illustration: a dinosaur, a capybara, and a toy square robot beside a 3D printer"><figcaption class="mini">AI-generated illustration. The real robots in the project are shown in the renders below: the square robot, for example, is a cube on a base, with no arms or legs.</figcaption></figure>
   </div>
 </header>
 
@@ -183,14 +183,14 @@
     <div class="card"><img class="shot" src="../assets/cubo-montado.jpg" alt="Render of the square robot: a cube-shaped head with a screen, on a fork and base"><h3>🤖 Square robot</h3><p>Made for a desk; it doesn’t roll. Its head is a cube with a 3.5-inch screen that displays its eyes and mouth. It turns almost halfway around in either direction (nearly a full turn in total) and tilts up and down.</p><p class="mini">2 servos + screen</p></div>
   </div>
 <!-- TABELA:resumo -->
-<p class="arraste">↔ on a phone, swipe the table sideways</p><div class="tabela-wrap"><table class="tabela"><thead><tr><th>Model</th><th>Height (mm)</th><th>Parts</th><th>Plate (1 plate = 1 print job)</th><th>Total filament (g)*</th><th>Total print time (h)*</th><th>Assembled robot (g)*</th></tr></thead><tbody>
-<tr><td>Dinosaur</td><td>329</td><td>38</td><td>12</td><td>1108</td><td>44</td><td>1668</td></tr>
-<tr><td>Capybara</td><td>326</td><td>39</td><td>13</td><td>1050</td><td>42</td><td>1583</td></tr>
+<p class="arraste">↔ on a phone, swipe the table sideways</p><div class="tabela-wrap"><table class="tabela"><thead><tr><th>Model</th><th>Height (mm)</th><th>Parts</th><th>Plate</th><th>Total filament (g)*</th><th>Total print time (h)*</th><th>Assembled robot (g)*</th></tr></thead><tbody>
+<tr><td>Dinosaur</td><td>329</td><td>38</td><td>12</td><td>1107</td><td>44</td><td>1666</td></tr>
+<tr><td>Capybara</td><td>326</td><td>39</td><td>13</td><td>1049</td><td>42</td><td>1581</td></tr>
 <tr><td>Square robot</td><td>201</td><td>14</td><td>8</td><td>638</td><td>25</td><td>1020</td></tr>
 </tbody></table></div>
 <p class="nota">* estimate from volume, no slicer</p>
 <!-- /TABELA -->
-  <p class="nota">The animals ended up 33 cm tall, a little above the 30 cm target: the battery, Arduino, and Raspberry Pi need to fit stacked inside. Parts list for each one: <a href="#guia">see the technical guide ↓</a></p>
+  <p class="nota">The animals ended up 33 cm tall, a little above the 30 cm target: the battery, Arduino, and Raspberry Pi need to fit stacked inside. Parts list for each one: <a href="#pecas">see the technical guide ↓</a></p>
 </div></section>
 
 <section id="como"><div class="wrap">
@@ -199,7 +199,7 @@
   <p class="sub">The dark skeleton carries the weight. The colorful shell just covers it and comes off without taking anything apart.</p>
   <div class="grid g2">
     <div class="card"><img class="shot" src="../assets/dino-esqueleto.jpg" alt="Render showing only the dinosaur’s skeleton: chassis, wheels, motors, board trays, and neck"><h3>The skeleton</h3><p>One piece forms the floor, the walls where the motors are screwed in, and the neck support. The Arduino tray and Raspberry Pi tray slide between the walls like drawers. The battery sits underneath them.</p></div>
-    <div class="card"><img class="shot" src="../assets/dino-explodido.jpg" alt="Render of the dinosaur exploded view, with each part spaced apart"><h3>The shell in parts</h3><p>The belly, back, legs, tail, and head are separate parts, held together by hidden screws. Except for the tail and back (5 screws), the panels slide out from the rear like drawers.</p></div>
+    <div class="card"><img class="shot" src="../assets/dino-explodido.jpg" alt="Render of the dinosaur exploded view, with each part spaced apart"><h3>The shell in parts</h3><p>The belly, back, legs, tail, and head are separate parts, held together by hidden screws. To reach the boards, remove the head, tail, and back (7 screws), then slide the trays out like drawers.</p></div>
     <div class="card"><img class="shot" src="../assets/capivara-vistas.jpg" alt="Render of the capybara from four angles"><h3>Neck without a neck</h3><p>The top of the body is a sphere, and the head is a helmet that turns and tilts around it with 2 to 3 mm of clearance. That lets the head move in every direction without leaving a gap.</p></div>
     <div class="card"><img class="shot" src="../assets/cubo-explodido.jpg" alt="Exploded view render of the square robot: base, gears, fork, frame, head, and screen frame"><h3>The square one turns almost a full rotation</h3><p>A standard servo only turns halfway. Two printed gears double that rotation, and the cables run up inside the hollow neck tube without getting tangled.</p></div>
   </div>
@@ -234,7 +234,7 @@
   </div>
   <div class="grid g2" style="margin-top:22px">
     <div class="card"><h3>✅ What the script guarantees</h3><ul><li>Each file is a closed solid made of a single body.</li><li>Every part fits on the 256 × 256 × 256 mm build plate.</li><li>No part occupies the space of another part or a component (servo, motor, board, battery), with the head, mouth, and arms at the extremes.</li><li>Every part can reach its position: the script brings them in one at a time, in assembly order, and flags any collision with what is already assembled.</li><li>No part is floating in the air, and the center of gravity falls inside the supports, with clearance.</li><li>The test itself is tested: one part is deliberately moved 3 mm, and the script must flag it.</li></ul></div>
-    <div class="card"><h3>⚠️ What only printing can tell you</h3><ul><li>No one has printed or assembled these parts yet.</li><li>Print time and filament use are estimates based on volume.</li><li>Some component measurements have no official source (servo tabs, motor driver holes): they are marked, and you should measure your own part first.</li><li>The script does not test strength, whether a screwdriver can reach every screw, or the 3 mm fit of the servos in the arms and mouth.</li></ul></div>
+    <div class="card"><h3>⚠️ What only printing can tell you</h3><ul><li>No one has printed or assembled these parts yet.</li><li>Print time and filament use are volume-based estimates.</li><li>Some component dimensions have no official source (servo tabs, motor driver holes). They are marked NC in <code>cad/parametros.py</code> and section 4 of <a href="https://github.com/inematds/robos-impressos/blob/main/PLANO.md">PLANO.md</a> (in Portuguese): measure your part with calipers and, if it differs, change the number and generate the parts again.</li><li>The script does not test strength, whether a screwdriver can reach every screw, or the 3 mm fit of the servos in the arms and mouth.</li></ul></div>
   </div>
 </div></section>
 
@@ -242,18 +242,18 @@
   <span class="chip">Action plan</span>
   <h2>From file to assembled robot body</h2>
   <p class="sub">Five steps, no programming needed. At the end, you have the assembled body, with servos and motors in place; making it move is phase 2.</p>
-  <div class="phase"><div class="tag">1</div><div class="d"><strong>Choose a model</strong><span>The square robot is the simplest (14 parts). The dinosaur and capybara each have about 38 parts, and you can swap one shell for the other later.</span></div></div>
-  <div class="phase"><div class="tag">2</div><div class="d"><strong>Buy the minimum for testing</strong><span>One micro servo and a pack of M3 threaded inserts are enough for the test. The rest (servos, motors with wheels, battery holder, switch, M3 screws) are common parts at electronics stores in Brazil. The servos and motors are only for checking the fit at this stage: they won't move yet.</span></div></div>
-  <div class="phase"><div class="tag">3</div><div class="d"><strong>Print the test part first</strong><span>It's a 7 cm plate that tests how the servo, screws, and pins fit on your printer. Less than an hour of printing can save you from redoing a five-hour part.</span></div></div>
+  <div class="phase"><div class="tag">1</div><div class="d"><strong>Choose a model</strong><span>The square robot has fewer parts (14), but needs a Raspberry Pi and screen. The dinosaur and capybara each have about 38 parts, and you can swap one shell for the other later.</span></div></div>
+  <div class="phase"><div class="tag">2</div><div class="d"><strong>Buy the minimum for testing</strong><span>One pack of M3 threaded inserts, some M3 screws, and a soldering iron are enough for the test; for the animals, you also need a micro servo (the square robot does not use one). The rest (servos, wheel motors, battery holder, switch) are common parts at electronics shops in Brazil. The servos and motors are only for checking the fit at this stage: they will not move yet.</span></div></div>
+  <div class="phase"><div class="tag">3</div><div class="d"><strong>Print the test part first</strong><span>It’s a 7 cm test plate that checks the fit of the micro servo, inserts, screws, and guide pin on your printer. Less than an hour of printing can save you from redoing a five-hour part. If everything fits, you can continue without installing anything.</span></div></div>
   <div class="phase"><div class="tag">4</div><div class="d"><strong>Print by color</strong><span>The parts come laid out in the right orientation and separated by color. The skeleton is printed in PETG, which is more durable; the shell in PLA.</span></div></div>
   <div class="phase"><div class="tag">5</div><div class="d"><strong>Assemble from the inside out</strong><span>First the skeleton with motors and servos, then the shell, and finally the head. The order, screw by screw, is in the project plan.</span></div></div>
-  <p class="nota">Files, commands, and the shopping list are in the technical section: <a href="#guia">see the technical guide ↓</a></p>
+  <p class="nota">Files, commands, and the shopping list are in the technical section: <a href="#compras">see the technical guide ↓</a></p>
 </div></section>
 
 <section id="palavras"><div class="wrap">
   <span class="chip">Words on this page</span>
   <h2>If any of these names are new to you</h2>
-  <dl class="glossario"><dt>Servo</dt><dd>A small motor that turns to an angle and stays there. It turns the head and opens the mouth.</dd><dt>Arduino and Raspberry Pi</dt><dd>Two electronic boards. The Arduino controls motors and servos; the Raspberry Pi is a small computer that handles voice and camera in phase 2.</dd><dt>Script</dt><dd>A small program. Here, it generates the parts and checks that they're correct.</dd><dt>Render</dt><dd>An image made on a computer from the 3D file. It's not a photo.</dd><dt>PLA and PETG</dt><dd>Two printing plastics. PLA gives a nice finish; PETG handles more force and heat.</dd><dt>Build plate</dt><dd>The printer's base. "12 build plates" means 12 prints, one after another.</dd><dt>M3 threaded insert</dt><dd>A threaded brass insert that is heated and pushed into the plastic so a 3 mm screw holds firmly.</dd><dt>18650 battery</dt><dd>A rechargeable lithium battery, a little larger than a standard battery.</dd><dt>Motor driver</dt><dd>A small board that lets the Arduino power the wheel motors and reverse their direction.</dd></dl>
+  <dl class="glossario"><dt>Servo</dt><dd>A small motor that turns to an angle and stops there. It turns the head and opens the mouth.</dd><dt>Arduino and Raspberry Pi</dt><dd>Two electronic boards. Arduino controls motors and servos; Raspberry Pi is a small computer that handles voice and camera in phase 2.</dd><dt>Script</dt><dd>A small program. Here, it generates the parts and checks that they are correct.</dd><dt>Render</dt><dd>An image made on a computer from the 3D file. It is not a photo.</dd><dt>PLA and PETG</dt><dd>Two printing plastics. PLA gives a nice finish; PETG handles more force and heat.</dd><dt>Build plate</dt><dd>The printer’s base. “12 build plates” means 12 prints, one after another.</dd><dt>M3 threaded insert</dt><dd>A threaded brass sleeve that is heat-set into the plastic so the 3 mm screw holds firmly.</dd><dt>18650 battery</dt><dd>A rechargeable lithium battery, a little larger than a common battery.</dd><dt>Motor driver</dt><dd>A small board that lets Arduino start and reverse the wheel motors.</dd><dt>TT motor</dt><dd>The small yellow geared motor commonly used in robotics cars.</dd><dt>Shield</dt><dd>A board that fits on top of Arduino to make servo connections easier.</dd><dt>Rocker switch</dt><dd>The on/off switch.</dd><dt>Chassis, fork, and cradle</dt><dd>Skeleton parts: the chassis is the base with the walls; the fork and cradle are the two neck parts.</dd><dt>Pan, tilt, horn, and CG</dt><dd>Terms in the checker’s output: pan means turning side to side; tilt means angling up and down; horn is the small part attached to the servo shaft; CG is the center of gravity.</dd></dl>
 </div></section>
 
 <div id="tecnico" class="techhead"><div class="wrap">
@@ -297,8 +297,8 @@
   <h2>What you need</h2>
   <p class="sub">To just print, all you need is a printer, a slicer, and the ZIP download. Python and Blender are for anyone who wants to change the project.</p>
   <div class="grid g3">
-    <div class="card"><h3>For printing</h3><p>A printer with a 256 mm build plate (the project was sized for the Bambu Lab A1), PLA and PETG filament, a slicer such as Bambu Studio, and the components on the shopping list.</p></div>
-    <div class="card"><h3>To generate the parts</h3><p>Python 3.12 or newer (the library versions require it) and git. The libraries are installed in an isolated environment inside the folder.</p><pre><span class="c"># check if you already have it</span>
+    <div class="card"><h3>For printing</h3><p>A printer with a 256 mm build plate (the project was designed for the Bambu Lab A1; it does not fit on a 220 mm plate because the largest part is 226 mm), PLA and PETG filament, a slicer such as Bambu Studio, and the components on the shopping list.</p></div>
+    <div class="card"><h3>To generate the parts</h3><p>Python 3.12 or later (download it from python.org; the library versions require it) and git. The libraries are installed in an isolated environment inside the folder.</p><pre><span class="c"># check if you already have it</span>
 <span class="k">python3</span> --version
 <span class="k">git</span> --version</pre></div>
     <div class="card"><h3>For the images (optional)</h3><p>Blender 4. It is only used for the renders.</p><pre><span class="c"># check if you already have it</span>
@@ -312,7 +312,7 @@
   <p class="sub">These are the repository commands. The complete assembly sequence, with every screw, is in <a href="https://github.com/inematds/robos-impressos/blob/main/PLANO.md">PLANO.md</a> (in Portuguese).</p>
 
   <div class="step"><div class="b">1</div><div>
-    <h3>Download the project</h3><p>The print files are ready in the <code>pecas/</code> folder, in STL and 3MF formats. If you just want to print, download the ZIP, extract it, and open the files in your slicer: you don't need a terminal or Python.</p>
+    <h3>Download the project</h3><p>The print files are ready in the <code>pecas/</code> folder, in STL and 3MF formats. If you only want to print, download the ZIP (about 80 MB), extract it, and open the files in your slicer: you do not need a terminal or Python. The <code>componentes/</code> folders are only outlines of purchased parts: do not print them.</p>
     <p><a class="btn" href="https://github.com/inematds/robos-impressos/archive/refs/heads/main.zip">Download everything as a ZIP</a></p>
     <p class="mini">If you want to change dimensions and regenerate the parts, you can clone the repository with git in a terminal:</p>
 <pre><span class="k">git clone</span> <span class="s">https://github.com/inematds/robos-impressos.git</span>
@@ -320,7 +320,7 @@
 <span class="k">ls</span> pecas/dino/stl pecas/capivara/stl pecas/cubo/stl pecas/comum/stl</pre>
   </div></div>
   <div class="step"><div class="b">2</div><div>
-    <h3>Print the test part</h3><p>Fit a micro servo, an M3 threaded insert (the brass insert heated with a soldering iron to create threads), and a pin into it. If the fit is too tight or loose, adjust the clearance in <code>cad/parametros.py</code>, in the <code>FOLGA</code> block (<code>componente</code> for the servo, <code>encaixe</code> for the pin, <code>inserto_d</code> for the insert), then regenerate it in step 3.</p>
+    <h3>Print the test part</h3><p>The test part has a window for the micro servo, three insert holes (3,9, 4,0, and 4,1 mm), holes for M3, M2,5, and M2 screws, and three sockets for the guide pin (clearances of 0,20, 0,25, and 0,30 mm). Print a guide pin too (<code>pecas/comum/stl/comum-pino-guia.stl</code>). The project uses the 4,0 mm hole and 0,25 mm socket: the M3 threaded insert (the brass sleeve that is heated with a soldering iron and becomes a thread) must fit firmly, and the pin must fit snugly without hammering. If both fit, continue. If not, adjust the clearance in <code>cad/parametros.py</code>, in the <code>FOLGA</code> block (<code>componente</code> for the servo, <code>encaixe</code> for the pin, <code>inserto_d</code> for the insert), and generate the parts again using step 3: that is when you need Python.</p>
 <pre><span class="c"># open this file in the slicer</span>
 pecas/comum/stl/comum-teste-encaixe.stl</pre>
     <p class="mini"><a href="https://github.com/inematds/robos-impressos/blob/main/pecas/comum/stl/comum-teste-encaixe.stl">view the test part on GitHub (download button on the page)</a></p>
@@ -332,74 +332,74 @@ pecas/comum/stl/comum-teste-encaixe.stl</pre>
 <span class="c"># takes a few minutes</span>
 <span class="k">.venv/bin/python</span> cad/gerar.py todos
 <span class="k">.venv/bin/python</span> cad/verificar.py todos</pre>
-    <p class="mini">These commands are for Linux and macOS. On Windows, replace <code>.venv/bin/pip</code> with <code>.venv\Scripts\pip</code> and <code>.venv/bin/python</code> with <code>.venv\Scripts\python</code>.</p>
+    <p class="mini">These commands are for Linux and macOS. On Windows, use <code>python</code> instead of <code>python3</code>, <code>dir</code> instead of <code>ls</code>, <code>.venv\Scripts\pip</code> instead of <code>.venv/bin/pip</code>, and <code>.venv\Scripts\python</code> instead of <code>.venv/bin/python</code>.</p>
   </div></div>
   <div class="step"><div class="b">4</div><div>
-    <h3>Print the build plates</h3><p>Each build plate below is one print: the parts are already laid flat, grouped by color and material, in a 3MF file ready to open in your slicer. The rounded shells need tree supports; the skeleton prints without supports.</p>
+    <h3>Print the build plates</h3><p>Each build plate below is one print: the parts are already laid flat, grouped by color and material, in a 3MF file containing the geometry (the file does not include slicer settings and has not yet been opened in a slicer). The file name is <code>&lt;modelo&gt;-mesa-NN-material-cor.3mf</code>. Starting point, not yet tested: 0,2 mm layer height, 0,4 mm nozzle, 3 walls, and 15 % infill. The rounded shells need tree supports; the skeleton prints without supports, except for <code>berco-tilt</code>. The test part and guide pins are already on the gray build plate.</p>
 <pre><span class="c"># one 3MF file per build plate, for each model</span>
 pecas/dino/mesas/     pecas/capivara/mesas/     pecas/cubo/mesas/</pre>
     <h4 class="sep4">🦖 Dinosaur</h4>
     <img class="shot" src="../assets/dino-mesas.jpg" alt="Render of the build plates, with parts laid flat and separated by color">
 <!-- TABELA:mesas:dino -->
-<p class="arraste">↔ on a phone, swipe the table sideways</p><div class="tabela-wrap"><table class="tabela"><thead><tr><th>Plate (1 plate = 1 print job)</th><th>Material</th><th>Colour</th><th>Part</th><th>3MF</th></tr></thead><tbody>
-<tr><td>1</td><td>PETG</td><td>yellow</td><td>bandeja-uno, bandeja-pi</td><td><code>pecas/dino/mesas/dino-mesa-01-petg-amarelo.3mf</code></td></tr>
-<tr><td>2</td><td>PETG</td><td>graphite</td><td>chassi</td><td><code>pecas/dino/mesas/dino-mesa-02-petg-grafite.3mf</code></td></tr>
-<tr><td>3</td><td>PETG</td><td>graphite</td><td>mesa-cabeca, garfo-pescoco, capa-esfera, berco-tilt</td><td><code>pecas/dino/mesas/dino-mesa-03-petg-grafite.3mf</code></td></tr>
-<tr><td>4</td><td>PLA</td><td>blue</td><td>crista-cabeca, crista-cauda, crista-costas, iris, iris-esq</td><td><code>pecas/dino/mesas/dino-mesa-04-pla-azul.3mf</code></td></tr>
-<tr><td>5</td><td>PLA</td><td>white</td><td>olho, olho-esq</td><td><code>pecas/dino/mesas/dino-mesa-05-pla-branco.3mf</code></td></tr>
-<tr><td>6</td><td>PLA</td><td>grey</td><td>teste-encaixe, bucha-eixo, pino-guia ×4</td><td><code>pecas/dino/mesas/dino-mesa-06-pla-cinza.3mf</code></td></tr>
-<tr><td>7</td><td>PLA</td><td>cream</td><td>barriga, unha ×6</td><td><code>pecas/dino/mesas/dino-mesa-07-pla-creme.3mf</code></td></tr>
-<tr><td>8</td><td>PLA</td><td>black</td><td>pupila, pupila-esq</td><td><code>pecas/dino/mesas/dino-mesa-08-pla-preto.3mf</code></td></tr>
-<tr><td>9</td><td>PLA</td><td>green</td><td>torso-frente</td><td><code>pecas/dino/mesas/dino-mesa-09-pla-verde.3mf</code></td></tr>
-<tr><td>10</td><td>PLA</td><td>green</td><td>torso-costas</td><td><code>pecas/dino/mesas/dino-mesa-10-pla-verde.3mf</code></td></tr>
-<tr><td>11</td><td>PLA</td><td>green</td><td>cranio, perna-dir</td><td><code>pecas/dino/mesas/dino-mesa-11-pla-verde.3mf</code></td></tr>
-<tr><td>12</td><td>PLA</td><td>green</td><td>perna-esq, cauda, braco-dir, braco-esq, mandibula</td><td><code>pecas/dino/mesas/dino-mesa-12-pla-verde.3mf</code></td></tr>
+<p class="arraste">↔ on a phone, swipe the table sideways</p><div class="tabela-wrap"><table class="tabela"><thead><tr><th>Plate</th><th>Material</th><th>Colour</th><th>Part</th></tr></thead><tbody>
+<tr><td>1</td><td>PETG</td><td>yellow</td><td>bandeja-uno, bandeja-pi</td></tr>
+<tr><td>2</td><td>PETG</td><td>graphite</td><td>chassi</td></tr>
+<tr><td>3</td><td>PETG</td><td>graphite</td><td>mesa-cabeca, garfo-pescoco, capa-esfera, berco-tilt</td></tr>
+<tr><td>4</td><td>PLA</td><td>blue</td><td>crista-cabeca, crista-cauda, crista-costas, iris, iris-esq</td></tr>
+<tr><td>5</td><td>PLA</td><td>white</td><td>olho, olho-esq</td></tr>
+<tr><td>6</td><td>PLA</td><td>grey</td><td>teste-encaixe, bucha-eixo, pino-guia ×4</td></tr>
+<tr><td>7</td><td>PLA</td><td>cream</td><td>barriga, unha ×6</td></tr>
+<tr><td>8</td><td>PLA</td><td>black</td><td>pupila, pupila-esq</td></tr>
+<tr><td>9</td><td>PLA</td><td>green</td><td>torso-frente</td></tr>
+<tr><td>10</td><td>PLA</td><td>green</td><td>torso-costas</td></tr>
+<tr><td>11</td><td>PLA</td><td>green</td><td>cranio, perna-dir</td></tr>
+<tr><td>12</td><td>PLA</td><td>green</td><td>perna-esq, cauda, braco-dir, braco-esq, mandibula</td></tr>
 </tbody></table></div>
 <!-- /TABELA -->
     <h4 class="sep4">🦫 Capybara</h4>
     <img class="shot" src="../assets/capivara-mesas.jpg" alt="Render of the build plates, with parts laid flat and separated by color">
 <!-- TABELA:mesas:capivara -->
-<p class="arraste">↔ on a phone, swipe the table sideways</p><div class="tabela-wrap"><table class="tabela"><thead><tr><th>Plate (1 plate = 1 print job)</th><th>Material</th><th>Colour</th><th>Part</th><th>3MF</th></tr></thead><tbody>
-<tr><td>1</td><td>PETG</td><td>yellow</td><td>bandeja-uno, bandeja-pi</td><td><code>pecas/capivara/mesas/capivara-mesa-01-petg-amarelo.3mf</code></td></tr>
-<tr><td>2</td><td>PETG</td><td>graphite</td><td>chassi</td><td><code>pecas/capivara/mesas/capivara-mesa-02-petg-grafite.3mf</code></td></tr>
-<tr><td>3</td><td>PETG</td><td>graphite</td><td>mesa-cabeca, garfo-pescoco, capa-esfera, berco-tilt</td><td><code>pecas/capivara/mesas/capivara-mesa-03-petg-grafite.3mf</code></td></tr>
-<tr><td>4</td><td>PLA</td><td>white</td><td>olho, olho-esq</td><td><code>pecas/capivara/mesas/capivara-mesa-04-pla-branco.3mf</code></td></tr>
-<tr><td>5</td><td>PLA</td><td>cyan</td><td>aro ×2</td><td><code>pecas/capivara/mesas/capivara-mesa-05-pla-ciano.3mf</code></td></tr>
-<tr><td>6</td><td>PLA</td><td>grey</td><td>teste-encaixe, bucha-eixo, pino-guia ×4</td><td><code>pecas/capivara/mesas/capivara-mesa-06-pla-cinza.3mf</code></td></tr>
-<tr><td>7</td><td>PLA</td><td>orange</td><td>torso-frente</td><td><code>pecas/capivara/mesas/capivara-mesa-07-pla-laranja.3mf</code></td></tr>
-<tr><td>8</td><td>PLA</td><td>orange</td><td>torso-costas</td><td><code>pecas/capivara/mesas/capivara-mesa-08-pla-laranja.3mf</code></td></tr>
-<tr><td>9</td><td>PLA</td><td>orange</td><td>cranio, coxa-dir</td><td><code>pecas/capivara/mesas/capivara-mesa-09-pla-laranja.3mf</code></td></tr>
-<tr><td>10</td><td>PLA</td><td>orange</td><td>coxa-esq, barriga, mandibula, topete</td><td><code>pecas/capivara/mesas/capivara-mesa-10-pla-laranja.3mf</code></td></tr>
-<tr><td>11</td><td>PLA</td><td>brown</td><td>rabo, focinho, pata-dir, pata-esq, orelha ×2, mao ×2, iris, iris-esq</td><td><code>pecas/capivara/mesas/capivara-mesa-11-pla-marrom.3mf</code></td></tr>
-<tr><td>12</td><td>PLA</td><td>black</td><td>pupila, pupila-esq</td><td><code>pecas/capivara/mesas/capivara-mesa-12-pla-preto.3mf</code></td></tr>
-<tr><td>13</td><td>PLA</td><td>green</td><td>bandana-frente, bandana-costas</td><td><code>pecas/capivara/mesas/capivara-mesa-13-pla-verde-bandana.3mf</code></td></tr>
+<p class="arraste">↔ on a phone, swipe the table sideways</p><div class="tabela-wrap"><table class="tabela"><thead><tr><th>Plate</th><th>Material</th><th>Colour</th><th>Part</th></tr></thead><tbody>
+<tr><td>1</td><td>PETG</td><td>yellow</td><td>bandeja-uno, bandeja-pi</td></tr>
+<tr><td>2</td><td>PETG</td><td>graphite</td><td>chassi</td></tr>
+<tr><td>3</td><td>PETG</td><td>graphite</td><td>mesa-cabeca, garfo-pescoco, capa-esfera, berco-tilt</td></tr>
+<tr><td>4</td><td>PLA</td><td>white</td><td>olho, olho-esq</td></tr>
+<tr><td>5</td><td>PLA</td><td>cyan</td><td>aro ×2</td></tr>
+<tr><td>6</td><td>PLA</td><td>grey</td><td>teste-encaixe, bucha-eixo, pino-guia ×4</td></tr>
+<tr><td>7</td><td>PLA</td><td>orange</td><td>torso-frente</td></tr>
+<tr><td>8</td><td>PLA</td><td>orange</td><td>torso-costas</td></tr>
+<tr><td>9</td><td>PLA</td><td>orange</td><td>cranio, coxa-dir</td></tr>
+<tr><td>10</td><td>PLA</td><td>orange</td><td>coxa-esq, barriga, mandibula, topete</td></tr>
+<tr><td>11</td><td>PLA</td><td>brown</td><td>rabo, focinho, pata-dir, pata-esq, orelha ×2, mao ×2, iris, iris-esq</td></tr>
+<tr><td>12</td><td>PLA</td><td>black</td><td>pupila, pupila-esq</td></tr>
+<tr><td>13</td><td>PLA</td><td>green</td><td>bandana-frente, bandana-costas</td></tr>
 </tbody></table></div>
 <!-- /TABELA -->
     <h4 class="sep4">🤖 Square robot</h4>
     <img class="shot" src="../assets/cubo-mesas.jpg" alt="Render of the build plates, with parts laid flat and separated by color">
 <!-- TABELA:mesas:cubo -->
-<p class="arraste">↔ on a phone, swipe the table sideways</p><div class="tabela-wrap"><table class="tabela"><thead><tr><th>Plate (1 plate = 1 print job)</th><th>Material</th><th>Colour</th><th>Part</th><th>3MF</th></tr></thead><tbody>
-<tr><td>1</td><td>PETG</td><td>yellow</td><td>engrenagem-servo, quadro-cabeca</td><td><code>pecas/cubo/mesas/cubo-mesa-01-petg-amarelo.3mf</code></td></tr>
-<tr><td>2</td><td>PETG</td><td>graphite</td><td>base</td><td><code>pecas/cubo/mesas/cubo-mesa-02-petg-grafite.3mf</code></td></tr>
-<tr><td>3</td><td>PETG</td><td>graphite</td><td>tampa-base, garfo</td><td><code>pecas/cubo/mesas/cubo-mesa-03-petg-grafite.3mf</code></td></tr>
-<tr><td>4</td><td>PETG</td><td>graphite</td><td>porta-traseira</td><td><code>pecas/cubo/mesas/cubo-mesa-04-petg-grafite.3mf</code></td></tr>
-<tr><td>5</td><td>PETG</td><td>silver</td><td>tubo-pescoco</td><td><code>pecas/cubo/mesas/cubo-mesa-05-petg-prata.3mf</code></td></tr>
-<tr><td>6</td><td>PLA</td><td>white</td><td>cabeca-corpo</td><td><code>pecas/cubo/mesas/cubo-mesa-06-pla-branco.3mf</code></td></tr>
-<tr><td>7</td><td>PLA</td><td>grey</td><td>teste-encaixe, espacador-pi ×4</td><td><code>pecas/cubo/mesas/cubo-mesa-07-pla-cinza.3mf</code></td></tr>
-<tr><td>8</td><td>PLA</td><td>black</td><td>cabeca-face</td><td><code>pecas/cubo/mesas/cubo-mesa-08-pla-preto.3mf</code></td></tr>
+<p class="arraste">↔ on a phone, swipe the table sideways</p><div class="tabela-wrap"><table class="tabela"><thead><tr><th>Plate</th><th>Material</th><th>Colour</th><th>Part</th></tr></thead><tbody>
+<tr><td>1</td><td>PETG</td><td>yellow</td><td>engrenagem-servo, quadro-cabeca</td></tr>
+<tr><td>2</td><td>PETG</td><td>graphite</td><td>base</td></tr>
+<tr><td>3</td><td>PETG</td><td>graphite</td><td>tampa-base, garfo</td></tr>
+<tr><td>4</td><td>PETG</td><td>graphite</td><td>porta-traseira</td></tr>
+<tr><td>5</td><td>PETG</td><td>silver</td><td>tubo-pescoco</td></tr>
+<tr><td>6</td><td>PLA</td><td>white</td><td>cabeca-corpo</td></tr>
+<tr><td>7</td><td>PLA</td><td>grey</td><td>teste-encaixe, espacador-pi ×4</td></tr>
+<tr><td>8</td><td>PLA</td><td>black</td><td>cabeca-face</td></tr>
 </tbody></table></div>
 <!-- /TABELA -->
   </div></div>
   <div class="step"><div class="b">5</div><div>
     <h3>Assemble one of the animals</h3><p>Assembly order for the dinosaur and capybara:</p>
-    <ol class="lista"><li>Install the M3 threaded inserts in the parts using heat.</li><li>Screw the two motors to the chassis walls from the outside, with the motor facing up.</li><li>Attach the support ball with the cover underneath.</li><li>Mount the head-turning servo on top of the chassis, then the fork, the second servo, and the cradle.</li><li>Slide in the battery and board trays from the rear.</li><li>Close the torso from the front, and only then fit the wheels from the sides.</li><li>Belly panel, back, legs or thighs, tail.</li><li>Assemble the head on the bench (build plate under the skull, mouth servo, jaw, eyes), then lower the whole assembly onto the neck: two screws from above, hidden under the crest.</li><li>Spikes, claws, ears, and bandana are press-fit or glued in place.</li></ol>
+    <ol class="lista"><li>Heat-set the M3 threaded inserts into the parts.</li><li>Screw the two motors onto the chassis walls (the large dark part, which is the skeleton), from the outside, with the motor facing up.</li><li>Attach the support ball with its cover underneath.</li><li>Mount the head-turning servo on top of the chassis, then the fork, the second servo, and the cradle (the two neck parts).</li><li>Put the battery and board trays in from the back.</li><li>Close the torso from the front, then fit the wheels from the sides.</li><li>Belly panel, back, legs or thighs, tail.</li><li>Assemble the head on the workbench (the <code>mesa-cabeca</code> part goes under the skull; then add the mouth servo, jaw, and eyes) and lower the whole head onto the neck: two screws from above, hidden under the crest.</li><li>Spikes, claws, ears, and bandana are press-fit or glued in place.</li></ol>
   </div></div>
   <div class="step"><div class="b">6</div><div>
     <h3>Or assemble the square robot</h3><p>Assembly order:</p>
     <ol class="lista"><li>Servo on the base floor and Arduino beside it; then the large gear on top of the servo.</li><li>Insert the battery through the rear door.</li><li>Neck tube under the cover, then the cover on the base.</li><li>Fork on top of the tube, with three long screws.</li><li>Raspberry Pi, screen, and the second servo on the head frame.</li><li>Head shell from the rear, screen frame from the front.</li><li>Head between the fork arms and the rear door.</li></ol>
   </div></div>
 
-  <h3 class="sep3">🦖 Dinosaur — parts to print</h3>
+  <h3 class="sep3" id="pecas">🦖 Dinosaur — parts to print</h3>
 <!-- TABELA:pecas:dino -->
 <p class="arraste">↔ on a phone, swipe the table sideways</p><div class="tabela-wrap"><table class="tabela"><thead><tr><th>Part</th><th>Size on the bed (mm)</th><th>Qty</th><th>Material</th><th>Colour</th><th>Supports</th><th>Filament (g)*</th><th>Time (h)*</th></tr></thead><tbody>
 <tr><td>torso-frente</td><td>145 × 226 × 96</td><td>1</td><td>PLA</td><td>green</td><td>yes</td><td>122</td><td>4.7</td></tr>
@@ -432,7 +432,7 @@ pecas/dino/mesas/     pecas/capivara/mesas/     pecas/cubo/mesas/</pre>
 <tr><td>garfo-pescoco (shared)</td><td>65 × 48 × 51</td><td>1</td><td>PETG</td><td>graphite</td><td>no</td><td>17</td><td>0.7</td></tr>
 <tr><td>berco-tilt (shared)</td><td>38 × 23 × 77</td><td>1</td><td>PETG</td><td>graphite</td><td>yes</td><td>15</td><td>0.6</td></tr>
 <tr><td>teste-encaixe (shared)</td><td>70 × 34 × 8</td><td>1</td><td>PLA</td><td>grey</td><td>no</td><td>15</td><td>0.6</td></tr>
-<tr><td><strong>Total</strong></td><td></td><td>38</td><td></td><td></td><td></td><td><strong>1108</strong></td><td><strong>44</strong></td></tr>
+<tr><td><strong>Total</strong></td><td></td><td>38</td><td></td><td></td><td></td><td><strong>1107</strong></td><td><strong>44</strong></td></tr>
 </tbody></table></div>
 <p class="nota">* estimate from volume, no slicer</p>
 <!-- /TABELA -->
@@ -446,8 +446,8 @@ pecas/dino/mesas/     pecas/capivara/mesas/     pecas/cubo/mesas/</pre>
 <tr><td>bandana-costas</td><td>119 × 38 × 67</td><td>1</td><td>PLA</td><td>green</td><td>yes</td><td>10</td><td>0.5</td></tr>
 <tr><td>mao</td><td>20 × 20 × 11</td><td>2</td><td>PLA</td><td>brown</td><td>no</td><td>5</td><td>0.3</td></tr>
 <tr><td>pino-guia (shared)</td><td>4 × 4 × 9</td><td>4</td><td>PLA</td><td>grey</td><td>no</td><td>0</td><td>0.3</td></tr>
-<tr><td>coxa-dir</td><td>46 × 119 × 82</td><td>1</td><td>PLA</td><td>orange</td><td>yes</td><td>38</td><td>1.5</td></tr>
-<tr><td>coxa-esq</td><td>46 × 119 × 82</td><td>1</td><td>PLA</td><td>orange</td><td>yes</td><td>38</td><td>1.5</td></tr>
+<tr><td>coxa-dir</td><td>46 × 119 × 82</td><td>1</td><td>PLA</td><td>orange</td><td>yes</td><td>37</td><td>1.5</td></tr>
+<tr><td>coxa-esq</td><td>46 × 119 × 82</td><td>1</td><td>PLA</td><td>orange</td><td>yes</td><td>37</td><td>1.5</td></tr>
 <tr><td>aro</td><td>40 × 40 × 3</td><td>2</td><td>PLA</td><td>cyan</td><td>no</td><td>4</td><td>0.3</td></tr>
 <tr><td>pata-dir</td><td>44 × 37 × 25</td><td>1</td><td>PLA</td><td>brown</td><td>no</td><td>10</td><td>0.5</td></tr>
 <tr><td>pata-esq</td><td>44 × 37 × 25</td><td>1</td><td>PLA</td><td>brown</td><td>no</td><td>10</td><td>0.5</td></tr>
@@ -472,7 +472,7 @@ pecas/dino/mesas/     pecas/capivara/mesas/     pecas/cubo/mesas/</pre>
 <tr><td>garfo-pescoco (shared)</td><td>65 × 48 × 51</td><td>1</td><td>PETG</td><td>graphite</td><td>no</td><td>17</td><td>0.7</td></tr>
 <tr><td>berco-tilt (shared)</td><td>38 × 23 × 77</td><td>1</td><td>PETG</td><td>graphite</td><td>yes</td><td>15</td><td>0.6</td></tr>
 <tr><td>teste-encaixe (shared)</td><td>70 × 34 × 8</td><td>1</td><td>PLA</td><td>grey</td><td>no</td><td>15</td><td>0.6</td></tr>
-<tr><td><strong>Total</strong></td><td></td><td>39</td><td></td><td></td><td></td><td><strong>1050</strong></td><td><strong>42</strong></td></tr>
+<tr><td><strong>Total</strong></td><td></td><td>39</td><td></td><td></td><td></td><td><strong>1049</strong></td><td><strong>42</strong></td></tr>
 </tbody></table></div>
 <p class="nota">* estimate from volume, no slicer</p>
 <!-- /TABELA -->
@@ -494,7 +494,7 @@ pecas/dino/mesas/     pecas/capivara/mesas/     pecas/cubo/mesas/</pre>
 </tbody></table></div>
 <p class="nota">* estimate from volume, no slicer</p>
 <!-- /TABELA -->
-  <h3 class="sep3">Shopping list</h3>
+  <h3 class="sep3" id="compras">Shopping list</h3>
   <p class="arraste">↔ on mobile, drag the table sideways</p>
   <div class="tabela-wrap"><table class="tabela">
     <thead><tr><th>Item</th><th>Dinosaur</th><th>Capybara</th><th>Square robot</th></tr></thead>
@@ -506,14 +506,15 @@ pecas/dino/mesas/     pecas/capivara/mesas/     pecas/cubo/mesas/</pre>
       <tr><td>Holder for 2 18650 batteries, with batteries</td><td>1</td><td>1</td><td>1</td></tr>
       <tr><td>Small rocker switch (KCD11)</td><td>1</td><td>1</td><td>1</td></tr>
       <tr><td>Raspberry Pi 4 or 5</td><td>optional</td><td>optional</td><td>1</td></tr>
-      <tr><td>3.5-inch screen for Raspberry Pi</td><td>—</td><td>—</td><td>1</td></tr>
+      <tr><td>3.5-inch screen for Raspberry Pi, model MPI3501 (fits the board pins; an HDMI screen will not work)</td><td>—</td><td>—</td><td>1</td></tr>
       <tr><td>L298N motor driver</td><td>1</td><td>1</td><td>—</td></tr>
       <tr><td>M3 heat-set threaded inserts</td><td>25</td><td>25</td><td>14</td></tr>
       <tr><td>M3 screws, nuts, and washers (and a few M2.5)</td><td>kit</td><td>kit</td><td>kit</td></tr>
       <tr><td>Arduino Uno with servo shield</td><td>optional</td><td>optional</td><td>optional</td></tr>
+      <tr><td>4 adhesive rubber feet</td><td>—</td><td>—</td><td>4</td></tr>
     </tbody></table></div>
-  <p class="nota">Nothing is powered in phase 1: Arduino and Raspberry Pi are only used to check the fit, so they're optional (in the square robot, the Raspberry Pi holds the screen). Exact quantities for each screw: <a href="https://github.com/inematds/robos-impressos/blob/main/PLANO.md">PLANO.md</a> (in Portuguese), section 3.</p>
-  <p class="nota">Estimated component cost, excluding the printer, filament, and Raspberry Pi: R$ 330 to 560 per animal and R$ 260 to 430 for the square robot (prices from Brazilian stores in November 2026; estimate).</p>
+  <p class="nota">Nothing is powered in phase 1: Arduino and Raspberry Pi are only for checking the fit, so they are optional (in the square robot, the Raspberry Pi holds the screen). The square robot also needs 3 M3×35 screws, 8 M3×12 flat-head screws, and 4 M2,5×12 screws. Screw quantities: section 3 of <a href="https://github.com/inematds/robos-impressos/blob/main/PLANO.md">PLANO.md</a> (in Portuguese).</p>
+  <p class="nota">Estimated component cost, including Arduino and shield but excluding the printer and filament: R$ 330 to 560 per animal. For the square robot, R$ 260 to 430 plus the Raspberry Pi and screen, which are required for that model (estimated additional cost of R$ 490 to 850). Prices from Brazilian shops in November 2026; estimate.</p>
   <p class="nota">Tools: soldering iron (for the inserts), small Phillips screwdriver, 2.5 mm Allen key, calipers (to measure your components), and instant glue.</p>
   <p class="nota">Be careful with 18650 batteries: they are lithium batteries. Use a proper holder and charger, keep the terminals from touching metal, and don't charge them unattended, especially with children nearby.</p>
 </div></section>
@@ -538,8 +539,8 @@ pecas/dino/mesas/     pecas/capivara/mesas/     pecas/cubo/mesas/</pre>
   [PASSOU] 5 interferência: 54 sólidos (37 impressos + 17 componentes), 12 poses, 0 sobreposições; 2 encaixe(s) previsto(s) fora da conta: motor-tt-dir x roda-dir (eixo do motor entra no cubo da roda); motor-tt-esq x roda-esq (eixo do motor entra no cubo da roda)
   [PASSOU] 6 teste negativo: 'chassi' deslocada 3 mm em X → 13 sobreposições acusadas (tem que ser > 0)
   [PASSOU] 7 peça solta: as 37 peças montadas encostam (≤ 1.5 mm) em outra
-  [PASSOU] 8 equilíbrio: massa estimada 1668 g; CG neutro em x=0.1 y=-26.1 z=118.1 mm, margem 26.1 mm (tomba com 12°); pior pose 'tilt-baixo': margem 22.1 mm (11°); mínimo exigido 10 mm
-  [PASSOU] 9 caminho: 26 passos de montagem, cada peça entra pela direção declarada sem atravessar o que já está montado
+  [PASSOU] 8 equilíbrio: massa estimada 1666 g; CG neutro em x=0.1 y=-26.1 z=118.2 mm, margem 26.1 mm (tomba com 12°); pior pose 'tilt-baixo': margem 22.1 mm (11°); mínimo exigido 10 mm
+  [PASSOU] 9 caminho: 31 passos (montagem + abertura para manutenção), cada peça entra ou sai pela direção declarada sem atravessar o que está montado
 == capivara
   [PASSOU] 1 contagem: 33 peças distintas, 39 no total (esperado 39); faltando 0; sobrando 0
   [PASSOU] 2 malha: 33 STL fechados, 1 corpo cada
@@ -548,8 +549,8 @@ pecas/dino/mesas/     pecas/capivara/mesas/     pecas/cubo/mesas/</pre>
   [PASSOU] 5 interferência: 53 sólidos (38 impressos + 15 componentes), 8 poses, 0 sobreposições; 2 encaixe(s) previsto(s) fora da conta: motor-tt-dir x roda-dir (eixo do motor entra no cubo da roda); motor-tt-esq x roda-esq (eixo do motor entra no cubo da roda)
   [PASSOU] 6 teste negativo: 'chassi' deslocada 3 mm em X → 12 sobreposições acusadas (tem que ser > 0)
   [PASSOU] 7 peça solta: as 38 peças montadas encostam (≤ 1.5 mm) em outra
-  [PASSOU] 8 equilíbrio: massa estimada 1583 g; CG neutro em x=-0.0 y=-24.9 z=117.3 mm, margem 24.9 mm (tomba com 12°); pior pose 'tilt-baixo': margem 21.0 mm (10°); mínimo exigido 10 mm
-  [PASSOU] 9 caminho: 22 passos de montagem, cada peça entra pela direção declarada sem atravessar o que já está montado
+  [PASSOU] 8 equilíbrio: massa estimada 1581 g; CG neutro em x=-0.0 y=-24.9 z=117.4 mm, margem 24.9 mm (tomba com 12°); pior pose 'tilt-baixo': margem 21.0 mm (10°); mínimo exigido 10 mm
+  [PASSOU] 9 caminho: 27 passos (montagem + abertura para manutenção), cada peça entra ou sai pela direção declarada sem atravessar o que está montado
 == cubo
   [PASSOU] 1 contagem: 11 peças distintas, 14 no total (esperado 14); faltando 0; sobrando 0
   [PASSOU] 2 malha: 11 STL fechados, 1 corpo cada
@@ -559,7 +560,7 @@ pecas/dino/mesas/     pecas/capivara/mesas/     pecas/cubo/mesas/</pre>
   [PASSOU] 6 teste negativo: 'quadro-cabeca' deslocada 3 mm em X → 1 sobreposições acusadas (tem que ser > 0)
   [PASSOU] 7 peça solta: as 13 peças montadas encostam (≤ 1.5 mm) em outra
   [PASSOU] 8 equilíbrio: massa estimada 1020 g; CG neutro em x=-2.2 y=5.0 z=74.5 mm, margem 59.0 mm (tomba com 38°); pior pose 'pan+37': margem 58.8 mm (38°); mínimo exigido 10 mm
-  [PASSOU] 9 caminho: 12 passos de montagem, cada peça entra pela direção declarada sem atravessar o que já está montado</pre>
+  [PASSOU] 9 caminho: 12 passos (montagem + abertura para manutenção), cada peça entra ou sai pela direção declarada sem atravessar o que está montado</pre>
 </div></section>
 
 <section id="fase2"><div class="wrap">

@@ -20,15 +20,15 @@ MODELOS = ["dino", "capivara", "cubo"]
 T = {
     "pt": dict(peca="Peça", dim="Tamanho deitada (mm)", qtd="Qtd", mat="Material", cor="Cor", sup="Suporte", massa="Filamento (g)*", tempo="Tempo (h)*",
                comum="comum", total="Total", teste="Teste", res="Resultado", passou="PASSOU", falhou="FALHOU", modelo="Modelo", altura="Altura (mm)",
-               pecas="Peças", mesas="Mesa (1 mesa = 1 impressão)", massa_t="Filamento total (g)*", tempo_t="Impressão total (h)*", massa_robo="Robô montado (g)*",
+               pecas="Peças", mesas="Mesa", massa_t="Filamento total (g)*", tempo_t="Impressão total (h)*", massa_robo="Robô montado (g)*",
                nao="não", sim="sim", est="* estimativa por volume, sem fatiador"),
     "en": dict(peca="Part", dim="Size on the bed (mm)", qtd="Qty", mat="Material", cor="Colour", sup="Supports", massa="Filament (g)*", tempo="Time (h)*",
                comum="shared", total="Total", teste="Test", res="Result", passou="PASSED", falhou="FAILED", modelo="Model", altura="Height (mm)",
-               pecas="Parts", mesas="Plate (1 plate = 1 print job)", massa_t="Total filament (g)*", tempo_t="Total print time (h)*", massa_robo="Assembled robot (g)*",
+               pecas="Parts", mesas="Plate", massa_t="Total filament (g)*", tempo_t="Total print time (h)*", massa_robo="Assembled robot (g)*",
                nao="no", sim="yes", est="* estimate from volume, no slicer"),
     "es": dict(peca="Pieza", dim="Tamaño en la cama (mm)", qtd="Cant.", mat="Material", cor="Color", sup="Soportes", massa="Filamento (g)*", tempo="Tiempo (h)*",
                comum="común", total="Total", teste="Prueba", res="Resultado", passou="PASÓ", falhou="FALLÓ", modelo="Modelo", altura="Altura (mm)",
-               pecas="Piezas", mesas="Cama (1 cama = 1 impresión)", massa_t="Filamento total (g)*", tempo_t="Impresión total (h)*", massa_robo="Robot armado (g)*",
+               pecas="Piezas", mesas="Cama", massa_t="Filamento total (g)*", tempo_t="Impresión total (h)*", massa_robo="Robot armado (g)*",
                nao="no", sim="sí", est="* estimación por volumen, sin laminador"),
 }
 NOMES = {"pt": {"dino": "Dinossauro", "capivara": "Capivara", "cubo": "Robô quadrado"},
@@ -89,13 +89,13 @@ def altura(m):
 def linhas_mesas(m, lg):
     _, _, ms = carrega(m)
     t = T[lg]
-    cab = [t["mesas"], t["mat"], t["cor"], t["peca"], "3MF"]
+    cab = [t["mesas"], t["mat"], t["cor"], t["peca"]]
     ls = []
     for x in ms["mesas_lista"]:
         from collections import Counter
         c = Counter(x["itens"])
         itens = ", ".join(f"{n} ×{q}" if q > 1 else n for n, q in c.items())
-        ls.append([str(x["mesa"]), x["material"], CORES.get(lg, {}).get(x["cor"], x["cor"]), itens, f'<code>pecas/{m}/{x.get("arquivo", "")}</code>'])
+        ls.append([str(x["mesa"]), x["material"], CORES.get(lg, {}).get(x["cor"], x["cor"]), itens])
     return cab, ls
 
 

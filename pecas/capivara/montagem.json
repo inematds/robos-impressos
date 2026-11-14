@@ -586,7 +586,7 @@
       0.0,
       1.0,
       0.0,
-      1.0964274082781138
+      1.3539077550872456
      ],
      [
       0.0,
@@ -612,13 +612,13 @@
    "macica": false,
    "dim": [
     46.5,
-    119.1,
+    118.6,
     81.7
    ],
-   "tris": 21916,
-   "plastico_cm3": 30.4,
-   "massa_g": 37.7,
-   "tempo_h": 1.49,
+   "tris": 21488,
+   "plastico_cm3": 29.8,
+   "massa_g": 37.0,
+   "tempo_h": 1.46,
    "obs": "cobre a roda direita; 2 M3 por baixo",
    "liso": true
   },
@@ -650,7 +650,7 @@
       0.0,
       1.0,
       0.0,
-      1.0964274082781138
+      1.3539077550872456
      ],
      [
       0.0,
@@ -676,13 +676,13 @@
    "macica": false,
    "dim": [
     46.5,
-    119.1,
+    118.6,
     81.7
    ],
-   "tris": 21912,
-   "plastico_cm3": 30.4,
-   "massa_g": 37.7,
-   "tempo_h": 1.49,
+   "tris": 21488,
+   "plastico_cm3": 29.8,
+   "massa_g": 37.0,
+   "tempo_h": 1.46,
    "obs": "cobre a roda esquerda; 2 M3 por baixo",
    "liso": true
   },
@@ -3483,6 +3483,89 @@
     1.0
    ],
    "curso": 140
+  },
+  {
+   "passo": "ABRIR: cabeça sai para cima",
+   "move": [
+    "cranio",
+    "mesa-cabeca",
+    "mandibula",
+    "bucha-eixo",
+    "servo-boca MG90S",
+    "camera (fase 2)",
+    "focinho",
+    "orelha",
+    "topete",
+    "olho",
+    "olho-esq",
+    "iris",
+    "iris-esq",
+    "pupila",
+    "pupila-esq"
+   ],
+   "dir": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "curso": 140,
+   "sai": true
+  },
+  {
+   "passo": "ABRIR: traseira sai",
+   "move": [
+    "rabo"
+   ],
+   "dir": [
+    0.0,
+    -1.0,
+    0.0
+   ],
+   "curso": 160,
+   "sai": true
+  },
+  {
+   "passo": "ABRIR: torso-costas sai",
+   "move": [
+    "torso-costas",
+    "pino-guia",
+    "bandana-costas"
+   ],
+   "dir": [
+    0.0,
+    -1.0,
+    0.0
+   ],
+   "curso": 160,
+   "sai": true
+  },
+  {
+   "passo": "ABRIR: bandeja do Pi sai",
+   "move": [
+    "bandeja-pi",
+    "Raspberry Pi 4/5"
+   ],
+   "dir": [
+    0.0,
+    -1.0,
+    0.0
+   ],
+   "curso": 160,
+   "sai": true
+  },
+  {
+   "passo": "ABRIR: bandeja do Uno sai",
+   "move": [
+    "bandeja-uno",
+    "Arduino Uno + shield"
+   ],
+   "dir": [
+    0.0,
+    -1.0,
+    0.0
+   ],
+   "curso": 160,
+   "sai": true
   }
  ]
 }

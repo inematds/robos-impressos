@@ -40,7 +40,7 @@ CSS_EXTRA = """
   pre.saida{white-space:pre-wrap;font-size:.8rem;line-height:1.5}
   .card ul{margin:.5em 0 0 1.1em;padding:0} .card li{margin:.35em 0}
   @media(max-width:1180px){nav .links .sec{display:none}}
-  @media(max-width:860px){.g2,.g4{grid-template-columns:1fr}.barra{grid-template-columns:110px 1fr 50px}.arraste{display:block}pre{white-space:pre-wrap;word-break:break-all}.glossario{grid-template-columns:1fr;gap:2px 0}.glossario dd{margin:0 0 10px}}
+  @media(max-width:860px){.g2,.g4{grid-template-columns:1fr}.barra{grid-template-columns:110px 1fr 50px}.arraste{display:block}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:.74rem}figcaption.mini{padding:8px 4px 0}.glossario{grid-template-columns:1fr;gap:2px 0}.glossario dd{margin:0 0 10px}}
 """
 
 

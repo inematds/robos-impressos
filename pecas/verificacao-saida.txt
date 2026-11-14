@@ -6,8 +6,8 @@
   [PASSOU] 5 interferência: 54 sólidos (37 impressos + 17 componentes), 12 poses, 0 sobreposições; 2 encaixe(s) previsto(s) fora da conta: motor-tt-dir x roda-dir (eixo do motor entra no cubo da roda); motor-tt-esq x roda-esq (eixo do motor entra no cubo da roda)
   [PASSOU] 6 teste negativo: 'chassi' deslocada 3 mm em X → 13 sobreposições acusadas (tem que ser > 0)
   [PASSOU] 7 peça solta: as 37 peças montadas encostam (≤ 1.5 mm) em outra
-  [PASSOU] 8 equilíbrio: massa estimada 1668 g; CG neutro em x=0.1 y=-26.1 z=118.1 mm, margem 26.1 mm (tomba com 12°); pior pose 'tilt-baixo': margem 22.1 mm (11°); mínimo exigido 10 mm
-  [PASSOU] 9 caminho: 26 passos de montagem, cada peça entra pela direção declarada sem atravessar o que já está montado
+  [PASSOU] 8 equilíbrio: massa estimada 1666 g; CG neutro em x=0.1 y=-26.1 z=118.2 mm, margem 26.1 mm (tomba com 12°); pior pose 'tilt-baixo': margem 22.1 mm (11°); mínimo exigido 10 mm
+  [PASSOU] 9 caminho: 31 passos (montagem + abertura para manutenção), cada peça entra ou sai pela direção declarada sem atravessar o que está montado
   => dino: TUDO PASSOU
 == verificação: capivara (Capivara)
   [PASSOU] 1 contagem: 33 peças distintas, 39 no total (esperado 39); faltando 0; sobrando 0
@@ -17,8 +17,8 @@
   [PASSOU] 5 interferência: 53 sólidos (38 impressos + 15 componentes), 8 poses, 0 sobreposições; 2 encaixe(s) previsto(s) fora da conta: motor-tt-dir x roda-dir (eixo do motor entra no cubo da roda); motor-tt-esq x roda-esq (eixo do motor entra no cubo da roda)
   [PASSOU] 6 teste negativo: 'chassi' deslocada 3 mm em X → 12 sobreposições acusadas (tem que ser > 0)
   [PASSOU] 7 peça solta: as 38 peças montadas encostam (≤ 1.5 mm) em outra
-  [PASSOU] 8 equilíbrio: massa estimada 1583 g; CG neutro em x=-0.0 y=-24.9 z=117.3 mm, margem 24.9 mm (tomba com 12°); pior pose 'tilt-baixo': margem 21.0 mm (10°); mínimo exigido 10 mm
-  [PASSOU] 9 caminho: 22 passos de montagem, cada peça entra pela direção declarada sem atravessar o que já está montado
+  [PASSOU] 8 equilíbrio: massa estimada 1581 g; CG neutro em x=-0.0 y=-24.9 z=117.4 mm, margem 24.9 mm (tomba com 12°); pior pose 'tilt-baixo': margem 21.0 mm (10°); mínimo exigido 10 mm
+  [PASSOU] 9 caminho: 27 passos (montagem + abertura para manutenção), cada peça entra ou sai pela direção declarada sem atravessar o que está montado
   => capivara: TUDO PASSOU
 == verificação: cubo (Robô quadrado de mesa)
   [PASSOU] 1 contagem: 11 peças distintas, 14 no total (esperado 14); faltando 0; sobrando 0
@@ -29,5 +29,5 @@
   [PASSOU] 6 teste negativo: 'quadro-cabeca' deslocada 3 mm em X → 1 sobreposições acusadas (tem que ser > 0)
   [PASSOU] 7 peça solta: as 13 peças montadas encostam (≤ 1.5 mm) em outra
   [PASSOU] 8 equilíbrio: massa estimada 1020 g; CG neutro em x=-2.2 y=5.0 z=74.5 mm, margem 59.0 mm (tomba com 38°); pior pose 'pan+37': margem 58.8 mm (38°); mínimo exigido 10 mm
-  [PASSOU] 9 caminho: 12 passos de montagem, cada peça entra pela direção declarada sem atravessar o que já está montado
+  [PASSOU] 9 caminho: 12 passos (montagem + abertura para manutenção), cada peça entra ou sai pela direção declarada sem atravessar o que está montado
   => cubo: TUDO PASSOU

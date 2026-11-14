@@ -237,11 +237,13 @@ def verificar(nome: str, rapido=False) -> bool:
         por_nome.setdefault(it[0].split("#")[0], []).append(it)
         if "#" in it[0]:
             por_nome.setdefault(it[0], []).append(it)
-    montados, travados, n_passos = [], [], 0
+    montados, travados, n_passos, saiu = [], [], 0, set()
     for o in ordem:
         moveis = [it for n in o["move"] for it in por_nome.get(n, [])]
         nomes_m = {it[0] for it in moveis}
         estaticos = [it for n in (o.get("contra") or montados) for it in por_nome.get(n, []) if it[0] not in nomes_m]
+        if o.get("sai"):                       # passo de DESMONTAGEM: a peça sai contra tudo o que continua montado
+            estaticos = [it for n in montados for it in por_nome.get(n, []) if it[0] not in nomes_m]
         d = np.array(o["dir"], float)
         d = d / np.linalg.norm(d)
         curso = float(o.get("curso", 120.0))
@@ -274,12 +276,16 @@ def verificar(nome: str, rapido=False) -> bool:
         if achou:
             travados.append(f"{o['passo']}: {achou[0]} bate em {achou[1]} a {achou[2]:.0f} mm do lugar ({achou[3]:.0f} mm³)")
         for n in o["move"]:
-            if n not in montados:
+            if o.get("sai"):
+                if n in montados:
+                    montados.remove(n)
+                saiu.add(n.split("#")[0])
+            elif n not in montados:
                 montados.append(n)
     if ordem:
-        fora = sorted({it[0].split("#")[0] for it in itens} - {n.split("#")[0] for n in montados})
+        fora = sorted({it[0].split("#")[0] for it in itens} - {n.split("#")[0] for n in montados} - saiu)
         resultado("9 caminho", not travados and not fora,
-                  f"{n_passos} passos de montagem, cada peça entra pela direção declarada sem atravessar o que já está montado"
+                  f"{n_passos} passos (montagem + abertura para manutenção), cada peça entra ou sai pela direção declarada sem atravessar o que está montado"
                   if not travados and not fora else ("; ".join(travados[:6]) + (f"; fora da ordem: {fora}" if fora else "")))
     rel["caminho"] = travados
 

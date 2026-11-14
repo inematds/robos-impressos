@@ -145,6 +145,7 @@ def varredura_costas(torso_gordo: Manifold) -> Manifold:
     """Volume que o torso-costas varre ao sair para trás (-Y): silhueta da metade de trás, extrudada."""
     tras = torso_gordo ^ caixa(-400, 400, -400, B.costura_y, -50, 500)
     sil = tras.transform([[1, 0, 0, 0], [0, 0, 1, 0], [0, -1, 0, 0]]).project()        # (x, z) no plano; y vira altura
+    sil = sil.offset(1.2, __import__("manifold3d").JoinType.Round)                       # folga para as costas passarem sem raspar
     return Manifold.extrude(sil, 300).transform([[1, 0, 0, 0], [0, 0, -1, B.costura_y], [0, 1, 0, 0]])
 
 
@@ -158,7 +159,7 @@ def perna(pele: Pele, torso_gordo: Manifold, furos=None, lado=1):
     casca = casca - caixa(-5, BS.X1 + P.TT.caixa[2] + 1.0, -400, 400, -50, 400)
     for (x, y) in (furos if furos is not None else B.furos_perna):
         o, fi = orelha_piso(x, y, ext, para=(0, 1 if y > 0 else -1, 0), larg=9.0, comp=9.0)
-        casca = casca + (o - torso_gordo) - fi
+        casca = casca + (o - torso_gordo - varredura_costas(torso_gordo)) - fi
     return casca, ext
 
 

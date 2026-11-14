@@ -31,11 +31,11 @@
   },
   "8 equilíbrio": {
    "ok": true,
-   "texto": "massa estimada 1668 g; CG neutro em x=0.1 y=-26.1 z=118.1 mm, margem 26.1 mm (tomba com 12°); pior pose 'tilt-baixo': margem 22.1 mm (11°); mínimo exigido 10 mm"
+   "texto": "massa estimada 1666 g; CG neutro em x=0.1 y=-26.1 z=118.2 mm, margem 26.1 mm (tomba com 12°); pior pose 'tilt-baixo': margem 22.1 mm (11°); mínimo exigido 10 mm"
   },
   "9 caminho": {
    "ok": true,
-   "texto": "26 passos de montagem, cada peça entra pela direção declarada sem atravessar o que já está montado"
+   "texto": "31 passos (montagem + abertura para manutenção), cada peça entra ou sai pela direção declarada sem atravessar o que está montado"
   }
  },
  "interferencias": [],
@@ -46,88 +46,88 @@
    "cg": [
     0.1,
     -26.1,
-    118.1
+    118.2
    ],
    "margem_mm": 26.1,
    "tomba_graus": 12.5,
-   "massa_g": 1668.0
+   "massa_g": 1666.0
   },
   {
    "pose": "pan-esq",
    "cg": [
     -5.6,
-    -29.4,
-    118.1
+    -29.3,
+    118.2
    ],
-   "margem_mm": 29.4,
-   "tomba_graus": 14.0,
-   "massa_g": 1668.0
+   "margem_mm": 29.3,
+   "tomba_graus": 13.9,
+   "massa_g": 1666.0
   },
   {
    "pose": "pan-dir",
    "cg": [
     5.7,
     -29.4,
-    118.1
+    118.2
    ],
    "margem_mm": 29.4,
    "tomba_graus": 14.0,
-   "massa_g": 1668.0
+   "massa_g": 1666.0
   },
   {
    "pose": "tilt-cima",
    "cg": [
     0.1,
     -32.1,
-    119.3
+    119.4
    ],
    "margem_mm": 32.1,
-   "tomba_graus": 15.1,
-   "massa_g": 1668.0
+   "tomba_graus": 15.0,
+   "massa_g": 1666.0
   },
   {
    "pose": "tilt-baixo",
    "cg": [
     0.1,
     -22.1,
-    115.8
+    115.9
    ],
    "margem_mm": 22.1,
    "tomba_graus": 10.8,
-   "massa_g": 1668.0
+   "massa_g": 1666.0
   },
   {
    "pose": "boca-aberta",
    "cg": [
     0.1,
     -26.1,
-    118.0
+    118.1
    ],
    "margem_mm": 26.1,
    "tomba_graus": 12.5,
-   "massa_g": 1668.0
+   "massa_g": 1666.0
   },
   {
    "pose": "pan+tilt-baixo+boca",
    "cg": [
     -9.1,
     -27.4,
-    115.7
+    115.8
    ],
    "margem_mm": 27.4,
    "tomba_graus": 13.3,
-   "massa_g": 1668.0
+   "massa_g": 1666.0
   },
   {
    "pose": "pan+tilt-cima",
    "cg": [
     0.5,
     -32.4,
-    119.3
+    119.4
    ],
    "margem_mm": 32.4,
    "tomba_graus": 15.2,
-   "massa_g": 1668.0
+   "massa_g": 1666.0
   },
   {
    "pose": "bracos-cima",
@@ -138,46 +138,46 @@
    ],
    "margem_mm": 26.1,
    "tomba_graus": 12.4,
-   "massa_g": 1668.0
+   "massa_g": 1666.0
   },
   {
    "pose": "bracos-baixo",
    "cg": [
     0.1,
-    -26.2,
-    118.0
+    -26.1,
+    118.1
    ],
-   "margem_mm": 26.2,
+   "margem_mm": 26.1,
    "tomba_graus": 12.5,
-   "massa_g": 1668.0
+   "massa_g": 1666.0
   },
   {
    "pose": "tudo-1",
    "cg": [
     -9.1,
     -27.4,
-    116.0
+    116.1
    ],
    "margem_mm": 27.4,
    "tomba_graus": 13.3,
-   "massa_g": 1668.0
+   "massa_g": 1666.0
   },
   {
    "pose": "tudo-2",
    "cg": [
     9.1,
-    -27.5,
-    115.8
+    -27.4,
+    115.9
    ],
-   "margem_mm": 27.5,
+   "margem_mm": 27.4,
    "tomba_graus": 13.3,
-   "massa_g": 1668.0
+   "massa_g": 1666.0
   }
  ],
  "resumo": {
   "pecas_distintas": 30,
   "pecas_total": 38,
-  "massa_impressa_g": 1108.0,
+  "massa_impressa_g": 1107.0,
   "tempo_total_h": 44.1,
   "ok": true
  }

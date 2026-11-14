@@ -21,10 +21,10 @@ Plan detallado (decisiones, piezas, fuentes de las medidas, montaje tornillo por
 Las imágenes son **renders** de las piezas del proyecto. El banner es una ilustración hecha con IA.
 
 <!-- TABELA:resumo -->
-| Modelo | Altura (mm) | Piezas | Cama (1 cama = 1 impresión) | Filamento total (g)* | Impresión total (h)* | Robot armado (g)* |
+| Modelo | Altura (mm) | Piezas | Cama | Filamento total (g)* | Impresión total (h)* | Robot armado (g)* |
 |---|---|---|---|---|---|---|
-| Dinosaurio | 329 | 38 | 12 | 1108 | 44 | 1668 |
-| Carpincho | 326 | 39 | 13 | 1050 | 42 | 1583 |
+| Dinosaurio | 329 | 38 | 12 | 1107 | 44 | 1666 |
+| Carpincho | 326 | 39 | 13 | 1049 | 42 | 1581 |
 | Robot cuadrado | 201 | 14 | 8 | 638 | 25 | 1020 |
 
 * estimación por volumen, sin laminador
@@ -77,7 +77,7 @@ Actualmente, ningún paso usa `claude -p`.
 
 ## Estado
 
-Versión **v1.0.0**. Los tres modelos pasan las 9 pruebas del verificador. **No se ha impreso ni armado nada**: las holguras, las medidas sin fuente (marcadas NC) y los tiempos de impresión son valores iniciales. La fase 2 (electrónica, voz, visión, navegación, IA) aún no ha comenzado.
+Versión **v1.0.1**. Los tres modelos pasan las 9 pruebas del verificador. **No se ha impreso ni armado nada**: las holguras, las medidas sin fuente (marcadas NC) y los tiempos de impresión son valores iniciales. La fase 2 (electrónica, voz, visión, navegación, IA) aún no ha comenzado.
 
 ---
 

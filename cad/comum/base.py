@@ -426,6 +426,15 @@ def ordem_bicho(traseira, pernas, cabeca, extras_frente=(), extras_costas=(), br
     ]
     if bracos:
         o += [dict(passo="braço direito", move=["braco-dir"], dir=X, curso=60), dict(passo="braço esquerdo", move=["braco-esq"], dir=nX, curso=60)]
+    # abertura para manutenção (teste de saída): cabeça, traseira, costas e bandejas.
+    # A cabeça sai antes porque a metade de trás da esfera do pescoço fica dentro dela.
+    o += [
+        dict(passo="ABRIR: cabeça sai para cima", move=list(cabeca), dir=Z, curso=140, sai=True),
+        dict(passo="ABRIR: traseira sai", move=list(traseira), dir=nY, curso=160, sai=True),
+        dict(passo="ABRIR: torso-costas sai", move=["torso-costas", "pino-guia", *extras_costas], dir=nY, curso=160, sai=True),
+        dict(passo="ABRIR: bandeja do Pi sai", move=["bandeja-pi", "Raspberry Pi 4/5"], dir=nY, curso=160, sai=True),
+        dict(passo="ABRIR: bandeja do Uno sai", move=["bandeja-uno", "Arduino Uno + shield"], dir=nY, curso=160, sai=True),
+    ]
     return o
 
 
