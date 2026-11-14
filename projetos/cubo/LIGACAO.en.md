@@ -61,7 +61,7 @@ part of its discharge.
 |---|---|---|---|---|
 | LM2596 OUT+ output (5.1 V) | Through the neck, to the + screw terminal on the USB-C adapter, which plugs into the Raspberry Pi USB-C port | red | 22 AWG | Set the 5.1 V BEFORE connecting this wire. |
 | LM2596 OUT− output | Through the neck, to the − screw terminal on the USB-C adapter | black | 22 AWG |  |
-| LM2596 OUT+ output (5.1 V) | 5 V pin on the Sensor Shield (the + on the COM or IIC connector) | red | Dupont | This is how the Arduino gets power. First, use a multimeter to confirm that this pin has NO continuity with the blue VCC screw terminal. |
+| LM2596 OUT+ output (5.1 V) | 5 V pin on the Sensor Shield (the + on the COM or IIC connector) | red | Dupont | This is how the Arduino receives power. First, with the Uno powered only by USB and the SEL jumper removed, use a multimeter to confirm that this pin reads about 5 V and the D9 V pin reads 0 V. The wrong pin here sends the servos’ 6 V to the Raspberry Pi. |
 | LM2596 OUT− output | − (GND) pin on the same Sensor Shield connector | black | Dupont |  |
 
 ### 6 V: servos
@@ -104,15 +104,16 @@ The program is the sketch [centrar_servos.ino](firmware/centrar_servos/centrar_s
 the center and holds them there.
 
 1. Open the sketch in the Arduino IDE. Connect the Arduino Uno to your computer with the USB cable, without the shield or battery.
-2. Under Tools, select the Arduino Uno board and the port it appeared on. Click Upload.
-3. Unplug the USB cable.
-4. Fit the Sensor Shield onto the Uno and remove the shield's SEL jumper.
-5. Set the multimeter to continuity and confirm that the 5 V pin you will use on the shield does NOT beep when checked against the blue VCC screw terminal.
-6. Connect the UBEC's 6 V output to the blue screw terminal (VCC and GND) and connect the 1000 µF capacitor to the same terminal.
-7. Connect the LM2596's 5.1 V output to the shield's 5 V pin and the negative wire to a G pin.
-8. Connect the pan servo to D9 and the tilt servo to D10.
-9. Turn on the switch: both servos move to the center (90°) and the Uno LED blinks once per second.
-10. Turn it off. From now on, do not turn the servo shafts by hand.
+2. In Tools, select the Arduino Uno board and the port it appeared on. Click Upload.
+3. Unplug the USB cable, fit the Sensor Shield onto the Uno, and remove the shield’s SEL jumper.
+4. Plug the USB cable back in, just to measure with the multimeter: the 5 V pin you’ll use on the shield (the + on the COM or IIC connector) should read about 5 V, and the V pin on D9 should read 0 V.
+5. If the V pin on D9 reads 5 V, the SEL jumper is still in place. If the 5 V pin reads 0 V, choose another + pin and measure again. A wrong pin here sends the servos’ 6 V to the Raspberry Pi.
+6. Unplug the USB cable.
+7. Connect the UBEC’s 6 V to the blue screw terminal (VCC and GND), and connect the 1000 µF capacitor to the same terminal.
+8. Connect the LM2596’s 5.1 V to the shield’s 5 V pin and the negative wire to a G pin.
+9. Connect the pan servo to D9 and the tilt servo to D10.
+10. Turn on the switch: both servos move to the center (90°), and the Uno’s LED flashes once per second.
+11. Turn it off. From now on, don’t turn the servo shafts by hand.
 
 Three notes:
 

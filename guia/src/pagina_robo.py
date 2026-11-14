@@ -479,7 +479,7 @@ def esquema_svg(X):
         o.append(f'<circle cx="{x}" cy="{y}" r="4.6" fill="{COR[cor]}" stroke="#fff" stroke-width="1"/>')
 
     # ---- fundo, título, zonas
-    o.append('<rect x="0" y="0" width="760" height="1004" fill="#ffffff"/>')
+    o.append('<rect x="0" y="0" width="760" height="1026" fill="#ffffff"/>')
     txt(20, 28, t("sv_titulo"), 17, peso=700)
     txt(20, 47, t("sv_aviso"), 12, cor="#a14a00", peso=600)
     tr = ' stroke-dasharray="6 5"'
@@ -609,8 +609,9 @@ def esquema_svg(X):
             w = 24 / len(cores)
             o.append(f'<line x1="{x + i * w}" y1="{y - 4}" x2="{x + (i + 1) * w}" y2="{y - 4}" stroke="{COR[c]}" stroke-width="4"/>')
         txt(x + 32, y, t(chave), 11.5)
+    txt(20, 1012, t("sv_leg7"), 11.5, peso=600)
     corpo = "\n".join(o)
-    return ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 1004" width="760" height="1004" '
+    return ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 1026" width="760" height="1026" '
             f'font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" role="img"><title>{e(t("sv_titulo"))}</title>\n{corpo}\n</svg>\n')
 
 
@@ -783,6 +784,11 @@ def conferir(R):
     for n in list(LEIA.values()) + [f"stl/{Path(R.caminho(p)).name}" for p in R.mj["pecas"]] + ["firmware/centrar_servos/centrar_servos.ino"]:
         if f"{R.nome}/{n}" not in nomes:
             falha(f"zip sem {n}")
+    for n in sorted(nomes):                                  # todo link relativo de um .md do zip existe no zip
+        if n.endswith(".md"):
+            for u in re.findall(r"\]\((?!https?:)([^)#]+)\)", zipfile.ZipFile(z).read(n).decode()):
+                if f"{R.nome}/{u}" not in nomes:
+                    falha(f"zip/{n}: link relativo quebrado {u}")
     for lg in IDIOMAS:
         leia = zipfile.ZipFile(z).read(f"{R.nome}/{LEIA[lg]}").decode()
         if f'{R.cfg["pecas"]}/stl/' in re.sub(r"https?://[^\s)]+", "", leia.split("\n\n", 4)[-1]):
@@ -902,7 +908,10 @@ def zipar(R):
         itens.append((LEIA[lg], leia_zip(R, lg).encode()))
         for nome in ("LISTA-DE-COMPRAS", "LIGACAO"):
             f = R.docs / doc_url(R, nome, lg)[1]
-            itens.append((f.name, f.read_bytes()))
+            texto = f.read_text()
+            for k in IDIOMAS:                                # no zip o guia de impressão tem outro nome
+                texto = texto.replace(f"({doc_url(R, 'IMPRIMIR', k)[1]})", f"({LEIA[k]})").replace(f"[{doc_url(R, 'IMPRIMIR', k)[1]}]", f"[{LEIA[k]}]")
+            itens.append((f.name, texto.encode()))
         itens.append((f"ligacao.{lg}.svg", (R.docs / f"ligacao.{lg}.svg").read_bytes()))
     buf = io.BytesIO()
     with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED, compresslevel=9) as z:

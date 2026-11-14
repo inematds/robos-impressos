@@ -61,7 +61,7 @@ parte de la descarga por debajo de 7 V.
 |---|---|---|---|---|
 | Salida OUT+ del LM2596 (5,1 V) | Por el cuello, hasta el borne + del adaptador USB-C, que va al puerto USB-C de la Raspberry Pi | rojo | 22 AWG | Ajusta los 5,1 V ANTES de conectar este cable. |
 | Salida OUT− del LM2596 | Por el cuello, hasta el borne − del adaptador USB-C | negro | 22 AWG |  |
-| Salida OUT+ del LM2596 (5,1 V) | Pin de 5 V del Sensor Shield (el + del conector COM o IIC) | rojo | Dupont | Por aquí recibe energía el Arduino. Antes, confirma con el multímetro que este pin NO tenga continuidad con el borne azul VCC. |
+| Salida OUT+ del LM2596 (5,1 V) | Pin de 5 V del Sensor Shield (el + del conector COM o IIC) | rojo | Dupont | Por aquí recibe energía el Arduino. Antes, con el Uno conectado solo por USB y el jumper SEL retirado, confirma con el multímetro que este pin marca cerca de 5 V y que el pin V del D9 marca 0 V. Un pin incorrecto aquí envía los 6 V de los servos al Raspberry Pi. |
 | Salida OUT− del LM2596 | Pin − (GND) del mismo conector del Sensor Shield | negro | Dupont |  |
 
 ### 6 V: servos
@@ -103,16 +103,17 @@ Hazlo en la mesa de trabajo, antes de montar el robot, con la base impresa al la
 El programa es el sketch [centrar_servos.ino](firmware/centrar_servos/centrar_servos.ino). Lleva los dos servos
 al centro y los mantiene allí.
 
-1. Abre el sketch en Arduino IDE. Conecta el Arduino Uno a la computadora con el cable USB, sin el shield y sin la batería.
-2. En Herramientas, elige la placa Arduino Uno y el puerto en el que apareció. Haz clic en Cargar.
-3. Desconecta el cable USB.
-4. Encaja el Sensor Shield en el Uno y retira el jumper SEL del shield.
-5. Con el multímetro en modo de continuidad, confirma que el pin de 5 V que vas a usar en el shield NO emita un pitido con el borne azul VCC.
-6. Conecta los 6 V del UBEC al borne azul (VCC y GND) y el capacitor de 1000 µF al mismo borne.
-7. Conecta los 5,1 V del LM2596 al pin de 5 V del shield y el negativo a un pin G.
-8. Conecta el servo de pan a D9 y el servo de tilt a D10.
-9. Enciende el interruptor: los dos servos irán al centro (90°) y el LED del Uno parpadeará una vez por segundo.
-10. Apaga el interruptor. A partir de ahora, no gires los ejes de los servos con la mano.
+1. Abre el sketch en Arduino IDE. Conecta el Arduino Uno a la computadora con el cable USB, sin el shield y sin batería.
+2. En Herramientas, elige la placa Arduino Uno y el puerto donde apareció. Haz clic en Cargar.
+3. Desconecta el cable USB, coloca el Sensor Shield en el Uno y retira el jumper SEL del shield.
+4. Vuelve a conectar el cable USB, solo para medir con el multímetro: el pin de 5 V que vas a usar en el shield (el + del conector COM o IIC) debe marcar cerca de 5 V, y el pin V del D9 debe marcar 0 V.
+5. Si V del D9 marca 5 V, el jumper SEL sigue puesto. Si el pin de 5 V marca 0 V, elige otro pin + y vuelve a medir. Un pin incorrecto aquí envía los 6 V de los servos al Raspberry Pi.
+6. Desconecta el cable USB.
+7. Conecta los 6 V del UBEC al borne azul (VCC y GND) y el capacitor de 1000 µF al mismo borne.
+8. Conecta los 5,1 V del LM2596 al pin de 5 V del shield y el negativo a un pin G.
+9. Conecta el servo de pan al D9 y el servo de tilt al D10.
+10. Activa el interruptor: los dos servos irán al centro (90°) y el LED del Uno parpadeará una vez por segundo.
+11. Apaga. De aquí en adelante, no gires los ejes de los servos con la mano.
 
 Tres avisos:
 

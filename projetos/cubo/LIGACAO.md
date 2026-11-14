@@ -61,7 +61,7 @@ parte da descarga abaixo de 7 V.
 |---|---|---|---|---|
 | Saída OUT+ do LM2596 (5,1 V) | Pelo pescoço, até o borne + do adaptador USB-C, que entra na porta USB-C do Raspberry Pi | vermelho | 22 AWG | Ajuste os 5,1 V ANTES de ligar este fio. |
 | Saída OUT− do LM2596 | Pelo pescoço, até o borne − do adaptador USB-C | preto | 22 AWG |  |
-| Saída OUT+ do LM2596 (5,1 V) | Pino de 5 V do Sensor Shield (o + do conector COM ou IIC) | vermelho | Dupont | É por aqui que o Arduino recebe energia. Antes, confirme com o multímetro que esse pino NÃO tem continuidade com o borne azul VCC. |
+| Saída OUT+ do LM2596 (5,1 V) | Pino de 5 V do Sensor Shield (o + do conector COM ou IIC) | vermelho | Dupont | É por aqui que o Arduino recebe energia. Antes, com o Uno só na USB e o jumper SEL retirado, confirme com o multímetro que esse pino marca cerca de 5 V e que o pino V do D9 marca 0 V. Um pino errado aqui põe os 6 V dos servos no Raspberry Pi. |
 | Saída OUT− do LM2596 | Pino − (GND) do mesmo conector do Sensor Shield | preto | Dupont |  |
 
 ### 6 V: servos
@@ -105,14 +105,15 @@ o centro e os mantém lá.
 
 1. Abra o sketch na Arduino IDE. Ligue o Arduino Uno ao computador pelo cabo USB, sem o shield e sem bateria.
 2. Em Ferramentas, escolha a placa Arduino Uno e a porta em que ela apareceu. Clique em Carregar.
-3. Tire o cabo USB.
-4. Encaixe o Sensor Shield no Uno e retire o jumper SEL do shield.
-5. Com o multímetro em continuidade, confirme que o pino de 5 V que você vai usar no shield NÃO apita com o borne azul VCC.
-6. Ligue os 6 V do UBEC no borne azul (VCC e GND) e o capacitor de 1000 µF no mesmo borne.
-7. Ligue os 5,1 V do LM2596 no pino de 5 V do shield e o negativo num pino G.
-8. Ligue o servo de pan no D9 e o servo de tilt no D10.
-9. Ligue a chave: os dois servos vão para o centro (90°) e o LED do Uno pisca uma vez por segundo.
-10. Desligue. Daqui em diante não gire os eixos dos servos com a mão.
+3. Tire o cabo USB, encaixe o Sensor Shield no Uno e retire o jumper SEL do shield.
+4. Ligue o cabo USB de novo, só para medir com o multímetro: o pino de 5 V que você vai usar no shield (o + do conector COM ou IIC) tem de marcar cerca de 5 V, e o pino V do D9 tem de marcar 0 V.
+5. Se o V do D9 marcar 5 V, o jumper SEL ainda está posto. Se o pino de 5 V marcar 0 V, escolha outro pino + e meça de novo. Um pino errado aqui põe os 6 V dos servos no Raspberry Pi.
+6. Tire o cabo USB.
+7. Ligue os 6 V do UBEC no borne azul (VCC e GND) e o capacitor de 1000 µF no mesmo borne.
+8. Ligue os 5,1 V do LM2596 no pino de 5 V do shield e o negativo num pino G.
+9. Ligue o servo de pan no D9 e o servo de tilt no D10.
+10. Ligue a chave: os dois servos vão para o centro (90°) e o LED do Uno pisca uma vez por segundo.
+11. Desligue. Daqui em diante não gire os eixos dos servos com a mão.
 
 Três avisos:
 

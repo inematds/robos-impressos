@@ -139,7 +139,7 @@
   {"grupo": "5 V: Raspberry Pi e Arduino", "fios": [
    {"de": "Saída OUT+ do LM2596 (5,1 V)", "para": "Pelo pescoço, até o borne + do adaptador USB-C, que entra na porta USB-C do Raspberry Pi", "cor": "vermelho", "fio": "22 AWG", "nota": "Ajuste os 5,1 V ANTES de ligar este fio."},
    {"de": "Saída OUT− do LM2596", "para": "Pelo pescoço, até o borne − do adaptador USB-C", "cor": "preto", "fio": "22 AWG", "nota": ""},
-   {"de": "Saída OUT+ do LM2596 (5,1 V)", "para": "Pino de 5 V do Sensor Shield (o + do conector COM ou IIC)", "cor": "vermelho", "fio": "Dupont", "nota": "É por aqui que o Arduino recebe energia. Antes, confirme com o multímetro que esse pino NÃO tem continuidade com o borne azul VCC."},
+   {"de": "Saída OUT+ do LM2596 (5,1 V)", "para": "Pino de 5 V do Sensor Shield (o + do conector COM ou IIC)", "cor": "vermelho", "fio": "Dupont", "nota": "É por aqui que o Arduino recebe energia. Antes, com o Uno só na USB e o jumper SEL retirado, confirme com o multímetro que esse pino marca cerca de 5 V e que o pino V do D9 marca 0 V. Um pino errado aqui põe os 6 V dos servos no Raspberry Pi."},
    {"de": "Saída OUT− do LM2596", "para": "Pino − (GND) do mesmo conector do Sensor Shield", "cor": "preto", "fio": "Dupont", "nota": ""}
   ]},
   {"grupo": "6 V: servos", "fios": [

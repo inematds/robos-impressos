@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 1004" width="760" height="1004" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" role="img"><title>Wiring diagram for the square desktop robot</title>
-<rect x="0" y="0" width="760" height="1004" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 1026" width="760" height="1026" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" role="img"><title>Wiring diagram for the square desktop robot</title>
+<rect x="0" y="0" width="760" height="1026" fill="#ffffff"/>
 <text x="20" y="28" font-size="17" text-anchor="start" font-weight="700" fill="#1a1a22">Wiring diagram for the square desktop robot</text>
 <text x="20" y="47" font-size="12" text-anchor="start" font-weight="600" fill="#a14a00">Not bench-tested. If your board has a different name printed on it, use the name on the board.</text>
 <rect x="10" y="58" width="740" height="690" rx="12" fill="none" stroke="#9aa0ad" stroke-width="1.5" stroke-dasharray="6 5"/>
@@ -171,4 +171,5 @@
 <text x="297" y="988" font-size="11.5" text-anchor="start" font-weight="400" fill="#1a1a22">orange: servo cable (3 wires)</text>
 <circle cx="522" cy="984" r="4.6" fill="#22232b"/>
 <text x="542" y="988" font-size="11.5" text-anchor="start" font-weight="400" fill="#1a1a22">filled point: wire splice</text>
+<text x="20" y="1012" font-size="11.5" text-anchor="start" font-weight="600" fill="#1a1a22">22 AWG wire (0.33 mm²) for power; Dupont wire for signals; 5 A fuse on the pack’s positive lead.</text>
 </svg>
