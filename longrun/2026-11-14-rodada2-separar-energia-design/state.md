@@ -26,3 +26,9 @@ Depois: E3b dino (mesma receita), consolidação (`gerar todos` + `verificar tod
 - 14/11: PORTAL precisa de ajuste no fim: Portal.tsx:119 e translated-courses id 10225 dizem "Três corpos… ~33 cm" (vira quatro robôs; altura nova). Título de courses.ts cita "dino, capivara ou cubo" (avaliar).
 - 14/11: conselheiro consultado; E1 avisada (teste 10 só nos cubos; helper ressalto_nervurado); E3-brief com sequência em 3 pacotes e regra de parada.
 - 14/11 E3a: conversor da malha (cad/pele_malha.py), classe PeleGrade (geo.py) e pele processada cad/peles/capivara.npz (300 mm, simétrica, 2,3 MB) em commit; nenhum modelo alterado ainda.
+
+## PAUSA 14/11 ~17:10 (Nei vai reiniciar a máquina)
+- Orquestrador e agentes E1/E3a PARADOS de propósito. Último commit de trabalho: 6816d13 (pele da capivara).
+- E1 (cubo energia + cubo_rodas) tinha relançado às 17:0x e não chegou a commitar: começar a E1 do zero.
+- E3a capivara: pacote 1 parcial (conversor + pele em commit); falta aplicar a pele no modelo `capivara.py`.
+- Para retomar: sessão nova em ~/projetos/robos-impressos, Fable 5.2 high, ler goal → state → plan → canal → decisions → E3-brief → E5-brief e seguir "Agentes lançados às 17:0x". Ordens do Nei estão em goal.md (1–10), inclusive avisa-v3 no fim.

@@ -259,6 +259,138 @@
     ],
     "media": 0.8137,
     "media_ajustado": 0.8261
+   },
+   "malha-dino-hy2mv-fl-s1": {
+    "referencia": "dino",
+    "origem": "referencia/malhas/dino-hy2mv-fl-s1.glb",
+    "data": "2026-11-14",
+    "nota": "",
+    "triangulos": 915534,
+    "entram": [
+     "dino-hy2mv-fl-s1.glb (915534 triângulos, cima +y, frente +z)"
+    ],
+    "vistas": [
+     {
+      "vista": "frente",
+      "az_nominal": 0,
+      "el_nominal": 15,
+      "az": 0,
+      "el": 20,
+      "iou": 0.9304,
+      "iou_ajustado": 0.9348,
+      "ajuste_escala": 1.03,
+      "mascara_toca_borda": false,
+      "az_no_limite_da_busca": false,
+      "el_no_limite_da_busca": false
+     },
+     {
+      "vista": "tres-quartos-a",
+      "az_nominal": -45,
+      "el_nominal": 15,
+      "az": -55,
+      "el": 15,
+      "iou": 0.8662,
+      "iou_ajustado": 0.8697,
+      "ajuste_escala": 1.0,
+      "mascara_toca_borda": false,
+      "az_no_limite_da_busca": false,
+      "el_no_limite_da_busca": false
+     },
+     {
+      "vista": "tres-quartos-b",
+      "az_nominal": -40,
+      "el_nominal": 15,
+      "az": -45,
+      "el": 20,
+      "iou": 0.8974,
+      "iou_ajustado": 0.8974,
+      "ajuste_escala": 1.0,
+      "mascara_toca_borda": false,
+      "az_no_limite_da_busca": false,
+      "el_no_limite_da_busca": false
+     },
+     {
+      "vista": "lado",
+      "az_nominal": -75,
+      "el_nominal": 15,
+      "az": -55,
+      "el": 5,
+      "iou": 0.869,
+      "iou_ajustado": 0.869,
+      "ajuste_escala": 1.0,
+      "mascara_toca_borda": false,
+      "az_no_limite_da_busca": false,
+      "el_no_limite_da_busca": true
+     }
+    ],
+    "media": 0.8907,
+    "media_ajustado": 0.8927
+   },
+   "malha-dino-hy2mv-fl-s2": {
+    "referencia": "dino",
+    "origem": "referencia/malhas/dino-hy2mv-fl-s2.glb",
+    "data": "2026-11-14",
+    "nota": "",
+    "triangulos": 928362,
+    "entram": [
+     "dino-hy2mv-fl-s2.glb (928362 triângulos, cima +y, frente +z)"
+    ],
+    "vistas": [
+     {
+      "vista": "frente",
+      "az_nominal": 0,
+      "el_nominal": 15,
+      "az": 0,
+      "el": 15,
+      "iou": 0.9418,
+      "iou_ajustado": 0.9418,
+      "ajuste_escala": 1.0,
+      "mascara_toca_borda": false,
+      "az_no_limite_da_busca": false,
+      "el_no_limite_da_busca": false
+     },
+     {
+      "vista": "tres-quartos-a",
+      "az_nominal": -45,
+      "el_nominal": 15,
+      "az": -55,
+      "el": 15,
+      "iou": 0.8876,
+      "iou_ajustado": 0.8876,
+      "ajuste_escala": 1.0,
+      "mascara_toca_borda": false,
+      "az_no_limite_da_busca": false,
+      "el_no_limite_da_busca": false
+     },
+     {
+      "vista": "tres-quartos-b",
+      "az_nominal": -40,
+      "el_nominal": 15,
+      "az": -50,
+      "el": 20,
+      "iou": 0.8893,
+      "iou_ajustado": 0.8893,
+      "ajuste_escala": 1.0,
+      "mascara_toca_borda": false,
+      "az_no_limite_da_busca": false,
+      "el_no_limite_da_busca": false
+     },
+     {
+      "vista": "lado",
+      "az_nominal": -75,
+      "el_nominal": 15,
+      "az": -75,
+      "el": 10,
+      "iou": 0.8703,
+      "iou_ajustado": 0.8838,
+      "ajuste_escala": 0.97,
+      "mascara_toca_borda": false,
+      "az_no_limite_da_busca": false,
+      "el_no_limite_da_busca": false
+     }
+    ],
+    "media": 0.8972,
+    "media_ajustado": 0.9006
    }
   },
   "capivara": {
@@ -361,6 +493,138 @@
     ],
     "media": 0.7768,
     "media_ajustado": 0.7862
+   },
+   "malha-capivara-hy2mv-flb-s1": {
+    "referencia": "capivara",
+    "origem": "referencia/malhas/capivara-hy2mv-flb-s1.glb",
+    "data": "2026-11-14",
+    "nota": "",
+    "triangulos": 1048906,
+    "entram": [
+     "capivara-hy2mv-flb-s1.glb (1048906 triângulos, cima +y, frente +z)"
+    ],
+    "vistas": [
+     {
+      "vista": "frente",
+      "az_nominal": 0,
+      "el_nominal": 15,
+      "az": -5,
+      "el": 5,
+      "iou": 0.9359,
+      "iou_ajustado": 0.9359,
+      "ajuste_escala": 1.0,
+      "mascara_toca_borda": false,
+      "az_no_limite_da_busca": false,
+      "el_no_limite_da_busca": true
+     },
+     {
+      "vista": "tres-quartos",
+      "az_nominal": -45,
+      "el_nominal": 15,
+      "az": -45,
+      "el": 5,
+      "iou": 0.9007,
+      "iou_ajustado": 0.9007,
+      "ajuste_escala": 1.0,
+      "mascara_toca_borda": false,
+      "az_no_limite_da_busca": false,
+      "el_no_limite_da_busca": true
+     },
+     {
+      "vista": "lado",
+      "az_nominal": -80,
+      "el_nominal": 15,
+      "az": -70,
+      "el": 10,
+      "iou": 0.9169,
+      "iou_ajustado": 0.9169,
+      "ajuste_escala": 1.0,
+      "mascara_toca_borda": false,
+      "az_no_limite_da_busca": false,
+      "el_no_limite_da_busca": false
+     },
+     {
+      "vista": "costas",
+      "az_nominal": 180,
+      "el_nominal": 15,
+      "az": 185,
+      "el": 10,
+      "iou": 0.9234,
+      "iou_ajustado": 0.9239,
+      "ajuste_escala": 1.0,
+      "mascara_toca_borda": false,
+      "az_no_limite_da_busca": false,
+      "el_no_limite_da_busca": false
+     }
+    ],
+    "media": 0.9192,
+    "media_ajustado": 0.9194
+   },
+   "malha-capivara-hy2mv-flb-s2": {
+    "referencia": "capivara",
+    "origem": "referencia/malhas/capivara-hy2mv-flb-s2.glb",
+    "data": "2026-11-14",
+    "nota": "",
+    "triangulos": 1022438,
+    "entram": [
+     "capivara-hy2mv-flb-s2.glb (1022438 triângulos, cima +y, frente +z)"
+    ],
+    "vistas": [
+     {
+      "vista": "frente",
+      "az_nominal": 0,
+      "el_nominal": 15,
+      "az": 0,
+      "el": 5,
+      "iou": 0.9428,
+      "iou_ajustado": 0.9428,
+      "ajuste_escala": 1.0,
+      "mascara_toca_borda": false,
+      "az_no_limite_da_busca": false,
+      "el_no_limite_da_busca": true
+     },
+     {
+      "vista": "tres-quartos",
+      "az_nominal": -45,
+      "el_nominal": 15,
+      "az": -45,
+      "el": 5,
+      "iou": 0.9109,
+      "iou_ajustado": 0.9109,
+      "ajuste_escala": 1.0,
+      "mascara_toca_borda": false,
+      "az_no_limite_da_busca": false,
+      "el_no_limite_da_busca": true
+     },
+     {
+      "vista": "lado",
+      "az_nominal": -80,
+      "el_nominal": 15,
+      "az": -70,
+      "el": 10,
+      "iou": 0.925,
+      "iou_ajustado": 0.925,
+      "ajuste_escala": 1.0,
+      "mascara_toca_borda": false,
+      "az_no_limite_da_busca": false,
+      "el_no_limite_da_busca": false
+     },
+     {
+      "vista": "costas",
+      "az_nominal": 180,
+      "el_nominal": 15,
+      "az": 180,
+      "el": 10,
+      "iou": 0.9274,
+      "iou_ajustado": 0.9274,
+      "ajuste_escala": 1.0,
+      "mascara_toca_borda": false,
+      "az_no_limite_da_busca": false,
+      "el_no_limite_da_busca": false
+     }
+    ],
+    "media": 0.9265,
+    "media_ajustado": 0.9265
    }
   }
  }
