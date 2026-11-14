@@ -208,6 +208,22 @@ class Regiao:
         return cls(cil((x0, c[1], c[2]), (x1, c[1], c[2]), r, seg=64), f)
 
     @classmethod
+    def cil(cls, p0, p1, r):
+        """Cilindro de p0 a p1 (eixo qualquer)."""
+        from cad.comum.geo import cil
+
+        a, b_ = np.asarray(p0, np.float32), np.asarray(p1, np.float32)
+        L = float(np.linalg.norm(b_ - a))
+        u = (b_ - a) / L
+
+        def f(P):
+            t = (P - a) @ u
+            rad = np.linalg.norm((P - a) - t[..., None] * u, axis=-1)
+            return np.maximum(rad - r, np.maximum(-t, t - L))
+
+        return cls(cil(p0, p1, r, seg=64), f)
+
+    @classmethod
     def triangulo_xz(cls, a, b, c, y0, y1):
         """Prisma de um triângulo no plano (x, z), de y0 a y1."""
         pts = [a, b, c]
@@ -241,14 +257,42 @@ class Relevo:
         alem = campo_meio_espaco(P, self.p0 - self.n * self.folga, self.n)          # > 0 além do plano (com folga)
         return np.maximum(d, -np.maximum(self.regiao.campo(P), -alem))     # tira (região ∩ além do plano)
 
-    def peca(self, ext: Manifold) -> Manifold:
+    def peca(self, pele: PeleGrade, chanfro=1.6, folga_lado=0.3) -> Manifold:
+        """A peça, recortada da pele ORIGINAL (sem os assentos). A borda da base sai com chanfro de 45° (a região
+        começa `chanfro` mm menor na base e abre até o tamanho cheio): a base não encosta no canto arredondado do
+        rebaixo e não fica com rebarba em balanço."""
         from cad.comum.geo import maior_corpo
 
-        return maior_corpo(ext ^ self.regiao.solido ^ meio_espaco(self.p0, self.n))
+        b = self.regiao.solido.bounding_box()
+        sub = pele.recortar(b[:3], b[3:], margem=5.0)
+
+        def campo(P, d):
+            alt = campo_meio_espaco(P, self.p0, self.n)                       # altura acima da base
+            reg = self.regiao.campo(P) + folga_lado + np.clip(chanfro - alt, 0.0, chanfro)
+            return np.maximum(np.maximum(d, reg), -alt - 1.0)
+
+        # a base é cortada por um plano EXATO (a face que vai na mesa e que cola no assento, 0,25 mm acima dele)
+        return maior_corpo(sub.combinar(campo, reduzir=0.5).solido() ^ meio_espaco(self.p0 + self.n * 0.02, self.n))
 
     @property
     def imprimir(self):
         return mat_imprimir_base(self.n)
+
+
+def autoportante(pele: PeleGrade, campo, lo, hi, cos45=0.7071):
+    """Enche por BAIXO o que está em balanço dentro da caixa (lo, hi), até 45°: de cima para baixo, cada camada
+    recebe a de cima encolhida (campo'[k] = min(campo[k], campo'[k+1] + h·cos45°)). É a envoltória das cópias do
+    sólido encolhidas e descidas: uma face a 45° fica como está, uma mais deitada ganha material embaixo até virar
+    45°. Só ACRESCENTA material (para fora da pele, sob a face em balanço) e vale para peça impressa com Z para cima.
+    Use antes de fazer a casca, na pele do corpo ou da cabeça, em zonas que não aparecem (barriga por baixo, borda
+    de baixo da cabeça)."""
+    sl = [slice(max(int(np.searchsorted(pele.eixos[i], lo[i])), 0), min(int(np.searchsorted(pele.eixos[i], hi[i])) + 1, len(pele.eixos[i]))) for i in range(3)]
+    out = campo.copy()
+    sub = out[sl[0], sl[1], sl[2]]
+    passo = pele.h * cos45
+    for k in range(sub.shape[2] - 2, -1, -1):
+        sub[:, :, k] = np.minimum(sub[:, :, k], sub[:, :, k + 1] + passo)
+    return out
 
 
 def tirar_farelos(pele: PeleGrade, campo, raio, z_min):

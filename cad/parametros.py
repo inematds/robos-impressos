@@ -392,9 +392,10 @@ CAPIVARA = NS(
     z_gola=124.0,                      # corte horizontal entre a bacia (corpo) e a gola-bandana
     gola_elev=45.0,                    # a esfera da gola sobe até 45° de elevação (acima disso não imprime sem suporte)
     anca=[((52.0, -25.0, 32.0), (45.0, 56.0, 50.0))],   # blob (pele) que engorda a anca só onde a roda pede
+    rabo_blob=[((0.0, -118.0, 70.0), (23.0, 17.0, 25.0))],   # blob (pele) que arredonda o rabo (dentro dele vai o carregador USB-C)
     porta=NS(x=38.0, y_max=-30.0),     # porta traseira: faixa |x| < 38 da bacia, atrás de y (pele) = -30, altura inteira
     # boca (pele): eixo da mandíbula, plano de corte de trás, altura da boca em y_ref, inclinação, raio do sorriso
-    boca=dict(y_eixo=83.0, z_eixo=175.0, y_corte=77.0, z0=177.0, y_ref=118.0, incl=-0.04, raio_sorriso=400.0, folga=1.2),
+    boca=dict(y_eixo=83.0, z_eixo=175.0, y_corte=77.5, z0=177.0, y_ref=118.0, incl=-0.04, raio_sorriso=400.0, folga=1.2),
     olho=NS(x=50.0, z=232.0, r=24.0, afunda=0.55, iris_r=17.0, pupila_r=11.0),  # centro = ponto da pele recuado r x afunda; sensor atrás da pupila
     narina=NS(x=13.0, z=208.0),        # pele: narinas na tampa do focinho = portas de som dos 2 microfones
     falante_y=44.0,                    # pele: centro do alto-falante, em cima da mesa da cabeça, virado para baixo (som sai pela boca e pelo vão do pescoço)
@@ -402,12 +403,12 @@ CAPIVARA = NS(
     laco=((-55.0, -400.0, 120.0), (55.0, -58.0, 188.0)),   # pele: caixa do laço da bandana na nuca; NÃO faz parte da cabeça (fica no corpo o que a cabeça não varre)
     # peças coloridas em RELEVO, recortadas da própria pele além de um plano (pele; caixas = (mín, máx)):
     rabo=NS(caixa=((-28.0, -160.0, 38.0), (28.0, -100.0, 102.0)), plano_y=-108.0),          # tudo atrás de y
-    mao=NS(c=(33.0, 80.0, 65.0), r=19.0, plano_y=73.5),                                     # mão direita: esfera + plano (a esquerda espelha)
+    mao=NS(c=(33.0, 62.0), r=25.0, plano_y=64.5),                                           # mão direita: cilindro (x, z, raio) ao longo de Y + plano (a esquerda espelha)
     avental=NS(tri=((-40.0, 124.5), (40.0, 124.5), (0.0, 84.0)), plano_y=66.0),             # triângulo (x, z) da bandana no peito
     focinho=NS(caixa=((-48.0, 100.0, 179.5), (48.0, 200.0, 240.0)), plano_y=118.0),         # tampa da frente do focinho
     topete=NS(caixa=((-22.0, -14.0, 260.0), (22.0, 38.0, 320.0)), plano_z=275.5),           # tampa os 2 furos de acesso da mesa
     orelha=NS(c=(62.0, -27.0, 270.0), r=22.0, n=(0.6, -0.25, 0.75), d=4.0),                 # orelha direita: esfera + plano a d do centro
-    aro=NS(r_fora=20.0, r_dentro=14.0, x=92.5, z=34.5, esp=3.0),   # aro ciano na lateral da anca, no eixo da roda (assento plano em x)
+    aro=NS(r_fora=20.0, r_dentro=14.0, x=94.5, z=34.5, esp=3.0),   # aro ciano na lateral da anca, no eixo da roda (assento plano em x)
     # esqueleto baixo (cad/comum/base_baixa.py). y em "pele"; z e x no robô
     esq=NS(
         piso_z=(9.0, 13.0), piso_x=53.0, piso_nivel=-3.2,   # piso = seção da pele em z=9 (3,2 mm para dentro), |x| <= 53
@@ -425,8 +426,9 @@ CAPIVARA = NS(
         pi_y=(-97.0, -8.0), pi_placa_y=-10.0,     # pele: bandeja do Pi (fundo, frente) e borda da frente da placa
         uno_y=(-80.0, -7.0), uno_placa_y=-76.0,   # pele: bandeja do Uno e borda de trás da placa (USB para trás)
         esferas=((60.0, 29.0),),           # (|x|, y pele) das 2 esferas de apoio da frente, sob as patas
-        orelhas=((46.0, -62.0, -1),),      # (|x|, y pele, sentido em Y) das 2 orelhas M3 de trás da bacia, no piso (na frente ela prende nas esferas)
-        poste_porta=(24.0, 34.0, -78.0, -70.0, 32.0, 24.0),   # x0, x1, y0, y1 (pele), z do topo, z do parafuso da porta
+        poste_porta=(24.0, 45.0, -78.0, -70.0, 32.0, 24.0),   # x0, x1, y0, y1 (pele), z do topo, z do parafuso: postes de trás (2 M3 da porta + 2 M3 da bacia, todos por trás)
+        poste_x=(29.0, 41.0), bacia_parafuso_z=27.0,          # |x| do parafuso da porta e do da bacia em cada poste
+        orelha_gola=(12.0, 9.0),           # largura (y) e espessura (x) das 2 orelhas que sobem da torre até a gola (2 M3 por cima prendem gola e bacia)
         encoder_extra=12.0,
         # energia (robô; y em pele onde marcado): step-down na face de fora da parede ESQUERDA da torre, UBEC na da
         # DIREITA (os dois em pé), BMS no piso sob o L298N, chave gangorra no piso (por baixo), atrás do motor direito

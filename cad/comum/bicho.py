@@ -365,7 +365,7 @@ def bolso_unha(casca, ext, p, n, r=9.0, assento=2.4, prof=1.6):
     return casca, mat_de_z_para(n, base + n * 0.02)
 
 
-def mecanica_cabeca(p_cab: Pele, cran, mand, c_ext, c_int, boca, zcam, camera=True, aparar_r=None, eixo_oculto=False):
+def mecanica_cabeca(p_cab: Pele, cran, mand, c_ext, c_int, boca, zcam, camera=True, aparar_r=None, eixo_oculto=False, sem_ponte=False):
     """Tudo o que prende e move a cabeça, igual nos bichos: pilares da câmera (fase 2), orelhas crânio->mesa,
     almofadas do eixo da mandíbula, mesa da cabeça (com o servo da boca) e os componentes.
     `camera=False` deixa de fora o furo e os pilares da câmera na testa/focinho (bicho com os sensores nos olhos).
@@ -374,6 +374,8 @@ def mecanica_cabeca(p_cab: Pele, cran, mand, c_ext, c_int, boca, zcam, camera=Tr
     `eixo_oculto`: NENHUM furo no rosto. À direita o braço do horn encaixa entre 2 nervuras da almofada (sem
     parafuso por fora); à esquerda um pino Ø4 da mesa entra num soquete cego da mandíbula (ela abre e encaixa por
     pressão). Sem bucha: a matriz devolvida é None.
+    `sem_ponte`: a placa que segura o servo da boca desce 4 mm a mais e a janela ganha 2 chanfros de 45° nos cantos
+    de baixo (a mesa imprime de cabeça para baixo: a ponte da janela cai de 23,6 para 19,6 mm, dentro do limite).
     Devolve (cranio, mandibula, mesa, componentes, matriz_da_bucha)."""
     from cad.comum import componentes as C
     from cad.comum.modelo import Comp
@@ -440,8 +442,12 @@ def mecanica_cabeca(p_cab: Pele, cran, mand, c_ext, c_int, boca, zcam, camera=Tr
     mesa = mesa ^ p_cab.deslocado(-F.parede - 1.2)
     jl, jw = P.MICRO.janela
     ycs = yp - P.MICRO.eixo_da_ponta + P.MICRO.corpo[0] / 2
-    placa_s = caixa(x_aba - 3, x_aba, ycs - P.MICRO.comp_abas / 2 - 1.5, ycs + P.MICRO.comp_abas / 2 + 1.5, zp - 8.5, zm + 0.01)
+    zpl = zp - (12.5 if sem_ponte else 8.5)
+    placa_s = caixa(x_aba - 3, x_aba, ycs - P.MICRO.comp_abas / 2 - 1.5, ycs + P.MICRO.comp_abas / 2 + 1.5, zpl, zm + 0.01)
     placa_s = placa_s - caixa(x_aba - 4, x_aba + 1, ycs - jl / 2, ycs + jl / 2, zp - jw / 2, zp + jw / 2)
+    if sem_ponte:
+        placa_s = placa_s - prisma([(ycs - jl / 2, zp - jw / 2 + 0.01), (ycs + jl / 2, zp - jw / 2 + 0.01), (ycs + jl / 2 - 2.0, zp - jw / 2 - 2.0), (ycs - jl / 2 + 2.0, zp - jw / 2 - 2.0)],
+                                   "x", x_aba - 4, x_aba + 1)
     for dy in (-P.MICRO.furos_aba / 2, P.MICRO.furos_aba / 2):
         placa_s = placa_s - furo((x_aba + 0.5, ycs + dy, zp), (-1, 0, 0), 4, F.m2_piloto)
     xl = xi_e + 4.1                      # face de fora da orelha do eixo livre (bucha de 3,4 no vão)

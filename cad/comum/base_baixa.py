@@ -34,7 +34,7 @@ def esqueleto(K) -> NS:
     E.parede_y, E.travessa_y, E.pi_y, E.uno_y = par(e.parede_y), par(e.travessa_y), par(e.pi_y), par(e.uno_y)
     E.bateria_y, E.pi_placa_y, E.uno_placa_y = e.bateria_y + dy, e.pi_placa_y + dy, e.uno_placa_y + dy
     E.esferas = tuple((x, y + dy) for (x, y) in e.esferas)
-    E.orelhas = tuple((x, y + dy, s) for (x, y, s) in e.orelhas)
+    E.z_gola = K.z_gola
     x0, x1, y0, y1, zt, zp = e.poste_porta
     E.poste_porta = (x0, x1, y0 + dy, y1 + dy, zt, zp)
     E.x0, E.x1 = e.parede_x0, e.parede_x0 + e.parede_esp
@@ -62,6 +62,8 @@ def poligono_piso(E, pele):
         for s in (1, -1):
             partes.append(Point(s * x, y).buffer(14.5).union(box(min(s * x, s * (E.piso_x - 3)), y - 10, max(s * x, s * (E.piso_x - 3)), y + 10)))
     pol = unary_union(partes).intersection(sec).buffer(-0.8).buffer(0.8)      # tira farpas
+    x0p, _, ya = E.poste_porta[0], E.poste_porta[1], E.poste_porta[2]          # atrás dos postes o piso estreita: ali descem os blocos dos parafusos
+    pol = pol.difference(box(x0p - 1.0, -1000, 200, ya - 0.3)).difference(box(-200, -1000, -x0p + 1.0, ya - 0.3))
     pol = pol.intersection(affinity.scale(pol, xfact=-1.0, origin=(0, 0)))
     return CA.maior_poligono(pol).simplify(0.3)
 
@@ -106,10 +108,17 @@ def chassi(E, pol) -> Peca:
         + prisma([(XT + 0.01, dz0 - meia), (XT + 0.01, dz0 + 0.01), (xm, dz0 + 0.01)], "y", py1 - 3.0, py1)
     # postes da porta traseira (ponta de trás das paredes, engrossada para o inserto horizontal)
     px0, px1, pya, pyb, pzt, pzp = E.poste_porta
-    poste = caixa(px0, px1, pya, pyb, Z1 - 0.01, pzt)
+    poste = caixa(px0, X1, pya, pyb, Z1 - 0.01, pzt) + prisma([(X1 - 0.01, Z1), (px1, Z1 + (px1 - X1)), (px1, pzt), (X1 - 0.01, pzt)], "y", pya, pyb)
+    # orelhas da gola: sobem da torre até a base da gola (2 M3 por cima); a da esquerda abre em mísula para fora do garfo
+    ow, oe = E.orelha_gola
+    ze = E.z_gola - 0.05
+    orelha_d = caixa(XT, XT + E.parede_esp, cy - ow / 2, cy + ow / 2, E.deck_z - 0.01, ze)
+    from cad.comum.geo import casco
+    orelha_e = casco(caixa(-X1, -X0, cy - ow / 2, cy + ow / 2, E.deck_z - 14.0, E.deck_z), caixa(-37.5 - oe, -37.5, cy - ow / 2, cy + ow / 2, E.deck_z + 4.0, ze))
+    reforco_deck = prisma([(ty1 - 0.01, dz0 - (cy - s9.janela[1] / 2 - ty1)), (ty1 - 0.01, dz0 + 0.01), (cy - s9.janela[1] / 2, dz0 + 0.01)], "x", jx0, jx1)
     # ressaltos das esferas de apoio
     ress = uniao(*[cil((s * x, y, Z0), (s * x, y, Z0 + 10.5), 14.5) for (x, y) in E.esferas for s in (1, -1)])
-    corpo = uniao(placa, sim(rack), torre_e, torre_d, travessa, deck, misula, arco, sim(poste), ress)
+    corpo = uniao(placa, sim(rack), torre_e, torre_d, travessa, deck, misula, arco, sim(poste), ress, orelha_d, orelha_e, reforco_deck)
 
     cortes = []
     # --- paredes: motor TT (eixo interno, rasgos dos 2 furos de trás, furo da orelha), como em base.chassi
@@ -123,9 +132,10 @@ def chassi(E, pol) -> Peca:
         cortes.append(rasgo((s * (X0 - 1), 0, ez - t.furo_orelha - 1.2), (s * (X0 - 1), 0, ez - t.furo_orelha + 1.2),
                             F.m3_passante, (s, 0, 0), E.parede_esp + 2))
         # trilhos das bandejas (até a travessa)
-        for tz in E.trilho_z:
-            cortes.append(caixa(X0 - 0.1, X0 + E.trilho_prof, py0 - 1, ty0 + 0.01, tz, tz + E.trilho_alt) if s > 0 else
-                          caixa(-X0 - E.trilho_prof, -X0 + 0.1, py0 - 1, ty0 + 0.01, tz, tz + E.trilho_alt))
+        for tz in E.trilho_z:                          # rasgo + teto em chanfro de 45° (imprime sem suporte)
+            tr = caixa(X0 - 0.1, X0 + E.trilho_prof, py0 - 1, ty0 + 0.01, tz, tz + E.trilho_alt) \
+                + prisma([(X0 - 0.1, tz + E.trilho_alt - 0.01), (X0 + E.trilho_prof, tz + E.trilho_alt - 0.01), (X0 - 0.1, tz + E.trilho_alt + E.trilho_prof + 0.1)], "y", py0 - 1, ty0 + 0.01)
+            cortes.append(tr if s > 0 else espelho_x(tr))
         # passagens de cabo nas paredes (rack -> motores) e na torre
         cortes.append(furo((s * (X0 - 1), ty0 - 14.0, 52.0), (s, 0, 0), E.parede_esp + 2, 6.0))
     # --- deck: janela do servo de pan (deitado, corpo para +X), rasgos das abas, passagem de cabos
@@ -146,22 +156,23 @@ def chassi(E, pol) -> Peca:
     cortes.append(furo((0, ty1 + 1, E.driver_z), (0, -1, 0), 5, 6.0))
     cortes.append(furo((0, ty1 + 1, dz0 - 10.0), (0, -1, 0), 5, 6.0))
     # --- piso: furos das orelhas da bacia, esferas (soquete + insertos da capa)
-    for (x, y, _) in E.orelhas:
-        for sx in (1, -1):
-            cortes.append(furo((sx * x, y, Z0 - 1), (0, 0, 1), 6, F.m3_passante))
     for (x, y) in E.esferas:
         for s in (1, -1):
             cortes.append(esfera((s * x, y, P.ESFERA.d / 2), P.ESFERA.d / 2 + 0.35))
-            for sx in (1, -1):          # os 2 parafusos da capa atravessam o ressalto e prendem a bacia por cima dele
-                cortes.append(furo((s * x + sx * 10.5, y, Z0 - 1), (0, 0, 1), 13, F.m3_passante))
+            cortes.append(cil((s * x, y, P.ESFERA.d / 2 + 5.9), (s * x, y, Z0 + 9.3), 5.9, 1.5))     # teto do soquete em cone de 45° (sem suporte)
+            for sx in (1, -1):
+                cortes.append(inserto((s * x + sx * 10.5, y, Z0), (0, 0, 1)))
     # --- postes da porta: inserto horizontal, entrando por trás
     for sx in (1, -1):
-        cortes.append(inserto((sx * (px0 + px1) / 2, pya, pzp), (0, 1, 0)))
+        cortes.append(inserto((sx * E.poste_x[0], pya, pzp), (0, 1, 0)))
+        cortes.append(inserto((sx * E.poste_x[1], pya, E.bacia_parafuso_z), (0, 1, 0)))
+    cortes.append(inserto((XT + E.parede_esp / 2, cy, ze), (0, 0, -1)))
+    cortes.append(inserto((-37.5 - oe / 2, cy, ze), (0, 0, -1)))
     # --- energia: berços (cantoneiras + abraçadeira) do step-down, do UBEC e do BMS; recorte da chave no piso
     somas = []
     for nome in ("stepdown", "ubec", "bms"):
         M, mod = mat_modulo(E, nome)
-        so, co = berco_modulo(mod, piso=(Z1 - Z0) if nome == "bms" else E.parede_esp, canal=1.2 if nome == "bms" else 0.0)
+        so, co = berco_modulo(mod, alt=4.0 if nome == "bms" else 2.4, piso=(Z1 - Z0) if nome == "bms" else E.parede_esp, canal=1.2 if nome == "bms" else 0.0)   # na parede: cantoneira baixa (pouco balanço)
         somas.append(so.transform(M[:3, :]))
         cortes.append(co.transform(M[:3, :]))
     kx, ky = E.chave
@@ -171,7 +182,7 @@ def chassi(E, pol) -> Peca:
     corpo = uniao(corpo, *somas) - uniao(*cortes)
     return Peca("chassi", corpo, material="PETG", cor="grafite", grupo="corpo", macica=True, suporte="não", explode=(0, 0, 0),
                 perimetros=4, infill=25, orientacao="piso na mesa (em pé)",
-                reforco="mísulas e arco a 45° sob o deck do pan; travessa inteira do piso ao deck; postes da porta engrossados para o inserto",
+                reforco="mísulas e arco a 45° sob o deck do pan; travessa inteira do piso ao deck; postes de trás engrossados (10 mm de parede em volta dos insertos); orelhas da gola em mísula; trilhos com teto em chanfro",
                 obs="piso recortado da seção da pele + rack das bandejas (atrás) + torre e deck do servo de pan (frente) + ressaltos das 2 esferas")
 
 

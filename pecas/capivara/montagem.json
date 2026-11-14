@@ -24,19 +24,19 @@
       1.0,
       0.0,
       0.0,
-      0.0
+      0.00029277801513671875
      ],
      [
       0.0,
       1.1102230246251565e-16,
       -1.0,
-      -82.7191962157022
+      -83.01999999999997
      ],
      [
       0.0,
       1.0,
       1.1102230246251565e-16,
-      67.56730651855469
+      67.74887466430664
      ],
      [
       0.0,
@@ -55,14 +55,14 @@
    "comum": false,
    "macica": true,
    "dim": [
-    56.0,
-    59.1,
-    29.5
+    52.8,
+    58.8,
+    29.3
    ],
-   "tris": 8046,
-   "plastico_cm3": 15.4,
-   "massa_g": 19.1,
-   "tempo_h": 0.79,
+   "tris": 7040,
+   "plastico_cm3": 17.1,
+   "massa_g": 21.2,
+   "tempo_h": 0.87,
    "obs": "rabo; cola no assento plano da porta",
    "liso": true,
    "perimetros": 3,
@@ -92,19 +92,19 @@
       1.0,
       0.0,
       0.0,
-      33.865606012972734
+      33.38208866119385
      ],
      [
       0.0,
       1.1102230246251565e-16,
       1.0,
-      98.27492136995482
+      89.51999999999998
      ],
      [
       0.0,
       -1.0,
       1.1102230246251565e-16,
-      64.34148949694428
+      62.65996932983398
      ],
      [
       0.0,
@@ -123,14 +123,14 @@
    "comum": false,
    "macica": true,
    "dim": [
-    35.0,
-    36.7,
-    10.9
+    48.6,
+    48.1,
+    19.7
    ],
-   "tris": 3440,
-   "plastico_cm3": 4.1,
-   "massa_g": 5.1,
-   "tempo_h": 0.27,
+   "tris": 4558,
+   "plastico_cm3": 9.2,
+   "massa_g": 11.4,
+   "tempo_h": 0.51,
    "obs": "mão direita; cola",
    "liso": true,
    "perimetros": 3,
@@ -160,19 +160,19 @@
       1.0,
       0.0,
       0.0,
-      -33.86563312426743
+      -33.382044315338135
      ],
      [
       0.0,
       1.1102230246251565e-16,
       1.0,
-      98.2694622603224
+      89.51999999999998
      ],
      [
       0.0,
       -1.0,
       1.1102230246251565e-16,
-      64.34081378364128
+      62.65996932983398
      ],
      [
       0.0,
@@ -191,14 +191,14 @@
    "comum": false,
    "macica": true,
    "dim": [
-    35.0,
-    36.7,
-    10.9
+    48.6,
+    48.1,
+    19.7
    ],
-   "tris": 3368,
-   "plastico_cm3": 4.1,
-   "massa_g": 5.1,
-   "tempo_h": 0.27,
+   "tris": 4482,
+   "plastico_cm3": 9.2,
+   "massa_g": 11.4,
+   "tempo_h": 0.51,
    "obs": "mão esquerda; cola",
    "liso": true,
    "perimetros": 3,
@@ -228,19 +228,19 @@
       1.0,
       0.0,
       0.0,
-      -0.0010431648991335862
+      9.27821518246219e-05
      ],
      [
       0.0,
       1.1102230246251565e-16,
       1.0,
-      90.74996654380834
+      91.01999999999997
      ],
      [
       0.0,
       -1.0,
       1.1102230246251565e-16,
-      104.29001937509791
+      104.74632263183594
      ],
      [
       0.0,
@@ -259,14 +259,14 @@
    "comum": false,
    "macica": true,
    "dim": [
-    69.7,
-    40.6,
-    12.4
+    68.2,
+    38.9,
+    12.1
    ],
-   "tris": 4472,
-   "plastico_cm3": 8.0,
-   "massa_g": 9.9,
-   "tempo_h": 0.45,
+   "tris": 3346,
+   "plastico_cm3": 7.6,
+   "massa_g": 9.4,
+   "tempo_h": 0.43,
    "obs": "ponta da bandana no peito; cola no rebaixo de fundo plano",
    "liso": true,
    "perimetros": 3,
@@ -297,7 +297,7 @@
       1.1102230246251565e-16,
       0.0,
       1.0,
-      92.55
+      94.55
      ],
      [
       0.0,
@@ -323,7 +323,7 @@
       -1.1102230246251565e-16,
       0.0,
       -1.0,
-      -92.55
+      -94.55
      ],
      [
       0.0,
@@ -392,7 +392,7 @@
       1.1102230246251565e-16,
       0.0,
       1.0,
-      92.55
+      94.55
      ],
      [
       0.0,
@@ -418,7 +418,7 @@
       -1.1102230246251565e-16,
       0.0,
       -1.0,
-      -92.55
+      -94.55
      ],
      [
       0.0,
@@ -486,19 +486,19 @@
       1.0,
       0.0,
       0.0,
-      3.814697265625e-06
+      -3.814697265625e-06
      ],
      [
       0.0,
       1.0,
       0.0,
-      13.234553353753718
+      10.616744058099421
      ],
      [
       0.0,
       0.0,
       1.0,
-      4.7199846683975135
+      5.0
      ],
      [
       0.0,
@@ -513,24 +513,24 @@
     0,
     60
    ],
-   "suporte": "sim (provisório)",
+   "suporte": "sim (pouco, árvore fina: teto de dentro das 2 patas, sobre os ressaltos das esferas, e quinas de baixo do relevo dos braços; ~0,9 % da área)",
    "comum": false,
    "macica": false,
    "dim": [
-    207.3,
-    185.2,
-    119.3
+    197.0,
+    179.9,
+    119.0
    ],
-   "tris": 153148,
-   "plastico_cm3": 168.3,
-   "massa_g": 208.7,
-   "tempo_h": 7.87,
-   "obs": "bacia inteira do corpo; entra por cima do chassi; 4 M3 por baixo",
+   "tris": 130394,
+   "plastico_cm3": 158.0,
+   "massa_g": 195.9,
+   "tempo_h": 7.39,
+   "obs": "bacia inteira do corpo; desce por cima do chassi; 2 M3 por trás (embaixo) + presa em cima pela gola; na frente abraça os ressaltos das esferas",
    "liso": true,
-   "perimetros": 3,
+   "perimetros": 4,
    "infill": 15,
-   "reforco": "",
-   "orientacao": "borda de baixo (z=5) na mesa, como um vaso"
+   "reforco": "2 blocos maciços atrás (um por parafuso M3, da mesa até o poste do chassi); barriga da frente e fundo de trás engrossados a 45° desde a mesa; 4 perímetros porque a bacia é aberta atrás (porta)",
+   "orientacao": "borda de baixo (z=5) na mesa, em pé como um vaso; boca (z=124) para cima"
   },
   {
    "nome": "porta",
@@ -560,13 +560,13 @@
       0.0,
       1.0,
       0.0,
-      -63.97941168098558
+      -67.60164027856025
      ],
      [
       0.0,
       0.0,
       1.0,
-      5.40530341882257
+      5.0
      ],
      [
       0.0,
@@ -581,23 +581,23 @@
     -120,
     0
    ],
-   "suporte": "sim (provisório)",
+   "suporte": "sim (pouco: ~110 mm² na curva de baixo, por fora e por baixo; não aparece)",
    "comum": false,
    "macica": false,
    "dim": [
     76.1,
-    43.9,
-    118.6
+    36.7,
+    119.0
    ],
-   "tris": 26330,
-   "plastico_cm3": 27.1,
-   "massa_g": 33.6,
-   "tempo_h": 1.33,
-   "obs": "porta traseira: bateria e bandejas saem por aqui; 2 M3 por trás",
+   "tris": 23946,
+   "plastico_cm3": 30.3,
+   "massa_g": 37.6,
+   "tempo_h": 1.48,
+   "obs": "porta traseira: bateria e bandejas saem por aqui sem tirar a cabeça; 2 M3 por trás (embaixo); leva o rabo e o carregador USB-C",
    "liso": true,
-   "perimetros": 3,
+   "perimetros": 4,
    "infill": 15,
-   "reforco": "",
+   "reforco": "2 blocos maciços (um por parafuso M3, da mesa até o poste); assento plano do rabo com parede atrás",
    "orientacao": "borda de baixo na mesa, em pé"
   },
   {
@@ -634,7 +634,7 @@
       0.0,
       0.0,
       1.0,
-      123.60548935737697
+      124.25
      ],
      [
       0.0,
@@ -649,24 +649,24 @@
     0,
     100
    ],
-   "suporte": "sim (provisório)",
+   "suporte": "não",
    "comum": false,
    "macica": false,
    "dim": [
     159.4,
     155.7,
-    71.6
+    71.0
    ],
-   "tris": 71812,
-   "plastico_cm3": 90.6,
-   "massa_g": 112.3,
-   "tempo_h": 4.27,
-   "obs": "gola-bandana: esfera em que a cabeça gira; assenta na borda da bacia",
+   "tris": 42426,
+   "plastico_cm3": 123.0,
+   "massa_g": 152.5,
+   "tempo_h": 5.78,
+   "obs": "gola-bandana: esfera em que a cabeça gira; assenta na borda da bacia e a prende; 2 M3 por cima, nas orelhas da torre (por dentro, antes da cabeça)",
    "liso": true,
-   "perimetros": 3,
-   "infill": 15,
-   "reforco": "",
-   "orientacao": "borda de baixo (z=124) na mesa"
+   "perimetros": 4,
+   "infill": 20,
+   "reforco": "maciça entre a esfera e o rolo de fora (sem teto em balanço); 2 abas na base para os M3 das orelhas da torre",
+   "orientacao": "base (z=124) na mesa; a esfera sobe até 45° e fica aberta em cima"
   },
   {
    "nome": "cranio",
@@ -717,7 +717,7 @@
     0,
     150
    ],
-   "suporte": "sim (provisório)",
+   "suporte": "sim (árvore POR DENTRO: teto do crânio e fundo dos copos dos olhos; e por baixo, fora do rosto: céu da boca e curva de baixo das bochechas)",
    "comum": false,
    "macica": false,
    "dim": [
@@ -725,16 +725,16 @@
     187.1,
     134.7
    ],
-   "tris": 167338,
-   "plastico_cm3": 202.2,
-   "massa_g": 250.7,
-   "tempo_h": 9.44,
+   "tris": 167464,
+   "plastico_cm3": 202.3,
+   "massa_g": 250.9,
+   "tempo_h": 9.45,
    "obs": "3 M3x12 por baixo, pela mesa (na bancada); 2 furos no alto dão acesso aos parafusos da coluna",
    "liso": true,
    "perimetros": 3,
    "infill": 15,
-   "reforco": "",
-   "orientacao": "borda de baixo (z=152) na mesa"
+   "reforco": "3 orelhas internas com inserto M3 para a mesa; copos dos olhos fechados por trás (só a janela do cabo)",
+   "orientacao": "borda de baixo (z=152) na mesa, em pé"
   },
   {
    "nome": "mandibula",
@@ -758,19 +758,19 @@
       1.0,
       0.0,
       0.0,
-      -0.00016643228625667916
+      -0.0003653431751402536
      ],
      [
       0.0,
+      1.1102230246251565e-16,
       1.0,
-      0.0,
-      124.37838006924311
+      102.5
      ],
      [
       0.0,
-      0.0,
-      1.0,
-      152.60039348308285
+      -1.0,
+      1.1102230246251565e-16,
+      168.01288649344053
      ],
      [
       0.0,
@@ -785,24 +785,24 @@
     70,
     85
    ],
-   "suporte": "sim (provisório)",
+   "suporte": "sim (pouco: ~190 mm² no alívio esférico de trás, por dentro)",
    "comum": false,
    "macica": false,
    "dim": [
-    131.4,
-    44.8,
-    30.9
+    130.4,
+    30.8,
+    44.3
    ],
-   "tris": 11226,
-   "plastico_cm3": 16.0,
-   "massa_g": 19.8,
-   "tempo_h": 0.82,
-   "obs": "horn do servo na direita (parafuso central por fora); M3x16 + bucha na esquerda",
+   "tris": 11060,
+   "plastico_cm3": 15.8,
+   "massa_g": 19.6,
+   "tempo_h": 0.81,
+   "obs": "sem parafuso por fora: o horn encaixa entre 2 nervuras (direita) e o pino da mesa entra no soquete cego (esquerda); abre e encaixa por pressão",
    "liso": true,
-   "perimetros": 3,
-   "infill": 15,
-   "reforco": "",
-   "orientacao": ""
+   "perimetros": 4,
+   "infill": 20,
+   "reforco": "almofadas maciças nos 2 lados do eixo; 2 nervuras que abraçam o horn",
+   "orientacao": "face de trás (plano de corte) na mesa, ponta do queixo para cima"
   },
   {
    "nome": "mesa-cabeca",
@@ -859,18 +859,18 @@
    "dim": [
     97.2,
     146.5,
-    46.3
+    50.3
    ],
-   "tris": 2592,
-   "plastico_cm3": 28.3,
-   "massa_g": 35.9,
-   "tempo_h": 1.39,
-   "obs": "mesa da cabeça: 2 M3x10 na coluna do berço (por cima); segura o servo da boca",
+   "tris": 2658,
+   "plastico_cm3": 28.4,
+   "massa_g": 36.1,
+   "tempo_h": 1.4,
+   "obs": "mesa da cabeça: 2 M3x10 na coluna do berço (por cima, pelos furos sob o topete); segura o servo da boca, o pino do eixo da mandíbula e o alto-falante",
    "liso": true,
-   "perimetros": 3,
-   "infill": 15,
-   "reforco": "",
-   "orientacao": ""
+   "perimetros": 4,
+   "infill": 30,
+   "reforco": "placa de 4 mm; janela do servo da boca com cantos em chanfro (ponte de 19,6 mm); assento cônico do alto-falante",
+   "orientacao": "de cabeça para baixo: face de cima na mesa"
   },
   {
    "nome": "olho",
@@ -1302,19 +1302,19 @@
       1.0,
       0.0,
       0.0,
-      -0.0009382219135751768
+      3.552713678800501e-15
      ],
      [
       0.0,
       1.1102230246251565e-16,
       1.0,
-      142.82448395824653
+      143.01999999999998
      ],
      [
       0.0,
       -1.0,
       1.1102230246251565e-16,
-      209.75
+      209.75000762939453
      ],
      [
       0.0,
@@ -1333,14 +1333,14 @@
    "comum": false,
    "macica": true,
    "dim": [
-    78.0,
-    60.5,
-    18.4
+    77.9,
+    59.9,
+    18.2
    ],
-   "tris": 7490,
-   "plastico_cm3": 20.4,
-   "massa_g": 25.3,
-   "tempo_h": 1.02,
+   "tris": 8274,
+   "plastico_cm3": 20.2,
+   "massa_g": 25.0,
+   "tempo_h": 1.01,
    "obs": "tampa marrom do focinho; cola",
    "liso": true,
    "perimetros": 3,
@@ -1370,19 +1370,19 @@
       0.791829751016176,
       0.0867376037432601,
       0.6045512662318541,
-      63.23293751512217
+      63.195532113132366
      ],
      [
       0.08673760374326006,
       0.9638593317736416,
       -0.25189636092993917,
-      -1.9855319914876133
+      -2.000876510230887
      ],
      [
       -0.6045512662318541,
       0.2518963609299392,
       0.7556890827898175,
-      274.31165485508075
+      274.36293024807986
      ],
      [
       0.0,
@@ -1401,12 +1401,12 @@
    "comum": false,
    "macica": true,
    "dim": [
-    26.5,
-    26.9,
+    26.3,
+    26.8,
     5.4
    ],
-   "tris": 1108,
-   "plastico_cm3": 1.5,
+   "tris": 1194,
+   "plastico_cm3": 1.4,
    "massa_g": 1.8,
    "tempo_h": 0.15,
    "obs": "orelha direita; cola",
@@ -1438,19 +1438,19 @@
       0.791829751016176,
       -0.0867376037432601,
       -0.6045512662318541,
-      -63.23290590944858
+      -63.195463335931066
      ],
      [
       -0.08673760374326006,
       0.9638593317736416,
       -0.25189636092993917,
-      -1.9901649493496085
+      -2.0028389666768787
      ],
      [
       0.6045512662318541,
       0.2518963609299392,
       0.7556890827898175,
-      274.3101358203323
+      274.36233111769235
      ],
      [
       0.0,
@@ -1469,12 +1469,12 @@
    "comum": false,
    "macica": true,
    "dim": [
-    26.5,
-    26.9,
+    26.3,
+    26.8,
     5.4
    ],
-   "tris": 1114,
-   "plastico_cm3": 1.5,
+   "tris": 1184,
+   "plastico_cm3": 1.4,
    "massa_g": 1.8,
    "tempo_h": 0.15,
    "obs": "orelha esquerda; cola",
@@ -1512,13 +1512,13 @@
       0.0,
       1.0,
       0.0,
-      37.0
+      37.00071859359741
      ],
      [
       0.0,
       0.0,
       1.0,
-      275.5
+      275.52
      ],
      [
       0.0,
@@ -1537,14 +1537,14 @@
    "comum": false,
    "macica": true,
    "dim": [
-    44.0,
-    52.0,
+    43.1,
+    51.4,
     24.4
    ],
-   "tris": 6586,
-   "plastico_cm3": 12.2,
-   "massa_g": 15.1,
-   "tempo_h": 0.65,
+   "tris": 5848,
+   "plastico_cm3": 11.8,
+   "massa_g": 14.6,
+   "tempo_h": 0.62,
    "obs": "topete; encaixe por pressão (sem cola): tampa os 2 furos de acesso aos parafusos da mesa",
    "liso": true,
    "perimetros": 3,
@@ -1580,7 +1580,7 @@
       0.0,
       1.0,
       0.0,
-      7.577866714447737
+      5.483639873564243
      ],
      [
       0.0,
@@ -1606,18 +1606,18 @@
    "macica": true,
    "dim": [
     149.0,
-    131.1,
-    93.0
+    135.8,
+    115.0
    ],
-   "tris": 6804,
-   "plastico_cm3": 131.2,
-   "massa_g": 166.7,
-   "tempo_h": 6.16,
+   "tris": 8432,
+   "plastico_cm3": 137.4,
+   "massa_g": 174.5,
+   "tempo_h": 6.44,
    "obs": "piso recortado da seção da pele + rack das bandejas (atrás) + torre e deck do servo de pan (frente) + ressaltos das 2 esferas",
    "liso": true,
    "perimetros": 4,
    "infill": 25,
-   "reforco": "mísulas e arco a 45° sob o deck do pan; travessa inteira do piso ao deck; postes da porta engrossados para o inserto",
+   "reforco": "mísulas e arco a 45° sob o deck do pan; travessa inteira do piso ao deck; postes de trás engrossados (10 mm de parede em volta dos insertos); orelhas da gola em mísula; trilhos com teto em chanfro",
    "orientacao": "piso na mesa (em pé)"
   },
   {
@@ -1900,7 +1900,7 @@
     0,
     30
    ],
-   "suporte": "não",
+   "suporte": "sim (1,8 mm sob a base, em volta do anel de centragem do horn; suporte normal, fora de vista)",
    "comum": true,
    "macica": true,
    "dim": [
@@ -1914,10 +1914,10 @@
    "tempo_h": 0.71,
    "obs": "gira com o servo de pan (horn redondo) e segura o eixo do tilt",
    "liso": true,
-   "perimetros": 3,
-   "infill": 15,
-   "reforco": "",
-   "orientacao": ""
+   "perimetros": 5,
+   "infill": 40,
+   "reforco": "camadas ao longo dos montantes NÃO: a carga do tilt flete os montantes no plano das camadas, por isso 5 perímetros e 40 % de miolo",
+   "orientacao": "base na mesa, montantes para cima"
   },
   {
    "nome": "berco-tilt",
@@ -1982,10 +1982,10 @@
    "tempo_h": 0.63,
    "obs": "segura o servo de tilt (MG996R em pé) e sobe pela abertura da gola até a mesa da cabeça; cabos pela face chata da coluna",
    "liso": true,
-   "perimetros": 3,
-   "infill": 15,
-   "reforco": "",
-   "orientacao": ""
+   "perimetros": 5,
+   "infill": 40,
+   "reforco": "coluna em D maciça (5 perímetros) e ponte de 4 mm entre as duas paredes do servo",
+   "orientacao": "de cabeça para baixo: topo da coluna na mesa"
   },
   {
    "nome": "teste-encaixe",
@@ -3379,9 +3379,9 @@
  "obs": {
   "parede_medida": {
    "corpo": {
-    "min": 2.32,
+    "min": 2.3,
     "med": 2.39,
-    "max": 2.77,
+    "max": 2.83,
     "amostras": 4000
    },
    "cabeça": {
@@ -3427,9 +3427,9 @@
  ],
  "parede_medida": {
   "corpo": {
-   "min": 2.32,
+   "min": 2.3,
    "med": 2.39,
-   "max": 2.77,
+   "max": 2.83,
    "amostras": 4000
   },
   "cabeça": {
