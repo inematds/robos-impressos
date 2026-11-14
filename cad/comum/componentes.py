@@ -108,6 +108,14 @@ def tela35(t=P.TELA35):
     return caixa(-w / 2, w / 2, 0, t.esp_conjunto, -h / 2, h / 2)
 
 
+def modulo(c):
+    """Módulo eletrônico sem furo confiável (step-down, UBEC, carregador, BMS…): caixa `c.cx` = (comprimento, largura,
+    altura). Local: centrado em XY, base em z=0, comprimento ao longo de X. Fixação: geo.berco_modulo (cantoneiras +
+    abraçadeira). Ex.: Comp("step-down 5V", C.modulo(P.STEPDOWN5V).translate([x, y, z_do_piso]), "corpo", P.STEPDOWN5V.massa)."""
+    L, W, H = c.cx
+    return caixa(-L / 2, L / 2, -W / 2, W / 2, 0, H)
+
+
 def M(R=None, t=(0, 0, 0)):
     """Matriz 4x4 a partir de colunas (para onde vão os eixos locais x, y, z) e translação."""
     m = np.eye(4)

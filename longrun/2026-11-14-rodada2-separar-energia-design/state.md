@@ -36,3 +36,4 @@ Depois: E3b dino (mesma receita), consolidação (`gerar todos` + `verificar tod
 ## RETOMADA 14/11 (sessão nova, depois do reinício)
 - Briefs originais da E1 e da E3a recuperados do histórico e gravados em `E1-brief.md` e `E3a-brief.md` (+ bloco RETOMADA); pesquisa de energia das 10:16 em `pesquisa-energia.md`.
 - E1 e E3a relançadas em paralelo (Fable, esforço high). Donos de arquivo: os mesmos da tabela "Agentes lançados às 17:0x".
+- 14/11 E1 pacote 1: componentes de energia (STEPDOWN5V, UBEC6V, CARREGADOR2S, BMS2S) em parametros.py + C.modulo + geo.berco_modulo; receita no canal.md.

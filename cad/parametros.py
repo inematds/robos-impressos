@@ -183,6 +183,65 @@ UNIVERSAL = NS(passo=20.0)   # "ponto universal": par de furos M3 a 20 mm p/ sup
 LIDAR = NS(nome="LiDAR LD06/LD19", d=38.0, alt=35.0)                                             # ~38 mm (pedido); NC
 JACK = NS(nome="conector de carga P4 de painel", furo_d=8.2)                                     # NC
 
+# ------------------------------------------------------------------ COMPONENTES DE ENERGIA (rodada 2, etapa E1)
+# Envelope = caixa `cx` (comprimento, largura, altura). Em cad/comum/componentes.py: C.modulo(P.<NOME>) devolve a
+# caixa centrada em XY com a base em z=0 e o comprimento em X. Fixação recomendada: berço de 4 cantoneiras + abraçadeira
+# de nylon (cad/comum/geo.py › berco_modulo): NÃO depende de furo de placa (os furos destes módulos são NC ou não
+# existem). Contas de tensão: pack 2S = 8,4 V cheio, 7,4 V nominal, ~6,0 V vazio; pack 3S = 12,6 / 11,1 / ~9,0 V.
+STEPDOWN5V = NS(
+    nome="step-down 5 V do Raspberry Pi (LM2596 no pack 2S; XL4015 no pack 3S)",
+    cx=(54.0, 24.0, 16.0),             # T: o MAIOR dos dois (XL4015 com dissipador, 54 x 24 x 16, 15 g): o berço aceita qualquer um
+                                       #    https://www.usinainfo.com.br/regulador-de-tensao/regulador-de-tensao-xl4015-step-down-saida-125-a-32v-dc-5a-8768.html
+    massa=15.0,                        # T (mesma página); o LM2596 pesa 10 g
+    lm2596=(43.0, 21.0, 14.0),         # T: 43 x 21 x 14, 10 g, entrada 4,5–40 V, 3 A máx.  https://curtocircuito.com.br/conversor-dc-dc-step-down-lm2596.html
+    # Qual usar (decide a TENSÃO MÍNIMA de entrada, não a corrente):
+    #  pack 2S → LM2596: entra a partir de 4,5 V (T); queda da chave 1,16 V típ. / 1,4 V máx. a 3 A (P, datasheet TI
+    #            https://www.ti.com/lit/ds/symlink/lm2596.pdf) → os 5 V se mantêm até o pack cair a ~6,5 V (3,25 V por
+    #            célula; calculado). Abaixo disso a saída acompanha a bateria e o Pi acusa subtensão: é o "fim de carga".
+    #            O XL4015 NÃO serve no 2S: a loja dá entrada 8–35 V (T, URL acima) e o pack 2S passa quase todo o tempo abaixo de 8 V.
+    #            O Mini560 (5 V fixo, 5 A) pede ≥ 7 V (T, kunkune.co.uk): perderia a metade de baixo da carga do 2S.
+    #  pack 3S → XL4015 (5 A, recomendada 4,5 A; entrada 8–35 V): sobra tensão em toda a descarga (9,0–12,6 V).
+    #  Os 3 A do LM2596 bastam? O Pi 4 pede fonte de 3 A porque reserva 1,2 A para as USB; aqui a câmera é CSI e a tela
+    #  vai no GPIO/HDMI: consumo esperado ≤ 2 A (estimativa, NC). Pi 5 com 3 A funciona, mas limita as USB a 0,6 A.
+    v_min_2s=6.5, v_min_3s=8.0,
+    furos="NC (em geral 2 furos Ø3 em cantos opostos): por isso a fixação é berço + abraçadeira",
+)
+UBEC6V = NS(
+    nome="UBEC 6 V 3 A dos servos (Hobbywing UBEC 3A 2-6S ou equivalente)",
+    cx=(43.0, 17.0, 7.0),              # P: 43 x 17 x 7 mm, 11 g  https://www.hobbywing.com/en/products/ubec-3a-2-6s99.html
+    massa=11.0,                        # P (a página não diz se inclui os fios)
+    # P: saída 5 V ou 6 V a 3 A CONTÍNUOS (jumper), entrada 5,5–26 V (2–6S), ripple < 50 mVp-p. Pico: a página não dá (NC).
+    # 2 x MG996R: travamento 1,4 A cada e 0,17 A girando sem carga (P, https://www.towerpro.com.tw/product/mg996r/ ; a
+    # página não diz a tensão) → 2,8 A com os dois travados, dentro dos 3 A. Cópias do datasheet citam 2,5 A a 6 V
+    # (NC): seriam 5 A com os DOIS travados ao mesmo tempo, acima do UBEC → o firmware não deixa travar (pan e tilt
+    # param antes do batente) e vai um capacitor de 1000 µF no barramento dos servos. Uso típico (pan + tilt da cabeça,
+    # carga leve): < 1 A (estimativa, NC). No pack 2S a saída de 6 V só se mantém com ~7 V de entrada (queda do
+    # regulador NC ~1 V); abaixo disso ela acompanha a bateria (5–6 V), o que o MG996R aceita (4,8–6,6 V, P).
+    i_continua=3.0, i_trav_2servos=(2.8, 5.0),
+    furos="não tem: berço + abraçadeira (ou fita dupla-face)",
+)
+CARREGADOR2S = NS(
+    nome="carregador USB-C 2S/3S com balanceamento (LX-USC-V2)",
+    cx=(32.0, 18.0, 5.0),              # T: 32 x 18 x 5 mm, 3 g, 8,4 V (2S, como vem) ou 12,6 V (3S), 1,5 A ajustável, USB-C
+                                       #    https://www.usinainfo.com.br/fonte-de-alimentacao/carregador-de-baterias-18650-litio-2s3s-com-balanceamento-usb-c-lx-usc-v2-8996.html
+    massa=3.0,                         # T
+    usb_c=(9.2, 3.4),                  # NC: boca do conector USB-C (8,94 x 3,26 da norma + folga); fica numa das pontas do comprimento
+    # Decisão: módulo carregador USB-C COM balanceamento + placa de proteção (BMS2S abaixo). Por quê:
+    #  - carrega com qualquer fonte USB-C de celular sem abrir o robô (o conector aparece só por trás/por baixo);
+    #  - o suporte 2x18650 leva células soltas, quase sempre SEM proteção: quem corta a descarga funda e o curto é o BMS;
+    #  - balancear exige o fio do ponto do meio do suporte (soldar um fio na mola/lâmina que une as duas células);
+    #  - carregador externo (tirar as células pela porta) continua possível, mas não como rotina: abre o robô toda carga.
+    #  Alternativa sem balanceamento: DDTCCRUB-2S-2A (CN3302, 38 x 18 x 6, 5 g, carga 1,1 A; T usinainfo 8763): cabe no mesmo berço alongado.
+    furos="não tem: berço + abraçadeira, com a boca USB-C encostada numa janela da parede",
+)
+BMS2S = NS(
+    nome="placa de proteção BMS 2S 10 A (modelo 10A2S)",
+    cx=(24.0, 11.0, 3.0),              # T: ~24 x 11 x 3 mm, 1,3 g; corta a 2,82–2,98 V por célula, sobrecarga 4,26–4,31 V, curto
+                                       #    https://www.usinainfo.com.br/controladores-de-carga/controlador-de-carga-placa-de-protecao-de-carga-bms-para-bateria-18650-2s-10a-84v-5446.html
+    massa=1.3,                         # T
+    furos="não tem: bolso raso + fita dupla-face (vai soldada nos fios da bateria)",
+)
+
 # ------------------------------------------------------------------ BASE (esqueleto comum dos bichos que rodam)
 BASE = NS(
     piso_z=(9.0, 13.0),                # o piso fica 9 mm acima do chão

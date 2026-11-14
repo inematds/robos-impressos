@@ -478,3 +478,36 @@ def ressalto_nervurado(p, direcao, altura, d_inserto=4.0, n_nervuras=3, d_ext=No
     m = uniao(*partes)
     base = np.asarray(p, float) + d * h
     return m.transform(_mat_z_para(-d, base))
+
+
+def berco_modulo(cx, folga=0.4, alt=4.0, esp=1.6, canto=7.0, fita=(4.4, 2.2), piso=3.0, canal=1.2):
+    """Berço para módulo eletrônico SEM furo confiável (step-down, UBEC, carregador, BMS): 4 cantoneiras baixas em
+    volta da caixa do módulo + 2 rasgos para UMA abraçadeira de nylon de 3,6 mm que passa por cima do módulo e por
+    baixo do piso. Não depende de furo de placa. Tudo vertical: imprime sem suporte com o piso na mesa.
+
+    cx     (comprimento, largura, altura) do módulo, ou o próprio namespace de parametros.py (usa `.cx`)
+    Local  igual ao de componentes.modulo(): centrado em XY, comprimento em X, z=0 = face de cima do piso (assento)
+    alt    altura das cantoneiras; esp = espessura; canto = comprimento de cada perna do "L"
+    fita   (largura, espessura) do rasgo da abraçadeira; piso = espessura do piso que os rasgos atravessam
+    canal  profundidade do canal por baixo do piso, entre os dois rasgos, para a abraçadeira não fazer calço
+           (0 = sem canal: use quando há vão livre embaixo, como num deck). O canal é uma ponte de 4,4 mm: imprime.
+    Devolve (soma, corte): some `soma` na peça e depois subtraia `corte`, os dois já levados ao lugar com
+    .transform()/.translate(), igual ao envelope do componente.
+    """
+    L, W, _ = getattr(cx, "cx", cx)
+    hx, hy = L / 2 + folga, W / 2 + folga
+    partes = []
+    for sx in (1, -1):
+        for sy in (1, -1):
+            x0, x1 = sorted((sx * (hx - canto), sx * (hx + esp)))
+            y0, y1 = sorted((sy * hy, sy * (hy + esp)))
+            partes.append(caixa(x0, x1, y0, y1, -0.01, alt))                 # perna ao longo de X
+            x0, x1 = sorted((sx * hx, sx * (hx + esp)))
+            y0, y1 = sorted((sy * (hy - min(canto, hy)), sy * (hy + esp)))
+            partes.append(caixa(x0, x1, y0, y1, -0.01, alt))                 # perna ao longo de Y
+    soma = uniao(*partes)
+    ys = hy + esp + 0.3 + fita[1] / 2                                        # rasgo logo por fora das cantoneiras
+    cortes = [caixa(-fita[0] / 2, fita[0] / 2, s * ys - fita[1] / 2, s * ys + fita[1] / 2, -piso - 0.01, 0.01) for s in (1, -1)]
+    if canal > 0:
+        cortes.append(caixa(-fita[0] / 2, fita[0] / 2, -ys - fita[1] / 2, ys + fita[1] / 2, -piso - 0.01, -piso + canal))
+    return soma, uniao(*cortes)
