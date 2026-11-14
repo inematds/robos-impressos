@@ -32,3 +32,7 @@ Depois: E3b dino (mesma receita), consolidação (`gerar todos` + `verificar tod
 - E1 (cubo energia + cubo_rodas) tinha relançado às 17:0x e não chegou a commitar: começar a E1 do zero.
 - E3a capivara: pacote 1 parcial (conversor + pele em commit); falta aplicar a pele no modelo `capivara.py`.
 - Para retomar: sessão nova em ~/projetos/robos-impressos, Fable 5.2 high, ler goal → state → plan → canal → decisions → E3-brief → E5-brief e seguir "Agentes lançados às 17:0x". Ordens do Nei estão em goal.md (1–10), inclusive avisa-v3 no fim.
+
+## RETOMADA 14/11 (sessão nova, depois do reinício)
+- Briefs originais da E1 e da E3a recuperados do histórico e gravados em `E1-brief.md` e `E3a-brief.md` (+ bloco RETOMADA); pesquisa de energia das 10:16 em `pesquisa-energia.md`.
+- E1 e E3a relançadas em paralelo (Fable, esforço high). Donos de arquivo: os mesmos da tabela "Agentes lançados às 17:0x".
