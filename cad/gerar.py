@@ -120,7 +120,8 @@ def gerar(nome: str):
                             "grupo": p.grupo, "grupos": grupos, "qtd": max(len(p.copias), 1), "na_montagem": len(p.copias),
                             "para_montagem": mats, "explode": list(p.explode), "suporte": p.suporte, "comum": p.comum,
                             "macica": p.macica, "dim": dim, "tris": int(s.num_tri()), "plastico_cm3": vol, "massa_g": massa,
-                            "tempo_h": tempo, "obs": p.obs, "liso": p.liso})
+                            "tempo_h": tempo, "obs": p.obs, "liso": p.liso, "perimetros": p.perimetros,
+                            "infill": p.infill, "reforco": p.reforco, "orientacao": p.orientacao})
         for k, M in enumerate(mats):
             g = tm.copy()
             g.visual.face_colors = [int(c * 255) for c in rgb] + [255]

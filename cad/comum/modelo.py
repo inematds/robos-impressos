@@ -32,6 +32,11 @@ class Peca:
     macica: bool = False             # peça maciça (estimativa usa casca + miolo)
     obs: str = ""
     liso: bool = True
+    # impressão (teste 10 "imprimibilidade" e tabela por peça). `suporte` acima: "não" ou "sim (onde, tipo)"
+    perimetros: int = 3              # nº de paredes; 4–5 nas peças estruturais
+    infill: int = 15                 # % de preenchimento
+    reforco: str = ""                # motivo dos reforços (nervura, ressalto do inserto, filete, camadas ao longo da carga…)
+    orientacao: str = ""             # texto curto: qual face vai na mesa
 
 
 @dataclass

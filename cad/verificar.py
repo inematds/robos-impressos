@@ -15,6 +15,11 @@ Testes (cada um diz PASSOU ou FALHOU; o script sai com código 1 se algum falhar
   8 equilíbrio     centro de gravidade (estimado) dentro do polígono de apoio, com margem, em todas as poses
   9 caminho        cada passo da ordem de montagem: a peça (ou o conjunto) vem de fora na direção declarada, de
                    5 em 5 mm, sem atravessar o que já está montado (encaixes laterais de 3 mm de horn não entram)
+ 10 imprimibilidade cada peça, na orientação de impressão: área de faces viradas para baixo a mais de 45° da
+                   vertical, fora da mesa, que não é furo pequeno, ponte curta nem beira (mm² e %); pontes longas;
+                   pontos que nascem no ar. FALHA se peça declarada sem suporte (`suporte` = "não") precisa de suporte.
+                   Cálculo e limites: cad/comum/imprimibilidade.py e cad/parametros.py › IMPRESSAO_LIMITES
+ 11 negativo impr.  gira de propósito uma peça aprovada (180° ou 90°) e exige que o teste 10 acuse
 """
 from __future__ import annotations
 
@@ -288,6 +293,17 @@ def verificar(nome: str, rapido=False) -> bool:
                   f"{n_passos} passos (montagem + abertura para manutenção), cada peça entra ou sai pela direção declarada sem atravessar o que está montado"
                   if not travados and not fora else ("; ".join(travados[:6]) + (f"; fora da ordem: {fora}" if fora else "")))
     rel["caminho"] = travados
+
+    # ---------------------------------------------------------------- 10 imprimibilidade + 11 teste negativo
+    try:
+        from cad.comum import imprimibilidade as imp   # import tardio: erro aqui vira FALHOU, não derruba os testes 1–9
+        ok10, txt10, dados10 = imp.teste_imprimibilidade(mj["pecas"], malhas, base)
+        resultado("10 imprimibilidade", ok10, txt10)
+        ok11, txt11, neg11 = imp.teste_negativo(mj["pecas"], malhas, dados10, base)
+        resultado("11 negativo impr.", ok11, txt11)
+        rel["imprimibilidade"] = {"limites": vars(imp.limites()), "pecas": dados10, "teste_negativo": neg11}
+    except Exception as ex:  # noqa: BLE001
+        resultado("10 imprimibilidade", False, f"o cálculo não rodou ({type(ex).__name__}: {ex})")
 
     rel["cg"] = [{"pose": n, "cg": [round(float(x), 1) for x in c], "margem_mm": round(float(m_), 1), "tomba_graus": round(a_, 1), "massa_g": round(mt_, 0)}
                  for (n, c, m_, a_, mt_) in linhas_cg]

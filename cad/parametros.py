@@ -46,6 +46,31 @@ FOLGA = NS(
     pino_d=4.0,          # pino-guia impresso entre as metades do torso
 )
 
+# ------------------------------------------------------------------ IMPRESSÃO SEM SUPORTE (teste 10 do verificador)
+# Limites de cad/comum/imprimibilidade.py. São regras de projeto para FDM com bico 0,4 e camada 0,2 (PLA/PETG com a
+# ventilação de peça ligada); NÃO saíram de impressão nossa (nada foi impresso na fase 1): ao imprimir, ajuste aqui.
+# Regra do veredito: a peça PRECISA de suporte se  área sem apoio > max(area_max_mm2, area_max_pct % da área total)
+# ou se algum ponto nasce no ar. É "max" de propósito: em peça pequena vale o piso absoluto (0,2 % de uma pupila
+# seria menos que um fragmento); em casca grande vale o percentual (ruído da malha orgânica perto de 45°).
+IMPRESSAO_LIMITES = NS(
+    angulo_max=45.0,       # graus a partir da VERTICAL (parede = 0°, teto = 90°). A 45°, cada camada de 0,2 avança
+                           # 0,2 mm: menos da metade do filete de 0,42 fica no ar. É o "balanços ≤ 45°" da ordem 9
+    tol_angulo=1.0,        # graus de folga p/ arredondamento do STL (float32): chanfro de 45° exatos não é acusado
+    z_mesa=0.3,            # face para baixo com |z| < 0,3 mm (1ª camada de 0,2 + folga) está NA MESA, não é balanço
+    ponte_max=20.0,        # mm de vão de ponte PLANA apoiada nas duas pontas (teto da faixa 15–20 da ordem 9; em
+                           # PETG, que escorre mais, mire 15)
+    furo_max=6.0,          # mm de vão de teto curvo ou rasgo apoiado dos dois lados. O trecho do teto de um furo
+                           # redondo que passa de 45° mede 0,71 x Ø: libera furo horizontal até ~Ø8 (M3 passante 3,4,
+                           # inserto 4,0, rebaixo de cabeça 6,2). Furo maior: desenhar em gota
+    balanco_curto=1.0,     # mm de aba horizontal tolerada sem nada embaixo ≈ 2 filetes (o 2º ainda gruda no 1º)
+    fragmento_mm2=4.0,     # região isolada menor que isto (≈ 2 x 2 mm, 5 filetes) não conta: o filete atravessa
+    area_max_mm2=30.0,     # tolerância ABSOLUTA por peça ≈ um teto de 5,5 x 5,5 mm (um furo no limite): é o tamanho
+                           # de defeito que não muda encaixe nem aparência; absorve o erro do próprio método
+    area_max_pct=0.2,      # tolerância RELATIVA, % da área total da peça (casca de 850 cm² → 170 mm² somados, uns 5
+                           # defeitos do tamanho acima espalhados). Critério de projeto, não medição: aperte se sobrar
+    inicio_no_ar_mm=0.6,   # ponta de paredes íngremes que nasce no ar só conta se pendurar ≥ 3 camadas
+)
+
 # ------------------------------------------------------------------ COMPONENTES COMPRADOS
 # Cada medida com a fonte. As URLs por extenso estão em PLANO.md.
 UNO = NS(
