@@ -101,7 +101,7 @@ def linhas_mesas(m, lg):
 
 def linhas_resumo(lg):
     t = T[lg]
-    cab = [t["modelo"], t["altura"], t["pecas"], t["mesas"], t["massa_t"], t["tempo_t"], t["massa_robo"]]
+    cab = [t["modelo"], t["altura"], t["pecas"], t["mesas"] + {"pt": "s (impressões)", "en": "s (print jobs)", "es": "s (impresiones)"}[lg], t["massa_t"], t["tempo_t"], t["massa_robo"]]
     ls = []
     for m in MODELOS:
         mj, v, ms = carrega(m)

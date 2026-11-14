@@ -2,7 +2,7 @@
 
 ## Resumo
 
-| Modelo | Altura (mm) | Peças | Mesa | Filamento total (g)* | Impressão total (h)* | Robô montado (g)* |
+| Modelo | Altura (mm) | Peças | Mesas (impressões) | Filamento total (g)* | Impressão total (h)* | Robô montado (g)* |
 |---|---|---|---|---|---|---|
 | Dinossauro | 329 | 38 | 12 | 1107 | 44 | 1666 |
 | Capivara | 326 | 39 | 13 | 1049 | 42 | 1581 |

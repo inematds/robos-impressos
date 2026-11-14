@@ -2240,11 +2240,11 @@
     34.0,
     8.0
    ],
-   "tris": 1108,
+   "tris": 1300,
    "plastico_cm3": 12.1,
    "massa_g": 15.0,
    "tempo_h": 0.64,
-   "obs": "cupom de folgas: janela do servo, 3 furos de inserto (3,9/4,0/4,1), M3/M2,5/M2, 3 soquetes do pino (0,20/0,25/0,30)",
+   "obs": "cupom de folgas: janela do servo, 3 furos de inserto (3,9/4,0/4,1), eixo do motor TT, M3 passante/M3 piloto/M2,5/M2, 3 soquetes do pino (0,20/0,25/0,30); covinha = medida do projeto",
    "liso": true
   }
  ],

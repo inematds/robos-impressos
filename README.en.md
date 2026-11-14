@@ -21,7 +21,7 @@ Detailed plan (decisions, parts, measurement sources, assembly screw by screw, p
 The images are **renders** of the project parts. The banner is an AI-generated illustration.
 
 <!-- TABELA:resumo -->
-| Model | Height (mm) | Parts | Plate | Total filament (g)* | Total print time (h)* | Assembled robot (g)* |
+| Model | Height (mm) | Parts | Plates (print jobs) | Total filament (g)* | Total print time (h)* | Assembled robot (g)* |
 |---|---|---|---|---|---|---|
 | Dinosaur | 329 | 38 | 12 | 1107 | 44 | 1666 |
 | Capybara | 326 | 39 | 13 | 1049 | 42 | 1581 |
@@ -77,7 +77,7 @@ No step currently uses `claude -p`.
 
 ## Status
 
-Version **v1.0.1**. All three models pass the verifier’s 9 tests. **Nothing has been printed or assembled**: clearances, measurements without sources (marked NC), and print times are starting points. Phase 2 (electronics, voice, vision, navigation, AI) has not begun.
+Version **v1.0.2**. All three models pass the verifier’s 9 tests. **Nothing has been printed or assembled**: clearances, measurements without sources (marked NC), and print times are starting points. Phase 2 (electronics, voice, vision, navigation, AI) has not begun.
 
 ---
 

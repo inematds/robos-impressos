@@ -16,7 +16,7 @@ Por que o repo se chama `robos-impressos` e não `dinobot`: o pedido começou co
 que dividem as mesmas peças e o mesmo verificador. Um nome neutro evita ter uma capivara dentro de um "dinobot".
 
 <!-- TABELA:resumo -->
-| Modelo | Altura (mm) | Peças | Mesa | Filamento total (g)* | Impressão total (h)* | Robô montado (g)* |
+| Modelo | Altura (mm) | Peças | Mesas (impressões) | Filamento total (g)* | Impressão total (h)* | Robô montado (g)* |
 |---|---|---|---|---|---|---|
 | Dinossauro | 329 | 38 | 12 | 1107 | 44 | 1666 |
 | Capivara | 326 | 39 | 13 | 1049 | 42 | 1581 |
@@ -110,7 +110,7 @@ que dividem as mesmas peças e o mesmo verificador. Um nome neutro evita ter uma
 - Parede das cascas: 2,4 mm nominal. Na geração, o script mede a distância real entre a pele de fora e a de dentro
   (4.000 pontos por casca) e grava no `montagem.json`: **2,35 a 2,42 mm**. O verificador confere esse valor contra o mínimo de 2,0 mm.
 - Folga de encaixe: 0,25 mm (parâmetro `FOLGA.encaixe`). Imprima primeiro o `comum-teste-encaixe.stl`
-  (janela do micro servo, 3 furos de inserto, furos M3/M2,5/M2, 3 soquetes de pino) e ajuste antes das peças grandes.
+  (janela do micro servo, 3 furos de inserto, furo do eixo do motor TT, furos M3/M2,5/M2, 3 soquetes de pino; a covinha marca a medida do projeto) e ajuste antes das peças grandes.
 - Cascas orgânicas (torso, crânio, mandíbula, painéis) pedem **suporte em árvore**. Pernas, coxas, cauda e rabo só sob as 2 orelhas de parafuso.
 - Cada STL já sai deitado na posição de imprimir. `pecas/<modelo>/mesas/` tem um 3MF por mesa (peças juntas por cor e material); a lista está em `mesas.json`.
 

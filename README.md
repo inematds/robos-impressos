@@ -21,7 +21,7 @@ Plano detalhado (decisões, peças, fontes das medidas, montagem parafuso por pa
 As imagens são **renders** das peças do projeto. O banner é uma ilustração feita por IA.
 
 <!-- TABELA:resumo -->
-| Modelo | Altura (mm) | Peças | Mesa | Filamento total (g)* | Impressão total (h)* | Robô montado (g)* |
+| Modelo | Altura (mm) | Peças | Mesas (impressões) | Filamento total (g)* | Impressão total (h)* | Robô montado (g)* |
 |---|---|---|---|---|---|---|
 | Dinossauro | 329 | 38 | 12 | 1107 | 44 | 1666 |
 | Capivara | 326 | 39 | 13 | 1049 | 42 | 1581 |
@@ -77,7 +77,7 @@ Nenhum passo usa `claude -p` hoje.
 
 ## Estado
 
-Versão **v1.0.1**. Os três modelos passam nos 9 testes do verificador. **Nada foi impresso nem montado**: folgas, medidas sem fonte (marcadas NC) e tempos de impressão são pontos de partida. A fase 2 (eletrônica, voz, visão, navegação, IA) não foi começada.
+Versão **v1.0.2**. Os três modelos passam nos 9 testes do verificador. **Nada foi impresso nem montado**: folgas, medidas sem fonte (marcadas NC) e tempos de impressão são pontos de partida. A fase 2 (eletrônica, voz, visão, navegação, IA) não foi começada.
 
 ---
 

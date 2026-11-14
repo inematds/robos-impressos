@@ -354,8 +354,9 @@ def teste_encaixe() -> Peca:
     for i, f in enumerate((0.2, 0.25, 0.3)):                         # soquetes do pino-guia
         m = m - furo((6 + i * 8, 26, 8.01), (0, 0, -1), 5, F.pino_d + 2 * f - 0.2)
     m = m - furo((62, 8, -1), (0, 0, 1), 10, P.TT.eixo_d + 0.2)      # eixo do motor TT (gira livre)
+    m = m - furo((43, 14.2, 8.01), (0, 0, -1), 0.8, 1.8) - furo((14, 32.0, 8.01), (0, 0, -1), 0.8, 1.8)   # covinhas: marcam o furo de 4,0 e o soquete de 0,25 (os do projeto)
     return Peca("teste-encaixe", m, cor="cinza", comum=True, macica=True,
-                obs="cupom de folgas: janela do servo, 3 furos de inserto (3,9/4,0/4,1), M3/M2,5/M2, 3 soquetes do pino (0,20/0,25/0,30)")
+                obs="cupom de folgas: janela do servo, 3 furos de inserto (3,9/4,0/4,1), eixo do motor TT, M3 passante/M3 piloto/M2,5/M2, 3 soquetes do pino (0,20/0,25/0,30); covinha = medida do projeto")
 
 
 # ------------------------------------------------------------------ componentes comuns
