@@ -365,6 +365,8 @@ def mede(ref, tris, tris_leves, espelha=False, busca_az=None):
         nos = silhueta(tris, az, el, H)
         val, a, b = iou_fixo(mref, nos)
         aj = iou_ajustado(mref, nos)
+        if aj[0] < val:                     # a grade do ajuste não contém exatamente o alinhamento fixo
+            aj = (val, 1.0, 0, 0)
         saida.append({
             "vista": v["nome"], "az_nominal": az0, "el_nominal": v["el"], "az": az, "el": el,
             "iou": round(val, 4), "iou_ajustado": round(aj[0], 4), "ajuste_escala": round(aj[1], 3),
@@ -393,7 +395,7 @@ def _cabe(im, lado):
     return q
 
 
-def lado_a_lado(ref, modelo, rotulo, vistas, tris, cores, arquivo):
+def lado_a_lado(ref, modelo, rotulo, vistas, tris, cores, arquivo, eh_malha=False):
     C, M, T = 400, 14, 46
     f1, f2 = _fonte(20), _fonte(15)
     folha_ref = Image.open(os.path.join(DIR_REF, REFERENCIAS[ref]["arquivo"])).convert("RGB")
@@ -403,7 +405,8 @@ def lado_a_lado(ref, modelo, rotulo, vistas, tris, cores, arquivo):
     d = ImageDraw.Draw(g)
     media = sum(v["iou"] for v in vistas) / n
     d.text((M, 10), f"{modelo} · {rotulo} · IoU médio {media:.3f}".replace(".", ","), fill=(0, 0, 0), font=f1)
-    for k, t in enumerate(("referência", "nosso modelo (mesma câmera)", "silhuetas sobrepostas")):
+    meio = "malha do image-to-3D (mesma câmera)" if eh_malha else "nosso modelo (mesma câmera)"
+    for k, t in enumerate(("referência", meio, "silhuetas sobrepostas")):
         d.text((M + k * (C + M), 40), t, fill=(90, 90, 90), font=f2)
     for i, (cfg, v) in enumerate(zip(REFERENCIAS[ref]["vistas"], vistas)):
         y = 64 + i * (C + T)
@@ -419,7 +422,7 @@ def lado_a_lado(ref, modelo, rotulo, vistas, tris, cores, arquivo):
                f"IoU {v['iou']:.3f} · ajustado {v['iou_ajustado']:.3f}").replace(".", ",")
         d.text((M, y + C + 8), txt, fill=(0, 0, 0), font=f2)
     yl = Ht - 30
-    for k, (cor, t) in enumerate((((226, 74, 74), "só na referência"), ((66, 112, 232), "só no nosso"),
+    for k, (cor, t) in enumerate((((226, 74, 74), "só na referência"), ((66, 112, 232), "só na malha" if eh_malha else "só no nosso"),
                                   ((150, 205, 150), "nos dois"))):
         d.rectangle((M + k * 230, yl, M + k * 230 + 18, yl + 18), fill=cor)
         d.text((M + k * 230 + 26, yl), t, fill=(0, 0, 0), font=f2)
@@ -520,7 +523,7 @@ def main():
     if a.sem_gravar:
         return
     arq = a.saida or os.path.join(DIR_LADO, f"{a.modelo}-{a.rotulo}.png")
-    lado_a_lado(ref, a.modelo, a.rotulo, vistas, tris, cores, arq)
+    lado_a_lado(ref, a.modelo, a.rotulo, vistas, tris, cores, arq, eh_malha=bool(a.malha))
     nota = a.nota
     if a.espelha:
         nota = (nota + " · azimutes espelhados (teste)").strip(" ·")

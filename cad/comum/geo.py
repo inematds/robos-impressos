@@ -385,3 +385,52 @@ def arrastar(m: Manifold, direcao, comprimento=240.0, passo=4.0) -> Manifold:
     d = np.asarray(direcao, float)
     d = d / np.linalg.norm(d)
     return uniao(*[m.translate(list(d * k)) for k in np.arange(0.0, comprimento + passo, passo)])
+
+
+def _mat_z_para(n, origem) -> np.ndarray:
+    """Matriz 3x4 que leva o eixo local +Z para a direção n e a origem local para `origem`."""
+    n = np.asarray(n, float)
+    n = n / np.linalg.norm(n)
+    z = np.array([0, 0, 1.0])
+    eixo = np.cross(z, n)
+    s = np.linalg.norm(eixo)
+    if s < 1e-9:
+        R = np.eye(3) if n[2] > 0 else np.diag([1, -1, -1.0])
+    else:
+        eixo /= s
+        ang = np.arctan2(s, float(np.dot(z, n)))
+        K = np.array([[0, -eixo[2], eixo[1]], [eixo[2], 0, -eixo[0]], [-eixo[1], eixo[0], 0]])
+        R = np.eye(3) + np.sin(ang) * K + (1 - np.cos(ang)) * K @ K
+    return np.hstack([R, np.asarray(origem, float).reshape(3, 1)])
+
+
+def ressalto_nervurado(p, direcao, altura, d_inserto=4.0, n_nervuras=3, d_ext=None, ang0=0.0, nervura_esp=2.4,
+                       nervura_alt=None, angulos=None, seg=32) -> Manifold:
+    """Ressalto (poste) para inserto/parafuso, com nervuras triangulares a 45° que o ligam à parede.
+
+    p          boca do furo (por onde o parafuso entra), igual ao `p` de `inserto(p, direcao)`
+    direcao    para onde o furo ENTRA no ressalto (da boca para a parede em que o ressalto nasce)
+    altura     comprimento do ressalto, da boca até a parede (a base fica em p + direcao*altura)
+    d_inserto  Ø do furo (inserto M3 = 4,0; piloto M3 = 2,7); o Ø externo padrão é 2,5x isso (mínimo 2x)
+    n_nervuras 2 a 4 nervuras; `ang0` (graus) gira a primeira em volta do eixo; `angulos` (lista, graus)
+               escolhe cada uma à mão (ex.: ressalto encostado numa parede: só as do lado livre)
+    nervura_alt cateto da nervura (padrão: min(altura, 1,5 x Ø externo)); 45° = imprime sem suporte com a
+               parede na mesa OU com a boca para cima
+    Devolve SÓ o material (ressalto + nervuras): quem chama soma na peça e depois subtrai `inserto(p, direcao)`
+    (ou o furo piloto). O referencial das nervuras: ângulo 0 = eixo local +X de `_mat_z_para(-direcao)`.
+    """
+    d = np.asarray(direcao, float)
+    d = d / np.linalg.norm(d)
+    de = max(d_ext if d_ext is not None else 2.5 * d_inserto, 2.0 * d_inserto)
+    r = de / 2
+    h = float(altura)
+    hn = min(h, 1.5 * de) if nervura_alt is None else min(h, float(nervura_alt))
+    corpo = Manifold.cylinder(h, r, r, seg)
+    angs = angulos if angulos is not None else [ang0 + k * 360.0 / n_nervuras for k in range(n_nervuras)]
+    partes = [corpo]
+    for a in angs:
+        tri = prisma([(r - 0.6, 0.0), (r + hn, 0.0), (r - 0.6, hn)], "y", -nervura_esp / 2, nervura_esp / 2)
+        partes.append(tri.rotate([0, 0, float(a)]))
+    m = uniao(*partes)
+    base = np.asarray(p, float) + d * h
+    return m.transform(_mat_z_para(-d, base))
