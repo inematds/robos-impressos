@@ -479,6 +479,142 @@
    "orientacao": "base plana (face de colar) na mesa"
   },
   {
+   "nome": "mancha-dir",
+   "arquivo": "stl/dino-mancha-dir.stl",
+   "material": "PLA",
+   "cor": "verde-escuro",
+   "rgb": [
+    0.16,
+    0.45,
+    0.1
+   ],
+   "grupo": "corpo",
+   "grupos": [
+    "corpo"
+   ],
+   "qtd": 1,
+   "na_montagem": 1,
+   "para_montagem": [
+    [
+     [
+      1.1102230246251565e-16,
+      0.0,
+      1.0,
+      58.51999999999998
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      -33.000000953674316
+     ],
+     [
+      -1.0,
+      0.0,
+      1.1102230246251565e-16,
+      92.0000114440918
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "explode": [
+    110,
+    0,
+    0
+   ],
+   "suporte": "não",
+   "comum": false,
+   "macica": true,
+   "dim": [
+    17.4,
+    17.4,
+    9.4
+   ],
+   "tris": 978,
+   "plastico_cm3": 1.2,
+   "massa_g": 1.5,
+   "tempo_h": 0.14,
+   "obs": "mancha do flanco: janela do sensor de distância lateral (fase 2); cola no assento plano do corpo",
+   "liso": true,
+   "perimetros": 3,
+   "infill": 15,
+   "reforco": "",
+   "orientacao": "base plana (face de colar) na mesa"
+  },
+  {
+   "nome": "mancha-esq",
+   "arquivo": "stl/dino-mancha-esq.stl",
+   "material": "PLA",
+   "cor": "verde-escuro",
+   "rgb": [
+    0.16,
+    0.45,
+    0.1
+   ],
+   "grupo": "corpo",
+   "grupos": [
+    "corpo"
+   ],
+   "qtd": 1,
+   "na_montagem": 1,
+   "para_montagem": [
+    [
+     [
+      1.1102230246251565e-16,
+      0.0,
+      -1.0,
+      -58.24191656147441
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      -33.000000953674316
+     ],
+     [
+      1.0,
+      0.0,
+      1.1102230246251565e-16,
+      92.0000114440918
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "explode": [
+    -110,
+    0,
+    0
+   ],
+   "suporte": "não",
+   "comum": false,
+   "macica": true,
+   "dim": [
+    17.4,
+    17.4,
+    9.7
+   ],
+   "tris": 1094,
+   "plastico_cm3": 1.2,
+   "massa_g": 1.5,
+   "tempo_h": 0.14,
+   "obs": "mancha do flanco: janela do sensor de distância lateral (fase 2); cola no assento plano do corpo",
+   "liso": true,
+   "perimetros": 3,
+   "infill": 15,
+   "reforco": "",
+   "orientacao": "base plana (face de colar) na mesa"
+  },
+  {
    "nome": "braco-dir",
    "arquivo": "stl/dino-braco-dir.stl",
    "material": "PLA",
@@ -766,10 +902,10 @@
     113.7,
     139.0
    ],
-   "tris": 107010,
-   "plastico_cm3": 145.1,
-   "massa_g": 179.9,
-   "tempo_h": 6.8,
+   "tris": 107816,
+   "plastico_cm3": 146.3,
+   "massa_g": 181.5,
+   "tempo_h": 6.85,
    "obs": "pernas, barriga e peito; desce por cima do chassi; 2 M3 por trás (cobertos pela traseira) + preso em cima pela gola",
    "liso": true,
    "perimetros": 4,
@@ -834,10 +970,10 @@
     137.1,
     131.9
    ],
-   "tris": 76918,
-   "plastico_cm3": 77.8,
-   "massa_g": 96.5,
-   "tempo_h": 3.68,
+   "tris": 76648,
+   "plastico_cm3": 77.0,
+   "massa_g": 95.5,
+   "tempo_h": 3.65,
    "obs": "anca + cauda: sai para trás e dá acesso à bateria e às bandejas sem tirar a cabeça; 2 M3 auto-atarraxantes por baixo",
    "liso": true,
    "perimetros": 4,
@@ -1038,10 +1174,10 @@
     174.5,
     118.2
    ],
-   "tris": 123180,
-   "plastico_cm3": 143.8,
-   "massa_g": 178.4,
-   "tempo_h": 6.74,
+   "tris": 124598,
+   "plastico_cm3": 144.6,
+   "massa_g": 179.3,
+   "tempo_h": 6.77,
    "obs": "3 M3x12 por baixo, pela mesa (na bancada); 2 furos no alto, sob a crista, dão acesso aos parafusos da coluna",
    "liso": true,
    "perimetros": 3,
@@ -1174,10 +1310,10 @@
     122.3,
     45.8
    ],
-   "tris": 2020,
-   "plastico_cm3": 26.1,
-   "massa_g": 33.1,
-   "tempo_h": 1.29,
+   "tris": 2446,
+   "plastico_cm3": 23.2,
+   "massa_g": 29.4,
+   "tempo_h": 1.15,
    "obs": "mesa da cabeça: 2 M3x10 na coluna do berço (por cima, pelos furos sob a crista); segura o servo da boca e o pino do eixo da mandíbula",
    "liso": true,
    "perimetros": 4,
@@ -1689,7 +1825,7 @@
       0.0,
       1.0,
       0.0,
-      -44.725000001490116
+      -47.57500000149011
      ],
      [
       0.0,
@@ -1715,13 +1851,13 @@
    "macica": true,
    "dim": [
     105.9,
-    173.5,
+    179.2,
     121.0
    ],
-   "tris": 7760,
-   "plastico_cm3": 134.0,
-   "massa_g": 170.2,
-   "tempo_h": 6.28,
+   "tris": 7862,
+   "plastico_cm3": 135.7,
+   "massa_g": 172.4,
+   "tempo_h": 6.36,
    "obs": "piso recortado da seção da pele + rack das bandejas (atrás) + torre e deck do servo de pan + orelhas dos servos dos braços + ressalto da esfera de trás",
    "liso": true,
    "perimetros": 4,
@@ -2111,6 +2247,104 @@
  ],
  "componentes": [
   {
+   "nome": "tof-dir (fase 2)",
+   "arquivo": "componentes/tof-dir.stl",
+   "grupo": "corpo",
+   "grupos": [
+    "corpo"
+   ],
+   "massa_g": 1.0,
+   "rgb": [
+    0.36,
+    0.72,
+    0.16
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "fase2": true,
+   "explode": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "liso": false
+  },
+  {
+   "nome": "tof-esq (fase 2)",
+   "arquivo": "componentes/tof-esq.stl",
+   "grupo": "corpo",
+   "grupos": [
+    "corpo"
+   ],
+   "massa_g": 1.0,
+   "rgb": [
+    0.36,
+    0.72,
+    0.16
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "fase2": true,
+   "explode": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "liso": false
+  },
+  {
    "nome": "servo-boca MG90S",
    "arquivo": "componentes/servo-boca.stl",
    "grupo": "cabeca",
@@ -2220,6 +2454,153 @@
     0.36,
     0.72,
     0.16
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "fase2": true,
+   "explode": [
+    0,
+    0,
+    95
+   ],
+   "liso": false
+  },
+  {
+   "nome": "microfone-dir (fase 2)",
+   "arquivo": "componentes/microfone-dir.stl",
+   "grupo": "cabeca",
+   "grupos": [
+    "cabeca"
+   ],
+   "massa_g": 1.0,
+   "rgb": [
+    0.36,
+    0.72,
+    0.16
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "fase2": true,
+   "explode": [
+    0,
+    0,
+    95
+   ],
+   "liso": false
+  },
+  {
+   "nome": "microfone-esq (fase 2)",
+   "arquivo": "componentes/microfone-esq.stl",
+   "grupo": "cabeca",
+   "grupos": [
+    "cabeca"
+   ],
+   "massa_g": 1.0,
+   "rgb": [
+    0.36,
+    0.72,
+    0.16
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "fase2": true,
+   "explode": [
+    0,
+    0,
+    95
+   ],
+   "liso": false
+  },
+  {
+   "nome": "alto-falante (fase 2)",
+   "arquivo": "componentes/alto-falante.stl",
+   "grupo": "cabeca",
+   "grupos": [
+    "cabeca"
+   ],
+   "massa_g": 25.0,
+   "rgb": [
+    0.03,
+    0.03,
+    0.04
    ],
    "para_montagem": [
     [
@@ -2944,6 +3325,55 @@
    "liso": false
   },
   {
+   "nome": "carregador USB-C 2S",
+   "arquivo": "componentes/carregador.stl",
+   "grupo": "corpo",
+   "grupos": [
+    "corpo"
+   ],
+   "massa_g": 3.0,
+   "rgb": [
+    0.2,
+    0.55,
+    0.86
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "fase2": false,
+   "explode": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "liso": false
+  },
+  {
    "nome": "chave",
    "arquivo": "componentes/chave.stl",
    "grupo": "corpo",
@@ -3280,9 +3710,9 @@
  "obs": {
   "parede_medida": {
    "corpo": {
-    "min": 2.25,
+    "min": 2.28,
     "med": 2.39,
-    "max": 2.79,
+    "max": 2.69,
     "amostras": 4000
    },
    "gola": {
@@ -3344,9 +3774,9 @@
  ],
  "parede_medida": {
   "corpo": {
-   "min": 2.25,
+   "min": 2.28,
    "med": 2.39,
-   "max": 2.79,
+   "max": 2.69,
    "amostras": 4000
   },
   "gola": {
@@ -3535,6 +3965,18 @@
    "curso": 60
   },
   {
+   "passo": "carregador USB-C (na mesinha de trás, fita dupla-face)",
+   "move": [
+    "carregador USB-C 2S"
+   ],
+   "dir": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "curso": 30
+  },
+  {
    "passo": "corpo desce por cima do chassi",
    "move": [
     "corpo",
@@ -3544,7 +3986,11 @@
     "dedo-dir-3",
     "dedo-esq-1",
     "dedo-esq-2",
-    "dedo-esq-3"
+    "dedo-esq-3",
+    "mancha-dir",
+    "mancha-esq",
+    "tof-dir (fase 2)",
+    "tof-esq (fase 2)"
    ],
    "dir": [
     0.0,
@@ -3617,16 +4063,16 @@
    "curso": 60
   },
   {
-   "passo": "bateria (entra por trás, de cima para baixo: passa por cima do ressalto da esfera)",
+   "passo": "bateria (entra por trás, por cima do carregador, e desce no piso)",
    "move": [
     "bateria 2x18650"
    ],
    "dir": [
     0.0,
-    -0.45,
-    0.89
+    -0.12,
+    0.99
    ],
-   "curso": 12,
+   "curso": 15,
    "depois": [
     [
      0.0,
@@ -3679,7 +4125,8 @@
    "passo": "mesa dentro do crânio (na bancada)",
    "move": [
     "mesa-cabeca",
-    "servo-boca MG90S"
+    "servo-boca MG90S",
+    "alto-falante (fase 2)"
    ],
    "dir": [
     0.0,
@@ -3706,7 +4153,10 @@
     "pupila",
     "pupila-esq",
     "camera olho direito (fase 2)",
-    "tof-olho esquerdo (fase 2)"
+    "tof-olho esquerdo (fase 2)",
+    "microfone-dir (fase 2)",
+    "microfone-esq (fase 2)",
+    "alto-falante (fase 2)"
    ],
    "dir": [
     0.0,
@@ -3764,10 +4214,10 @@
    ],
    "dir": [
     0.0,
-    -0.45,
-    0.89
+    -0.12,
+    0.99
    ],
-   "curso": 12,
+   "curso": 15,
    "depois": [
     [
      0.0,

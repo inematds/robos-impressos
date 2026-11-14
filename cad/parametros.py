@@ -371,8 +371,9 @@ DINO = NS(
     boca_vao=((-50.0, 74.0, 160.0), (50.0, 118.0, 204.0)),
     boca_sondas=(-5.0, 0.0, 10.0, 19.0),
     olho=NS(c=(35.0, 47.0, 266.0), r=22.0, dir=(0.30, 0.90, 0.30), iris_r=15.0, pupila_r=9.5),   # pele: centro, raio e para onde olha (o esquerdo espelha)
-    narina=NS(x=12.0, y=128.0),        # pele: narinas no alto do focinho = portas de som dos 2 microfones
-    falante_y=58.0,                    # pele: centro do alto-falante, em cima da mesa da cabeça, virado para baixo
+    narina=NS(x=13.0, y=126.0),        # pele: narinas no alto do focinho = portas de som dos 2 microfones (furo Ø2)
+    falante=(12.0, 68.0),              # pele (x, y): centro do alto-falante, em cima da mesa da cabeça, virado para baixo (som sai pela boca e pelo vão do pescoço)
+    mancha=NS(c=(10.0, 92.0), r=9.0, x=58.5),   # pele: mancha verde-escura no flanco (y, z), assento plano em x: janela do sensor de distância lateral (fase 2)
     # crista azul: lâminas de 6 mm no plano de simetria, com o contorno dos espinhos da própria malha (caixas em (y, z) da pele)
     crista=NS(esp=6.0, fundo=4.0, xc=11.25,
               cabeca=((-75.0, 195.0), (70.0, 310.0)),
@@ -417,10 +418,11 @@ DINO = NS(
         encoder_extra=12.0,
         stepdown=(17.5, 41.0),             # (y pele, z) do centro: face de fora da parede ESQUERDA, atrás do motor
         ubec=(20.5, 38.0),                 # (y pele, z): face de fora da parede DIREITA, entre a chave e o motor
+        carregador=(-76.0, 21.5),          # (y pele, z do assento): carregador USB-C numa mesinha sobre o ressalto da esfera de trás, boca para TRÁS (o plugue entra por um rasgo sob a raiz da cauda)
         bms=(0.0, 40.0),                   # (x, y pele) do centro do BMS no piso, sob o L298N
         chave=(0.0, 62.0),                 # (x, y pele) da chave no piso (por baixo), entre as pernas, à frente do L298N
     ),
-    n_pecas=32,
+    n_pecas=34,
 )
 
 # ------------------------------------------------------------------ SENSORES DA FASE 2 DOS BICHOS (rodada 2, etapa E3a)
@@ -578,5 +580,5 @@ CORES = {
     "branco": (0.97, 0.97, 0.97), "preto": (0.03, 0.03, 0.04), "cinza": (0.42, 0.44, 0.47),
     "laranja": (0.93, 0.52, 0.13), "marrom": (0.36, 0.19, 0.10), "verde-bandana": (0.30, 0.66, 0.16),
     "ciano": (0.25, 0.85, 0.95), "rosa": (0.92, 0.48, 0.52), "grafite": (0.22, 0.23, 0.25),
-    "prata": (0.78, 0.79, 0.80), "amarelo": (0.98, 0.80, 0.08),
+    "prata": (0.78, 0.79, 0.80), "amarelo": (0.98, 0.80, 0.08), "verde-escuro": (0.16, 0.45, 0.10),
 }

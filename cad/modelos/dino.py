@@ -105,7 +105,13 @@ def _chassi(E, p_corpo, dentro) -> Peca:
     poste_c = sim(caixa(pp.x[0] - 0.01, pp.x[1], pp.y[0] + DY, pp.y[1] + DY, Z1 - 0.01, pp.z_topo))
     # --- ressalto da esfera de apoio (atrás)
     ress = cil((0, ye, Z0), (0, ye, Z0 + 10.5), 14.5)
-    corpo = uniao(placa, paredes, travessa, deck, misula, arco, sim(orelha), poste_c, ress)
+    # mesinha do carregador USB-C sobre o ressalto da esfera (nasce na mesa de impressão)
+    ycg, zcg = e.carregador[0] + DY, e.carregador[1]
+    Lc, Wc, _ = P.CARREGADOR2S.cx
+    mesinha = caixa(-Wc / 2 - 2.2, Wc / 2 + 2.2, ycg - Lc / 2 - 2.2, ycg + Lc / 2 + 2.2, Z0, zcg) \
+        - prisma([(ye - 10.0, Z0 - 1.0), (ye - 40.0, Z0 - 1.0), (ye - 40.0, Z0 + 29.0)], "x", -50, 50)      # atrás do ressalto a face de baixo sobe a 45° (fica dentro da cauda)
+    so_c, _ = berco_modulo(P.CARREGADOR2S, alt=3.0, canto=4.0, fita=None)
+    corpo = uniao(placa, paredes, travessa, deck, misula, arco, sim(orelha), poste_c, ress, mesinha, so_c.transform(_m_carregador(E)[:3, :]))
 
     cortes = []
     ez, t = E.eixo_roda_z, P.TT
@@ -192,6 +198,11 @@ def _m_braco(E, lado):
     return C.M([(0, -1, 0), (0, 0, -lado), (lado, 0, 0)], (lado * K.esq.ombro_x[1], oy, oz))
 
 
+def _m_carregador(E):
+    """Carregador USB-C: deitado na mesinha de trás, comprimento ao longo de Y, boca para trás."""
+    return C.M([(0, 1, 0), (-1, 0, 0), (0, 0, 1)], (0.0, K.esq.carregador[0] + K.dy, K.esq.carregador[1]))
+
+
 def _comps(E):
     Z0, Z1 = E.piso_z
     T = list(E.T)
@@ -210,6 +221,7 @@ def _comps(E):
     for nome, rot_ in (("stepdown", "step-down 5V (LM2596)"), ("ubec", "ubec 6V 3A"), ("bms", "bms 2S")):
         M, mod = BB.mat_modulo(E, nome)
         cs.append(Comp(rot_, C.modulo(mod).transform(M[:3, :]), "corpo", mod.massa, "azul"))
+    cs.append(Comp("carregador USB-C 2S", C.modulo(P.CARREGADOR2S).transform(_m_carregador(E)[:3, :]), "corpo", P.CARREGADOR2S.massa, "azul"))
     cs.append(Comp("chave", C.chave().translate([E.chave[0], E.chave[1], Z0]), "corpo", 3.0, "preto"))
     e = E.bandeja_esp + E.espacador
     zP, zU = E.trilho_z[0] + 0.3 + e, E.trilho_z[1] + 0.3 + E.bandeja_esp + K.esq.uno_espacador
@@ -302,6 +314,9 @@ def construir() -> Modelo:
         for i, (c, n) in enumerate(K.dedos):
             c_, n_ = _v(c, dyv) * (s, 1, 1), np.asarray(n, float) * (s, 1, 1)
             rel[f"dedo-{lado}-{i + 1}"] = CA.Relevo(R.cil(c_ - n_ * 4.0, c_ + n_ * 30.0, K.dedo_r), c_, n_)
+        mc = K.mancha
+        cm = np.array([s * mc.x, mc.c[0] + DY, mc.c[1]])
+        rel[f"mancha-{lado}"] = CA.Relevo(R.cil(cm - (s * 8.0, 0, 0), cm + (s * 25.0, 0, 0), mc.r), cm, (s, 0, 0))
     assentos = []                                      # o relevo dos braços da malha sai (entram os braços que giram)
     for s in (1, -1):
         lo, hi = (_v(v, dyv) * (s, 1, 1) for v in br.ombro)
@@ -351,8 +366,12 @@ def construir() -> Modelo:
     corpo = maior_corpo((CA.fatia_z(casca, K.z_fundo, K.z_gola) - obst) ^ caixa(-400, 400, yd, 400, -50, 400))
     tras = maior_corpo(casca ^ caixa(-400, 400, -400, yd - F.encaixe, -50, K.z_gola))
     ye = E.esferas[0][1]
-    obst_t = (chassi.solido ^ caixa(-400, 400, -400, yd + 3.0, -50, 400)) + cil((0, ye, -5.0), (0, ye, E.piso_z[0] + 10.5 + 0.6), 14.5)
+    c_car = [c.solido for c in comps_esq if c.nome.startswith("carregador")][0]
+    obst_t = (chassi.solido ^ caixa(-400, 400, -400, yd + 3.0, -50, 400)) + cil((0, ye, -5.0), (0, ye, E.piso_z[0] + 10.5 + 0.6), 14.5) + c_car
     tras = maior_corpo(tras - CA.sombra_frente(obst_t, list(np.arange(yd - 140.0, yd + 2.6, 2.5)), 0.6))
+    # carregador USB-C: o plugue entra por trás, por um rasgo sob a raiz da cauda
+    ycg, zcg = K.esq.carregador[0] + DY, K.esq.carregador[1]
+    tras = tras - caixa(-6.5, 6.5, yd - 160.0, ycg - P.CARREGADOR2S.cx[0] / 2 + 1.0, zcg + 0.2, zcg + 7.5)
     # lábio do corpo: faixa por dentro da borda de trás que entra 5 mm na traseira e a alinha
     labio = (p_corpo.deslocado(-(F.parede + F.encaixe)) - p_corpo.deslocado(-(F.parede + F.encaixe + 1.6))) ^ caixa(-400, 400, yd - 5.0, yd + 6.0, 30.0, K.z_gola - 6.0)
     corpo = corpo + (labio - obst - caixa(-cr.esp / 2 - F.parede - 1.0, cr.esp / 2 + F.parede + 1.0, yd - 6.0, yd, 60.0, 400.0))
@@ -408,6 +427,18 @@ def construir() -> Modelo:
         if nm.startswith("dedo"):
             d_ = maior_corpo(pc[nm] - caixa(-400, 400, -400, 400, -50, 2.0) - obst)
             pecas.append(Peca(nm, d_, imprimir=rel[nm].imprimir, explode=(40 if "dir" in nm else -40, 70, 0), obs="dedo do pé; cola", **creme))
+    # sensores de distância laterais (fase 2) atrás das 2 manchas verde-escuras dos flancos
+    mc = K.mancha
+    xb_ = mc.x - 0.25 - F.parede - 0.6
+    for sx, lado in ((1, "dir"), (-1, "esq")):
+        ym, zm_ = mc.c[0] + DY, mc.c[1]
+        jan = cil((sx * (mc.x - 8.0), ym, zm_), (sx * (mc.x + 30.0), ym, zm_), P.TOF.janela_d / 2, seg=24)
+        corpo = corpo - jan
+        pecas.append(Peca(f"mancha-{lado}", maior_corpo(pc[f"mancha-{lado}"] - jan), cor="verde-escuro", macica=True, suporte="não", imprimir=rel[f"mancha-{lado}"].imprimir,
+                          explode=(sx * 110, 0, 0), orientacao="base plana (face de colar) na mesa",
+                          obs="mancha do flanco: janela do sensor de distância lateral (fase 2); cola no assento plano do corpo"))
+        cx_ = caixa(xb_ - P.TOF.esp, xb_, ym - P.TOF.placa[0] / 2, ym + P.TOF.placa[0] / 2, zm_ - P.TOF.placa[1] / 2, zm_ + P.TOF.placa[1] / 2)
+        comps.append(Comp(f"tof-{lado} (fase 2)", cx_ if sx > 0 else espelho_x(cx_), "corpo", P.TOF.massa, "verde", fase2=True))
 
     p_br = BI.pele_blobs(blobs, k=8.0, h=1.0)
     hl, hd, hp, he = P.MICRO.horn
@@ -490,6 +521,21 @@ def construir() -> Modelo:
     cran, mand, mesa, comps_cab, M_bucha = BI.mecanica_cabeca(p_cab, cran, mand, c_ext, c_int, boca, zcam=0.0, camera=False, aparar_r=K.soquete_r,
                                                               eixo_oculto=True, sem_ponte=True, sondas=K.boca_sondas, servo_em_pe=True)
     comps_cab += comps_olho
+    # microfones (fase 2) atrás das 2 narinas: furo de som Ø2 + anel por dentro da casca, onde a plaquinha redonda encaixa
+    for s, lado in ((1, "dir"), (-1, "esq")):
+        ps = np.asarray(p_cab.ponto_na_pele((s * K.narina.x, K.narina.y + ds[1], BS.CZ + 250.0), (0, 0, -1)), float)
+        n_ = CA.normal(p_cab, ps, 3.0)
+        a0, a1 = ps - n_ * (F.parede - 0.3), ps - n_ * (F.parede + P.MIC.esp + 1.6)
+        cran = cran + (cil(a0, a1, P.MIC.d / 2 + 2.0) - cil(a0 + n_ * 5.0, a1 - n_, P.MIC.d / 2 + 0.3))
+        cran = cran - cil(ps + n_ * 3.0, ps - n_ * 10.0, P.MIC.furo_som / 2, seg=16)
+        comps_cab.append(Comp(f"microfone-{lado} (fase 2)", cil(ps - n_ * (F.parede + 1.3), ps - n_ * (F.parede + 1.3 + P.MIC.esp), P.MIC.d / 2), "cabeca", P.MIC.massa, "verde", fase2=True))
+    # alto-falante (fase 2) em cima da mesa da cabeça, virado para baixo: o som sai pela boca e pelo vão do pescoço
+    zmt = BS.CZ + N.mesa_z + N.mesa_esp
+    xsf, ysf, rf = K.falante[0], K.falante[1] + ds[1], P.FALANTE.d / 2
+    mesa = mesa + (cil((xsf, ysf, zmt - N.mesa_esp), (xsf, ysf, zmt), rf + 2.6) ^ p_cab.deslocado(-F.parede - 1.2))
+    mesa = mesa - cil((xsf, ysf, zmt - 6), (xsf, ysf, zmt + 1), rf - 2.0) - cil((xsf, ysf, zmt - 2.5), (xsf, ysf, zmt + 0.01), rf - 2.0, rf + 0.6)
+    comps_cab.append(Comp("alto-falante (fase 2)", C.falante().transform(C.M([(1, 0, 0), (0, 0, -1), (0, 1, 0)], (xsf, ysf, zmt - 0.55))[:3, :]),
+                          "cabeca", P.FALANTE.massa, "preto", fase2=True))
     for c_o in c_olhos:                                 # as orelhas crânio -> mesa nascem depois dos olhos: reabrir o lugar do olho
         cran = cran - esfera(c_o, o.r + F.encaixe / 2, seg=64)
     cran = maior_corpo(cran)
@@ -566,7 +612,7 @@ def construir() -> Modelo:
     encaixes = [{"par": ["motor-tt-dir", "roda-dir"], "motivo": "eixo do motor entra no cubo da roda"},
                 {"par": ["motor-tt-esq", "roda-esq"], "motivo": "eixo do motor entra no cubo da roda"}]
     cab = ["cranio", "mesa-cabeca", "mandibula", "servo-boca MG90S", "crista-cabeca", "olho", "olho-esq", "iris", "iris-esq", "pupila", "pupila-esq",
-           "camera olho direito (fase 2)", "tof-olho esquerdo (fase 2)"]
+           "camera olho direito (fase 2)", "tof-olho esquerdo (fase 2)", "microfone-dir (fase 2)", "microfone-esq (fase 2)", "alto-falante (fase 2)"]
     dedos = [nm for nm in rel if nm.startswith("dedo")]
     return Modelo("dino", "Dinossauro", pecas, comps, juntas, apoios, poses, ordem=_ordem(cab, dedos),
                   obs={"parede_medida": parede, "explode_grupo": {"cabeca": (0, 0, 95), "pan": (0, 0, 30), "mandibula": (0, 70, 85), "braco_d": (70, 20, 0), "braco_e": (-70, 20, 0)}},
@@ -577,7 +623,7 @@ def _ordem(cab, dedos):
     """Ordem de montagem e de abertura (teste 9). `dir` = de onde a peça vem."""
     X, Y, Z = (1, 0, 0), (0, 1, 0), (0, 0, 1)
     nX, nY, nZ = (-1, 0, 0), (0, -1, 0), (0, 0, -1)
-    tras = [dict(passo="bateria (entra por trás, de cima para baixo: passa por cima do ressalto da esfera)", move=["bateria 2x18650"], dir=(0, -0.45, 0.89), curso=12, depois=[(0, -1, 0), 180]),
+    tras = [dict(passo="bateria (entra por trás, por cima do carregador, e desce no piso)", move=["bateria 2x18650"], dir=(0, -0.12, 0.99), curso=15, depois=[(0, -1, 0), 180]),
             dict(passo="bandeja do Pi", move=["bandeja-pi", "Raspberry Pi 4/5"], dir=nY, curso=190),
             dict(passo="bandeja do Uno", move=["bandeja-uno", "Arduino Uno + shield"], dir=nY, curso=190)]
     traseira = ["traseira", "crista-costas"]
@@ -596,7 +642,8 @@ def _ordem(cab, dedos):
         dict(passo="servo de pan", move=["servo-pan MG996R"], dir=Z),
         dict(passo="servo do braço direito", move=["servo-braco-dir"], dir=X, curso=60),
         dict(passo="servo do braço esquerdo", move=["servo-braco-esq"], dir=nX, curso=60),
-        dict(passo="corpo desce por cima do chassi", move=["corpo", "barriga", *dedos], dir=Z, curso=260),
+        dict(passo="carregador USB-C (na mesinha de trás, fita dupla-face)", move=["carregador USB-C 2S"], dir=Z, curso=30),
+        dict(passo="corpo desce por cima do chassi", move=["corpo", "barriga", *dedos, "mancha-dir", "mancha-esq", "tof-dir (fase 2)", "tof-esq (fase 2)"], dir=Z, curso=260),
         dict(passo="garfo (por dentro da boca do corpo)", move=["garfo-pescoco"], dir=Z, curso=160),
         dict(passo="berço + servo de tilt", move=["berco-tilt", "servo-tilt MG996R"], dir=Z, curso=160),
         dict(passo="gola", move=["gola"], dir=Z, curso=160),
@@ -604,11 +651,11 @@ def _ordem(cab, dedos):
         dict(passo="cubo + braço esquerdo", move=["cubo-braco#1", "braco-esq"], dir=nX, curso=60),
         *tras,
         dict(passo="traseira (com a crista das costas)", move=list(traseira), dir=nY, curso=190),
-        dict(passo="mesa dentro do crânio (na bancada)", move=["mesa-cabeca", "servo-boca MG90S"], dir=nZ, curso=100, contra=["cranio"]),
+        dict(passo="mesa dentro do crânio (na bancada)", move=["mesa-cabeca", "servo-boca MG90S", "alto-falante (fase 2)"], dir=nZ, curso=100, contra=["cranio"]),
         dict(passo="cabeça no pescoço", move=list(cab), dir=Z, curso=160),
         # abertura para manutenção SEM tirar a cabeça: traseira, bandejas e bateria saem por trás
         dict(passo="ABRIR: traseira sai", move=list(traseira), dir=nY, curso=190, sai=True),
         dict(passo="ABRIR: bandeja do Uno sai", move=["bandeja-uno", "Arduino Uno + shield"], dir=nY, curso=190, sai=True),
         dict(passo="ABRIR: bandeja do Pi sai", move=["bandeja-pi", "Raspberry Pi 4/5"], dir=nY, curso=190, sai=True),
-        dict(passo="ABRIR: bateria sai", move=["bateria 2x18650"], dir=(0, -0.45, 0.89), curso=12, depois=[(0, -1, 0), 180], sai=True),
+        dict(passo="ABRIR: bateria sai", move=["bateria 2x18650"], dir=(0, -0.12, 0.99), curso=15, depois=[(0, -1, 0), 180], sai=True),
     ]
