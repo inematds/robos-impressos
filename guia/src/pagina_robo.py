@@ -41,6 +41,10 @@ ML = "https://lista.mercadolivre.com.br/"
 # robô → onde estão os arquivos. Quando a E5a mover pecas/<id>/ para projetos/<robô>/, muda só aqui.
 ROBOS = {"cubo": dict(id="cubo", pecas="pecas/cubo", docs="projetos/cubo", emoji="🤖")}
 IDIOMAS = ("pt", "en", "es")
+# termos das páginas de robô que o pedido geral de guia/src/traduzir.py não cobre
+GLOSSARIO = ('- "horn" (a peça que encaixa no eixo do servo) fica "horn": "servo horn" / "horn del servo"; nunca "arm" nem "brazo". '
+             '"garfo" = fork / horquilla. "braço do garfo" = fork arm / brazo de la horquilla. "bancada" = workbench / mesa de trabajo. '
+             '"copo da cabeça" = head shell / carcasa de la cabeza. "tirante" = tie rod / tirante. "cupom de teste" = test coupon / cupón de prueba.')
 
 
 # ------------------------------------------------------------------ dados
@@ -153,7 +157,7 @@ def traduzir(R, lg, lote=40):
         bloco = {k: pt[k] for k in chaves}
         out = None
         for tentativa in range(3):
-            r = subprocess.run(["inema-traduz"], input=TR.pedido(lg, bloco), capture_output=True, text=True, timeout=1500)
+            r = subprocess.run(["inema-traduz"], input=TR.pedido(lg, bloco).replace("- Números, unidades", GLOSSARIO + "\n- Números, unidades", 1), capture_output=True, text=True, timeout=1500)
             mo = re.search(r"\{.*\}", r.stdout.strip(), re.S)
             try:
                 out = json.loads(mo.group(0))

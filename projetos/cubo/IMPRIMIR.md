@@ -19,15 +19,22 @@ As tabelas são geradas por `guia/src/pagina_robo.py docs cubo` a partir de `pec
 ## 1. Imprima primeiro o `teste-encaixe`
 
 **Nada deste projeto foi impresso ainda.** O cupom de teste (`pecas/comum/stl/comum-teste-encaixe.stl`, 70 × 34 × 8 mm,
-menos de 1 hora) está na mesa 06, com os 4 espaçadores do Raspberry Pi. Teste nele:
+menos de 1 hora) está na mesa 06, com os 4 espaçadores do Raspberry Pi. No robô quadrado, teste nele:
 
-- o servo na janela;
 - um inserto M3 em cada um dos 3 furos (3,9, 4,0 e 4,1 mm);
-- os parafusos M3 (passante e direto no plástico), M2,5 e M2;
-- os 3 soquetes do pino (folgas de 0,20, 0,25 e 0,30 mm).
+- um parafuso M3 no furo passante (3,4 mm) e outro no furo de rosquear direto no plástico (2,7 mm).
 
-A covinha marca a medida que o projeto usa. Se outra folga ficar melhor na sua impressora, mude o valor no bloco
+A covinha marca a medida que o projeto usa. Se outra medida ficar melhor na sua impressora, mude o valor no bloco
 `FOLGA` de `cad/parametros.py` e gere as peças de novo (`.venv/bin/python cad/gerar.py cubo`).
+
+Três avisos:
+
+- O cupom é comum aos outros robôs. A janela de servo dele é do micro servo (SG90/MG90S) e os soquetes de pino e o furo
+  do motor TT são dos bichos: o robô quadrado não usa nenhum dos três. Os furos M2,5 e M2 do cupom são de rosquear no
+  plástico; no robô quadrado o Raspberry Pi usa furo passante com porca.
+- O encaixe do servo MG996R e o furo do pino M5 não estão no cupom. Você confere os dois na mesa 01 (quadro da
+  cabeça), a terceira da ordem abaixo, antes das impressões longas.
+- O cupom sai em PLA, mas 12 dos 16 insertos ficam em peças de PETG. Imprima um segundo cupom em PETG.
 
 ## 2. Ordem sugerida das mesas
 
@@ -36,7 +43,7 @@ Primeiro as peças pequenas que se encaixam umas nas outras; por último as duas
 <!-- GERADO:mesas -->
 | Ordem | Arquivo da mesa | Material e cor | Peças | Filamento (g) | Tempo (h) | Por que nesta ordem |
 |---|---|---|---|---|---|---|
-| 1 | [cubo-mesa-06-pla-cinza.3mf](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-06-pla-cinza.3mf) | PLA cinza | teste-encaixe, 4 × espacador-pi | 15 | 1,0 | Comece por aqui. O cupom de teste mostra se o servo, os insertos e os parafusos entram com a folga certa na SUA impressora. Menos de 1 hora. |
+| 1 | [cubo-mesa-06-pla-cinza.3mf](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-06-pla-cinza.3mf) | PLA cinza | teste-encaixe, 4 × espacador-pi | 15 | 1,0 | Comece por aqui. O cupom de teste mostra se os insertos e os parafusos M3 entram com a folga certa na SUA impressora. Menos de 1 hora. |
 | 2 | [cubo-mesa-04-petg-prata.3mf](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-04-petg-prata.3mf) | PETG prata | tubo-pescoco, engrenagem-pescoco | 23 | 1,0 | Tubo e engrenagem do pescoço: peças pequenas que já testam o encaixe com os tirantes. |
 | 3 | [cubo-mesa-01-petg-amarelo.3mf](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-01-petg-amarelo.3mf) | PETG amarelo | quadro-cabeca, engrenagem-servo | 88 | 3,4 | Quadro da cabeça e engrenagem do servo: confira se o servo entra no rasgo e se as duas engrenagens rodam juntas sem prender. |
 | 4 | [cubo-mesa-03-petg-grafite.3mf](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-03-petg-grafite.3mf) | PETG grafite | tampa-base, porta-traseira, garfo | 129 | 5,0 | Tampa, porta e garfo. |

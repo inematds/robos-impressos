@@ -130,6 +130,8 @@ Saída real de `.venv/bin/python cad/verificar.py cubo` (cópia completa em `ver
 - Imprimir e montar: comece pelo `teste-encaixe`.
 - Medidas NC dos componentes (tela, abas e horn do MG996R, chave, boca do USB-C): medir e corrigir `cad/parametros.py`.
 - Abrir os 3MF das mesas no Bambu Studio.
+- O cupom `teste-encaixe` é comum aos bichos: não testa a janela do MG996R nem o furo do pino M5 (falta um cupom próprio do robô quadrado).
+- O plugue USB-C que alimenta o Raspberry Pi não está no modelo 3D: conferir se cabe ao lado do Pi, dentro da cabeça.
 - Esquema elétrico fio a fio e ligação Raspberry Pi ↔ Arduino (o furo de cabos do pescoço tem 9 mm: plugue USB não
   passa; passe os fios soltos e ponha os conectores depois).
 - Amplificador de áudio e microfones da fase 2 ainda não têm fixação modelada.
