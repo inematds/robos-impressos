@@ -668,7 +668,7 @@
     "origem": "pecas/capivara",
     "data": "2026-11-14",
     "nota": "",
-    "triangulos": 444874,
+    "triangulos": 442708,
     "entram": [
      "rabo x1",
      "mao-dir x1",
@@ -734,10 +734,10 @@
       "vista": "lado",
       "az_nominal": -80,
       "el_nominal": 15,
-      "az": -65,
+      "az": -70,
       "el": 10,
-      "iou": 0.9029,
-      "iou_ajustado": 0.9029,
+      "iou": 0.9059,
+      "iou_ajustado": 0.9059,
       "ajuste_escala": 1.0,
       "mascara_toca_borda": false,
       "az_no_limite_da_busca": false,
@@ -757,8 +757,8 @@
       "el_no_limite_da_busca": false
      }
     ],
-    "media": 0.9198,
-    "media_ajustado": 0.9198
+    "media": 0.9205,
+    "media_ajustado": 0.9205
    }
   },
   "cubo_rodas": {

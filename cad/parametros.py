@@ -404,7 +404,7 @@ CAPIVARA = NS(
     # peças coloridas em RELEVO, recortadas da própria pele além de um plano (pele; caixas = (mín, máx)):
     rabo=NS(caixa=((-28.0, -160.0, 38.0), (28.0, -100.0, 102.0)), plano_y=-108.0),          # tudo atrás de y
     mao=NS(c=(33.0, 62.0), r=25.0, plano_y=64.5),                                           # mão direita: cilindro (x, z, raio) ao longo de Y + plano (a esquerda espelha)
-    avental=NS(tri=((-40.0, 124.5), (40.0, 124.5), (0.0, 84.0)), plano_y=66.0),             # triângulo (x, z) da bandana no peito
+    avental=NS(tri=((-40.0, 124.0), (40.0, 124.0), (0.0, 84.0)), plano_y=66.0),             # triângulo (x, z) da bandana no peito
     focinho=NS(caixa=((-48.0, 100.0, 179.5), (48.0, 200.0, 240.0)), plano_y=118.0),         # tampa da frente do focinho
     topete=NS(caixa=((-22.0, -14.0, 260.0), (22.0, 38.0, 320.0)), plano_z=275.5),           # tampa os 2 furos de acesso da mesa
     orelha=NS(c=(62.0, -27.0, 270.0), r=22.0, n=(0.6, -0.25, 0.75), d=4.0),                 # orelha direita: esfera + plano a d do centro

@@ -228,7 +228,7 @@
       1.0,
       0.0,
       0.0,
-      9.27821518246219e-05
+      -3.552713678800501e-15
      ],
      [
       0.0,
@@ -240,7 +240,7 @@
       0.0,
       -1.0,
       1.1102230246251565e-16,
-      104.74632263183594
+      104.49583435058594
      ],
      [
       0.0,
@@ -259,13 +259,13 @@
    "comum": false,
    "macica": true,
    "dim": [
-    68.2,
-    38.9,
+    68.9,
+    38.4,
     12.1
    ],
-   "tris": 3346,
-   "plastico_cm3": 7.6,
-   "massa_g": 9.4,
+   "tris": 3040,
+   "plastico_cm3": 7.5,
+   "massa_g": 9.3,
    "tempo_h": 0.43,
    "obs": "ponta da bandana no peito; cola no rebaixo de fundo plano",
    "liso": true,
@@ -492,7 +492,7 @@
       0.0,
       1.0,
       0.0,
-      10.616744058099421
+      10.617095010247859
      ],
      [
       0.0,
@@ -513,7 +513,7 @@
     0,
     60
    ],
-   "suporte": "sim (pouco, árvore fina: teto de dentro das 2 patas, sobre os ressaltos das esferas, e quinas de baixo do relevo dos braços; ~0,9 % da área)",
+   "suporte": "sim (pouco, árvore fina: teto de dentro das 2 patas, sobre os ressaltos das esferas; quinas de baixo do relevo dos braços; ponta de baixo dos 2 blocos de trás; ~1,0 % da área)",
    "comum": false,
    "macica": false,
    "dim": [
@@ -521,7 +521,7 @@
     179.9,
     119.0
    ],
-   "tris": 130394,
+   "tris": 130340,
    "plastico_cm3": 158.0,
    "massa_g": 195.9,
    "tempo_h": 7.39,
@@ -529,7 +529,7 @@
    "liso": true,
    "perimetros": 4,
    "infill": 15,
-   "reforco": "2 blocos maciços atrás (um por parafuso M3, da mesa até o poste do chassi); barriga da frente e fundo de trás engrossados a 45° desde a mesa; 4 perímetros porque a bacia é aberta atrás (porta)",
+   "reforco": "2 blocos maciços atrás (um por parafuso M3, da pele até o poste do chassi; a ponta de baixo de cada um nasce ~2 mm acima da mesa e entra no suporte declarado); barriga da frente e fundo de trás engrossados por baixo; 4 perímetros porque a bacia é aberta atrás (porta)",
    "orientacao": "borda de baixo (z=5) na mesa, em pé como um vaso; boca (z=124) para cima"
   },
   {
@@ -589,7 +589,7 @@
     36.7,
     119.0
    ],
-   "tris": 23946,
+   "tris": 23962,
    "plastico_cm3": 30.3,
    "massa_g": 37.6,
    "tempo_h": 1.48,
@@ -628,7 +628,7 @@
       0.0,
       1.0,
       0.0,
-      23.288843154907227
+      23.289575576782227
      ],
      [
       0.0,
@@ -655,12 +655,12 @@
    "dim": [
     159.4,
     155.7,
-    71.0
+    68.6
    ],
-   "tris": 42426,
-   "plastico_cm3": 123.0,
-   "massa_g": 152.5,
-   "tempo_h": 5.78,
+   "tris": 40604,
+   "plastico_cm3": 139.2,
+   "massa_g": 172.6,
+   "tempo_h": 6.52,
    "obs": "gola-bandana: esfera em que a cabeça gira; assenta na borda da bacia e a prende; 2 M3 por cima, nas orelhas da torre (por dentro, antes da cabeça)",
    "liso": true,
    "perimetros": 4,
@@ -3379,10 +3379,16 @@
  "obs": {
   "parede_medida": {
    "corpo": {
-    "min": 2.3,
+    "min": 2.29,
     "med": 2.39,
-    "max": 2.83,
+    "max": 2.75,
     "amostras": 4000
+   },
+   "gola": {
+    "min": 3.38,
+    "med": 3.61,
+    "max": 8.27,
+    "amostras": 2540
    },
    "cabeça": {
     "min": 2.27,
@@ -3427,10 +3433,16 @@
  ],
  "parede_medida": {
   "corpo": {
-   "min": 2.3,
+   "min": 2.29,
    "med": 2.39,
-   "max": 2.83,
+   "max": 2.75,
    "amostras": 4000
+  },
+  "gola": {
+   "min": 3.38,
+   "med": 3.61,
+   "max": 8.27,
+   "amostras": 2540
   },
   "cabeça": {
    "min": 2.27,

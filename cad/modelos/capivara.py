@@ -37,7 +37,8 @@ def construir() -> Modelo:
     C0 = np.array(E.centro)
     T = E.T                                            # pescoço padrão de base.py -> pescoço deste bicho
     r_gola = K.soquete_r - K.folga_junta
-    z_top = float(C0[2] + r_gola * np.sin(np.radians(K.gola_elev)))
+    r_gola_in = r_gola - F.parede - 1.0                 # esfera de dentro da gola (casca de 3,4 mm nominais)
+    z_top = float(C0[2] + r_gola_in * np.sin(np.radians(K.gola_elev)))      # a face de DENTRO chega a 45° aqui (a de fora, a 42°)
     zb = float(C0[2] + K.cabeca_z)
 
     # ------------------------------------------------------------ pele, cabeça e zona varrida
@@ -48,9 +49,14 @@ def construir() -> Modelo:
     bo = _boca(K.dy, 0.0)
     # mandíbula aberta: a parte de baixo da boca, girada no eixo dela, também varre
     z_boca = bo["z0"] + bo["incl"] * (Pg[..., 1] - bo["y_ref"]) + 8.0
-    recuo = max(bo["z_eixo"] - zb, 0.0) * np.sin(np.radians(abs(N.boca[1]))) + 1.5                     # o mesmo alívio esférico que bicho.cabeca dá à mandíbula
+    # A mandíbula de verdade é aliviada para NUNCA tocar a esfera do soquete, em nenhum ângulo de abertura (mais
+    # abaixo: `mand - esfera girada`); o campo que varre usa o mesmo alívio, senão a boca aberta "come" a gola.
+    eixo_boca = (0.0, bo["y_eixo"], bo["z_eixo"])
+    angs_boca = np.linspace(0.0, N.boca[1], 5)
     Hj = np.maximum(np.maximum(H, bo["y_corte"] - Pg[..., 1]), Pg[..., 2] - z_boca)
-    Hj = np.maximum(Hj, K.soquete_r + recuo - np.linalg.norm(Pg - C0.astype(np.float32), axis=-1))
+    for th in angs_boca:
+        Cth = (mat_giro(eixo_boca, (-1, 0, 0), -th) @ np.array([*C0, 1.0]))[:3].astype(np.float32)
+        Hj = np.maximum(Hj, K.soquete_r + 0.5 - np.linalg.norm(Pg - Cth, axis=-1))
     H = np.minimum(H, CA.reamostrar(base, Hj, mat_giro((0, bo["y_eixo"], bo["z_eixo"]), (-1, 0, 0), N.boca[1])))
     pans = np.arange(N.pan[0], N.pan[1] + 0.1, 7.5)
     tilts = np.unique(np.concatenate([np.linspace(N.tilt[0], 0, 3), np.linspace(0, N.tilt[1], 3)]))
@@ -82,6 +88,7 @@ def construir() -> Modelo:
 
     def campo_corpo(Pp, Fp):
         d = campo_blobs(Pp, Fp)
+        d = np.minimum(d, np.linalg.norm(Pp - C0.astype(np.float32), axis=-1) - r_gola)      # a esfera da gola inteira (a malha é mais fina que ela na frente do pescoço)
         d = np.maximum(np.maximum(d, K.folga_junta - S), Pp[..., 2] - (z_top + 6.0))
         d = CA.tirar_farelos(base, d, 2.5, K.z_gola - 14.0)
         # por baixo (não aparece): barriga da frente e fundo de trás sobem a 45° desde a mesa
@@ -111,7 +118,8 @@ def construir() -> Modelo:
     porta = maior_corpo(bacia ^ caixa(-px + F.encaixe, px - F.encaixe, -400, yd, -50, 400))
     bacia = maior_corpo(bacia - caixa(-px, px, -400, yd, -50, 400))
     # 4 M3 por trás, embaixo, nos 2 postes do chassi: 2 prendem a porta e 2 prendem a bacia. Cada parafuso atravessa
-    # um bloco MACIÇO que nasce na mesa (nada em balanço) e vai da pele até o poste; a cabeça fica rebaixada na pele.
+    # um bloco MACIÇO vertical que vai da pele até o poste; a cabeça fica rebaixada na pele. (O bloco é cortado pela
+    # pele: onde o fundo dela sobe, a ponta de baixo do bloco fica ~2 mm acima da mesa; o teste 10 acusa 4 pontos.)
     # Em cima a bacia é presa pela gola (2 M3 nas orelhas da torre); na frente ela abraça os ressaltos das esferas.
     x0, x1, pya, pyb, pzt, pzp = E.poste_porta
 
@@ -130,7 +138,7 @@ def construir() -> Modelo:
     # A cavidade é só a esfera de dentro: entre a esfera e o rolo de fora a gola é MACIÇA (o teto da cavidade ficaria
     # em balanço). 2 abas na base (na mesa) recebem os M3 das orelhas da torre: é a gola que prende a bacia por cima.
     zg = K.z_gola + F.encaixe
-    gola = maior_corpo(CA.fatia_z(ext, zg, z_top) - esfera(C0, r_gola - F.parede - 0.3, seg=128))
+    gola = maior_corpo(CA.fatia_z(ext, zg, z_top) - esfera(C0, r_gola_in, seg=128))
     ow, oe = E.orelha_gola
     for (xa, xb, xe) in ((E.torre_x1 - 2.0, 62.0, E.torre_x1 + E.parede_esp / 2), (-62.0, -35.5, -37.5 - oe / 2)):
         aba = caixa(xa, xb, C0[1] - ow / 2 - 1, C0[1] + ow / 2 + 1, zg, zg + 3.0) ^ esfera(C0, r_gola - 0.5, seg=64)
@@ -173,9 +181,9 @@ def construir() -> Modelo:
     bacia, porta, gola = (maior_corpo(CA.fatia_z(desbeliscar(limpar(m)), z0, 900.0)) for m, z0 in ((bacia, K.z_fundo), (porta, K.z_fundo), (gola, zg)))
     pecas += [
         Peca("corpo", bacia, cor="laranja", explode=(0, 0, 60), perimetros=4, infill=15,
-             suporte="sim (pouco, árvore fina: teto de dentro das 2 patas, sobre os ressaltos das esferas, e quinas de baixo do relevo dos braços; ~0,9 % da área)",
+             suporte="sim (pouco, árvore fina: teto de dentro das 2 patas, sobre os ressaltos das esferas; quinas de baixo do relevo dos braços; ponta de baixo dos 2 blocos de trás; ~1,0 % da área)",
              orientacao="borda de baixo (z=5) na mesa, em pé como um vaso; boca (z=124) para cima",
-             reforco="2 blocos maciços atrás (um por parafuso M3, da mesa até o poste do chassi); barriga da frente e fundo de trás engrossados a 45° desde a mesa; 4 perímetros porque a bacia é aberta atrás (porta)",
+             reforco="2 blocos maciços atrás (um por parafuso M3, da pele até o poste do chassi; a ponta de baixo de cada um nasce ~2 mm acima da mesa e entra no suporte declarado); barriga da frente e fundo de trás engrossados por baixo; 4 perímetros porque a bacia é aberta atrás (porta)",
              obs="bacia inteira do corpo; desce por cima do chassi; 2 M3 por trás (embaixo) + presa em cima pela gola; na frente abraça os ressaltos das esferas"),
         Peca("porta", porta, cor="laranja", explode=(0, -120, 0), perimetros=4, infill=15,
              suporte="sim (pouco: ~110 mm² na curva de baixo, por fora e por baixo; não aparece)",
@@ -213,6 +221,9 @@ def construir() -> Modelo:
     p_cab = p_cab.combinar(campo_cab)
     pcc = {nm: r_.peca(p_cab0).translate(list(T)) for nm, r_ in relc.items()}
     cran, mand, c_ext, c_int = BI.cabeca(p_cab, boca, r_soquete=K.soquete_r, cabeca_z=K.cabeca_z)
+    for th in angs_boca:                                # alívio da mandíbula: a esfera do soquete vista por ela em cada ângulo de abertura
+        mand = mand - esfera((BS.CX, BS.CY, BS.CZ), K.soquete_r + 0.5, seg=96).transform(mat_giro((0.0, boca["y_eixo"], boca["z_eixo"]), (-1, 0, 0), -th)[:3, :])
+    mand = maior_corpo(mand)
     o = K.olho
     olhos, iris, pups = [], [], []
     ps = p_cab.ponto_na_pele((o.x, 300.0, o.z - T[2]), (0, -1, 0))
@@ -311,7 +322,9 @@ def construir() -> Modelo:
              ("pan+tilt-baixo+boca", {"pan": N.pan[1], "cabeca": N.tilt[0], "mandibula": N.boca[1]}),
              ("pan+tilt-cima", {"pan": N.pan[0], "cabeca": N.tilt[1]})]
     # parede medida longe das tampas (a pele é fechada no topo do corpo e na base da grade da cabeça só para o cálculo)
-    parede = {"corpo": medir_parede(ext, CA.fatia_z(inte, K.z_fundo + 1.0, z_top - 1.0)),
+    # a gola não sai de ext - inte (é maciça entre a esfera e o rolo): mede-se a casca esférica contra a esfera de dentro
+    parede = {"corpo": medir_parede(ext, CA.fatia_z(inte, K.z_fundo + 1.0, K.z_gola - 1.0)),
+              "gola": medir_parede(ext, CA.fatia_z(esfera(C0, r_gola_in, seg=128), zg + 4.0, z_top - 1.0)),
               "cabeça": medir_parede(c_ext, CA.fatia_z(c_int, BS.CZ + K.cabeca_z + 4.0, 900.0))}
     encaixes = [{"par": ["motor-tt-dir", "roda-dir"], "motivo": "eixo do motor entra no cubo da roda"},
                 {"par": ["motor-tt-esq", "roda-esq"], "motivo": "eixo do motor entra no cubo da roda"}]

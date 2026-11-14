@@ -5,9 +5,9 @@ Receita (genérica: recebe a pele e os parâmetros do bicho; foi feita para a ca
   2. `campo_cabeca` + `zona_varrida`    campo da cabeça (pele acima do plano de baixo, fora do soquete esférico) e o
                                         volume que ela varre em TODAS as poses do pescoço (pan x tilt) e da boca
   3. corpo = pele (+ blobs) menos a zona varrida com folga  → a esfera da gola nasce sozinha (raio = soquete - folga)
-  4. `casca.py` corta o corpo em "vasos" por planos horizontais (bacia, gola), cada um com a base plana na mesa
-  5. peças coloridas = `relevo()` (pedaço da própria pele além de um plano: base plana, imprime sem suporte) e
-     `painel_plano()` (recorte raso com fundo plano)
+  4. o modelo corta o corpo em "vasos" por planos horizontais (`fatia_z`: bacia, gola), cada um com a base plana na mesa
+  5. peças coloridas = `Relevo` (pedaço da própria pele além de um plano: base plana com borda chanfrada, imprime sem
+     suporte; `Relevo.tirar` deixa o assento plano no corpo ANTES de fazer a casca)
 
 Tudo o que é CSG exato (furos, orelhas, cortes) continua em Manifold; só a forma orgânica vem do campo.
 """
@@ -284,8 +284,9 @@ def autoportante(pele: PeleGrade, campo, lo, hi, cos45=0.7071):
     recebe a de cima encolhida (campo'[k] = min(campo[k], campo'[k+1] + h·cos45°)). É a envoltória das cópias do
     sólido encolhidas e descidas: uma face a 45° fica como está, uma mais deitada ganha material embaixo até virar
     45°. Só ACRESCENTA material (para fora da pele, sob a face em balanço) e vale para peça impressa com Z para cima.
-    Use antes de fazer a casca, na pele do corpo ou da cabeça, em zonas que não aparecem (barriga por baixo, borda
-    de baixo da cabeça)."""
+    LIMITE (medido na capivara): só funciona em face que já sobe inclinada (barriga por baixo, fundo de trás). Sob
+    face QUASE HORIZONTAL ele pendura uma massa rasa em vez de um cone a 45° (a distância 3D do campo engana): NÃO
+    use na cabeça, em tetos nem perto da junta do pescoço (na capivara ele fez a mandíbula aberta "comer" a gola)."""
     sl = [slice(max(int(np.searchsorted(pele.eixos[i], lo[i])), 0), min(int(np.searchsorted(pele.eixos[i], hi[i])) + 1, len(pele.eixos[i]))) for i in range(3)]
     out = campo.copy()
     sub = out[sl[0], sl[1], sl[2]]

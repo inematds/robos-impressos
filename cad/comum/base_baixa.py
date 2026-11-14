@@ -309,19 +309,6 @@ def sombra_abaixo(solido, niveis, folga=0.6):
     return uniao(*partes)
 
 
-def orelhas_esfera(E, ext):
-    """Fixação da frente da bacia: um bloco dentro de cada pata, assentado em cima do ressalto da esfera, com 2
-    insertos M3. Os MESMOS 2 parafusos (M3x20, por baixo) seguram a capa da esfera e a bacia. Devolve (soma, corte)."""
-    z0 = E.piso_z[0] + 10.5 + 0.2
-    soma, corte = [], []
-    for (x, y) in E.esferas:
-        for s in (1, -1):
-            soma.append(caixa(s * x - 15.0, s * x + 15.0, y - 5.0, y + 5.0, z0, z0 + 7.5) ^ ext)
-            for sx in (1, -1):
-                corte.append(inserto((s * x + sx * 10.5, y, z0), (0, 0, 1)))
-    return uniao(*soma), uniao(*corte)
-
-
 def obstaculos_bacia(E, chassi_solido, outros=(), folga=0.6):
     """O que a bacia tem de contornar ao DESCER por cima do chassi já com rodas e esferas: a sombra do chassi
     (piso; ressaltos; paredes, torre e deck), os poços das rodas e o conjunto esfera + capa."""
