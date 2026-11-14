@@ -297,6 +297,9 @@ def garfo() -> Peca:
     # passagem de cabos (flat da câmera e fios dos servos da cabeça), à frente do eixo
     m = m - caixa(-9, 9, CY + 14.0, CY + 20.0, zb - 3, zt + 1)
     return Peca("garfo-pescoco", m, material="PETG", cor="grafite", grupo="pan", comum=True, macica=True,
+                suporte="sim (1,8 mm sob a base, em volta do anel de centragem do horn; suporte normal, fora de vista)",
+                perimetros=5, infill=40, orientacao="base na mesa, montantes para cima",
+                reforco="camadas ao longo dos montantes NÃO: a carga do tilt flete os montantes no plano das camadas, por isso 5 perímetros e 40 % de miolo",
                 explode=(0, 0, 30), obs="gira com o servo de pan (horn redondo) e segura o eixo do tilt")
 
 
@@ -322,7 +325,8 @@ def berco() -> Peca:
     for (mx, my) in POS_MESA:
         m = m - inserto((mx, my, zt), (0, 0, -1))
     return Peca("berco-tilt", m, material="PETG", cor="grafite", grupo="cabeca", comum=True, macica=True,
-                imprimir=rot("x", 180), suporte="sim (pouco, sob a ponte)", explode=(0, 0, 60),
+                imprimir=rot("x", 180), suporte="sim (pouco, sob a ponte)", explode=(0, 0, 60), perimetros=5, infill=40,
+                orientacao="de cabeça para baixo: topo da coluna na mesa", reforco="coluna em D maciça (5 perímetros) e ponte de 4 mm entre as duas paredes do servo",
                 obs="segura o servo de tilt (MG996R em pé) e sobe pela abertura da gola até a mesa da cabeça; cabos pela face chata da coluna")
 
 
