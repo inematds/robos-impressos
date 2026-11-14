@@ -324,53 +324,94 @@ DINO = NS(
 )
 
 # ------------------------------------------------------------------ CAPIVARA (modelo 2)
-# Mesmo esqueleto do dino (chassi, bandejas, garfo, berço): só a casca muda.
+# Rodada 2: a casca vem da malha de image-to-3D (cad/peles/capivara.npz, 300 mm de altura, convertida por
+# cad/pele_malha.py) e o esqueleto é o "baixo e largo" de cad/comum/base_baixa.py (junta do pescoço em Z=150, e não
+# 185 como no esqueleto alto do dino). Valores marcados "pele" estão no referencial da pele (centro da caixa da malha
+# em Y=0); no robô somam `dy`, porque o eixo das rodas é sempre Y=0.
 CAPIVARA = NS(
-    passo=1.25,
-    junta=3.0,                         # folga da cabeça em volta da esfera (maior: a faixa da bandana fica por baixo)
-    torso=[((0, -39, 46), (78, 68, 58)),          # pelve (pera)
-           ((0, -46, 116), (64, 66, 72)),         # costas / peito
-           ((0, -14, 74), (68, 62, 66)),          # barriga
-           ((44, 0, 40), (24, 58, 42)), ((-44, 0, 40), (24, 58, 42)),     # quadris (cobrem os motores e as faixas do piso)
-           ((52, 14, 106), (12, 15, 26)), ((-52, 14, 106), (12, 15, 26))],  # braços (parados, fazem parte da casca)
-    cabeca=[((0, -28, 254), (80, 76, 60)),        # crânio
-            ((0, 38, 244), (48, 44, 36)),         # focinho
-            ((0, -30, 210), (62, 60, 18))],       # base
-    perna=[((71, 0, 34), (31, 58, 48)), ((60, 0, 34), (26, 58, 48))],     # coxa (cobre a roda)
-    pata=((72, 46, 15), (22, 26, 15)),            # pata traseira marrom (peça separada, colada)
-    rabo=[((0, -110, 24), (42, 26, 28)), ((0, -130, 22), (40, 34, 30))],
-    olho=NS(c=(42.0, 12.0, 272.0), r=21.0, dir=(0.14, 0.97, 0.20), iris_r=15.0, pupila_r=10.0),
-    boca=dict(y_eixo=28.0, z_eixo=223.0, y_corte=22.0, z0=234.0, y_ref=50.0, incl=-0.05, raio_sorriso=150.0, folga=1.2),
-    barriga=NS(c=(0.0, 88.0), r=(40.0, 44.0)),    # painel da frente (mesma cor do corpo): tampa + grade do alto-falante
-    focinho=NS(c=(0.0, 258.0), r=(40.0, 21.0), y0=36.0),   # painel marrom do focinho (janela elíptica x, z; só para y > y0)
-    aro=NS(r_fora=20.0, r_dentro=14.0),           # aro ciano na lateral da coxa (janela para o cubo da roda / LED)
-    n_pecas=39,
+    pele="capivara.npz",
+    dy=25.0,                           # a pele fica 25 mm à frente do eixo das rodas: rodas sob as ancas (y da pele = -25)
+    pescoco=(12.0, 150.0),             # (y na pele, z) do centro da junta pan x tilt = estrangulamento da malha
+    soquete_r=66.0,                    # esfera oca da cabeça em volta da junta
+    folga_junta=2.0,                   # a gola (esfera do corpo) fica com soquete_r - folga = 64 mm de raio
+    cabeca_z=2.0,                      # plano de baixo da cabeça, acima do centro da junta
+    z_fundo=5.0,                       # borda de baixo da bacia (é a face que vai na mesa)
+    z_gola=124.0,                      # corte horizontal entre a bacia (corpo) e a gola-bandana
+    gola_elev=45.0,                    # a esfera da gola sobe até 45° de elevação (acima disso não imprime sem suporte)
+    anca=[((52.0, -25.0, 32.0), (45.0, 56.0, 50.0))],   # blob (pele) que engorda a anca só onde a roda pede
+    porta=NS(x=38.0, y_max=-30.0),     # porta traseira: faixa |x| < 38 da bacia, atrás de y (pele) = -30, altura inteira
+    # boca (pele): eixo da mandíbula, plano de corte de trás, altura da boca em y_ref, inclinação, raio do sorriso
+    boca=dict(y_eixo=86.0, z_eixo=166.0, y_corte=80.0, z0=177.0, y_ref=118.0, incl=-0.08, raio_sorriso=150.0, folga=1.2),
+    olho=NS(x=50.0, z=232.0, r=21.0, afunda=0.5, iris_r=15.0, pupila_r=10.0),   # centro = ponto da pele recuado r x afunda
+    aro=NS(r_fora=20.0, r_dentro=14.0),           # aro ciano na lateral da anca, no eixo da roda
+    # esqueleto baixo (cad/comum/base_baixa.py). y em "pele"; z e x no robô
+    esq=NS(
+        piso_z=(9.0, 13.0), piso_x=52.0, piso_nivel=-3.2,   # piso = seção da pele em z=9 (3,2 mm para dentro), |x| <= 52
+        parede_x0=29.0, parede_esp=5.0,    # paredes do rack/torre: X de 29 a 34 (58 livres entre elas)
+        parede_y=(-78.0, 49.5),            # pele: fundo do rack ... frente da torre do pan
+        rack_z=78.0,                       # topo das paredes na parte do rack (a torre sobe até o deck)
+        torre_chanfro=(22.0, 60.0),        # (y pele, z): à frente de y a base da parede sobe em rampa até z na ponta (acompanha a barriga)
+        travessa_y=(-6.0, -3.0), travessa_z0=30.0,   # pele: parede transversal entre rack e torre (L298N na face da frente)
+        deck_z=102.0, deck_esp=4.0,        # topo do deck = face de baixo da aba do servo de pan
+        driver_z=52.0,                     # centro do L298N
+        bateria_y=-45.5,                   # pele: centro do suporte 2x18650 (no piso, entre as paredes; sai por trás)
+        trilho_z=(37.0, 66.0),             # fundo dos trilhos: nível de baixo = Pi, nível de cima = Uno + shield
+        trilho_alt=3.6, trilho_prof=2.0,
+        bandeja_larg=61.4, bandeja_esp=3.0, espacador=5.0,
+        pi_y=(-97.0, -8.0), pi_placa_y=-10.0,     # pele: bandeja do Pi (fundo, frente) e borda da frente da placa
+        uno_y=(-80.0, -7.0), uno_placa_y=-76.0,   # pele: bandeja do Uno e borda de trás da placa (USB para trás)
+        esferas=((60.0, 29.0),),           # (|x|, y pele) das 2 esferas de apoio da frente, sob as patas
+        orelhas=((46.0, -62.0, -1), (42.0, 18.0, 1)),   # (|x|, y pele, sentido em Y) das 4 orelhas M3 da bacia no piso
+        poste_porta=(24.0, 34.0, -78.0, -70.0, 32.0, 24.0),   # x0, x1, y0, y1 (pele), z do topo, z do parafuso da porta
+        encoder_extra=12.0,
+    ),
+    n_pecas=24,
 )
 
 # ------------------------------------------------------------------ CUBO (modelo 3: robô quadrado de mesa)
-# Não roda: base fixa com o servo de pan + engrenagens 2:1 (servo comum de 180° gira o pescoço ±170°),
-# garfo, e cabeça-cubo com tela de 3,5" + Raspberry Pi; tilt por servo padrão dentro da cabeça.
+# Não roda. Base baixa e larga com o servo de pan + engrenagens 2:1 (servo comum de 180° gira o pescoço ±170°), Arduino,
+# bateria 2S e os módulos de energia; pescoço estreito (tubo oco Ø28); cabeça-cubo com tela de 3,5" + Raspberry Pi e o
+# tilt por DENTRO (garfo interno). Geometria comum com o cubo que roda: cad/comum/quadrado.py.
+def _cabeca_cubo(larg, y, z, zs, zcam, pilar_x, pilar_dz, lat_e_z, raio=20.0):
+    """Parâmetros da cabeça-cubo no referencial do cruzamento pan x tilt (X lados, +Y rosto, Z cima)."""
+    return NS(
+        larg=larg, y=y, z=z,               # largura; (costas, frente); (fundo, topo) em relação ao eixo do tilt
+        raio=raio, parede=2.8,             # raio das 4 arestas compridas (verticais na impressão); parede do copo
+        chanfro_tras=4.0, raio_frente=1.4,  # aresta de trás em chanfro de 45° (encosta na mesa); borda da frente arredondada
+        painel_esp=3.0, painel_recuo=1.0,  # painel escuro do rosto, 1 mm para dentro da borda (fresta de sombra)
+        zs=zs, zcam=zcam,                  # centro da tela e da câmera (acima da tela, atrás do painel)
+        pilar_x=pilar_x, pilar_dz=pilar_dz,   # 4 pilares do painel (por fora da tela), presos por trás da travessa
+        espacador=5.0, travessa_esp=3.0, vao_tela_pi=6.0, lateral_esp=5.0, lat_e_z=lat_e_z,
+        horn_x=11.0,                       # face do braço direito do garfo (horn do servo de tilt)
+        braco_x=30.0, braco_esp=5.0, braco_esp_e=7.0,   # braço esquerdo em x=-30 (pino M3 + inserto)
+        garfo_y=24.0, bloco_y=24.0, garfo_z=(-30.5, -12.0),   # garfo interno: fundo (assenta no tubo) e topo do bloco
+        tubo_d=28.0, furo_cabos=9.0, tirante_r=8.5, tirante_ang=(0.0, 120.0, 240.0),   # 3 tirantes M3 no tubo
+        mic_x=24.0, tilt=(-25.0, 30.0),
+    )
+
+
 CUBO = NS(
-    base=(150.0, 144.0, 70.0),         # largura (x), profundidade (y), altura da base
-    base_y=(-78.0, 66.0),              # a base vai de y=-78 (porta traseira) a y=+66
-    base_r=12.0, parede=3.0, tampa_esp=4.0,
-    eixo_y=14.0,                       # eixo do pescoço (pan)
-    servo_y=-35.5,                     # eixo do servo de pan (distância = m*(z1+z2)/2)
+    base=(158.0, 146.0, 60.5),         # largura (x), profundidade (y), altura da base (antes 150 x 144 x 70: mais baixa e larga)
+    base_r=20.0, parede=3.0, tampa_esp=4.0, chanfro=3.0,   # chanfro de 45° embaixo (base) e em cima (tampa)
+    eixo_y=-6.0,                       # eixo do pescoço (pan): a cabeça fica centrada sobre a base
+    ang_servo=45.0, ang_corpo=-90.0,   # o servo de pan fica a 45° do eixo (frente-direita), corpo apontando para trás
     modulo=1.5, dentes=(22, 44),       # pescoço 22 dentes, servo 44 dentes → o pescoço gira 2x o servo
     eng_z=(48.2, 56.2), eng_folga=0.25,
-    tubo=(28.0, 14.0),                 # Ø externo e Ø do furo do tubo do pescoço (os cabos sobem por dentro)
-    garfo_y=24.0, garfo_braco=(61.5, 5.0),   # largura do garfo em y; face interna dos braços em |x| e espessura
-    cabeca=(112.0, 92.0, 100.0), cabeca_r=14.0, cabeca_parede=2.4,
-    tela_dz=-6.0,                      # centro da tela abaixo do centro da cabeça
-    tilt=(-25.0, 30.0), pan=(-170.0, 170.0),
-    uno_xy=(7.0, -15.0),              # canto do Uno na base (USB para trás)
-    bateria_xy=(-40.5, -1.0),
-    falante_xz=(-38.0, 30.0),
-    n_pecas=14,
+    flange=(20.0, 1.5),                # raio e altura da flange do tubo (depois vira cone de 45° até o Ø do tubo)
+    folga_pescoco=22.0,                # vão entre a tampa e o fundo da cabeça (a cabeça inclinada desce 20 mm na frente)
+    cab=_cabeca_cubo(larg=136.0, y=(-45.0, 57.0), z=(-36.8, 81.2), zs=20.0, zcam=61.3, pilar_x=59.5, pilar_dz=22.0, lat_e_z=(-9.0, 52.0)),
+    pan=(-170.0, 170.0),
+    uno_xy=(-59.0, 14.0),              # canto do Uno (USB para a esquerda)
+    bateria_xy=(-35.0, -28.5),         # sai pela porta de trás
+    porta_x=(-58.0, -12.0),
+    stepdown_xy=(62.0, -7.0), ubec_xy=(16.0, -33.5), carregador_x=48.0, bms_xy=(-4.0, -40.0),
+    falante_xz=(13.0, 34.0),           # alto-falante (fase 2) na parede de TRÁS, grade de fendas verticais
+    chave_xz=(48.0, 30.0),             # chave na parede de trás, acima do carregador USB-C
+    n_pecas=15,
 )
-# altura do eixo do tilt: topo do garfo-base + meia diagonal da cabeça + folga
-CUBO.garfo_z = (CUBO.base[2] + 0.3, CUBO.base[2] + 10.3)
-CUBO.tilt_z = CUBO.garfo_z[1] + ((CUBO.cabeca[1] / 2) ** 2 + (CUBO.cabeca[2] / 2) ** 2) ** 0.5 + 2.3
+CUBO.tilt = CUBO.cab.tilt
+# altura do eixo do tilt: tampa + vão do pescoço + distância do eixo ao fundo da cabeça
+CUBO.tilt_z = CUBO.base[2] + CUBO.folga_pescoco - CUBO.cab.z[0]
 
 CORES = {
     "verde": (0.36, 0.72, 0.16), "creme": (0.96, 0.89, 0.62), "azul": (0.20, 0.55, 0.86),

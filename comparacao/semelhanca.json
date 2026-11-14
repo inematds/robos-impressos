@@ -160,6 +160,43 @@
     ],
     "media": 0.7554,
     "media_ajustado": 0.7735
+   },
+   "depois": {
+    "referencia": "cubo",
+    "origem": "pecas/cubo",
+    "data": "2026-11-14",
+    "nota": "",
+    "triangulos": 23158,
+    "entram": [
+     "base x1",
+     "tampa-base x1",
+     "porta-traseira x1",
+     "tubo-pescoco x1",
+     "engrenagem-pescoco x1",
+     "engrenagem-servo x1",
+     "garfo x1",
+     "quadro-cabeca x1",
+     "cabeca-corpo x1",
+     "cabeca-face x1",
+     "espacador-pi x4"
+    ],
+    "vistas": [
+     {
+      "vista": "tres-quartos",
+      "az_nominal": 35,
+      "el_nominal": 22,
+      "az": 30,
+      "el": 12,
+      "iou": 0.7966,
+      "iou_ajustado": 0.8049,
+      "ajuste_escala": 1.03,
+      "mascara_toca_borda": false,
+      "az_no_limite_da_busca": false,
+      "el_no_limite_da_busca": true
+     }
+    ],
+    "media": 0.7966,
+    "media_ajustado": 0.8049
    }
   },
   "dino": {

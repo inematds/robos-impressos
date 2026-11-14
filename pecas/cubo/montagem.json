@@ -30,7 +30,7 @@
       0.0,
       1.0,
       0.0,
-      -6.0
+      0.0
      ],
      [
       0.0,
@@ -55,16 +55,20 @@
    "comum": false,
    "macica": true,
    "dim": [
-    150.0,
-    144.0,
-    66.0
+    158.0,
+    146.0,
+    56.5
    ],
-   "tris": 2986,
-   "plastico_cm3": 172.9,
-   "massa_g": 219.6,
-   "tempo_h": 8.08,
-   "obs": "cuba: piso, 3 paredes, postes do servo, do Uno e da tampa",
-   "liso": false
+   "tris": 5078,
+   "plastico_cm3": 175.1,
+   "massa_g": 222.4,
+   "tempo_h": 8.19,
+   "obs": "cuba: piso, paredes, postes do servo de pan, do Uno e da tampa, berços dos módulos de energia (abraçadeira), trilhos do alto-falante; chave, USB-C e grade atrás",
+   "liso": false,
+   "perimetros": 4,
+   "infill": 20,
+   "reforco": "chanfro de 45° na aresta de baixo; postes da tampa Ø12 fundidos nos cantos; postes do servo com mãos-francesas; ressaltos nervurados do Uno; fendas verticais na grade",
+   "orientacao": "piso na mesa"
   },
   {
    "nome": "tampa-base",
@@ -94,13 +98,13 @@
       0.0,
       -1.0,
       1.2246467991473532e-16,
-      -5.999999999999995
+      -7.409113134841488e-15
      ],
      [
       0.0,
       -1.2246467991473532e-16,
       -1.0,
-      70.00000000000001
+      60.50000000000001
      ],
      [
       0.0,
@@ -119,16 +123,20 @@
    "comum": false,
    "macica": true,
    "dim": [
-    150.0,
-    144.0,
+    158.0,
+    146.0,
     18.0
    ],
-   "tris": 1896,
-   "plastico_cm3": 74.0,
-   "massa_g": 94.0,
-   "tempo_h": 3.51,
-   "obs": "4 M3 cabeça chata; o garfo apoia e gira sobre ela; furos dos microfones",
-   "liso": false
+   "tris": 1944,
+   "plastico_cm3": 79.2,
+   "massa_g": 100.6,
+   "tempo_h": 3.75,
+   "obs": "presa por 4 M3x10 que entram POR BAIXO da base; a flange do pescoço gira sobre ela; orelha do parafuso da porta",
+   "liso": false,
+   "perimetros": 4,
+   "infill": 25,
+   "reforco": "4 ressaltos de inserto com 3 nervuras a 45°; chanfro de 45° na aresta que encosta na mesa",
+   "orientacao": "de cabeça para baixo: a face de cima na mesa"
   },
   {
    "nome": "porta-traseira",
@@ -152,19 +160,19 @@
       1.0,
       0.0,
       0.0,
-      0.0
+      -35.0
      ],
      [
       0.0,
       1.1102230246251565e-16,
       1.0,
-      -78.0
+      -73.0
      ],
      [
       0.0,
       -1.0,
       1.1102230246251565e-16,
-      34.650000000000006
+      29.900000000000002
      ],
      [
       0.0,
@@ -183,16 +191,20 @@
    "comum": false,
    "macica": true,
    "dim": [
-    137.4,
-    62.1,
+    45.4,
+    52.6,
     5.0
    ],
-   "tris": 264,
-   "plastico_cm3": 25.6,
-   "massa_g": 32.5,
-   "tempo_h": 1.26,
-   "obs": "porta da bateria com a chave e o conector de carga; 1 M3",
-   "liso": false
+   "tris": 128,
+   "plastico_cm3": 7.4,
+   "massa_g": 9.4,
+   "tempo_h": 0.42,
+   "obs": "porta da bateria (atrás); 1 M3 na orelha da tampa, pé contra 2 batentes do piso",
+   "liso": false,
+   "perimetros": 3,
+   "infill": 20,
+   "reforco": "",
+   "orientacao": "face de fora na mesa"
   },
   {
    "nome": "tubo-pescoco",
@@ -220,15 +232,15 @@
      ],
      [
       0.0,
-      1.0,
-      0.0,
-      14.0
+      -1.0,
+      1.2246467991473532e-16,
+      -6.0000000000000036
      ],
      [
       0.0,
-      0.0,
-      1.0,
-      46.0
+      -1.2246467991473532e-16,
+      -1.0,
+      88.8
      ],
      [
       0.0,
@@ -247,16 +259,88 @@
    "comum": false,
    "macica": true,
    "dim": [
-    35.8,
-    36.0,
-    28.3
+    40.0,
+    40.0,
+    32.6
    ],
-   "tris": 2620,
-   "plastico_cm3": 11.6,
-   "massa_g": 14.8,
-   "tempo_h": 0.62,
-   "obs": "tubo oco (cabos) com a engrenagem de 22 dentes; 3 M3x35 + porcas",
-   "liso": false
+   "tris": 1004,
+   "plastico_cm3": 12.4,
+   "massa_g": 15.8,
+   "tempo_h": 0.66,
+   "obs": "pescoço oco (cabos por dentro); 3 M3x45 entram por baixo, pela engrenagem, e rosqueiam nos insertos do garfo",
+   "liso": false,
+   "perimetros": 5,
+   "infill": 40,
+   "reforco": "3 tirantes M3 de aço atravessam o tubo inteiro: as camadas trabalham só em compressão; flange cônica a 45°",
+   "orientacao": "de cabeça para baixo: o topo (lado do garfo) na mesa, a flange cônica abre a 45°"
+  },
+  {
+   "nome": "engrenagem-pescoco",
+   "arquivo": "stl/cubo-engrenagem-pescoco.stl",
+   "material": "PETG",
+   "cor": "prata",
+   "rgb": [
+    0.78,
+    0.79,
+    0.8
+   ],
+   "grupo": "pan",
+   "grupos": [
+    "pan"
+   ],
+   "qtd": 1,
+   "na_montagem": 1,
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      -6.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      48.2
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "explode": [
+    0,
+    0,
+    20
+   ],
+   "suporte": "não",
+   "comum": false,
+   "macica": true,
+   "dim": [
+    36.0,
+    36.0,
+    8.0
+   ],
+   "tris": 2100,
+   "plastico_cm3": 5.9,
+   "massa_g": 7.5,
+   "tempo_h": 0.35,
+   "obs": "22 dentes; fica por baixo da tampa e, com a flange do tubo por cima, impede o pescoço de bambear",
+   "liso": false,
+   "perimetros": 5,
+   "infill": 60,
+   "reforco": "dentes módulo 1.5 com 5 perímetros (dente quase maciço); presa pelos 3 tirantes",
+   "orientacao": "deitada"
   },
   {
    "nome": "engrenagem-servo",
@@ -280,19 +364,19 @@
       1.0,
       0.0,
       0.0,
-      0.0
+      35.0017856687341
      ],
      [
       0.0,
-      1.0,
-      0.0,
-      -35.5
+      -1.0,
+      1.2246467991473532e-16,
+      29.0017856687341
      ],
      [
       0.0,
-      0.0,
-      1.0,
-      48.2
+      -1.2246467991473532e-16,
+      -1.0,
+      56.2
      ],
      [
       0.0,
@@ -311,16 +395,20 @@
    "comum": false,
    "macica": true,
    "dim": [
-    68.9,
-    68.9,
+    69.0,
+    69.0,
     8.0
    ],
    "tris": 3712,
    "plastico_cm3": 18.2,
    "massa_g": 23.1,
    "tempo_h": 0.92,
-   "obs": "44 dentes, presa no horn redondo do servo de pan",
-   "liso": false
+   "obs": "44 dentes, presa no horn redondo do servo de pan (o pescoço gira 2x o servo)",
+   "liso": false,
+   "perimetros": 5,
+   "infill": 60,
+   "reforco": "dentes módulo 1.5 com 5 perímetros; 4 parafusos no horn redondo",
+   "orientacao": "de cabeça para baixo: a face de cima na mesa, o rebaixo do horn para cima"
   },
   {
    "nome": "garfo",
@@ -344,19 +432,19 @@
       1.0,
       0.0,
       0.0,
-      0.0
+      -8.0
      ],
      [
       0.0,
       1.1102230246251565e-16,
       1.0,
-      1.9999999999999951
+      -18.0
      ],
      [
       0.0,
       -1.0,
       1.1102230246251565e-16,
-      116.42057550292606
+      109.74999999925495
      ],
      [
       0.0,
@@ -375,16 +463,20 @@
    "comum": false,
    "macica": true,
    "dim": [
-    133.0,
-    92.2,
+    44.0,
+    41.9,
     24.0
    ],
-   "tris": 2108,
-   "plastico_cm3": 31.9,
-   "massa_g": 40.5,
-   "tempo_h": 1.56,
-   "obs": "gira com o pescoço e segura o eixo do tilt",
-   "liso": false
+   "tris": 1448,
+   "plastico_cm3": 14.9,
+   "massa_g": 18.9,
+   "tempo_h": 0.77,
+   "obs": "garfo interno do tilt: fica dentro da cabeça, no topo do tubo; horn do servo num braço, pino M3 no outro",
+   "liso": false,
+   "perimetros": 5,
+   "infill": 40,
+   "reforco": "camadas ao longo dos braços (flexão); bloco maciço com 3 insertos dos tirantes; furos em gota",
+   "orientacao": "deitado, costas na mesa: as camadas correm do bloco para os braços"
   },
   {
    "nome": "quadro-cabeca",
@@ -408,19 +500,19 @@
       1.0,
       0.0,
       0.0,
-      -6.25
+      0.0
      ],
      [
       0.0,
       1.1102230246251565e-16,
-      1.0,
-      -29.300000000000004
-     ],
-     [
-      0.0,
       -1.0,
+      15.8
+     ],
+     [
+      0.0,
+      1.0,
       1.1102230246251565e-16,
-      146.29115100585213
+      135.025
      ],
      [
       0.0,
@@ -439,16 +531,20 @@
    "comum": false,
    "macica": true,
    "dim": [
-    93.5,
-    60.5,
-    55.1
+    129.2,
+    74.6,
+    63.7
    ],
-   "tris": 1534,
-   "plastico_cm3": 23.3,
-   "massa_g": 29.6,
-   "tempo_h": 1.16,
-   "obs": "esqueleto da cabeça: Pi (4 M2,5), servo de tilt, eixo livre; 4 M3 pelo fundo do corpo",
-   "liso": false
+   "tris": 2248,
+   "plastico_cm3": 50.8,
+   "massa_g": 64.5,
+   "tempo_h": 2.43,
+   "obs": "esqueleto da cabeça: Raspberry Pi (4 M2,5), servo de tilt, mancal do pino; recebe o painel (4 M3 por trás) e o copo (4 M3 pela parede de trás)",
+   "liso": false,
+   "perimetros": 4,
+   "infill": 30,
+   "reforco": "laterais inteiras até o fundo com colunas Ø10 nos 4 insertos e mãos-francesas a 45° na travessa; servo de tilt em rasgo em U (sem ponte), 4 parafusos",
+   "orientacao": "frente da travessa na mesa, laterais para cima"
   },
   {
    "nome": "cabeca-corpo",
@@ -477,14 +573,14 @@
      [
       0.0,
       1.1102230246251565e-16,
-      -1.0,
-      57.0
+      1.0,
+      -51.00000000000001
      ],
      [
       0.0,
-      1.0,
+      -1.0,
       1.1102230246251565e-16,
-      150.54115100585213
+      141.5
      ],
      [
       0.0,
@@ -503,16 +599,20 @@
    "comum": false,
    "macica": false,
    "dim": [
-    112.0,
-    100.0,
-    89.0
+    136.0,
+    118.0,
+    102.0
    ],
-   "tris": 2864,
-   "plastico_cm3": 108.9,
-   "massa_g": 135.1,
-   "tempo_h": 5.12,
-   "obs": "casca da cabeça (5 lados)",
-   "liso": false
+   "tris": 2704,
+   "plastico_cm3": 164.7,
+   "massa_g": 204.3,
+   "tempo_h": 7.71,
+   "obs": "casca da cabeça (5 lados); entra por trás, 4 M3 na parede de trás; rasgo do pescoço e furos de microfone por baixo",
+   "liso": false,
+   "perimetros": 3,
+   "infill": 15,
+   "reforco": "arestas compridas com raio de 20 mm (verticais na impressão) e chanfro de 45° na aresta de trás; rasgo do pescoço em gota; sem ponte nem teto",
+   "orientacao": "costas na mesa, boca (frente) para cima, como um copo"
   },
   {
    "nome": "cabeca-face",
@@ -541,14 +641,14 @@
      [
       0.0,
       1.1102230246251565e-16,
-      1.0,
-      17.00768492624427
+      -1.0,
+      50.00000000000001
      ],
      [
       0.0,
-      -1.0,
+      1.0,
       1.1102230246251565e-16,
-      150.54115100585213
+      141.5
      ],
      [
       0.0,
@@ -567,16 +667,20 @@
    "comum": false,
    "macica": false,
    "dim": [
-    112.0,
-    100.0,
-    43.0
+    129.9,
+    111.9,
+    34.2
    ],
-   "tris": 2634,
-   "plastico_cm3": 27.2,
-   "massa_g": 33.7,
-   "tempo_h": 1.34,
-   "obs": "moldura da tela de 3,5 pol.; 4 M3 cabeça chata",
-   "liso": false
+   "tris": 2152,
+   "plastico_cm3": 42.4,
+   "massa_g": 52.6,
+   "tempo_h": 2.04,
+   "obs": "painel escuro do rosto: janela da tela, furo de 8 mm da câmera acima dela; nenhum parafuso na frente",
+   "liso": false,
+   "perimetros": 3,
+   "infill": 20,
+   "reforco": "4 pilares Ø10 com 2 nervuras a 45° cada (insertos M3 na ponta); postes da câmera",
+   "orientacao": "face da frente (a que aparece) na mesa, pilares para cima"
   },
   {
    "nome": "espacador-pi",
@@ -603,19 +707,19 @@
       1.0,
       0.0,
       0.0,
-      39.0
+      -39.0
      ],
      [
       0.0,
       0.0,
       1.0,
-      25.799999999999997
+      15.799999999999997
      ],
      [
       0.0,
       -1.0,
       0.0,
-      120.04115100585213
+      163.8
      ],
      [
       0.0,
@@ -629,19 +733,19 @@
       1.0,
       0.0,
       0.0,
-      -19.0
+      19.0
      ],
      [
       0.0,
       0.0,
       1.0,
-      25.799999999999997
+      15.799999999999997
      ],
      [
       0.0,
       -1.0,
       0.0,
-      120.04115100585213
+      163.8
      ],
      [
       0.0,
@@ -655,19 +759,19 @@
       1.0,
       0.0,
       0.0,
-      39.0
+      -39.0
      ],
      [
       0.0,
       0.0,
       1.0,
-      25.799999999999997
+      15.799999999999997
      ],
      [
       0.0,
       -1.0,
       0.0,
-      169.04115100585213
+      114.8
      ],
      [
       0.0,
@@ -681,19 +785,19 @@
       1.0,
       0.0,
       0.0,
-      -19.0
+      19.0
      ],
      [
       0.0,
       0.0,
       1.0,
-      25.799999999999997
+      15.799999999999997
      ],
      [
       0.0,
       -1.0,
       0.0,
-      169.04115100585213
+      114.8
      ],
      [
       0.0,
@@ -721,7 +825,11 @@
    "massa_g": 0.1,
    "tempo_h": 0.08,
    "obs": "4 espaçadores de 5 mm do Raspberry Pi",
-   "liso": false
+   "liso": false,
+   "perimetros": 3,
+   "infill": 15,
+   "reforco": "",
+   "orientacao": "em pé"
   },
   {
    "nome": "teste-encaixe",
@@ -756,10 +864,210 @@
    "massa_g": 15.0,
    "tempo_h": 0.64,
    "obs": "cupom de folgas: janela do servo, 3 furos de inserto (3,9/4,0/4,1), eixo do motor TT, M3 passante/M3 piloto/M2,5/M2, 3 soquetes do pino (0,20/0,25/0,30); covinha = medida do projeto",
-   "liso": false
+   "liso": false,
+   "perimetros": 3,
+   "infill": 15,
+   "reforco": "",
+   "orientacao": ""
   }
  ],
  "componentes": [
+  {
+   "nome": "step-down 5V (LM2596)",
+   "arquivo": "componentes/step-down.stl",
+   "grupo": "corpo",
+   "grupos": [
+    "corpo"
+   ],
+   "massa_g": 15.0,
+   "rgb": [
+    0.2,
+    0.55,
+    0.86
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "fase2": false,
+   "explode": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "liso": false
+  },
+  {
+   "nome": "ubec 6V 3A dos servos",
+   "arquivo": "componentes/ubec.stl",
+   "grupo": "corpo",
+   "grupos": [
+    "corpo"
+   ],
+   "massa_g": 11.0,
+   "rgb": [
+    0.93,
+    0.52,
+    0.13
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "fase2": false,
+   "explode": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "liso": false
+  },
+  {
+   "nome": "carregador USB-C 2S",
+   "arquivo": "componentes/carregador.stl",
+   "grupo": "corpo",
+   "grupos": [
+    "corpo"
+   ],
+   "massa_g": 3.0,
+   "rgb": [
+    0.36,
+    0.72,
+    0.16
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "fase2": false,
+   "explode": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "liso": false
+  },
+  {
+   "nome": "bms 2S 10A",
+   "arquivo": "componentes/bms.stl",
+   "grupo": "corpo",
+   "grupos": [
+    "corpo"
+   ],
+   "massa_g": 1.3,
+   "rgb": [
+    0.92,
+    0.48,
+    0.52
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "fase2": false,
+   "explode": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "liso": false
+  },
   {
    "nome": "servo-pan MG996R",
    "arquivo": "componentes/servo-pan.stl",
@@ -806,55 +1114,6 @@
     0.0,
     0.0,
     0.0
-   ],
-   "liso": false
-  },
-  {
-   "nome": "servo-tilt MG996R",
-   "arquivo": "componentes/servo-tilt.stl",
-   "grupo": "cabeca",
-   "grupos": [
-    "cabeca"
-   ],
-   "massa_g": 55.0,
-   "rgb": [
-    0.03,
-    0.03,
-    0.04
-   ],
-   "para_montagem": [
-    [
-     [
-      1.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     [
-      0.0,
-      1.0,
-      0.0,
-      0.0
-     ],
-     [
-      0.0,
-      0.0,
-      1.0,
-      0.0
-     ],
-     [
-      0.0,
-      0.0,
-      0.0,
-      1.0
-     ]
-    ]
-   ],
-   "fase2": false,
-   "explode": [
-    0,
-    20,
-    140
    ],
    "liso": false
   },
@@ -957,6 +1216,153 @@
    "liso": false
   },
   {
+   "nome": "alto-falante (fase 2)",
+   "arquivo": "componentes/alto-falante.stl",
+   "grupo": "corpo",
+   "grupos": [
+    "corpo"
+   ],
+   "massa_g": 25.0,
+   "rgb": [
+    0.03,
+    0.03,
+    0.04
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "fase2": true,
+   "explode": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "liso": false
+  },
+  {
+   "nome": "chave",
+   "arquivo": "componentes/chave.stl",
+   "grupo": "corpo",
+   "grupos": [
+    "corpo"
+   ],
+   "massa_g": 3.0,
+   "rgb": [
+    0.03,
+    0.03,
+    0.04
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "fase2": false,
+   "explode": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "liso": false
+  },
+  {
+   "nome": "servo-tilt MG996R",
+   "arquivo": "componentes/servo-tilt.stl",
+   "grupo": "cabeca",
+   "grupos": [
+    "cabeca"
+   ],
+   "massa_g": 55.0,
+   "rgb": [
+    0.03,
+    0.03,
+    0.04
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "fase2": false,
+   "explode": [
+    0,
+    20,
+    140
+   ],
+   "liso": false
+  },
+  {
    "nome": "Raspberry Pi 4/5",
    "arquivo": "componentes/Raspberry.stl",
    "grupo": "cabeca",
@@ -1014,6 +1420,55 @@
    ],
    "massa_g": 51.0,
    "rgb": [
+    0.03,
+    0.03,
+    0.04
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "fase2": false,
+   "explode": [
+    0,
+    20,
+    140
+   ],
+   "liso": false
+  },
+  {
+   "nome": "rosto-na-tela (imagem, não é peça)",
+   "arquivo": "componentes/rosto-na-tela.stl",
+   "grupo": "cabeca",
+   "grupos": [
+    "cabeca"
+   ],
+   "massa_g": 0.0,
+   "rgb": [
     0.25,
     0.85,
     0.95
@@ -1055,55 +1510,6 @@
    "liso": false
   },
   {
-   "nome": "alto-falante (fase 2)",
-   "arquivo": "componentes/alto-falante.stl",
-   "grupo": "corpo",
-   "grupos": [
-    "corpo"
-   ],
-   "massa_g": 25.0,
-   "rgb": [
-    0.03,
-    0.03,
-    0.04
-   ],
-   "para_montagem": [
-    [
-     [
-      1.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     [
-      0.0,
-      1.0,
-      0.0,
-      0.0
-     ],
-     [
-      0.0,
-      0.0,
-      1.0,
-      0.0
-     ],
-     [
-      0.0,
-      0.0,
-      0.0,
-      1.0
-     ]
-    ]
-   ],
-   "fase2": true,
-   "explode": [
-    0.0,
-    0.0,
-    0.0
-   ],
-   "liso": false
-  },
-  {
    "nome": "camera (fase 2)",
    "arquivo": "componentes/camera.stl",
    "grupo": "cabeca",
@@ -1112,9 +1518,9 @@
    ],
    "massa_g": 4.0,
    "rgb": [
-    0.36,
-    0.72,
-    0.16
+    0.03,
+    0.03,
+    0.04
    ],
    "para_montagem": [
     [
@@ -1151,55 +1557,6 @@
     140
    ],
    "liso": false
-  },
-  {
-   "nome": "chave",
-   "arquivo": "componentes/chave.stl",
-   "grupo": "corpo",
-   "grupos": [
-    "corpo"
-   ],
-   "massa_g": 3.0,
-   "rgb": [
-    0.03,
-    0.03,
-    0.04
-   ],
-   "para_montagem": [
-    [
-     [
-      1.0,
-      0.0,
-      0.0,
-      0.0
-     ],
-     [
-      0.0,
-      1.0,
-      0.0,
-      0.0
-     ],
-     [
-      0.0,
-      0.0,
-      1.0,
-      0.0
-     ],
-     [
-      0.0,
-      0.0,
-      0.0,
-      1.0
-     ]
-    ]
-   ],
-   "fase2": false,
-   "explode": [
-    0.0,
-    0.0,
-    0.0
-   ],
-   "liso": false
   }
  ],
  "juntas": {
@@ -1207,7 +1564,7 @@
    "pai": "corpo",
    "origem": [
     0.0,
-    14.0,
+    -6.0,
     0.0
    ],
    "eixo": [
@@ -1224,8 +1581,8 @@
    "pai": "pan",
    "origem": [
     0.0,
-    14.0,
-    150.54115100585213
+    -6.0,
+    119.3
    ],
    "eixo": [
     1.0,
@@ -1240,8 +1597,8 @@
   "eng": {
    "pai": "corpo",
    "origem": [
-    0.0,
-    -35.5,
+    35.00178566873411,
+    29.0017856687341,
     0.0
    ],
    "eixo": [
@@ -1327,40 +1684,48 @@
     "eng": 37.5,
     "cabeca": 30.0
    }
+  },
+  {
+   "nome": "pan+170+tilt-baixo",
+   "angulos": {
+    "pan": 170.0,
+    "eng": -85.0,
+    "cabeca": -25.0
+   }
   }
  ],
  "apoios": [
   [
-   63.0,
-   64.0
+   59.0,
+   70.0
   ],
   [
-   -63.0,
-   64.0
+   59.0,
+   -70.0
   ],
   [
-   73.0,
-   54.0
+   -59.0,
+   70.0
   ],
   [
-   -73.0,
-   54.0
+   -59.0,
+   -70.0
   ],
   [
-   63.0,
-   -76.0
+   76.0,
+   53.0
   ],
   [
-   -63.0,
-   -76.0
+   76.0,
+   -53.0
   ],
   [
-   73.0,
-   -66.0
+   -76.0,
+   53.0
   ],
   [
-   -73.0,
-   -66.0
+   -76.0,
+   -53.0
   ]
  ],
  "obs": {
@@ -1381,7 +1746,9 @@
     -60,
     45
    ]
-  }
+  },
+  "energia": "pack 2S → LM2596 (5 V do Pi, até ~6,5 V de pack), UBEC 6 V 3 A (2 MG996R), carregador USB-C 2S com balanceamento + BMS 2S",
+  "altura_mm": 200.5
  },
  "encaixes_previstos": [
   {
@@ -1406,7 +1773,7 @@
    ]
   },
   {
-   "passo": "servo de pan",
+   "passo": "servo de pan nos 2 postes",
    "move": [
     "servo-pan MG996R"
    ],
@@ -1417,7 +1784,7 @@
    ]
   },
   {
-   "passo": "Arduino Uno",
+   "passo": "Arduino Uno nos 4 ressaltos",
    "move": [
     "Arduino Uno + shield"
    ],
@@ -1428,7 +1795,46 @@
    ]
   },
   {
-   "passo": "engrenagem do servo",
+   "passo": "módulos de energia nos berços (1 abraçadeira cada)",
+   "move": [
+    "step-down 5V (LM2596)",
+    "ubec 6V 3A dos servos",
+    "carregador USB-C 2S",
+    "bms 2S 10A"
+   ],
+   "dir": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "curso": 60
+  },
+  {
+   "passo": "chave (por fora, atrás)",
+   "move": [
+    "chave"
+   ],
+   "dir": [
+    0.0,
+    -1.0,
+    0.0
+   ],
+   "curso": 40
+  },
+  {
+   "passo": "alto-falante nos trilhos da parede de trás",
+   "move": [
+    "alto-falante (fase 2)"
+   ],
+   "dir": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "curso": 60
+  },
+  {
+   "passo": "engrenagem do servo no horn",
    "move": [
     "engrenagem-servo"
    ],
@@ -1437,18 +1843,6 @@
     0.0,
     1.0
    ]
-  },
-  {
-   "passo": "alto-falante (por dentro, contra a grade)",
-   "move": [
-    "alto-falante (fase 2)"
-   ],
-   "dir": [
-    0.0,
-    -1.0,
-    0.0
-   ],
-   "curso": 40
   },
   {
    "passo": "bateria (pela porta de trás)",
@@ -1463,33 +1857,183 @@
    "curso": 160
   },
   {
-   "passo": "tampa + tubo do pescoço",
+   "passo": "Raspberry Pi e espaçadores no quadro (bancada)",
    "move": [
-    "tampa-base",
-    "tubo-pescoco"
+    "Raspberry Pi 4/5",
+    "espacador-pi"
    ],
    "dir": [
     0.0,
-    0.0,
-    1.0
+    1.0,
+    0.0
+   ],
+   "curso": 60,
+   "contra": [
+    "quadro-cabeca"
    ]
   },
   {
-   "passo": "garfo",
+   "passo": "servo de tilt no rasgo do quadro, por trás (bancada)",
+   "move": [
+    "servo-tilt MG996R"
+   ],
+   "dir": [
+    0.0,
+    -1.0,
+    0.0
+   ],
+   "curso": 80,
+   "contra": [
+    "quadro-cabeca",
+    "Raspberry Pi 4/5",
+    "espacador-pi"
+   ]
+  },
+  {
+   "passo": "garfo no eixo do tilt, por baixo (bancada)",
    "move": [
     "garfo"
    ],
    "dir": [
     0.0,
     0.0,
-    1.0
+    -1.0
+   ],
+   "curso": 80,
+   "contra": [
+    "quadro-cabeca",
+    "servo-tilt MG996R",
+    "Raspberry Pi 4/5"
    ]
   },
   {
-   "passo": "porta traseira + chave",
+   "passo": "tela, painel do rosto e câmera pela frente; 4 M3 por trás do quadro (bancada)",
    "move": [
-    "porta-traseira",
-    "chave"
+    "tela 3,5 pol.",
+    "rosto-na-tela (imagem, não é peça)",
+    "cabeca-face",
+    "camera (fase 2)"
+   ],
+   "dir": [
+    0.0,
+    1.0,
+    0.0
+   ],
+   "curso": 80,
+   "contra": [
+    "quadro-cabeca",
+    "Raspberry Pi 4/5",
+    "espacador-pi",
+    "servo-tilt MG996R",
+    "garfo"
+   ]
+  },
+  {
+   "passo": "copo da cabeça por trás; 4 M3 na parede de trás (bancada)",
+   "move": [
+    "cabeca-corpo"
+   ],
+   "dir": [
+    0.0,
+    -1.0,
+    0.0
+   ],
+   "curso": 160,
+   "contra": [
+    "quadro-cabeca",
+    "Raspberry Pi 4/5",
+    "espacador-pi",
+    "tela 3,5 pol.",
+    "rosto-na-tela (imagem, não é peça)",
+    "servo-tilt MG996R",
+    "cabeca-face",
+    "camera (fase 2)",
+    "garfo"
+   ]
+  },
+  {
+   "passo": "tubo do pescoço na tampa, por cima (bancada)",
+   "move": [
+    "tubo-pescoco"
+   ],
+   "dir": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "contra": [
+    "tampa-base"
+   ]
+  },
+  {
+   "passo": "engrenagem do pescoço por baixo da tampa (bancada)",
+   "move": [
+    "engrenagem-pescoco"
+   ],
+   "dir": [
+    0.0,
+    0.0,
+    -1.0
+   ],
+   "contra": [
+    "tampa-base",
+    "tubo-pescoco"
+   ]
+  },
+  {
+   "passo": "cabeça sobre o tubo; 3 tirantes M3 por baixo (bancada)",
+   "move": [
+    "quadro-cabeca",
+    "Raspberry Pi 4/5",
+    "espacador-pi",
+    "tela 3,5 pol.",
+    "rosto-na-tela (imagem, não é peça)",
+    "servo-tilt MG996R",
+    "cabeca-face",
+    "camera (fase 2)",
+    "cabeca-corpo",
+    "garfo"
+   ],
+   "dir": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "curso": 140,
+   "contra": [
+    "tampa-base",
+    "tubo-pescoco",
+    "engrenagem-pescoco"
+   ]
+  },
+  {
+   "passo": "tampa + pescoço + cabeça sobre a base; 4 M3 por baixo",
+   "move": [
+    "tampa-base",
+    "tubo-pescoco",
+    "engrenagem-pescoco",
+    "quadro-cabeca",
+    "Raspberry Pi 4/5",
+    "espacador-pi",
+    "tela 3,5 pol.",
+    "rosto-na-tela (imagem, não é peça)",
+    "servo-tilt MG996R",
+    "cabeca-face",
+    "camera (fase 2)",
+    "cabeca-corpo",
+    "garfo"
+   ],
+   "dir": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "curso": 140
+  },
+  {
+   "passo": "porta traseira (1 M3)",
+   "move": [
+    "porta-traseira"
    ],
    "dir": [
     0.0,
@@ -1499,63 +2043,55 @@
    "curso": 60
   },
   {
-   "passo": "corpo da cabeça por trás do quadro (na bancada)",
+   "passo": "abrir: porta traseira",
    "move": [
-    "cabeca-corpo"
+    "porta-traseira"
    ],
    "dir": [
     0.0,
     -1.0,
     0.0
    ],
-   "curso": 140,
-   "contra": [
-    "quadro-cabeca",
-    "servo-tilt MG996R",
-    "Raspberry Pi 4/5",
-    "tela 3,5 pol.",
-    "espacador-pi"
-   ]
+   "curso": 60,
+   "sai": true
   },
   {
-   "passo": "face da cabeça (na bancada)",
+   "passo": "abrir: bateria sai por trás",
    "move": [
-    "cabeca-face",
-    "camera (fase 2)"
+    "bateria 2x18650"
    ],
    "dir": [
     0.0,
-    1.0,
+    -1.0,
     0.0
    ],
-   "curso": 60,
-   "contra": [
-    "quadro-cabeca",
-    "servo-tilt MG996R",
-    "Raspberry Pi 4/5",
-    "tela 3,5 pol.",
-    "espacador-pi",
-    "cabeca-corpo"
-   ]
+   "curso": 160,
+   "sai": true
   },
   {
-   "passo": "cabeça entre os braços do garfo",
+   "passo": "abrir: tampa + pescoço + cabeça saem por cima (placas à mostra)",
    "move": [
+    "tampa-base",
+    "tubo-pescoco",
+    "engrenagem-pescoco",
     "quadro-cabeca",
-    "servo-tilt MG996R",
     "Raspberry Pi 4/5",
-    "tela 3,5 pol.",
     "espacador-pi",
-    "cabeca-corpo",
+    "tela 3,5 pol.",
+    "rosto-na-tela (imagem, não é peça)",
+    "servo-tilt MG996R",
     "cabeca-face",
-    "camera (fase 2)"
+    "camera (fase 2)",
+    "cabeca-corpo",
+    "garfo"
    ],
    "dir": [
     0.0,
     0.0,
     1.0
    ],
-   "curso": 140
+   "curso": 140,
+   "sai": true
   }
  ]
 }

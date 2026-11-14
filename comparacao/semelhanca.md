@@ -20,12 +20,13 @@ Protocolo v1: projeção ortográfica, silhuetas com 400 px de altura, base na m
 
 ## cubo
 
-| vista | antes: IoU | antes: ajustado | antes: az/el |
-|---|---:|---:|---|
-| tres-quartos | 0,755 | 0,773 | 10°/32° |
-| **média** | **0,755** | **0,773** |  |
+| vista | antes: IoU | antes: ajustado | antes: az/el | depois: IoU | depois: ajustado | depois: az/el |
+|---|---:|---:|---|---:|---:|---|
+| tres-quartos | 0,755 | 0,773 | 10°/32° | 0,797 | 0,805 | 30°/12° |
+| **média** | **0,755** | **0,773** |  | **0,797** | **0,805** |  |
 
 - `antes`: .preview/v102/pecas/cubo · 2026-11-14 · tag v1.0.2
+- `depois`: pecas/cubo · 2026-11-14
 
 ## dino
 

@@ -5,8 +5,8 @@
    "material": "PETG",
    "cor": "amarelo",
    "itens": [
-    "engrenagem-servo",
-    "quadro-cabeca"
+    "quadro-cabeca",
+    "engrenagem-servo"
    ],
    "arquivo": "mesas/cubo-mesa-01-petg-amarelo.3mf"
   },
@@ -25,6 +25,7 @@
    "cor": "grafite",
    "itens": [
     "tampa-base",
+    "porta-traseira",
     "garfo"
    ],
    "arquivo": "mesas/cubo-mesa-03-petg-grafite.3mf"
@@ -32,32 +33,24 @@
   {
    "mesa": 4,
    "material": "PETG",
-   "cor": "grafite",
+   "cor": "prata",
    "itens": [
-    "porta-traseira"
+    "tubo-pescoco",
+    "engrenagem-pescoco"
    ],
-   "arquivo": "mesas/cubo-mesa-04-petg-grafite.3mf"
+   "arquivo": "mesas/cubo-mesa-04-petg-prata.3mf"
   },
   {
    "mesa": 5,
-   "material": "PETG",
-   "cor": "prata",
-   "itens": [
-    "tubo-pescoco"
-   ],
-   "arquivo": "mesas/cubo-mesa-05-petg-prata.3mf"
-  },
-  {
-   "mesa": 6,
    "material": "PLA",
    "cor": "branco",
    "itens": [
     "cabeca-corpo"
    ],
-   "arquivo": "mesas/cubo-mesa-06-pla-branco.3mf"
+   "arquivo": "mesas/cubo-mesa-05-pla-branco.3mf"
   },
   {
-   "mesa": 7,
+   "mesa": 6,
    "material": "PLA",
    "cor": "cinza",
    "itens": [
@@ -67,21 +60,21 @@
     "espacador-pi",
     "espacador-pi"
    ],
-   "arquivo": "mesas/cubo-mesa-07-pla-cinza.3mf"
+   "arquivo": "mesas/cubo-mesa-06-pla-cinza.3mf"
   },
   {
-   "mesa": 8,
+   "mesa": 7,
    "material": "PLA",
    "cor": "preto",
    "itens": [
     "cabeca-face"
    ],
-   "arquivo": "mesas/cubo-mesa-08-pla-preto.3mf"
+   "arquivo": "mesas/cubo-mesa-07-pla-preto.3mf"
   }
  ],
  "pecas": [
   {
-   "arquivo": "stl/cubo-engrenagem-servo.stl",
+   "arquivo": "stl/cubo-quadro-cabeca.stl",
    "rgb": [
     0.98,
     0.8,
@@ -93,13 +86,13 @@
       1.0,
       0.0,
       0.0,
-      37.45
+      67.6
      ],
      [
       0.0,
       1.0,
       0.0,
-      37.45
+      40.3
      ],
      [
       0.0,
@@ -118,7 +111,7 @@
    "liso": false
   },
   {
-   "arquivo": "stl/cubo-quadro-cabeca.stl",
+   "arquivo": "stl/cubo-engrenagem-servo.stl",
    "rgb": [
     0.98,
     0.8,
@@ -130,13 +123,13 @@
       1.0,
       0.0,
       0.0,
-      124.65
+      172.7
      ],
      [
       0.0,
       1.0,
       0.0,
-      33.25
+      37.5
      ],
      [
       0.0,
@@ -167,13 +160,13 @@
       1.0,
       0.0,
       0.0,
-      368.0
+      372.0
      ],
      [
       0.0,
       1.0,
       0.0,
-      75.0
+      76.0
      ],
      [
       0.0,
@@ -204,50 +197,13 @@
       1.0,
       0.0,
       0.0,
-      658.0
+      662.0
      ],
      [
       0.0,
       1.0,
       0.0,
-      75.0
-     ],
-     [
-      0.0,
-      0.0,
-      1.0,
-      0.0
-     ],
-     [
-      0.0,
-      0.0,
-      0.0,
-      1.0
-     ]
-    ]
-   ],
-   "liso": false
-  },
-  {
-   "arquivo": "stl/cubo-garfo.stl",
-   "rgb": [
-    0.22,
-    0.23,
-    0.25
-   ],
-   "para_montagem": [
-    [
-     [
-      1.0,
-      0.0,
-      0.0,
-      649.5
-     ],
-     [
-      0.0,
-      1.0,
-      0.0,
-      199.1
+      76.0
      ],
      [
       0.0,
@@ -278,13 +234,50 @@
       1.0,
       0.0,
       0.0,
-      941.7
+      769.7
      ],
      [
       0.0,
       1.0,
       0.0,
-      34.05
+      29.3
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": false
+  },
+  {
+   "arquivo": "stl/cubo-garfo.stl",
+   "rgb": [
+    0.22,
+    0.23,
+    0.25
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      605.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      175.95
      ],
      [
       0.0,
@@ -315,13 +308,50 @@
       1.0,
       0.0,
       0.0,
-      20.9
+      893.0
      ],
      [
       0.0,
       1.0,
       0.0,
-      -269.0
+      23.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": false
+  },
+  {
+   "arquivo": "stl/cubo-engrenagem-pescoco.stl",
+   "rgb": [
+    0.78,
+    0.79,
+    0.8
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      937.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      21.0
      ],
      [
       0.0,
@@ -352,13 +382,13 @@
       1.0,
       0.0,
       0.0,
-      349.0
+      71.0
      ],
      [
       0.0,
       1.0,
       0.0,
-      -237.0
+      -228.0
      ],
      [
       0.0,
@@ -389,7 +419,7 @@
       1.0,
       0.0,
       0.0,
-      618.0
+      328.0
      ],
      [
       0.0,
@@ -426,7 +456,7 @@
       1.0,
       0.0,
       0.0,
-      662.0
+      372.0
      ],
      [
       0.0,
@@ -463,7 +493,7 @@
       1.0,
       0.0,
       0.0,
-      674.0
+      384.0
      ],
      [
       0.0,
@@ -500,7 +530,7 @@
       1.0,
       0.0,
       0.0,
-      686.0
+      396.0
      ],
      [
       0.0,
@@ -537,7 +567,7 @@
       1.0,
       0.0,
       0.0,
-      698.0
+      408.0
      ],
      [
       0.0,
@@ -574,13 +604,13 @@
       1.0,
       0.0,
       0.0,
-      929.0
+      647.95
      ],
      [
       0.0,
       1.0,
       0.0,
-      -237.0
+      -231.05
      ],
      [
       0.0,
@@ -626,31 +656,24 @@
    "y0": 0.0,
    "lado": 256.0,
    "material": "PETG",
-   "cor": "grafite"
-  },
-  {
-   "x0": 0.0,
-   "y0": -290.0,
-   "lado": 256.0,
-   "material": "PETG",
    "cor": "prata"
   },
   {
-   "x0": 290.0,
+   "x0": 0.0,
    "y0": -290.0,
    "lado": 256.0,
    "material": "PLA",
    "cor": "branco"
   },
   {
-   "x0": 580.0,
+   "x0": 290.0,
    "y0": -290.0,
    "lado": 256.0,
    "material": "PLA",
    "cor": "cinza"
   },
   {
-   "x0": 870.0,
+   "x0": 580.0,
    "y0": -290.0,
    "lado": 256.0,
    "material": "PLA",
