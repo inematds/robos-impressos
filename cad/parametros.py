@@ -389,7 +389,10 @@ CAPIVARA = NS(
     porta=NS(x=38.0, y_max=-30.0),     # porta traseira: faixa |x| < 38 da bacia, atrás de y (pele) = -30, altura inteira
     # boca (pele): eixo da mandíbula, plano de corte de trás, altura da boca em y_ref, inclinação, raio do sorriso
     boca=dict(y_eixo=83.0, z_eixo=175.0, y_corte=77.0, z0=177.0, y_ref=118.0, incl=-0.04, raio_sorriso=400.0, folga=1.2),
-    olho=NS(x=50.0, z=232.0, r=21.0, afunda=0.5, iris_r=15.0, pupila_r=10.0),   # centro = ponto da pele recuado r x afunda
+    olho=NS(x=50.0, z=232.0, r=24.0, afunda=0.55, iris_r=17.0, pupila_r=11.0),  # centro = ponto da pele recuado r x afunda; sensor atrás da pupila
+    narina=NS(x=13.0, z=208.0),        # pele: narinas na tampa do focinho = portas de som dos 2 microfones
+    falante_y=44.0,                    # pele: centro do alto-falante, em cima da mesa da cabeça, virado para baixo (som sai pela boca e pelo vão do pescoço)
+    carregador_z=56.0,                 # z de baixo do bolso do carregador USB-C dentro do rabo (boca para baixo)
     laco=((-55.0, -400.0, 120.0), (55.0, -58.0, 188.0)),   # pele: caixa do laço da bandana na nuca; NÃO faz parte da cabeça (fica no corpo o que a cabeça não varre)
     # peças coloridas em RELEVO, recortadas da própria pele além de um plano (pele; caixas = (mín, máx)):
     rabo=NS(caixa=((-28.0, -160.0, 38.0), (28.0, -100.0, 102.0)), plano_y=-108.0),          # tudo atrás de y
@@ -419,8 +422,13 @@ CAPIVARA = NS(
         orelhas=((46.0, -62.0, -1),),      # (|x|, y pele, sentido em Y) das 2 orelhas M3 de trás da bacia, no piso (na frente ela prende nas esferas)
         poste_porta=(24.0, 34.0, -78.0, -70.0, 32.0, 24.0),   # x0, x1, y0, y1 (pele), z do topo, z do parafuso da porta
         encoder_extra=12.0,
+        # energia (robô; y em pele onde marcado): step-down na face de fora da parede ESQUERDA da torre, UBEC na da
+        # DIREITA (os dois em pé), BMS no piso sob o L298N, chave gangorra no piso (por baixo), atrás do motor direito
+        stepdown=(11.0, 55.0), ubec=(11.0, 55.0),   # (y pele, z) do centro de cada módulo na parede da torre
+        bms=(0.0, 11.0),                   # (x, y pele) do centro do BMS no piso
+        chave=(43.5, -50.0),               # (x, y pele) da chave no piso
     ),
-    n_pecas=31,
+    n_pecas=32,
 )
 
 # ------------------------------------------------------------------ CUBO (modelo 3: robô quadrado de mesa)

@@ -237,6 +237,42 @@ def olho(c, r, direcao, iris_r, pupila_r, cran, cab_ext, lado_plano=0.30):
     return cran, ol, iris, pup
 
 
+def olho_sensor(c, r, direcao, iris_r, pupila_r, cran, cab_ext, placa, furo_d, furos_placa=(), t_iris=0.45, t_pupila=0.62, lado_plano=0.30):
+    """Olho com SENSOR atrás da pupila (câmera, ToF...). Peças: olho (calota branca com o bolso da placa aberto por
+    trás), íris (anel com degrau) e PUPILA (tampão escuro VAZADO no centro: a lente ou a janela do sensor olha por
+    ele). A placa entra por trás e encosta na face de trás da íris; o cabo sai por trás, pela janela aberta no copo.
+    placa = (largura, altura) da placa; furo_d = Ø do furo central da pupila; furos_placa = [(x, y)] dos parafusos
+    M2 da placa (furo piloto na íris), no referencial do olho.
+    Devolve (cranio, olho, iris, pupila, M): M = 4x4 do referencial do olho (x' horizontal, y' para cima, z' = para
+    onde o olho olha), com a origem no centro da face da FRENTE da placa."""
+    c = np.asarray(c, float)
+    d = np.asarray(direcao, float)
+    d = d / np.linalg.norm(d)
+    xl = np.cross((0, 0, 1.0), d)
+    xl = xl / np.linalg.norm(xl)
+    Mc = np.eye(4)
+    Mc[:3, 0], Mc[:3, 1], Mc[:3, 2], Mc[:3, 3] = xl, np.cross(d, xl), d, c
+    T = lambda m: m.transform(Mc[:3, :])
+    fol = F.encaixe / 2
+    w, h = placa
+    ti, tp = t_iris * r, t_pupila * r
+    cz = lambda z0, z1, raio: Manifold.cylinder(z1 - z0, raio, raio, 64).translate([0, 0, z0])
+    bola = Manifold.sphere(r, 96)
+    bolso = Manifold.cube([w + 0.6, h + 0.6, r + ti + 0.02], True).translate([0, 0, (ti - r) / 2 + 0.01])       # da face de trás até a íris
+    ol = (bola ^ cz(-lado_plano * r, r + 5, r + 5)) - cz(ti - fol, r + 5, iris_r + fol) - bolso
+    degrau = pupila_r - 1.5                                                                                 # a pupila apoia aqui
+    ir = (bola ^ cz(ti, r + 5, iris_r)) - cz(tp - fol, r + 5, pupila_r + fol) - cz(ti - 1, r + 5, degrau)
+    for (fx, fy) in furos_placa:
+        ir = ir - Manifold.cylinder(3.6, F.m2_piloto / 2, F.m2_piloto / 2, 12).translate([fx, fy, ti - 0.01])
+    pu = (bola ^ cz(tp, r + 5, pupila_r)) - cz(tp - 1, r + 5, furo_d / 2)
+    copo = (esfera(c, r + fol + F.parede, seg=64) - esfera(c, r + fol, seg=64)) ^ cab_ext
+    janela = Manifold.cube([w + 5.0, h + 5.0, r + 14.0], True).translate([0, 0, -(r + 14.0) / 2])               # placa e cabo passam por trás
+    cran = (cran - esfera(c, r + fol, seg=64)) + copo - T(janela)
+    M = Mc.copy()
+    M[:3, 3] = c + d * (ti - 0.2)
+    return cran, T(ol), T(ir), T(pu), M
+
+
 def crista(pele: Pele, pontos_yz, n_esp, alt, larg_base, esp=6.0, fundo=4.0, inclina=0.25, dentro=(0, 0, 0)):
     """Crista no plano de simetria (X=0): lâmina de `esp` mm com `n_esp` espinhos em folha.
     pontos_yz = lista de (y, z) FORA da pele, na ordem; cada ponto é projetado na pele na direção de `dentro`.
@@ -329,12 +365,15 @@ def bolso_unha(casca, ext, p, n, r=9.0, assento=2.4, prof=1.6):
     return casca, mat_de_z_para(n, base + n * 0.02)
 
 
-def mecanica_cabeca(p_cab: Pele, cran, mand, c_ext, c_int, boca, zcam, camera=True, aparar_r=None):
+def mecanica_cabeca(p_cab: Pele, cran, mand, c_ext, c_int, boca, zcam, camera=True, aparar_r=None, eixo_oculto=False):
     """Tudo o que prende e move a cabeça, igual nos bichos: pilares da câmera (fase 2), orelhas crânio->mesa,
     almofadas do eixo da mandíbula, mesa da cabeça (com o servo da boca) e os componentes.
     `camera=False` deixa de fora o furo e os pilares da câmera na testa/focinho (bicho com os sensores nos olhos).
     `aparar_r` (raio do soquete): apara o que pende da mesa (placa do servo, orelha do eixo) contra a parede de
     dentro da cabeça e contra a esfera da junta (cabeça baixa e de queixo raso, como a da capivara).
+    `eixo_oculto`: NENHUM furo no rosto. À direita o braço do horn encaixa entre 2 nervuras da almofada (sem
+    parafuso por fora); à esquerda um pino Ø4 da mesa entra num soquete cego da mandíbula (ela abre e encaixa por
+    pressão). Sem bucha: a matriz devolvida é None.
     Devolve (cranio, mandibula, mesa, componentes, matriz_da_bucha)."""
     from cad.comum import componentes as C
     from cad.comum.modelo import Comp
@@ -375,13 +414,22 @@ def mecanica_cabeca(p_cab: Pele, cran, mand, c_ext, c_int, boca, zcam, camera=Tr
     xflat = min(xw) - F.parede - 1.0
     almof = caixa(xflat, xflat + 30, yp - 5.5, yp + 23, zp - 5.5, zp + 5.5) ^ c_ext
     mand = mand + almof
-    mand = mand - cil((xflat - 1, yp, zp), (xflat + 40, yp, zp), 1.6, seg=16)
-    for dy in (10.0, 15.0):
-        mand = mand - cil((xflat - 0.5, yp + dy, zp), (xflat + 3.0, yp + dy, zp), 0.75, seg=10)
+    if eixo_oculto:
+        hl_, hd_, hp_, he_ = P.MICRO.horn
+        for sz in (1, -1):                # 2 nervuras que abraçam o braço do horn (o torque passa pela forma)
+            za, zb_ = sorted((zp + sz * (hp_ / 2 + 0.4), zp + sz * (hp_ / 2 + 2.4)))
+            mand = mand + caixa(xflat - he_, xflat + 0.01, yp + hd_ / 2 + 1.5, yp + hl_ - 1.0, za, zb_)
+    else:
+        mand = mand - cil((xflat - 1, yp, zp), (xflat + 40, yp, zp), 1.6, seg=16)
+        for dy in (10.0, 15.0):
+            mand = mand - cil((xflat - 0.5, yp + dy, zp), (xflat + 3.0, yp + dy, zp), 0.75, seg=10)
     xwe = [p_cab.ponto_na_pele((0, yy, zp), (-1, 0, 0))[0] for yy in (yp - 5, yp, yp + 5)]
     xi_e = max(xwe) + F.parede + 1.0                  # face plana da almofada esquerda (negativo)
     mand = mand + (caixa(xi_e - 30, xi_e, yp - 5.5, yp + 5.5, zp - 5.5, zp + 5.5) ^ c_ext)
-    mand = mand - cil((xi_e + 2, yp, zp), (xi_e - 40, yp, zp), F.m3_passante / 2, seg=16)
+    if eixo_oculto:
+        mand = mand - cil((xi_e + 0.01, yp, zp), (xi_e - 2.6, yp, zp), F.pino_d / 2 + 0.15, seg=24)        # soquete cego do pino
+    else:
+        mand = mand - cil((xi_e + 2, yp, zp), (xi_e - 40, yp, zp), F.m3_passante / 2, seg=16)
     mand = mand - cil((xi_e + 0.01, yp, zp), (xi_e + 14, yp, zp), 4.3, seg=24)      # assento plano da bucha
 
     # mesa da cabeça (fica de cabeça para baixo na impressão: o que pende, sobe)
@@ -397,12 +445,16 @@ def mecanica_cabeca(p_cab: Pele, cran, mand, c_ext, c_int, boca, zcam, camera=Tr
     for dy in (-P.MICRO.furos_aba / 2, P.MICRO.furos_aba / 2):
         placa_s = placa_s - furo((x_aba + 0.5, ycs + dy, zp), (-1, 0, 0), 4, F.m2_piloto)
     xl = xi_e + 4.1                      # face de fora da orelha do eixo livre (bucha de 3,4 no vão)
-    orelha_e = caixa(xl, xl + 7.0, yp - 5.5, yp + 5.5, zp, zm + 0.01) + cil((xl, yp, zp), (xl + 7.0, yp, zp), 5.5) - inserto((xl, yp, zp), (1, 0, 0))
+    orelha_e = caixa(xl, xl + 7.0, yp - 5.5, yp + 5.5, zp, zm + 0.01) + cil((xl, yp, zp), (xl + 7.0, yp, zp), 5.5)
+    if not eixo_oculto:
+        orelha_e = orelha_e - inserto((xl, yp, zp), (1, 0, 0))
     mand = mand - cil((xl - 0.4, yp, zp), (xl + 8.0, yp, zp), 6.6)                 # alívio em volta da orelha do eixo
     mesa = mesa + (caixa(xl, 30, yp - 7, yp + 7, zm, zmt) ^ p_cab.deslocado(-F.parede - 1.2))
     if aparar_r is not None:
         dentro = p_cab.deslocado(-F.parede - 1.5) - esfera((CX, CY, CZ), aparar_r + 0.5, seg=96)
         placa_s, orelha_e = placa_s ^ dentro, orelha_e ^ dentro
+    if eixo_oculto:
+        orelha_e = orelha_e + cil((xl + 0.01, yp, zp), (xi_e - 2.3, yp, zp), F.pino_d / 2, seg=24)          # pino do eixo livre
     mesa = mesa + placa_s + orelha_e
     for (mx, my) in BS.POS_MESA:
         mesa = mesa - furo((mx, my, zm - 1), (0, 0, 1), 6, F.m3_passante) - furo((mx, my, zmt - 2.2), (0, 0, 1), 3, F.cabeca_m3_d)
@@ -421,7 +473,7 @@ def mecanica_cabeca(p_cab: Pele, cran, mand, c_ext, c_int, boca, zcam, camera=Tr
     if camera:
         comps.append(Comp("camera (fase 2)", C.camera().translate([0, y_placa, zcam]), "cabeca", 4.0, "verde", fase2=True))
 
-    Mb = mat_trans((xi_e + 0.35, yp, zp)) @ mat_giro((0, 0, 0), (0, 1, 0), 90)
+    Mb = None if eixo_oculto else mat_trans((xi_e + 0.35, yp, zp)) @ mat_giro((0, 0, 0), (0, 1, 0), 90)
     return cran, mand, mesa, comps, Mb
 
 

@@ -13,9 +13,10 @@ from cad.comum import base as BS
 from cad.comum import base_baixa as BB
 from cad.comum import bicho as BI
 from cad.comum import casca as CA
+from cad.comum import componentes as C
 from cad.comum.base import F, N
 from cad.comum.geo import (caixa, cil, esfera, espelho_x, mat_giro, mat_trans, maior_corpo, medir_parede, sdf_elipsoide, smin, uniao)
-from cad.comum.modelo import Junta, Modelo, Peca, rot
+from cad.comum.modelo import Comp, Junta, Modelo, Peca, rot
 
 K = P.CAPIVARA
 
@@ -92,7 +93,7 @@ def construir() -> Modelo:
 
     # ------------------------------------------------------------ bacia (corpo) + porta traseira
     comps_esq = BB.comps(E)
-    obst = BB.obstaculos_bacia(E, chassi.solido, [c.solido for c in comps_esq if c.nome.startswith(("driver", "motor"))])
+    obst = BB.obstaculos_bacia(E, chassi.solido, [c.solido for c in comps_esq if c.nome.startswith(("driver", "motor", "step", "ubec"))])
     bacia = maior_corpo(CA.fatia_z(casca, K.z_fundo, K.z_gola) - obst)
     for (x, y, s) in E.orelhas:                         # atrás: 2 orelhas no piso (M3 por baixo)
         for sx in (1, -1):
@@ -113,6 +114,24 @@ def construir() -> Modelo:
     gola = maior_corpo(CA.fatia_z(casca, K.z_gola + F.encaixe, z_top))
 
     pc = {nm: r_.peca(ext0) - gordo for nm, r_ in rel.items()}
+    # carregador USB-C 2S DENTRO do rabo, em pé, com a boca para baixo (escondida); o rabo prende por 2 M3 por dentro da porta
+    yb, z0c = K.rabo.plano_y + K.dy, K.carregador_z
+    Lc, Wc, Hc = P.CARREGADOR2S.cx
+    pc["rabo"] = pc["rabo"] - caixa(-Wc / 2 - 0.4, Wc / 2 + 0.4, yb - Hc - 0.8, yb + 0.5, z0c, z0c + Lc + 0.8) \
+        - caixa(-6.5, 6.5, yb - 7.0, yb + 0.5, 20.0, z0c + 0.01)
+    for sx in (1, -1):
+        pc["rabo"] = pc["rabo"] - BS.inserto((sx * 15.5, yb, 62.0), (0, -1, 0))
+        porta = porta - cil((sx * 15.5, yb + 8, 62.0), (sx * 15.5, yb - 0.5, 62.0), F.m3_passante / 2, seg=24)
+    porta = porta - cil((0, yb + 8, z0c + 26), (0, yb - 0.5, z0c + 26), 3.5, seg=24)                        # fios do carregador
+    comps.append(Comp("carregador USB-C 2S", C.modulo(P.CARREGADOR2S).transform(C.M([(0, 0, -1), (1, 0, 0), (0, -1, 0)], (0, yb - 0.4, z0c + 0.4 + Lc / 2))[:3, :]),
+                      "corpo", P.CARREGADOR2S.massa, "azul"))
+    # sensores de distância laterais (fase 2) atrás do miolo escuro do aro ciano
+    xb = A.x - F.parede - 0.6
+    for sx, nm in ((1, "dir"), (-1, "esq")):
+        bacia = bacia - cil((sx * (A.x - 5), 0, A.z), (sx * (A.x + 1), 0, A.z), P.TOF.janela_d / 2, seg=24)
+        cx_ = caixa(xb - P.TOF.esp, xb, -P.TOF.placa[0] / 2, P.TOF.placa[0] / 2, A.z - P.TOF.placa[1] / 2, A.z + P.TOF.placa[1] / 2)
+        comps.append(Comp(f"tof-{nm} (fase 2)", cx_ if sx > 0 else espelho_x(cx_), "corpo", P.TOF.massa, "verde", fase2=True))
+    miolo = cil((A.x + 0.05, 0, A.z), (A.x + A.esp - 0.6, 0, A.z), A.r_dentro) - cil((A.x - 1, 0, A.z), (A.x + A.esp + 1, 0, A.z), P.TOF.janela_d / 2 - 0.5)
     aro = cil((A.x + 0.05, 0, A.z), (A.x + A.esp, 0, A.z), A.r_fora) - cil((A.x, 0, A.z), (A.x + A.esp + 1, 0, A.z), A.r_dentro + 0.4)
     marrom = dict(cor="marrom", macica=True, suporte="não", orientacao="base plana (face de colar) na mesa")
     pecas += [
@@ -123,6 +142,8 @@ def construir() -> Modelo:
              orientacao="base plana (face de colar) na mesa", obs="ponta da bandana no peito; cola no rebaixo de fundo plano"),
         Peca("aro", aro, cor="ciano", imprimir=rot("y", -90), macica=True, copias=[np.eye(4), np.diag([-1.0, 1, 1, 1])], explode=(130, 0, 0),
              orientacao="face plana na mesa", obs="aro das ancas (filamento translúcido para o LED da fase 2); cola"),
+        Peca("miolo", miolo, cor="preto", imprimir=rot("y", -90), macica=True, copias=[np.eye(4), np.diag([-1.0, 1, 1, 1])], explode=(140, 0, 0),
+             orientacao="face plana na mesa", obs="disco escuro no centro do aro: janela do sensor de distância lateral (fase 2); cola"),
     ]
     pecas += [
         Peca("corpo", bacia, cor="laranja", suporte="sim (provisório)", explode=(0, 0, 60),
@@ -165,12 +186,36 @@ def construir() -> Modelo:
     ps = p_cab.ponto_na_pele((o.x, 300.0, o.z - T[2]), (0, -1, 0))
     nrm = CA.normal(p_cab, ps, 3.0)
     c_olho = ps - nrm * o.r * o.afunda
-    for s in (1, -1):
+    # olho direito = câmera (Camera Module 3 Wide), olho esquerdo = ToF: decisão (b), ver decisions.md do longrun
+    cam_furos = [(sx * P.CAMERA.furos[0] / 2, yy) for sx in (1, -1) for yy in (10.0, 10.0 - P.CAMERA.furos[1])]
+    comps_olho, imp_olho = [], []
+    for s, placa, furo_d, furos in ((1, P.CAMERA.placa, P.CAMERA.lente_d + 1.0, cam_furos), (-1, P.TOF.placa, P.TOF.janela_d, ())):
         esp = np.array([s, 1, 1.0])
-        cran, ol, ir, pu = BI.olho(c_olho * esp, o.r, nrm * esp, o.iris_r, o.pupila_r, cran, c_ext)
+        cran, ol, ir, pu, Mo = BI.olho_sensor(c_olho * esp, o.r, nrm * esp, o.iris_r, o.pupila_r, cran, c_ext, placa, furo_d, furos)
         olhos.append(ol), iris.append(ir), pups.append(pu)
+        imp_olho.append(CA.mat_imprimir_base(nrm * esp))
+        if s > 0:
+            Mk = Mo.copy()
+            Mk[:3, 1], Mk[:3, 2] = Mo[:3, 2], Mo[:3, 1]                      # câmera: placa em XZ local, lente em +Y
+            Mk[:3, 3] = Mo[:3, 3] - Mo[:3, 2] * 1.2
+            comps_olho.append(Comp("camera olho direito (fase 2)", C.camera().transform(Mk[:3, :]), "cabeca", 4.0, "verde", fase2=True))
+        else:
+            w_, h_ = P.TOF.placa
+            comps_olho.append(Comp("tof-olho esquerdo (fase 2)", caixa(-w_ / 2, w_ / 2, -h_ / 2, h_ / 2, -P.TOF.esp, 0).transform(Mo[:3, :]),
+                                   "cabeca", P.TOF.massa, "verde", fase2=True))
     cran = maior_corpo(cran)
-    cran, mand, mesa, comps_cab, M_bucha = BI.mecanica_cabeca(p_cab, cran, mand, c_ext, c_int, boca, zcam=0.0, camera=False, aparar_r=K.soquete_r)
+    cran, mand, mesa, comps_cab, M_bucha = BI.mecanica_cabeca(p_cab, cran, mand, c_ext, c_int, boca, zcam=0.0, camera=False, aparar_r=K.soquete_r,
+                                                              eixo_oculto=True)
+    comps_cab += comps_olho
+    for s_ in (1, -1):                                  # as orelhas crânio -> mesa nascem depois dos olhos: reabrir o lugar do olho
+        cran = cran - esfera(c_olho * (s_, 1, 1), o.r + F.encaixe / 2, seg=64)
+    # alto-falante (fase 2) em cima da mesa da cabeça, virado para baixo: o som sai pela boca e pelo vão do pescoço
+    zmt = BS.CZ + N.mesa_z + N.mesa_esp
+    ysf = K.falante_y + ds[1]
+    rf = P.FALANTE.d / 2
+    mesa = mesa - cil((0, ysf, zmt - 6), (0, ysf, zmt + 1), rf - 2.0) - cil((0, ysf, zmt - 2.5), (0, ysf, zmt + 0.01), rf - 2.0, rf + 0.6)
+    comps_cab.append(Comp("alto-falante (fase 2)", C.falante().transform(C.M([(1, 0, 0), (0, 0, -1), (0, 1, 0)], (0, ysf, zmt - 0.55))[:3, :]),
+                          "cabeca", P.FALANTE.massa, "preto", fase2=True))
     cran = maior_corpo(cran)
     mand = maior_corpo(mand - cran - cran.translate([0, 0, -0.6]))      # a almofada do eixo não passa do céu da boca
     Tl = list(T)
@@ -178,19 +223,32 @@ def construir() -> Modelo:
         c.solido = c.solido.translate(Tl)
     comps += comps_cab
     g = lambda m: m.translate(Tl)
+    yf, nx, nz = K.focinho.plano_y + K.dy, K.narina.x, K.narina.z
+    cran_r = g(cran)
+    for sx, nm in ((1, "dir"), (-1, "esq")):
+        pcc["focinho"] = pcc["focinho"] - cil((sx * nx, yf - 1, nz), (sx * nx, yf + 60, nz), P.MIC.furo_som / 2, seg=16) \
+            - cil((sx * nx, yf - 0.5, nz), (sx * nx, yf + P.MIC.esp + 1.0, nz), P.MIC.d / 2 + 0.3)
+        cran_r = cran_r - cil((sx * nx, yf - 10, nz), (sx * nx, yf + 1, nz), 3.0, seg=24)                  # fio do microfone
+        comps.append(Comp(f"microfone-{nm} (fase 2)", cil((sx * nx, yf + 0.2, nz), (sx * nx, yf + 0.2 + P.MIC.esp, nz), P.MIC.d / 2), "cabeca",
+                          P.MIC.massa, "verde", fase2=True))
     pecas += [
-        Peca("cranio", g(cran), cor="laranja", grupo="cabeca", suporte="sim (provisório)", explode=(0, 0, 150),
+        Peca("cranio", cran_r, cor="laranja", grupo="cabeca", suporte="sim (provisório)", explode=(0, 0, 150),
              orientacao="borda de baixo (z=152) na mesa", obs="3 M3x12 por baixo, pela mesa (na bancada); 2 furos no alto dão acesso aos parafusos da coluna"),
         Peca("mandibula", g(mand), cor="laranja", grupo="mandibula", suporte="sim (provisório)", explode=(0, 70, 85),
              obs="horn do servo na direita (parafuso central por fora); M3x16 + bucha na esquerda"),
         Peca("mesa-cabeca", g(mesa), material="PETG", cor="grafite", grupo="cabeca", imprimir=rot("x", 180), macica=True, explode=(0, 0, 95),
              obs="mesa da cabeça: 2 M3x10 na coluna do berço (por cima); segura o servo da boca"),
-        Peca("olho", g(olhos[0]), cor="branco", grupo="cabeca", macica=True, explode=(20, 60, 170), obs="direito"),
-        Peca("olho-esq", g(olhos[1]), cor="branco", grupo="cabeca", macica=True, explode=(-20, 60, 170), obs="esquerdo (espelhado)"),
-        Peca("iris", g(iris[0]), cor="marrom", grupo="cabeca", macica=True, explode=(24, 80, 176)),
-        Peca("iris-esq", g(iris[1]), cor="marrom", grupo="cabeca", macica=True, explode=(-24, 80, 176)),
-        Peca("pupila", g(pups[0]), cor="preto", grupo="cabeca", macica=True, explode=(28, 100, 182)),
-        Peca("pupila-esq", g(pups[1]), cor="preto", grupo="cabeca", macica=True, explode=(-28, 100, 182)),
+        Peca("olho", g(olhos[0]), cor="branco", grupo="cabeca", macica=True, imprimir=imp_olho[0], explode=(20, 60, 170), orientacao="face de trás (plana) na mesa",
+             obs="olho direito: bolso da câmera (Camera Module 3) aberto por trás; pressão ou cola no copo do crânio"),
+        Peca("olho-esq", g(olhos[1]), cor="branco", grupo="cabeca", macica=True, imprimir=imp_olho[1], explode=(-20, 60, 170), orientacao="face de trás (plana) na mesa",
+             obs="olho esquerdo: bolso do sensor ToF aberto por trás"),
+        Peca("iris", g(iris[0]), cor="marrom", grupo="cabeca", macica=True, imprimir=imp_olho[0], explode=(24, 80, 176), orientacao="face de trás na mesa",
+             obs="anel da íris: a placa da câmera encosta atrás dele (4 furos piloto M2)"),
+        Peca("iris-esq", g(iris[1]), cor="marrom", grupo="cabeca", macica=True, imprimir=imp_olho[1], explode=(-24, 80, 176), orientacao="face de trás na mesa"),
+        Peca("pupila", g(pups[0]), cor="preto", grupo="cabeca", macica=True, imprimir=imp_olho[0], explode=(28, 100, 182), orientacao="face de trás na mesa",
+             obs="pupila escura VAZADA no centro (a lente da câmera olha pelo furo); pressão, sem cola (dá acesso à lente)"),
+        Peca("pupila-esq", g(pups[1]), cor="preto", grupo="cabeca", macica=True, imprimir=imp_olho[1], explode=(-28, 100, 182), orientacao="face de trás na mesa",
+             obs="pupila escura vazada (janela do ToF)"),
     ]
     pecas += [
         Peca("focinho", pcc["focinho"], grupo="cabeca", imprimir=relc["focinho"].imprimir, explode=(0, 120, 160), obs="tampa marrom do focinho; cola", **marrom),
@@ -199,9 +257,6 @@ def construir() -> Modelo:
         Peca("topete", pcc["topete"], cor="laranja", grupo="cabeca", macica=True, imprimir=relc["topete"].imprimir, explode=(0, 0, 215),
              orientacao="base plana na mesa", obs="topete; encaixe por pressão (sem cola): tampa os 2 furos de acesso aos parafusos da mesa"),
     ]
-    bucha = BS.bucha_eixo([mat_trans(T) @ M_bucha])
-    bucha.grupo = "mandibula"
-    pecas.append(bucha)
 
     # ------------------------------------------------------------ esqueleto baixo
     teste = BS.teste_encaixe()
@@ -223,8 +278,9 @@ def construir() -> Modelo:
               "cabeça": medir_parede(c_ext, CA.fatia_z(c_int, BS.CZ + K.cabeca_z + 4.0, 900.0))}
     encaixes = [{"par": ["motor-tt-dir", "roda-dir"], "motivo": "eixo do motor entra no cubo da roda"},
                 {"par": ["motor-tt-esq", "roda-esq"], "motivo": "eixo do motor entra no cubo da roda"}]
-    cab = ["cranio", "mesa-cabeca", "mandibula", "bucha-eixo", "servo-boca MG90S", "olho", "olho-esq", "iris", "iris-esq", "pupila", "pupila-esq",
-           "focinho", "orelha-dir", "orelha-esq", "topete"]
+    cab = ["cranio", "mesa-cabeca", "mandibula", "servo-boca MG90S", "olho", "olho-esq", "iris", "iris-esq", "pupila", "pupila-esq",
+           "focinho", "orelha-dir", "orelha-esq", "topete", "camera olho direito (fase 2)", "tof-olho esquerdo (fase 2)",
+           "microfone-dir (fase 2)", "microfone-esq (fase 2)", "alto-falante (fase 2)"]
     return Modelo("capivara", "Capivara", pecas, comps, juntas, BB.apoios(E), poses, ordem=_ordem(cab),
                   obs={"parede_medida": parede, "explode_grupo": {"cabeca": (0, 0, 95), "pan": (0, 0, 30), "mandibula": (0, 70, 85)}}, encaixes=encaixes)
 
@@ -240,21 +296,25 @@ def _ordem(cab):
         dict(passo="chassi", move=["chassi"], dir=Z),
         dict(passo="motor direito", move=["motor-tt-dir"], dir=X),
         dict(passo="motor esquerdo", move=["motor-tt-esq"], dir=nX),
+        dict(passo="step-down 5 V (parede esquerda da torre, abraçadeira)", move=["step-down 5V (LM2596)"], dir=nX, curso=60),
+        dict(passo="UBEC 6 V (parede direita da torre, abraçadeira)", move=["ubec 6V 3A"], dir=X, curso=60),
+        dict(passo="BMS 2S (no piso, sob o lugar do L298N)", move=["bms 2S"], dir=Z, curso=6, depois=[(0, 1, 0), 90]),
+        dict(passo="chave (por baixo do piso)", move=["chave"], dir=nZ, curso=40),
         dict(passo="roda direita", move=["roda-dir"], dir=X),
         dict(passo="roda esquerda", move=["roda-esq"], dir=nX),
         dict(passo="esferas de apoio + capas", move=["esfera-dir", "esfera-esq", "capa-esfera"], dir=nZ, curso=40),
         dict(passo="driver L298N (pela frente da torre)", move=["driver L298N"], dir=Y, curso=120),
         dict(passo="servo de pan", move=["servo-pan MG996R"], dir=Z),
-        dict(passo="corpo (bacia) desce por cima do chassi", move=["corpo", "mao-dir", "mao-esq", "avental", "aro"], dir=Z, curso=240),
+        dict(passo="corpo (bacia) desce por cima do chassi", move=["corpo", "mao-dir", "mao-esq", "avental", "aro", "miolo", "tof-dir (fase 2)", "tof-esq (fase 2)"], dir=Z, curso=240),
         dict(passo="garfo (por dentro da boca da bacia)", move=["garfo-pescoco"], dir=Z, curso=160),
         dict(passo="berço + servo de tilt", move=["berco-tilt", "servo-tilt MG996R"], dir=Z, curso=160),
         dict(passo="gola-bandana", move=["gola"], dir=Z, curso=160),
         *tras,
-        dict(passo="porta traseira", move=["porta", "rabo"], dir=nY, curso=170),
-        dict(passo="mesa dentro do crânio (na bancada)", move=["mesa-cabeca", "servo-boca MG90S"], dir=nZ, curso=100, contra=["cranio"]),
+        dict(passo="porta traseira (com o rabo e o carregador USB-C)", move=["porta", "rabo", "carregador USB-C 2S"], dir=nY, curso=170),
+        dict(passo="mesa dentro do crânio (na bancada)", move=["mesa-cabeca", "servo-boca MG90S", "alto-falante (fase 2)"], dir=nZ, curso=100, contra=["cranio"]),
         dict(passo="cabeça no pescoço", move=list(cab), dir=Z, curso=160),
         # abertura para manutenção SEM tirar a cabeça: porta, bandejas e bateria saem por trás
-        dict(passo="ABRIR: porta traseira sai", move=["porta", "rabo"], dir=nY, curso=170, sai=True),
+        dict(passo="ABRIR: porta traseira sai", move=["porta", "rabo", "carregador USB-C 2S"], dir=nY, curso=170, sai=True),
         dict(passo="ABRIR: bandeja do Uno sai", move=["bandeja-uno", "Arduino Uno + shield"], dir=nY, curso=170, sai=True),
         dict(passo="ABRIR: bandeja do Pi sai", move=["bandeja-pi", "Raspberry Pi 4/5"], dir=nY, curso=170, sai=True),
         dict(passo="ABRIR: bateria sai", move=["bateria 2x18650"], dir=nY, curso=170, sai=True),

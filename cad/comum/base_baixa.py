@@ -18,7 +18,7 @@ from cad.comum import base as BS
 from cad.comum import casca as CA
 from cad.comum import componentes as C
 from cad.comum.base import F, furo, inserto, rasgo, sim
-from cad.comum.geo import caixa, cil, esfera, espelho_x, mat_trans, prisma, uniao
+from cad.comum.geo import berco_modulo, caixa, cil, esfera, espelho_x, mat_trans, prisma, uniao
 from cad.comum.modelo import Comp, Junta, Peca
 
 N = P.PESCOCO
@@ -38,6 +38,8 @@ def esqueleto(K) -> NS:
     x0, x1, y0, y1, zt, zp = e.poste_porta
     E.poste_porta = (x0, x1, y0 + dy, y1 + dy, zt, zp)
     E.x0, E.x1 = e.parede_x0, e.parede_x0 + e.parede_esp
+    E.stepdown, E.ubec = (e.stepdown[0] + dy, e.stepdown[1]), (e.ubec[0] + dy, e.ubec[1])
+    E.bms, E.chave = (e.bms[0], e.bms[1] + dy), (e.chave[0], e.chave[1] + dy)
     assert abs(E.x1 - BS.X1) < 1e-9, "as matrizes dos motores de base.py valem para a parede em X=34"
     E.x_roda = E.x1 + P.TT.caixa[2] + P.RODA.folga_caixa
     E.eixo_roda_z = P.RODA.d / 2
@@ -155,11 +157,37 @@ def chassi(E, pol) -> Peca:
     # --- postes da porta: inserto horizontal, entrando por trás
     for sx in (1, -1):
         cortes.append(inserto((sx * (px0 + px1) / 2, pya, pzp), (0, 1, 0)))
-    corpo = corpo - uniao(*cortes)
+    # --- energia: berços (cantoneiras + abraçadeira) do step-down, do UBEC e do BMS; recorte da chave no piso
+    somas = []
+    for nome in ("stepdown", "ubec", "bms"):
+        M, mod = mat_modulo(E, nome)
+        so, co = berco_modulo(mod, piso=(Z1 - Z0) if nome == "bms" else E.parede_esp, canal=1.2 if nome == "bms" else 0.0)
+        somas.append(so.transform(M[:3, :]))
+        cortes.append(co.transform(M[:3, :]))
+    kx, ky = E.chave
+    rw, rh = P.CHAVE.recorte
+    cortes.append(caixa(kx - rw / 2, kx + rw / 2, ky - rh / 2, ky + rh / 2, Z0 - 1, Z1 + 1))
+    cortes.append(caixa(kx - rw / 2 - 3, kx + rw / 2 + 3, ky - rh / 2 - 3, ky + rh / 2 + 3, Z0 + P.CHAVE.painel, Z1 + 1))
+    corpo = uniao(corpo, *somas) - uniao(*cortes)
     return Peca("chassi", corpo, material="PETG", cor="grafite", grupo="corpo", macica=True, suporte="não", explode=(0, 0, 0),
                 perimetros=4, infill=25, orientacao="piso na mesa (em pé)",
                 reforco="mísulas e arco a 45° sob o deck do pan; travessa inteira do piso ao deck; postes da porta engrossados para o inserto",
                 obs="piso recortado da seção da pele + rack das bandejas (atrás) + torre e deck do servo de pan (frente) + ressaltos das 2 esferas")
+
+
+def mat_modulo(E, nome):
+    """Matriz 4x4 que leva o módulo de energia do referencial de componentes.modulo()/geo.berco_modulo() (centrado em
+    XY, comprimento em X, z=0 = assento) para o lugar dele no chassi. Devolve (matriz, parâmetros do módulo)."""
+    if nome == "stepdown":                       # em pé, na face de fora (x = -X1) da parede esquerda da torre
+        y, z = E.stepdown
+        return C.M([(0, 0, 1), (0, 1, 0), (-1, 0, 0)], (-E.x1, y, z)), P.STEPDOWN5V
+    if nome == "ubec":                           # em pé, na face de fora da parede direita da torre
+        y, z = E.ubec
+        return C.M([(0, 0, 1), (0, -1, 0), (1, 0, 0)], (E.torre_x1 + E.parede_esp, y, z)), P.UBEC6V
+    if nome == "bms":                            # deitado no piso, sob o L298N
+        x, y = E.bms
+        return C.M(None, (x, y, E.piso_z[1])), P.BMS2S
+    raise ValueError(nome)
 
 
 def capa_esfera(E) -> Peca:
@@ -240,6 +268,10 @@ def comps(E):
     zP, zU = E.trilho_z[0] + 0.3 + e, E.trilho_z[1] + 0.3 + e
     pi = C.placa_eletronica(P.PI).transform(C.M([(0, -1, 0), (1, 0, 0), (0, 0, 1)], (-P.PI.placa[1] / 2, E.pi_placa_y, zP))[:3, :])
     uno = C.placa_eletronica(P.UNO).transform(C.M([(0, 1, 0), (-1, 0, 0), (0, 0, 1)], (P.UNO.placa[1] / 2, E.uno_placa_y, zU))[:3, :])
+    for nome, rot_ in (("stepdown", "step-down 5V (LM2596)"), ("ubec", "ubec 6V 3A"), ("bms", "bms 2S")):
+        M, mod = mat_modulo(E, nome)
+        cs.append(Comp(rot_, C.modulo(mod).transform(M[:3, :]), "corpo", mod.massa, "azul"))
+    cs.append(Comp("chave", C.chave().translate([E.chave[0], E.chave[1], Z0]), "corpo", 3.0, "preto"))
     cs.append(Comp("Raspberry Pi 4/5", pi, "corpo", P.PI.massa, "verde"))
     cs.append(Comp("Arduino Uno + shield", uno, "corpo", P.UNO.massa + 20, "azul"))
     return cs

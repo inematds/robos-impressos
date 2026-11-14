@@ -60,9 +60,9 @@
     29.5
    ],
    "tris": 8046,
-   "plastico_cm3": 15.5,
-   "massa_g": 19.2,
-   "tempo_h": 0.8,
+   "plastico_cm3": 15.4,
+   "massa_g": 19.1,
+   "tempo_h": 0.79,
    "obs": "rabo; cola no assento plano da porta",
    "liso": true,
    "perimetros": 3,
@@ -370,6 +370,101 @@
    "orientacao": "face plana na mesa"
   },
   {
+   "nome": "miolo",
+   "arquivo": "stl/capivara-miolo.stl",
+   "material": "PLA",
+   "cor": "preto",
+   "rgb": [
+    0.03,
+    0.03,
+    0.04
+   ],
+   "grupo": "corpo",
+   "grupos": [
+    "corpo",
+    "corpo"
+   ],
+   "qtd": 2,
+   "na_montagem": 2,
+   "para_montagem": [
+    [
+     [
+      1.1102230246251565e-16,
+      0.0,
+      1.0,
+      92.55
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      -1.0,
+      0.0,
+      1.1102230246251565e-16,
+      34.5
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ],
+    [
+     [
+      -1.1102230246251565e-16,
+      0.0,
+      -1.0,
+      -92.55
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      -1.0,
+      0.0,
+      1.1102230246251565e-16,
+      34.5
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "explode": [
+    140,
+    0,
+    0
+   ],
+   "suporte": "não",
+   "comum": false,
+   "macica": true,
+   "dim": [
+    28.0,
+    28.0,
+    2.4
+   ],
+   "tris": 384,
+   "plastico_cm3": 1.4,
+   "massa_g": 1.7,
+   "tempo_h": 0.14,
+   "obs": "disco escuro no centro do aro: janela do sensor de distância lateral (fase 2); cola",
+   "liso": true,
+   "perimetros": 3,
+   "infill": 15,
+   "reforco": "",
+   "orientacao": "face plana na mesa"
+  },
+  {
    "nome": "corpo",
    "arquivo": "stl/capivara-corpo.stl",
    "material": "PLA",
@@ -426,10 +521,10 @@
     185.2,
     119.3
    ],
-   "tris": 153070,
-   "plastico_cm3": 168.5,
-   "massa_g": 209.0,
-   "tempo_h": 7.88,
+   "tris": 153148,
+   "plastico_cm3": 168.3,
+   "massa_g": 208.7,
+   "tempo_h": 7.87,
    "obs": "bacia inteira do corpo; entra por cima do chassi; 4 M3 por baixo",
    "liso": true,
    "perimetros": 3,
@@ -494,10 +589,10 @@
     43.9,
     118.6
    ],
-   "tris": 25988,
-   "plastico_cm3": 27.2,
-   "massa_g": 33.8,
-   "tempo_h": 1.34,
+   "tris": 26330,
+   "plastico_cm3": 27.1,
+   "massa_g": 33.6,
+   "tempo_h": 1.33,
    "obs": "porta traseira: bateria e bandejas saem por aqui; 2 M3 por trás",
    "liso": true,
    "perimetros": 3,
@@ -630,10 +725,10 @@
     187.1,
     134.7
    ],
-   "tris": 169006,
-   "plastico_cm3": 201.0,
-   "massa_g": 249.3,
-   "tempo_h": 9.39,
+   "tris": 167338,
+   "plastico_cm3": 202.2,
+   "massa_g": 250.7,
+   "tempo_h": 9.44,
    "obs": "3 M3x12 por baixo, pela mesa (na bancada); 2 furos no alto dão acesso aos parafusos da coluna",
    "liso": true,
    "perimetros": 3,
@@ -698,10 +793,10 @@
     44.8,
     30.9
    ],
-   "tris": 11298,
-   "plastico_cm3": 15.6,
-   "massa_g": 19.4,
-   "tempo_h": 0.8,
+   "tris": 11226,
+   "plastico_cm3": 16.0,
+   "massa_g": 19.8,
+   "tempo_h": 0.82,
    "obs": "horn do servo na direita (parafuso central por fora); M3x16 + bucha na esquerda",
    "liso": true,
    "perimetros": 3,
@@ -731,7 +826,7 @@
       1.0,
       0.0,
       0.0,
-      0.0015916373106179549
+      0.0006014249999992671
      ],
      [
       0.0,
@@ -743,7 +838,7 @@
       0.0,
       -1.2246467991473532e-16,
       -1.0,
-      212.5
+      212.79177586433914
      ],
      [
       0.0,
@@ -762,14 +857,14 @@
    "comum": false,
    "macica": true,
    "dim": [
-    97.7,
+    97.2,
     146.5,
-    46.0
+    46.3
    ],
-   "tris": 1970,
-   "plastico_cm3": 33.9,
-   "massa_g": 43.0,
-   "tempo_h": 1.65,
+   "tris": 2592,
+   "plastico_cm3": 28.3,
+   "massa_g": 35.9,
+   "tempo_h": 1.39,
    "obs": "mesa da cabeça: 2 M3x10 na coluna do berço (por cima); segura o servo da boca",
    "liso": true,
    "perimetros": 3,
@@ -796,22 +891,22 @@
    "para_montagem": [
     [
      [
-      1.0,
-      0.0,
-      0.0,
-      46.49223503690335
+      0.9164241373545288,
+      -0.2173216633729815,
+      0.33606263568389844,
+      43.14432223279734
      ],
      [
-      0.0,
-      1.0,
-      0.0,
-      93.16218502034883
+      -0.21732166337298145,
+      0.4349001748083234,
+      0.8738610487832091,
+      82.07930150130106
      ],
      [
-      0.0,
-      0.0,
-      1.0,
-      207.3705136644701
+      -0.3360626356838985,
+      -0.8738610487832092,
+      0.35132431216285187,
+      224.8329840326607
      ],
      [
       0.0,
@@ -830,20 +925,20 @@
    "comum": false,
    "macica": true,
    "dim": [
-    42.0,
-    35.3,
-    41.9
+    48.0,
+    48.0,
+    24.0
    ],
-   "tris": 1616,
-   "plastico_cm3": 10.3,
-   "massa_g": 12.8,
-   "tempo_h": 0.56,
-   "obs": "direito",
+   "tris": 3224,
+   "plastico_cm3": 13.2,
+   "massa_g": 16.4,
+   "tempo_h": 0.69,
+   "obs": "olho direito: bolso da câmera (Camera Module 3) aberto por trás; pressão ou cola no copo do crânio",
    "liso": true,
    "perimetros": 3,
    "infill": 15,
    "reforco": "",
-   "orientacao": ""
+   "orientacao": "face de trás (plana) na mesa"
   },
   {
    "nome": "olho-esq",
@@ -864,22 +959,22 @@
    "para_montagem": [
     [
      [
-      1.0,
-      0.0,
-      0.0,
-      -46.49223503690335
+      0.9164241373545288,
+      0.2173216633729815,
+      -0.33606263568389844,
+      -43.14432223279734
      ],
      [
-      0.0,
-      1.0,
-      0.0,
-      93.16218502034883
+      0.21732166337298145,
+      0.4349001748083234,
+      0.8738610487832091,
+      82.07930150130106
      ],
      [
-      0.0,
-      0.0,
-      1.0,
-      207.3705136644701
+      0.3360626356838985,
+      -0.8738610487832092,
+      0.35132431216285187,
+      224.8329840326607
      ],
      [
       0.0,
@@ -898,20 +993,20 @@
    "comum": false,
    "macica": true,
    "dim": [
-    42.0,
-    35.3,
-    41.9
+    48.0,
+    48.0,
+    24.0
    ],
-   "tris": 1616,
-   "plastico_cm3": 10.3,
-   "massa_g": 12.8,
-   "tempo_h": 0.56,
-   "obs": "esquerdo (espelhado)",
+   "tris": 3192,
+   "plastico_cm3": 14.4,
+   "massa_g": 17.8,
+   "tempo_h": 0.75,
+   "obs": "olho esquerdo: bolso do sensor ToF aberto por trás",
    "liso": true,
    "perimetros": 3,
    "infill": 15,
    "reforco": "",
-   "orientacao": ""
+   "orientacao": "face de trás (plana) na mesa"
   },
   {
    "nome": "iris",
@@ -932,22 +1027,22 @@
    "para_montagem": [
     [
      [
-      1.0,
-      0.0,
-      0.0,
-      50.517295468343434
+      0.9164241373545288,
+      -0.2173216633729815,
+      0.33606263568389844,
+      49.19344967510752
      ],
      [
-      0.0,
-      1.0,
-      0.0,
-      101.71980360550126
+      -0.21732166337298145,
+      0.4349001748083234,
+      0.8738610487832091,
+      97.80880037939883
      ],
      [
-      0.0,
-      0.0,
-      1.0,
-      217.59189037070934
+      -0.3360626356838985,
+      -0.8738610487832092,
+      0.35132431216285187,
+      231.15682165159208
      ],
      [
       0.0,
@@ -966,20 +1061,20 @@
    "comum": false,
    "macica": true,
    "dim": [
-    30.0,
-    20.0,
-    29.9
+    34.0,
+    34.0,
+    10.5
    ],
-   "tris": 842,
-   "plastico_cm3": 3.8,
-   "massa_g": 4.7,
-   "tempo_h": 0.25,
-   "obs": "",
+   "tris": 1688,
+   "plastico_cm3": 4.5,
+   "massa_g": 5.6,
+   "tempo_h": 0.29,
+   "obs": "anel da íris: a placa da câmera encosta atrás dele (4 furos piloto M2)",
    "liso": true,
    "perimetros": 3,
    "infill": 15,
    "reforco": "",
-   "orientacao": ""
+   "orientacao": "face de trás na mesa"
   },
   {
    "nome": "iris-esq",
@@ -1000,22 +1095,22 @@
    "para_montagem": [
     [
      [
-      1.0,
-      0.0,
-      0.0,
-      -50.517295468343434
+      0.9164241373545288,
+      0.2173216633729815,
+      -0.33606263568389844,
+      -49.19344967510752
      ],
      [
-      0.0,
-      1.0,
-      0.0,
-      101.71980360550126
+      0.21732166337298145,
+      0.4349001748083234,
+      0.8738610487832091,
+      97.80880037939883
      ],
      [
-      0.0,
-      0.0,
-      1.0,
-      217.59189037070934
+      0.3360626356838985,
+      -0.8738610487832092,
+      0.35132431216285187,
+      231.15682165159208
      ],
      [
       0.0,
@@ -1034,20 +1129,20 @@
    "comum": false,
    "macica": true,
    "dim": [
-    30.0,
-    20.0,
-    29.9
+    34.0,
+    34.0,
+    10.5
    ],
-   "tris": 842,
-   "plastico_cm3": 3.8,
-   "massa_g": 4.7,
-   "tempo_h": 0.25,
+   "tris": 1496,
+   "plastico_cm3": 4.4,
+   "massa_g": 5.5,
+   "tempo_h": 0.28,
    "obs": "",
    "liso": true,
    "perimetros": 3,
    "infill": 15,
    "reforco": "",
-   "orientacao": ""
+   "orientacao": "face de trás na mesa"
   },
   {
    "nome": "pupila",
@@ -1068,22 +1163,22 @@
    "para_montagem": [
     [
      [
-      1.0,
-      0.0,
-      0.0,
-      51.75372588566034
+      0.9164241373545288,
+      -0.2173216633729815,
+      0.33606263568389844,
+      50.56458522869782
      ],
      [
-      0.0,
-      1.0,
-      0.0,
-      104.48427525190061
+      -0.21732166337298145,
+      0.4349001748083234,
+      0.8738610487832091,
+      101.37415345843432
      ],
      [
-      0.0,
-      0.0,
-      1.0,
-      223.5258578658449
+      -0.3360626356838985,
+      -0.8738610487832092,
+      0.35132431216285187,
+      232.5902248452165
      ],
      [
       0.0,
@@ -1102,20 +1197,20 @@
    "comum": false,
    "macica": true,
    "dim": [
-    20.6,
-    14.5,
-    20.6
+    22.0,
+    22.0,
+    8.7
    ],
-   "tris": 430,
-   "plastico_cm3": 1.7,
-   "massa_g": 2.1,
-   "tempo_h": 0.16,
-   "obs": "",
+   "tris": 944,
+   "plastico_cm3": 2.2,
+   "massa_g": 2.7,
+   "tempo_h": 0.18,
+   "obs": "pupila escura VAZADA no centro (a lente da câmera olha pelo furo); pressão, sem cola (dá acesso à lente)",
    "liso": true,
    "perimetros": 3,
    "infill": 15,
    "reforco": "",
-   "orientacao": ""
+   "orientacao": "face de trás na mesa"
   },
   {
    "nome": "pupila-esq",
@@ -1136,22 +1231,22 @@
    "para_montagem": [
     [
      [
-      1.0,
-      0.0,
-      0.0,
-      -51.75372588566034
+      0.9164241373545288,
+      0.2173216633729815,
+      -0.33606263568389844,
+      -50.56458522869782
      ],
      [
-      0.0,
-      1.0,
-      0.0,
-      104.48427525190061
+      0.21732166337298145,
+      0.4349001748083234,
+      0.8738610487832091,
+      101.37415345843432
      ],
      [
-      0.0,
-      0.0,
-      1.0,
-      223.5258578658449
+      0.3360626356838985,
+      -0.8738610487832092,
+      0.35132431216285187,
+      232.5902248452165
      ],
      [
       0.0,
@@ -1170,20 +1265,20 @@
    "comum": false,
    "macica": true,
    "dim": [
-    20.6,
-    14.5,
-    20.6
+    22.0,
+    22.0,
+    8.9
    ],
-   "tris": 430,
-   "plastico_cm3": 1.7,
-   "massa_g": 2.1,
-   "tempo_h": 0.16,
-   "obs": "",
+   "tris": 952,
+   "plastico_cm3": 2.2,
+   "massa_g": 2.8,
+   "tempo_h": 0.18,
+   "obs": "pupila escura vazada (janela do ToF)",
    "liso": true,
    "perimetros": 3,
    "infill": 15,
    "reforco": "",
-   "orientacao": ""
+   "orientacao": "face de trás na mesa"
   },
   {
    "nome": "focinho",
@@ -1242,10 +1337,10 @@
     60.5,
     18.4
    ],
-   "tris": 6934,
-   "plastico_cm3": 19.9,
-   "massa_g": 24.6,
-   "tempo_h": 1.0,
+   "tris": 7490,
+   "plastico_cm3": 20.4,
+   "massa_g": 25.3,
+   "tempo_h": 1.02,
    "obs": "tampa marrom do focinho; cola",
    "liso": true,
    "perimetros": 3,
@@ -1458,74 +1553,6 @@
    "orientacao": "base plana na mesa"
   },
   {
-   "nome": "bucha-eixo",
-   "arquivo": "../comum/stl/comum-bucha-eixo.stl",
-   "material": "PLA",
-   "cor": "cinza",
-   "rgb": [
-    0.42,
-    0.44,
-    0.47
-   ],
-   "grupo": "mandibula",
-   "grupos": [
-    "mandibula"
-   ],
-   "qtd": 1,
-   "na_montagem": 1,
-   "para_montagem": [
-    [
-     [
-      1.1102230246251565e-16,
-      0.0,
-      1.0,
-      -48.76350021362305
-     ],
-     [
-      0.0,
-      1.0,
-      0.0,
-      108.0
-     ],
-     [
-      -1.0,
-      0.0,
-      1.1102230246251565e-16,
-      175.0
-     ],
-     [
-      0.0,
-      0.0,
-      0.0,
-      1.0
-     ]
-    ]
-   ],
-   "explode": [
-    0.0,
-    0.0,
-    0.0
-   ],
-   "suporte": "não",
-   "comum": true,
-   "macica": true,
-   "dim": [
-    7.2,
-    7.2,
-    3.4
-   ],
-   "tris": 192,
-   "plastico_cm3": 0.1,
-   "massa_g": 0.1,
-   "tempo_h": 0.08,
-   "obs": "bucha do eixo livre da mandíbula",
-   "liso": true,
-   "perimetros": 3,
-   "infill": 15,
-   "reforco": "",
-   "orientacao": ""
-  },
-  {
    "nome": "chassi",
    "arquivo": "stl/capivara-chassi.stl",
    "material": "PETG",
@@ -1580,12 +1607,12 @@
    "dim": [
     149.0,
     131.1,
-    93.2
+    93.0
    ],
-   "tris": 6358,
-   "plastico_cm3": 128.9,
-   "massa_g": 163.7,
-   "tempo_h": 6.05,
+   "tris": 6804,
+   "plastico_cm3": 131.2,
+   "massa_g": 166.7,
+   "tempo_h": 6.16,
    "obs": "piso recortado da seção da pele + rack das bandejas (atrás) + torre e deck do servo de pan (frente) + ressaltos das 2 esferas",
    "liso": true,
    "perimetros": 4,
@@ -2002,6 +2029,153 @@
  ],
  "componentes": [
   {
+   "nome": "carregador USB-C 2S",
+   "arquivo": "componentes/carregador.stl",
+   "grupo": "corpo",
+   "grupos": [
+    "corpo"
+   ],
+   "massa_g": 3.0,
+   "rgb": [
+    0.2,
+    0.55,
+    0.86
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "fase2": false,
+   "explode": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "liso": false
+  },
+  {
+   "nome": "tof-dir (fase 2)",
+   "arquivo": "componentes/tof-dir.stl",
+   "grupo": "corpo",
+   "grupos": [
+    "corpo"
+   ],
+   "massa_g": 1.0,
+   "rgb": [
+    0.36,
+    0.72,
+    0.16
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "fase2": true,
+   "explode": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "liso": false
+  },
+  {
+   "nome": "tof-esq (fase 2)",
+   "arquivo": "componentes/tof-esq.stl",
+   "grupo": "corpo",
+   "grupos": [
+    "corpo"
+   ],
+   "massa_g": 1.0,
+   "rgb": [
+    0.36,
+    0.72,
+    0.16
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "fase2": true,
+   "explode": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "liso": false
+  },
+  {
    "nome": "servo-boca MG90S",
    "arquivo": "componentes/servo-boca.stl",
    "grupo": "cabeca",
@@ -2043,6 +2217,251 @@
     ]
    ],
    "fase2": false,
+   "explode": [
+    0,
+    0,
+    95
+   ],
+   "liso": false
+  },
+  {
+   "nome": "camera olho direito (fase 2)",
+   "arquivo": "componentes/camera.stl",
+   "grupo": "cabeca",
+   "grupos": [
+    "cabeca"
+   ],
+   "massa_g": 4.0,
+   "rgb": [
+    0.36,
+    0.72,
+    0.16
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "fase2": true,
+   "explode": [
+    0,
+    0,
+    95
+   ],
+   "liso": false
+  },
+  {
+   "nome": "tof-olho esquerdo (fase 2)",
+   "arquivo": "componentes/tof-olho.stl",
+   "grupo": "cabeca",
+   "grupos": [
+    "cabeca"
+   ],
+   "massa_g": 1.0,
+   "rgb": [
+    0.36,
+    0.72,
+    0.16
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "fase2": true,
+   "explode": [
+    0,
+    0,
+    95
+   ],
+   "liso": false
+  },
+  {
+   "nome": "alto-falante (fase 2)",
+   "arquivo": "componentes/alto-falante.stl",
+   "grupo": "cabeca",
+   "grupos": [
+    "cabeca"
+   ],
+   "massa_g": 25.0,
+   "rgb": [
+    0.03,
+    0.03,
+    0.04
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "fase2": true,
+   "explode": [
+    0,
+    0,
+    95
+   ],
+   "liso": false
+  },
+  {
+   "nome": "microfone-dir (fase 2)",
+   "arquivo": "componentes/microfone-dir.stl",
+   "grupo": "cabeca",
+   "grupos": [
+    "cabeca"
+   ],
+   "massa_g": 1.0,
+   "rgb": [
+    0.36,
+    0.72,
+    0.16
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "fase2": true,
+   "explode": [
+    0,
+    0,
+    95
+   ],
+   "liso": false
+  },
+  {
+   "nome": "microfone-esq (fase 2)",
+   "arquivo": "componentes/microfone-esq.stl",
+   "grupo": "cabeca",
+   "grupos": [
+    "cabeca"
+   ],
+   "massa_g": 1.0,
+   "rgb": [
+    0.36,
+    0.72,
+    0.16
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "fase2": true,
    "explode": [
     0,
     0,
@@ -2541,6 +2960,202 @@
    "liso": false
   },
   {
+   "nome": "step-down 5V (LM2596)",
+   "arquivo": "componentes/step-down.stl",
+   "grupo": "corpo",
+   "grupos": [
+    "corpo"
+   ],
+   "massa_g": 15.0,
+   "rgb": [
+    0.2,
+    0.55,
+    0.86
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "fase2": false,
+   "explode": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "liso": false
+  },
+  {
+   "nome": "ubec 6V 3A",
+   "arquivo": "componentes/ubec.stl",
+   "grupo": "corpo",
+   "grupos": [
+    "corpo"
+   ],
+   "massa_g": 11.0,
+   "rgb": [
+    0.2,
+    0.55,
+    0.86
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "fase2": false,
+   "explode": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "liso": false
+  },
+  {
+   "nome": "bms 2S",
+   "arquivo": "componentes/bms.stl",
+   "grupo": "corpo",
+   "grupos": [
+    "corpo"
+   ],
+   "massa_g": 1.3,
+   "rgb": [
+    0.2,
+    0.55,
+    0.86
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "fase2": false,
+   "explode": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "liso": false
+  },
+  {
+   "nome": "chave",
+   "arquivo": "componentes/chave.stl",
+   "grupo": "corpo",
+   "grupos": [
+    "corpo"
+   ],
+   "massa_g": 3.0,
+   "rgb": [
+    0.03,
+    0.03,
+    0.04
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "fase2": false,
+   "explode": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "liso": false
+  },
+  {
    "nome": "Raspberry Pi 4/5",
    "arquivo": "componentes/Raspberry.stl",
    "grupo": "corpo",
@@ -2859,6 +3474,62 @@
    ]
   },
   {
+   "passo": "step-down 5 V (parede esquerda da torre, abraçadeira)",
+   "move": [
+    "step-down 5V (LM2596)"
+   ],
+   "dir": [
+    -1.0,
+    0.0,
+    0.0
+   ],
+   "curso": 60
+  },
+  {
+   "passo": "UBEC 6 V (parede direita da torre, abraçadeira)",
+   "move": [
+    "ubec 6V 3A"
+   ],
+   "dir": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "curso": 60
+  },
+  {
+   "passo": "BMS 2S (no piso, sob o lugar do L298N)",
+   "move": [
+    "bms 2S"
+   ],
+   "dir": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "curso": 6,
+   "depois": [
+    [
+     0.0,
+     1.0,
+     0.0
+    ],
+    90.0
+   ]
+  },
+  {
+   "passo": "chave (por baixo do piso)",
+   "move": [
+    "chave"
+   ],
+   "dir": [
+    0.0,
+    0.0,
+    -1.0
+   ],
+   "curso": 40
+  },
+  {
    "passo": "roda direita",
    "move": [
     "roda-dir"
@@ -2924,7 +3595,10 @@
     "mao-dir",
     "mao-esq",
     "avental",
-    "aro"
+    "aro",
+    "miolo",
+    "tof-dir (fase 2)",
+    "tof-esq (fase 2)"
    ],
    "dir": [
     0.0,
@@ -3009,10 +3683,11 @@
    "curso": 170
   },
   {
-   "passo": "porta traseira",
+   "passo": "porta traseira (com o rabo e o carregador USB-C)",
    "move": [
     "porta",
-    "rabo"
+    "rabo",
+    "carregador USB-C 2S"
    ],
    "dir": [
     0.0,
@@ -3025,7 +3700,8 @@
    "passo": "mesa dentro do crânio (na bancada)",
    "move": [
     "mesa-cabeca",
-    "servo-boca MG90S"
+    "servo-boca MG90S",
+    "alto-falante (fase 2)"
    ],
    "dir": [
     0.0,
@@ -3043,7 +3719,6 @@
     "cranio",
     "mesa-cabeca",
     "mandibula",
-    "bucha-eixo",
     "servo-boca MG90S",
     "olho",
     "olho-esq",
@@ -3054,7 +3729,12 @@
     "focinho",
     "orelha-dir",
     "orelha-esq",
-    "topete"
+    "topete",
+    "camera olho direito (fase 2)",
+    "tof-olho esquerdo (fase 2)",
+    "microfone-dir (fase 2)",
+    "microfone-esq (fase 2)",
+    "alto-falante (fase 2)"
    ],
    "dir": [
     0.0,
@@ -3067,7 +3747,8 @@
    "passo": "ABRIR: porta traseira sai",
    "move": [
     "porta",
-    "rabo"
+    "rabo",
+    "carregador USB-C 2S"
    ],
    "dir": [
     0.0,
