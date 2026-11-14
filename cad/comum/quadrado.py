@@ -28,6 +28,7 @@ from cad.comum.modelo import Comp, Peca, rot
 
 F = P.FOLGA
 S9 = P.MG996R
+PINO_TILT = (5.4, 4.4)      # pino do tilt M5: furo passante na lateral do quadro, piloto no braço do garfo (rosca no plástico)
 
 
 # ------------------------------------------------------------------ utilitários
@@ -180,7 +181,9 @@ def cabeca(K, tela, pos, nome_tela="tela 3,5 pol.", lidar=None):
     for sy in (1, -1):
         for sz in (1, -1):                                                                 # 4 furos piloto das abas do servo
             quadro = quadro - furo((ld0 - 0.01, sy * S9.furos_aba[1] / 2, zcs + sz * S9.furos_aba[0] / 2), (1, 0, 0), K.lateral_esp + 5.0, F.m3_piloto)
-    quadro = quadro - furo((le0 - 1, 0, 0), (1, 0, 0), K.lateral_esp + 2, F.m3_passante)        # pino do tilt (M3 que gira no furo)
+    quadro = quadro - furo((le0 - 1, 0, 0), (1, 0, 0), K.lateral_esp + 2, PINO_TILT[0])        # pino do tilt (M5 que gira no furo)
+    for sy in (1, -1):                                                                     # passagem da chave até os 2 parafusos de CIMA da aba do servo
+        quadro = quadro - furo((le0 - 7, sy * S9.furos_aba[1] / 2, zcs + S9.furos_aba[0] / 2), (1, 0, 0), K.lateral_esp + 8, 5.0)
     for (cx_, cz_) in col_d + col_e:
         quadro = quadro - inserto((cx_, yq, cz_), (0, 1, 0))
         corpo = corpo - furo((cx_, yb - 1, cz_), (0, 1, 0), pc + 2, F.m3_passante)
@@ -214,7 +217,11 @@ def cabeca(K, tela, pos, nome_tela="tela 3,5 pol.", lidar=None):
         c, s_ = np.cos(np.radians(a)), np.sin(np.radians(a))
         garfo = garfo - casco(furo((hx - K.braco_esp - 1, 6.3 * c, 6.3 * s_), (1, 0, 0), K.braco_esp + 2, 2.2),
                               furo((hx - K.braco_esp - 1, 8.8 * c, 8.8 * s_), (1, 0, 0), K.braco_esp + 2, 2.2))
-    garfo = garfo - inserto((-bx, 0, 0), (1, 0, 0), prof=K.braco_esp_e + 1)                    # o pino do tilt rosqueia aqui
+    # pino do tilt = M5 rosqueado direto no braço (piloto 4,4). Antes de pôr o pino, o furo é a passagem da chave até o
+    # parafuso central do horn; os 4 furos em volta dão acesso aos 4 parafusos do horn (aperte com o garfo ainda solto)
+    garfo = garfo - furo((-bx - 1, 0, 0), (1, 0, 0), K.braco_esp_e + 2, PINO_TILT[1])
+    for a in (45, 135, 225, 315):
+        garfo = garfo - furo((-bx - 1, 7.5 * np.cos(np.radians(a)), 7.5 * np.sin(np.radians(a))), (1, 0, 0), K.braco_esp_e + 2, 4.2)
     garfo = garfo - gota((0, 0, zg0 - 1), (0, 0, 1), zg1 - zg0 + 2, K.furo_cabos, (0, 1, 0))  # cabos sobem pelo meio
     pos_tir = [(K.tirante_r * np.cos(np.radians(a)), K.tirante_r * np.sin(np.radians(a))) for a in K.tirante_ang]
     for (px, py) in pos_tir:
@@ -266,7 +273,7 @@ def cabeca(K, tela, pos, nome_tela="tela 3,5 pol.", lidar=None):
     garfo_p = Peca("garfo", T(garfo), material="PETG", cor="grafite", grupo="pan", macica=True, imprimir=rot("x", 90), explode=(0, 0, 70),
                    perimetros=5, infill=40, orientacao="deitado, costas na mesa: as camadas correm do bloco para os braços",
                    reforco="camadas ao longo dos braços (flexão); bloco maciço com 3 insertos dos tirantes; furos em gota",
-                   obs="garfo interno do tilt: fica dentro da cabeça, no topo do tubo; horn do servo num braço, pino M3 no outro")
+                   obs="garfo interno do tilt: fica dentro da cabeça, no topo do tubo; horn do servo num braço, pino M5 (rosca no plástico) no outro; furos de passagem da chave no braço esquerdo")
 
     # ---------------- componentes
     M_tilt = C.M([(0, 0, 1), (0, 1, 0), (-1, 0, 0)], (x_aba, 0, 0))
@@ -292,12 +299,15 @@ def cabeca(K, tela, pos, nome_tela="tela 3,5 pol.", lidar=None):
     ] + comps_extra
     n_tela = nome_tela
     miolo = ["quadro-cabeca", "Raspberry Pi 4/5", "espacador-pi", n_tela, "rosto-na-tela (imagem, não é peça)", "servo-tilt MG996R"]
+    n_face = [n_tela, "rosto-na-tela (imagem, não é peça)", "cabeca-face", "camera (fase 2)"]
     bancada = [
         dict(passo="Raspberry Pi e espaçadores no quadro (bancada)", move=["Raspberry Pi 4/5", "espacador-pi"], dir=(0, 1, 0), curso=60, contra=["quadro-cabeca"]),
-        dict(passo="servo de tilt no rasgo do quadro, por trás (bancada)", move=["servo-tilt MG996R"], dir=(0, -1, 0), curso=80, contra=["quadro-cabeca", "Raspberry Pi 4/5", "espacador-pi"]),
-        dict(passo="garfo no eixo do tilt, por baixo (bancada)", move=["garfo"], dir=(0, 0, -1), curso=80, contra=["quadro-cabeca", "servo-tilt MG996R", "Raspberry Pi 4/5"]),
-        dict(passo="tela, painel do rosto e câmera pela frente; 4 M3 por trás do quadro (bancada)", move=[n_tela, "rosto-na-tela (imagem, não é peça)", "cabeca-face", "camera (fase 2)"], dir=(0, 1, 0), curso=80,
-             contra=["quadro-cabeca", "Raspberry Pi 4/5", "espacador-pi", "servo-tilt MG996R", "garfo"]),
+        dict(passo="tela, painel do rosto e câmera pela frente; 4 M3 por trás do quadro, ANTES do servo (bancada)", move=n_face, dir=(0, 1, 0), curso=80,
+             contra=["quadro-cabeca", "Raspberry Pi 4/5", "espacador-pi"]),
+        dict(passo="servo de tilt no rasgo do quadro, por trás; 4 parafusos pela esquerda (bancada)", move=["servo-tilt MG996R"], dir=(0, -1, 0), curso=80,
+             contra=["quadro-cabeca", "Raspberry Pi 4/5", "espacador-pi"] + n_face),
+        dict(passo="garfo (com o horn já preso no braço) no eixo do tilt, por baixo; parafuso central do horn pelo furo do pino; pino M5 (bancada)", move=["garfo"], dir=(0, 0, -1), curso=80,
+             contra=["quadro-cabeca", "servo-tilt MG996R", "Raspberry Pi 4/5"] + n_face),
         dict(passo="copo da cabeça por trás; 4 M3 na parede de trás (bancada)", move=["cabeca-corpo"], dir=(0, -1, 0), curso=160,
              contra=miolo + ["cabeca-face", "camera (fase 2)", "garfo"]),
     ]

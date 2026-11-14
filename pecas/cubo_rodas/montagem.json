@@ -59,10 +59,10 @@
     182.0,
     72.0
    ],
-   "tris": 7256,
-   "plastico_cm3": 200.7,
-   "massa_g": 254.9,
-   "tempo_h": 9.37,
+   "tris": 7336,
+   "plastico_cm3": 209.6,
+   "massa_g": 266.2,
+   "tempo_h": 9.78,
    "obs": "cuba da base móvel: motores entram pela lateral (flange atrás da roda), bateria num alçapão por baixo, carregador USB-C e chave atrás, janela do sensor de queda e entalhes dos ToF",
    "liso": false,
    "perimetros": 5,
@@ -358,10 +358,10 @@
     179.0,
     29.8
    ],
-   "tris": 3968,
+   "tris": 4032,
    "plastico_cm3": 76.1,
    "massa_g": 96.7,
-   "tempo_h": 3.61,
+   "tempo_h": 3.6,
    "obs": "bandeja de eletrônica: servo de pan, Arduino Uno, L298N, step-down do Pi e UBEC; 1,5 mm para dentro (fresta de sombra entre base e tronco)",
    "liso": false,
    "perimetros": 4,
@@ -426,10 +426,10 @@
     182.0,
     57.5
    ],
-   "tris": 2432,
-   "plastico_cm3": 181.3,
-   "massa_g": 230.2,
-   "tempo_h": 8.47,
+   "tris": 2502,
+   "plastico_cm3": 185.7,
+   "massa_g": 235.8,
+   "tempo_h": 8.68,
    "obs": "casca de cima: 4 M3x12 entram POR BAIXO da base, atravessam o deck e rosqueiam aqui; grade do alto-falante atrás",
    "liso": false,
    "perimetros": 4,
@@ -698,11 +698,11 @@
     41.9,
     24.0
    ],
-   "tris": 1448,
-   "plastico_cm3": 14.9,
-   "massa_g": 18.9,
-   "tempo_h": 0.77,
-   "obs": "garfo interno do tilt: fica dentro da cabeça, no topo do tubo; horn do servo num braço, pino M3 no outro",
+   "tris": 1848,
+   "plastico_cm3": 15.2,
+   "massa_g": 19.3,
+   "tempo_h": 0.78,
+   "obs": "garfo interno do tilt: fica dentro da cabeça, no topo do tubo; horn do servo num braço, pino M5 (rosca no plástico) no outro; furos de passagem da chave no braço esquerdo",
    "liso": false,
    "perimetros": 5,
    "infill": 40,
@@ -766,7 +766,7 @@
     93.5,
     62.7
    ],
-   "tris": 2318,
+   "tris": 2518,
    "plastico_cm3": 66.7,
    "massa_g": 84.7,
    "tempo_h": 3.17,
@@ -2422,233 +2422,233 @@
     "neutra": {
      "cg": [
       1.0,
-      -41.6,
-      127.7
+      -41.1,
+      127.4
      ],
-     "massa_g": 2197,
+     "massa_g": 2214,
      "alcance_mm": {
-      "frente": 41.6,
-      "tras": 77.1,
-      "esq": 60.1,
-      "dir": 58.1
+      "frente": 41.1,
+      "tras": 77.7,
+      "esq": 60.5,
+      "dir": 58.6
      },
      "a_max_m_s2": {
-      "frente": 3.2,
-      "tras": 5.92,
-      "esq": 4.61,
-      "dir": 4.46
+      "frente": 3.16,
+      "tras": 5.98,
+      "esq": 4.66,
+      "dir": 4.51
      }
     },
     "pan+170": {
      "cg": [
-      -1.6,
-      -52.2,
-      127.7
+      -1.5,
+      -51.5,
+      127.4
      ],
-     "massa_g": 2197,
+     "massa_g": 2214,
      "alcance_mm": {
-      "frente": 52.2,
-      "tras": 65.8,
-      "esq": 49.6,
-      "dir": 52.7
+      "frente": 51.5,
+      "tras": 66.4,
+      "esq": 50.1,
+      "dir": 53.2
      },
      "a_max_m_s2": {
-      "frente": 4.01,
-      "tras": 5.05,
-      "esq": 3.81,
-      "dir": 4.05
+      "frente": 3.97,
+      "tras": 5.12,
+      "esq": 3.86,
+      "dir": 4.1
      }
     },
     "pan-170": {
      "cg": [
       0.3,
-      -52.5,
-      127.7
+      -51.8,
+      127.4
      ],
-     "massa_g": 2197,
+     "massa_g": 2214,
      "alcance_mm": {
-      "frente": 52.5,
-      "tras": 67.1,
-      "esq": 51.2,
-      "dir": 50.6
+      "frente": 51.8,
+      "tras": 67.8,
+      "esq": 51.8,
+      "dir": 51.1
      },
      "a_max_m_s2": {
-      "frente": 4.03,
-      "tras": 5.16,
-      "esq": 3.94,
-      "dir": 3.89
+      "frente": 3.99,
+      "tras": 5.22,
+      "esq": 3.99,
+      "dir": 3.94
      }
     },
     "pan+90": {
      "cg": [
       -5.2,
-      -46.2,
-      127.7
+      -45.6,
+      127.4
      ],
-     "massa_g": 2197,
+     "massa_g": 2214,
      "alcance_mm": {
-      "frente": 46.2,
-      "tras": 66.9,
-      "esq": 50.4,
-      "dir": 60.8
+      "frente": 45.6,
+      "tras": 67.6,
+      "esq": 51.0,
+      "dir": 61.3
      },
      "a_max_m_s2": {
-      "frente": 3.55,
-      "tras": 5.14,
-      "esq": 3.87,
-      "dir": 4.67
+      "frente": 3.51,
+      "tras": 5.2,
+      "esq": 3.92,
+      "dir": 4.72
      }
     },
     "pan-90": {
      "cg": [
       5.5,
-      -47.8,
-      127.7
+      -47.2,
+      127.4
      ],
-     "massa_g": 2197,
+     "massa_g": 2214,
      "alcance_mm": {
-      "frente": 47.8,
-      "tras": 64.8,
-      "esq": 60.0,
-      "dir": 48.9
+      "frente": 47.2,
+      "tras": 65.5,
+      "esq": 60.4,
+      "dir": 49.4
      },
      "a_max_m_s2": {
-      "frente": 3.67,
-      "tras": 4.98,
-      "esq": 4.61,
-      "dir": 3.75
+      "frente": 3.63,
+      "tras": 5.05,
+      "esq": 4.65,
+      "dir": 3.81
      }
     },
     "tilt-cima": {
      "cg": [
       1.0,
-      -46.9,
-      129.2
+      -46.2,
+      128.8
      ],
-     "massa_g": 2197,
+     "massa_g": 2214,
      "alcance_mm": {
-      "frente": 46.9,
-      "tras": 71.8,
-      "esq": 56.1,
-      "dir": 54.2
+      "frente": 46.2,
+      "tras": 72.5,
+      "esq": 56.6,
+      "dir": 54.7
      },
      "a_max_m_s2": {
-      "frente": 3.56,
-      "tras": 5.45,
-      "esq": 4.26,
-      "dir": 4.11
+      "frente": 3.52,
+      "tras": 5.52,
+      "esq": 4.31,
+      "dir": 4.16
      }
     },
     "tilt-baixo": {
      "cg": [
       1.0,
-      -38.3,
-      124.6
+      -37.8,
+      124.3
      ],
-     "massa_g": 2197,
+     "massa_g": 2214,
      "alcance_mm": {
-      "frente": 38.3,
-      "tras": 80.4,
-      "esq": 62.6,
-      "dir": 60.6
+      "frente": 37.8,
+      "tras": 80.9,
+      "esq": 63.0,
+      "dir": 61.0
      },
      "a_max_m_s2": {
-      "frente": 3.02,
-      "tras": 6.33,
-      "esq": 4.92,
-      "dir": 4.77
+      "frente": 2.98,
+      "tras": 6.39,
+      "esq": 4.97,
+      "dir": 4.82
      }
     },
     "pan+90+tilt-baixo": {
      "cg": [
-      -8.5,
-      -46.2,
-      124.6
+      -8.4,
+      -45.6,
+      124.3
      ],
-     "massa_g": 2197,
+     "massa_g": 2214,
      "alcance_mm": {
-      "frente": 46.2,
-      "tras": 62.5,
-      "esq": 47.1,
-      "dir": 64.2
+      "frente": 45.6,
+      "tras": 63.2,
+      "esq": 47.7,
+      "dir": 64.6
      },
      "a_max_m_s2": {
-      "frente": 3.64,
-      "tras": 4.92,
-      "esq": 3.71,
-      "dir": 5.05
+      "frente": 3.6,
+      "tras": 4.99,
+      "esq": 3.76,
+      "dir": 5.1
      }
     },
     "pan-90+tilt-cima": {
      "cg": [
       0.3,
-      -47.8,
-      129.2
+      -47.2,
+      128.8
      ],
-     "massa_g": 2197,
+     "massa_g": 2214,
      "alcance_mm": {
-      "frente": 47.8,
-      "tras": 71.8,
-      "esq": 54.7,
-      "dir": 54.1
+      "frente": 47.2,
+      "tras": 72.4,
+      "esq": 55.2,
+      "dir": 54.6
      },
      "a_max_m_s2": {
-      "frente": 3.63,
-      "tras": 5.45,
-      "esq": 4.16,
-      "dir": 4.11
+      "frente": 3.59,
+      "tras": 5.51,
+      "esq": 4.21,
+      "dir": 4.16
      }
     },
     "pan+170+tilt-baixo": {
      "cg": [
       -2.1,
-      -55.4,
-      124.6
+      -54.7,
+      124.3
      ],
-     "massa_g": 2197,
+     "massa_g": 2214,
      "alcance_mm": {
-      "frente": 55.4,
-      "tras": 61.7,
-      "esq": 46.6,
-      "dir": 50.8
+      "frente": 54.7,
+      "tras": 62.5,
+      "esq": 47.1,
+      "dir": 51.3
      },
      "a_max_m_s2": {
-      "frente": 4.36,
-      "tras": 4.86,
-      "esq": 3.67,
-      "dir": 4.0
+      "frente": 4.32,
+      "tras": 4.93,
+      "esq": 3.72,
+      "dir": 4.05
      }
     },
     "pan+170+tilt-cima": {
      "cg": [
       -0.6,
-      -47.0,
-      129.2
+      -46.4,
+      128.8
      ],
-     "massa_g": 2197,
+     "massa_g": 2214,
      "alcance_mm": {
-      "frente": 47.0,
-      "tras": 72.1,
-      "esq": 54.4,
-      "dir": 55.7
+      "frente": 46.4,
+      "tras": 72.7,
+      "esq": 54.9,
+      "dir": 56.2
      },
      "a_max_m_s2": {
-      "frente": 3.57,
-      "tras": 5.47,
-      "esq": 4.13,
-      "dir": 4.23
+      "frente": 3.53,
+      "tras": 5.54,
+      "esq": 4.18,
+      "dir": 4.28
      }
     }
    },
    "pior_a_max_m_s2": {
-    "frente": 3.02,
-    "tras": 4.86,
-    "esq": 3.67,
-    "dir": 3.75
+    "frente": 2.98,
+    "tras": 4.93,
+    "esq": 3.72,
+    "dir": 3.81
    },
    "v_max_m_s": 0.48,
    "parada_min_m": 0.038,
-   "texto": "CG neutro em y=-41.6 z=127.7 mm (massa 2197 g). Sem tombar, no pior caso de pose da cabeça: frear andando para a frente até 3.02 m/s² (0.31 g), arrancar para a frente / frear de ré até 4.86 m/s² (0.50 g), curva até 3.67 m/s² (0.37 g). A 0.48 m/s (motor sem carga) a parada mais curta sem tombar leva 38 mm. Estimativa de corpo rígido (a = g·alcance/altura do CG): limite a rampa do firmware à metade disso."
+   "texto": "CG neutro em y=-41.1 z=127.4 mm (massa 2214 g). Sem tombar, no pior caso de pose da cabeça: frear andando para a frente até 2.98 m/s² (0.30 g), arrancar para a frente / frear de ré até 4.93 m/s² (0.50 g), curva até 3.72 m/s² (0.38 g). A 0.48 m/s (motor sem carga) a parada mais curta sem tombar leva 38 mm. Estimativa de corpo rígido (a = g·alcance/altura do CG): limite a rampa do firmware à metade disso."
   }
  },
  "encaixes_previstos": [
@@ -2850,41 +2850,7 @@
    ]
   },
   {
-   "passo": "servo de tilt no rasgo do quadro, por trás (bancada)",
-   "move": [
-    "servo-tilt MG996R"
-   ],
-   "dir": [
-    0.0,
-    -1.0,
-    0.0
-   ],
-   "curso": 80,
-   "contra": [
-    "quadro-cabeca",
-    "Raspberry Pi 4/5",
-    "espacador-pi"
-   ]
-  },
-  {
-   "passo": "garfo no eixo do tilt, por baixo (bancada)",
-   "move": [
-    "garfo"
-   ],
-   "dir": [
-    0.0,
-    0.0,
-    -1.0
-   ],
-   "curso": 80,
-   "contra": [
-    "quadro-cabeca",
-    "servo-tilt MG996R",
-    "Raspberry Pi 4/5"
-   ]
-  },
-  {
-   "passo": "tela, painel do rosto e câmera pela frente; 4 M3 por trás do quadro (bancada)",
+   "passo": "tela, painel do rosto e câmera pela frente; 4 M3 por trás do quadro, ANTES do servo (bancada)",
    "move": [
     "tela 5 pol. HDMI",
     "rosto-na-tela (imagem, não é peça)",
@@ -2900,9 +2866,49 @@
    "contra": [
     "quadro-cabeca",
     "Raspberry Pi 4/5",
+    "espacador-pi"
+   ]
+  },
+  {
+   "passo": "servo de tilt no rasgo do quadro, por trás; 4 parafusos pela esquerda (bancada)",
+   "move": [
+    "servo-tilt MG996R"
+   ],
+   "dir": [
+    0.0,
+    -1.0,
+    0.0
+   ],
+   "curso": 80,
+   "contra": [
+    "quadro-cabeca",
+    "Raspberry Pi 4/5",
     "espacador-pi",
-    "servo-tilt MG996R",
+    "tela 5 pol. HDMI",
+    "rosto-na-tela (imagem, não é peça)",
+    "cabeca-face",
+    "camera (fase 2)"
+   ]
+  },
+  {
+   "passo": "garfo (com o horn já preso no braço) no eixo do tilt, por baixo; parafuso central do horn pelo furo do pino; pino M5 (bancada)",
+   "move": [
     "garfo"
+   ],
+   "dir": [
+    0.0,
+    0.0,
+    -1.0
+   ],
+   "curso": 80,
+   "contra": [
+    "quadro-cabeca",
+    "servo-tilt MG996R",
+    "Raspberry Pi 4/5",
+    "tela 5 pol. HDMI",
+    "rosto-na-tela (imagem, não é peça)",
+    "cabeca-face",
+    "camera (fase 2)"
    ]
   },
   {

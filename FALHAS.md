@@ -2,6 +2,8 @@
 
 | data | o que quebrou | menor correção | prompt \| infra |
 |---|---|---|---|
+| 2026-11-14 | cubo_rodas: os 2 postes da frente estavam no canto arredondado e o rebaixo Ø6,5 do parafuso furava a parede de FORA (fenda de ~4 mm de z=20 a 88); os 11 testes passavam (nenhum olha furo que vaza a casca) | postes no trecho reto da parede da frente + `assert` no modelo (rebaixo − casca < 1 mm³) | prompt |
+| 2026-11-14 | Garfo interno: os parafusos do horn e 2 dos 4 do servo de tilt não tinham caminho de CHAVE (o teste 9 prova o caminho da peça, não o da ferramenta) | pino do tilt vira M5 e o furo dele dá passagem ao parafuso central; 4 furos de acesso no braço esquerdo; 2 na lateral do quadro; painel entra antes do servo | prompt |
 | 2026-11-14 | cubo_rodas: a travessa do quadro (tela de 5") saía pelos cantos arredondados do copo da cabeça (115 mm³); na cabeça de 3,5" passava por sorte | o quadro é recortado pela seção interna do copo (com 0,6 mm de folga) em qualquer tamanho de cabeça | prompt |
 | 2026-11-14 | `inema-traduz` traduziu "Robô quadrado que roda" como "Spinning square robot" / "que gira" | pedir de novo dizendo o sentido ("anda sobre rodas, não gira") → "Square robot on wheels" / "Robot cuadrado con ruedas"; conferir sempre o sentido de nome curto | prompt |
 | 2026-11-14 | Cubo: 7 de 11 peças reprovadas no teste 10 (teto da cabeça = ponte de 107 mm, face 103 mm, quadro 86 mm, anel do alto-falante, rebaixo da engrenagem para baixo) | cabeça vira COPO impresso com as costas na mesa; painel do rosto e quadro com a face plana na mesa; engrenagem do servo de cabeça para baixo; grade de fendas verticais; chanfro de 45° onde encosta na mesa | prompt |

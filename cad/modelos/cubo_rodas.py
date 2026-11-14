@@ -50,7 +50,9 @@ def construir() -> Modelo:
     cortes = []
     for (px, py) in postes:                                                                  # 4 postes: parafuso por baixo → deck → tronco
         base = base + (cil((px, py, zf - 0.01), (px, py, zd0), 6.0, seg=32) ^ fora)
-        cortes.append(furo((px, py, zc - 1), (0, 0, 1), zd0 - zc + 2, F.m3_passante) + cil((px, py, zc - 0.01), (px, py, zd0 - 4.0), 3.25, seg=24))
+        rebaixo = cil((px, py, zc - 0.01), (px, py, zd0 - 4.0), 3.25, seg=24)
+        assert (rebaixo - fora).volume() < 1.0, f"o rebaixo do poste ({px}, {py}) fura a parede de fora da base"   # nenhum teste do verificador vê isto
+        cortes.append(furo((px, py, zc - 1), (0, 0, 1), zd0 - zc + 2, F.m3_passante) + rebaixo)
     fd, fe, fc = Q.flange_motor
     for s in (1, -1):                                                                        # parede do motor: reforço + furo em gota + 4 insertos da flange
         xa, xb = sorted((s * (xi - 4.0), s * (xi + 0.01)))

@@ -279,15 +279,15 @@
     "orientacao": "de cabeça para baixo: a face de cima na mesa, o rebaixo do horn para cima"
    },
    "garfo": {
-    "area_total_mm2": 8359.5,
+    "area_total_mm2": 8621.9,
     "mesa_mm2": 1005.5,
-    "balanco_bruto_mm2": 198.1,
+    "balanco_bruto_mm2": 292.4,
     "sem_apoio_mm2": 0.0,
     "sem_apoio_pct": 0.0,
     "limite_mm2": 30.0,
     "tolerado_mm2": {
      "fragmentos": 0.7,
-     "furos": 197.3,
+     "furos": 291.6,
      "pontes": 0.0,
      "beiras": 0.0
     },
@@ -315,15 +315,15 @@
     "orientacao": "deitado, costas na mesa: as camadas correm do bloco para os braços"
    },
    "quadro-cabeca": {
-    "area_total_mm2": 30811.2,
+    "area_total_mm2": 30894.2,
     "mesa_mm2": 6791.7,
-    "balanco_bruto_mm2": 109.5,
+    "balanco_bruto_mm2": 156.5,
     "sem_apoio_mm2": 0.0,
     "sem_apoio_pct": 0.0,
-    "limite_mm2": 61.6,
+    "limite_mm2": 61.8,
     "tolerado_mm2": {
      "fragmentos": 0.0,
-     "furos": 109.5,
+     "furos": 156.5,
      "pontes": 0.0,
      "beiras": 0.0
     },
@@ -606,7 +606,7 @@
     77.4
    ],
    "margem_mm": 64.0,
-   "tomba_graus": 39.6,
+   "tomba_graus": 39.5,
    "massa_g": 1147.0
   },
   {
@@ -624,7 +624,7 @@
  "resumo": {
   "pecas_distintas": 12,
   "pecas_total": 15,
-  "massa_impressa_g": 734.0,
+  "massa_impressa_g": 735.0,
   "tempo_total_h": 28.2,
   "ok": true
  }

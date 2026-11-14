@@ -490,7 +490,8 @@ CUBO_RODAS = NS(
     bola_y=-120.0,
     bateria_y=-50.0, alcapao=(108.0, 84.0),   # a bateria sai POR BAIXO num alçapão (tampa-bateria)
     bms_xy=(50.0, -50.0), carregador_x=40.0, chave_xz=(-32.0, 62.0),
-    postes=((56.0, 25.5), (57.0, -100.0)),   # (|x|, y) dos 4 postes: parafuso M3 por baixo → deck → tronco
+    postes=((36.0, 23.5), (57.0, -100.0)),   # (|x|, y) dos 4 postes: parafuso M3 por baixo → deck → tronco. Os da frente ficam no
+                                       # trecho RETO da parede da frente: no canto arredondado o rebaixo do parafuso furava a parede de fora
     uno_xy=(-34.3, -125.0), l298_xy=(-35.5, -48.0), stepdown_xy=(0.0, 14.0), ubec_xy=(48.5, -53.5),
     falante_z=122.0,
     n_pecas=19,

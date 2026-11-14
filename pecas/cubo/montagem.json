@@ -467,11 +467,11 @@
     41.9,
     24.0
    ],
-   "tris": 1448,
-   "plastico_cm3": 14.9,
-   "massa_g": 18.9,
-   "tempo_h": 0.77,
-   "obs": "garfo interno do tilt: fica dentro da cabeça, no topo do tubo; horn do servo num braço, pino M3 no outro",
+   "tris": 1848,
+   "plastico_cm3": 15.2,
+   "massa_g": 19.3,
+   "tempo_h": 0.78,
+   "obs": "garfo interno do tilt: fica dentro da cabeça, no topo do tubo; horn do servo num braço, pino M5 (rosca no plástico) no outro; furos de passagem da chave no braço esquerdo",
    "liso": false,
    "perimetros": 5,
    "infill": 40,
@@ -535,9 +535,9 @@
     74.6,
     63.7
    ],
-   "tris": 2248,
+   "tris": 2448,
    "plastico_cm3": 50.8,
-   "massa_g": 64.5,
+   "massa_g": 64.6,
    "tempo_h": 2.43,
    "obs": "esqueleto da cabeça: Raspberry Pi (4 M2,5), servo de tilt, mancal do pino; recebe o painel (4 M3 por trás) e o copo (4 M3 pela parede de trás)",
    "liso": false,
@@ -1873,41 +1873,7 @@
    ]
   },
   {
-   "passo": "servo de tilt no rasgo do quadro, por trás (bancada)",
-   "move": [
-    "servo-tilt MG996R"
-   ],
-   "dir": [
-    0.0,
-    -1.0,
-    0.0
-   ],
-   "curso": 80,
-   "contra": [
-    "quadro-cabeca",
-    "Raspberry Pi 4/5",
-    "espacador-pi"
-   ]
-  },
-  {
-   "passo": "garfo no eixo do tilt, por baixo (bancada)",
-   "move": [
-    "garfo"
-   ],
-   "dir": [
-    0.0,
-    0.0,
-    -1.0
-   ],
-   "curso": 80,
-   "contra": [
-    "quadro-cabeca",
-    "servo-tilt MG996R",
-    "Raspberry Pi 4/5"
-   ]
-  },
-  {
-   "passo": "tela, painel do rosto e câmera pela frente; 4 M3 por trás do quadro (bancada)",
+   "passo": "tela, painel do rosto e câmera pela frente; 4 M3 por trás do quadro, ANTES do servo (bancada)",
    "move": [
     "tela 3,5 pol.",
     "rosto-na-tela (imagem, não é peça)",
@@ -1923,9 +1889,49 @@
    "contra": [
     "quadro-cabeca",
     "Raspberry Pi 4/5",
+    "espacador-pi"
+   ]
+  },
+  {
+   "passo": "servo de tilt no rasgo do quadro, por trás; 4 parafusos pela esquerda (bancada)",
+   "move": [
+    "servo-tilt MG996R"
+   ],
+   "dir": [
+    0.0,
+    -1.0,
+    0.0
+   ],
+   "curso": 80,
+   "contra": [
+    "quadro-cabeca",
+    "Raspberry Pi 4/5",
     "espacador-pi",
-    "servo-tilt MG996R",
+    "tela 3,5 pol.",
+    "rosto-na-tela (imagem, não é peça)",
+    "cabeca-face",
+    "camera (fase 2)"
+   ]
+  },
+  {
+   "passo": "garfo (com o horn já preso no braço) no eixo do tilt, por baixo; parafuso central do horn pelo furo do pino; pino M5 (bancada)",
+   "move": [
     "garfo"
+   ],
+   "dir": [
+    0.0,
+    0.0,
+    -1.0
+   ],
+   "curso": 80,
+   "contra": [
+    "quadro-cabeca",
+    "servo-tilt MG996R",
+    "Raspberry Pi 4/5",
+    "tela 3,5 pol.",
+    "rosto-na-tela (imagem, não é peça)",
+    "cabeca-face",
+    "camera (fase 2)"
    ]
   },
   {
