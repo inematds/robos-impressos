@@ -1,0 +1,367 @@
+{
+ "protocolo": {
+  "versao": 1,
+  "projecao": "ortografica",
+  "altura_px": 400,
+  "busca_az_graus": 25,
+  "passo_az_graus": 5,
+  "busca_el_graus": [
+   -10,
+   -5,
+   0,
+   5,
+   10
+  ],
+  "alinhamento": "caixa da silhueta: mesma altura, base na mesma linha, centro horizontal coincidente",
+  "iou_ajustado": "secundario: melhor IoU com escala 0,88–1,12 e deslocamento de ate 12% (x) e 6% (y) da altura",
+  "pecas": "pecas impressas (todas as copias de para_montagem) + componentes roda*/esfera*; sem fase 2; pose neutra"
+ },
+ "angulos_nominais": {
+  "dino": [
+   {
+    "nome": "frente",
+    "recorte": [
+     0,
+     0,
+     622,
+     622
+    ],
+    "az": 0,
+    "el": 15
+   },
+   {
+    "nome": "tres-quartos-a",
+    "recorte": [
+     632,
+     0,
+     1254,
+     622
+    ],
+    "az": -45,
+    "el": 15
+   },
+   {
+    "nome": "tres-quartos-b",
+    "recorte": [
+     0,
+     632,
+     622,
+     1254
+    ],
+    "az": -40,
+    "el": 15
+   },
+   {
+    "nome": "lado",
+    "recorte": [
+     632,
+     632,
+     1254,
+     1254
+    ],
+    "az": -75,
+    "el": 15
+   }
+  ],
+  "capivara": [
+   {
+    "nome": "frente",
+    "recorte": [
+     0,
+     0,
+     651,
+     598
+    ],
+    "az": 0,
+    "el": 15
+   },
+   {
+    "nome": "tres-quartos",
+    "recorte": [
+     661,
+     0,
+     1312,
+     598
+    ],
+    "az": -45,
+    "el": 15
+   },
+   {
+    "nome": "lado",
+    "recorte": [
+     0,
+     606,
+     651,
+     1199
+    ],
+    "az": -80,
+    "el": 15
+   },
+   {
+    "nome": "costas",
+    "recorte": [
+     661,
+     606,
+     1312,
+     1199
+    ],
+    "az": 180,
+    "el": 15
+   }
+  ],
+  "cubo": [
+   {
+    "nome": "tres-quartos",
+    "recorte": [
+     0,
+     0,
+     220,
+     220
+    ],
+    "az": 35,
+    "el": 22
+   }
+  ]
+ },
+ "resultados": {
+  "cubo": {
+   "antes": {
+    "referencia": "cubo",
+    "origem": ".preview/v102/pecas/cubo",
+    "data": "2026-11-14",
+    "nota": "tag v1.0.2",
+    "triangulos": 21258,
+    "entram": [
+     "base x1",
+     "tampa-base x1",
+     "porta-traseira x1",
+     "tubo-pescoco x1",
+     "engrenagem-servo x1",
+     "garfo x1",
+     "quadro-cabeca x1",
+     "cabeca-corpo x1",
+     "cabeca-face x1",
+     "espacador-pi x4"
+    ],
+    "vistas": [
+     {
+      "vista": "tres-quartos",
+      "az_nominal": 35,
+      "el_nominal": 22,
+      "az": 10,
+      "el": 32,
+      "iou": 0.7554,
+      "iou_ajustado": 0.7735,
+      "ajuste_escala": 1.06,
+      "mascara_toca_borda": false,
+      "az_no_limite_da_busca": true,
+      "el_no_limite_da_busca": true
+     }
+    ],
+    "media": 0.7554,
+    "media_ajustado": 0.7735
+   }
+  },
+  "dino": {
+   "antes": {
+    "referencia": "dino",
+    "origem": ".preview/v102/pecas/dino",
+    "data": "2026-11-14",
+    "nota": "tag v1.0.2",
+    "triangulos": 387474,
+    "entram": [
+     "torso-frente x1",
+     "torso-costas x1",
+     "barriga x1",
+     "crista-costas x1",
+     "pino-guia x4",
+     "perna-dir x1",
+     "perna-esq x1",
+     "unha x6",
+     "cauda x1",
+     "crista-cauda x1",
+     "cranio x1",
+     "mandibula x1",
+     "mesa-cabeca x1",
+     "crista-cabeca x1",
+     "olho x1",
+     "olho-esq x1",
+     "iris x1",
+     "iris-esq x1",
+     "pupila x1",
+     "pupila-esq x1",
+     "bucha-eixo x1",
+     "braco-dir x1",
+     "braco-esq x1",
+     "chassi x1",
+     "capa-esfera x1",
+     "bandeja-uno x1",
+     "bandeja-pi x1",
+     "garfo-pescoco x1",
+     "berco-tilt x1",
+     "componente roda-dir x1",
+     "componente roda-esq x1",
+     "componente esfera-apoio x1"
+    ],
+    "vistas": [
+     {
+      "vista": "frente",
+      "az_nominal": 0,
+      "el_nominal": 15,
+      "az": 0,
+      "el": 15,
+      "iou": 0.8745,
+      "iou_ajustado": 0.8754,
+      "ajuste_escala": 0.97,
+      "mascara_toca_borda": false,
+      "az_no_limite_da_busca": false,
+      "el_no_limite_da_busca": false
+     },
+     {
+      "vista": "tres-quartos-a",
+      "az_nominal": -45,
+      "el_nominal": 15,
+      "az": -65,
+      "el": 20,
+      "iou": 0.8078,
+      "iou_ajustado": 0.8165,
+      "ajuste_escala": 1.0,
+      "mascara_toca_borda": false,
+      "az_no_limite_da_busca": false,
+      "el_no_limite_da_busca": false
+     },
+     {
+      "vista": "tres-quartos-b",
+      "az_nominal": -40,
+      "el_nominal": 15,
+      "az": -45,
+      "el": 25,
+      "iou": 0.7868,
+      "iou_ajustado": 0.8239,
+      "ajuste_escala": 1.0,
+      "mascara_toca_borda": false,
+      "az_no_limite_da_busca": false,
+      "el_no_limite_da_busca": true
+     },
+     {
+      "vista": "lado",
+      "az_nominal": -75,
+      "el_nominal": 15,
+      "az": -70,
+      "el": 20,
+      "iou": 0.7857,
+      "iou_ajustado": 0.7885,
+      "ajuste_escala": 0.97,
+      "mascara_toca_borda": false,
+      "az_no_limite_da_busca": false,
+      "el_no_limite_da_busca": false
+     }
+    ],
+    "media": 0.8137,
+    "media_ajustado": 0.8261
+   }
+  },
+  "capivara": {
+   "antes": {
+    "referencia": "capivara",
+    "origem": ".preview/v102/pecas/capivara",
+    "data": "2026-11-14",
+    "nota": "tag v1.0.2",
+    "triangulos": 381386,
+    "entram": [
+     "torso-frente x1",
+     "torso-costas x1",
+     "barriga x1",
+     "bandana-frente x1",
+     "bandana-costas x1",
+     "mao x2",
+     "pino-guia x4",
+     "coxa-dir x1",
+     "coxa-esq x1",
+     "aro x2",
+     "pata-dir x1",
+     "pata-esq x1",
+     "rabo x1",
+     "cranio x1",
+     "mandibula x1",
+     "focinho x1",
+     "mesa-cabeca x1",
+     "orelha x2",
+     "topete x1",
+     "olho x1",
+     "olho-esq x1",
+     "iris x1",
+     "iris-esq x1",
+     "pupila x1",
+     "pupila-esq x1",
+     "bucha-eixo x1",
+     "chassi x1",
+     "capa-esfera x1",
+     "bandeja-uno x1",
+     "bandeja-pi x1",
+     "garfo-pescoco x1",
+     "berco-tilt x1",
+     "componente roda-dir x1",
+     "componente roda-esq x1",
+     "componente esfera-apoio x1"
+    ],
+    "vistas": [
+     {
+      "vista": "frente",
+      "az_nominal": 0,
+      "el_nominal": 15,
+      "az": 10,
+      "el": 5,
+      "iou": 0.7834,
+      "iou_ajustado": 0.8043,
+      "ajuste_escala": 1.06,
+      "mascara_toca_borda": false,
+      "az_no_limite_da_busca": false,
+      "el_no_limite_da_busca": true
+     },
+     {
+      "vista": "tres-quartos",
+      "az_nominal": -45,
+      "el_nominal": 15,
+      "az": -70,
+      "el": 10,
+      "iou": 0.7842,
+      "iou_ajustado": 0.7859,
+      "ajuste_escala": 1.0,
+      "mascara_toca_borda": false,
+      "az_no_limite_da_busca": true,
+      "el_no_limite_da_busca": false
+     },
+     {
+      "vista": "lado",
+      "az_nominal": -80,
+      "el_nominal": 15,
+      "az": -70,
+      "el": 10,
+      "iou": 0.7361,
+      "iou_ajustado": 0.7365,
+      "ajuste_escala": 1.0,
+      "mascara_toca_borda": false,
+      "az_no_limite_da_busca": false,
+      "el_no_limite_da_busca": false
+     },
+     {
+      "vista": "costas",
+      "az_nominal": 180,
+      "el_nominal": 15,
+      "az": 170,
+      "el": 5,
+      "iou": 0.8034,
+      "iou_ajustado": 0.818,
+      "ajuste_escala": 1.06,
+      "mascara_toca_borda": false,
+      "az_no_limite_da_busca": false,
+      "el_no_limite_da_busca": true
+     }
+    ],
+    "media": 0.7768,
+    "media_ajustado": 0.7862
+   }
+  }
+ }
+}

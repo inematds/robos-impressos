@@ -5,3 +5,6 @@ __pycache__/
 *.raw.html
 referencia/
 guia/src/.cache.*.json
+
+# image-to-3D local (etapa E2): venv proprio, fora do versionamento
+.venv-i23d/
