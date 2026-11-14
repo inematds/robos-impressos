@@ -25,3 +25,4 @@ Depois: E3b dino (mesma receita), consolidação (`gerar todos` + `verificar tod
 - Eu mesmo: push, tag v1.1.2, conferência das URLs, portal (só se título/descrição disser "três robôs"), `avisa-v3.sh`, relatório.
 - 14/11: PORTAL precisa de ajuste no fim: Portal.tsx:119 e translated-courses id 10225 dizem "Três corpos… ~33 cm" (vira quatro robôs; altura nova). Título de courses.ts cita "dino, capivara ou cubo" (avaliar).
 - 14/11: conselheiro consultado; E1 avisada (teste 10 só nos cubos; helper ressalto_nervurado); E3-brief com sequência em 3 pacotes e regra de parada.
+- 14/11 E3a: conversor da malha (cad/pele_malha.py), classe PeleGrade (geo.py) e pele processada cad/peles/capivara.npz (300 mm, simétrica, 2,3 MB) em commit; nenhum modelo alterado ainda.

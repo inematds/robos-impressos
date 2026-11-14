@@ -271,6 +271,50 @@ class Pele:
         return ndimage.map_coordinates(self.F, idx, order=1, mode="nearest")
 
 
+class PeleGrade(Pele):
+    """Pele que nasce de uma grade de distância com sinal JÁ PRONTA (malha de image-to-3D convertida por
+    cad/pele_malha.py e gravada em cad/peles/<bicho>.npz), em vez de um campo de blobs. Mesma interface da `Pele`
+    (`.solido()`, `.deslocado()`, `.ponto_na_pele()`, `.f_pontos()`), então o resto do pipeline de casca não muda.
+
+    Regiões e remendos saem por `combinar`: a função recebe (P, F) da grade e devolve o campo novo. Exemplos:
+      torso  = pele.combinar(lambda P, F: np.maximum(F, mascara(P)))          # interseção com uma região (máscara < 0 dentro)
+      gordo  = pele.combinar(lambda P, F: smin(F, sdf_elipsoide(P, c, r), 6))  # soma suave de um blob (cobrir uma roda)
+    `recortar(lo, hi)` devolve a mesma pele numa grade menor (mais rápido quando a região é só a cabeça, por exemplo)."""
+
+    def __init__(self, eixos, F, reduzir=0.75, P=None):
+        self.eixos = [np.asarray(e, np.float32) for e in eixos]
+        self.h = float(self.eixos[0][1] - self.eixos[0][0])
+        self.reduzir = reduzir
+        self.F = np.asarray(F, np.float32)
+        if P is None:
+            X, Y, Z = np.meshgrid(*self.eixos, indexing="ij")
+            P = np.stack([X, Y, Z], axis=-1)
+        self.P = P
+        self._D = None
+        self._v, self._f = self._mc(self.F, 0.0, bruto=True)
+
+    @classmethod
+    def de_arquivo(cls, caminho, dy=0.0, dz=0.0, reduzir=0.75):
+        """Lê cad/peles/<bicho>.npz. `dy` desloca o bicho em relação ao eixo das rodas (Y=0); `dz` em relação ao chão."""
+        z = np.load(caminho)
+        d = z["d"].astype(np.float32) * float(z["escala"])
+        o, h = z["origem"].astype(np.float64), float(z["passo"])
+        eixos = [(o[i] + (0.0, dy, dz)[i] + np.arange(d.shape[i]) * h).astype(np.float32) for i in range(3)]
+        return cls(eixos, d, reduzir=reduzir)
+
+    def combinar(self, g, reduzir=None):
+        return PeleGrade(self.eixos, g(self.P, self.F), reduzir=self.reduzir if reduzir is None else reduzir, P=self.P)
+
+    def recortar(self, lo, hi, margem=6.0):
+        idx = []
+        for i in range(3):
+            e = self.eixos[i]
+            a = max(int(np.searchsorted(e, lo[i] - margem)) - 1, 0)
+            b = min(int(np.searchsorted(e, hi[i] + margem)) + 1, len(e))
+            idx.append(slice(a, b))
+        return PeleGrade([self.eixos[i][idx[i]] for i in range(3)], self.F[tuple(idx)], reduzir=self.reduzir, P=self.P[tuple(idx)])
+
+
 def limpar(m: Manifold, minimo=5.0) -> Manifold:
     """Tira poeira: componentes soltos com menos de `minimo` mm³ (restos numéricos de booleanas)."""
     cs = m.decompose()
