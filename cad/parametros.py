@@ -370,6 +370,12 @@ DINO = NS(
     n_pecas=38,                        # contagem esperada de peças impressas (conferida pelo verificador)
 )
 
+# ------------------------------------------------------------------ SENSORES DA FASE 2 DOS BICHOS (rodada 2, etapa E3a)
+# Só espaço, bolso e passagem de fio (a fase 2 liga). Medidas NC = valor usual de placa "breakout" de mercado, sem
+# fonte lida nesta rodada: MEÇA a sua antes de imprimir (os bolsos têm folga).
+TOF = NS(nome="sensor de distância ToF VL53L1X (placa breakout)", placa=(25.0, 10.7), esp=3.5, janela_d=6.0, massa=1.0)   # NC
+MIC = NS(nome="microfone I2S INMP441 (placa redonda)", d=14.0, esp=3.5, furo_som=2.0, massa=1.0)                         # NC
+
 # ------------------------------------------------------------------ CAPIVARA (modelo 2)
 # Rodada 2: a casca vem da malha de image-to-3D (cad/peles/capivara.npz, 300 mm de altura, convertida por
 # cad/pele_malha.py) e o esqueleto é o "baixo e largo" de cad/comum/base_baixa.py (junta do pescoço em Z=150, e não
