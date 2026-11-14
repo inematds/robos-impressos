@@ -119,5 +119,5 @@
  "ver_nao_t": "O que só a impressão vai dizer",
  "ver_nao_li": "<li>As folgas reais na sua impressora: por isso a peça de teste vem primeiro.</li><li>As medidas marcadas como NC nos componentes comprados.</li><li>O tempo e o peso de verdade: os números são estimativas sem fatiador.</li><li>A força das engrenagens e do garfo em uso.</li><li>A parte elétrica: nenhum fio foi ligado ainda.</li>",
  "ver_nota": "Para gerar os arquivos e repetir os testes no seu computador:",
- "entrada_link": "Cubo: página nova com lista e STL"
+ "entrada_link": "Robô quadrado (cubo): página nova com lista de compras e STL"
 }

@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Robô quadrado de mesa: imprima, compre pela lista e monte — robos-impressos</title>
+<meta name="description" content="Robô de mesa de 20 cm com tela no rosto: arquivos STL e 3MF já na posição de impressão, lista de compras com preço estimado e link, e a montagem passo a passo.">
+<link rel="alternate" hreflang="pt-BR" href="https://inematds.github.io/robos-impressos/guia/cubo/">
+<link rel="alternate" hreflang="en" href="https://inematds.github.io/robos-impressos/guia/en/cubo/">
+<link rel="alternate" hreflang="es" href="https://inematds.github.io/robos-impressos/guia/es/cubo/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0c10; --bg2:#14141b; --card:#16161e; --line:#272730;
+    --txt:#e9e9ee; --mut:#9a9aa6; --amb:#E2A23B; --amb2:#f0c070; --sky:#38bdf8; --pro:#cbd5e1;
+    color-scheme:dark;
+  }
+  body.light{
+    --bg:#f6f7f9; --bg2:#eceef2; --card:#ffffff; --line:#e1e3ea;
+    --txt:#1a1a22; --mut:#5b5b68; --amb:#b9791d; --amb2:#a16207; --sky:#0369a1; --pro:#b45309;
+    color-scheme:light;
+  }
+  body.light .hero .glow{opacity:.5}
+  body.light pre{background:#0e0e14;color:#d6d6e0}
+  body.light pre .c{color:#8a8a98}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:Sora,sans-serif;line-height:1.15;margin:0}
+  a{color:var(--amb);text-decoration:none}
+  code,pre{font-family:"JetBrains Mono",monospace}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 22px}
+  .mut{color:var(--mut)} .amb{color:var(--amb)}
+  .chip{display:inline-block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amb);font-weight:600;font-family:Sora}
+  nav{position:sticky;top:0;z-index:30;backdrop-filter:blur(12px);background:rgba(12,12,16,.78);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;gap:22px;height:60px}
+  nav .brand{display:flex;align-items:center;gap:8px;font-family:Sora;font-weight:800;letter-spacing:-.02em;color:var(--amb)}
+  nav .brand .emoji{font-size:1.25rem}
+  nav .sep{color:var(--mut);opacity:.45}
+  nav .inema{color:var(--sky);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .inema:hover{filter:brightness(1.15)}
+  nav .pro{color:var(--pro);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .pro:hover{filter:brightness(1.15)}
+  nav .clubpro{display:inline-flex;align-items:center;gap:6px}
+  nav .links{margin-left:auto;display:flex;align-items:center;gap:20px;font-size:.92rem}
+  nav .links a.sec{color:var(--mut)} nav .links a.sec:hover{color:var(--txt)}
+  .lang{display:inline-flex;gap:2px;font-family:Sora;font-size:.78rem}
+  .lang a{color:var(--mut);padding:.2em .45em;border-radius:6px} .lang a.on{color:var(--amb);background:rgba(226,162,59,.12)}
+  .tgl{background:var(--bg2);border:1px solid var(--line);color:var(--txt);width:38px;height:38px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:1.05rem}
+  .tgl:hover{border-color:var(--amb)}
+  .btn{display:inline-block;background:var(--amb);color:#1a1206;font-weight:600;padding:.6em 1.05em;border-radius:10px;font-family:Sora}
+  .btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+  @media(max-width:760px){nav .links a.sec{display:none}}
+  @media(max-width:520px){nav .wrap{gap:8px;padding:8px 14px;height:auto;flex-wrap:wrap} nav .links{gap:8px;margin-left:0;width:100%;justify-content:space-between} nav .btn{padding:.45em .7em;font-size:.82rem} .tgl{width:34px;height:34px}}
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero .glow{position:absolute;inset:-40% -20% auto auto;width:70%;height:600px;background:radial-gradient(closest-side,rgba(226,162,59,.22),transparent 70%);pointer-events:none}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:74px 22px}
+  .hero h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;letter-spacing:-.025em}
+  .hero p.lead{font-size:1.18rem;color:var(--mut);margin:1.1em 0 1.6em;max-width:34ch}
+  .hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .hero figure{margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000}
+  .hero figure img{width:100%;height:auto;display:block}
+  .resumo{padding:38px 0 34px;border-bottom:1px solid var(--line)}
+  .resumo p{font-size:1.12rem;line-height:1.7;max-width:74ch;margin:.55em 0 0}
+  @media(max-width:780px){.hero .wrap{grid-template-columns:1fr;padding:48px 22px}}
+  section{padding:62px 0;border-bottom:1px solid var(--line)}
+  section h2{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:800;letter-spacing:-.02em}
+  section .sub{color:var(--mut);margin:.6em 0 2em;max-width:62ch}
+  .grid{display:grid;gap:16px}
+  .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:820px){.g3,.g4{grid-template-columns:1fr 1fr}}
+  @media(max-width:540px){.g2,.g3,.g4{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .card h3{font-size:1.05rem;margin-bottom:.4em}
+  .card p{color:var(--mut);font-size:.92rem;margin:0}
+  .num{display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border-radius:8px;background:rgba(226,162,59,.14);color:var(--amb);font-family:Sora;font-weight:800;font-size:.9rem;margin-bottom:.7em}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+  .flow span{background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:.45em .9em;font-size:.85rem;font-family:Sora;font-weight:600}
+  .flow .arr{color:var(--amb);border:none;background:none;padding:0 .1em}
+  pre{background:#0a0a0e;border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow:auto;font-size:.86rem;line-height:1.6;color:#d6d6e0}
+  pre .c{color:#6f6f7c} pre .k{color:var(--amb2)} pre .s{color:#9ece6a}
+  .step{display:grid;grid-template-columns:46px minmax(0,1fr);gap:16px;margin-bottom:26px}
+  .step>div,.card{min-width:0}
+  p code,li code,td code{overflow-wrap:anywhere}
+  .step .b{width:46px;height:46px;border-radius:12px;background:var(--amb);color:#1a1206;font-family:Sora;font-weight:800;font-size:1.25rem;display:flex;align-items:center;justify-content:center}
+  .step h3{font-size:1.12rem;margin-bottom:.3em}
+  .step p{color:var(--mut);margin:.2em 0 .7em}
+  .ex{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:680px){.ex{grid-template-columns:1fr}}
+  .ex figure{margin:0;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  .ex figure img{width:100%;height:auto;display:block}
+  .ex figcaption{padding:12px 14px;font-size:.88rem;color:var(--mut);background:var(--card)}
+  .phase{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .phase:last-child{border:none}
+  .phase .tag{flex:0 0 92px;font-family:Sora;font-weight:800;color:var(--amb)}
+  .phase .d strong{display:block;margin-bottom:.2em}
+  .phase .d span{color:var(--mut);font-size:.92rem}
+  footer{padding:46px 0;text-align:center;color:var(--mut);font-size:.9rem}
+  .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:.3em .8em;font-size:.78rem;color:var(--mut);margin:0 4px}
+
+  .techhead{background:var(--bg2);border-top:3px solid var(--amb);padding:58px 0 8px}
+  .techhead h2{font-family:Sora;margin:.3em 0 0}
+  .techzone{background:var(--bg2)}
+  .nota{font-size:.88rem;color:var(--mut);margin-top:14px;max-width:80ch}
+  .mini{font-size:.82rem;color:var(--mut);margin:.4em 0 0}
+  .shot{display:block;width:100%;border-radius:12px;border:1px solid var(--line);margin:0 0 14px;background:#e9e9ee}
+  .g2{grid-template-columns:repeat(2,1fr)} .g4{grid-template-columns:repeat(4,1fr)}
+  .numero{text-align:center} .numero b{display:block;font-family:Sora;font-size:2.1rem;color:var(--amb);line-height:1.15} .numero span{display:block;font-size:.9rem;color:var(--mut);margin-top:6px}
+  .arraste{display:none;font-size:.8rem;color:var(--mut);margin:18px 0 -14px}
+  .sep4{font-family:Sora;margin:22px 0 10px}
+  #pecas,#compras,section{scroll-margin-top:76px} .hero figcaption.mini{padding:8px 12px 10px}
+  .glossario{margin:18px 0 0;display:grid;grid-template-columns:max-content 1fr;gap:8px 18px} .glossario dt{font-weight:700;color:var(--amb)} .glossario dd{margin:0}
+  .tabela-wrap{overflow-x:auto;margin:22px 0 6px;border:1px solid var(--line);border-radius:12px}
+  .tabela{border-collapse:collapse;width:100%;font-size:.9rem;min-width:560px}
+  .tabela th,.tabela td{padding:8px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+  .tabela th{font-family:Sora;font-size:.82rem;color:var(--mut);background:var(--bg2)}
+  .tabela tr:last-child td{border-bottom:0}
+  .barras{margin-top:22px} .barra{display:grid;grid-template-columns:150px 1fr 60px;gap:10px;align-items:center;margin:8px 0;font-size:.92rem}
+  .barra i{display:block;height:16px;border-radius:8px;background:var(--amb)}
+  .lista{margin:.4em 0 0 1.2em;padding:0} .lista li{margin:.3em 0}
+  .sep3{font-family:Sora;margin:34px 0 0}
+  pre.saida{white-space:pre-wrap;font-size:.8rem;line-height:1.5}
+  .card ul{margin:.5em 0 0 1.1em;padding:0} .card li{margin:.35em 0}
+  @media(max-width:1180px){nav .links .sec{display:none}}
+  @media(max-width:860px){.g2,.g4{grid-template-columns:1fr}.barra{grid-template-columns:110px 1fr 50px}.arraste{display:block}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:.74rem}figcaption.mini{padding:8px 4px 0}.glossario{grid-template-columns:1fr;gap:2px 0}.glossario dd{margin:0 0 10px}}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a class="brand" href="../"><span class="emoji">🤖</span> robos-impressos</a>
+  <span class="sep">|</span>
+  <span class="clubpro">
+    <a class="inema" href="https://inema.club" target="_blank" rel="noopener">INEMA.CLUB</a>
+    <span class="sep">-</span>
+    <a class="pro" href="https://inema.pro" target="_blank" rel="noopener">PRO</a>
+  </span>
+  <div class="links">
+    <a class="sec" href="#robo">O robô</a>
+    <a class="sec" href="#comprar">Comprar</a>
+    <a class="sec" href="#caminho">O caminho</a>
+    <a class="sec" href="#tecnico">Imprimir e montar</a>
+    <span class="lang"><a class="on" href="./">PT</a><a href="../en/cubo/">EN</a><a href="../es/cubo/">ES</a></span>
+    <button class="tgl" id="themeToggle" aria-label="Alternar tema claro/escuro" title="Alternar tema claro/escuro">🌙</button>
+    <a class="btn" href="https://github.com/inematds/robos-impressos" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</div></nav>
+
+<header class="hero" id="top">
+  <div class="glow"></div>
+  <div class="wrap">
+    <div>
+      <span class="chip">Fase 1: mecânica · ainda não impresso</span>
+      <h1>Você imprime, compra pela lista e <span class="amb">monta seu robô de mesa</span></h1>
+      <p class="lead">Projeto de robô costuma travar no meio: falta um parafuso, a peça não cabe na impressora, ninguém diz o que comprar. Aqui os arquivos já vêm deitados na posição de impressão, a lista de compras tem quantidade, preço estimado e link, e a montagem vai do primeiro inserto até a porta da bateria.</p>
+      <div class="cta">
+        <a class="btn" href="#robo">Ver o robô</a>
+        <a class="btn ghost" href="#comprar">Lista de compras</a>
+        <a class="btn ghost" href="https://github.com/inematds/robos-impressos/raw/main/projetos/cubo/cubo-stl.zip">Baixar os arquivos (zip)</a>
+      </div>
+    </div>
+    <figure><img src="assets/cubo-montado.jpg" alt="Render do robô quadrado de mesa: cabeça branca em cubo com painel escuro e tela mostrando dois olhos, sobre uma base cinza baixa"><figcaption class="mini">Render do modelo real, o mesmo que gera os arquivos de impressão. A tela mostra o rosto que o robô vai desenhar.</figcaption></figure>
+  </div>
+</header>
+
+<section id="resumo" class="resumo"><div class="wrap">
+  <span class="chip">Em resumo</span>
+  <p>O robô quadrado é um robô de mesa de 20 cm para você imprimir em casa e montar. A cabeça é um cubo com uma tela de 3,5 polegadas no rosto; ela gira quase uma volta inteira e inclina para cima e para baixo. Dentro vão um Raspberry Pi, um Arduino, dois servos e uma bateria que carrega por USB-C. Você precisa de uma impressora 3D com mesa de 256 mm, das peças da lista de compras e de um ferro de solda. Esta é a fase 1: o corpo e os encaixes. A programação (voz, câmera, IA) vem na fase 2.</p>
+  <figure style="margin:26px 0 0;max-width:760px;border-radius:16px;overflow:hidden;border:1px solid var(--line)"><img src="assets/cubo-vistas.jpg" alt="Quatro vistas do robô: frente, três quartos pelos dois lados e costas" style="display:block;width:100%"></figure>
+  <p class="nota">Todas as imagens desta página são renders do modelo 3D real. Nada foi impresso ainda: o primeiro a imprimir é você, começando pela peça de teste. Os outros robôs do projeto estão no <a href="../">guia geral dos robôs</a></p>
+</div></section>
+
+<!-- VIDEO: entra o explicavideo do projeto quando publicado -->
+
+<section id="robo"><div class="wrap">
+  <span class="chip">O robô</span>
+  <h2>O que vai ficar na sua mesa</h2>
+  <p class="sub">Um cubo com rosto, em cima de uma base baixa. Nenhum parafuso aparece de frente: tudo é preso por baixo ou por trás.</p>
+  <div class="grid g4">
+    <div class="card numero"><b>20 cm</b><span>de altura, montado</span></div>
+    <div class="card numero"><b>15</b><span>peças impressas, em 7 mesas</span></div>
+    <div class="card numero"><b>~28 h</b><span>de impressão (estimativa)</span></div>
+    <div class="card numero"><b>~735 g</b><span>de filamento (estimativa)</span></div>
+  </div>
+  <div class="grid g2" style="margin-top:22px">
+    <div class="card"><img class="shot" src="assets/cubo-explodido.jpg" alt="Vista explodida: copo da cabeça, quadro amarelo com o Raspberry Pi e a tela, painel do rosto, garfo, pescoço com engrenagens, tampa e base com as placas"><h3>Por dentro</h3><p>Na cabeça ficam a tela, o Raspberry Pi e o servo que inclina. Na base ficam o Arduino, a bateria, os conversores de energia e o servo que gira o pescoço. Os cabos sobem por dentro do pescoço, que é oco.</p></div>
+    <div class="card"><img class="shot" src="assets/cubo-esqueleto.jpg" alt="Só as peças de PETG: base, tampa, pescoço, engrenagens, garfo e quadro da cabeça"><h3>O que segura o peso</h3><p>As peças que fazem força são de PETG: base, tampa, pescoço, engrenagens, garfo e o quadro da cabeça. O copo branco e o painel escuro do rosto são de PLA e só vestem o robô.</p></div>
+  </div>
+  <div class="grid g3" style="margin-top:22px">
+    <div class="card"><h3>↔️ Gira ±170°</h3><p>Um servo comum de 180° move duas engrenagens impressas, de 44 e 22 dentes. O pescoço gira o dobro do servo: quase uma volta inteira.</p></div>
+    <div class="card"><h3>↕️ Inclina de −25° a +30°</h3><p>O servo que inclina fica escondido dentro da cabeça. De fora você só vê o pescoço fino.</p></div>
+    <div class="card"><h3>🙂 Rosto na tela</h3><p>A tela de 3,5 polegadas encaixa direto no Raspberry Pi. Os olhos e a boca são desenhados nela pelo programa, que é a fase 2.</p></div>
+  </div>
+  <p class="nota">O verificador do projeto confere o equilíbrio com a cabeça em 10 posições. O resultado está no fim desta página.</p>
+</div></section>
+
+<section id="comprar"><div class="wrap">
+  <span class="chip">Lista de compras</span>
+  <h2>O que você precisa comprar</h2>
+  <p class="sub">Cada item com a quantidade, para que serve, a faixa de preço e um link de busca. Os parafusos estão contados um a um.</p>
+  <div class="grid g3">
+    <div class="card numero"><b>R$ 857–1793</b><span>peças da fase 1, sem filamento e sem ferramentas</span></div>
+    <div class="card numero"><b>R$ 814–1703</b><span>se você já tem o Arduino Uno</span></div>
+    <div class="card numero"><b>R$ 66–110</b><span>de filamento, pelo peso das peças</span></div>
+  </div>
+  <p class="nota">Preço é estimativa em faixa, não orçamento. A coluna "Visto em loja" traz o preço lido em usinainfo.com.br em 14/11/2026; onde diz "não conferido", a faixa é só referência. Os links abrem a busca do Mercado Livre, onde os preços não foram lidos.</p>
+  <p class="arraste">Arraste a tabela para o lado para ver todas as colunas.</p>
+  <h3 class="sep3">Cérebro, tela e movimento</h3>
+<div class="tabela-wrap"><table class="tabela">
+<thead><tr><th>Item</th><th>Qtd</th><th>Para que serve</th><th>Preço estimado</th><th>Visto em loja</th><th>Onde procurar</th></tr></thead>
+<tbody>
+<tr><td>Raspberry Pi 4 Model B, 4 GB</td><td>1</td><td>Cérebro do robô. Fica dentro da cabeça, atrás da tela. O Pi 5 também serve, mas o conversor de 3 A limita as portas USB dele a 0,6 A.</td><td>R$ 450–800 (cada)</td><td>não conferido</td><td><a href="https://lista.mercadolivre.com.br/raspberry-pi-4-model-b-4gb" target="_blank" rel="noopener">Mercado Livre</a></td></tr>
+<tr><td>Cartão microSD 32 GB classe 10</td><td>1</td><td>Sistema do Raspberry Pi.</td><td>R$ 25–50 (cada)</td><td>não conferido</td><td><a href="https://lista.mercadolivre.com.br/cartao-micro-sd-32gb-classe-10" target="_blank" rel="noopener">Mercado Livre</a></td></tr>
+<tr><td>Tela TFT 3,5" 480 × 320 para Raspberry Pi (MPI3501, encaixa no GPIO)</td><td>1</td><td>O rosto do robô. Encaixa direto nos pinos do Pi, sem parafuso. NC: espessura do conjunto (7 mm) e altura sobre o Pi (24,5 mm).</td><td>R$ 90–200 (cada)</td><td>R$ 193,57</td><td><a href="https://lista.mercadolivre.com.br/display-lcd-tft-3.5-raspberry-pi-mpi3501" target="_blank" rel="noopener">Mercado Livre</a></td></tr>
+<tr><td>Servo MG996R de 180° (posição, não o de rotação contínua)</td><td>2</td><td>Um gira o pescoço (pan), o outro inclina a cabeça (tilt). O kit do servo precisa trazer o horn redondo (disco). NC: espessura e furos das abas, diâmetro e espessura do horn redondo.</td><td>R$ 30–75 (cada)</td><td>R$ 70,45</td><td><a href="https://lista.mercadolivre.com.br/servo-mg996r-180-graus" target="_blank" rel="noopener">Mercado Livre</a></td></tr>
+<tr><td>Arduino Uno R3 (você talvez já tenha)</td><td>1</td><td>Comanda os 2 servos. Fica no piso da base, em 4 ressaltos.</td><td>R$ 43–90 (cada)</td><td>R$ 43,28 a R$ 89,95</td><td><a href="https://lista.mercadolivre.com.br/arduino-uno-r3" target="_blank" rel="noopener">Mercado Livre</a></td></tr>
+<tr><td>Sensor Shield V5.0 para Arduino</td><td>1</td><td>Encaixa em cima do Uno e dá os conectores de 3 pinos dos servos, com alimentação separada.</td><td>R$ 11–35 (cada)</td><td>R$ 18,13</td><td><a href="https://lista.mercadolivre.com.br/sensor-shield-v5-arduino" target="_blank" rel="noopener">Mercado Livre</a></td></tr>
+</tbody></table></div>
+<h3 class="sep3">Energia</h3>
+<div class="tabela-wrap"><table class="tabela">
+<thead><tr><th>Item</th><th>Qtd</th><th>Para que serve</th><th>Preço estimado</th><th>Visto em loja</th><th>Onde procurar</th></tr></thead>
+<tbody>
+<tr><td>Bateria 18650 de íon de lítio 3,7 V (célula solta)</td><td>2</td><td>Pack 2S: 7,4 V nominais (8,4 V cheio). Compre células de marca conhecida.</td><td>R$ 13–45 (cada)</td><td>R$ 26,08 o kit com 2</td><td><a href="https://lista.mercadolivre.com.br/bateria-18650-3.7v" target="_blank" rel="noopener">Mercado Livre</a></td></tr>
+<tr><td>Suporte para 2 baterias 18650 lado a lado, com fios</td><td>1</td><td>Segura as 2 células. Desliza no berço da base e sai pela porta de trás. NC: o berço aceita até 78 × 41 × 22 mm.</td><td>R$ 5–15 (cada)</td><td>R$ 6,22</td><td><a href="https://lista.mercadolivre.com.br/suporte-2-baterias-18650" target="_blank" rel="noopener">Mercado Livre</a></td></tr>
+<tr><td>Placa de proteção BMS 2S 10 A (modelo 10A2S, ~24 × 11 mm)</td><td>1</td><td>Corta a descarga funda, a sobrecarga e o curto. Vai soldada nos fios da bateria, presa com fita dupla-face.</td><td>R$ 8–20 (cada)</td><td>não conferido</td><td><a href="https://lista.mercadolivre.com.br/bms-2s-10a-18650" target="_blank" rel="noopener">Mercado Livre</a></td></tr>
+<tr><td>Carregador USB-C 2S/3S com balanceamento (LX-USC-V2)</td><td>1</td><td>Carrega o pack com qualquer fonte USB-C de celular, sem abrir o robô. Pede um 3º fio soldado no ponto do meio do suporte (entre as duas células). NC: tamanho da boca USB-C na janela de trás (9,2 × 3,4 mm).</td><td>R$ 15–30 (cada)</td><td>R$ 17,90</td><td><a href="https://lista.mercadolivre.com.br/carregador-usb-c-2s-18650-balanceamento" target="_blank" rel="noopener">Mercado Livre</a></td></tr>
+<tr><td>Conversor step-down LM2596 ajustável (placa azul, 3 A)</td><td>1</td><td>Baixa a tensão do pack para os 5 V do Raspberry Pi. Ajuste para 5,1 V com o multímetro ANTES de ligar o Pi. O XL4015 não serve aqui: pede no mínimo 8 V.</td><td>R$ 8–20 (cada)</td><td>R$ 10,22</td><td><a href="https://lista.mercadolivre.com.br/modulo-step-down-lm2596" target="_blank" rel="noopener">Mercado Livre</a></td></tr>
+<tr><td>UBEC 6 V 3 A (Hobbywing UBEC 3A 2-6S ou equivalente)</td><td>1</td><td>Alimenta os 2 servos em 6 V, separado do Pi.</td><td>R$ 25–60 (cada)</td><td>não conferido</td><td><a href="https://lista.mercadolivre.com.br/ubec-3a-5v-6v-hobbywing" target="_blank" rel="noopener">Mercado Livre</a></td></tr>
+<tr><td>Capacitor eletrolítico 1000 µF 16 V</td><td>1</td><td>No barramento de 6 V dos servos: segura o pico de corrente da partida.</td><td>R$ 1–4 (cada)</td><td>R$ 2,33</td><td><a href="https://lista.mercadolivre.com.br/capacitor-eletrolitico-1000uf-16v" target="_blank" rel="noopener">Mercado Livre</a></td></tr>
+<tr><td>Chave gangorra KCD11 (recorte de 13,5 × 9 mm)</td><td>1</td><td>Liga e desliga. Encaixa por pressão na parede de trás. NC: espessura de painel que a trava da chave aceita.</td><td>R$ 3–8 (cada)</td><td>R$ 3,74 a R$ 5,40</td><td><a href="https://lista.mercadolivre.com.br/chave-gangorra-kcd11" target="_blank" rel="noopener">Mercado Livre</a></td></tr>
+<tr><td>Adaptador USB-C macho com bornes (2 pinos)</td><td>1</td><td>Leva os 5 V do conversor até a entrada USB-C do Raspberry Pi (os pinos do GPIO ficam ocupados pela tela).</td><td>R$ 8–20 (cada)</td><td>R$ 13,11</td><td><a href="https://lista.mercadolivre.com.br/adaptador-usb-c-macho-borne" target="_blank" rel="noopener">Mercado Livre</a></td></tr>
+<tr><td>Fio flexível 22 AWG, vermelho e preto (2 m de cada)</td><td>1</td><td>Ligações de energia e o 3º fio do balanceamento.</td><td>R$ 10–25 (total)</td><td>R$ 22,40 (5 m bicolor)</td><td><a href="https://lista.mercadolivre.com.br/fio-flexivel-22awg-vermelho-preto" target="_blank" rel="noopener">Mercado Livre</a></td></tr>
+<tr><td>Jumpers Dupont de 20 cm (kit com 20, fêmea-fêmea e macho-fêmea)</td><td>2 kits</td><td>Sinais entre as placas. O cabo do servo de tilt desce pelo pescoço: use uma extensão de servo de 30 cm se o cabo dele não alcançar o shield.</td><td>R$ 6–12 (kit)</td><td>R$ 6,61 o kit</td><td><a href="https://lista.mercadolivre.com.br/jumper-dupont-20cm" target="_blank" rel="noopener">Mercado Livre</a></td></tr>
+</tbody></table></div>
+<h3 class="sep3">Fixação</h3>
+<div class="tabela-wrap"><table class="tabela">
+<thead><tr><th>Item</th><th>Qtd</th><th>Para que serve</th><th>Preço estimado</th><th>Visto em loja</th><th>Onde procurar</th></tr></thead>
+<tbody>
+<tr><td>Inserto de latão M3 a quente (para furo de 4,0 mm, até 5,7 mm de comprimento)</td><td>16 (compre 20)</td><td>A rosca de metal das peças: 4 na tampa, 1 na orelha da porta, 4 nos pilares do painel do rosto, 4 nas colunas do quadro, 3 no garfo.</td><td>R$ 15–40 (pacote)</td><td>não conferido</td><td><a href="https://lista.mercadolivre.com.br/inserto-latao-m3-impressao-3d" target="_blank" rel="noopener">Mercado Livre</a></td></tr>
+<tr><td>Parafuso M3 × 8 mm, cabeça cilíndrica Allen</td><td>13</td><td>4 do Arduino, 4 do painel do rosto, 4 do copo da cabeça, 1 da porta.</td><td>R$ 3–8 (kit com 10)</td><td>R$ 6,14 o kit com 10</td><td><a href="https://lista.mercadolivre.com.br/parafuso-allen-m3x8" target="_blank" rel="noopener">Mercado Livre</a></td></tr>
+<tr><td>Parafuso M3 × 10 mm, cabeça cilíndrica Allen</td><td>4</td><td>Tampa da base, por baixo. Tem de ser Allen de cabeça cilíndrica: a cabeça fica no fundo de um furo de 44 mm.</td><td>R$ 3–8 (kit com 10)</td><td>R$ 3,55 o kit com 10 (Phillips)</td><td><a href="https://lista.mercadolivre.com.br/parafuso-allen-m3x10" target="_blank" rel="noopener">Mercado Livre</a></td></tr>
+<tr><td>Parafuso M3 × 12 mm</td><td>8</td><td>4 em cada servo MG996R, rosqueados direto no plástico (furo de 2,7 mm).</td><td>R$ 3–8 (kit com 10)</td><td>não conferido</td><td><a href="https://lista.mercadolivre.com.br/parafuso-m3x12" target="_blank" rel="noopener">Mercado Livre</a></td></tr>
+<tr><td>Parafuso M3 × 45 mm, cabeça cilíndrica Allen</td><td>3</td><td>Tirantes do pescoço: entram por baixo da engrenagem, atravessam o tubo e rosqueiam nos insertos do garfo.</td><td>R$ 1–3 (cada)</td><td>não conferido</td><td><a href="https://lista.mercadolivre.com.br/parafuso-allen-m3x45" target="_blank" rel="noopener">Mercado Livre</a></td></tr>
+<tr><td>Parafuso M5 × 16 mm</td><td>1</td><td>Pino do tilt: passa pela lateral do quadro e rosqueia no braço do garfo. A cabeça inclina em volta dele.</td><td>R$ 3–8 (kit com 10)</td><td>R$ 6,04 o kit com 10</td><td><a href="https://lista.mercadolivre.com.br/parafuso-m5x16" target="_blank" rel="noopener">Mercado Livre</a></td></tr>
+<tr><td>Parafuso M2,5 × 12 mm com porca M2,5</td><td>4 + 4</td><td>Prende o Raspberry Pi no quadro, com os 4 espaçadores impressos no meio.</td><td>R$ 5–15 (kit)</td><td>não conferido</td><td><a href="https://lista.mercadolivre.com.br/parafuso-m2.5x12-porca" target="_blank" rel="noopener">Mercado Livre</a></td></tr>
+<tr><td>Parafuso M2 × 8 mm auto-atarraxante</td><td>8</td><td>4 em cada horn redondo: prende a engrenagem no servo de pan e o garfo no servo de tilt. NC: diâmetro dos furos do horn redondo.</td><td>R$ 3–8 (kit com 10)</td><td>R$ 3,31 o kit com 10</td><td><a href="https://lista.mercadolivre.com.br/parafuso-m2x8-auto-atarraxante" target="_blank" rel="noopener">Mercado Livre</a></td></tr>
+<tr><td>Abraçadeira de nylon de 3,6 mm de largura (150 a 200 mm)</td><td>3 (pacote com 100)</td><td>Uma em cada berço: conversor de 5 V, UBEC e carregador.</td><td>R$ 8–20 (pacote)</td><td>não conferido</td><td><a href="https://lista.mercadolivre.com.br/abracadeira-nylon-3.6x200" target="_blank" rel="noopener">Mercado Livre</a></td></tr>
+<tr><td>Fita dupla-face de espuma</td><td>1 rolo</td><td>Prende a placa de proteção (BMS) no bolso raso do piso.</td><td>R$ 8–20 (rolo)</td><td>não conferido</td><td><a href="https://lista.mercadolivre.com.br/fita-dupla-face-espuma" target="_blank" rel="noopener">Mercado Livre</a></td></tr>
+</tbody></table></div>
+<h3 class="sep3">Ferramentas (se você não tiver)</h3>
+<div class="tabela-wrap"><table class="tabela">
+<thead><tr><th>Item</th><th>Qtd</th><th>Para que serve</th><th>Preço estimado</th><th>Visto em loja</th><th>Onde procurar</th></tr></thead>
+<tbody>
+<tr><td>Chave Allen de 2,5 mm longa (haste de 50 mm ou mais)</td><td>1</td><td>Aperta os 4 parafusos da tampa pelo fundo dos furos da base e os 3 tirantes do pescoço.</td><td>R$ 8–25 (cada)</td><td>não conferido</td><td><a href="https://lista.mercadolivre.com.br/chave-allen-2.5mm-longa" target="_blank" rel="noopener">Mercado Livre</a></td></tr>
+<tr><td>Ferro de solda</td><td>1</td><td>Assenta os 16 insertos a quente e solda os fios de energia.</td><td>R$ 40–120 (cada)</td><td>não conferido</td><td><a href="https://lista.mercadolivre.com.br/ferro-de-solda-60w" target="_blank" rel="noopener">Mercado Livre</a></td></tr>
+<tr><td>Multímetro</td><td>1</td><td>Ajusta o conversor em 5,1 V e confere a polaridade antes de ligar as placas.</td><td>R$ 40–100 (cada)</td><td>não conferido</td><td><a href="https://lista.mercadolivre.com.br/multimetro-digital" target="_blank" rel="noopener">Mercado Livre</a></td></tr>
+<tr><td>Paquímetro</td><td>1</td><td>Confere as medidas marcadas como NC antes de imprimir.</td><td>R$ 25–80 (cada)</td><td>não conferido</td><td><a href="https://lista.mercadolivre.com.br/paquimetro-digital-150mm" target="_blank" rel="noopener">Mercado Livre</a></td></tr>
+</tbody></table></div>
+  <p class="nota"><strong>NC</strong> quer dizer medida não confirmada. O modelo usa o valor mais comum desse componente; meça a sua peça com o paquímetro antes de imprimir a parte que encosta nela.</p>
+  <p class="nota">A mesma lista, em texto, para copiar: <a href="https://github.com/inematds/robos-impressos/blob/main/projetos/cubo/LISTA-DE-COMPRAS.md" target="_blank" rel="noopener">LISTA-DE-COMPRAS.md</a></p>
+</div></section>
+
+<section id="caminho"><div class="wrap">
+  <span class="chip">O caminho</span>
+  <h2>Do arquivo ao robô em 4 etapas</h2>
+  <p class="sub">A ordem importa: a primeira impressão dura menos de uma hora e evita perder um dia inteiro de impressora.</p>
+  <div class="phase"><div class="tag">1</div><div class="d"><strong>Imprima a peça de teste</strong><span>Um cupom pequeno com a janela do servo e furos de inserto e de parafuso em três folgas. Você descobre qual folga serve na sua impressora antes de gastar filamento.</span></div></div>
+  <div class="phase"><div class="tag">2</div><div class="d"><strong>Imprima as 7 mesas</strong><span>Os arquivos já vêm com as peças deitadas e separadas por cor. São cerca de 28 horas e 735 g de filamento, sem suporte em nenhuma peça.</span></div></div>
+  <div class="phase"><div class="tag">3</div><div class="d"><strong>Assente os insertos e monte</strong><span>16 insertos de latão com o ferro de solda, depois a base, a cabeça na bancada e, por último, a cabeça sobre a base.</span></div></div>
+  <div class="phase"><div class="tag">4</div><div class="d"><strong>Ligue a energia</strong><span>Bateria, placa de proteção, conversor de 5 V para o Raspberry Pi e de 6 V para os servos. O robô carrega por USB-C, sem abrir.</span></div></div>
+  <p class="nota">Cada etapa está detalhada na parte técnica, logo abaixo. <a href="#imprimir">ir para o passo a passo ↓</a></p>
+</div></section>
+
+<div id="tecnico" class="techhead"><div class="wrap">
+  <span class="chip">Parte técnica</span>
+  <h2>Para quem vai imprimir e montar</h2>
+  <p class="sub">Você não precisa desta parte para entender o robô. Ela é o manual: arquivos, configurações de impressão, parafusos, passos, energia e a prova de que as peças encaixam.</p>
+</div></div>
+<div class="techzone">
+
+<section id="baixar"><div class="wrap">
+  <span class="chip">Downloads</span>
+  <h2>Baixe os arquivos</h2>
+  <p class="sub">Tudo já está na posição de impressão, com a face de apoio encostada na mesa. Você não precisa girar nada no fatiador.</p>
+  <div class="grid g3">
+    <div class="card"><h3>📦 Tudo de uma vez</h3><p>Um zip com os 12 arquivos STL, os 7 arquivos 3MF de mesa e as instruções de impressão.</p><p><a class="btn" href="https://github.com/inematds/robos-impressos/raw/main/projetos/cubo/cubo-stl.zip">Baixar os arquivos (zip)</a></p></div>
+    <div class="card"><h3>🧩 Por mesa (3MF)</h3><p>Cada 3MF traz as peças de uma cor já arrumadas numa mesa de 256 mm. Abra no Bambu Studio e escolha o filamento.</p><p><a href="https://github.com/inematds/robos-impressos/tree/main/pecas/cubo/mesas" target="_blank" rel="noopener">abrir a pasta das mesas no GitHub</a></p></div>
+    <div class="card"><h3>📄 Peça por peça (STL)</h3><p>Um arquivo por peça, para qualquer fatiador. Os links diretos estão na tabela de peças, mais abaixo.</p><p><a href="https://github.com/inematds/robos-impressos/tree/main/pecas/cubo/stl" target="_blank" rel="noopener">abrir a pasta dos STL no GitHub</a></p></div>
+  </div>
+  <p class="nota">Os 3MF são genéricos: levam só a geometria e a posição, sem perfil de impressão nem cor. Eles foram relidos por script, mas ainda não foram abertos no Bambu Studio. Se algum não abrir, use os STL.</p>
+</div></section>
+
+<section id="imprimir"><div class="wrap">
+  <span class="chip">Impressão</span>
+  <h2>Como imprimir</h2>
+  <p class="sub">Bambu Lab A1, bico de 0,4 mm, camada de 0,2 mm. PETG nas peças que fazem força, PLA nas que só vestem.</p>
+
+  <div class="step"><div class="b">1</div><div>
+    <h3>Imprima primeiro a peça de teste</h3><p>Ela está na mesa 06, junto com os 4 espaçadores do Raspberry Pi. Teste nela o servo na janela, um inserto em cada um dos 3 furos (3,9, 4,0 e 4,1 mm) e os parafusos M3, M2,5 e M2. A covinha marca a medida que o projeto usa. Se outra folga ficar melhor, mude o valor em <code>cad/parametros.py</code> (bloco <code>FOLGA</code>) e gere as peças de novo.</p>
+    <a href="../assets/teste-encaixe.png" target="_blank" rel="noopener"><img class="shot" src="../assets/teste-encaixe.png" alt="Desenho da peça de teste com a janela do servo e os furos de inserto e de parafuso" style="max-width:640px;background:#fff"></a>
+    <p class="mini">Clique na imagem para ampliar. Nada deste projeto foi impresso ainda, por isso este teste vem antes de tudo.</p>
+  </div></div>
+  <div class="step"><div class="b">2</div><div>
+    <h3>Imprima as mesas nesta ordem</h3><p>Primeiro as peças pequenas que se encaixam umas nas outras, por último as duas impressões longas. Cada linha tem o link direto do arquivo.</p>
+    <img class="shot" src="assets/cubo-mesas.jpg" alt="As mesas de impressão vistas de cima, com as peças arrumadas por cor">
+    <p class="arraste">Arraste a tabela para o lado para ver todas as colunas.</p>
+    <div class="tabela-wrap"><table class="tabela">
+<thead><tr><th>Ordem</th><th>Arquivo da mesa</th><th>Material e cor</th><th>Peças</th><th>Filamento (g)</th><th>Tempo (h)</th><th>Por que nesta ordem</th></tr></thead>
+<tbody>
+<tr><td>1</td><td><a href="https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-06-pla-cinza.3mf" target="_blank" rel="noopener">cubo-mesa-06-pla-cinza.3mf</a></td><td>PLA cinza</td><td>teste-encaixe, 4 × espacador-pi</td><td>15</td><td>1,0</td><td>Comece por aqui. O cupom de teste mostra se o servo, os insertos e os parafusos entram com a folga certa na SUA impressora. Menos de 1 hora.</td></tr>
+<tr><td>2</td><td><a href="https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-04-petg-prata.3mf" target="_blank" rel="noopener">cubo-mesa-04-petg-prata.3mf</a></td><td>PETG prata</td><td>tubo-pescoco, engrenagem-pescoco</td><td>23</td><td>1,0</td><td>Tubo e engrenagem do pescoço: peças pequenas que já testam o encaixe com os tirantes.</td></tr>
+<tr><td>3</td><td><a href="https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-01-petg-amarelo.3mf" target="_blank" rel="noopener">cubo-mesa-01-petg-amarelo.3mf</a></td><td>PETG amarelo</td><td>quadro-cabeca, engrenagem-servo</td><td>88</td><td>3,4</td><td>Quadro da cabeça e engrenagem do servo: confira se o servo entra no rasgo e se as duas engrenagens rodam juntas sem prender.</td></tr>
+<tr><td>4</td><td><a href="https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-03-petg-grafite.3mf" target="_blank" rel="noopener">cubo-mesa-03-petg-grafite.3mf</a></td><td>PETG grafite</td><td>tampa-base, porta-traseira, garfo</td><td>129</td><td>5,0</td><td>Tampa, porta e garfo.</td></tr>
+<tr><td>5</td><td><a href="https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-02-petg-grafite.3mf" target="_blank" rel="noopener">cubo-mesa-02-petg-grafite.3mf</a></td><td>PETG grafite</td><td>base</td><td>222</td><td>8,2</td><td>Base: a impressão mais longa em PETG.</td></tr>
+<tr><td>6</td><td><a href="https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-07-pla-preto.3mf" target="_blank" rel="noopener">cubo-mesa-07-pla-preto.3mf</a></td><td>PLA preto</td><td>cabeca-face</td><td>53</td><td>2,0</td><td>Painel do rosto: a face que aparece vai na mesa, então limpe bem a mesa antes.</td></tr>
+<tr><td>7</td><td><a href="https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-05-pla-branco.3mf" target="_blank" rel="noopener">cubo-mesa-05-pla-branco.3mf</a></td><td>PLA branco</td><td>cabeca-corpo</td><td>204</td><td>7,7</td><td>Copo da cabeça: a impressão mais longa em PLA. Deixe por último, com a impressora já ajustada.</td></tr>
+</tbody></table></div>
+    <p class="mini">As cores são sugestão. Trocar a cor não muda nada; trocar PETG por PLA nas peças de força muda.</p>
+  </div></div>
+  <div class="step"><div class="b">3</div><div>
+    <h3>Configure cada peça</h3><p>O número de paredes (perímetros) e o preenchimento mudam de peça para peça: engrenagens e garfo levam mais. Nenhuma peça precisa de suporte na posição em que o arquivo vem.</p>
+    <p class="arraste">Arraste a tabela para o lado para ver todas as colunas.</p>
+    <div class="tabela-wrap"><table class="tabela">
+<thead><tr><th>Arquivo</th><th>Qtd</th><th>Material e cor</th><th>Tamanho na mesa (mm)</th><th>Como vai na mesa</th><th>Suporte</th><th>Paredes</th><th>Preenchimento</th><th>Filamento (g)</th><th>Tempo (h)</th></tr></thead>
+<tbody>
+<tr><td><a href="https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/stl/cubo-base.stl" target="_blank" rel="noopener">cubo-base.stl</a></td><td>1</td><td>PETG grafite</td><td>158 × 146 × 56,5</td><td>piso na mesa</td><td>não</td><td>4</td><td>20 %</td><td>222</td><td>8,2</td></tr>
+<tr><td><a href="https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/stl/cubo-tampa-base.stl" target="_blank" rel="noopener">cubo-tampa-base.stl</a></td><td>1</td><td>PETG grafite</td><td>158 × 146 × 18</td><td>de cabeça para baixo: a face de cima na mesa</td><td>não</td><td>4</td><td>25 %</td><td>101</td><td>3,8</td></tr>
+<tr><td><a href="https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/stl/cubo-porta-traseira.stl" target="_blank" rel="noopener">cubo-porta-traseira.stl</a></td><td>1</td><td>PETG grafite</td><td>45,4 × 52,6 × 5</td><td>face de fora na mesa</td><td>não</td><td>3</td><td>20 %</td><td>9</td><td>0,4</td></tr>
+<tr><td><a href="https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/stl/cubo-tubo-pescoco.stl" target="_blank" rel="noopener">cubo-tubo-pescoco.stl</a></td><td>1</td><td>PETG prata</td><td>40 × 40 × 32,6</td><td>de cabeça para baixo: o topo (lado do garfo) na mesa, a flange cônica abre a 45°</td><td>não</td><td>5</td><td>40 %</td><td>16</td><td>0,7</td></tr>
+<tr><td><a href="https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/stl/cubo-engrenagem-pescoco.stl" target="_blank" rel="noopener">cubo-engrenagem-pescoco.stl</a></td><td>1</td><td>PETG prata</td><td>36 × 36 × 8</td><td>deitada</td><td>não</td><td>5</td><td>60 %</td><td>8</td><td>0,3</td></tr>
+<tr><td><a href="https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/stl/cubo-engrenagem-servo.stl" target="_blank" rel="noopener">cubo-engrenagem-servo.stl</a></td><td>1</td><td>PETG amarelo</td><td>69 × 69 × 8</td><td>de cabeça para baixo: a face de cima na mesa, o rebaixo do horn para cima</td><td>não</td><td>5</td><td>60 %</td><td>23</td><td>0,9</td></tr>
+<tr><td><a href="https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/stl/cubo-garfo.stl" target="_blank" rel="noopener">cubo-garfo.stl</a></td><td>1</td><td>PETG grafite</td><td>44 × 41,9 × 24</td><td>deitado, costas na mesa: as camadas correm do bloco para os braços</td><td>não</td><td>5</td><td>40 %</td><td>19</td><td>0,8</td></tr>
+<tr><td><a href="https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/stl/cubo-quadro-cabeca.stl" target="_blank" rel="noopener">cubo-quadro-cabeca.stl</a></td><td>1</td><td>PETG amarelo</td><td>129,2 × 74,6 × 63,7</td><td>frente da travessa na mesa, laterais para cima</td><td>não</td><td>4</td><td>30 %</td><td>65</td><td>2,4</td></tr>
+<tr><td><a href="https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/stl/cubo-cabeca-corpo.stl" target="_blank" rel="noopener">cubo-cabeca-corpo.stl</a></td><td>1</td><td>PLA branco</td><td>136 × 118 × 102</td><td>costas na mesa, boca (frente) para cima, como um copo</td><td>não</td><td>3</td><td>15 %</td><td>204</td><td>7,7</td></tr>
+<tr><td><a href="https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/stl/cubo-cabeca-face.stl" target="_blank" rel="noopener">cubo-cabeca-face.stl</a></td><td>1</td><td>PLA preto</td><td>129,9 × 111,9 × 34,2</td><td>face da frente (a que aparece) na mesa, pilares para cima</td><td>não</td><td>3</td><td>20 %</td><td>53</td><td>2,0</td></tr>
+<tr><td><a href="https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/stl/cubo-espacador-pi.stl" target="_blank" rel="noopener">cubo-espacador-pi.stl</a></td><td>4</td><td>PLA cinza</td><td>6 × 6 × 5</td><td>em pé</td><td>não</td><td>3</td><td>15 %</td><td>0</td><td>0,3</td></tr>
+<tr><td><a href="https://github.com/inematds/robos-impressos/raw/main/pecas/comum/stl/comum-teste-encaixe.stl" target="_blank" rel="noopener">comum-teste-encaixe.stl</a></td><td>1</td><td>PLA cinza</td><td>70 × 34 × 8</td><td>deitada</td><td>não</td><td>3</td><td>15 %</td><td>15</td><td>0,6</td></tr>
+<tr><td><strong>Total</strong></td><td><strong>15</strong></td><td></td><td></td><td></td><td></td><td></td><td></td><td><strong>735</strong></td><td><strong>28,2</strong></td></tr>
+</tbody></table></div>
+    <p class="mini">Filamento e tempo são estimativas por volume, sem fatiador.</p>
+  </div></div>
+  <div class="step"><div class="b">4</div><div>
+    <h3>Separe o filamento</h3><p>Quanto de cada cor, somando todas as peças.</p>
+    <div class="tabela-wrap"><table class="tabela">
+<thead><tr><th>Material e cor</th><th>Filamento (g)</th><th>Tempo (h)</th></tr></thead>
+<tbody>
+<tr><td>PETG amarelo</td><td>88</td><td>3,4</td></tr>
+<tr><td>PETG grafite</td><td>352</td><td>13,1</td></tr>
+<tr><td>PETG prata</td><td>23</td><td>1,0</td></tr>
+<tr><td>PLA branco</td><td>204</td><td>7,7</td></tr>
+<tr><td>PLA cinza</td><td>15</td><td>1,0</td></tr>
+<tr><td>PLA preto</td><td>53</td><td>2,0</td></tr>
+<tr><td><strong>Total</strong></td><td><strong>735</strong></td><td><strong>28,2</strong></td></tr>
+</tbody></table></div>
+    <p class="mini">Peso e tempo são estimativas por volume. O fatiador vai dar o número de verdade.</p>
+  </div></div>
+  <h3 class="sep3">Onde cada peça é reforçada</h3>
+  <p class="sub">Para você saber o que não pode ser afinado se for mexer no modelo.</p>
+  <p class="arraste">Arraste a tabela para o lado para ver todas as colunas.</p>
+  <div class="tabela-wrap"><table class="tabela">
+<thead><tr><th>Peça</th><th>Reforço</th><th>O que é</th></tr></thead>
+<tbody>
+<tr><td>base</td><td>chanfro de 45° na aresta de baixo; postes da tampa Ø12 fundidos nos cantos; postes do servo com mãos-francesas; ressaltos nervurados do Uno; fendas verticais na grade</td><td>cuba: piso, paredes, postes do servo de pan, do Uno e da tampa, berços dos módulos de energia (abraçadeira), trilhos do alto-falante; chave, USB-C e grade atrás</td></tr>
+<tr><td>tampa-base</td><td>4 ressaltos de inserto com 3 nervuras a 45°; chanfro de 45° na aresta que encosta na mesa</td><td>presa por 4 M3x10 que entram POR BAIXO da base; a flange do pescoço gira sobre ela; orelha do parafuso da porta</td></tr>
+<tr><td>porta-traseira</td><td>—</td><td>porta da bateria (atrás); 1 M3 na orelha da tampa, pé contra 2 batentes do piso</td></tr>
+<tr><td>tubo-pescoco</td><td>3 tirantes M3 de aço atravessam o tubo inteiro: as camadas trabalham só em compressão; flange cônica a 45°</td><td>pescoço oco (cabos por dentro); 3 M3x45 entram por baixo, pela engrenagem, e rosqueiam nos insertos do garfo</td></tr>
+<tr><td>engrenagem-pescoco</td><td>dentes módulo 1.5 com 5 perímetros (dente quase maciço); presa pelos 3 tirantes</td><td>22 dentes; fica por baixo da tampa e, com a flange do tubo por cima, impede o pescoço de bambear</td></tr>
+<tr><td>engrenagem-servo</td><td>dentes módulo 1.5 com 5 perímetros; 4 parafusos no horn redondo</td><td>44 dentes, presa no horn redondo do servo de pan (o pescoço gira 2x o servo)</td></tr>
+<tr><td>garfo</td><td>camadas ao longo dos braços (flexão); bloco maciço com 3 insertos dos tirantes; furos em gota</td><td>garfo interno do tilt: fica dentro da cabeça, no topo do tubo; horn do servo num braço, pino M5 (rosca no plástico) no outro; furos de passagem da chave no braço esquerdo</td></tr>
+<tr><td>quadro-cabeca</td><td>laterais inteiras até o fundo com colunas Ø10 nos 4 insertos e mãos-francesas a 45° na travessa; servo de tilt em rasgo em U (sem ponte), 4 parafusos</td><td>esqueleto da cabeça: Raspberry Pi (4 M2,5), servo de tilt, mancal do pino; recebe o painel (4 M3 por trás) e o copo (4 M3 pela parede de trás)</td></tr>
+<tr><td>cabeca-corpo</td><td>arestas compridas com raio de 20 mm (verticais na impressão) e chanfro de 45° na aresta de trás; rasgo do pescoço em gota; sem ponte nem teto</td><td>casca da cabeça (5 lados); entra por trás, 4 M3 na parede de trás; rasgo do pescoço e furos de microfone por baixo</td></tr>
+<tr><td>cabeca-face</td><td>4 pilares Ø10 com 2 nervuras a 45° cada (insertos M3 na ponta); postes da câmera</td><td>painel escuro do rosto: janela da tela, furo de 8 mm da câmera acima dela; nenhum parafuso na frente</td></tr>
+<tr><td>espacador-pi</td><td>—</td><td>4 espaçadores de 5 mm do Raspberry Pi</td></tr>
+<tr><td>teste-encaixe</td><td>—</td><td>cupom de folgas: janela do servo, 3 furos de inserto (3,9/4,0/4,1), eixo do motor TT, M3 passante/M3 piloto/M2,5/M2, 3 soquetes do pino (0,20/0,25/0,30); covinha = medida do projeto</td></tr>
+</tbody></table></div>
+</div></section>
+
+<section id="montar"><div class="wrap">
+  <span class="chip">Montagem</span>
+  <h2>Como montar</h2>
+  <p class="sub">A ordem abaixo é a mesma que o verificador testou: cada peça entra pelo lado indicado sem bater no que já está montado.</p>
+  <h3 class="sep3">Parafusos e insertos, um a um</h3>
+  <p class="sub">São 16 insertos M3 a quente. Assente todos antes de começar, com o ferro de solda, devagar, até ficarem rentes à face da peça.</p>
+  <p class="arraste">Arraste a tabela para o lado para ver todas as colunas.</p>
+  <div class="tabela-wrap"><table class="tabela">
+<thead><tr><th>Onde fica</th><th>Qtd</th><th>Parafuso</th><th>Onde rosqueia</th></tr></thead>
+<tbody>
+<tr><td>Tampa na base (por baixo)</td><td>4</td><td>M3 × 10 Allen</td><td>inserto na tampa</td></tr>
+<tr><td>Porta traseira</td><td>1</td><td>M3 × 8</td><td>inserto na orelha da tampa</td></tr>
+<tr><td>Arduino Uno</td><td>4</td><td>M3 × 8</td><td>direto no plástico (furo de 2,7 mm)</td></tr>
+<tr><td>Servo de pan (base)</td><td>4</td><td>M3 × 12</td><td>direto no plástico (furo de 2,7 mm)</td></tr>
+<tr><td>Servo de tilt (quadro da cabeça)</td><td>4</td><td>M3 × 12</td><td>direto no plástico (furo de 2,7 mm)</td></tr>
+<tr><td>Painel do rosto (por trás do quadro)</td><td>4</td><td>M3 × 8</td><td>inserto nos pilares do painel</td></tr>
+<tr><td>Copo da cabeça (parede de trás)</td><td>4</td><td>M3 × 8</td><td>inserto nas colunas do quadro</td></tr>
+<tr><td>Tirantes do pescoço</td><td>3</td><td>M3 × 45 Allen</td><td>inserto no garfo</td></tr>
+<tr><td>Pino do tilt</td><td>1</td><td>M5 × 16</td><td>direto no plástico do garfo (furo de 4,4 mm)</td></tr>
+<tr><td>Raspberry Pi</td><td>4</td><td>M2,5 × 12 + porca</td><td>porca atrás da travessa</td></tr>
+<tr><td>Horn redondo dos 2 servos</td><td>8</td><td>M2 × 8 auto-atarraxante</td><td>nos furos do horn</td></tr>
+</tbody></table></div>
+  <h3 class="sep3">Passo a passo</h3>
+  <p class="sub">Os passos marcados com (bancada) são feitos fora do robô, com a peça na mão.</p>
+  <p class="arraste">Arraste a tabela para o lado para ver todas as colunas.</p>
+  <div class="tabela-wrap"><table class="tabela">
+<thead><tr><th>#</th><th>Passo</th><th>Entra</th><th>Parafusos e atenção</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>base</td><td>por cima</td><td>Antes de começar, assente os 16 insertos a quente (lista na tabela de parafusos).</td></tr>
+<tr><td>2</td><td>servo de pan nos 2 postes</td><td>por cima</td><td>4 × M3 × 12, eixo para cima. Ligue o servo e deixe-o no centro (90°) antes de pôr a engrenagem.</td></tr>
+<tr><td>3</td><td>Arduino Uno nos 4 ressaltos</td><td>por cima</td><td>4 × M3 × 8, USB virado para a esquerda. O shield encaixa por cima.</td></tr>
+<tr><td>4</td><td>módulos de energia nos berços (1 abraçadeira cada)</td><td>por cima</td><td>Solde os fios antes de prender. 3 abraçadeiras (conversor, UBEC, carregador) e fita dupla-face na placa de proteção. A boca USB-C do carregador encosta na janela de trás.</td></tr>
+<tr><td>5</td><td>chave (por fora, atrás)</td><td>por trás</td><td>Encaixa por pressão no recorte.</td></tr>
+<tr><td>6</td><td>alto-falante nos trilhos da parede de trás</td><td>por cima</td><td>Fase 2: pode pular agora.</td></tr>
+<tr><td>7</td><td>engrenagem do servo no horn</td><td>por cima</td><td>Horn redondo no rebaixo da engrenagem, 4 × M2 × 8 pelos rasgos e o parafuso central do servo pelo furo de 6 mm.</td></tr>
+<tr><td>8</td><td>bateria (pela porta de trás)</td><td>por trás</td><td>Confira a polaridade com o multímetro antes de ligar a chave.</td></tr>
+<tr><td>9</td><td>Raspberry Pi e espaçadores no quadro (bancada)</td><td>pela frente</td><td>4 × M2,5 × 12 com porca; os 4 espaçadores ficam entre o Pi e a travessa. Grave o cartão microSD antes.</td></tr>
+<tr><td>10</td><td>tela, painel do rosto e câmera pela frente; 4 M3 por trás do quadro, ANTES do servo (bancada)</td><td>pela frente</td><td>A tela encaixa nos pinos do Pi. 4 × M3 × 8 por trás da travessa, nos insertos dos pilares do painel. Depois que o servo entra, esses parafusos ficam sem acesso.</td></tr>
+<tr><td>11</td><td>servo de tilt no rasgo do quadro, por trás; 4 parafusos pela esquerda (bancada)</td><td>por trás</td><td>4 × M3 × 12. Os 2 de cima são apertados pelos furos de acesso da lateral esquerda.</td></tr>
+<tr><td>12</td><td>garfo (com o horn já preso no braço) no eixo do tilt, por baixo; parafuso central do horn pelo furo do pino; pino M5 (bancada)</td><td>por baixo</td><td>Prenda o horn no braço direito do garfo com 4 × M2 × 8. O parafuso central do horn entra pelo furo do pino. Por último, o M5 × 16: aperte até encostar e volte um quarto de volta, porque a cabeça gira nele.</td></tr>
+<tr><td>13</td><td>copo da cabeça por trás; 4 M3 na parede de trás (bancada)</td><td>por trás</td><td>4 × M3 × 8.</td></tr>
+<tr><td>14</td><td>tubo do pescoço na tampa, por cima (bancada)</td><td>por cima</td><td>A flange cônica apoia na tampa.</td></tr>
+<tr><td>15</td><td>engrenagem do pescoço por baixo da tampa (bancada)</td><td>por baixo</td><td>Alinhe os 3 furos com os do tubo.</td></tr>
+<tr><td>16</td><td>cabeça sobre o tubo; 3 tirantes M3 por baixo (bancada)</td><td>por cima</td><td>Passe os cabos pelo furo de 9 mm do pescoço ANTES de fechar. 3 × M3 × 45 por baixo da engrenagem, até os insertos do garfo.</td></tr>
+<tr><td>17</td><td>tampa + pescoço + cabeça sobre a base; 4 M3 por baixo</td><td>por cima</td><td>Com a cabeça olhando para a frente e o servo no centro, engrene os dentes. 4 × M3 × 10 por baixo, com a chave Allen longa.</td></tr>
+<tr><td>18</td><td>porta traseira (1 M3)</td><td>por trás</td><td>1 × M3 × 8 na orelha da tampa; o pé da porta encosta nos 2 batentes do piso.</td></tr>
+</tbody></table></div>
+  <h3 class="sep3">Abrir para manutenção</h3>
+  <p class="sub">Trocar a bateria ou mexer nas placas não exige desmontar a cabeça.</p>
+  <div class="tabela-wrap"><table class="tabela">
+<thead><tr><th>#</th><th>Passo</th><th>Parafusos e atenção</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>abrir: porta traseira</td><td>Solte 1 parafuso.</td></tr>
+<tr><td>2</td><td>abrir: bateria sai por trás</td><td>Desligue a chave antes.</td></tr>
+<tr><td>3</td><td>abrir: tampa + pescoço + cabeça saem por cima (placas à mostra)</td><td>Solte os 4 parafusos por baixo da base e levante o conjunto inteiro.</td></tr>
+</tbody></table></div>
+</div></section>
+
+<section id="energia"><div class="wrap">
+  <span class="chip">Energia</span>
+  <h2>Como a energia é distribuída</h2>
+  <p class="sub">Duas baterias 18650 em série dão de 6 a 8,4 V. Daí saem duas linhas separadas: uma para o cérebro, outra para os motores.</p>
+  <div class="flow">
+    <span>2 × 18650 em série (pack 2S)</span><span class="arr">→</span>
+    <span>placa de proteção + chave</span><span class="arr">→</span>
+    <span>LM2596: 5 V do Raspberry Pi · UBEC: 6 V dos 2 servos</span>
+  </div>
+  <div class="grid g3" style="margin-top:22px">
+    <div class="card"><h3>5 V para o Raspberry Pi</h3><p>O conversor LM2596 mantém os 5 V até a bateria cair a cerca de 6,5 V. Ajuste a saída em 5,1 V com o multímetro antes de ligar o Pi. Ele entrega até 3 A: use o Pi 4, ou o Pi 5 sem acessórios USB pesados.</p></div>
+    <div class="card"><h3>6 V para os servos</h3><p>O UBEC entrega 3 A contínuos para os dois MG996R. Um capacitor de 1000 µF na saída segura o pico da partida. O programa não deve deixar os dois servos forçando no fim do curso ao mesmo tempo.</p></div>
+    <div class="card"><h3>Carga por USB-C</h3><p>O carregador com balanceamento fica com a boca numa janela atrás da base. Ele precisa de um terceiro fio, soldado no ponto que une as duas células. A placa de proteção desliga a bateria antes da descarga funda.</p></div>
+  </div>
+  <p class="nota">O que existe hoje é o lugar de cada módulo e a decisão de quais usar. O esquema fio a fio e o teste elétrico ficam para depois da primeira montagem. Confira a polaridade com o multímetro antes de ligar qualquer placa: bateria de lítio em curto pega fogo.</p>
+</div></section>
+
+<section id="fase2"><div class="wrap">
+  <span class="chip">Fase 2</span>
+  <h2>O que já tem lugar para a fase 2</h2>
+  <p class="sub">Você não precisa comprar nada disto agora. O lugar, os furos e a passagem dos cabos já estão nas peças.</p>
+  <p class="arraste">Arraste a tabela para o lado para ver todas as colunas.</p>
+  <div class="tabela-wrap"><table class="tabela">
+<thead><tr><th>Item</th><th>Qtd</th><th>Onde fica</th><th>Preço estimado</th><th>Visto em loja</th><th>Onde procurar</th></tr></thead>
+<tbody>
+<tr><td>Raspberry Pi Camera Module 3 (placa de 25 × 24 mm) com cabo flat</td><td>1</td><td>Atrás do painel do rosto, no furo de 8 mm acima da tela. 4 postes com furo para parafuso M2. NC: furos e altura da lente.</td><td>R$ 180–350</td><td>não conferido</td><td><a href="https://lista.mercadolivre.com.br/raspberry-pi-camera-module-3" target="_blank" rel="noopener">Mercado Livre</a></td></tr>
+<tr><td>Parafuso M2 × 6 mm auto-atarraxante</td><td>4</td><td>Prende a câmera nos 4 postes.</td><td>R$ 3–8</td><td>R$ 5,98 o kit com 10</td><td><a href="https://lista.mercadolivre.com.br/parafuso-m2x6-auto-atarraxante" target="_blank" rel="noopener">Mercado Livre</a></td></tr>
+<tr><td>Microfone I2S INMP441</td><td>2</td><td>Dentro da cabeça, sobre os 2 furos de 2 mm que ficam por baixo dela. NC: fixação do microfone ainda não modelada.</td><td>R$ 15–55</td><td>R$ 54,26</td><td><a href="https://lista.mercadolivre.com.br/microfone-inmp441-i2s" target="_blank" rel="noopener">Mercado Livre</a></td></tr>
+<tr><td>Alto-falante de 40 mm, 3 W</td><td>1</td><td>Desliza nos 2 trilhos da parede de trás da base, contra a grade de fendas verticais. NC: diâmetro e profundidade.</td><td>R$ 7–20</td><td>não conferido</td><td><a href="https://lista.mercadolivre.com.br/alto-falante-40mm-3w-4-ohms" target="_blank" rel="noopener">Mercado Livre</a></td></tr>
+<tr><td>Amplificador de áudio pequeno (PAM8403 ou MAX98357A)</td><td>1</td><td>Sem lugar modelado ainda: vai solto na base, com fita dupla-face.</td><td>R$ 5–35</td><td>R$ 5,47 a R$ 11,34 (PAM8403)</td><td><a href="https://lista.mercadolivre.com.br/amplificador-pam8403" target="_blank" rel="noopener">Mercado Livre</a></td></tr>
+<tr><td>Sensor de movimento IMU MPU-6050</td><td>1</td><td>No ponto universal do piso da base (par de furos M3 a 20 mm).</td><td>R$ 15–35</td><td>R$ 34,09</td><td><a href="https://lista.mercadolivre.com.br/mpu-6050-gy-521" target="_blank" rel="noopener">Mercado Livre</a></td></tr>
+<tr><td>LiDAR LD19 ou LD06</td><td>1</td><td>No topo da cabeça: 2 furos cegos por dentro; a pele de 0,8 mm só é furada quando o sensor for instalado. NC: padrão de furos do sensor.</td><td>R$ 400–900</td><td>não conferido</td><td><a href="https://lista.mercadolivre.com.br/lidar-ld19" target="_blank" rel="noopener">Mercado Livre</a></td></tr>
+<tr><td>Conversor de nível lógico 3,3 V / 5 V</td><td>1</td><td>Na conversa serial entre o Raspberry Pi (3,3 V) e o Arduino (5 V), se você não usar o cabo USB.</td><td>R$ 5–12</td><td>R$ 5,59 a R$ 8,55</td><td><a href="https://lista.mercadolivre.com.br/conversor-nivel-logico-3.3v-5v" target="_blank" rel="noopener">Mercado Livre</a></td></tr>
+</tbody></table></div>
+  <p class="nota">A fase 2 (voz, câmera, sensores, IA) ainda não foi feita.</p>
+</div></section>
+
+<section id="verificacao"><div class="wrap">
+  <span class="chip">Verificação</span>
+  <h2>A prova de que encaixa, e o que ainda falta provar</h2>
+  <p class="sub">Saída real do verificador do projeto para este robô: 11 testes feitos no computador sobre as mesmas peças que você baixa.</p>
+<pre class="saida">== verificação: cubo
+  [PASSOU] 1 contagem: 12 peças distintas, 15 no total (esperado 15); faltando 0; sobrando 0
+  [PASSOU] 2 malha: 12 STL fechados, 1 corpo cada
+  [PASSOU] 3 mesa: todas cabem em 256 x 256 x 256 mm; maior dimensão 158.0 mm (base)
+  [PASSOU] 4 parede: modelo sem casca orgânica (paredes são sólidos exatos ≥ 2,4 mm)
+  [PASSOU] 5 interferência: 28 sólidos (14 impressos + 14 componentes), 10 poses, 0 sobreposições; 1 encaixe(s) previsto(s) fora da conta: engrenagem-servo x servo-pan MG996R (horn do servo fica no rebaixo da engrenagem)
+  [PASSOU] 6 teste negativo: 'quadro-cabeca' deslocada 3 mm em X → 2 sobreposições acusadas (tem que ser &gt; 0)
+  [PASSOU] 7 peça solta: as 14 peças montadas encostam (≤ 1.5 mm) em outra
+  [PASSOU] 8 equilíbrio: massa estimada 1147 g; CG neutro em x=1.3 y=0.7 z=76.1 mm, margem 69.3 mm (tomba com 42°); pior pose 'pan+170+tilt-baixo': margem 57.5 mm (38°); mínimo exigido 10 mm
+  [PASSOU] 9 caminho: 21 passos (montagem + abertura para manutenção), cada peça entra ou sai pela direção declarada sem atravessar o que está montado
+  [PASSOU] 10 imprimibilidade: 12 peças distintas: 12 saem sem suporte; 0 com suporte declarado; 0 REPROVADA(S) (declaradas sem suporte, mas com área sem apoio acima de max(30 mm², 0.2 % da área) a mais de 45° ou ponto que nasce no ar)
+  [PASSOU] 11 negativo impr.: 'tampa-base' na orientação declarada: 0 mm² sem apoio (limite 96); girada 180° em X → 21240 mm² = 44.0 % (acusou; tem que acusar)</pre>
+  <p class="mini">A saída acima é o texto original do programa, em português.</p>
+  <div class="grid g2" style="margin-top:22px">
+    <div class="card"><h3>✅ O que os testes garantem</h3><ul><li>Cada STL é uma malha fechada e cabe na mesa de 256 mm.</li><li>Nenhuma peça atravessa outra nem um componente, em 10 posições da cabeça.</li><li>Cada peça entra e sai pelo lado indicado na montagem.</li><li>O robô não tomba com a cabeça em nenhum extremo.</li><li>Nenhuma peça precisa de suporte na posição do arquivo.</li></ul></div>
+    <div class="card"><h3>⚠️ O que só a impressão vai dizer</h3><ul><li>As folgas reais na sua impressora: por isso a peça de teste vem primeiro.</li><li>As medidas marcadas como NC nos componentes comprados.</li><li>O tempo e o peso de verdade: os números são estimativas sem fatiador.</li><li>A força das engrenagens e do garfo em uso.</li><li>A parte elétrica: nenhum fio foi ligado ainda.</li></ul></div>
+  </div>
+  <p class="nota">Para gerar os arquivos e repetir os testes no seu computador:</p>
+<pre><span class="k">git clone</span> <span class="s">https://github.com/inematds/robos-impressos.git</span>
+<span class="k">cd</span> robos-impressos
+<span class="k">python3</span> -m venv .venv
+<span class="k">.venv/bin/pip</span> install -r requirements.txt
+<span class="k">.venv/bin/python</span> cad/gerar.py cubo
+<span class="k">.venv/bin/python</span> cad/verificar.py cubo</pre>
+</div></section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="pill">Python · trimesh · manifold3d</div><div class="pill">Blender (renders)</div><div class="pill">Bambu Lab A1 · PLA + PETG</div>
+    <p style="margin-top:18px">robos-impressos · conteúdo aberto e gratuito ·
+      <a href="../">guia geral dos robôs</a> ·
+      <a href="https://github.com/inematds/robos-impressos">inematds/robos-impressos</a> ·
+      <a href="https://inema.club">INEMA.CLUB</a></p>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var KEY='robos-impressos-theme'; // troque robos-impressos pelo nome do projeto
+    var b=document.body, t=document.getElementById('themeToggle');
+    if(localStorage.getItem(KEY)==='light'){ b.classList.add('light'); t.textContent='☀️'; }
+    t.addEventListener('click',function(){
+      var light=b.classList.toggle('light');
+      t.textContent=light?'☀️':'🌙';
+      localStorage.setItem(KEY, light?'light':'dark');
+    });
+  })();
+</script>
+</body>
+</html>
