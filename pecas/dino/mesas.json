@@ -5,8 +5,8 @@
    "material": "PETG",
    "cor": "amarelo",
    "itens": [
-    "bandeja-uno",
-    "bandeja-pi"
+    "bandeja-pi",
+    "bandeja-uno"
    ],
    "arquivo": "mesas/dino-mesa-01-petg-amarelo.3mf"
   },
@@ -15,90 +15,87 @@
    "material": "PETG",
    "cor": "grafite",
    "itens": [
-    "chassi"
+    "chassi",
+    "mesa-cabeca",
+    "garfo-pescoco",
+    "capa-esfera",
+    "berco-tilt",
+    "cubo-braco",
+    "cubo-braco"
    ],
    "arquivo": "mesas/dino-mesa-02-petg-grafite.3mf"
   },
   {
    "mesa": 3,
-   "material": "PETG",
-   "cor": "grafite",
-   "itens": [
-    "mesa-cabeca",
-    "garfo-pescoco",
-    "capa-esfera",
-    "berco-tilt"
-   ],
-   "arquivo": "mesas/dino-mesa-03-petg-grafite.3mf"
-  },
-  {
-   "mesa": 4,
    "material": "PLA",
    "cor": "azul",
    "itens": [
     "crista-cabeca",
-    "crista-cauda",
     "crista-costas",
     "iris",
     "iris-esq"
    ],
-   "arquivo": "mesas/dino-mesa-04-pla-azul.3mf"
+   "arquivo": "mesas/dino-mesa-03-pla-azul.3mf"
   },
   {
-   "mesa": 5,
+   "mesa": 4,
    "material": "PLA",
    "cor": "branco",
    "itens": [
     "olho",
     "olho-esq"
    ],
-   "arquivo": "mesas/dino-mesa-05-pla-branco.3mf"
+   "arquivo": "mesas/dino-mesa-04-pla-branco.3mf"
+  },
+  {
+   "mesa": 5,
+   "material": "PLA",
+   "cor": "cinza",
+   "itens": [
+    "teste-encaixe"
+   ],
+   "arquivo": "mesas/dino-mesa-05-pla-cinza.3mf"
   },
   {
    "mesa": 6,
    "material": "PLA",
-   "cor": "cinza",
-   "itens": [
-    "teste-encaixe",
-    "bucha-eixo",
-    "pino-guia",
-    "pino-guia",
-    "pino-guia",
-    "pino-guia"
-   ],
-   "arquivo": "mesas/dino-mesa-06-pla-cinza.3mf"
-  },
-  {
-   "mesa": 7,
-   "material": "PLA",
    "cor": "creme",
    "itens": [
     "barriga",
-    "unha",
-    "unha",
-    "unha",
-    "unha",
-    "unha",
-    "unha"
+    "dedo-esq-3",
+    "dedo-dir-3",
+    "dedo-dir-1",
+    "dedo-dir-2",
+    "dedo-esq-1",
+    "dedo-esq-2"
    ],
-   "arquivo": "mesas/dino-mesa-07-pla-creme.3mf"
+   "arquivo": "mesas/dino-mesa-06-pla-creme.3mf"
   },
   {
-   "mesa": 8,
+   "mesa": 7,
    "material": "PLA",
    "cor": "preto",
    "itens": [
     "pupila",
     "pupila-esq"
    ],
-   "arquivo": "mesas/dino-mesa-08-pla-preto.3mf"
+   "arquivo": "mesas/dino-mesa-07-pla-preto.3mf"
+  },
+  {
+   "mesa": 8,
+   "material": "PLA",
+   "cor": "verde",
+   "itens": [
+    "cranio"
+   ],
+   "arquivo": "mesas/dino-mesa-08-pla-verde.3mf"
   },
   {
    "mesa": 9,
    "material": "PLA",
    "cor": "verde",
    "itens": [
-    "torso-frente"
+    "traseira"
    ],
    "arquivo": "mesas/dino-mesa-09-pla-verde.3mf"
   },
@@ -107,7 +104,10 @@
    "material": "PLA",
    "cor": "verde",
    "itens": [
-    "torso-costas"
+    "corpo",
+    "gola",
+    "braco-dir",
+    "braco-esq"
    ],
    "arquivo": "mesas/dino-mesa-10-pla-verde.3mf"
   },
@@ -116,28 +116,14 @@
    "material": "PLA",
    "cor": "verde",
    "itens": [
-    "cranio",
-    "perna-dir"
-   ],
-   "arquivo": "mesas/dino-mesa-11-pla-verde.3mf"
-  },
-  {
-   "mesa": 12,
-   "material": "PLA",
-   "cor": "verde",
-   "itens": [
-    "perna-esq",
-    "cauda",
-    "braco-dir",
-    "braco-esq",
     "mandibula"
    ],
-   "arquivo": "mesas/dino-mesa-12-pla-verde.3mf"
+   "arquivo": "mesas/dino-mesa-11-pla-verde.3mf"
   }
  ],
  "pecas": [
   {
-   "arquivo": "../comum/stl/comum-bandeja-uno.stl",
+   "arquivo": "stl/dino-bandeja-pi.stl",
    "rgb": [
     0.98,
     0.8,
@@ -155,7 +141,7 @@
       0.0,
       1.0,
       0.0,
-      48.0
+      47.5
      ],
      [
       0.0,
@@ -174,7 +160,7 @@
    "liso": true
   },
   {
-   "arquivo": "../comum/stl/comum-bandeja-pi.stl",
+   "arquivo": "stl/dino-bandeja-uno.stl",
    "rgb": [
     0.98,
     0.8,
@@ -186,13 +172,13 @@
       1.0,
       0.0,
       0.0,
-      101.10000000000001
+      104.25
      ],
      [
       0.0,
       1.0,
       0.0,
-      47.75
+      32.4
      ],
      [
       0.0,
@@ -211,7 +197,7 @@
    "liso": true
   },
   {
-   "arquivo": "../comum/stl/comum-chassi.stl",
+   "arquivo": "stl/dino-chassi.stl",
    "rgb": [
     0.22,
     0.23,
@@ -223,13 +209,13 @@
       1.0,
       0.0,
       0.0,
-      369.0
+      345.95
      ],
      [
       0.0,
       1.0,
       0.0,
-      98.25
+      89.75
      ],
      [
       0.0,
@@ -260,13 +246,13 @@
       1.0,
       0.0,
       0.0,
-      635.0
+      442.45
      ],
      [
       0.0,
       1.0,
       0.0,
-      71.9
+      64.15
      ],
      [
       0.0,
@@ -297,13 +283,13 @@
       1.0,
       0.0,
       0.0,
-      725.5
+      325.5
      ],
      [
       0.0,
       1.0,
       0.0,
-      27.0
+      206.5
      ],
      [
       0.0,
@@ -334,13 +320,13 @@
       1.0,
       0.0,
       0.0,
-      778.5
+      378.5
      ],
      [
       0.0,
       1.0,
       0.0,
-      17.5
+      197.0
      ],
      [
       0.0,
@@ -371,13 +357,87 @@
       1.0,
       0.0,
       0.0,
-      602.25
+      418.25
      ],
      [
       0.0,
       1.0,
       0.0,
-      158.3
+      194.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "stl/dino-cubo-braco.stl",
+   "rgb": [
+    0.22,
+    0.23,
+    0.25
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      452.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      191.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "stl/dino-cubo-braco.stl",
+   "rgb": [
+    0.22,
+    0.23,
+    0.25
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      475.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      191.0
      ],
      [
       0.0,
@@ -408,50 +468,13 @@
       1.0,
       0.0,
       0.0,
-      903.55
+      635.45
      ],
      [
       0.0,
       1.0,
       0.0,
-      44.5
-     ],
-     [
-      0.0,
-      0.0,
-      1.0,
-      0.0
-     ],
-     [
-      0.0,
-      0.0,
-      0.0,
-      1.0
-     ]
-    ]
-   ],
-   "liso": true
-  },
-  {
-   "arquivo": "stl/dino-crista-cauda.stl",
-   "rgb": [
-    0.2,
-    0.55,
-    0.86
-   ],
-   "para_montagem": [
-    [
-     [
-      1.0,
-      0.0,
-      0.0,
-      953.0
-     ],
-     [
-      0.0,
-      1.0,
-      0.0,
-      21.75
+      67.15
      ],
      [
       0.0,
@@ -482,13 +505,13 @@
       1.0,
       0.0,
       0.0,
-      995.55
+      717.1
      ],
      [
       0.0,
       1.0,
       0.0,
-      16.35
+      36.65
      ],
      [
       0.0,
@@ -519,13 +542,13 @@
       1.0,
       0.0,
       0.0,
-      1039.8
+      761.3
      ],
      [
       0.0,
       1.0,
       0.0,
-      12.45
+      18.0
      ],
      [
       0.0,
@@ -556,13 +579,13 @@
       1.0,
       0.0,
       0.0,
-      1075.0
+      797.3
      ],
      [
       0.0,
       1.0,
       0.0,
-      12.45
+      18.0
      ],
      [
       0.0,
@@ -593,13 +616,13 @@
       1.0,
       0.0,
       0.0,
-      27.0
+      895.0
      ],
      [
       0.0,
       1.0,
       0.0,
-      -268.0
+      25.0
      ],
      [
       0.0,
@@ -630,13 +653,13 @@
       1.0,
       0.0,
       0.0,
-      81.0
+      945.0
      ],
      [
       0.0,
       1.0,
       0.0,
-      -268.0
+      25.0
      ],
      [
       0.0,
@@ -667,198 +690,13 @@
       1.0,
       0.0,
       0.0,
-      328.0
+      38.0
      ],
      [
       0.0,
       1.0,
       0.0,
       -270.0
-     ],
-     [
-      0.0,
-      0.0,
-      1.0,
-      0.0
-     ],
-     [
-      0.0,
-      0.0,
-      0.0,
-      1.0
-     ]
-    ]
-   ],
-   "liso": true
-  },
-  {
-   "arquivo": "../comum/stl/comum-bucha-eixo.stl",
-   "rgb": [
-    0.42,
-    0.44,
-    0.47
-   ],
-   "para_montagem": [
-    [
-     [
-      1.0,
-      0.0,
-      0.0,
-      372.6
-     ],
-     [
-      0.0,
-      1.0,
-      0.0,
-      -283.4
-     ],
-     [
-      0.0,
-      0.0,
-      1.0,
-      0.0
-     ],
-     [
-      0.0,
-      0.0,
-      0.0,
-      1.0
-     ]
-    ]
-   ],
-   "liso": true
-  },
-  {
-   "arquivo": "../comum/stl/comum-pino-guia.stl",
-   "rgb": [
-    0.42,
-    0.44,
-    0.47
-   ],
-   "para_montagem": [
-    [
-     [
-      1.0,
-      0.0,
-      0.0,
-      384.09999999999997
-     ],
-     [
-      0.0,
-      1.0,
-      0.0,
-      -285.1
-     ],
-     [
-      0.0,
-      0.0,
-      1.0,
-      0.0
-     ],
-     [
-      0.0,
-      0.0,
-      0.0,
-      1.0
-     ]
-    ]
-   ],
-   "liso": true
-  },
-  {
-   "arquivo": "../comum/stl/comum-pino-guia.stl",
-   "rgb": [
-    0.42,
-    0.44,
-    0.47
-   ],
-   "para_montagem": [
-    [
-     [
-      1.0,
-      0.0,
-      0.0,
-      393.9
-     ],
-     [
-      0.0,
-      1.0,
-      0.0,
-      -285.1
-     ],
-     [
-      0.0,
-      0.0,
-      1.0,
-      0.0
-     ],
-     [
-      0.0,
-      0.0,
-      0.0,
-      1.0
-     ]
-    ]
-   ],
-   "liso": true
-  },
-  {
-   "arquivo": "../comum/stl/comum-pino-guia.stl",
-   "rgb": [
-    0.42,
-    0.44,
-    0.47
-   ],
-   "para_montagem": [
-    [
-     [
-      1.0,
-      0.0,
-      0.0,
-      403.7
-     ],
-     [
-      0.0,
-      1.0,
-      0.0,
-      -285.1
-     ],
-     [
-      0.0,
-      0.0,
-      1.0,
-      0.0
-     ],
-     [
-      0.0,
-      0.0,
-      0.0,
-      1.0
-     ]
-    ]
-   ],
-   "liso": true
-  },
-  {
-   "arquivo": "../comum/stl/comum-pino-guia.stl",
-   "rgb": [
-    0.42,
-    0.44,
-    0.47
-   ],
-   "para_montagem": [
-    [
-     [
-      1.0,
-      0.0,
-      0.0,
-      413.5
-     ],
-     [
-      0.0,
-      1.0,
-      0.0,
-      -285.1
      ],
      [
       0.0,
@@ -889,50 +727,13 @@
       1.0,
       0.0,
       0.0,
-      622.7
+      324.7
      ],
      [
       0.0,
       1.0,
       0.0,
-      -243.3
-     ],
-     [
-      0.0,
-      0.0,
-      1.0,
-      0.0
-     ],
-     [
-      0.0,
-      0.0,
-      0.0,
-      1.0
-     ]
-    ]
-   ],
-   "liso": true
-  },
-  {
-   "arquivo": "stl/dino-unha.stl",
-   "rgb": [
-    0.96,
-    0.89,
-    0.62
-   ],
-   "para_montagem": [
-    [
-     [
-      1.0,
-      0.0,
-      0.0,
-      677.4
-     ],
-     [
-      0.0,
-      1.0,
-      0.0,
-      -278.0
+      -250.8
      ],
      [
       0.0,
@@ -951,7 +752,7 @@
    "liso": true
   },
   {
-   "arquivo": "stl/dino-unha.stl",
+   "arquivo": "stl/dino-dedo-esq-3.stl",
    "rgb": [
     0.96,
     0.89,
@@ -963,13 +764,13 @@
       1.0,
       0.0,
       0.0,
-      701.4
+      371.09999999999997
      ],
      [
       0.0,
       1.0,
       0.0,
-      -278.0
+      -280.05
      ],
      [
       0.0,
@@ -988,7 +789,7 @@
    "liso": true
   },
   {
-   "arquivo": "stl/dino-unha.stl",
+   "arquivo": "stl/dino-dedo-dir-3.stl",
    "rgb": [
     0.96,
     0.89,
@@ -1000,13 +801,13 @@
       1.0,
       0.0,
       0.0,
-      725.4
+      394.5
      ],
      [
       0.0,
       1.0,
       0.0,
-      -278.0
+      -280.1
      ],
      [
       0.0,
@@ -1025,7 +826,7 @@
    "liso": true
   },
   {
-   "arquivo": "stl/dino-unha.stl",
+   "arquivo": "stl/dino-dedo-dir-1.stl",
    "rgb": [
     0.96,
     0.89,
@@ -1037,13 +838,13 @@
       1.0,
       0.0,
       0.0,
-      749.4
+      417.80000000000007
      ],
      [
       0.0,
       1.0,
       0.0,
-      -278.0
+      -280.65
      ],
      [
       0.0,
@@ -1062,7 +863,7 @@
    "liso": true
   },
   {
-   "arquivo": "stl/dino-unha.stl",
+   "arquivo": "stl/dino-dedo-dir-2.stl",
    "rgb": [
     0.96,
     0.89,
@@ -1074,13 +875,13 @@
       1.0,
       0.0,
       0.0,
-      773.4
+      440.9
      ],
      [
       0.0,
       1.0,
       0.0,
-      -278.0
+      -280.65
      ],
      [
       0.0,
@@ -1099,7 +900,7 @@
    "liso": true
   },
   {
-   "arquivo": "stl/dino-unha.stl",
+   "arquivo": "stl/dino-dedo-esq-1.stl",
    "rgb": [
     0.96,
     0.89,
@@ -1111,13 +912,50 @@
       1.0,
       0.0,
       0.0,
-      797.4
+      464.0
      ],
      [
       0.0,
       1.0,
       0.0,
-      -278.0
+      -280.65
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "stl/dino-dedo-esq-2.stl",
+   "rgb": [
+    0.96,
+    0.89,
+    0.62
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      487.1
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      -280.65
      ],
      [
       0.0,
@@ -1148,13 +986,13 @@
       1.0,
       0.0,
       0.0,
-      881.65
+      592.5
      ],
      [
       0.0,
       1.0,
       0.0,
-      -280.55
+      -277.5
      ],
      [
       0.0,
@@ -1185,87 +1023,13 @@
       1.0,
       0.0,
       0.0,
-      904.9499999999999
+      617.5
      ],
      [
       0.0,
       1.0,
       0.0,
-      -280.55
-     ],
-     [
-      0.0,
-      0.0,
-      1.0,
-      0.0
-     ],
-     [
-      0.0,
-      0.0,
-      0.0,
-      1.0
-     ]
-    ]
-   ],
-   "liso": true
-  },
-  {
-   "arquivo": "stl/dino-torso-frente.stl",
-   "rgb": [
-    0.36,
-    0.72,
-    0.16
-   ],
-   "para_montagem": [
-    [
-     [
-      1.0,
-      0.0,
-      0.0,
-      75.5
-     ],
-     [
-      0.0,
-      1.0,
-      0.0,
-      -463.8
-     ],
-     [
-      0.0,
-      0.0,
-      1.0,
-      0.0
-     ],
-     [
-      0.0,
-      0.0,
-      0.0,
-      1.0
-     ]
-    ]
-   ],
-   "liso": true
-  },
-  {
-   "arquivo": "stl/dino-torso-costas.stl",
-   "rgb": [
-    0.36,
-    0.72,
-    0.16
-   ],
-   "para_montagem": [
-    [
-     [
-      1.0,
-      0.0,
-      0.0,
-      365.4
-     ],
-     [
-      0.0,
-      1.0,
-      0.0,
-      -463.8
+      -277.5
      ],
      [
       0.0,
@@ -1296,50 +1060,13 @@
       1.0,
       0.0,
       0.0,
-      661.0
+      940.1
      ],
      [
       0.0,
       1.0,
       0.0,
-      -485.0
-     ],
-     [
-      0.0,
-      0.0,
-      1.0,
-      0.0
-     ],
-     [
-      0.0,
-      0.0,
-      0.0,
-      1.0
-     ]
-    ]
-   ],
-   "liso": true
-  },
-  {
-   "arquivo": "stl/dino-perna-dir.stl",
-   "rgb": [
-    0.36,
-    0.72,
-    0.16
-   ],
-   "para_montagem": [
-    [
-     [
-      1.0,
-      0.0,
-      0.0,
-      774.95
-     ],
-     [
-      0.0,
-      1.0,
-      0.0,
-      -513.65
+      -199.75
      ],
      [
       0.0,
@@ -1358,7 +1085,7 @@
    "liso": true
   },
   {
-   "arquivo": "stl/dino-perna-esq.stl",
+   "arquivo": "stl/dino-traseira.stl",
    "rgb": [
     0.36,
     0.72,
@@ -1370,13 +1097,13 @@
       1.0,
       0.0,
       0.0,
-      902.95
+      66.05
      ],
      [
       0.0,
       1.0,
       0.0,
-      -513.65
+      -508.45
      ],
      [
       0.0,
@@ -1395,7 +1122,7 @@
    "liso": true
   },
   {
-   "arquivo": "stl/dino-cauda.stl",
+   "arquivo": "stl/dino-corpo.stl",
    "rgb": [
     0.36,
     0.72,
@@ -1407,13 +1134,50 @@
       1.0,
       0.0,
       0.0,
-      984.9
+      390.05
      ],
      [
       0.0,
       1.0,
       0.0,
-      -520.85
+      -520.15
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "stl/dino-gola.stl",
+   "rgb": [
+    0.36,
+    0.72,
+    0.16
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      341.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      -409.3
      ],
      [
       0.0,
@@ -1444,13 +1208,13 @@
       1.0,
       0.0,
       0.0,
-      1055.9
+      408.75
      ],
      [
       0.0,
       1.0,
       0.0,
-      -540.65
+      -427.8
      ],
      [
       0.0,
@@ -1481,13 +1245,13 @@
       1.0,
       0.0,
       0.0,
-      1099.9
+      442.25
      ],
      [
       0.0,
       1.0,
       0.0,
-      -540.65
+      -427.8
      ],
      [
       0.0,
@@ -1518,13 +1282,13 @@
       1.0,
       0.0,
       0.0,
-      931.05
+      628.7
      ],
      [
       0.0,
       1.0,
       0.0,
-      -414.85
+      -558.5
      ],
      [
       0.0,
@@ -1562,43 +1326,43 @@
    "x0": 580.0,
    "y0": 0.0,
    "lado": 256.0,
-   "material": "PETG",
-   "cor": "grafite"
+   "material": "PLA",
+   "cor": "azul"
   },
   {
    "x0": 870.0,
    "y0": 0.0,
    "lado": 256.0,
    "material": "PLA",
-   "cor": "azul"
-  },
-  {
-   "x0": 0.0,
-   "y0": -290.0,
-   "lado": 256.0,
-   "material": "PLA",
    "cor": "branco"
   },
   {
-   "x0": 290.0,
+   "x0": 0.0,
    "y0": -290.0,
    "lado": 256.0,
    "material": "PLA",
    "cor": "cinza"
   },
   {
-   "x0": 580.0,
+   "x0": 290.0,
    "y0": -290.0,
    "lado": 256.0,
    "material": "PLA",
    "cor": "creme"
   },
   {
-   "x0": 870.0,
+   "x0": 580.0,
    "y0": -290.0,
    "lado": 256.0,
    "material": "PLA",
    "cor": "preto"
+  },
+  {
+   "x0": 870.0,
+   "y0": -290.0,
+   "lado": 256.0,
+   "material": "PLA",
+   "cor": "verde"
   },
   {
    "x0": 0.0,
@@ -1616,13 +1380,6 @@
   },
   {
    "x0": 580.0,
-   "y0": -580.0,
-   "lado": 256.0,
-   "material": "PLA",
-   "cor": "verde"
-  },
-  {
-   "x0": 870.0,
    "y0": -580.0,
    "lado": 256.0,
    "material": "PLA",

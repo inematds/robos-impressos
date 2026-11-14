@@ -347,27 +347,80 @@ PESCOCO.centro = (0.0, BASE.pescoco_y,
                   BASE.deck_z + MG996R.aba_ate_topo_horn + PESCOCO.garfo_base_esp + PESCOCO.tilt_acima_da_base)
 
 # ------------------------------------------------------------------ DINO (modelo 1)
-# Blobs = (centro, raios). Tudo em mm, robô montado, chão em Z=0, eixo das rodas em Y=0.
+# Rodada 2 (E3b): a casca vem da malha de image-to-3D (cad/peles/dino.npz, 300 mm de altura, convertida por
+# cad/pele_malha.py), como a capivara. Valores marcados "pele" estão no referencial da pele (centro da caixa da malha
+# em Y=0); no robô somam `dy`, porque o eixo das rodas é sempre Y=0. O esqueleto é próprio (cad/modelos/dino.py):
+# rodas dentro das coxas, UMA esfera de apoio atrás (sob a raiz da cauda), torre do servo de pan sobre o eixo das
+# rodas, rack das placas atrás (sai por trás quando se tira a traseira), 2 braços com micro servo.
 DINO = NS(
-    passo=1.25,                        # passo da grade da pele
-    torso=[((0, -38, 44), (72, 68, 54)),          # pelve
-           ((0, -46, 118), (64, 66, 72)),         # costas / peito
-           ((0, -16, 74), (66, 58, 66)),          # barriga  (o topo é a esfera da gola, somada em bicho.pele_torso)
-           ((44, 0, 40), (24, 58, 42)), ((-44, 0, 40), (24, 58, 42))],   # quadris (cobrem os motores e as faixas do piso)
-    cabeca=[((0, -30, 256), (78, 72, 60)),        # crânio
-            ((0, 34, 240), (58, 48, 40)),         # focinho
-            ((36, 0, 296), (27, 27, 24)), ((-36, 0, 296), (27, 27, 24)),   # sobrancelhas
-            ((0, -30, 210), (62, 60, 18))],       # base
-    perna=[((71, 0, 32), (31, 56, 46)), ((60, 0, 32), (26, 56, 46)),   # roda (2 blobs = lateral mais chata)
-           ((66, -14, 76), (30, 42, 40)),         # coxa
-           ((72, 26, 22), (30, 44, 24))],         # pé
-    cauda=[((0, -112, 34), (46, 42, 38)), ((0, -146, 26), (30, 32, 28)),
-           ((0, -170, 27), (19, 24, 18)), ((0, -186, 31), (10, 12, 10))],
-    olho=NS(c=(36.0, 12.0, 293.0), r=24.0, dir=(0.22, 0.93, 0.28), iris_r=14.0, pupila_r=8.0),
-    boca=dict(y_eixo=28.0, z_eixo=220.0, y_corte=22.0, z0=234.0, y_ref=50.0, incl=-0.06, raio_sorriso=140.0, folga=1.2),
-    barriga=NS(c=(0.0, 88.0), r=(40.0, 44.0)),    # janela elíptica (x, z) da barriga creme
-    braco=NS(mao=(56.0, 26.0, 128.0), r_ombro=(11.0, 14.0, 13.0), r_mao=(11.0, 13.0, 11.0), lim=(-15.0, 40.0)),   # até 70° com a cabeça reta (o verificador testa o pior caso: cabeça virada e baixa)
-    n_pecas=38,                        # contagem esperada de peças impressas (conferida pelo verificador)
+    pele="dino.npz",
+    dy=-43.0,                          # a pele fica 43 mm ATRÁS: o eixo das rodas passa por y (pele) = +43, dentro das coxas (o mais à frente que cabe: põe o CG atrás das rodas)
+    pescoco=(37.0, 164.0),             # (y na pele, z) do centro da junta pan x tilt (estrangulamento da malha: z 155–165)
+    soquete_r=50.0,                    # esfera oca da cabeça em volta da junta (a menor em que garfo + berço cabem: 42,1 mm de raio varrido)
+    folga_junta=2.0,                   # a gola (esfera do corpo) fica com 48 mm de raio
+    cabeca_z=-8.0,                     # plano de baixo da cabeça: 8 mm ABAIXO do centro da junta (o queixo desce até z=158)
+    z_fundo=5.0,                       # borda de baixo do corpo (face que vai na mesa)
+    z_gola=144.0,                      # corte horizontal entre o corpo e a gola
+    gola_boca_r=36.0,                  # raio da boca de cima da gola (o garfo, de 34,4 mm, passa por ela)
+    costura_y=-15.0,                   # pele: plano vertical entre o corpo (frente) e a traseira (anca + cauda, sai para trás)
+    coxa=NS(r=38.5, x=(50.0, 88.5), arred=5.0),   # disco (eixo = eixo da roda) que engorda a coxa até cobrir a roda de 65 mm + folga + parede
+    cortina=((-35.0, -16.0, -2.0), (35.0, 80.0, 62.0)),   # pele: debaixo da barriga, entre as pernas, a pele desce reta até o chão (o chassi fica todo sobre piso)
+    # boca (pele). A malha vem de boca ABERTA: o vão é fechado (boca_vao) e a boca é cortada por um plano quase reto.
+    boca=dict(y_eixo=88.5, z_eixo=193.0, y_corte=83.0, z0=198.0, y_ref=80.0, incl=-0.16, raio_sorriso=2000.0, folga=1.2),
+    boca_abre=12.0,                    # graus de abertura da boca (a mandíbula é funda e fica colada à esfera do pescoço: 18° comeriam o queixo)
+    boca_vao=((-50.0, 74.0, 160.0), (50.0, 118.0, 204.0)),
+    boca_sondas=(-5.0, 0.0, 10.0, 19.0),
+    olho=NS(c=(35.0, 47.0, 266.0), r=22.0, dir=(0.30, 0.90, 0.30), iris_r=15.0, pupila_r=9.5),   # pele: centro, raio e para onde olha (o esquerdo espelha)
+    narina=NS(x=12.0, y=128.0),        # pele: narinas no alto do focinho = portas de som dos 2 microfones
+    falante_y=58.0,                    # pele: centro do alto-falante, em cima da mesa da cabeça, virado para baixo
+    # crista azul: lâminas de 6 mm no plano de simetria, com o contorno dos espinhos da própria malha (caixas em (y, z) da pele)
+    crista=NS(esp=6.0, fundo=4.0, xc=11.25,
+              cabeca=((-75.0, 195.0), (70.0, 310.0)),
+              costas=((-85.0, 88.0), (-17.0, 142.0)),
+              nuca=((-75.0, 142.0), (-2.0, 195.0))),      # nuca: os espinhos somem (a cabeça varre o lugar ao inclinar para trás; sobrariam lascas)
+    # braços: a malha traz os braços colados ao peito (não giram). Sai o relevo da malha e entra um braço próprio,
+    # de blobs, com a face de dentro plana em x = x_base, que gira no eixo X do ombro (micro servo no chassi).
+    braco=NS(eixo=(47.0, 122.5), x_base=53.0, x_ponta=46.0, lim=(-15.0, 20.0), r_cubo=8.5, r_furo=10.5, encaixe=4.0,
+             blobs=[((57.0, 47.0, 122.5), (12.0, 13.0, 12.0)), ((60.0, 66.0, 119.0), (9.0, 12.0, 10.0)), ((54.0, 83.0, 116.0), (9.0, 10.0, 9.0))],
+             ombro=((45.0, 28.0, 100.0), (80.0, 72.0, 146.0)),                    # pele: saliência do ombro da malha além de x_base - 0,5 (sai)
+             mao=((30.0, 60.0, 104.0), (60.0, 96.0, 142.0)), mao_n=(0.87, 0.5, 0.0), mao_d=64.0),   # pele: antebraço e mão em relevo além do plano n·p = d (saem)
+    barriga=NS(caixa=((-32.0, 60.0, 63.0), (32.0, 130.0, 136.0)), plano_y=80.0),   # pele: barriga creme = o que a pele tem além do plano
+    dedos=(((43.0, 88.5, 6.0), (0.0, 1.0, 0.0)), ((68.0, 88.5, 6.0), (0.0, 1.0, 0.0)), ((84.0, 70.0, 6.0), (0.5, 0.87, 0.0))),   # pele: (ponto, normal) do plano de cada dedo creme do pé direito
+    dedo_r=9.0,
+    # esqueleto (y em "pele"; x e z no robô)
+    esq=NS(
+        piso_z=(9.0, 13.0), piso_x=53.0, piso_nivel=-3.2,
+        parede_x0=29.0, parede_esp=5.0,    # paredes do rack/torre: X de 29 a 34 (58 livres entre elas)
+        parede_y=(-40.0, 62.0),            # pele: fundo do rack ... frente das paredes da torre do pan (mais à frente a coxa acaba e o corpo estreita)
+        deck_y1=76.5, deck_lingua=14.5,    # pele: frente do deck; à frente das paredes ele é uma língua de ±14,5 mm em balanço, com a face de baixo a 45° (2 mísulas + cunha)
+        rack_y_pe=-14.0,                   # pele: atrás daqui o fundo da anca é estreito: a parede nasce de um alargamento a 45° do piso
+        alarga_x=22.8,                     # meia-largura do piso sob o rack (anca)
+        rack_z=(68.0, 62.0),               # topo das paredes do rack: esquerda (com os 2 trilhos) e direita (a bandeja de cima apoia no topo dela)
+        torre_x1=29.0,                     # (a parede direita da torre fica no mesmo X da do rack: o servo de pan vai com o corpo para a FRENTE)
+        travessa_y=(23.6, 26.6),           # pele: parede transversal entre rack e torre (L298N na face da frente)
+        deck_z=116.0, deck_esp=4.0,        # topo do deck = face de baixo da aba do servo de pan (centro da junta - 48)
+        deck_y0=20.5,                      # pele: borda de trás do deck (aba de trás do servo de pan)
+        driver_z=49.0,
+        bateria_y=-16.0,                   # pele: centro do suporte 2x18650 (no piso, entre as paredes; sai por trás)
+        trilho_z=(35.5, 62.0),             # fundo dos trilhos: nível de baixo = Pi, nível de cima = Uno + shield (atravessado)
+        trilho_alt=3.6, trilho_prof=2.0,
+        bandeja_larg=61.4, bandeja_esp=3.0, espacador=5.0, uno_espacador=3.0,   # pilares do Uno mais baixos: a pilha Uno + shield (30 mm) tem de caber sob as costas
+        pi_y=(-62.0, 23.0), pi_placa_y=22.6,     # pele: bandeja do Pi (fundo, frente) e borda da frente da placa
+        uno_y=(-31.5, 23.0), uno_placa_y=-31.0,  # pele: bandeja do Uno e borda de TRÁS da placa (lado maior em X)
+        uno_x=37.0, uno_dx=0.8,            # a bandeja do Uno passa por cima da parede direita até uno_x (pilares dos furos de x = +32,5); a placa fica 0,8 mm para a direita (livra o berço do step-down)
+        esferas=((0.0, -74.0),),           # pele: 1 esfera de apoio, atrás, sob a raiz da cauda
+        poste_porta=(0.0, 0.0, 0.0, 0.0, 0.0, 0.0),   # (não usado no dino; base_baixa.esqueleto pede)
+        poste=NS(x=(34.0, 43.0), y=(-5.5, 2.5), z_topo=48.0, z_parafuso=40.0),   # pele: 2 postes atrás das coxas: M3 horizontal que prende o corpo (por trás, coberto pela traseira)
+        traseira_parafuso=(19.5, -22.0),   # (|x|, y pele): 2 M3 auto-atarraxantes POR BAIXO prendem a traseira no piso
+        gola_ressalto=37.5,                # a gola prende no CORPO: 2 ressaltos por dentro da borda de cima (frente e trás, a este raio do eixo do pan), M3 por cima
+        ombro_x=(27.0, 32.0),              # orelha do micro servo do braço (face de fora = apoio da aba)
+        encoder_extra=12.0,
+        stepdown=(17.5, 41.0),             # (y pele, z) do centro: face de fora da parede ESQUERDA, atrás do motor
+        ubec=(20.5, 38.0),                 # (y pele, z): face de fora da parede DIREITA, entre a chave e o motor
+        bms=(0.0, 40.0),                   # (x, y pele) do centro do BMS no piso, sob o L298N
+        chave=(0.0, 62.0),                 # (x, y pele) da chave no piso (por baixo), entre as pernas, à frente do L298N
+    ),
+    n_pecas=32,
 )
 
 # ------------------------------------------------------------------ SENSORES DA FASE 2 DOS BICHOS (rodada 2, etapa E3a)

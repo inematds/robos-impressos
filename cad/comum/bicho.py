@@ -178,11 +178,13 @@ def traseiro(pele: Pele, torso_gordo: Manifold):
 
 
 # ---------------------------------------------------------------- cabeça
-def cabeca(pele: Pele, boca: dict, junta=None, r_soquete=None, cabeca_z=None):
+def cabeca(pele: Pele, boca: dict, junta=None, r_soquete=None, cabeca_z=None, recuo=None):
     """Crânio e mandíbula a partir da pele da cabeça.
     boca = {y_eixo, z_eixo, y_corte, z0, incl (dz/dy), raio_sorriso, folga}.
     Por bicho (padrão = PESCOCO): `r_soquete` = raio da esfera oca em volta da junta (padrão gola_r + junta);
-    `cabeca_z` = altura do plano de baixo da cabeça acima do centro da junta."""
+    `cabeca_z` = altura do plano de baixo da cabeça acima do centro da junta; `recuo` = quanto a mandíbula se afasta
+    da esfera do soquete (padrão: o recuo do ponto mais baixo dela na abertura máxima; quem alivia a mandíbula ângulo a
+    ângulo, como o dino, passa um valor pequeno)."""
     ext = pele.solido()
     inte = pele.deslocado(-F.parede)
     casca = ext - inte
@@ -208,7 +210,8 @@ def cabeca(pele: Pele, boca: dict, junta=None, r_soquete=None, cabeca_z=None):
     yc, yp, zp = boca["y_corte"], boca["y_eixo"], boca["z_eixo"]
     mand = casca ^ inferior(-g / 2) ^ caixa(-200, 200, yc, 400, 0, 500)
     # a parte de baixo/atrás da mandíbula recua ao abrir: afasta da esfera da gola o tanto desse recuo
-    recuo = max(zp - zb, 0.0) * np.sin(np.radians(abs(N.boca[1]))) + 1.5
+    if recuo is None:
+        recuo = max(zp - zb, 0.0) * np.sin(np.radians(abs(N.boca[1]))) + 1.5
     mand = mand - esfera((CX, CY, CZ), N.gola_r + junta + recuo, seg=96)
     # crânio: tira a região da mandíbula + cunha atrás/abaixo do eixo (onde a mandíbula recua ao abrir)
     t = np.tan(np.radians(abs(N.boca[1]) + 3))
@@ -365,7 +368,8 @@ def bolso_unha(casca, ext, p, n, r=9.0, assento=2.4, prof=1.6):
     return casca, mat_de_z_para(n, base + n * 0.02)
 
 
-def mecanica_cabeca(p_cab: Pele, cran, mand, c_ext, c_int, boca, zcam, camera=True, aparar_r=None, eixo_oculto=False, sem_ponte=False):
+def mecanica_cabeca(p_cab: Pele, cran, mand, c_ext, c_int, boca, zcam, camera=True, aparar_r=None, eixo_oculto=False, sem_ponte=False,
+                    sondas=(-5.0, 0.0, 10.0, 22.0), servo_em_pe=False):
     """Tudo o que prende e move a cabeça, igual nos bichos: pilares da câmera (fase 2), orelhas crânio->mesa,
     almofadas do eixo da mandíbula, mesa da cabeça (com o servo da boca) e os componentes.
     `camera=False` deixa de fora o furo e os pilares da câmera na testa/focinho (bicho com os sensores nos olhos).
@@ -374,6 +378,10 @@ def mecanica_cabeca(p_cab: Pele, cran, mand, c_ext, c_int, boca, zcam, camera=Tr
     `eixo_oculto`: NENHUM furo no rosto. À direita o braço do horn encaixa entre 2 nervuras da almofada (sem
     parafuso por fora); à esquerda um pino Ø4 da mesa entra num soquete cego da mandíbula (ela abre e encaixa por
     pressão). Sem bucha: a matriz devolvida é None.
+    `servo_em_pe`: o micro servo da boca vai com o corpo para CIMA (e não para a frente): mandíbula curta, em que o
+    corpo do servo deitado sairia pela lateral do queixo (dino).
+    `sondas`: onde (y a partir do eixo da boca) se mede a largura da mandíbula para assentar a almofada do horn;
+    mandíbula curta e pontuda (dino) usa sondas mais perto do eixo.
     `sem_ponte`: a placa que segura o servo da boca desce 4 mm a mais e a janela ganha 2 chanfros de 45° nos cantos
     de baixo (a mesa imprime de cabeça para baixo: a ponte da janela cai de 23,6 para 19,6 mm, dentro do limite).
     Devolve (cranio, mandibula, mesa, componentes, matriz_da_bucha)."""
@@ -412,7 +420,7 @@ def mecanica_cabeca(p_cab: Pele, cran, mand, c_ext, c_int, boca, zcam, camera=Tr
         cran = cran - cil((mx, my, zmt + 2), (mx, my, zmt + 200), 3.3, seg=20)
 
     # mandíbula: almofada do horn (direita), furo do eixo livre (esquerda)
-    xw = [p_cab.ponto_na_pele((0, yy, zp), (1, 0, 0))[0] for yy in (yp - 5, yp, yp + 10, yp + 22)]
+    xw = [p_cab.ponto_na_pele((0, yp + dy_, zp), (1, 0, 0))[0] for dy_ in sondas]
     xflat = min(xw) - F.parede - 1.0
     almof = caixa(xflat, xflat + 30, yp - 5.5, yp + 23, zp - 5.5, zp + 5.5) ^ c_ext
     mand = mand + almof
@@ -450,6 +458,12 @@ def mecanica_cabeca(p_cab: Pele, cran, mand, c_ext, c_int, boca, zcam, camera=Tr
                                    "x", x_aba - 4, x_aba + 1)
     for dy in (-P.MICRO.furos_aba / 2, P.MICRO.furos_aba / 2):
         placa_s = placa_s - furo((x_aba + 0.5, ycs + dy, zp), (-1, 0, 0), 4, F.m2_piloto)
+    if servo_em_pe:
+        zcs = zp - P.MICRO.eixo_da_ponta + P.MICRO.corpo[0] / 2          # centro do corpo do servo (em pé)
+        placa_s = caixa(x_aba - 3, x_aba, yp - jw / 2 - 3.0, yp + jw / 2 + 3.0, zcs - P.MICRO.comp_abas / 2 - 1.5, zm + 0.01) \
+            - caixa(x_aba - 4, x_aba + 1, yp - jw / 2, yp + jw / 2, zcs - jl / 2, zcs + jl / 2)
+        for dz in (-P.MICRO.furos_aba / 2, P.MICRO.furos_aba / 2):
+            placa_s = placa_s - furo((x_aba + 0.5, yp, zcs + dz), (-1, 0, 0), 4, F.m2_piloto)
     xl = xi_e + 4.1                      # face de fora da orelha do eixo livre (bucha de 3,4 no vão)
     orelha_e = caixa(xl, xl + 7.0, yp - 5.5, yp + 5.5, zp, zm + 0.01) + cil((xl, yp, zp), (xl + 7.0, yp, zp), 5.5)
     if not eixo_oculto:
@@ -473,7 +487,7 @@ def mecanica_cabeca(p_cab: Pele, cran, mand, c_ext, c_int, boca, zcam, camera=Tr
     mesa = mesa - Manifold.extrude(sombra, 120).translate([0, 0, zm - 70])
     mesa = mesa - caixa(-9, 9, CY + N.coluna_chato + 0.5, CY + N.coluna_chato + 7.5, zm - 1, zmt + 1)      # cabos sobem aqui
 
-    M_boca = C.M([(0, 1, 0), (0, 0, 1), (1, 0, 0)], (x_aba, yp, zp))
+    M_boca = C.M([(0, 0, 1), (0, -1, 0), (1, 0, 0)] if servo_em_pe else [(0, 1, 0), (0, 0, 1), (1, 0, 0)], (x_aba, yp, zp))
     comps = []
     comps.append(Comp("servo-boca MG90S", C.micro_servo().transform(M_boca[:3, :]), "cabeca", P.MICRO.massa, "azul"))
     if camera:

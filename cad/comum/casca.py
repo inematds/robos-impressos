@@ -309,3 +309,92 @@ def tirar_farelos(pele: PeleGrade, campo, raio, z_min):
     out = campo.copy()
     out[:, :, k0:][farelo] = 0.6
     return out
+
+
+# ---------------------------------------------------------------- operações de grade usadas pelo dino (rodada 2, E3b)
+def _fatia(pele: PeleGrade, lo, hi):
+    return tuple(slice(max(int(np.searchsorted(pele.eixos[i], lo[i])), 0), min(int(np.searchsorted(pele.eixos[i], hi[i])) + 1, len(pele.eixos[i]))) for i in range(3))
+
+
+def fechar_vao_z(pele: PeleGrade, campo, lo, hi, valor=-1.0):
+    """Fecha, dentro da caixa (lo, hi), o vão VERTICAL entre dois sólidos (boca aberta da malha: enche entre a
+    mandíbula e o céu da boca só nas colunas em que existe mandíbula embaixo e focinho em cima). Só acrescenta."""
+    sl = _fatia(pele, lo, hi)
+    out = campo.copy()
+    sub = out[sl]
+    dentro = sub < 0
+    abaixo = np.logical_or.accumulate(dentro, axis=2)
+    acima = np.logical_or.accumulate(dentro[:, :, ::-1], axis=2)[:, :, ::-1]
+    vao = ~dentro & abaixo & acima
+    sub[vao] = valor
+    return out
+
+
+def sem_crista(pele: PeleGrade, campo, xc, lo_yz, hi_yz):
+    """Tira o que existe só na faixa |x| < xc (a crista de espinhos do plano de simetria) dentro da caixa (y, z):
+    ali o campo vira max(campo, campo em |x| = xc). O dorso fica com uma faixa lisa, onde assenta a lâmina."""
+    xs = pele.eixos[0]
+    ia, ib = int(np.argmin(np.abs(xs + xc))), int(np.argmin(np.abs(xs - xc)))
+    sl = _fatia(pele, (xs[ia], lo_yz[0], lo_yz[1]), (xs[ib], hi_yz[0], hi_yz[1]))
+    out = campo.copy()
+    ref = np.maximum(campo[ia, sl[1], sl[2]], campo[ib, sl[1], sl[2]])
+    out[ia:ib + 1, sl[1], sl[2]] = np.maximum(campo[ia:ib + 1, sl[1], sl[2]], ref[None])
+    return out
+
+
+def lamina_crista(pele_cheia: PeleGrade, campo_liso, lo_yz, hi_yz, fundo=4.0, livre=None, extra=0.0):
+    """Contorno (y, z), no plano de simetria, da lâmina da crista: o que a pele COM espinhos tem além da pele lisa,
+    mais uma faixa de `fundo` mm para dentro (é ela que entra no rasgo da casca). `livre` (campo, opcional): só
+    onde livre > 0 (fora da zona varrida pela cabeça). `extra` engorda o contorno (rasgo com folga).
+    Devolve polígono(s) shapely em (y, z)."""
+    from shapely.geometry import Polygon
+    from shapely.ops import unary_union
+
+    xs, ys, zs = pele_cheia.eixos
+    i0 = int(np.argmin(np.abs(xs)))
+    Y, Z = np.meshgrid(ys, zs, indexing="ij")
+    g = np.maximum(pele_cheia.F[i0], -(campo_liso[i0] + fundo))
+    g = np.maximum(g, np.maximum(np.maximum(lo_yz[0] - Y, Y - hi_yz[0]), np.maximum(lo_yz[1] - Z, Z - hi_yz[1])))
+    if livre is not None:
+        g = np.maximum(g, -livre[i0])
+    pols = []
+    for c in measure.find_contours(np.pad(g, 1, constant_values=9.0), 0.0):
+        if len(c) < 4:
+            continue
+        pg = Polygon(np.c_[ys[0] + (c[:, 0] - 1) * pele_cheia.h, zs[0] + (c[:, 1] - 1) * pele_cheia.h]).buffer(0)
+        if pg.area > 12:
+            pols.append(pg)
+    u = unary_union(pols).simplify(0.15)
+    return u.buffer(extra, join_style=2) if extra else u
+
+
+def extrudar_x(pol, meia) -> Manifold:
+    """Prisma ao longo de X (de -meia a +meia) de polígono(s) shapely dados em (y, z)."""
+    ps = pol.geoms if hasattr(pol, "geoms") else [pol]
+    return uniao(*[prisma(list(g.exterior.coords)[:-1], "x", -meia, meia) for g in ps if g.area > 1])
+
+
+def cil_x_redondo(P, c_yz, r, x0, x1, arred):
+    """Campo de um disco (cilindro de eixo X, de x0 a x1, raio r) com as quinas arredondadas: a coxa que esconde a roda."""
+    q1 = np.hypot(P[..., 1] - c_yz[0], P[..., 2] - c_yz[1]) - (r - arred)
+    q2 = np.abs(P[..., 0] - (x0 + x1) / 2) - ((x1 - x0) / 2 - arred)
+    return np.hypot(np.maximum(q1, 0), np.maximum(q2, 0)) + np.minimum(np.maximum(q1, q2), 0) - arred
+
+
+def sombra_frente(solido: Manifold, ys, folga=0.6) -> Manifold:
+    """Tudo o que fica À FRENTE (+Y) de um sólido, em fatias: entre ys[i] e ys[i+1] (ys crescente) vale a projeção em
+    (x, z) do que o sólido tem ATRÁS de ys[i+1]. É o que uma casca que sai para TRÁS (-Y) tem de deixar livre para
+    passar por cima do sólido. Mesma ideia de base_baixa.sombra_abaixo, girada 90° em X."""
+    from manifold3d import JoinType
+
+    R = [[1, 0, 0, 0], [0, 0, 1, 0], [0, -1, 0, 0]]          # (x, y, z) -> (x, z, -y): "atrás" vira "acima"
+    Ri = [[1, 0, 0, 0], [0, 0, -1, 0], [0, 1, 0, 0]]
+    s = solido.transform(R)
+    partes = []
+    for ya, yb in zip(ys[:-1], ys[1:]):
+        cima = s ^ caixa(-900, 900, -900, 900, -yb, 900)     # o que o sólido tem com y <= yb
+        if cima.is_empty():
+            continue
+        cs = cima.project().offset(folga, JoinType.Round, circular_segments=32)
+        partes.append(Manifold.extrude(cs, yb - ya).translate([0, 0, -yb]))
+    return uniao(*partes).transform(Ri) if partes else Manifold()
