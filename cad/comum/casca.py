@@ -171,3 +171,96 @@ def mat_imprimir_base(n):
     M = np.eye(4)
     M[:3, :3] = R.T                            # leva n para +Z: a base (lado -n) fica na mesa
     return M
+
+
+# ---------------------------------------------------------------- regiões (campo + sólido) para recortes
+def campo_caixa(P, lo, hi):
+    """Caixa alinhada aos eixos como campo (negativo dentro; norma do máximo: basta para máscaras)."""
+    lo, hi = np.asarray(lo, np.float32), np.asarray(hi, np.float32)
+    return np.max(np.maximum(lo - P, P - hi), axis=-1)
+
+
+class Regiao:
+    """Volume simples dado duas vezes: `solido` (Manifold, para o CSG exato da peça) e `campo(P)` (negativo dentro,
+    para tirar o mesmo volume do campo da pele antes de fazer a casca)."""
+
+    def __init__(self, solido, campo):
+        self.solido, self.campo = solido, campo
+
+    @classmethod
+    def caixa(cls, lo, hi):
+        return cls(caixa(lo[0], hi[0], lo[1], hi[1], lo[2], hi[2]), lambda P: campo_caixa(P, lo, hi))
+
+    @classmethod
+    def esfera(cls, c, r):
+        from cad.comum.geo import esfera
+
+        cc = np.asarray(c, np.float32)
+        return cls(esfera(c, r, seg=48), lambda P: np.linalg.norm(P - cc, axis=-1) - r)
+
+    @classmethod
+    def cil_x(cls, c, r, x0, x1):
+        from cad.comum.geo import cil
+
+        def f(P):
+            return np.maximum(np.hypot(P[..., 1] - c[1], P[..., 2] - c[2]) - r, np.maximum(x0 - P[..., 0], P[..., 0] - x1))
+
+        return cls(cil((x0, c[1], c[2]), (x1, c[1], c[2]), r, seg=64), f)
+
+    @classmethod
+    def triangulo_xz(cls, a, b, c, y0, y1):
+        """Prisma de um triângulo no plano (x, z), de y0 a y1."""
+        pts = [a, b, c]
+        ar = sum(pts[i][0] * pts[(i + 1) % 3][1] - pts[(i + 1) % 3][0] * pts[i][1] for i in range(3))
+        if ar < 0:
+            pts = pts[::-1]
+
+        def f(P):
+            d = np.maximum(y0 - P[..., 1], P[..., 1] - y1)
+            for i in range(3):
+                (x0_, z0_), (x1_, z1_) = pts[i], pts[(i + 1) % 3]
+                ex, ez = x1_ - x0_, z1_ - z0_
+                L = float(np.hypot(ex, ez))
+                d = np.maximum(d, ((P[..., 0] - x0_) * ez - (P[..., 2] - z0_) * ex) / L)     # fora = à direita da aresta
+            return d
+
+        return cls(prisma(pts, "y", y0, y1), f)
+
+
+class Relevo:
+    """Uma peça colorida em relevo: região + plano (p0, n). `tirar(P, d)` devolve o campo sem a parte da região além
+    do plano (o corpo fica com um assento plano e a casca nasce com parede atrás dele); `peca(ext)` recorta a peça
+    da pele ORIGINAL (base plana, imprime sem suporte com `imprimir`)."""
+
+    def __init__(self, regiao: Regiao, p0, n, folga=0.25):
+        self.regiao, self.folga = regiao, folga
+        self.p0 = np.asarray(p0, float)
+        self.n = np.asarray(n, float) / np.linalg.norm(n)
+
+    def tirar(self, P, d):
+        alem = campo_meio_espaco(P, self.p0 - self.n * self.folga, self.n)          # > 0 além do plano (com folga)
+        return np.maximum(d, -np.maximum(self.regiao.campo(P), -alem))     # tira (região ∩ além do plano)
+
+    def peca(self, ext: Manifold) -> Manifold:
+        from cad.comum.geo import maior_corpo
+
+        return maior_corpo(ext ^ self.regiao.solido ^ meio_espaco(self.p0, self.n))
+
+    @property
+    def imprimir(self):
+        return mat_imprimir_base(self.n)
+
+
+def tirar_farelos(pele: PeleGrade, campo, raio, z_min):
+    """Abertura morfológica (erode + dilata `raio` mm) do sólido acima de z_min: some com lascas e farelos mais finos
+    que 2 x raio (restos do recorte da zona varrida). Só REMOVE material; devolve o campo corrigido."""
+    k0 = max(int(np.searchsorted(pele.eixos[2], z_min)) - 1, 0)
+    sub = campo[:, :, k0:]
+    dentro = sub < 0
+    r = raio / pele.h
+    nucleo = ndimage.distance_transform_edt(dentro) > r
+    aberto = ndimage.distance_transform_edt(~nucleo) <= r + 0.5
+    farelo = dentro & ~aberto
+    out = campo.copy()
+    out[:, :, k0:][farelo] = 0.6
+    return out

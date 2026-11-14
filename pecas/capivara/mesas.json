@@ -45,28 +45,29 @@
   {
    "mesa": 5,
    "material": "PLA",
+   "cor": "ciano",
+   "itens": [
+    "aro",
+    "aro"
+   ],
+   "arquivo": "mesas/capivara-mesa-05-pla-ciano.3mf"
+  },
+  {
+   "mesa": 6,
+   "material": "PLA",
    "cor": "cinza",
    "itens": [
     "teste-encaixe",
     "bucha-eixo"
    ],
-   "arquivo": "mesas/capivara-mesa-05-pla-cinza.3mf"
-  },
-  {
-   "mesa": 6,
-   "material": "PLA",
-   "cor": "laranja",
-   "itens": [
-    "cranio"
-   ],
-   "arquivo": "mesas/capivara-mesa-06-pla-laranja.3mf"
+   "arquivo": "mesas/capivara-mesa-06-pla-cinza.3mf"
   },
   {
    "mesa": 7,
    "material": "PLA",
    "cor": "laranja",
    "itens": [
-    "corpo"
+    "cranio"
    ],
    "arquivo": "mesas/capivara-mesa-07-pla-laranja.3mf"
   },
@@ -75,7 +76,8 @@
    "material": "PLA",
    "cor": "laranja",
    "itens": [
-    "porta",
+    "corpo",
+    "topete",
     "mandibula"
    ],
    "arquivo": "mesas/capivara-mesa-08-pla-laranja.3mf"
@@ -83,31 +85,47 @@
   {
    "mesa": 9,
    "material": "PLA",
-   "cor": "marrom",
+   "cor": "laranja",
    "itens": [
-    "iris",
-    "iris-esq"
+    "porta"
    ],
-   "arquivo": "mesas/capivara-mesa-09-pla-marrom.3mf"
+   "arquivo": "mesas/capivara-mesa-09-pla-laranja.3mf"
   },
   {
    "mesa": 10,
+   "material": "PLA",
+   "cor": "marrom",
+   "itens": [
+    "focinho",
+    "rabo",
+    "mao-dir",
+    "mao-esq",
+    "orelha-dir",
+    "orelha-esq",
+    "iris",
+    "iris-esq"
+   ],
+   "arquivo": "mesas/capivara-mesa-10-pla-marrom.3mf"
+  },
+  {
+   "mesa": 11,
    "material": "PLA",
    "cor": "preto",
    "itens": [
     "pupila",
     "pupila-esq"
    ],
-   "arquivo": "mesas/capivara-mesa-10-pla-preto.3mf"
+   "arquivo": "mesas/capivara-mesa-11-pla-preto.3mf"
   },
   {
-   "mesa": 11,
+   "mesa": 12,
    "material": "PLA",
    "cor": "verde-bandana",
    "itens": [
-    "gola"
+    "gola",
+    "avental"
    ],
-   "arquivo": "mesas/capivara-mesa-11-pla-verde-bandana.3mf"
+   "arquivo": "mesas/capivara-mesa-12-pla-verde-bandana.3mf"
   }
  ],
  "pecas": [
@@ -482,6 +500,80 @@
    "liso": true
   },
   {
+   "arquivo": "stl/capivara-aro.stl",
+   "rgb": [
+    0.25,
+    0.85,
+    0.95
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      23.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      -267.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "stl/capivara-aro.stl",
+   "rgb": [
+    0.25,
+    0.85,
+    0.95
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      69.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      -267.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
    "arquivo": "../comum/stl/comum-teste-encaixe.stl",
    "rgb": [
     0.42,
@@ -494,7 +586,7 @@
       1.0,
       0.0,
       0.0,
-      38.0
+      328.0
      ],
      [
       0.0,
@@ -531,7 +623,7 @@
       1.0,
       0.0,
       0.0,
-      82.6
+      372.6
      ],
      [
       0.0,
@@ -568,13 +660,13 @@
       1.0,
       0.0,
       0.0,
-      383.6
+      673.6
      ],
      [
       0.0,
       1.0,
       0.0,
-      -174.45
+      -193.45
      ],
      [
       0.0,
@@ -605,13 +697,13 @@
       1.0,
       0.0,
       0.0,
-      686.65
+      976.65
      ],
      [
       0.0,
       1.0,
       0.0,
-      -192.7
+      -194.4
      ],
      [
       0.0,
@@ -630,7 +722,7 @@
    "liso": true
   },
   {
-   "arquivo": "stl/capivara-porta.stl",
+   "arquivo": "stl/capivara-topete.stl",
    "rgb": [
     0.93,
     0.52,
@@ -642,13 +734,13 @@
       1.0,
       0.0,
       0.0,
-      911.05
+      895.0
      ],
      [
       0.0,
       1.0,
       0.0,
-      -238.7
+      -69.80000000000001
      ],
      [
       0.0,
@@ -679,13 +771,272 @@
       1.0,
       0.0,
       0.0,
-      1020.9
+      988.7
      ],
      [
       0.0,
       1.0,
       0.0,
-      -264.55
+      -73.4
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "stl/capivara-porta.stl",
+   "rgb": [
+    0.93,
+    0.52,
+    0.13
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      41.05
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      -555.05
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "stl/capivara-focinho.stl",
+   "rgb": [
+    0.36,
+    0.19,
+    0.1
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      332.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      -546.75
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "stl/capivara-rabo.stl",
+   "rgb": [
+    0.36,
+    0.19,
+    0.1
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      405.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      -547.45
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "stl/capivara-mao-dir.stl",
+   "rgb": [
+    0.36,
+    0.19,
+    0.1
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      456.5
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      -558.65
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "stl/capivara-mao-esq.stl",
+   "rgb": [
+    0.36,
+    0.19,
+    0.1
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      497.5
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      -558.65
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "stl/capivara-orelha-dir.stl",
+   "rgb": [
+    0.36,
+    0.19,
+    0.1
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      306.25
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      -497.05
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "stl/capivara-orelha-esq.stl",
+   "rgb": [
+    0.36,
+    0.19,
+    0.1
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      338.75
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      -497.05
      ],
      [
       0.0,
@@ -716,13 +1067,13 @@
       1.0,
       0.0,
       0.0,
-      18.0
+      373.0
      ],
      [
       0.0,
       1.0,
       0.0,
-      -567.0
+      -500.5
      ],
      [
       0.0,
@@ -753,13 +1104,13 @@
       1.0,
       0.0,
       0.0,
-      54.0
+      409.0
      ],
      [
       0.0,
       1.0,
       0.0,
-      -567.0
+      -500.5
      ],
      [
       0.0,
@@ -790,7 +1141,7 @@
       1.0,
       0.0,
       0.0,
-      303.3
+      593.3
      ],
      [
       0.0,
@@ -827,7 +1178,7 @@
       1.0,
       0.0,
       0.0,
-      329.90000000000003
+      619.9
      ],
      [
       0.0,
@@ -864,13 +1215,50 @@
       1.0,
       0.0,
       0.0,
-      662.7
+      952.7
      ],
      [
       0.0,
       1.0,
       0.0,
-      -508.2
+      -499.15
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "stl/capivara-avental.stl",
+   "rgb": [
+    0.3,
+    0.66,
+    0.16
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      1073.25
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      -556.7
      ],
      [
       0.0,
@@ -923,14 +1311,14 @@
    "y0": -290.0,
    "lado": 256.0,
    "material": "PLA",
-   "cor": "cinza"
+   "cor": "ciano"
   },
   {
    "x0": 290.0,
    "y0": -290.0,
    "lado": 256.0,
    "material": "PLA",
-   "cor": "laranja"
+   "cor": "cinza"
   },
   {
    "x0": 580.0,
@@ -951,17 +1339,24 @@
    "y0": -580.0,
    "lado": 256.0,
    "material": "PLA",
-   "cor": "marrom"
+   "cor": "laranja"
   },
   {
    "x0": 290.0,
    "y0": -580.0,
    "lado": 256.0,
    "material": "PLA",
-   "cor": "preto"
+   "cor": "marrom"
   },
   {
    "x0": 580.0,
+   "y0": -580.0,
+   "lado": 256.0,
+   "material": "PLA",
+   "cor": "preto"
+  },
+  {
+   "x0": 870.0,
    "y0": -580.0,
    "lado": 256.0,
    "material": "PLA",

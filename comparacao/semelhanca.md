@@ -6,17 +6,18 @@ Protocolo v1: projeção ortográfica, silhuetas com 400 px de altura, base na m
 
 ## capivara
 
-| vista | antes: IoU | antes: ajustado | antes: az/el | malha-capivara-hy2mv-flb-s1: IoU | malha-capivara-hy2mv-flb-s1: ajustado | malha-capivara-hy2mv-flb-s1: az/el | malha-capivara-hy2mv-flb-s2: IoU | malha-capivara-hy2mv-flb-s2: ajustado | malha-capivara-hy2mv-flb-s2: az/el |
-|---|---:|---:|---|---:|---:|---|---:|---:|---|
-| frente | 0,783 | 0,804 | 10°/5° | 0,936 | 0,936 | -5°/5° | 0,943 | 0,943 | 0°/5° |
-| tres-quartos | 0,784 | 0,786 | -70°/10° | 0,901 | 0,901 | -45°/5° | 0,911 | 0,911 | -45°/5° |
-| lado | 0,736 | 0,737 | -70°/10° | 0,917 | 0,917 | -70°/10° | 0,925 | 0,925 | -70°/10° |
-| costas | 0,803 | 0,818 | 170°/5° | 0,923 | 0,924 | 185°/10° | 0,927 | 0,927 | 180°/10° |
-| **média** | **0,777** | **0,786** |  | **0,919** | **0,919** |  | **0,926** | **0,926** |  |
+| vista | antes: IoU | antes: ajustado | antes: az/el | malha-capivara-hy2mv-flb-s1: IoU | malha-capivara-hy2mv-flb-s1: ajustado | malha-capivara-hy2mv-flb-s1: az/el | malha-capivara-hy2mv-flb-s2: IoU | malha-capivara-hy2mv-flb-s2: ajustado | malha-capivara-hy2mv-flb-s2: az/el | depois: IoU | depois: ajustado | depois: az/el |
+|---|---:|---:|---|---:|---:|---|---:|---:|---|---:|---:|---|
+| frente | 0,783 | 0,804 | 10°/5° | 0,936 | 0,936 | -5°/5° | 0,943 | 0,943 | 0°/5° | 0,939 | 0,939 | 0°/5° |
+| tres-quartos | 0,784 | 0,786 | -70°/10° | 0,901 | 0,901 | -45°/5° | 0,911 | 0,911 | -45°/5° | 0,908 | 0,908 | -45°/5° |
+| lado | 0,736 | 0,737 | -70°/10° | 0,917 | 0,917 | -70°/10° | 0,925 | 0,925 | -70°/10° | 0,907 | 0,907 | -70°/10° |
+| costas | 0,803 | 0,818 | 170°/5° | 0,923 | 0,924 | 185°/10° | 0,927 | 0,927 | 180°/10° | 0,924 | 0,924 | 185°/15° |
+| **média** | **0,777** | **0,786** |  | **0,919** | **0,919** |  | **0,926** | **0,926** |  | **0,920** | **0,920** |  |
 
 - `antes`: .preview/v102/pecas/capivara · 2026-11-14 · tag v1.0.2
 - `malha-capivara-hy2mv-flb-s1`: referencia/malhas/capivara-hy2mv-flb-s1.glb · 2026-11-14
 - `malha-capivara-hy2mv-flb-s2`: referencia/malhas/capivara-hy2mv-flb-s2.glb · 2026-11-14
+- `depois`: pecas/capivara · 2026-11-14
 
 ## cubo
 

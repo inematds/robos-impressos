@@ -42,27 +42,45 @@ def construir() -> Modelo:
     # ------------------------------------------------------------ pele, cabeça e zona varrida
     base = CA.carregar(K.pele, dy=K.dy)
     Pg = base.P
-    H = CA.campo_cabeca(base, C0, K.soquete_r, zb)
+    lo_l, hi_l = (np.array(v, float) + (0, K.dy, 0) for v in K.laco)
+    H = np.maximum(CA.campo_cabeca(base, C0, K.soquete_r, zb), -CA.campo_caixa(Pg, lo_l, hi_l))      # cabeça sem o laço
     bo = _boca(K.dy, 0.0)
     # mandíbula aberta: a parte de baixo da boca, girada no eixo dela, também varre
     z_boca = bo["z0"] + bo["incl"] * (Pg[..., 1] - bo["y_ref"]) + 8.0
     Hj = np.maximum(np.maximum(H, bo["y_corte"] - Pg[..., 1]), Pg[..., 2] - z_boca)
     H = np.minimum(H, CA.reamostrar(base, Hj, mat_giro((0, bo["y_eixo"], bo["z_eixo"]), (-1, 0, 0), N.boca[1])))
-    pans = np.arange(N.pan[0], N.pan[1] + 0.1, 15.0)
+    pans = np.arange(N.pan[0], N.pan[1] + 0.1, 7.5)
     tilts = np.unique(np.concatenate([np.linspace(N.tilt[0], 0, 3), np.linspace(0, N.tilt[1], 3)]))
     S = CA.zona_varrida(base, H, C0, pans, tilts, (-115, C0[1] - 120, 96), (115, C0[1] + 140, z_top + 14), chave=f"{K.pele}|{K.dy}")
     del H, Hj
 
-    # ------------------------------------------------------------ corpo = pele + ancas - zona varrida
+    # ------------------------------------------------------------ peças em relevo do corpo (regiões no robô)
+    dyv = np.array([0, K.dy, 0.0])
+    R = CA.Regiao
+    lo, hi = (np.array(v, float) + dyv for v in K.rabo.caixa)
+    rel = {"rabo": CA.Relevo(R.caixa(lo, hi), (0, K.rabo.plano_y + K.dy, 70), (0, -1, 0))}
+    for s, nm in ((1, "mao-dir"), (-1, "mao-esq")):
+        rel[nm] = CA.Relevo(R.esfera(np.array(K.mao.c, float) * (s, 1, 1) + dyv, K.mao.r), (0, K.mao.plano_y + K.dy, 65), (0, 1, 0))
+    rel["avental"] = CA.Relevo(R.triangulo_xz(*K.avental.tri, 0.0, 300.0), (0, K.avental.plano_y + K.dy, 100), (0, 1, 0))
+    A = K.aro
+    aros = [CA.Relevo(R.cil_x((0, 0, A.z), A.r_fora + 0.3, min(s * (A.x - 1), s * 200), max(s * (A.x - 1), s * 200)), (s * A.x, 0, A.z), (s, 0, 0)) for s in (1, -1)]
+
+    # ------------------------------------------------------------ corpo = pele + ancas - zona varrida - relevos
     def campo_corpo(Pp, Fp):
         d = Fp
         for (c, r) in K.anca:
             for s in (1, -1):
                 d = smin(d, sdf_elipsoide(Pp, (s * c[0], c[1] + K.dy, c[2]), r), 6.0)
-        return np.maximum(np.maximum(d, K.folga_junta - S), Pp[..., 2] - (z_top + 6.0))
+        d = np.maximum(np.maximum(d, K.folga_junta - S), Pp[..., 2] - (z_top + 6.0))
+        d = CA.tirar_farelos(base, d, 2.5, K.z_gola - 14.0)
+        for r_ in list(rel.values()) + aros:
+            d = r_.tirar(Pp, d)
+        return d
 
     p_corpo = base.combinar(campo_corpo)
     del S
+    ext0 = base.solido()                               # pele original: é dela que saem as peças em relevo
+    gordo = p_corpo.deslocado(F.encaixe)               # o corpo com folga: as peças em relevo nunca o atravessam
     ext = p_corpo.solido()
     inte = p_corpo.deslocado(-F.parede)
     casca = ext - inte
@@ -94,6 +112,18 @@ def construir() -> Modelo:
     # ------------------------------------------------------------ gola-bandana (esfera do pescoço)
     gola = maior_corpo(CA.fatia_z(casca, K.z_gola + F.encaixe, z_top))
 
+    pc = {nm: r_.peca(ext0) - gordo for nm, r_ in rel.items()}
+    aro = cil((A.x + 0.05, 0, A.z), (A.x + A.esp, 0, A.z), A.r_fora) - cil((A.x, 0, A.z), (A.x + A.esp + 1, 0, A.z), A.r_dentro + 0.4)
+    marrom = dict(cor="marrom", macica=True, suporte="não", orientacao="base plana (face de colar) na mesa")
+    pecas += [
+        Peca("rabo", pc["rabo"], imprimir=rel["rabo"].imprimir, explode=(0, -160, 0), obs="rabo; cola no assento plano da porta", **marrom),
+        Peca("mao-dir", pc["mao-dir"], imprimir=rel["mao-dir"].imprimir, explode=(30, 90, 0), obs="mão direita; cola", **marrom),
+        Peca("mao-esq", pc["mao-esq"], imprimir=rel["mao-esq"].imprimir, explode=(-30, 90, 0), obs="mão esquerda; cola", **marrom),
+        Peca("avental", pc["avental"], cor="verde-bandana", macica=True, imprimir=rel["avental"].imprimir, explode=(0, 110, 20),
+             orientacao="base plana (face de colar) na mesa", obs="ponta da bandana no peito; cola no rebaixo de fundo plano"),
+        Peca("aro", aro, cor="ciano", imprimir=rot("y", -90), macica=True, copias=[np.eye(4), np.diag([-1.0, 1, 1, 1])], explode=(130, 0, 0),
+             orientacao="face plana na mesa", obs="aro das ancas (filamento translúcido para o LED da fase 2); cola"),
+    ]
     pecas += [
         Peca("corpo", bacia, cor="laranja", suporte="sim (provisório)", explode=(0, 0, 60),
              orientacao="borda de baixo (z=5) na mesa, como um vaso", obs="bacia inteira do corpo; entra por cima do chassi; 4 M3 por baixo"),
@@ -108,6 +138,27 @@ def construir() -> Modelo:
     czs = BS.CZ
     p_cab = p_cab.recortar((-200, -400, czs - 8.0), (200, 400, 600))
     boca = _boca(K.dy - T[1], -T[2])
+    c_ext0 = p_cab.solido()
+    ds = np.array([0, K.dy - T[1], -T[2]])             # pele -> referencial padrão
+    lo, hi = (np.array(v, float) + ds for v in K.focinho.caixa)
+    relc = {"focinho": CA.Relevo(R.caixa(lo, hi), (0, K.focinho.plano_y + ds[1], 200 + ds[2]), (0, 1, 0))}
+    lo, hi = (np.array(v, float) + ds for v in K.topete.caixa)
+    relc["topete"] = CA.Relevo(R.caixa(lo, hi), (0, ds[1], K.topete.plano_z + ds[2]), (0, 0, 1))
+    oc, on = np.array(K.orelha.c, float), np.array(K.orelha.n, float) / np.linalg.norm(K.orelha.n)
+    for s, nm in ((1, "orelha-dir"), (-1, "orelha-esq")):
+        e_ = np.array([s, 1, 1.0])
+        relc[nm] = CA.Relevo(R.esfera(oc * e_ + ds, K.orelha.r), (oc + on * K.orelha.d) * e_ + ds, on * e_)
+    lo_s, hi_s = (np.array(v, float) + ds for v in K.laco)
+
+    def campo_cab(Pp, Fp):
+        d = np.maximum(Fp, -CA.campo_caixa(Pp, lo_s, hi_s))          # sem o laço
+        for r_ in relc.values():
+            d = r_.tirar(Pp, d)
+        return d
+
+    p_cab = p_cab.combinar(campo_cab)
+    gordo_c = p_cab.deslocado(F.encaixe)
+    pcc = {nm: (r_.peca(c_ext0) - gordo_c).translate(list(T)) for nm, r_ in relc.items()}
     cran, mand, c_ext, c_int = BI.cabeca(p_cab, boca, r_soquete=K.soquete_r, cabeca_z=K.cabeca_z)
     o = K.olho
     olhos, iris, pups = [], [], []
@@ -118,7 +169,10 @@ def construir() -> Modelo:
         esp = np.array([s, 1, 1.0])
         cran, ol, ir, pu = BI.olho(c_olho * esp, o.r, nrm * esp, o.iris_r, o.pupila_r, cran, c_ext)
         olhos.append(ol), iris.append(ir), pups.append(pu)
+    cran = maior_corpo(cran)
     cran, mand, mesa, comps_cab, M_bucha = BI.mecanica_cabeca(p_cab, cran, mand, c_ext, c_int, boca, zcam=0.0, camera=False, aparar_r=K.soquete_r)
+    cran = maior_corpo(cran)
+    mand = maior_corpo(mand - cran - cran.translate([0, 0, -0.6]))      # a almofada do eixo não passa do céu da boca
     Tl = list(T)
     for c in comps_cab:
         c.solido = c.solido.translate(Tl)
@@ -137,6 +191,13 @@ def construir() -> Modelo:
         Peca("iris-esq", g(iris[1]), cor="marrom", grupo="cabeca", macica=True, explode=(-24, 80, 176)),
         Peca("pupila", g(pups[0]), cor="preto", grupo="cabeca", macica=True, explode=(28, 100, 182)),
         Peca("pupila-esq", g(pups[1]), cor="preto", grupo="cabeca", macica=True, explode=(-28, 100, 182)),
+    ]
+    pecas += [
+        Peca("focinho", pcc["focinho"], grupo="cabeca", imprimir=relc["focinho"].imprimir, explode=(0, 120, 160), obs="tampa marrom do focinho; cola", **marrom),
+        Peca("orelha-dir", pcc["orelha-dir"], grupo="cabeca", imprimir=relc["orelha-dir"].imprimir, explode=(30, 0, 200), obs="orelha direita; cola", **marrom),
+        Peca("orelha-esq", pcc["orelha-esq"], grupo="cabeca", imprimir=relc["orelha-esq"].imprimir, explode=(-30, 0, 200), obs="orelha esquerda; cola", **marrom),
+        Peca("topete", pcc["topete"], cor="laranja", grupo="cabeca", macica=True, imprimir=relc["topete"].imprimir, explode=(0, 0, 215),
+             orientacao="base plana na mesa", obs="topete; encaixe por pressão (sem cola): tampa os 2 furos de acesso aos parafusos da mesa"),
     ]
     bucha = BS.bucha_eixo([mat_trans(T) @ M_bucha])
     bucha.grupo = "mandibula"
@@ -162,7 +223,8 @@ def construir() -> Modelo:
               "cabeça": medir_parede(c_ext, CA.fatia_z(c_int, BS.CZ + K.cabeca_z + 4.0, 900.0))}
     encaixes = [{"par": ["motor-tt-dir", "roda-dir"], "motivo": "eixo do motor entra no cubo da roda"},
                 {"par": ["motor-tt-esq", "roda-esq"], "motivo": "eixo do motor entra no cubo da roda"}]
-    cab = ["cranio", "mesa-cabeca", "mandibula", "bucha-eixo", "servo-boca MG90S", "olho", "olho-esq", "iris", "iris-esq", "pupila", "pupila-esq"]
+    cab = ["cranio", "mesa-cabeca", "mandibula", "bucha-eixo", "servo-boca MG90S", "olho", "olho-esq", "iris", "iris-esq", "pupila", "pupila-esq",
+           "focinho", "orelha-dir", "orelha-esq", "topete"]
     return Modelo("capivara", "Capivara", pecas, comps, juntas, BB.apoios(E), poses, ordem=_ordem(cab),
                   obs={"parede_medida": parede, "explode_grupo": {"cabeca": (0, 0, 95), "pan": (0, 0, 30), "mandibula": (0, 70, 85)}}, encaixes=encaixes)
 
@@ -183,16 +245,16 @@ def _ordem(cab):
         dict(passo="esferas de apoio + capas", move=["esfera-dir", "esfera-esq", "capa-esfera"], dir=nZ, curso=40),
         dict(passo="driver L298N (pela frente da torre)", move=["driver L298N"], dir=Y, curso=120),
         dict(passo="servo de pan", move=["servo-pan MG996R"], dir=Z),
-        dict(passo="corpo (bacia) desce por cima do chassi", move=["corpo"], dir=Z, curso=240),
+        dict(passo="corpo (bacia) desce por cima do chassi", move=["corpo", "mao-dir", "mao-esq", "avental", "aro"], dir=Z, curso=240),
         dict(passo="garfo (por dentro da boca da bacia)", move=["garfo-pescoco"], dir=Z, curso=160),
         dict(passo="berço + servo de tilt", move=["berco-tilt", "servo-tilt MG996R"], dir=Z, curso=160),
         dict(passo="gola-bandana", move=["gola"], dir=Z, curso=160),
         *tras,
-        dict(passo="porta traseira", move=["porta"], dir=nY, curso=170),
+        dict(passo="porta traseira", move=["porta", "rabo"], dir=nY, curso=170),
         dict(passo="mesa dentro do crânio (na bancada)", move=["mesa-cabeca", "servo-boca MG90S"], dir=nZ, curso=100, contra=["cranio"]),
         dict(passo="cabeça no pescoço", move=list(cab), dir=Z, curso=160),
         # abertura para manutenção SEM tirar a cabeça: porta, bandejas e bateria saem por trás
-        dict(passo="ABRIR: porta traseira sai", move=["porta"], dir=nY, curso=170, sai=True),
+        dict(passo="ABRIR: porta traseira sai", move=["porta", "rabo"], dir=nY, curso=170, sai=True),
         dict(passo="ABRIR: bandeja do Uno sai", move=["bandeja-uno", "Arduino Uno + shield"], dir=nY, curso=170, sai=True),
         dict(passo="ABRIR: bandeja do Pi sai", move=["bandeja-pi", "Raspberry Pi 4/5"], dir=nY, curso=170, sai=True),
         dict(passo="ABRIR: bateria sai", move=["bateria 2x18650"], dir=nY, curso=170, sai=True),

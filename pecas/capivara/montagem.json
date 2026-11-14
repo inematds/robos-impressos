@@ -3,6 +3,373 @@
  "titulo": "Capivara",
  "pecas": [
   {
+   "nome": "rabo",
+   "arquivo": "stl/capivara-rabo.stl",
+   "material": "PLA",
+   "cor": "marrom",
+   "rgb": [
+    0.36,
+    0.19,
+    0.1
+   ],
+   "grupo": "corpo",
+   "grupos": [
+    "corpo"
+   ],
+   "qtd": 1,
+   "na_montagem": 1,
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.1102230246251565e-16,
+      -1.0,
+      -82.7191962157022
+     ],
+     [
+      0.0,
+      1.0,
+      1.1102230246251565e-16,
+      67.56730651855469
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "explode": [
+    0,
+    -160,
+    0
+   ],
+   "suporte": "não",
+   "comum": false,
+   "macica": true,
+   "dim": [
+    56.0,
+    59.1,
+    29.5
+   ],
+   "tris": 8046,
+   "plastico_cm3": 15.5,
+   "massa_g": 19.2,
+   "tempo_h": 0.8,
+   "obs": "rabo; cola no assento plano da porta",
+   "liso": true,
+   "perimetros": 3,
+   "infill": 15,
+   "reforco": "",
+   "orientacao": "base plana (face de colar) na mesa"
+  },
+  {
+   "nome": "mao-dir",
+   "arquivo": "stl/capivara-mao-dir.stl",
+   "material": "PLA",
+   "cor": "marrom",
+   "rgb": [
+    0.36,
+    0.19,
+    0.1
+   ],
+   "grupo": "corpo",
+   "grupos": [
+    "corpo"
+   ],
+   "qtd": 1,
+   "na_montagem": 1,
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      33.865606012972734
+     ],
+     [
+      0.0,
+      1.1102230246251565e-16,
+      1.0,
+      98.27492136995482
+     ],
+     [
+      0.0,
+      -1.0,
+      1.1102230246251565e-16,
+      64.34148949694428
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "explode": [
+    30,
+    90,
+    0
+   ],
+   "suporte": "não",
+   "comum": false,
+   "macica": true,
+   "dim": [
+    35.0,
+    36.7,
+    10.9
+   ],
+   "tris": 3440,
+   "plastico_cm3": 4.1,
+   "massa_g": 5.1,
+   "tempo_h": 0.27,
+   "obs": "mão direita; cola",
+   "liso": true,
+   "perimetros": 3,
+   "infill": 15,
+   "reforco": "",
+   "orientacao": "base plana (face de colar) na mesa"
+  },
+  {
+   "nome": "mao-esq",
+   "arquivo": "stl/capivara-mao-esq.stl",
+   "material": "PLA",
+   "cor": "marrom",
+   "rgb": [
+    0.36,
+    0.19,
+    0.1
+   ],
+   "grupo": "corpo",
+   "grupos": [
+    "corpo"
+   ],
+   "qtd": 1,
+   "na_montagem": 1,
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      -33.86563312426743
+     ],
+     [
+      0.0,
+      1.1102230246251565e-16,
+      1.0,
+      98.2694622603224
+     ],
+     [
+      0.0,
+      -1.0,
+      1.1102230246251565e-16,
+      64.34081378364128
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "explode": [
+    -30,
+    90,
+    0
+   ],
+   "suporte": "não",
+   "comum": false,
+   "macica": true,
+   "dim": [
+    35.0,
+    36.7,
+    10.9
+   ],
+   "tris": 3368,
+   "plastico_cm3": 4.1,
+   "massa_g": 5.1,
+   "tempo_h": 0.27,
+   "obs": "mão esquerda; cola",
+   "liso": true,
+   "perimetros": 3,
+   "infill": 15,
+   "reforco": "",
+   "orientacao": "base plana (face de colar) na mesa"
+  },
+  {
+   "nome": "avental",
+   "arquivo": "stl/capivara-avental.stl",
+   "material": "PLA",
+   "cor": "verde-bandana",
+   "rgb": [
+    0.3,
+    0.66,
+    0.16
+   ],
+   "grupo": "corpo",
+   "grupos": [
+    "corpo"
+   ],
+   "qtd": 1,
+   "na_montagem": 1,
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      -0.0010431648991335862
+     ],
+     [
+      0.0,
+      1.1102230246251565e-16,
+      1.0,
+      90.74996654380834
+     ],
+     [
+      0.0,
+      -1.0,
+      1.1102230246251565e-16,
+      104.29001937509791
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "explode": [
+    0,
+    110,
+    20
+   ],
+   "suporte": "não",
+   "comum": false,
+   "macica": true,
+   "dim": [
+    69.7,
+    40.6,
+    12.4
+   ],
+   "tris": 4472,
+   "plastico_cm3": 8.0,
+   "massa_g": 9.9,
+   "tempo_h": 0.45,
+   "obs": "ponta da bandana no peito; cola no rebaixo de fundo plano",
+   "liso": true,
+   "perimetros": 3,
+   "infill": 15,
+   "reforco": "",
+   "orientacao": "base plana (face de colar) na mesa"
+  },
+  {
+   "nome": "aro",
+   "arquivo": "stl/capivara-aro.stl",
+   "material": "PLA",
+   "cor": "ciano",
+   "rgb": [
+    0.25,
+    0.85,
+    0.95
+   ],
+   "grupo": "corpo",
+   "grupos": [
+    "corpo",
+    "corpo"
+   ],
+   "qtd": 2,
+   "na_montagem": 2,
+   "para_montagem": [
+    [
+     [
+      1.1102230246251565e-16,
+      0.0,
+      1.0,
+      92.55
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      -1.0,
+      0.0,
+      1.1102230246251565e-16,
+      34.5
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ],
+    [
+     [
+      -1.1102230246251565e-16,
+      0.0,
+      -1.0,
+      -92.55
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+     ],
+     [
+      -1.0,
+      0.0,
+      1.1102230246251565e-16,
+      34.5
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "explode": [
+    130,
+    0,
+    0
+   ],
+   "suporte": "não",
+   "comum": false,
+   "macica": true,
+   "dim": [
+    40.0,
+    40.0,
+    3.0
+   ],
+   "tris": 384,
+   "plastico_cm3": 1.8,
+   "massa_g": 2.2,
+   "tempo_h": 0.16,
+   "obs": "aro das ancas (filamento translúcido para o LED da fase 2); cola",
+   "liso": true,
+   "perimetros": 3,
+   "infill": 15,
+   "reforco": "",
+   "orientacao": "face plana na mesa"
+  },
+  {
    "nome": "corpo",
    "arquivo": "stl/capivara-corpo.stl",
    "material": "PLA",
@@ -30,13 +397,13 @@
       0.0,
       1.0,
       0.0,
-      14.921576516595515
+      13.234553353753718
      ],
      [
       0.0,
       0.0,
       1.0,
-      5.0
+      4.7199846683975135
      ],
      [
       0.0,
@@ -56,13 +423,13 @@
    "macica": false,
    "dim": [
     207.3,
-    188.6,
-    119.0
+    185.2,
+    119.3
    ],
-   "tris": 163006,
-   "plastico_cm3": 170.0,
-   "massa_g": 210.8,
-   "tempo_h": 7.95,
+   "tris": 153070,
+   "plastico_cm3": 168.5,
+   "massa_g": 209.0,
+   "tempo_h": 7.88,
    "obs": "bacia inteira do corpo; entra por cima do chassi; 4 M3 por baixo",
    "liso": true,
    "perimetros": 3,
@@ -92,13 +459,13 @@
       1.0,
       0.0,
       0.0,
-      -0.07881666809317167
+      -0.0788201620885296
      ],
      [
       0.0,
       1.0,
       0.0,
-      -63.92076628842477
+      -63.97941168098558
      ],
      [
       0.0,
@@ -124,13 +491,13 @@
    "macica": false,
    "dim": [
     76.1,
-    96.6,
+    43.9,
     118.6
    ],
-   "tris": 40990,
-   "plastico_cm3": 36.5,
-   "massa_g": 45.2,
-   "tempo_h": 1.77,
+   "tris": 25988,
+   "plastico_cm3": 27.2,
+   "massa_g": 33.8,
+   "tempo_h": 1.34,
    "obs": "porta traseira: bateria e bandejas saem por aqui; 2 M3 por trás",
    "liso": true,
    "perimetros": 3,
@@ -166,13 +533,13 @@
       0.0,
       1.0,
       0.0,
-      32.53650726190344
+      23.288843154907227
      ],
      [
       0.0,
       0.0,
       1.0,
-      123.62671415988076
+      123.60548935737697
      ],
      [
       0.0,
@@ -192,13 +559,13 @@
    "macica": false,
    "dim": [
     159.4,
-    137.6,
+    155.7,
     71.6
    ],
-   "tris": 56606,
-   "plastico_cm3": 74.5,
-   "massa_g": 92.4,
-   "tempo_h": 3.53,
+   "tris": 71812,
+   "plastico_cm3": 90.6,
+   "massa_g": 112.3,
+   "tempo_h": 4.27,
    "obs": "gola-bandana: esfera em que a cabeça gira; assenta na borda da bacia",
    "liso": true,
    "perimetros": 3,
@@ -234,7 +601,7 @@
       0.0,
       1.0,
       0.0,
-      48.69328689575195
+      56.337223052978516
      ],
      [
       0.0,
@@ -260,13 +627,13 @@
    "macica": false,
    "dim": [
     181.2,
-    225.1,
-    147.9
+    187.1,
+    134.7
    ],
-   "tris": 205180,
-   "plastico_cm3": 218.8,
-   "massa_g": 271.4,
-   "tempo_h": 10.21,
+   "tris": 169006,
+   "plastico_cm3": 201.0,
+   "massa_g": 249.3,
+   "tempo_h": 9.39,
    "obs": "3 M3x12 por baixo, pela mesa (na bancada); 2 furos no alto dão acesso aos parafusos da coluna",
    "liso": true,
    "perimetros": 3,
@@ -296,13 +663,13 @@
       1.0,
       0.0,
       0.0,
-      -3.1737811170273744e-06
+      -0.00016643228625667916
      ],
      [
       0.0,
       1.0,
       0.0,
-      124.45149690393536
+      124.37838006924311
      ],
      [
       0.0,
@@ -327,14 +694,14 @@
    "comum": false,
    "macica": false,
    "dim": [
-    131.6,
-    44.9,
-    42.2
+    131.4,
+    44.8,
+    30.9
    ],
-   "tris": 12528,
-   "plastico_cm3": 17.4,
-   "massa_g": 21.5,
-   "tempo_h": 0.88,
+   "tris": 11298,
+   "plastico_cm3": 15.6,
+   "massa_g": 19.4,
+   "tempo_h": 0.8,
    "obs": "horn do servo na direita (parafuso central por fora); M3x16 + bucha na esquerda",
    "liso": true,
    "perimetros": 3,
@@ -399,7 +766,7 @@
     146.5,
     46.0
    ],
-   "tris": 2038,
+   "tris": 1970,
    "plastico_cm3": 33.9,
    "massa_g": 43.0,
    "tempo_h": 1.65,
@@ -817,6 +1184,278 @@
    "infill": 15,
    "reforco": "",
    "orientacao": ""
+  },
+  {
+   "nome": "focinho",
+   "arquivo": "stl/capivara-focinho.stl",
+   "material": "PLA",
+   "cor": "marrom",
+   "rgb": [
+    0.36,
+    0.19,
+    0.1
+   ],
+   "grupo": "cabeca",
+   "grupos": [
+    "cabeca"
+   ],
+   "qtd": 1,
+   "na_montagem": 1,
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      -0.0009382219135751768
+     ],
+     [
+      0.0,
+      1.1102230246251565e-16,
+      1.0,
+      142.82448395824653
+     ],
+     [
+      0.0,
+      -1.0,
+      1.1102230246251565e-16,
+      209.75
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "explode": [
+    0,
+    120,
+    160
+   ],
+   "suporte": "não",
+   "comum": false,
+   "macica": true,
+   "dim": [
+    78.0,
+    60.5,
+    18.4
+   ],
+   "tris": 6934,
+   "plastico_cm3": 19.9,
+   "massa_g": 24.6,
+   "tempo_h": 1.0,
+   "obs": "tampa marrom do focinho; cola",
+   "liso": true,
+   "perimetros": 3,
+   "infill": 15,
+   "reforco": "",
+   "orientacao": "base plana (face de colar) na mesa"
+  },
+  {
+   "nome": "orelha-dir",
+   "arquivo": "stl/capivara-orelha-dir.stl",
+   "material": "PLA",
+   "cor": "marrom",
+   "rgb": [
+    0.36,
+    0.19,
+    0.1
+   ],
+   "grupo": "cabeca",
+   "grupos": [
+    "cabeca"
+   ],
+   "qtd": 1,
+   "na_montagem": 1,
+   "para_montagem": [
+    [
+     [
+      0.791829751016176,
+      0.0867376037432601,
+      0.6045512662318541,
+      63.23293751512217
+     ],
+     [
+      0.08673760374326006,
+      0.9638593317736416,
+      -0.25189636092993917,
+      -1.9855319914876133
+     ],
+     [
+      -0.6045512662318541,
+      0.2518963609299392,
+      0.7556890827898175,
+      274.31165485508075
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "explode": [
+    30,
+    0,
+    200
+   ],
+   "suporte": "não",
+   "comum": false,
+   "macica": true,
+   "dim": [
+    26.5,
+    26.9,
+    5.4
+   ],
+   "tris": 1108,
+   "plastico_cm3": 1.5,
+   "massa_g": 1.8,
+   "tempo_h": 0.15,
+   "obs": "orelha direita; cola",
+   "liso": true,
+   "perimetros": 3,
+   "infill": 15,
+   "reforco": "",
+   "orientacao": "base plana (face de colar) na mesa"
+  },
+  {
+   "nome": "orelha-esq",
+   "arquivo": "stl/capivara-orelha-esq.stl",
+   "material": "PLA",
+   "cor": "marrom",
+   "rgb": [
+    0.36,
+    0.19,
+    0.1
+   ],
+   "grupo": "cabeca",
+   "grupos": [
+    "cabeca"
+   ],
+   "qtd": 1,
+   "na_montagem": 1,
+   "para_montagem": [
+    [
+     [
+      0.791829751016176,
+      -0.0867376037432601,
+      -0.6045512662318541,
+      -63.23290590944858
+     ],
+     [
+      -0.08673760374326006,
+      0.9638593317736416,
+      -0.25189636092993917,
+      -1.9901649493496085
+     ],
+     [
+      0.6045512662318541,
+      0.2518963609299392,
+      0.7556890827898175,
+      274.3101358203323
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "explode": [
+    -30,
+    0,
+    200
+   ],
+   "suporte": "não",
+   "comum": false,
+   "macica": true,
+   "dim": [
+    26.5,
+    26.9,
+    5.4
+   ],
+   "tris": 1114,
+   "plastico_cm3": 1.5,
+   "massa_g": 1.8,
+   "tempo_h": 0.15,
+   "obs": "orelha esquerda; cola",
+   "liso": true,
+   "perimetros": 3,
+   "infill": 15,
+   "reforco": "",
+   "orientacao": "base plana (face de colar) na mesa"
+  },
+  {
+   "nome": "topete",
+   "arquivo": "stl/capivara-topete.stl",
+   "material": "PLA",
+   "cor": "laranja",
+   "rgb": [
+    0.93,
+    0.52,
+    0.13
+   ],
+   "grupo": "cabeca",
+   "grupos": [
+    "cabeca"
+   ],
+   "qtd": 1,
+   "na_montagem": 1,
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      37.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      275.5
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "explode": [
+    0,
+    0,
+    215
+   ],
+   "suporte": "não",
+   "comum": false,
+   "macica": true,
+   "dim": [
+    44.0,
+    52.0,
+    24.4
+   ],
+   "tris": 6586,
+   "plastico_cm3": 12.2,
+   "massa_g": 15.1,
+   "tempo_h": 0.65,
+   "obs": "topete; encaixe por pressão (sem cola): tampa os 2 furos de acesso aos parafusos da mesa",
+   "liso": true,
+   "perimetros": 3,
+   "infill": 15,
+   "reforco": "",
+   "orientacao": "base plana na mesa"
   },
   {
    "nome": "bucha-eixo",
@@ -2127,13 +2766,13 @@
    "corpo": {
     "min": 2.32,
     "med": 2.39,
-    "max": 2.63,
+    "max": 2.77,
     "amostras": 4000
    },
    "cabeça": {
-    "min": 2.3,
+    "min": 2.27,
     "med": 2.39,
-    "max": 2.57,
+    "max": 2.73,
     "amostras": 4000
    }
   },
@@ -2175,13 +2814,13 @@
   "corpo": {
    "min": 2.32,
    "med": 2.39,
-   "max": 2.63,
+   "max": 2.77,
    "amostras": 4000
   },
   "cabeça": {
-   "min": 2.3,
+   "min": 2.27,
    "med": 2.39,
-   "max": 2.57,
+   "max": 2.73,
    "amostras": 4000
   }
  },
@@ -2281,7 +2920,11 @@
   {
    "passo": "corpo (bacia) desce por cima do chassi",
    "move": [
-    "corpo"
+    "corpo",
+    "mao-dir",
+    "mao-esq",
+    "avental",
+    "aro"
    ],
    "dir": [
     0.0,
@@ -2368,7 +3011,8 @@
   {
    "passo": "porta traseira",
    "move": [
-    "porta"
+    "porta",
+    "rabo"
    ],
    "dir": [
     0.0,
@@ -2406,7 +3050,11 @@
     "iris",
     "iris-esq",
     "pupila",
-    "pupila-esq"
+    "pupila-esq",
+    "focinho",
+    "orelha-dir",
+    "orelha-esq",
+    "topete"
    ],
    "dir": [
     0.0,
@@ -2418,7 +3066,8 @@
   {
    "passo": "ABRIR: porta traseira sai",
    "move": [
-    "porta"
+    "porta",
+    "rabo"
    ],
    "dir": [
     0.0,
