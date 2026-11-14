@@ -1,0 +1,140 @@
+{
+ "modelo": "capivara",
+ "testes": {
+  "1 contagem": {
+   "ok": true,
+   "texto": "33 peças distintas, 39 no total (esperado 39); faltando 0; sobrando 0"
+  },
+  "2 malha": {
+   "ok": true,
+   "texto": "33 STL fechados, 1 corpo cada"
+  },
+  "3 mesa": {
+   "ok": true,
+   "texto": "todas cabem em 256 x 256 x 256 mm; maior dimensão 226.4 mm (torso-frente)"
+  },
+  "4 parede": {
+   "ok": true,
+   "texto": "torso 2.36–2.41 mm; cabeça 2.36–2.41 mm; coxa 2.36–2.40 mm; rabo 2.36–2.41 mm (mínimo exigido 2.0)"
+  },
+  "5 interferência": {
+   "ok": true,
+   "texto": "53 sólidos (38 impressos + 15 componentes), 8 poses, 0 sobreposições; 2 encaixe(s) previsto(s) fora da conta: motor-tt-dir x roda-dir (eixo do motor entra no cubo da roda); motor-tt-esq x roda-esq (eixo do motor entra no cubo da roda)"
+  },
+  "6 teste negativo": {
+   "ok": true,
+   "texto": "'chassi' deslocada 3 mm em X → 12 sobreposições acusadas (tem que ser > 0)"
+  },
+  "7 peça solta": {
+   "ok": true,
+   "texto": "as 38 peças montadas encostam (≤ 1.5 mm) em outra"
+  },
+  "8 equilíbrio": {
+   "ok": true,
+   "texto": "massa estimada 1583 g; CG neutro em x=-0.0 y=-24.9 z=117.3 mm, margem 24.9 mm (tomba com 12°); pior pose 'tilt-baixo': margem 21.0 mm (10°); mínimo exigido 10 mm"
+  },
+  "9 caminho": {
+   "ok": true,
+   "texto": "22 passos de montagem, cada peça entra pela direção declarada sem atravessar o que já está montado"
+  }
+ },
+ "interferencias": [],
+ "caminho": [],
+ "cg": [
+  {
+   "pose": "neutra",
+   "cg": [
+    -0.0,
+    -24.9,
+    117.3
+   ],
+   "margem_mm": 24.9,
+   "tomba_graus": 12.0,
+   "massa_g": 1583.0
+  },
+  {
+   "pose": "pan-esq",
+   "cg": [
+    -5.5,
+    -28.1,
+    117.3
+   ],
+   "margem_mm": 28.1,
+   "tomba_graus": 13.5,
+   "massa_g": 1583.0
+  },
+  {
+   "pose": "pan-dir",
+   "cg": [
+    5.5,
+    -28.1,
+    117.3
+   ],
+   "margem_mm": 28.1,
+   "tomba_graus": 13.5,
+   "massa_g": 1583.0
+  },
+  {
+   "pose": "tilt-cima",
+   "cg": [
+    -0.0,
+    -30.8,
+    118.5
+   ],
+   "margem_mm": 30.8,
+   "tomba_graus": 14.6,
+   "massa_g": 1583.0
+  },
+  {
+   "pose": "tilt-baixo",
+   "cg": [
+    -0.0,
+    -21.0,
+    115.1
+   ],
+   "margem_mm": 21.0,
+   "tomba_graus": 10.4,
+   "massa_g": 1583.0
+  },
+  {
+   "pose": "boca-aberta",
+   "cg": [
+    -0.0,
+    -24.9,
+    117.2
+   ],
+   "margem_mm": 24.9,
+   "tomba_graus": 12.0,
+   "massa_g": 1583.0
+  },
+  {
+   "pose": "pan+tilt-baixo+boca",
+   "cg": [
+    -8.9,
+    -26.2,
+    115.0
+   ],
+   "margem_mm": 26.2,
+   "tomba_graus": 12.8,
+   "massa_g": 1583.0
+  },
+  {
+   "pose": "pan+tilt-cima",
+   "cg": [
+    0.4,
+    -31.0,
+    118.5
+   ],
+   "margem_mm": 31.0,
+   "tomba_graus": 14.7,
+   "massa_g": 1583.0
+  }
+ ],
+ "resumo": {
+  "pecas_distintas": 33,
+  "pecas_total": 39,
+  "massa_impressa_g": 1050.0,
+  "tempo_total_h": 42.0,
+  "ok": true
+ }
+}

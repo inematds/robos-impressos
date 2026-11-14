@@ -1,0 +1,1685 @@
+{
+ "mesas_lista": [
+  {
+   "mesa": 1,
+   "material": "PETG",
+   "cor": "amarelo",
+   "itens": [
+    "bandeja-uno",
+    "bandeja-pi"
+   ],
+   "arquivo": "mesas/capivara-mesa-01-petg-amarelo.3mf"
+  },
+  {
+   "mesa": 2,
+   "material": "PETG",
+   "cor": "grafite",
+   "itens": [
+    "chassi"
+   ],
+   "arquivo": "mesas/capivara-mesa-02-petg-grafite.3mf"
+  },
+  {
+   "mesa": 3,
+   "material": "PETG",
+   "cor": "grafite",
+   "itens": [
+    "mesa-cabeca",
+    "garfo-pescoco",
+    "capa-esfera",
+    "berco-tilt"
+   ],
+   "arquivo": "mesas/capivara-mesa-03-petg-grafite.3mf"
+  },
+  {
+   "mesa": 4,
+   "material": "PLA",
+   "cor": "branco",
+   "itens": [
+    "olho",
+    "olho-esq"
+   ],
+   "arquivo": "mesas/capivara-mesa-04-pla-branco.3mf"
+  },
+  {
+   "mesa": 5,
+   "material": "PLA",
+   "cor": "ciano",
+   "itens": [
+    "aro",
+    "aro"
+   ],
+   "arquivo": "mesas/capivara-mesa-05-pla-ciano.3mf"
+  },
+  {
+   "mesa": 6,
+   "material": "PLA",
+   "cor": "cinza",
+   "itens": [
+    "teste-encaixe",
+    "bucha-eixo",
+    "pino-guia",
+    "pino-guia",
+    "pino-guia",
+    "pino-guia"
+   ],
+   "arquivo": "mesas/capivara-mesa-06-pla-cinza.3mf"
+  },
+  {
+   "mesa": 7,
+   "material": "PLA",
+   "cor": "laranja",
+   "itens": [
+    "torso-frente"
+   ],
+   "arquivo": "mesas/capivara-mesa-07-pla-laranja.3mf"
+  },
+  {
+   "mesa": 8,
+   "material": "PLA",
+   "cor": "laranja",
+   "itens": [
+    "torso-costas"
+   ],
+   "arquivo": "mesas/capivara-mesa-08-pla-laranja.3mf"
+  },
+  {
+   "mesa": 9,
+   "material": "PLA",
+   "cor": "laranja",
+   "itens": [
+    "cranio",
+    "coxa-dir"
+   ],
+   "arquivo": "mesas/capivara-mesa-09-pla-laranja.3mf"
+  },
+  {
+   "mesa": 10,
+   "material": "PLA",
+   "cor": "laranja",
+   "itens": [
+    "coxa-esq",
+    "barriga",
+    "mandibula",
+    "topete"
+   ],
+   "arquivo": "mesas/capivara-mesa-10-pla-laranja.3mf"
+  },
+  {
+   "mesa": 11,
+   "material": "PLA",
+   "cor": "marrom",
+   "itens": [
+    "rabo",
+    "focinho",
+    "pata-dir",
+    "pata-esq",
+    "orelha",
+    "orelha",
+    "mao",
+    "mao",
+    "iris",
+    "iris-esq"
+   ],
+   "arquivo": "mesas/capivara-mesa-11-pla-marrom.3mf"
+  },
+  {
+   "mesa": 12,
+   "material": "PLA",
+   "cor": "preto",
+   "itens": [
+    "pupila",
+    "pupila-esq"
+   ],
+   "arquivo": "mesas/capivara-mesa-12-pla-preto.3mf"
+  },
+  {
+   "mesa": 13,
+   "material": "PLA",
+   "cor": "verde-bandana",
+   "itens": [
+    "bandana-frente",
+    "bandana-costas"
+   ],
+   "arquivo": "mesas/capivara-mesa-13-pla-verde-bandana.3mf"
+  }
+ ],
+ "pecas": [
+  {
+   "arquivo": "../comum/stl/comum-bandeja-uno.stl",
+   "rgb": [
+    0.98,
+    0.8,
+    0.08
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      33.7
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      48.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "../comum/stl/comum-bandeja-pi.stl",
+   "rgb": [
+    0.98,
+    0.8,
+    0.08
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      101.10000000000001
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      47.75
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "../comum/stl/comum-chassi.stl",
+   "rgb": [
+    0.22,
+    0.23,
+    0.25
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      369.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      98.25
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "stl/capivara-mesa-cabeca.stl",
+   "rgb": [
+    0.22,
+    0.23,
+    0.25
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      631.9
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      73.05
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "../comum/stl/comum-garfo-pescoco.stl",
+   "rgb": [
+    0.22,
+    0.23,
+    0.25
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      719.3
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      27.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "../comum/stl/comum-capa-esfera.stl",
+   "rgb": [
+    0.22,
+    0.23,
+    0.25
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      772.3
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      17.5
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "../comum/stl/comum-berco-tilt.stl",
+   "rgb": [
+    0.22,
+    0.23,
+    0.25
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      812.05
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      14.5
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "stl/capivara-olho.stl",
+   "rgb": [
+    0.97,
+    0.97,
+    0.97
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      894.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      17.4
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "stl/capivara-olho-esq.stl",
+   "rgb": [
+    0.97,
+    0.97,
+    0.97
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      942.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      17.4
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "stl/capivara-aro.stl",
+   "rgb": [
+    0.25,
+    0.85,
+    0.95
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      23.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      -267.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "stl/capivara-aro.stl",
+   "rgb": [
+    0.25,
+    0.85,
+    0.95
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      69.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      -267.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "../comum/stl/comum-teste-encaixe.stl",
+   "rgb": [
+    0.42,
+    0.44,
+    0.47
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      328.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      -270.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "../comum/stl/comum-bucha-eixo.stl",
+   "rgb": [
+    0.42,
+    0.44,
+    0.47
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      372.6
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      -283.4
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "../comum/stl/comum-pino-guia.stl",
+   "rgb": [
+    0.42,
+    0.44,
+    0.47
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      384.09999999999997
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      -285.1
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "../comum/stl/comum-pino-guia.stl",
+   "rgb": [
+    0.42,
+    0.44,
+    0.47
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      393.9
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      -285.1
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "../comum/stl/comum-pino-guia.stl",
+   "rgb": [
+    0.42,
+    0.44,
+    0.47
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      403.7
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      -285.1
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "../comum/stl/comum-pino-guia.stl",
+   "rgb": [
+    0.42,
+    0.44,
+    0.47
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      413.5
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      -285.1
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "stl/capivara-torso-frente.stl",
+   "rgb": [
+    0.93,
+    0.52,
+    0.13
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      661.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      -173.8
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "stl/capivara-torso-costas.stl",
+   "rgb": [
+    0.93,
+    0.52,
+    0.13
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      951.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      -173.8
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "stl/capivara-cranio.stl",
+   "rgb": [
+    0.93,
+    0.52,
+    0.13
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      83.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      -484.4
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "stl/capivara-coxa-dir.stl",
+   "rgb": [
+    0.93,
+    0.52,
+    0.13
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      192.25
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      -517.45
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "stl/capivara-coxa-esq.stl",
+   "rgb": [
+    0.93,
+    0.52,
+    0.13
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      316.25
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      -517.45
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "stl/capivara-barriga.stl",
+   "rgb": [
+    0.93,
+    0.52,
+    0.13
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      385.2
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      -533.3
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "stl/capivara-mandibula.stl",
+   "rgb": [
+    0.93,
+    0.52,
+    0.13
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      352.55
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      -423.15
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "stl/capivara-topete.stl",
+   "rgb": [
+    0.93,
+    0.52,
+    0.13
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      425.95000000000005
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      -438.79999999999995
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "stl/capivara-rabo.stl",
+   "rgb": [
+    0.36,
+    0.19,
+    0.1
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      625.15
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      -540.75
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "stl/capivara-focinho.stl",
+   "rgb": [
+    0.36,
+    0.19,
+    0.1
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      713.0
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      -556.3
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "stl/capivara-pata-dir.stl",
+   "rgb": [
+    0.36,
+    0.19,
+    0.1
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      780.5
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      -558.5
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "stl/capivara-pata-esq.stl",
+   "rgb": [
+    0.36,
+    0.19,
+    0.1
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      604.8
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      -480.0
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "stl/capivara-orelha.stl",
+   "rgb": [
+    0.36,
+    0.19,
+    0.1
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      646.6
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      -484.5
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "stl/capivara-orelha.stl",
+   "rgb": [
+    0.36,
+    0.19,
+    0.1
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      680.6
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      -484.5
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "stl/capivara-mao.stl",
+   "rgb": [
+    0.36,
+    0.19,
+    0.1
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      710.6
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      -488.5
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "stl/capivara-mao.stl",
+   "rgb": [
+    0.36,
+    0.19,
+    0.1
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      736.6
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      -488.5
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "stl/capivara-iris.stl",
+   "rgb": [
+    0.36,
+    0.19,
+    0.1
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      767.8000000000001
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      -491.1
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "stl/capivara-iris-esq.stl",
+   "rgb": [
+    0.36,
+    0.19,
+    0.1
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      804.2
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      -491.1
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "stl/capivara-pupila.stl",
+   "rgb": [
+    0.03,
+    0.03,
+    0.04
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      883.3
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      -571.6
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "stl/capivara-pupila-esq.stl",
+   "rgb": [
+    0.03,
+    0.03,
+    0.04
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      909.9
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      -571.6
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "stl/capivara-bandana-frente.stl",
+   "rgb": [
+    0.3,
+    0.66,
+    0.16
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      62.7
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      -843.5
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  },
+  {
+   "arquivo": "stl/capivara-bandana-costas.stl",
+   "rgb": [
+    0.3,
+    0.66,
+    0.16
+   ],
+   "para_montagem": [
+    [
+     [
+      1.0,
+      0.0,
+      0.0,
+      188.10000000000002
+     ],
+     [
+      0.0,
+      1.0,
+      0.0,
+      -848.25
+     ],
+     [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+     ]
+    ]
+   ],
+   "liso": true
+  }
+ ],
+ "mesas": [
+  {
+   "x0": 0.0,
+   "y0": 0.0,
+   "lado": 256.0,
+   "material": "PETG",
+   "cor": "amarelo"
+  },
+  {
+   "x0": 290.0,
+   "y0": 0.0,
+   "lado": 256.0,
+   "material": "PETG",
+   "cor": "grafite"
+  },
+  {
+   "x0": 580.0,
+   "y0": 0.0,
+   "lado": 256.0,
+   "material": "PETG",
+   "cor": "grafite"
+  },
+  {
+   "x0": 870.0,
+   "y0": 0.0,
+   "lado": 256.0,
+   "material": "PLA",
+   "cor": "branco"
+  },
+  {
+   "x0": 0.0,
+   "y0": -290.0,
+   "lado": 256.0,
+   "material": "PLA",
+   "cor": "ciano"
+  },
+  {
+   "x0": 290.0,
+   "y0": -290.0,
+   "lado": 256.0,
+   "material": "PLA",
+   "cor": "cinza"
+  },
+  {
+   "x0": 580.0,
+   "y0": -290.0,
+   "lado": 256.0,
+   "material": "PLA",
+   "cor": "laranja"
+  },
+  {
+   "x0": 870.0,
+   "y0": -290.0,
+   "lado": 256.0,
+   "material": "PLA",
+   "cor": "laranja"
+  },
+  {
+   "x0": 0.0,
+   "y0": -580.0,
+   "lado": 256.0,
+   "material": "PLA",
+   "cor": "laranja"
+  },
+  {
+   "x0": 290.0,
+   "y0": -580.0,
+   "lado": 256.0,
+   "material": "PLA",
+   "cor": "laranja"
+  },
+  {
+   "x0": 580.0,
+   "y0": -580.0,
+   "lado": 256.0,
+   "material": "PLA",
+   "cor": "marrom"
+  },
+  {
+   "x0": 870.0,
+   "y0": -580.0,
+   "lado": 256.0,
+   "material": "PLA",
+   "cor": "preto"
+  },
+  {
+   "x0": 0.0,
+   "y0": -870.0,
+   "lado": 256.0,
+   "material": "PLA",
+   "cor": "verde-bandana"
+  }
+ ]
+}

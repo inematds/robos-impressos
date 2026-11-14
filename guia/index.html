@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>robos-impressos — imprima em casa o corpo do seu robô de estimação</title>
+<meta name="description" content="Três corpos de robô para imprimir em 3D (dinossauro, capivara e robô quadrado), com lugar para servos, motores, Arduino e Raspberry Pi. Peças geradas por código e conferidas por script. Fase 1: mecânica.">
+<link rel="alternate" hreflang="pt-BR" href="https://inematds.github.io/robos-impressos/guia/">
+<link rel="alternate" hreflang="en" href="https://inematds.github.io/robos-impressos/guia/en/">
+<link rel="alternate" hreflang="es" href="https://inematds.github.io/robos-impressos/guia/es/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0c10; --bg2:#14141b; --card:#16161e; --line:#272730;
+    --txt:#e9e9ee; --mut:#9a9aa6; --amb:#E2A23B; --amb2:#f0c070; --sky:#38bdf8; --pro:#cbd5e1;
+    color-scheme:dark;
+  }
+  body.light{
+    --bg:#f6f7f9; --bg2:#eceef2; --card:#ffffff; --line:#e1e3ea;
+    --txt:#1a1a22; --mut:#5b5b68; --amb:#b9791d; --amb2:#a16207; --sky:#0369a1; --pro:#b45309;
+    color-scheme:light;
+  }
+  body.light .hero .glow{opacity:.5}
+  body.light pre{background:#0e0e14;color:#d6d6e0}
+  body.light pre .c{color:#8a8a98}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:Sora,sans-serif;line-height:1.15;margin:0}
+  a{color:var(--amb);text-decoration:none}
+  code,pre{font-family:"JetBrains Mono",monospace}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 22px}
+  .mut{color:var(--mut)} .amb{color:var(--amb)}
+  .chip{display:inline-block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amb);font-weight:600;font-family:Sora}
+  nav{position:sticky;top:0;z-index:30;backdrop-filter:blur(12px);background:rgba(12,12,16,.78);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;gap:22px;height:60px}
+  nav .brand{display:flex;align-items:center;gap:8px;font-family:Sora;font-weight:800;letter-spacing:-.02em;color:var(--amb)}
+  nav .brand .emoji{font-size:1.25rem}
+  nav .sep{color:var(--mut);opacity:.45}
+  nav .inema{color:var(--sky);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .inema:hover{filter:brightness(1.15)}
+  nav .pro{color:var(--pro);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .pro:hover{filter:brightness(1.15)}
+  nav .clubpro{display:inline-flex;align-items:center;gap:6px}
+  nav .links{margin-left:auto;display:flex;align-items:center;gap:20px;font-size:.92rem}
+  nav .links a.sec{color:var(--mut)} nav .links a.sec:hover{color:var(--txt)}
+  .lang{display:inline-flex;gap:2px;font-family:Sora;font-size:.78rem}
+  .lang a{color:var(--mut);padding:.2em .45em;border-radius:6px} .lang a.on{color:var(--amb);background:rgba(226,162,59,.12)}
+  .tgl{background:var(--bg2);border:1px solid var(--line);color:var(--txt);width:38px;height:38px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:1.05rem}
+  .tgl:hover{border-color:var(--amb)}
+  .btn{display:inline-block;background:var(--amb);color:#1a1206;font-weight:600;padding:.6em 1.05em;border-radius:10px;font-family:Sora}
+  .btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+  @media(max-width:760px){nav .links a.sec{display:none}}
+  @media(max-width:520px){nav .wrap{gap:8px;padding:8px 14px;height:auto;flex-wrap:wrap} nav .links{gap:8px;margin-left:0;width:100%;justify-content:space-between} nav .btn{padding:.45em .7em;font-size:.82rem} .tgl{width:34px;height:34px}}
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero .glow{position:absolute;inset:-40% -20% auto auto;width:70%;height:600px;background:radial-gradient(closest-side,rgba(226,162,59,.22),transparent 70%);pointer-events:none}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:74px 22px}
+  .hero h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;letter-spacing:-.025em}
+  .hero p.lead{font-size:1.18rem;color:var(--mut);margin:1.1em 0 1.6em;max-width:34ch}
+  .hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .hero figure{margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000}
+  .hero figure img{width:100%;height:auto;display:block}
+  .resumo{padding:38px 0 34px;border-bottom:1px solid var(--line)}
+  .resumo p{font-size:1.12rem;line-height:1.7;max-width:74ch;margin:.55em 0 0}
+  @media(max-width:780px){.hero .wrap{grid-template-columns:1fr;padding:48px 22px}}
+  section{padding:62px 0;border-bottom:1px solid var(--line)}
+  section h2{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:800;letter-spacing:-.02em}
+  section .sub{color:var(--mut);margin:.6em 0 2em;max-width:62ch}
+  .grid{display:grid;gap:16px}
+  .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:820px){.g3,.g4{grid-template-columns:1fr 1fr}}
+  @media(max-width:540px){.g2,.g3,.g4{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .card h3{font-size:1.05rem;margin-bottom:.4em}
+  .card p{color:var(--mut);font-size:.92rem;margin:0}
+  .num{display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border-radius:8px;background:rgba(226,162,59,.14);color:var(--amb);font-family:Sora;font-weight:800;font-size:.9rem;margin-bottom:.7em}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+  .flow span{background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:.45em .9em;font-size:.85rem;font-family:Sora;font-weight:600}
+  .flow .arr{color:var(--amb);border:none;background:none;padding:0 .1em}
+  pre{background:#0a0a0e;border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow:auto;font-size:.86rem;line-height:1.6;color:#d6d6e0}
+  pre .c{color:#6f6f7c} pre .k{color:var(--amb2)} pre .s{color:#9ece6a}
+  .step{display:grid;grid-template-columns:46px minmax(0,1fr);gap:16px;margin-bottom:26px}
+  .step>div,.card{min-width:0}
+  p code,li code,td code{overflow-wrap:anywhere}
+  .step .b{width:46px;height:46px;border-radius:12px;background:var(--amb);color:#1a1206;font-family:Sora;font-weight:800;font-size:1.25rem;display:flex;align-items:center;justify-content:center}
+  .step h3{font-size:1.12rem;margin-bottom:.3em}
+  .step p{color:var(--mut);margin:.2em 0 .7em}
+  .ex{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:680px){.ex{grid-template-columns:1fr}}
+  .ex figure{margin:0;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  .ex figure img{width:100%;height:auto;display:block}
+  .ex figcaption{padding:12px 14px;font-size:.88rem;color:var(--mut);background:var(--card)}
+  .phase{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .phase:last-child{border:none}
+  .phase .tag{flex:0 0 92px;font-family:Sora;font-weight:800;color:var(--amb)}
+  .phase .d strong{display:block;margin-bottom:.2em}
+  .phase .d span{color:var(--mut);font-size:.92rem}
+  footer{padding:46px 0;text-align:center;color:var(--mut);font-size:.9rem}
+  .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:.3em .8em;font-size:.78rem;color:var(--mut);margin:0 4px}
+
+  .techhead{background:var(--bg2);border-top:3px solid var(--amb);padding:58px 0 8px}
+  .techhead h2{font-family:Sora;margin:.3em 0 0}
+  .techzone{background:var(--bg2)}
+  .nota{font-size:.88rem;color:var(--mut);margin-top:14px;max-width:80ch}
+  .mini{font-size:.82rem;color:var(--mut);margin:.4em 0 0}
+  .shot{display:block;width:100%;border-radius:12px;border:1px solid var(--line);margin:0 0 14px;background:#e9e9ee}
+  .g2{grid-template-columns:repeat(2,1fr)} .g4{grid-template-columns:repeat(4,1fr)}
+  .numero{text-align:center} .numero b{display:block;font-family:Sora;font-size:2.1rem;color:var(--amb);line-height:1.15} .numero span{display:block;font-size:.9rem;color:var(--mut);margin-top:6px}
+  .arraste{display:none;font-size:.8rem;color:var(--mut);margin:18px 0 -14px}
+  .sep4{font-family:Sora;margin:22px 0 10px}
+  .glossario{margin:18px 0 0;display:grid;grid-template-columns:max-content 1fr;gap:8px 18px} .glossario dt{font-weight:700;color:var(--amb)} .glossario dd{margin:0}
+  .tabela-wrap{overflow-x:auto;margin:22px 0 6px;border:1px solid var(--line);border-radius:12px}
+  .tabela{border-collapse:collapse;width:100%;font-size:.9rem;min-width:560px}
+  .tabela th,.tabela td{padding:8px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+  .tabela th{font-family:Sora;font-size:.82rem;color:var(--mut);background:var(--bg2)}
+  .tabela tr:last-child td{border-bottom:0}
+  .barras{margin-top:22px} .barra{display:grid;grid-template-columns:150px 1fr 60px;gap:10px;align-items:center;margin:8px 0;font-size:.92rem}
+  .barra i{display:block;height:16px;border-radius:8px;background:var(--amb)}
+  .lista{margin:.4em 0 0 1.2em;padding:0} .lista li{margin:.3em 0}
+  .sep3{font-family:Sora;margin:34px 0 0}
+  pre.saida{white-space:pre-wrap;font-size:.8rem;line-height:1.5}
+  .card ul{margin:.5em 0 0 1.1em;padding:0} .card li{margin:.35em 0}
+  @media(max-width:1180px){nav .links .sec{display:none}}
+  @media(max-width:860px){.g2,.g4{grid-template-columns:1fr}.barra{grid-template-columns:110px 1fr 50px}.arraste{display:block}pre{white-space:pre-wrap;word-break:break-all}.glossario{grid-template-columns:1fr;gap:2px 0}.glossario dd{margin:0 0 10px}}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a class="brand" href="#top"><span class="emoji">🦖</span> robos-impressos</a>
+  <span class="sep">|</span>
+  <span class="clubpro">
+    <a class="inema" href="https://inema.club" target="_blank" rel="noopener">INEMA.CLUB</a>
+    <span class="sep">-</span>
+    <a class="pro" href="https://inema.pro" target="_blank" rel="noopener">PRO</a>
+  </span>
+  <div class="links">
+    <a class="sec" href="#modelos">Os 3 robôs</a>
+    <a class="sec" href="#como">Como se movem</a>
+    <a class="sec" href="#prova">O que foi conferido</a>
+    <a class="sec" href="#plano">Plano de ação</a>
+    <a class="sec" href="#tecnico">Kit (técnico)</a>
+    <span class="lang"><a class="on" href="./">PT</a><a href="en/">EN</a><a href="es/">ES</a></span>
+    <button class="tgl" id="themeToggle" aria-label="Alternar tema" title="Alternar tema">🌙</button>
+    <a class="btn" href="https://github.com/inematds/robos-impressos" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</div></nav>
+
+<header class="hero" id="top">
+  <div class="glow"></div>
+  <div class="wrap">
+    <div>
+      <span class="chip">Robôs para imprimir em casa · fase 1: o corpo · projeto ainda não impresso</span>
+      <h1>Seu robô de estimação sai da <span class="amb">sua impressora 3D</span></h1>
+      <p class="lead">Você quer um robô com cara de bicho em casa. Kit pronto é caro, e projeto solto da internet costuma não encaixar: são horas de impressão e filamento no lixo. O <strong>robos-impressos</strong> entrega o corpo: três modelos com o lugar de cada motor e de cada placa, conferidos por um programa antes de você imprimir. Fazer ele se mexer sozinho (fiação e programação) é a próxima fase.</p>
+      <div class="cta">
+        <a class="btn" href="#modelos">Ver os 3 robôs</a>
+        <a class="btn ghost" href="https://github.com/inematds/robos-impressos" target="_blank" rel="noopener">Ver no GitHub</a>
+      </div>
+    </div>
+    <figure><img src="assets/banner.jpg" alt="Ilustração: um dinossauro, uma capivara e um robô quadrado de brinquedo ao lado de uma impressora 3D"></figure>
+  </div>
+</header>
+
+<section id="resumo" class="resumo"><div class="wrap">
+  <span class="chip">Em resumo</span>
+  <p>Você quer montar um robô simpático em casa e não sabe por onde começar o corpo. O <strong>robos-impressos</strong> é um conjunto de três corpos de robô para imprimir em 3D: um dinossauro e uma capivara de uns 33 cm, que rodam pelo chão, e um robô quadrado de mesa com tela no rosto. Cada um já tem o lugar certo para os motores, os servos (motorzinhos que giram até um ângulo e param), a bateria e as placas Arduino e Raspberry Pi. Serve para quem tem acesso a uma impressora 3D com mesa de 256 mm e quer montar, aprender ou ensinar robótica. Esta é a fase 1, só o corpo e os encaixes: fiação, voz e inteligência ficam para a fase 2. E um aviso honesto: é um projeto digital conferido por script, ninguém imprimiu estas peças ainda.</p>
+  <figure style="margin:26px 0 0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000"><img src="assets/banner-grade.jpg" alt="Ilustração com as seis etapas: escolher o modelo, imprimir, encaixar os servos, montar a casca, cabeça que vira, pronto para a fase 2" style="display:block;width:100%"></figure>
+  <p class="nota">Os dois banners acima são ilustrações feitas por IA. Todas as outras imagens desta página são renders: imagens de computador feitas a partir dos arquivos do projeto, não fotos de um robô montado.</p>
+</div></section>
+
+<!-- VIDEO: entra o explicavideo do projeto quando publicado -->
+
+<section id="modelos"><div class="wrap">
+  <span class="chip">Os 3 robôs</span>
+  <h2>Escolha o seu</h2>
+  <p class="sub">Os três usam os mesmos servos e parafusos. O dinossauro e a capivara dividem o mesmo esqueleto por dentro: só a casca muda.</p>
+  <div class="grid g3">
+    <div class="card"><img class="shot" src="assets/dino-montado.jpg" alt="Render do dinossauro montado: verde, olhos azuis grandes, barriga creme, espinhos azuis"><h3>🦖 Dinossauro</h3><p>Filhote de olhos grandes e espinhos azuis. Roda com duas rodas escondidas dentro das pernas e apoia a cauda numa esfera. Vira e inclina a cabeça, abre a boca e mexe os dois braços.</p><p class="mini">5 servos + 2 motores</p></div>
+    <div class="card"><img class="shot" src="assets/capivara-montado.jpg" alt="Render da capivara montada: laranja, focinho marrom, bandana verde, aro azul na coxa"><h3>🦫 Capivara</h3><p>Sentada, de bandana verde. As rodas ficam dentro das coxas, atrás do aro azul, e a esfera de apoio dentro do rabo. Vira e inclina a cabeça e abre a boca.</p><p class="mini">3 servos + 2 motores</p></div>
+    <div class="card"><img class="shot" src="assets/cubo-montado.jpg" alt="Render do robô quadrado: cabeça em cubo com tela, sobre um garfo e uma base"><h3>🤖 Robô quadrado</h3><p>De mesa, não roda. A cabeça é um cubo com tela de 3,5 polegadas, onde olhos e boca são desenhados. Gira quase meia volta para cada lado (quase uma volta inteira no total) e inclina para cima e para baixo.</p><p class="mini">2 servos + tela</p></div>
+  </div>
+<!-- TABELA:resumo -->
+<p class="arraste">↔ no celular, arraste a tabela para o lado</p><div class="tabela-wrap"><table class="tabela"><thead><tr><th>Modelo</th><th>Altura (mm)</th><th>Peças</th><th>Mesa (1 mesa = 1 impressão)</th><th>Filamento total (g)*</th><th>Impressão total (h)*</th><th>Robô montado (g)*</th></tr></thead><tbody>
+<tr><td>Dinossauro</td><td>329</td><td>38</td><td>12</td><td>1108</td><td>44</td><td>1668</td></tr>
+<tr><td>Capivara</td><td>326</td><td>39</td><td>13</td><td>1050</td><td>42</td><td>1583</td></tr>
+<tr><td>Robô quadrado</td><td>201</td><td>14</td><td>8</td><td>638</td><td>25</td><td>1020</td></tr>
+</tbody></table></div>
+<p class="nota">* estimativa por volume, sem fatiador</p>
+<!-- /TABELA -->
+  <p class="nota">Os bichos ficaram com 33 cm, um pouco acima da meta de 30 cm: por dentro precisam caber bateria, Arduino e Raspberry Pi empilhados. Lista de peças de cada um: <a href="#guia">ver no guia técnico ↓</a></p>
+</div></section>
+
+<section id="como"><div class="wrap">
+  <span class="chip">Como se movem</span>
+  <h2>Por dentro: um esqueleto, e a casca por cima</h2>
+  <p class="sub">Quem segura o peso é o esqueleto escuro. A casca colorida só cobre, e sai sem desmontar nada.</p>
+  <div class="grid g2">
+    <div class="card"><img class="shot" src="assets/dino-esqueleto.jpg" alt="Render só do esqueleto do dinossauro: chassi, rodas, motores, bandejas das placas e pescoço"><h3>O esqueleto</h3><p>Uma peça só faz o piso, as paredes onde os motores aparafusam e o suporte do pescoço. Entre as paredes entram, como gavetas, a bandeja do Arduino e a do Raspberry Pi. A bateria fica embaixo delas.</p></div>
+    <div class="card"><img class="shot" src="assets/dino-explodido.jpg" alt="Render da vista explodida do dinossauro, com cada peça afastada"><h3>A casca em partes</h3><p>Barriga, costas, pernas, cauda e cabeça são peças separadas, presas por parafusos escondidos. Tirando a cauda e as costas (5 parafusos), as placas saem por trás como gavetas.</p></div>
+    <div class="card"><img class="shot" src="assets/capivara-vistas.jpg" alt="Render da capivara em quatro ângulos"><h3>Pescoço sem pescoço</h3><p>O topo do corpo é uma esfera, e a cabeça é um capacete que gira e inclina em volta dela com 2 a 3 mm de folga. Por isso a cabeça mexe para todo lado sem abrir um vão.</p></div>
+    <div class="card"><img class="shot" src="assets/cubo-explodido.jpg" alt="Render da vista explodida do robô quadrado: base, engrenagens, garfo, quadro, cabeça e moldura da tela"><h3>O quadrado gira quase uma volta</h3><p>Um servo comum só gira meia volta. Duas engrenagens impressas dobram esse giro, e os cabos sobem por dentro do tubo oco do pescoço, sem enroscar.</p></div>
+  </div>
+  <p class="arraste">↔ no celular, arraste a tabela para o lado</p>
+  <div class="tabela-wrap"><table class="tabela">
+    <thead><tr><th>Movimento (faixa conferida sem peça batendo em peça)</th><th>Dinossauro</th><th>Capivara</th><th>Robô quadrado</th></tr></thead>
+    <tbody>
+      <tr><td>Cabeça para os lados</td><td>±60°</td><td>±60°</td><td>±170°</td></tr>
+      <tr><td>Cabeça para baixo e para cima</td><td>−15° … +20°</td><td>−15° … +20°</td><td>−25° … +30°</td></tr>
+      <tr><td>Boca</td><td>0 … 18°</td><td>0 … 18°</td><td>desenhada na tela</td></tr>
+      <tr><td>Braços</td><td>−15° … +40°</td><td>parados</td><td>—</td></tr>
+      <tr><td>Deslocamento</td><td>roda no chão</td><td>roda no chão</td><td>fica na mesa</td></tr>
+    </tbody></table></div>
+  <p class="nota">Estes são os limites da mecânica. Quem move de verdade são os servos e o programa, que são a fase 2.</p>
+</div></section>
+
+<section id="prova"><div class="wrap">
+  <span class="chip">O que foi conferido</span>
+  <h2>Conferido antes de gastar filamento</h2>
+  <p class="sub">Um script (um programa pequeno) abre os arquivos de impressão, monta o robô no computador e procura problema. Estes são os números da última rodada, nos três modelos juntos.</p>
+  <div class="grid g4">
+    <div class="card numero"><b>91</b><span>peças para imprimir, todas fechadas e inteiras no arquivo</span></div>
+    <div class="card numero"><b>0</b><span>peças atravessando outra, em todas as posições testadas</span></div>
+    <div class="card numero"><b>2,35 mm</b><span>é a parede mais fina medida nas cascas (a meta era no mínimo 2 mm)</span></div>
+    <div class="card numero"><b>226 mm</b><span>é a maior peça; a mesa da impressora tem 256 mm</span></div>
+  </div>
+  <div class="barras">
+    <p class="mini">Horas de impressão estimadas por modelo (sem fatiador: ordem de grandeza)</p>
+    <div class="barra"><span>Dinossauro</span><i style="width:100%"></i><b>~44 h</b></div>
+    <div class="barra"><span>Capivara</span><i style="width:95%"></i><b>~42 h</b></div>
+    <div class="barra"><span>Robô quadrado</span><i style="width:56%"></i><b>~25 h</b></div>
+  </div>
+  <div class="grid g2" style="margin-top:22px">
+    <div class="card"><h3>✅ O que o script garante</h3><ul><li>Cada arquivo é um sólido fechado, de um corpo só.</li><li>Toda peça cabe na mesa de 256 × 256 × 256 mm.</li><li>Nenhuma peça ocupa o lugar de outra nem de um componente (servo, motor, placa, bateria), com a cabeça, a boca e os braços nos extremos.</li><li>Cada peça consegue chegar ao seu lugar: o script traz uma por uma, na ordem de montagem, e acusa se ela esbarra no que já está montado.</li><li>Nenhuma peça fica solta no ar, e o centro de gravidade cai dentro dos apoios, com folga.</li><li>O próprio teste é testado: uma peça é deslocada 3 mm de propósito e o script tem que acusar.</li></ul></div>
+    <div class="card"><h3>⚠️ O que só a impressão vai dizer</h3><ul><li>Ninguém imprimiu nem montou estas peças ainda.</li><li>Tempo e filamento são estimativas por volume.</li><li>Algumas medidas de componentes não têm fonte oficial (abas dos servos, furos do driver do motor): estão marcadas, e você mede a sua peça antes.</li><li>O script não testa resistência, nem se a chave de fenda alcança cada parafuso, nem o encaixe de 3 mm dos servos nos braços e na boca.</li></ul></div>
+  </div>
+</div></section>
+
+<section id="plano"><div class="wrap">
+  <span class="chip">Plano de ação</span>
+  <h2>Do arquivo ao corpo do robô montado</h2>
+  <p class="sub">Cinco passos, sem programar nada. No fim você tem o corpo montado, com servos e motores no lugar; fazer ele se mexer é a fase 2.</p>
+  <div class="phase"><div class="tag">1</div><div class="d"><strong>Escolha um modelo</strong><span>O robô quadrado é o mais simples (14 peças). O dinossauro e a capivara têm umas 38 peças cada, e dá para trocar a casca de um pelo outro depois.</span></div></div>
+  <div class="phase"><div class="tag">2</div><div class="d"><strong>Compre o mínimo para testar</strong><span>Um micro servo e um pacote de insertos M3 já bastam para o teste. O resto (servos, motores com roda, suporte de pilhas, chave, parafusos M3) são peças comuns em lojas de eletrônica do Brasil. Os servos e motores entram agora só para conferir o encaixe: eles ainda não vão se mexer.</span></div></div>
+  <div class="phase"><div class="tag">3</div><div class="d"><strong>Imprima primeiro a peça de teste</strong><span>É uma plaquinha de 7 cm que testa o encaixe do servo, dos parafusos e dos pinos na sua impressora. Menos de uma hora de impressão que evita refazer uma peça de cinco horas.</span></div></div>
+  <div class="phase"><div class="tag">4</div><div class="d"><strong>Imprima por cor</strong><span>As peças já vêm deitadas na posição certa e separadas por cor. O esqueleto vai em PETG, que aguenta mais; a casca em PLA.</span></div></div>
+  <div class="phase"><div class="tag">5</div><div class="d"><strong>Monte de dentro para fora</strong><span>Primeiro o esqueleto com motores e servos, depois a casca, por último a cabeça. A ordem, parafuso por parafuso, está no plano do projeto.</span></div></div>
+  <p class="nota">Arquivos, comandos e a lista de compras estão na parte técnica: <a href="#guia">ver no guia técnico ↓</a></p>
+</div></section>
+
+<section id="palavras"><div class="wrap">
+  <span class="chip">Palavras desta página</span>
+  <h2>Se algum nome for novo para você</h2>
+  <dl class="glossario"><dt>Servo</dt><dd>Motorzinho que gira até um ângulo e para ali. É ele que vira a cabeça e abre a boca.</dd><dt>Arduino e Raspberry Pi</dt><dd>Duas placas eletrônicas. O Arduino comanda motores e servos; o Raspberry Pi é um computador pequeno, que na fase 2 cuida de voz e câmera.</dd><dt>Script</dt><dd>Um programa pequeno. Aqui ele gera as peças e confere se estão certas.</dd><dt>Render</dt><dd>Imagem feita no computador a partir do arquivo 3D. Não é foto.</dd><dt>PLA e PETG</dt><dd>Dois plásticos de impressão. O PLA dá acabamento bonito; o PETG aguenta mais força e calor.</dd><dt>Mesa</dt><dd>A base da impressora. "12 mesas" quer dizer 12 impressões, uma depois da outra.</dd><dt>Inserto M3</dt><dd>Bucha de latão com rosca, que entra a quente no plástico para o parafuso de 3 mm prender bem.</dd><dt>Pilha 18650</dt><dd>Pilha recarregável de lítio, um pouco maior que uma pilha comum.</dd><dt>Driver de motor</dt><dd>Plaquinha que deixa o Arduino ligar e inverter os motores das rodas.</dd></dl>
+</div></section>
+
+<div id="tecnico" class="techhead"><div class="wrap">
+  <span class="chip">Parte técnica</span>
+  <h2>O kit: para quem quer imprimir, mudar medidas ou criar outro modelo</h2>
+  <p class="sub">Você não precisa desta parte para entender o que está acima.</p>
+</div></div>
+<div class="techzone">
+
+<section id="oque"><div class="wrap">
+  <span class="chip">O que é o kit</span>
+  <h2>Peças geradas por código, não desenhadas à mão</h2>
+  <p class="sub">Tudo sai de um arquivo de medidas. Mudou o servo ou a folga da sua impressora, você muda um número e gera de novo.</p>
+  <div class="grid g3">
+    <div class="card"><h3>📐 Um arquivo de medidas</h3><p><code>cad/parametros.py</code> guarda folgas, medidas de cada componente (com a fonte ao lado) e a forma de cada robô.</p></div>
+    <div class="card"><h3>🔍 Verificador com 9 testes</h3><p><code>cad/verificar.py</code> lê os STL exportados e reprova peça aberta, peça grande demais, parede fina, peça atravessando outra, peça que não consegue entrar no lugar e robô que tomba.</p></div>
+    <div class="card"><h3>🦴 Esqueleto comum</h3><p>Chassi, bandejas, garfo e berço do pescoço são os mesmos arquivos no dinossauro e na capivara (<code>pecas/comum/</code>).</p></div>
+  </div>
+</div></section>
+
+<section id="fluxo"><div class="wrap">
+  <span class="chip">Como funciona</span>
+  <h2>Das medidas aos arquivos de impressão</h2>
+  <p class="sub">A pele dos bichos é uma soma de formas arredondadas, transformada em malha; furos, bolsos e cortes são operações exatas por cima.</p>
+  <div class="flow">
+    <span>cad/parametros.py</span><span class="arr">→</span>
+    <span>cad/gerar.py</span><span class="arr">→</span>
+    <span>pecas/&lt;modelo&gt;/stl + 3mf + montagem.json</span><span class="arr">→</span>
+    <span>cad/verificar.py</span><span class="arr">→</span>
+    <span>cad/renders.sh</span>
+  </div>
+  <div class="grid g3" style="margin-top:22px">
+    <div class="card"><h3>Gerar</h3><p>Cria STL e 3MF de cada peça já na orientação de impressão, a montagem completa (<code>montagem.glb</code>) e a divisão em mesas.</p></div>
+    <div class="card"><h3>Verificar</h3><p>Monta o robô a partir dos arquivos, mexe as juntas até os limites, mede as sobreposições pelo volume em comum e refaz a montagem peça por peça.</p></div>
+    <div class="card"><h3>Renderizar</h3><p>O Blender produz as imagens desta página: montado, explodido, esqueleto e mesas.</p></div>
+  </div>
+</div></section>
+
+<section id="pre"><div class="wrap">
+  <span class="chip">Pré-requisitos</span>
+  <h2>O que você precisa</h2>
+  <p class="sub">Para só imprimir, basta a impressora, um fatiador e baixar o ZIP. Python e Blender são para quem vai mudar o projeto.</p>
+  <div class="grid g3">
+    <div class="card"><h3>Para imprimir</h3><p>Impressora com mesa de 256 mm (o projeto foi dimensionado para a Bambu Lab A1), filamento PLA e PETG, um fatiador como o Bambu Studio e os componentes da lista de compras.</p></div>
+    <div class="card"><h3>Para gerar as peças</h3><p>Python 3.12 ou mais novo (as versões das bibliotecas pedem isso) e git. As bibliotecas entram num ambiente isolado dentro da pasta.</p><pre><span class="c"># confira se já tem</span>
+<span class="k">python3</span> --version
+<span class="k">git</span> --version</pre></div>
+    <div class="card"><h3>Para as imagens (opcional)</h3><p>Blender 4. Só é usado para os renders.</p><pre><span class="c"># confira se já tem</span>
+<span class="k">blender</span> --version</pre></div>
+  </div>
+</div></section>
+
+<section id="guia"><div class="wrap">
+  <span class="chip">Guia de uso · passo a passo</span>
+  <h2>Baixar, imprimir e montar</h2>
+  <p class="sub">Os comandos são os do repositório. A ordem completa de montagem, com cada parafuso, está no <a href="https://github.com/inematds/robos-impressos/blob/main/PLANO.md">PLANO.md</a> (em português).</p>
+
+  <div class="step"><div class="b">1</div><div>
+    <h3>Baixe o projeto</h3><p>Os arquivos de impressão já estão prontos na pasta <code>pecas/</code>, em STL e 3MF. Se só quer imprimir, baixe o ZIP, descompacte e abra os arquivos no fatiador: não precisa de terminal nem de Python.</p>
+    <p><a class="btn" href="https://github.com/inematds/robos-impressos/archive/refs/heads/main.zip">Baixar tudo em ZIP</a></p>
+    <p class="mini">Quem vai mudar medidas e gerar as peças de novo pode clonar com o git, num terminal:</p>
+<pre><span class="k">git clone</span> <span class="s">https://github.com/inematds/robos-impressos.git</span>
+<span class="k">cd</span> robos-impressos
+<span class="k">ls</span> pecas/dino/stl pecas/capivara/stl pecas/cubo/stl pecas/comum/stl</pre>
+  </div></div>
+  <div class="step"><div class="b">2</div><div>
+    <h3>Imprima a peça de teste</h3><p>Encaixe nela um micro servo, um inserto M3 (a bucha de latão que entra a quente, com ferro de solda, e vira rosca) e um pino. Se ficar duro ou frouxo, ajuste a folga em <code>cad/parametros.py</code>, no bloco <code>FOLGA</code> (<code>componente</code> para o servo, <code>encaixe</code> para o pino, <code>inserto_d</code> para o inserto), e gere de novo pelo passo 3.</p>
+<pre><span class="c"># abra este arquivo no fatiador</span>
+pecas/comum/stl/comum-teste-encaixe.stl</pre>
+    <p class="mini"><a href="https://github.com/inematds/robos-impressos/blob/main/pecas/comum/stl/comum-teste-encaixe.stl">ver a peça de teste no GitHub (botão de download na página)</a></p>
+  </div></div>
+  <div class="step"><div class="b">3</div><div>
+    <h3>Gere e confira (só se mudou alguma medida)</h3><p>O primeiro comando recria todas as peças; o segundo roda os 9 testes e termina com erro se algum falhar.</p>
+<pre><span class="k">python3</span> -m venv .venv
+<span class="k">.venv/bin/pip</span> install -r requirements.txt
+<span class="c"># leva poucos minutos</span>
+<span class="k">.venv/bin/python</span> cad/gerar.py todos
+<span class="k">.venv/bin/python</span> cad/verificar.py todos</pre>
+    <p class="mini">Estes comandos são de Linux e macOS. No Windows, troque <code>.venv/bin/pip</code> por <code>.venv\Scripts\pip</code> e <code>.venv/bin/python</code> por <code>.venv\Scripts\python</code>.</p>
+  </div></div>
+  <div class="step"><div class="b">4</div><div>
+    <h3>Imprima as mesas</h3><p>Cada mesa abaixo é uma impressão: as peças já estão deitadas, juntas por cor e material, num arquivo 3MF pronto para abrir no fatiador. As cascas arredondadas pedem suporte em árvore; o esqueleto imprime sem suporte.</p>
+<pre><span class="c"># um arquivo 3MF por mesa, em cada modelo</span>
+pecas/dino/mesas/     pecas/capivara/mesas/     pecas/cubo/mesas/</pre>
+    <h4 class="sep4">🦖 Dinossauro</h4>
+    <img class="shot" src="assets/dino-mesas.jpg" alt="Render das mesas de impressão, com as peças deitadas e separadas por cor">
+<!-- TABELA:mesas:dino -->
+<p class="arraste">↔ no celular, arraste a tabela para o lado</p><div class="tabela-wrap"><table class="tabela"><thead><tr><th>Mesa (1 mesa = 1 impressão)</th><th>Material</th><th>Cor</th><th>Peça</th><th>3MF</th></tr></thead><tbody>
+<tr><td>1</td><td>PETG</td><td>amarelo</td><td>bandeja-uno, bandeja-pi</td><td><code>pecas/dino/mesas/dino-mesa-01-petg-amarelo.3mf</code></td></tr>
+<tr><td>2</td><td>PETG</td><td>grafite</td><td>chassi</td><td><code>pecas/dino/mesas/dino-mesa-02-petg-grafite.3mf</code></td></tr>
+<tr><td>3</td><td>PETG</td><td>grafite</td><td>mesa-cabeca, garfo-pescoco, capa-esfera, berco-tilt</td><td><code>pecas/dino/mesas/dino-mesa-03-petg-grafite.3mf</code></td></tr>
+<tr><td>4</td><td>PLA</td><td>azul</td><td>crista-cabeca, crista-cauda, crista-costas, iris, iris-esq</td><td><code>pecas/dino/mesas/dino-mesa-04-pla-azul.3mf</code></td></tr>
+<tr><td>5</td><td>PLA</td><td>branco</td><td>olho, olho-esq</td><td><code>pecas/dino/mesas/dino-mesa-05-pla-branco.3mf</code></td></tr>
+<tr><td>6</td><td>PLA</td><td>cinza</td><td>teste-encaixe, bucha-eixo, pino-guia ×4</td><td><code>pecas/dino/mesas/dino-mesa-06-pla-cinza.3mf</code></td></tr>
+<tr><td>7</td><td>PLA</td><td>creme</td><td>barriga, unha ×6</td><td><code>pecas/dino/mesas/dino-mesa-07-pla-creme.3mf</code></td></tr>
+<tr><td>8</td><td>PLA</td><td>preto</td><td>pupila, pupila-esq</td><td><code>pecas/dino/mesas/dino-mesa-08-pla-preto.3mf</code></td></tr>
+<tr><td>9</td><td>PLA</td><td>verde</td><td>torso-frente</td><td><code>pecas/dino/mesas/dino-mesa-09-pla-verde.3mf</code></td></tr>
+<tr><td>10</td><td>PLA</td><td>verde</td><td>torso-costas</td><td><code>pecas/dino/mesas/dino-mesa-10-pla-verde.3mf</code></td></tr>
+<tr><td>11</td><td>PLA</td><td>verde</td><td>cranio, perna-dir</td><td><code>pecas/dino/mesas/dino-mesa-11-pla-verde.3mf</code></td></tr>
+<tr><td>12</td><td>PLA</td><td>verde</td><td>perna-esq, cauda, braco-dir, braco-esq, mandibula</td><td><code>pecas/dino/mesas/dino-mesa-12-pla-verde.3mf</code></td></tr>
+</tbody></table></div>
+<!-- /TABELA -->
+    <h4 class="sep4">🦫 Capivara</h4>
+    <img class="shot" src="assets/capivara-mesas.jpg" alt="Render das mesas de impressão, com as peças deitadas e separadas por cor">
+<!-- TABELA:mesas:capivara -->
+<p class="arraste">↔ no celular, arraste a tabela para o lado</p><div class="tabela-wrap"><table class="tabela"><thead><tr><th>Mesa (1 mesa = 1 impressão)</th><th>Material</th><th>Cor</th><th>Peça</th><th>3MF</th></tr></thead><tbody>
+<tr><td>1</td><td>PETG</td><td>amarelo</td><td>bandeja-uno, bandeja-pi</td><td><code>pecas/capivara/mesas/capivara-mesa-01-petg-amarelo.3mf</code></td></tr>
+<tr><td>2</td><td>PETG</td><td>grafite</td><td>chassi</td><td><code>pecas/capivara/mesas/capivara-mesa-02-petg-grafite.3mf</code></td></tr>
+<tr><td>3</td><td>PETG</td><td>grafite</td><td>mesa-cabeca, garfo-pescoco, capa-esfera, berco-tilt</td><td><code>pecas/capivara/mesas/capivara-mesa-03-petg-grafite.3mf</code></td></tr>
+<tr><td>4</td><td>PLA</td><td>branco</td><td>olho, olho-esq</td><td><code>pecas/capivara/mesas/capivara-mesa-04-pla-branco.3mf</code></td></tr>
+<tr><td>5</td><td>PLA</td><td>ciano</td><td>aro ×2</td><td><code>pecas/capivara/mesas/capivara-mesa-05-pla-ciano.3mf</code></td></tr>
+<tr><td>6</td><td>PLA</td><td>cinza</td><td>teste-encaixe, bucha-eixo, pino-guia ×4</td><td><code>pecas/capivara/mesas/capivara-mesa-06-pla-cinza.3mf</code></td></tr>
+<tr><td>7</td><td>PLA</td><td>laranja</td><td>torso-frente</td><td><code>pecas/capivara/mesas/capivara-mesa-07-pla-laranja.3mf</code></td></tr>
+<tr><td>8</td><td>PLA</td><td>laranja</td><td>torso-costas</td><td><code>pecas/capivara/mesas/capivara-mesa-08-pla-laranja.3mf</code></td></tr>
+<tr><td>9</td><td>PLA</td><td>laranja</td><td>cranio, coxa-dir</td><td><code>pecas/capivara/mesas/capivara-mesa-09-pla-laranja.3mf</code></td></tr>
+<tr><td>10</td><td>PLA</td><td>laranja</td><td>coxa-esq, barriga, mandibula, topete</td><td><code>pecas/capivara/mesas/capivara-mesa-10-pla-laranja.3mf</code></td></tr>
+<tr><td>11</td><td>PLA</td><td>marrom</td><td>rabo, focinho, pata-dir, pata-esq, orelha ×2, mao ×2, iris, iris-esq</td><td><code>pecas/capivara/mesas/capivara-mesa-11-pla-marrom.3mf</code></td></tr>
+<tr><td>12</td><td>PLA</td><td>preto</td><td>pupila, pupila-esq</td><td><code>pecas/capivara/mesas/capivara-mesa-12-pla-preto.3mf</code></td></tr>
+<tr><td>13</td><td>PLA</td><td>verde-bandana</td><td>bandana-frente, bandana-costas</td><td><code>pecas/capivara/mesas/capivara-mesa-13-pla-verde-bandana.3mf</code></td></tr>
+</tbody></table></div>
+<!-- /TABELA -->
+    <h4 class="sep4">🤖 Robô quadrado</h4>
+    <img class="shot" src="assets/cubo-mesas.jpg" alt="Render das mesas de impressão, com as peças deitadas e separadas por cor">
+<!-- TABELA:mesas:cubo -->
+<p class="arraste">↔ no celular, arraste a tabela para o lado</p><div class="tabela-wrap"><table class="tabela"><thead><tr><th>Mesa (1 mesa = 1 impressão)</th><th>Material</th><th>Cor</th><th>Peça</th><th>3MF</th></tr></thead><tbody>
+<tr><td>1</td><td>PETG</td><td>amarelo</td><td>engrenagem-servo, quadro-cabeca</td><td><code>pecas/cubo/mesas/cubo-mesa-01-petg-amarelo.3mf</code></td></tr>
+<tr><td>2</td><td>PETG</td><td>grafite</td><td>base</td><td><code>pecas/cubo/mesas/cubo-mesa-02-petg-grafite.3mf</code></td></tr>
+<tr><td>3</td><td>PETG</td><td>grafite</td><td>tampa-base, garfo</td><td><code>pecas/cubo/mesas/cubo-mesa-03-petg-grafite.3mf</code></td></tr>
+<tr><td>4</td><td>PETG</td><td>grafite</td><td>porta-traseira</td><td><code>pecas/cubo/mesas/cubo-mesa-04-petg-grafite.3mf</code></td></tr>
+<tr><td>5</td><td>PETG</td><td>prata</td><td>tubo-pescoco</td><td><code>pecas/cubo/mesas/cubo-mesa-05-petg-prata.3mf</code></td></tr>
+<tr><td>6</td><td>PLA</td><td>branco</td><td>cabeca-corpo</td><td><code>pecas/cubo/mesas/cubo-mesa-06-pla-branco.3mf</code></td></tr>
+<tr><td>7</td><td>PLA</td><td>cinza</td><td>teste-encaixe, espacador-pi ×4</td><td><code>pecas/cubo/mesas/cubo-mesa-07-pla-cinza.3mf</code></td></tr>
+<tr><td>8</td><td>PLA</td><td>preto</td><td>cabeca-face</td><td><code>pecas/cubo/mesas/cubo-mesa-08-pla-preto.3mf</code></td></tr>
+</tbody></table></div>
+<!-- /TABELA -->
+  </div></div>
+  <div class="step"><div class="b">5</div><div>
+    <h3>Monte um dos bichos</h3><p>Resumo da ordem para o dinossauro e a capivara:</p>
+    <ol class="lista"><li>Coloque os insertos M3 a quente nas peças.</li><li>Aparafuse os dois motores nas paredes do chassi, por fora, com o motor para cima.</li><li>Prenda a esfera de apoio com a capa, por baixo.</li><li>Monte o servo de virar a cabeça no alto do chassi, depois o garfo, o segundo servo e o berço.</li><li>Ponha a bateria e as bandejas das placas, por trás.</li><li>Feche o torso pela frente, e só então encaixe as rodas pelos lados.</li><li>Painel da barriga, costas, pernas ou coxas, cauda ou rabo.</li><li>Monte a cabeça na bancada (mesa por baixo do crânio, servo da boca, mandíbula, olhos) e desça ela inteira sobre o pescoço: dois parafusos por cima, escondidos sob a crista.</li><li>Espinhos, unhas, orelhas e bandana entram por pressão ou cola.</li></ol>
+  </div></div>
+  <div class="step"><div class="b">6</div><div>
+    <h3>Ou monte o robô quadrado</h3><p>Resumo da ordem:</p>
+    <ol class="lista"><li>Servo no piso da base e Arduino ao lado; depois a engrenagem grande em cima do servo.</li><li>Bateria pela porta de trás.</li><li>Tubo do pescoço por baixo da tampa, e a tampa na base.</li><li>Garfo em cima do tubo, com três parafusos compridos.</li><li>Raspberry Pi, tela e o segundo servo no quadro da cabeça.</li><li>Casca da cabeça por trás, moldura da tela pela frente.</li><li>Cabeça entre os braços do garfo e porta traseira.</li></ol>
+  </div></div>
+
+  <h3 class="sep3">🦖 Dinossauro — peças para imprimir</h3>
+<!-- TABELA:pecas:dino -->
+<p class="arraste">↔ no celular, arraste a tabela para o lado</p><div class="tabela-wrap"><table class="tabela"><thead><tr><th>Peça</th><th>Tamanho deitada (mm)</th><th>Qtd</th><th>Material</th><th>Cor</th><th>Suporte</th><th>Filamento (g)*</th><th>Tempo (h)*</th></tr></thead><tbody>
+<tr><td>torso-frente</td><td>145 × 226 × 96</td><td>1</td><td>PLA</td><td>verde</td><td>sim</td><td>122</td><td>4.7</td></tr>
+<tr><td>torso-costas</td><td>145 × 226 × 74</td><td>1</td><td>PLA</td><td>verde</td><td>sim</td><td>136</td><td>5.2</td></tr>
+<tr><td>barriga</td><td>79 × 87 × 26</td><td>1</td><td>PLA</td><td>creme</td><td>sim</td><td>24</td><td>1.0</td></tr>
+<tr><td>crista-costas</td><td>47 × 27 × 6</td><td>1</td><td>PLA</td><td>azul</td><td>não</td><td>5</td><td>0.3</td></tr>
+<tr><td>pino-guia (comum)</td><td>4 × 4 × 9</td><td>4</td><td>PLA</td><td>cinza</td><td>não</td><td>0</td><td>0.3</td></tr>
+<tr><td>perna-dir</td><td>60 × 127 × 113</td><td>1</td><td>PLA</td><td>verde</td><td>não</td><td>55</td><td>2.1</td></tr>
+<tr><td>perna-esq</td><td>60 × 127 × 113</td><td>1</td><td>PLA</td><td>verde</td><td>não</td><td>55</td><td>2.1</td></tr>
+<tr><td>unha</td><td>18 × 18 × 13</td><td>6</td><td>PLA</td><td>creme</td><td>não</td><td>13</td><td>1.0</td></tr>
+<tr><td>cauda</td><td>92 × 112 × 69</td><td>1</td><td>PLA</td><td>verde</td><td>não</td><td>55</td><td>2.1</td></tr>
+<tr><td>crista-cauda</td><td>26 × 38 × 6</td><td>1</td><td>PLA</td><td>azul</td><td>não</td><td>4</td><td>0.2</td></tr>
+<tr><td>cranio</td><td>156 × 184 × 120</td><td>1</td><td>PLA</td><td>verde</td><td>sim</td><td>187</td><td>7.1</td></tr>
+<tr><td>mandibula</td><td>116 × 59 × 49</td><td>1</td><td>PLA</td><td>verde</td><td>sim</td><td>26</td><td>1.1</td></tr>
+<tr><td>mesa-cabeca</td><td>104 × 138 × 36</td><td>1</td><td>PETG</td><td>grafite</td><td>não</td><td>41</td><td>1.6</td></tr>
+<tr><td>crista-cabeca</td><td>61 × 83 × 6</td><td>1</td><td>PLA</td><td>azul</td><td>não</td><td>7</td><td>0.4</td></tr>
+<tr><td>olho</td><td>48 × 38 × 48</td><td>1</td><td>PLA</td><td>branco</td><td>não</td><td>18</td><td>0.8</td></tr>
+<tr><td>olho-esq</td><td>48 × 38 × 48</td><td>1</td><td>PLA</td><td>branco</td><td>não</td><td>18</td><td>0.8</td></tr>
+<tr><td>iris</td><td>29 × 19 × 29</td><td>1</td><td>PLA</td><td>azul</td><td>não</td><td>5</td><td>0.3</td></tr>
+<tr><td>iris-esq</td><td>29 × 19 × 29</td><td>1</td><td>PLA</td><td>azul</td><td>não</td><td>5</td><td>0.3</td></tr>
+<tr><td>pupila</td><td>17 × 13 × 18</td><td>1</td><td>PLA</td><td>preto</td><td>não</td><td>2</td><td>0.1</td></tr>
+<tr><td>pupila-esq</td><td>17 × 13 × 18</td><td>1</td><td>PLA</td><td>preto</td><td>não</td><td>2</td><td>0.1</td></tr>
+<tr><td>bucha-eixo (comum)</td><td>7 × 7 × 3</td><td>1</td><td>PLA</td><td>cinza</td><td>não</td><td>0</td><td>0.1</td></tr>
+<tr><td>braco-dir</td><td>38 × 73 × 31</td><td>1</td><td>PLA</td><td>verde</td><td>sim</td><td>16</td><td>0.7</td></tr>
+<tr><td>braco-esq</td><td>38 × 73 × 31</td><td>1</td><td>PLA</td><td>verde</td><td>sim</td><td>16</td><td>0.7</td></tr>
+<tr><td>chassi (comum)</td><td>152 × 190 × 148</td><td>1</td><td>PETG</td><td>grafite</td><td>não</td><td>206</td><td>7.6</td></tr>
+<tr><td>capa-esfera (comum)</td><td>29 × 29 × 6</td><td>1</td><td>PETG</td><td>grafite</td><td>não</td><td>3</td><td>0.2</td></tr>
+<tr><td>bandeja-uno (comum)</td><td>61 × 90 × 16</td><td>1</td><td>PETG</td><td>amarelo</td><td>não</td><td>19</td><td>0.8</td></tr>
+<tr><td>bandeja-pi (comum)</td><td>61 × 90 × 16</td><td>1</td><td>PETG</td><td>amarelo</td><td>não</td><td>16</td><td>0.7</td></tr>
+<tr><td>garfo-pescoco (comum)</td><td>65 × 48 × 51</td><td>1</td><td>PETG</td><td>grafite</td><td>não</td><td>17</td><td>0.7</td></tr>
+<tr><td>berco-tilt (comum)</td><td>38 × 23 × 77</td><td>1</td><td>PETG</td><td>grafite</td><td>sim</td><td>15</td><td>0.6</td></tr>
+<tr><td>teste-encaixe (comum)</td><td>70 × 34 × 8</td><td>1</td><td>PLA</td><td>cinza</td><td>não</td><td>15</td><td>0.6</td></tr>
+<tr><td><strong>Total</strong></td><td></td><td>38</td><td></td><td></td><td></td><td><strong>1108</strong></td><td><strong>44</strong></td></tr>
+</tbody></table></div>
+<p class="nota">* estimativa por volume, sem fatiador</p>
+<!-- /TABELA -->
+  <h3 class="sep3">🦫 Capivara — peças para imprimir</h3>
+<!-- TABELA:pecas:capivara -->
+<p class="arraste">↔ no celular, arraste a tabela para o lado</p><div class="tabela-wrap"><table class="tabela"><thead><tr><th>Peça</th><th>Tamanho deitada (mm)</th><th>Qtd</th><th>Material</th><th>Cor</th><th>Suporte</th><th>Filamento (g)*</th><th>Tempo (h)*</th></tr></thead><tbody>
+<tr><td>torso-frente</td><td>156 × 226 × 96</td><td>1</td><td>PLA</td><td>laranja</td><td>sim</td><td>133</td><td>5.0</td></tr>
+<tr><td>torso-costas</td><td>156 × 226 × 74</td><td>1</td><td>PLA</td><td>laranja</td><td>sim</td><td>139</td><td>5.3</td></tr>
+<tr><td>barriga</td><td>79 × 87 × 29</td><td>1</td><td>PLA</td><td>laranja</td><td>sim</td><td>26</td><td>1.1</td></tr>
+<tr><td>bandana-frente</td><td>119 × 47 × 60</td><td>1</td><td>PLA</td><td>verde-bandana</td><td>sim</td><td>9</td><td>0.4</td></tr>
+<tr><td>bandana-costas</td><td>119 × 38 × 67</td><td>1</td><td>PLA</td><td>verde-bandana</td><td>sim</td><td>10</td><td>0.5</td></tr>
+<tr><td>mao</td><td>20 × 20 × 11</td><td>2</td><td>PLA</td><td>marrom</td><td>não</td><td>5</td><td>0.3</td></tr>
+<tr><td>pino-guia (comum)</td><td>4 × 4 × 9</td><td>4</td><td>PLA</td><td>cinza</td><td>não</td><td>0</td><td>0.3</td></tr>
+<tr><td>coxa-dir</td><td>46 × 119 × 82</td><td>1</td><td>PLA</td><td>laranja</td><td>sim</td><td>38</td><td>1.5</td></tr>
+<tr><td>coxa-esq</td><td>46 × 119 × 82</td><td>1</td><td>PLA</td><td>laranja</td><td>sim</td><td>38</td><td>1.5</td></tr>
+<tr><td>aro</td><td>40 × 40 × 3</td><td>2</td><td>PLA</td><td>ciano</td><td>não</td><td>4</td><td>0.3</td></tr>
+<tr><td>pata-dir</td><td>44 × 37 × 25</td><td>1</td><td>PLA</td><td>marrom</td><td>não</td><td>10</td><td>0.5</td></tr>
+<tr><td>pata-esq</td><td>44 × 37 × 25</td><td>1</td><td>PLA</td><td>marrom</td><td>não</td><td>10</td><td>0.5</td></tr>
+<tr><td>rabo</td><td>84 × 72 × 50</td><td>1</td><td>PLA</td><td>marrom</td><td>sim</td><td>34</td><td>1.4</td></tr>
+<tr><td>cranio</td><td>160 × 185 × 114</td><td>1</td><td>PLA</td><td>laranja</td><td>sim</td><td>179</td><td>6.8</td></tr>
+<tr><td>mandibula</td><td>119 × 58 × 44</td><td>1</td><td>PLA</td><td>laranja</td><td>sim</td><td>21</td><td>0.8</td></tr>
+<tr><td>focinho</td><td>79 × 41 × 40</td><td>1</td><td>PLA</td><td>marrom</td><td>sim</td><td>12</td><td>0.5</td></tr>
+<tr><td>mesa-cabeca</td><td>98 × 140 × 33</td><td>1</td><td>PETG</td><td>grafite</td><td>não</td><td>40</td><td>1.5</td></tr>
+<tr><td>orelha</td><td>28 × 28 × 15</td><td>2</td><td>PLA</td><td>marrom</td><td>não</td><td>9</td><td>0.5</td></tr>
+<tr><td>topete</td><td>16 × 26 × 6</td><td>1</td><td>PLA</td><td>laranja</td><td>não</td><td>2</td><td>0.2</td></tr>
+<tr><td>olho</td><td>42 × 29 × 42</td><td>1</td><td>PLA</td><td>branco</td><td>não</td><td>13</td><td>0.6</td></tr>
+<tr><td>olho-esq</td><td>42 × 29 × 42</td><td>1</td><td>PLA</td><td>branco</td><td>não</td><td>13</td><td>0.6</td></tr>
+<tr><td>iris</td><td>30 × 15 × 30</td><td>1</td><td>PLA</td><td>marrom</td><td>não</td><td>5</td><td>0.2</td></tr>
+<tr><td>iris-esq</td><td>30 × 15 × 30</td><td>1</td><td>PLA</td><td>marrom</td><td>não</td><td>5</td><td>0.2</td></tr>
+<tr><td>pupila</td><td>21 × 11 × 21</td><td>1</td><td>PLA</td><td>preto</td><td>não</td><td>2</td><td>0.2</td></tr>
+<tr><td>pupila-esq</td><td>21 × 11 × 21</td><td>1</td><td>PLA</td><td>preto</td><td>não</td><td>2</td><td>0.2</td></tr>
+<tr><td>bucha-eixo (comum)</td><td>7 × 7 × 3</td><td>1</td><td>PLA</td><td>cinza</td><td>não</td><td>0</td><td>0.1</td></tr>
+<tr><td>chassi (comum)</td><td>152 × 190 × 148</td><td>1</td><td>PETG</td><td>grafite</td><td>não</td><td>206</td><td>7.6</td></tr>
+<tr><td>capa-esfera (comum)</td><td>29 × 29 × 6</td><td>1</td><td>PETG</td><td>grafite</td><td>não</td><td>3</td><td>0.2</td></tr>
+<tr><td>bandeja-uno (comum)</td><td>61 × 90 × 16</td><td>1</td><td>PETG</td><td>amarelo</td><td>não</td><td>19</td><td>0.8</td></tr>
+<tr><td>bandeja-pi (comum)</td><td>61 × 90 × 16</td><td>1</td><td>PETG</td><td>amarelo</td><td>não</td><td>16</td><td>0.7</td></tr>
+<tr><td>garfo-pescoco (comum)</td><td>65 × 48 × 51</td><td>1</td><td>PETG</td><td>grafite</td><td>não</td><td>17</td><td>0.7</td></tr>
+<tr><td>berco-tilt (comum)</td><td>38 × 23 × 77</td><td>1</td><td>PETG</td><td>grafite</td><td>sim</td><td>15</td><td>0.6</td></tr>
+<tr><td>teste-encaixe (comum)</td><td>70 × 34 × 8</td><td>1</td><td>PLA</td><td>cinza</td><td>não</td><td>15</td><td>0.6</td></tr>
+<tr><td><strong>Total</strong></td><td></td><td>39</td><td></td><td></td><td></td><td><strong>1050</strong></td><td><strong>42</strong></td></tr>
+</tbody></table></div>
+<p class="nota">* estimativa por volume, sem fatiador</p>
+<!-- /TABELA -->
+  <h3 class="sep3">🤖 Robô quadrado — peças para imprimir</h3>
+<!-- TABELA:pecas:cubo -->
+<p class="arraste">↔ no celular, arraste a tabela para o lado</p><div class="tabela-wrap"><table class="tabela"><thead><tr><th>Peça</th><th>Tamanho deitada (mm)</th><th>Qtd</th><th>Material</th><th>Cor</th><th>Suporte</th><th>Filamento (g)*</th><th>Tempo (h)*</th></tr></thead><tbody>
+<tr><td>base</td><td>150 × 144 × 66</td><td>1</td><td>PETG</td><td>grafite</td><td>não</td><td>220</td><td>8.1</td></tr>
+<tr><td>tampa-base</td><td>150 × 144 × 18</td><td>1</td><td>PETG</td><td>grafite</td><td>não</td><td>94</td><td>3.5</td></tr>
+<tr><td>porta-traseira</td><td>137 × 62 × 5</td><td>1</td><td>PETG</td><td>grafite</td><td>não</td><td>32</td><td>1.3</td></tr>
+<tr><td>tubo-pescoco</td><td>36 × 36 × 28</td><td>1</td><td>PETG</td><td>prata</td><td>não</td><td>15</td><td>0.6</td></tr>
+<tr><td>engrenagem-servo</td><td>69 × 69 × 8</td><td>1</td><td>PETG</td><td>amarelo</td><td>não</td><td>23</td><td>0.9</td></tr>
+<tr><td>garfo</td><td>133 × 92 × 24</td><td>1</td><td>PETG</td><td>grafite</td><td>não</td><td>40</td><td>1.6</td></tr>
+<tr><td>quadro-cabeca</td><td>94 × 60 × 55</td><td>1</td><td>PETG</td><td>amarelo</td><td>não</td><td>30</td><td>1.2</td></tr>
+<tr><td>cabeca-corpo</td><td>112 × 100 × 89</td><td>1</td><td>PLA</td><td>branco</td><td>não</td><td>135</td><td>5.1</td></tr>
+<tr><td>cabeca-face</td><td>112 × 100 × 43</td><td>1</td><td>PLA</td><td>preto</td><td>não</td><td>34</td><td>1.3</td></tr>
+<tr><td>espacador-pi</td><td>6 × 6 × 5</td><td>4</td><td>PLA</td><td>cinza</td><td>não</td><td>0</td><td>0.3</td></tr>
+<tr><td>teste-encaixe (comum)</td><td>70 × 34 × 8</td><td>1</td><td>PLA</td><td>cinza</td><td>não</td><td>15</td><td>0.6</td></tr>
+<tr><td><strong>Total</strong></td><td></td><td>14</td><td></td><td></td><td></td><td><strong>638</strong></td><td><strong>25</strong></td></tr>
+</tbody></table></div>
+<p class="nota">* estimativa por volume, sem fatiador</p>
+<!-- /TABELA -->
+  <h3 class="sep3">Lista de compras</h3>
+  <p class="arraste">↔ no celular, arraste a tabela para o lado</p>
+  <div class="tabela-wrap"><table class="tabela">
+    <thead><tr><th>Item</th><th>Dinossauro</th><th>Capivara</th><th>Robô quadrado</th></tr></thead>
+    <tbody>
+      <tr><td>Servo padrão MG996R</td><td>2</td><td>2</td><td>2</td></tr>
+      <tr><td>Micro servo SG90 ou MG90S</td><td>3</td><td>1</td><td>—</td></tr>
+      <tr><td>Motor TT amarelo 1:48 com roda de 65 mm</td><td>2</td><td>2</td><td>—</td></tr>
+      <tr><td>Esfera de aço de 16 mm</td><td>1</td><td>1</td><td>—</td></tr>
+      <tr><td>Suporte para 2 pilhas 18650, com as pilhas</td><td>1</td><td>1</td><td>1</td></tr>
+      <tr><td>Chave gangorra pequena (KCD11)</td><td>1</td><td>1</td><td>1</td></tr>
+      <tr><td>Raspberry Pi 4 ou 5</td><td>opcional</td><td>opcional</td><td>1</td></tr>
+      <tr><td>Tela de 3,5 polegadas para Raspberry Pi</td><td>—</td><td>—</td><td>1</td></tr>
+      <tr><td>Driver de motor L298N</td><td>1</td><td>1</td><td>—</td></tr>
+      <tr><td>Insertos M3 a quente</td><td>25</td><td>25</td><td>14</td></tr>
+      <tr><td>Parafusos, porcas e arruelas M3 (e alguns M2,5)</td><td>kit</td><td>kit</td><td>kit</td></tr>
+      <tr><td>Arduino Uno com shield de servos</td><td>opcional</td><td>opcional</td><td>opcional</td></tr>
+    </tbody></table></div>
+  <p class="nota">Na fase 1 nada liga: Arduino e Raspberry Pi só servem para conferir o encaixe, por isso são opcionais (no robô quadrado o Raspberry Pi segura a tela). Quantidades exatas de cada parafuso: <a href="https://github.com/inematds/robos-impressos/blob/main/PLANO.md">PLANO.md</a> (em português), seção 3.</p>
+  <p class="nota">Custo estimado dos componentes, sem a impressora, o filamento e o Raspberry Pi: R$ 330 a 560 por bicho e R$ 260 a 430 no robô quadrado (preços de lojas brasileiras em novembro de 2026; estimativa).</p>
+  <p class="nota">Ferramentas: ferro de solda (para os insertos), chave Phillips pequena, chave Allen de 2,5 mm, paquímetro (para medir os seus componentes) e cola instantânea.</p>
+  <p class="nota">Cuidado com as pilhas 18650: são de lítio. Use suporte e carregador próprios, não deixe os polos encostarem em metal e não carregue sem supervisão, principalmente com crianças por perto.</p>
+</div></section>
+
+<section id="exemplos"><div class="wrap">
+  <span class="chip">Exemplos</span>
+  <h2>Como ficam as peças</h2>
+  <p class="sub">Renders gerados pelo próprio projeto.</p>
+  <div class="ex">
+    <figure><img src="assets/dino-vistas.jpg" alt="Dinossauro em quatro ângulos"><figcaption>Dinossauro em quatro ângulos</figcaption></figure>
+    <figure><img src="assets/capivara-explodido.jpg" alt="Capivara em vista explodida"><figcaption>Capivara aberta: a mesma estrutura do dinossauro por dentro</figcaption></figure>
+    <figure><img src="assets/cubo-vistas.jpg" alt="Robô quadrado em quatro ângulos"><figcaption>Robô quadrado em quatro ângulos</figcaption></figure>
+    <figure><img src="assets/cubo-esqueleto.jpg" alt="Estrutura do robô quadrado sem a casca"><figcaption>Robô quadrado sem a casca da cabeça: quadro, Raspberry Pi e tela</figcaption></figure>
+  </div>
+  <h3 class="sep3">Saída do verificador</h3>
+  <p class="sub">Resumo do que o script imprime, em português. O texto completo está em <code>pecas/verificacao-saida.txt</code>.</p>
+<pre class="saida">== dino
+  [PASSOU] 1 contagem: 30 peças distintas, 38 no total (esperado 38); faltando 0; sobrando 0
+  [PASSOU] 2 malha: 30 STL fechados, 1 corpo cada
+  [PASSOU] 3 mesa: todas cabem em 256 x 256 x 256 mm; maior dimensão 226.4 mm (torso-frente)
+  [PASSOU] 4 parede: torso 2.36–2.41 mm; cabeça 2.36–2.42 mm; perna 2.35–2.41 mm; cauda 2.35–2.41 mm (mínimo exigido 2.0)
+  [PASSOU] 5 interferência: 54 sólidos (37 impressos + 17 componentes), 12 poses, 0 sobreposições; 2 encaixe(s) previsto(s) fora da conta: motor-tt-dir x roda-dir (eixo do motor entra no cubo da roda); motor-tt-esq x roda-esq (eixo do motor entra no cubo da roda)
+  [PASSOU] 6 teste negativo: 'chassi' deslocada 3 mm em X → 13 sobreposições acusadas (tem que ser > 0)
+  [PASSOU] 7 peça solta: as 37 peças montadas encostam (≤ 1.5 mm) em outra
+  [PASSOU] 8 equilíbrio: massa estimada 1668 g; CG neutro em x=0.1 y=-26.1 z=118.1 mm, margem 26.1 mm (tomba com 12°); pior pose 'tilt-baixo': margem 22.1 mm (11°); mínimo exigido 10 mm
+  [PASSOU] 9 caminho: 26 passos de montagem, cada peça entra pela direção declarada sem atravessar o que já está montado
+== capivara
+  [PASSOU] 1 contagem: 33 peças distintas, 39 no total (esperado 39); faltando 0; sobrando 0
+  [PASSOU] 2 malha: 33 STL fechados, 1 corpo cada
+  [PASSOU] 3 mesa: todas cabem em 256 x 256 x 256 mm; maior dimensão 226.4 mm (torso-frente)
+  [PASSOU] 4 parede: torso 2.36–2.41 mm; cabeça 2.36–2.41 mm; coxa 2.36–2.40 mm; rabo 2.36–2.41 mm (mínimo exigido 2.0)
+  [PASSOU] 5 interferência: 53 sólidos (38 impressos + 15 componentes), 8 poses, 0 sobreposições; 2 encaixe(s) previsto(s) fora da conta: motor-tt-dir x roda-dir (eixo do motor entra no cubo da roda); motor-tt-esq x roda-esq (eixo do motor entra no cubo da roda)
+  [PASSOU] 6 teste negativo: 'chassi' deslocada 3 mm em X → 12 sobreposições acusadas (tem que ser > 0)
+  [PASSOU] 7 peça solta: as 38 peças montadas encostam (≤ 1.5 mm) em outra
+  [PASSOU] 8 equilíbrio: massa estimada 1583 g; CG neutro em x=-0.0 y=-24.9 z=117.3 mm, margem 24.9 mm (tomba com 12°); pior pose 'tilt-baixo': margem 21.0 mm (10°); mínimo exigido 10 mm
+  [PASSOU] 9 caminho: 22 passos de montagem, cada peça entra pela direção declarada sem atravessar o que já está montado
+== cubo
+  [PASSOU] 1 contagem: 11 peças distintas, 14 no total (esperado 14); faltando 0; sobrando 0
+  [PASSOU] 2 malha: 11 STL fechados, 1 corpo cada
+  [PASSOU] 3 mesa: todas cabem em 256 x 256 x 256 mm; maior dimensão 150.0 mm (base)
+  [PASSOU] 4 parede: modelo sem casca orgânica (paredes são sólidos exatos ≥ 2,4 mm)
+  [PASSOU] 5 interferência: 22 sólidos (13 impressos + 9 componentes), 9 poses, 0 sobreposições; 1 encaixe(s) previsto(s) fora da conta: engrenagem-servo x servo-pan MG996R (horn do servo fica no rebaixo da engrenagem)
+  [PASSOU] 6 teste negativo: 'quadro-cabeca' deslocada 3 mm em X → 1 sobreposições acusadas (tem que ser > 0)
+  [PASSOU] 7 peça solta: as 13 peças montadas encostam (≤ 1.5 mm) em outra
+  [PASSOU] 8 equilíbrio: massa estimada 1020 g; CG neutro em x=-2.2 y=5.0 z=74.5 mm, margem 59.0 mm (tomba com 38°); pior pose 'pan+37': margem 58.8 mm (38°); mínimo exigido 10 mm
+  [PASSOU] 9 caminho: 12 passos de montagem, cada peça entra pela direção declarada sem atravessar o que já está montado</pre>
+</div></section>
+
+<section id="fase2"><div class="wrap">
+  <span class="chip">Preparado para a fase 2</span>
+  <h2>O lugar de cada coisa já existe</h2>
+  <p class="sub">A fase 2 (ouvir, falar, ver, andar sem bater, saber onde está) não foi feita. A mecânica já tem o espaço, os furos e a passagem dos cabos.</p>
+  <p class="arraste">↔ no celular, arraste a tabela para o lado</p>
+  <div class="tabela-wrap"><table class="tabela">
+    <thead><tr><th>Componente da fase 2</th><th>Dinossauro e capivara</th><th>Robô quadrado</th></tr></thead>
+    <tbody>
+      <tr><td>Raspberry Pi e Arduino juntos</td><td>duas bandejas no rack, uma em cima da outra; rasgos de ventilação nas costas</td><td>Raspberry Pi na cabeça, Arduino na base</td></tr>
+      <tr><td>Microfones</td><td>4 furos no peito</td><td>4 furos no topo da cabeça e 4 na tampa da base</td></tr>
+      <tr><td>Alto-falante de 40 mm</td><td>anel por dentro do painel da barriga; as fendas do painel são a grade</td><td>anel e grade na frente da base</td></tr>
+      <tr><td>Câmera do Raspberry Pi</td><td>pilares dentro do focinho (dinossauro) ou da testa (capivara); move junto com a cabeça</td><td>pilares atrás da moldura, acima da tela</td></tr>
+      <tr><td>Sensores de distância e de degrau, medidor de giro das rodas (encoder), sensor de inclinação (IMU)</td><td>janela na frente, 4 pares de furos no piso, 12 mm livres acima de cada motor, 2 furos no alto do chassi</td><td>2 pares de furos no piso da base</td></tr>
+      <tr><td>LiDAR pequeno (sensor a laser que mede a sala em volta)</td><td>não cabe com visão de 360°: a cabeça tampa</td><td>cabe no topo plano da cabeça</td></tr>
+      <tr><td>Bateria maior e recarga</td><td>baia de 58 × 114 × 23 mm que abre por trás; furo para conector de carga embaixo, para recarregar sem abrir</td><td>porta traseira com a chave e o conector de carga</td></tr>
+    </tbody></table></div>
+</div></section>
+
+<section id="roadmap"><div class="wrap">
+  <span class="chip">Roadmap</span>
+  <h2>Onde o projeto está</h2>
+  <p class="sub">Sem promessa de data.</p>
+  <div class="phase"><div class="tag">Feito</div><div class="d"><strong>Fase 1 no computador</strong><span>Três modelos gerados por código, verificados por script, com renders e lista de peças.</span></div></div>
+  <div class="phase"><div class="tag">Falta</div><div class="d"><strong>Imprimir e montar</strong><span>Imprimir a peça de teste, medir os componentes reais, corrigir as medidas sem fonte e montar o primeiro robô.</span></div></div>
+  <div class="phase"><div class="tag">Fase 2</div><div class="d"><strong>Eletrônica, voz, visão e IA</strong><span>Fiação, programa dos servos, comando de voz, câmera, sensores e navegação pela casa.</span></div></div>
+</div></section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="pill">Python · trimesh · manifold3d</div><div class="pill">Blender (renders)</div><div class="pill">Bambu Lab A1 · PLA + PETG</div>
+    <p style="margin-top:18px">robos-impressos · fase 1: mecânica · protótipo digital, ainda não impresso ·
+      <a href="https://github.com/inematds/robos-impressos">inematds/robos-impressos</a> ·
+      <a href="https://inema.club">INEMA.CLUB</a></p>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var KEY='robos-impressos-theme'; // troque robos-impressos pelo nome do projeto
+    var b=document.body, t=document.getElementById('themeToggle');
+    if(localStorage.getItem(KEY)==='light'){ b.classList.add('light'); t.textContent='☀️'; }
+    t.addEventListener('click',function(){
+      var light=b.classList.toggle('light');
+      t.textContent=light?'☀️':'🌙';
+      localStorage.setItem(KEY, light?'light':'dark');
+    });
+  })();
+</script>
+</body>
+</html>

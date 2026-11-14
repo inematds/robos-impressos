@@ -1,0 +1,151 @@
+{
+ "modelo": "cubo",
+ "testes": {
+  "1 contagem": {
+   "ok": true,
+   "texto": "11 peças distintas, 14 no total (esperado 14); faltando 0; sobrando 0"
+  },
+  "2 malha": {
+   "ok": true,
+   "texto": "11 STL fechados, 1 corpo cada"
+  },
+  "3 mesa": {
+   "ok": true,
+   "texto": "todas cabem em 256 x 256 x 256 mm; maior dimensão 150.0 mm (base)"
+  },
+  "4 parede": {
+   "ok": true,
+   "texto": "modelo sem casca orgânica (paredes são sólidos exatos ≥ 2,4 mm)"
+  },
+  "5 interferência": {
+   "ok": true,
+   "texto": "22 sólidos (13 impressos + 9 componentes), 9 poses, 0 sobreposições; 1 encaixe(s) previsto(s) fora da conta: engrenagem-servo x servo-pan MG996R (horn do servo fica no rebaixo da engrenagem)"
+  },
+  "6 teste negativo": {
+   "ok": true,
+   "texto": "'quadro-cabeca' deslocada 3 mm em X → 1 sobreposições acusadas (tem que ser > 0)"
+  },
+  "7 peça solta": {
+   "ok": true,
+   "texto": "as 13 peças montadas encostam (≤ 1.5 mm) em outra"
+  },
+  "8 equilíbrio": {
+   "ok": true,
+   "texto": "massa estimada 1020 g; CG neutro em x=-2.2 y=5.0 z=74.5 mm, margem 59.0 mm (tomba com 38°); pior pose 'pan+37': margem 58.8 mm (38°); mínimo exigido 10 mm"
+  },
+  "9 caminho": {
+   "ok": true,
+   "texto": "12 passos de montagem, cada peça entra pela direção declarada sem atravessar o que já está montado"
+  }
+ },
+ "interferencias": [],
+ "caminho": [],
+ "cg": [
+  {
+   "pose": "neutra",
+   "cg": [
+    -2.2,
+    5.0,
+    74.5
+   ],
+   "margem_mm": 59.0,
+   "tomba_graus": 38.4,
+   "massa_g": 1020.0
+  },
+  {
+   "pose": "pan+170",
+   "cg": [
+    -4.9,
+    0.1,
+    74.5
+   ],
+   "margem_mm": 63.9,
+   "tomba_graus": 40.6,
+   "massa_g": 1020.0
+  },
+  {
+   "pose": "pan-170",
+   "cg": [
+    -4.0,
+    -0.3,
+    74.5
+   ],
+   "margem_mm": 64.3,
+   "tomba_graus": 40.8,
+   "massa_g": 1020.0
+  },
+  {
+   "pose": "pan+90",
+   "cg": [
+    -5.9,
+    3.6,
+    74.5
+   ],
+   "margem_mm": 60.4,
+   "tomba_graus": 39.1,
+   "massa_g": 1020.0
+  },
+  {
+   "pose": "pan+37",
+   "cg": [
+    -4.0,
+    5.2,
+    74.5
+   ],
+   "margem_mm": 58.8,
+   "tomba_graus": 38.3,
+   "massa_g": 1020.0
+  },
+  {
+   "pose": "tilt-cima",
+   "cg": [
+    -2.2,
+    4.9,
+    75.8
+   ],
+   "margem_mm": 59.1,
+   "tomba_graus": 38.0,
+   "massa_g": 1020.0
+  },
+  {
+   "pose": "tilt-baixo",
+   "cg": [
+    -2.2,
+    4.6,
+    73.4
+   ],
+   "margem_mm": 59.4,
+   "tomba_graus": 39.0,
+   "massa_g": 1020.0
+  },
+  {
+   "pose": "pan+120+tilt-baixo",
+   "cg": [
+    -5.8,
+    2.3,
+    73.4
+   ],
+   "margem_mm": 61.7,
+   "tomba_graus": 40.0,
+   "massa_g": 1020.0
+  },
+  {
+   "pose": "pan-75+tilt-cima",
+   "cg": [
+    -0.7,
+    2.0,
+    75.8
+   ],
+   "margem_mm": 62.0,
+   "tomba_graus": 39.3,
+   "massa_g": 1020.0
+  }
+ ],
+ "resumo": {
+  "pecas_distintas": 11,
+  "pecas_total": 14,
+  "massa_impressa_g": 638.0,
+  "tempo_total_h": 24.5,
+  "ok": true
+ }
+}
