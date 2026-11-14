@@ -58,7 +58,9 @@ GLOSSARIO = ('- "horn" (a peça que encaixa no eixo do servo) fica "horn": "serv
              '"chicote" (de fios) = wiring harness / mazo de cables. "borne" = screw terminal / borne. "ilha" (de solda) = solder pad / pad de soldadura. '
              '"preparo" = prep step / preparativo. "placa de proteção" = protection board / placa de protección. "ponto do meio" = middle point / punto medio. '
              '"termo-retrátil" = heat-shrink tubing / tubo termorretráctil. "esquema de ligação" = wiring diagram / esquema de conexión. '
-             '"não testado na bancada" = not bench-tested / no probado en el banco de trabajo.\n'
+             '"não testado na bancada" = not bench-tested / no probado en el banco de trabajo. '
+             '"robô quadrado de mesa" = square desktop robot / robot cuadrado de mesa; "robô de mesa" = desktop robot / robot de mesa (nunca "tabletop"). '
+             'Faixa de preço "R$ 10 a R$ 20" = "R$ 10 to R$ 20" / "R$ 10 a R$ 20".\n'
              '- Não traduza: Sensor Shield, UBEC, BMS, LM2596, GPIO, Dupont, SEL, VCC, GND, COM, IIC, NC, Mercado Livre, Raspberry Pi Imager, Raspberry Pi OS, Arduino IDE, LCD-show, MPI3501.')
 MD_REGRA = ('- Os valores com chave "d_" são trechos de Markdown: mantenha idênticos os marcadores (#, -, 1., **, >), o que estiver entre crases, '
             'os nomes de arquivo, os caminhos e as URLs dos links; traduza só o texto.')
@@ -417,8 +419,9 @@ def tab_html(cab, linhas, total=False, junta=False, estreita=False):
         forte = total and i == len(linhas) - 1
         tds = []
         for j, c in enumerate(l):
-            rot = "" if j == 0 else f' data-l="{html.escape(cab[j])}"'
             miolo = cel_html(c)
+            curta = j > 0 and len(re.sub(r"<[^>]+>", "", miolo)) <= 24      # célula curta: no cartão do celular fica na mesma linha das vizinhas
+            rot = "" if j == 0 else f' data-l="{html.escape(cab[j])}"' + (' class="c"' if curta else "")
             tds.append(f"<td{rot}>{'<strong>' + miolo + '</strong>' if forte and miolo else miolo}</td>")
         o.append("<tr>" + "".join(tds) + "</tr>")
     o.append("</tbody></table></div>")
@@ -542,7 +545,7 @@ def esquema_svg(X):
         txt(577, y, a, 11 if len(a) > 1 else 14, peso=700, cor=c)
     txt(672, 136, t("sv_carregador"), 12, anc="middle", peso=700)
     txt(672, 152, t("sv_carregador2"), 10.5, anc="middle", cor="#4c4f5c")
-    caixa(470, 222, 70, 30, fundo="#e8eaf0")
+    caixa(460, 222, 90, 30, fundo="#e8eaf0")
     txt(505, 242, t("sv_chave"), 12, anc="middle", peso=700)
     txt(300, 273, t("sv_bat"), 11, anc="middle", cor=COR["v"], peso=600)
     caixa(60, 330, 240, 76)
@@ -567,8 +570,9 @@ def esquema_svg(X):
     caixa(60, 470, 570, 150, fundo="#eef6ee", borda="#2f6b3a")
     txt(110, 488, t("sv_5v"), 11, anc="middle", peso=700)
     txt(160, 488, "G", 11, anc="middle", peso=700)
-    txt(430, 488, t("sv_vcc"), 11, anc="middle", peso=700)
-    txt(520, 488, t("sv_bgnd"), 11, anc="middle", peso=700)
+    txt(430, 488, "VCC", 11, anc="middle", peso=700)
+    txt(520, 488, "GND", 11, anc="middle", peso=700)
+    txt(475, 504, t("sv_borne"), 10.5, anc="middle", cor="#3565a8", peso=600)
     txt(345, 540, t("sv_shield"), 15, anc="middle", peso=700)
     txt(345, 560, t("sv_shield2"), 12, anc="middle", cor="#a14a00", peso=600)
     txt(622, 504, "D9", 11, anc="end", peso=700)
@@ -591,11 +595,11 @@ def esquema_svg(X):
     txt(118, 909, "−", 14, peso=700)
     txt(134, 894, t("sv_usbc"), 11, cor="#4c4f5c")
     txt(450, 898, t("sv_pi"), 14, anc="middle", peso=700)
-    caixa(540, 852, 92, 50, fundo="#e8eaf0")
-    txt(586, 881, t("sv_tela"), 11, anc="middle", peso=700)
+    caixa(540, 852, 96, 50, fundo="#e8eaf0")
+    txt(588, 881, t("sv_tela"), 10.5, anc="middle", peso=700)
     txt(632, 936, t("sv_tela2"), 10.5, anc="end", cor="#4c4f5c")
-    caixa(646, 850, 100, 44, fundo="#fdebd9", borda="#a8581a")
-    txt(696, 876, t("sv_tilt"), 11, anc="middle", peso=700)
+    caixa(642, 850, 106, 44, fundo="#fdebd9", borda="#a8581a")
+    txt(695, 876, t("sv_tilt"), 10.5, anc="middle", peso=700)
     # ---- legenda
     for k, (x, y, cores, chave) in enumerate(((20, 966, "v", "sv_leg1"), (265, 966, "p", "sv_leg2"), (510, 966, "a", "sv_leg3"),
                                               (20, 988, "gz", "sv_leg4"), (265, 988, "l", "sv_leg5"), (510, 988, "", "sv_leg6"))):
@@ -643,6 +647,7 @@ CSS = """
   .tabela.cartoes tbody{display:block}
   .tabela.cartoes tr{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:0 0 10px}
   .tabela.cartoes td{display:block;border:0;padding:4px 0;overflow-wrap:anywhere}
+  .tabela.cartoes td.c{display:inline-block;margin-right:18px}
   .tabela.cartoes td:empty{display:none}
   .tabela.cartoes td[data-l]::before{content:attr(data-l) ": ";font-family:Sora;font-size:.7rem;font-weight:600;color:var(--mut);text-transform:uppercase;letter-spacing:.05em}
   .tabela.cartoes td:first-child{font-weight:600;font-size:1rem;padding-bottom:6px}

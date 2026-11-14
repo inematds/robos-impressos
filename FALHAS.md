@@ -2,6 +2,9 @@
 
 | data | o que quebrou | menor correção | prompt \| infra |
 |---|---|---|---|
+| 2026-11-14 | cubo: a montagem pedia servo em 90° e "ligue a energia" sem sketch, sem esquema fio a fio e sem dizer como o Raspberry Pi fala com o Arduino; o revisor independente reprovou (6/10) | `centrar_servos.ino` + `LIGACAO.md` e SVG gerados da lista `ligacoes` de `cubo.dados.json` + 3 preparos de bancada antes da montagem | prompt |
+| 2026-11-14 | cubo: o LEIA-ME do zip mandava abrir `pecas/cubo/stl/`, mas dentro do zip a pasta é `cubo/stl/` (era cópia do IMPRIMIR.md do repo) | `leia_zip()` troca os caminhos pelos do zip; `conferir` acusa se voltar | prompt |
+| 2026-11-14 | cubo: página e docs em inglês com vírgula decimal (o pedido de tradução manda "números ficam iguais") | `PONTO()` troca a vírgula decimal por ponto ao ler a tradução EN; `conferir` acusa `\d,\d` no inglês | prompt |
 | 2026-11-14 | capivara: a faixa esférica da gola sumiu na frente (buraco no pescoço) depois que enchi a borda de baixo da cabeça a 45°; os 11 testes passavam (nenhum olha buraco na casca) e só o render mostrou | a zona varrida da mandíbula ABERTA ganhou o mesmo alívio esférico que `bicho.cabeca` dá à mandíbula de verdade; o enchimento da cabeça saiu (o operador `autoportante` pendura massa sob face quase horizontal) | prompt |
 | 2026-11-14 | capivara: a bacia não descia por cima do chassi (torre do pan e garfo em balanço sobre a barriga; teste 9) | servo de pan deitado de lado e torre só até onde o piso existe; garfo e berço entram depois da bacia; `sombra_abaixo` tira da casca a sombra vertical do chassi | prompt |
 | 2026-11-14 | pele em grade (`cad/peles/*.npz`, passos de 0,1 mm): nó com valor exato 0 fazia o marching cubes sair não-variedade (`de_numpy` recusava) | `Pele._mc` empurra 1 µm os nós que caem exatamente no nível | infra |

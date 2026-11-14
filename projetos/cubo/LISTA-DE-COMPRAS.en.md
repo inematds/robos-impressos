@@ -1,0 +1,182 @@
+# Shopping list for the square desktop robot
+
+<!-- GERADO:idiomas -->
+[🇧🇷 Português](LISTA-DE-COMPRAS.md) · [🇺🇸 English](LISTA-DE-COMPRAS.en.md) · [🇪🇸 Español](LISTA-DE-COMPRAS.es.md)
+<!-- /GERADO -->
+
+Everything you need to buy to build the square desktop robot in phase 1: the body assembled and wired. The program
+comes later, in phase 2.
+
+Page with the same list: https://inematds.github.io/robos-impressos/guia/en/cubo/#comprar
+
+## How to read the list
+
+- **Uses / buy:** the first number is what the robot uses; the second is what you buy, because screws and threaded inserts
+  come in kits.
+- **Prices are in reais (R$)** and the links open Mercado Livre Brazil search results. The name of each item is the link.
+- **Estimated price** is a range, not a quote. It gives you a rough idea of the cost.
+- **Seen at store** is the price listed on 14/11/2026 on the public pages of usinainfo.com.br. Where it says
+  "not checked," the range is only a reference. Mercado Livre prices were not checked.
+- **NC** = unconfirmed measurement. The model uses the most common value for that component. Measure your part with calipers
+  before printing the part that touches it.
+
+## Risks before buying
+
+What has not been tested yet. Read before spending.
+
+<!-- GERADO:riscos -->
+- Nothing has been printed or assembled yet. The electrical section of this page has not been bench-tested: it was based on the component datasheets.
+- The table 3MF files have never been opened in Bambu Studio. If one won't open, use the STL files.
+- The USB-C plug that powers the Raspberry Pi is not in the 3D model. There may not be room for it next to the Pi inside the head.
+- Raspberry Pi pins 31 to 34 are under the screen board. The clearance there (17.5 mm in the model) is unconfirmed: if the low-profile connector doesn't fit, the 3 serial wires will have to be soldered.
+- The test coupon doesn't check the MG996R servo window or the M5 pin hole. Check both on table 01 before the long prints.
+- With the Arduino screwed to the base, the USB cable won't fit: there is about 10 mm of clearance to the wall. To reprogram it, you need to remove its 4 screws.
+- The fuse holder and the 3 serial resistors have no modeled mounting place: they hang loose on the wires, insulated with heat-shrink tubing.
+- Measurements marked NC come from store listings. Measure your part before printing the section that touches it.
+<!-- /GERADO -->
+
+## How much it costs
+
+<!-- GERADO:custo -->
+- Phase 1 parts purchased (excluding tools and filament): **R$ 872–1840**.
+- If you already have the Arduino Uno: **R$ 829–1750**.
+- Filament, based on the parts' weight: R$ 66–110 (735 g; R$ 90–150 per kilogram).
+<!-- /GERADO -->
+
+## Phase 1: what to buy
+
+<!-- GERADO:compras -->
+### Brain, screen, and movement
+
+| Item (the name opens a search) | Uses / buy | What it's for | Estimated price | Seen in store |
+|---|---|---|---|---|
+| [Raspberry Pi 4 Model B, 4 GB](https://lista.mercadolivre.com.br/raspberry-pi-4-model-b-4gb) | 1 / 1 | The robot’s brain. It sits inside the head, behind the screen. The Pi 5 also works, but the 3 A converter limits its USB ports to 0.6 A. | R$ 450–800 (each) | not verified |
+| [32 GB class 10 microSD card](https://lista.mercadolivre.com.br/cartao-micro-sd-32gb-classe-10) | 1 / 1 | Raspberry Pi operating system. | R$ 25–50 (each) | not verified |
+| [3.5" 480 × 320 TFT screen for Raspberry Pi (MPI3501, fits the GPIO)](https://lista.mercadolivre.com.br/display-lcd-tft-3.5-raspberry-pi-mpi3501) | 1 / 1 | The robot's face. Fits directly onto Pi pins 1 to 26, with no screws. NC: assembly thickness (7 mm) and height above the Pi (24.5 mm). | R$ 90–200 (each) | R$ 193.57 |
+| [180° MG996R servo (positional, not continuous rotation)](https://lista.mercadolivre.com.br/servo-mg996r-180-graus) | 2 / 2 | One rotates the neck (pan), the other tilts the head (tilt). The servo kit must include the round horn (disk). NC: thickness and holes in the tabs, diameter and thickness of the round horn. | R$ 30–75 (each) | R$ 70.45 |
+| [30 cm servo extension (3-wire male-to-female extension cable)](https://lista.mercadolivre.com.br/extensao-servo-30cm) | 1 / 1 | Runs the tilt servo cable from the head, through the neck to the shield in the base, with enough slack for the head to turn. NC: factory servo cable length (usually 30 cm). | R$ 5–15 (each) | not verified |
+| [Arduino Uno R3](https://lista.mercadolivre.com.br/arduino-uno-r3) (you may already have) | 1 / 1 | Controls the 2 servos. It sits on the base floor, on 4 raised bosses. | R$ 43–90 (each) | R$ 43.28 to R$ 89.95 |
+| [Sensor Shield V5.0 for Arduino](https://lista.mercadolivre.com.br/sensor-shield-v5-arduino) | 1 / 1 | Fits on top of the Uno and provides 3-pin servo connectors, with separate power through the blue screw terminal. NC: printed label for the 5 V pins; check with a multimeter. | R$ 11–35 (each) | R$ 18.13 |
+| [1 kΩ resistor, 1/4 W](https://lista.mercadolivre.com.br/resistor-1k-1-4w) | 3 / 1 pack of 10 | Voltage divider for the serial connection: lowers the Arduino's 5 V to the 3.3 V that the Raspberry Pi accepts. | R$ 1–5 (pack) | not verified |
+| [2-row female pin header, 2.54 mm pitch (2 × 20)](https://lista.mercadolivre.com.br/barra-pinos-femea-2x20-2.54mm) | 1 piece of 2 × 2 / 1 strip | Low-profile connector for Raspberry Pi pins 31 to 34, which are under the screen. A regular Dupont wire won't fit upright there. NC: clearance between the Pi and the screen board (17.5 mm in the model). | R$ 3–10 (each) | not verified |
+
+### Power
+
+| Item (the name opens a search) | Uses / buy | What it's for | Estimated price | Seen in store |
+|---|---|---|---|---|
+| [3.7 V lithium-ion 18650 battery (loose cell)](https://lista.mercadolivre.com.br/bateria-18650-3.7v) | 2 / 2 | 2S pack: 7.4 V nominal (8.4 V fully charged). Buy two identical, new batteries from a reputable brand. | R$ 13–45 (each) | R$ 26.08 for the kit with 2 |
+| [Holder for 2 side-by-side 18650 batteries, with wires](https://lista.mercadolivre.com.br/suporte-2-baterias-18650) | 1 / 1 | Holds the 2 cells in series. Slides into the base cradle and exits through the rear door. NC: the cradle accepts up to 78 × 41 × 22 mm. | R$ 5–15 (each) | R$ 6.22 |
+| [Inline fuse holder for a 5 × 20 mm glass fuse, with a 5 A fuse](https://lista.mercadolivre.com.br/porta-fusivel-5x20-fio) | 1 / 1 (and 1 spare fuse) | On the positive wire, right after the battery holder. Opens the circuit if there's a short, before the wire heats up. No mounting place is modeled: it hangs loose on the wire. | R$ 4–12 (set) | not verified |
+| [2S 10 A BMS protection board (model 10A2S, ~24 × 11 mm)](https://lista.mercadolivre.com.br/bms-2s-10a-18650) | 1 / 1 | Cuts off deep discharge, overcharging, and short circuits. Solder it to the battery wires and secure it with double-sided tape. NC: printed label on the solder pads (usually B+, BM, B−, P+, P−). | R$ 8–20 (each) | not verified |
+| [USB-C 2S/3S balance charger (LX-USC-V2)](https://lista.mercadolivre.com.br/carregador-usb-c-2s-18650-balanceamento) | 1 / 1 | Charges the pack without opening the robot. Requires a 3rd wire soldered to the holder's middle point (between the two cells). NC: size of the USB-C opening in the rear window (9.2 × 3.4 mm) and printed label on the screw terminals. | R$ 15–30 (each) | R$ 17.90 |
+| [Adjustable LM2596 step-down converter (blue board, 3 A)](https://lista.mercadolivre.com.br/modulo-step-down-lm2596) | 1 / 1 | Steps the pack voltage down to 5 V for the Raspberry Pi and Arduino. Adjust it to 5.1 V with a multimeter BEFORE connecting any board. The XL4015 won't work here: it requires at least 8 V. | R$ 8–20 (each) | R$ 10.22 |
+| [6 V 3 A UBEC (Hobbywing UBEC 3A 2-6S or equivalent)](https://lista.mercadolivre.com.br/ubec-3a-5v-6v-hobbywing) | 1 / 1 | Powers the 2 servos at 6 V, separate from the Pi. Set its jumper to 6 V. | R$ 25–60 (each) | not verified |
+| [1000 µF 16 V electrolytic capacitor](https://lista.mercadolivre.com.br/capacitor-eletrolitico-1000uf-16v) | 1 / 1 | On the servos' 6 V screw terminal: handles the startup current spike. | R$ 1–4 (each) | R$ 2.33 |
+| [KCD11 rocker switch (13.5 × 9 mm cutout)](https://lista.mercadolivre.com.br/chave-gangorra-kcd11) | 1 / 1 | Turns it on and off. Press-fits into the rear wall from the outside. NC: panel thickness accepted by the latch and switch current rating (usually 3 A). | R$ 3–8 (each) | R$ 3.74 to R$ 5.40 (KCD1 models; check the cutout) |
+| [USB-C male adapter with screw terminals (2 pins)](https://lista.mercadolivre.com.br/adaptador-usb-c-macho-borne) | 1 / 1 | It carries 5 V from the converter to the Raspberry Pi’s USB-C input (the GPIO 5 V pins are under the screen). The plug isn’t in the 3D model: check that it fits beside the Pi, inside the head. | R$ 8–20 (each) | R$ 13.11 |
+| [Flexible 22 AWG wire (0.33 mm²): red, black, and a third color](https://lista.mercadolivre.com.br/fio-flexivel-22awg-vermelho-preto) | about 1.5 m of red, 1.5 m of black, and 30 cm of yellow / 2 m of red, 2 m of black, 1 m of yellow | All the power wiring. Yellow is the 3rd wire, from the middle point of the pack. | R$ 12–30 (total) | R$ 22.40 (5 m two-color) |
+| [20 cm Dupont jumpers (kits of 20: one female-female, one male-female)](https://lista.mercadolivre.com.br/jumper-dupont-20cm) | about 8 wires / 2 kits of 20 | Serial signals and Arduino’s 5 V. To run them down through the neck, splice two jumpers together or use 40 cm wire with a Dupont connector on one end. | R$ 6–12 (kit) | R$ 6.61 per kit |
+
+### Fasteners
+
+| Item (the name opens a search) | Uses / buy | What it's for | Estimated price | Seen in store |
+|---|---|---|---|---|
+| [M3 brass threaded insert (for 4.0 mm hole, up to 5.7 mm long)](https://lista.mercadolivre.com.br/inserto-latao-m3-impressao-3d) | 16 / 1 pack of 20 or more | The metal threads in the parts: 4 in the lid, 1 in the door tab, 4 in the face panel pillars, 4 in the frame columns, 3 in the fork. | R$ 15–40 (pack) | not verified |
+| [M3 × 8 mm screw, Allen cylindrical head](https://lista.mercadolivre.com.br/parafuso-allen-m3x8) | 13 / 2 kits of 10 | 4 for the Arduino, 4 for the face panel, 4 for the head cup, 1 for the door. | R$ 3–8 (kit of 10) | R$ 6.14 for a kit of 10 (head type not specified) |
+| [M3 × 10 mm Allen socket head screw](https://lista.mercadolivre.com.br/parafuso-allen-m3x10) | 4 / 1 kit of 10 | Bottom cover. Must be an Allen socket head screw: the head sits at the bottom of a 44 mm hole. | R$ 3–8 (kit of 10) | R$ 3.55 for a kit of 10 (Phillips) |
+| [M3 × 12 mm screw](https://lista.mercadolivre.com.br/parafuso-m3x12) | 8 / 1 kit of 10 | 4 per MG996R servo, threaded directly into the plastic (2.7 mm hole). | R$ 3–8 (kit of 10) | not verified |
+| [M3 × 45 mm Allen socket head screw](https://lista.mercadolivre.com.br/parafuso-allen-m3x45) | 3 / 3 (sold individually) | Neck tie rods: they go in under the gear, pass through the tube, and thread into the fork's inserts. | R$ 1–3 (each) | not verified |
+| [M5 × 16 mm screw](https://lista.mercadolivre.com.br/parafuso-m5x16) | 1 / 1 kit of 10 (or 1 loose piece) | Tilt pin: passes through the side of the frame and threads into the fork arm. The head tilts around it. | R$ 3–8 (kit of 10) | R$ 6.04 for a kit of 10 (Phillips) |
+| [M2.5 × 12 mm screw with M2.5 nut](https://lista.mercadolivre.com.br/parafuso-m2.5x12-porca) | 4 screws and 4 nuts / 1 kit | Secures the Raspberry Pi to the frame, with the 4 printed spacers in between. | R$ 5–15 (kit) | not verified |
+| [M2 × 8 mm self-tapping screw](https://lista.mercadolivre.com.br/parafuso-m2x8-auto-atarraxante) | 8 / 1 kit of 10 | 4 on each round horn: attach the gear to the pan servo and the fork to the tilt servo. NC: diameter of the round horn holes. | R$ 3–8 (kit of 10) | R$ 3.31 for a kit of 10 (check whether they are self-tapping) |
+| [3.6 mm wide nylon cable tie (150 to 200 mm)](https://lista.mercadolivre.com.br/abracadeira-nylon-3.6x200) | 3 / 1 pack of 100 | One in each cradle: 5 V converter, UBEC, and charger. | R$ 8–20 (pack) | not verified |
+| [Double-sided foam tape](https://lista.mercadolivre.com.br/fita-dupla-face-espuma) | about 5 cm / 1 roll | Secures the protection board (BMS) in the shallow floor pocket. | R$ 8–20 (roll) | not verified |
+
+### Tools and soldering supplies (if you don’t have them)
+
+| Item (the name opens a search) | Uses / buy | What it's for | Estimated price | Seen in store |
+|---|---|---|---|---|
+| [30 to 60 W soldering iron, preferably with temperature control](https://lista.mercadolivre.com.br/ferro-de-solda-60w-temperatura-ajustavel) | 1 / 1 | Solder the power wires and seat the 16 inserts using heat. | R$ 40–150 (each) | not verified |
+| [Soldering iron tip for M3 inserts (optional)](https://lista.mercadolivre.com.br/ponta-ferro-de-solda-inserto-m3) | 1 / 1 | Guides the insert straight into the hole. The standard conical tip also works: place it inside the insert and push slowly. | R$ 15–40 (each) | not verified |
+| [Rosin-core solder, 0.8 to 1 mm (small spool)](https://lista.mercadolivre.com.br/estanho-solda-1mm-tubo) | less than 1 m / 1 spool | All wire splices and solder pads on the protection board. | R$ 8–25 (spool) | not verified |
+| [2 to 3 mm and 5 to 6 mm heat-shrink tubing (or electrical tape)](https://lista.mercadolivre.com.br/tubo-termo-retratil-3mm) | about 30 cm of each / 1 m of each | Insulate every wire splice. No metal should be exposed near the battery. | R$ 5–20 (total) | not verified |
+| [Multimeter](https://lista.mercadolivre.com.br/multimetro-digital) | 1 / 1 | Set the converter to 5.1 V, check the UBEC’s 6 V output and the polarity before connecting the boards. | R$ 40–100 (each) | not verified |
+| [2 mm precision screwdriver](https://lista.mercadolivre.com.br/chave-de-fenda-precisao-2mm) | 1 / 1 | Turn the LM2596 adjustment screw and tighten the screw terminals. | R$ 5–20 (each) | not verified |
+| [Long 2.5 mm Allen key (shaft 50 mm or longer)](https://lista.mercadolivre.com.br/chave-allen-2.5mm-longa) | 1 / 1 | Tightens the 4 cover screws through the bottoms of the base holes and the 3 neck braces. | R$ 8–25 (each) | not verified |
+| [Caliper](https://lista.mercadolivre.com.br/paquimetro-digital-150mm) | 1 / 1 | Checks the dimensions marked NC before printing. | R$ 25–80 (each) | not verified |
+| [15 W or higher USB-C power supply (5 V 3 A; a phone charger works) with a USB-C cable](https://lista.mercadolivre.com.br/carregador-usb-c-20w) | 1 / 1 | Charge the pack through the rear USB-C port. The charger accepts up to 15 W. | R$ 25–80 (each) | not verified |
+| [USB A-B cable (the printer cable) and a computer with the Arduino IDE](https://lista.mercadolivre.com.br/cabo-usb-a-b-arduino-uno) | 1 / 1 | Upload the sketch to the Arduino Uno before screwing it onto the base. | R$ 8–25 (each) | not verified |
+<!-- /GERADO -->
+
+Optional: 4 adhesive rubber feet under the base. They do not change any fit.
+
+## Counted screws and threaded inserts
+
+16 M3 heat-set threaded inserts: 4 in the base lid, 1 in the door tab, 4 in the face panel pillars, 4 in the
+head frame columns, and 3 in the fork.
+
+<!-- GERADO:parafusos -->
+| Where it goes | Qty | Screw | What it screws into |
+|---|---|---|---|
+| Base cover (underside) | 4 | M3 × 10 Allen | threaded insert in the cover |
+| Rear door | 1 | M3 × 8 | threaded insert in the cover ear |
+| Arduino Uno | 4 | M3 × 8 | directly into the plastic (2.7 mm hole) |
+| Pan servo (base) | 4 | M3 × 12 | directly into the plastic (2.7 mm hole) |
+| Tilt servo (head frame) | 4 | M3 × 12 | directly into the plastic (2.7 mm hole) |
+| Face panel (behind the frame) | 4 | M3 × 8 | threaded insert in the panel posts |
+| Head cup (back wall) | 4 | M3 × 8 | threaded insert in the frame columns |
+| Neck braces | 3 | M3 × 45 Allen | insert in the fork |
+| Tilt pin | 1 | M5 × 16 | directly into the fork's plastic (4.4 mm hole) |
+| Raspberry Pi | 4 | M2.5 × 12 + nut | nut behind the crossbar |
+| Round horn for the 2 servos | 8 | M2 × 8 self-tapping screw | in the horn holes |
+<!-- /GERADO -->
+
+The center horn screws and the servo rubber rings come in the MG996R kit.
+
+## Filament
+
+Grams per color, totaling the 15 parts (volume estimate, without a slicer). The color is a suggestion; the material is not:
+keep PETG where it says PETG. One 1 kg spool of PETG and one of PLA are enough if you do not need the specific colors.
+
+<!-- GERADO:filamento -->
+| Material and color | Filament (g) | Time (h) |
+|---|---|---|
+| PETG yellow | 88 | 3.3 |
+| PETG graphite | 351 | 13.2 |
+| PETG silver | 24 | 1.1 |
+| PLA white | 204 | 7.7 |
+| PLA gray | 15 | 0.9 |
+| PLA black | 53 | 2.0 |
+| **Total** | **735** | **28.2** |
+<!-- /GERADO -->
+
+## Phase 2 (optional for now)
+
+None of this is needed to print, assemble, and wire the robot. The parts already have the space, holes, and cable routing.
+
+<!-- GERADO:fase2 -->
+| Item (the name opens a search) | Qty | Where it goes | Estimated price | Seen in store |
+|---|---|---|---|---|
+| [Raspberry Pi Camera Module 3 (25 × 24 mm board) with ribbon cable](https://lista.mercadolivre.com.br/raspberry-pi-camera-module-3) | 1 | Behind the face panel, in the 8 mm hole above the screen. 4 posts with holes for M2 screws. NC: lens holes and height. | R$ 180–350 | not verified |
+| [M2 × 6 mm self-tapping screw](https://lista.mercadolivre.com.br/parafuso-m2x6-auto-atarraxante) | 4 | Secures the camera to the 4 posts. | R$ 3–8 | R$ 5.98 for a kit of 10 |
+| [I2S INMP441 microphone](https://lista.mercadolivre.com.br/microfone-inmp441-i2s) | 2 | Inside the head, over the 2 holes of 2 mm underneath it. NC: microphone mount not modeled yet. | R$ 15–55 | R$ 54.26 |
+| [40 mm speaker, 3 W](https://lista.mercadolivre.com.br/alto-falante-40mm-3w-4-ohms) | 1 | Slides along the 2 rails on the back wall of the base, against the vertical slot grille. NC: diameter and depth. | R$ 7–20 | not verified |
+| [Small audio amplifier (PAM8403 or MAX98357A)](https://lista.mercadolivre.com.br/amplificador-pam8403) | 1 | No modeled spot yet: it sits loose in the base, secured with double-sided tape. | R$ 5–35 | R$ 5.47 to R$ 11.34 (PAM8403) |
+| [MPU-6050 IMU motion sensor](https://lista.mercadolivre.com.br/mpu-6050-gy-521) | 1 | At the universal point on the base floor (pair of M3 holes, 20 mm apart). | R$ 15–35 | R$ 34.09 |
+| [LD19 or LD06 LiDAR](https://lista.mercadolivre.com.br/lidar-ld19) | 1 | At the top of the head: 2 blind holes on the inside; the 0.8 mm skin is drilled only when the sensor is installed. NC: sensor hole pattern. | R$ 400–900 | not verified |
+<!-- /GERADO -->
+
+## Glossary
+
+<!-- GERADO:glossario -->
+- **GPIO:** The Raspberry Pi's 40-pin header, where the screen and signal wires connect.
+- **UBEC:** A small converter used in model aircraft that lowers the battery voltage to a fixed value. Here, 6 V for the servos.
+- **BMS:** Lithium battery protection board. It disconnects the battery before it discharges too much, overcharges, or shorts out.
+- **2S:** Two lithium cells connected in series, one after the other. Their voltages add up: from 6 V (empty) to 8.4 V (full).
+- **Horn:** The plastic part that fits onto the servo shaft and turns with it. This robot uses the round, disk-shaped horn.
+- **Heat-set threaded insert:** A brass bushing with an internal thread. It goes into the hole in the plastic when pushed in with a soldering iron, creating a metal thread.
+- **NC:** Unconfirmed: a measurement from a store listing that has not yet been checked against the part in hand.
+- **Slicer:** The software that turns the 3D file into the layers the printer prints. Bambu Lab's slicer is called Bambu Studio.
+<!-- /GERADO -->
+
+How to wire everything on this list: [LIGACAO.en.md](LIGACAO.en.md). How to print: [IMPRIMIR.en.md](IMPRIMIR.en.md).
