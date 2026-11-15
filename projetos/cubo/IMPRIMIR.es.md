@@ -46,9 +46,9 @@ Si trabajas con el código, puedes cambiar el valor en el bloque `FOLGA` de `cad
 
 Tres avisos:
 
-- El cupón es común a los otros robots del proyecto. Su abertura para el servo es para el micro servo (SG90/MG90S), y los alojamientos para pines y el agujero del motor TT son para los otros robots: el robot cuadrado no usa ninguno de los tres. Los agujeros M2,5 y M2 del cupón son para roscar en el plástico; en el robot cuadrado, Raspberry Pi usa un agujero pasante con tuerca.
-- El encaje del servo MG996R y la rosca del tornillo M5 no están en el cupón. Comprueba el servo en el marco de la cabeza (mesa 01, la tercera en el orden de abajo). La rosca M5 está en el brazo de la horquilla (mesa 03, la cuarta). Ambas comprobaciones se hacen antes de las impresiones largas.
-- El cupón se imprime en PLA, pero 12 de los 16 insertos roscados van en piezas de PETG. Imprime un segundo cupón en PETG.
+- El cupón es común a los demás robots del proyecto. Su ventana para el servo es para el microservo (SG90/MG90S), y los alojamientos para pines y el orificio del motor TT son de los otros robots: el robot cuadrado no usa ninguno de los tres. Los orificios M2,5 y M2 del cupón son para roscar en el plástico; en el robot cuadrado, Raspberry Pi usa un orificio pasante con tuerca.
+- El encaje del servo MG996R y la rosca del tornillo M5 no están en el cupón. Puedes comprobar el servo en el marco de la cabeza (mesa 01, la tercera del orden de abajo). La rosca del M5 está en el brazo de la horquilla (mesa 03, la cuarta). Ambas se hacen antes de las impresiones largas.
+- El cupón se imprime en PLA, pero 12 de los 16 insertos roscados van en piezas de PETG. Imprime un segundo cupón en PETG. No está en ninguna mesa ni en los totales: carga el archivo `comum-teste-encaixe.stl` por separado, con PETG, y calcula unos 15 g y 38 minutos más.
 
 ## 2. Orden sugerido de las camas
 

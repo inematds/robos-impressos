@@ -80,8 +80,8 @@ It is a screw terminal block (sindal type) that sits loose in the base. You use 
 
 | From | To | Color | Wire | Attention |
 |---|---|---|---|---|
-| UBEC red output wire (6 V) | Sensor Shield blue VCC screw terminal | red | UBEC wire | Shield SEL jumper REMOVED and UBEC jumper set to 6 V. |
-| UBEC black output wire | Sensor Shield blue GND screw terminal | black | UBEC wire |  |
+| UBEC red output wire (6 V) | Sensor Shield blue VCC screw terminal | red | UBEC wire, with the 3-pin plug cut off | Sensor Shield SEL jumper REMOVED and UBEC jumper set to 6 V. The UBEC output has a servo plug: cut it off and strip the wires. Red is positive. |
+| Black or brown UBEC output wire | Sensor Shield blue GND screw terminal | black | UBEC wire, with the 3-pin plug cut off | If the plug has a third wire, white or orange, insulate its end with heat-shrink tubing: it isn’t connected. |
 | 1000 µF capacitor: long leg (+) | Blue VCC screw terminal; the striped leg (−) goes to the blue GND screw terminal | no wire | capacitor leads | The capacitor will explode if connected backwards. |
 | Pan servo (at the base) | Sensor Shield D9 connector | servo cable | 3-wire servo cable | G = brown or black, V = red, S = orange or yellow. |
 | Tilt servo (in the head) | Through the neck, using the 30 cm extension, to the Sensor Shield D10 connector | servo cable | 3-wire servo cable | Same color order as D9. |
@@ -129,7 +129,7 @@ the center and holds them there.
 4. Reconnect the USB cable just to take a measurement with the multimeter. The shield's COM connector has 4 upright pins labeled TX, RX, −, and +. You should get about 5 V between + and −. On the D9 connector, you should get 0 V between the V pin and the G pin.
 5. If the D9 V pin reads 5 V, the SEL jumper is still in place. If the COM + pin does not read 5 V, your shield differs from the store photo: look for another pin labeled + or 5V that reads 5 V with SEL removed. A wrong pin here sends the servos' 6 V to the Raspberry Pi.
 6. Unplug the USB cable.
-7. Connect the UBEC’s 6 V to the blue screw terminal (VCC and GND) and the 1000 µF capacitor to the same terminal, with its long lead in VCC.
+7. The UBEC output has a 3-pin servo plug: cut it off and strip the wires. Red is positive and black (or brown) is negative. If there’s a third wire, white or orange, insulate its end with heat-shrink tubing. Clamp the red wire into VCC and the black wire into GND on the blue screw terminal. The 1000 µF capacitor goes into the same terminal, with its longer lead in VCC.
 8. Take 2 40 cm jumper wires, cut the connector off one end of each, and strip the wires. Clamp one in terminal 1 of the terminal block, opposite the converter, and plug its connector into the + pin on the COM connector. Connect the other from terminal 2 to the − pin on the same connector. Leave the TX and RX pins beside it empty: 5 V on one of them reaches the Raspberry Pi through the serial wire.
 9. Connect the pan servo to D9 and the tilt servo to D10: brown or black wire to G, red to V, orange or yellow to S.
 10. Turn on the switch: both servos move to the center (90°) and the Uno LED blinks once per second.

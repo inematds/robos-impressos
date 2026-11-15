@@ -81,8 +81,8 @@ Es una barra de bornes de tornillo (tipo sindal) que queda suelta en la base. Us
 
 | De | Para | Color | Cable | Atención |
 |---|---|---|---|---|
-| Cable rojo de salida del UBEC (6 V) | Borne azul VCC del Sensor Shield | rojo | cable del UBEC | Jumper SEL del shield RETIRADO y jumper del UBEC en 6 V. |
-| Cable negro de salida del UBEC | Borne azul GND del Sensor Shield | negro | cable del UBEC |  |
+| Cable rojo de salida del UBEC (6 V) | Borne azul VCC del Sensor Shield | rojo | cable del UBEC, con el conector de 3 pines cortado | Jumper SEL del shield RETIRADO y jumper del UBEC en 6 V. La salida del UBEC viene con un conector de servo: corta el conector y pela los cables. El rojo es el positivo. |
+| Cable negro o marrón de salida del UBEC | Borne azul GND del Sensor Shield | negro | cable del UBEC, con el conector de 3 pines cortado | Si el conector tiene un tercer cable, blanco o naranja, aísla su punta con tubo termorretráctil: no se conecta. |
 | Capacitor de 1000 µF: pata larga (+) | Borne azul VCC; la pata con la franja (−) va en el borne azul GND | sin cable | patas del capacitor | El capacitor invertido explota. |
 | Servo de pan (en la base) | Conector D9 del Sensor Shield | cable del servo | cable de 3 hilos del servo | G = marrón o negro, V = rojo, S = naranja o amarillo. |
 | Servo de tilt (en la cabeza) | Por el cuello, con la extensión de 30 cm, hasta el conector D10 del Sensor Shield | cable del servo | cable de 3 hilos del servo | Mismo orden de colores que en D9. |
@@ -131,7 +131,7 @@ al centro y los mantiene allí.
 4. Vuelve a conectar el cable USB, solo para medir con el multímetro. El conector COM del shield tiene 4 pines verticales, marcados TX, RX, − y +. Entre el + y el − debe marcar unos 5 V. En el conector D9, entre el pin V y el pin G, debe marcar 0 V.
 5. Si el pin V de D9 marca 5 V, el jumper SEL todavía está puesto. Si el + de COM no marca 5 V, tu shield es diferente al de la foto de la tienda: busca otro pin marcado + o 5V que marque 5 V con el SEL retirado. Un pin equivocado aquí lleva los 6 V de los servos a la Raspberry Pi.
 6. Desconecta el cable USB.
-7. Conecta los 6 V del UBEC al borne azul (VCC y GND) y el capacitor de 1000 µF al mismo borne, con la pata larga en VCC.
+7. La salida del UBEC viene con un conector de servo de 3 pines: corta el conector y pela los cables. El rojo es el positivo y el negro (o marrón), el negativo. Si hay un tercer cable, blanco o naranja, aísla su punta con tubo termorretráctil. Aprieta el rojo en VCC y el negro en GND de la barra de conexión azul. En el mismo borne va el capacitor de 1000 µF, con la pata larga en VCC.
 8. Toma 2 jumpers de 40 cm, corta el conector de un extremo de cada uno y pela los cables. Aprieta uno en el borne 1 de la barra de conexión, del lado opuesto al conversor, y encaja su conector en el pin + del conector COM. El otro va del borne 2 al pin − del mismo conector. Los pines TX y RX de al lado quedan vacíos: los 5 V de uno de ellos llegan al Raspberry Pi por el cable serial.
 9. Conecta el servo de pan al D9 y el servo de tilt al D10: cable marrón o negro a G, rojo a V, naranja o amarillo a S.
 10. Enciende el interruptor: los dos servos se colocan en el centro (90°) y el LED del Uno parpadea una vez por segundo.

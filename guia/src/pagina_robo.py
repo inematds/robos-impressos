@@ -350,7 +350,7 @@ def tabelas(R, X):
     t, a, n = X.t, X.a, X.n
     T = {}
     conf = lambda it: (a(it["conf"]) if it.get("conf") else t("nao_conferido"))
-    nc = lambda it: ([" " + t("nc_rotulo") + " " + a(it["nc"]) + "."] if it.get("nc") else [])
+    nc = lambda it: ([" " + t("nc_rotulo") + " " + a(it["nc"]).rstrip(". ") + "."] if it.get("nc") else [])
     gr = lambda v: "<1" if v == 0 else n(v, 0)
     # --- compras, um bloco por tabela: o nome do item é o link de busca
     for i, bl in enumerate(R.d["compras"]):
@@ -661,6 +661,7 @@ def esquema(R, lg):
 # ------------------------------------------------------------------ página
 CSS = """
 .fase{margin:-.5em 0 1.5em;padding:.7em .95em;border-left:3px solid var(--amb);background:var(--bg2);border-radius:0 10px 10px 0;font-size:.98rem;max-width:46ch}
+.fatos{font-family:Sora;font-weight:600;font-size:.95rem;color:var(--amb);margin:-.7em 0 1.5em}
 .aviso{border-color:var(--amb);margin-top:22px}
 .aviso ul{margin:.6em 0 0 1.1em;padding:0;color:var(--mut);font-size:.92rem}
 .aviso li{margin:.45em 0}

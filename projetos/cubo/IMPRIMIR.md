@@ -52,7 +52,7 @@ Três avisos:
 - O encaixe do servo MG996R e a rosca do parafuso M5 não estão no cupom. O servo você confere no quadro da cabeça
   (mesa 01, a terceira da ordem abaixo). A rosca do M5 fica no braço do garfo (mesa 03, a quarta). As duas saem antes
   das impressões longas.
-- O cupom sai em PLA, mas 12 dos 16 insertos ficam em peças de PETG. Imprima um segundo cupom em PETG.
+- O cupom sai em PLA, mas 12 dos 16 insertos ficam em peças de PETG. Imprima um segundo cupom em PETG. Ele não está em nenhuma mesa nem nos totais: carregue o arquivo `comum-teste-encaixe.stl` à parte, com PETG, e conte cerca de 15 g e 38 minutos a mais.
 
 ## 2. Ordem sugerida das mesas
 

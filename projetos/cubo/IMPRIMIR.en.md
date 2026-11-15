@@ -46,9 +46,9 @@ If you work with the code, you can change the value in the `FOLGA` block in `cad
 
 Three notes:
 
-- The test coupon is shared with the project’s other robots. Its servo window is for the micro servo (SG90/MG90S), and its pin sockets and TT motor hole are for the other robots: the square robot uses none of these three. The coupon’s M2.5 and M2 holes are threaded into the plastic; on the square robot, the Raspberry Pi uses a clearance hole with a nut.
-- The MG996R servo fit and the M5 screw thread are not on the coupon. Check the servo on the head frame (plate 01, the third in the order below). Check the M5 thread on the fork arm (plate 03, the fourth). Both are printed before the long prints.
-- The coupon prints in PLA, but 12 of the 16 inserts go into PETG parts. Print a second coupon in PETG.
+- The test coupon is shared with the other robots in the project. Its servo window is for the micro servo (SG90/MG90S), and its pin sockets and TT motor hole are for the other robots: the square desktop robot uses none of the three. The coupon’s M2.5 and M2 holes are for threading into plastic; on the square desktop robot, the Raspberry Pi uses a clearance hole with a nut.
+- The MG996R servo fit and the M5 screw thread are not included in the coupon. Check the servo in the head frame (plate 01, the third in the order below). The M5 thread is in the fork arm (plate 03, the fourth). Both are checked before the long prints.
+- The coupon prints in PLA, but 12 of the 16 inserts go into PETG parts. Print a second coupon in PETG. It is not included on any plate or in the totals: load the file `comum-teste-encaixe.stl` separately, with PETG, and allow about 15 g and 38 minutes extra.
 
 ## 2. Suggested build plate order
 
