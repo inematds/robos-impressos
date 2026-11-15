@@ -360,20 +360,21 @@ DINO = NS(
     folga_junta=2.0,                   # a gola (esfera do corpo) fica com 48 mm de raio
     cabeca_z=-8.0,                     # plano de baixo da cabeça: 8 mm ABAIXO do centro da junta (o queixo desce até z=158)
     z_fundo=5.0,                       # borda de baixo do corpo (face que vai na mesa)
-    z_gola=144.0,                      # corte horizontal entre o corpo e a gola
+    z_gola=134.0,                      # corte horizontal entre o corpo e a gola: logo acima dos ombros (a faixa em que os ombros fecham para o pescoço fica na gola, que é maciça: sem teto em balanço)
     gola_boca_r=36.0,                  # raio da boca de cima da gola (o garfo, de 34,4 mm, passa por ela)
     costura_y=-15.0,                   # pele: plano vertical entre o corpo (frente) e a traseira (anca + cauda, sai para trás)
     coxa=NS(r=38.5, x=(50.0, 88.5), arred=5.0),   # disco (eixo = eixo da roda) que engorda a coxa até cobrir a roda de 65 mm + folga + parede
-    cortina=((-35.0, -16.0, -2.0), (35.0, 80.0, 62.0)),   # pele: debaixo da barriga, entre as pernas, a pele desce reta até o chão (o chassi fica todo sobre piso)
+    cortina=((-35.0, -14.5, -2.0), (35.0, 80.0, 62.0)),   # pele: debaixo da barriga, entre as pernas, a pele desce reta até o chão (o chassi fica todo sobre piso)
     # boca (pele). A malha vem de boca ABERTA: o vão é fechado (boca_vao) e a boca é cortada por um plano quase reto.
     boca=dict(y_eixo=88.5, z_eixo=193.0, y_corte=83.0, z0=198.0, y_ref=80.0, incl=-0.16, raio_sorriso=2000.0, folga=1.2),
+    boca_macico=(85.0, 165.0),         # pele (y, z): a ponta do queixo é maciça à frente do plano a 45° que passa aqui (a mandíbula imprime de pé: sem teto na ponta)
     boca_abre=12.0,                    # graus de abertura da boca (a mandíbula é funda e fica colada à esfera do pescoço: 18° comeriam o queixo)
     boca_vao=((-50.0, 74.0, 160.0), (50.0, 118.0, 204.0)),
     boca_sondas=(-5.0, 0.0, 10.0, 19.0),
     olho=NS(c=(35.0, 47.0, 266.0), r=22.0, dir=(0.30, 0.90, 0.30), iris_r=15.0, pupila_r=9.5),   # pele: centro, raio e para onde olha (o esquerdo espelha)
     narina=NS(x=13.0, y=126.0),        # pele: narinas no alto do focinho = portas de som dos 2 microfones (furo Ø2)
-    falante=(12.0, 68.0),              # pele (x, y): centro do alto-falante, em cima da mesa da cabeça, virado para baixo (som sai pela boca e pelo vão do pescoço)
-    mancha=NS(c=(10.0, 92.0), r=9.0, x=58.5),   # pele: mancha verde-escura no flanco (y, z), assento plano em x: janela do sensor de distância lateral (fase 2)
+    falante=(0.0, 61.0),              # pele (x, y): centro do alto-falante, em cima da mesa da cabeça, virado para baixo (som sai pela boca e pelo vão do pescoço)
+    mancha=NS(c=(14.0, 80.0), r=9.0, x=62.0),   # pele: mancha verde-escura no flanco (y, z), assento plano em x: janela do sensor de distância lateral (fase 2)
     # crista azul: lâminas de 6 mm no plano de simetria, com o contorno dos espinhos da própria malha (caixas em (y, z) da pele)
     crista=NS(esp=6.0, fundo=4.0, xc=11.25,
               cabeca=((-75.0, 195.0), (70.0, 310.0)),
@@ -385,8 +386,8 @@ DINO = NS(
              blobs=[((57.0, 47.0, 122.5), (12.0, 13.0, 12.0)), ((60.0, 66.0, 119.0), (9.0, 12.0, 10.0)), ((54.0, 83.0, 116.0), (9.0, 10.0, 9.0))],
              ombro=((45.0, 28.0, 100.0), (80.0, 72.0, 146.0)),                    # pele: saliência do ombro da malha além de x_base - 0,5 (sai)
              mao=((30.0, 60.0, 104.0), (60.0, 96.0, 142.0)), mao_n=(0.87, 0.5, 0.0), mao_d=64.0),   # pele: antebraço e mão em relevo além do plano n·p = d (saem)
-    barriga=NS(caixa=((-32.0, 60.0, 63.0), (32.0, 130.0, 136.0)), plano_y=80.0),   # pele: barriga creme = o que a pele tem além do plano
-    dedos=(((43.0, 88.5, 6.0), (0.0, 1.0, 0.0)), ((68.0, 88.5, 6.0), (0.0, 1.0, 0.0)), ((84.0, 70.0, 6.0), (0.5, 0.87, 0.0))),   # pele: (ponto, normal) do plano de cada dedo creme do pé direito
+    barriga=NS(caixa=((-32.0, 60.0, 63.0), (32.0, 130.0, 143.0)), plano_y=80.0),   # pele: barriga creme = o que a pele tem além do plano
+    dedos=(((43.0, 88.5, 6.0), (0.0, 1.0, 0.0)), ((68.0, 88.5, 6.0), (0.0, 1.0, 0.0)), ((89.0, 66.0, 6.0), (1.0, 0.0, 0.0))),   # pele: (ponto, normal) do plano de cada dedo creme do pé direito
     dedo_r=9.0,
     # esqueleto (y em "pele"; x e z no robô)
     esq=NS(
@@ -395,7 +396,7 @@ DINO = NS(
         parede_y=(-40.0, 62.0),            # pele: fundo do rack ... frente das paredes da torre do pan (mais à frente a coxa acaba e o corpo estreita)
         deck_y1=76.5, deck_lingua=14.5,    # pele: frente do deck; à frente das paredes ele é uma língua de ±14,5 mm em balanço, com a face de baixo a 45° (2 mísulas + cunha)
         rack_y_pe=-14.0,                   # pele: atrás daqui o fundo da anca é estreito: a parede nasce de um alargamento a 45° do piso
-        alarga_x=22.8,                     # meia-largura do piso sob o rack (anca)
+        alarga_x=20.3,                     # meia-largura do pé do alargamento, na mesa (a anca é mais estreita embaixo: tem de nascer DENTRO dela para subir a 45°)
         rack_z=(68.0, 62.0),               # topo das paredes do rack: esquerda (com os 2 trilhos) e direita (a bandeja de cima apoia no topo dela)
         torre_x1=29.0,                     # (a parede direita da torre fica no mesmo X da do rack: o servo de pan vai com o corpo para a FRENTE)
         travessa_y=(23.6, 26.6),           # pele: parede transversal entre rack e torre (L298N na face da frente)
@@ -411,9 +412,9 @@ DINO = NS(
         uno_x=37.0, uno_dx=0.8,            # a bandeja do Uno passa por cima da parede direita até uno_x (pilares dos furos de x = +32,5); a placa fica 0,8 mm para a direita (livra o berço do step-down)
         esferas=((0.0, -74.0),),           # pele: 1 esfera de apoio, atrás, sob a raiz da cauda
         poste_porta=(0.0, 0.0, 0.0, 0.0, 0.0, 0.0),   # (não usado no dino; base_baixa.esqueleto pede)
-        poste=NS(x=(34.0, 43.0), y=(-5.5, 2.5), z_topo=48.0, z_parafuso=40.0),   # pele: 2 postes atrás das coxas: M3 horizontal que prende o corpo (por trás, coberto pela traseira)
+        poste=NS(x=(34.0, 42.5), y=(-5.5, 2.5), z_topo=48.0, z_parafuso=40.0),   # pele: 2 postes atrás das coxas: M3 horizontal que prende o corpo (por trás, coberto pela traseira)
         traseira_parafuso=(19.5, -22.0),   # (|x|, y pele): 2 M3 auto-atarraxantes POR BAIXO prendem a traseira no piso
-        gola_ressalto=37.5,                # a gola prende no CORPO: 2 ressaltos por dentro da borda de cima (frente e trás, a este raio do eixo do pan), M3 por cima
+        gola_ressalto=(38.5, (0.0, 125.0, -125.0)),   # a gola prende no CORPO: 3 ressaltos por dentro da borda de cima (raio a partir do eixo do pan; ângulos a partir da frente), M3 por cima
         ombro_x=(27.0, 32.0),              # orelha do micro servo do braço (face de fora = apoio da aba)
         encoder_extra=12.0,
         stepdown=(17.5, 41.0),             # (y pele, z) do centro: face de fora da parede ESQUERDA, atrás do motor

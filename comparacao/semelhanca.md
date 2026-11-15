@@ -40,14 +40,15 @@ Protocolo v1: projeção ortográfica, silhuetas com 400 px de altura, base na m
 
 ## dino
 
-| vista | antes: IoU | antes: ajustado | antes: az/el | malha-dino-hy2mv-fl-s1: IoU | malha-dino-hy2mv-fl-s1: ajustado | malha-dino-hy2mv-fl-s1: az/el | malha-dino-hy2mv-fl-s2: IoU | malha-dino-hy2mv-fl-s2: ajustado | malha-dino-hy2mv-fl-s2: az/el |
-|---|---:|---:|---|---:|---:|---|---:|---:|---|
-| frente | 0,875 | 0,875 | 0°/15° | 0,930 | 0,935 | 0°/20° | 0,942 | 0,942 | 0°/15° |
-| tres-quartos-a | 0,808 | 0,817 | -65°/20° | 0,866 | 0,870 | -55°/15° | 0,888 | 0,888 | -55°/15° |
-| tres-quartos-b | 0,787 | 0,824 | -45°/25° | 0,897 | 0,897 | -45°/20° | 0,889 | 0,889 | -50°/20° |
-| lado | 0,786 | 0,788 | -70°/20° | 0,869 | 0,869 | -55°/5° | 0,870 | 0,884 | -75°/10° |
-| **média** | **0,814** | **0,826** |  | **0,891** | **0,893** |  | **0,897** | **0,901** |  |
+| vista | antes: IoU | antes: ajustado | antes: az/el | malha-dino-hy2mv-fl-s1: IoU | malha-dino-hy2mv-fl-s1: ajustado | malha-dino-hy2mv-fl-s1: az/el | malha-dino-hy2mv-fl-s2: IoU | malha-dino-hy2mv-fl-s2: ajustado | malha-dino-hy2mv-fl-s2: az/el | depois: IoU | depois: ajustado | depois: az/el |
+|---|---:|---:|---|---:|---:|---|---:|---:|---|---:|---:|---|
+| frente | 0,875 | 0,875 | 0°/15° | 0,930 | 0,935 | 0°/20° | 0,942 | 0,942 | 0°/15° | 0,912 | 0,912 | 5°/10° |
+| tres-quartos-a | 0,808 | 0,817 | -65°/20° | 0,866 | 0,870 | -55°/15° | 0,888 | 0,888 | -55°/15° | 0,874 | 0,874 | -55°/15° |
+| tres-quartos-b | 0,787 | 0,824 | -45°/25° | 0,897 | 0,897 | -45°/20° | 0,889 | 0,889 | -50°/20° | 0,862 | 0,862 | -50°/20° |
+| lado | 0,786 | 0,788 | -70°/20° | 0,869 | 0,869 | -55°/5° | 0,870 | 0,884 | -75°/10° | 0,837 | 0,837 | -65°/10° |
+| **média** | **0,814** | **0,826** |  | **0,891** | **0,893** |  | **0,897** | **0,901** |  | **0,871** | **0,871** |  |
 
 - `antes`: .preview/v102/pecas/dino · 2026-11-14 · tag v1.0.2
 - `malha-dino-hy2mv-fl-s1`: referencia/malhas/dino-hy2mv-fl-s1.glb · 2026-11-14
 - `malha-dino-hy2mv-fl-s2`: referencia/malhas/dino-hy2mv-fl-s2.glb · 2026-11-14
+- `depois`: pecas/dino · 2026-11-14

@@ -15,7 +15,7 @@
   },
   "4 parede": {
    "ok": true,
-   "texto": "corpo 2.28–2.69 mm; gola 3.38–3.52 mm; cabeça 2.31–2.55 mm (mínimo exigido 2.0)"
+   "texto": "corpo 2.30–2.79 mm; gola 3.38–9.75 mm; cabeça 2.31–2.55 mm (mínimo exigido 2.0)"
   },
   "5 interferência": {
    "ok": true,
@@ -31,19 +31,19 @@
   },
   "8 equilíbrio": {
    "ok": true,
-   "texto": "massa estimada 1530 g; CG neutro em x=-0.1 y=-18.6 z=107.2 mm, margem 18.6 mm (tomba com 10°); pior pose 'tilt-baixo': margem 14.5 mm (8°); mínimo exigido 10 mm"
+   "texto": "massa estimada 1603 g; CG neutro em x=-0.3 y=-18.7 z=108.3 mm, margem 18.7 mm (tomba com 10°); pior pose 'tilt-baixo': margem 14.8 mm (8°); mínimo exigido 10 mm"
   },
   "9 caminho": {
    "ok": true,
    "texto": "31 passos (montagem + abertura para manutenção), cada peça entra ou sai pela direção declarada sem atravessar o que está montado"
   },
   "10 imprimibilidade": {
-   "ok": false,
-   "texto": "33 peças distintas: 23 saem sem suporte; 6 com suporte declarado: cranio (12051 mm² = 9.8 %, ponte de 65 mm, 2 ponto(s) no ar), corpo (4731 mm² = 3.9 %, ponte de 25 mm, 1 ponto(s) no ar), traseira (1938 mm² = 2.9 %, ponte de 24 mm), garfo-pescoco (1488 mm² = 16.1 %, ponte de 21 mm), mandibula (1012 mm² = 10.4 %), berco-tilt (516 mm² = 7.0 %, ponte de 21 mm); 4 REPROVADA(S) (declaradas sem suporte, mas com área sem apoio acima de max(30 mm², 0.2 % da área) a mais de 45° ou ponto que nasce no ar): chassi (329 mm² = 0.4 %, 3 ponto(s) no ar), dedo-dir-3 (41 mm² = 6.2 %), dedo-esq-3 (41 mm² = 6.2 %), mesa-cabeca (32 mm² = 0.2 %)"
+   "ok": true,
+   "texto": "33 peças distintas: 27 saem sem suporte; 6 com suporte declarado: cranio (12051 mm² = 9.8 %, ponte de 65 mm, 2 ponto(s) no ar), corpo (2665 mm² = 2.3 %, ponte de 25 mm, 2 ponto(s) no ar), traseira (1596 mm² = 2.4 %, ponte de 24 mm, 1 ponto(s) no ar), garfo-pescoco (1488 mm² = 16.1 %, ponte de 21 mm), berco-tilt (516 mm² = 7.0 %, ponte de 21 mm), mandibula (455 mm² = 4.9 %); 0 REPROVADA(S) (declaradas sem suporte, mas com área sem apoio acima de max(30 mm², 0.2 % da área) a mais de 45° ou ponto que nasce no ar)"
   },
   "11 negativo impr.": {
    "ok": true,
-   "texto": "'bandeja-pi' na orientação declarada: 0 mm² sem apoio (limite 30); girada 180° em X → 3887 mm² = 38.5 % (acusou; tem que acusar)"
+   "texto": "'chassi' na orientação declarada: 158 mm² sem apoio (limite 163); girada 180° em X → 11537 mm² = 14.1 % (acusou; tem que acusar)"
   }
  },
  "interferencias": [],
@@ -63,14 +63,14 @@
   },
   "pecas": {
    "barriga": {
-    "area_total_mm2": 9189.9,
-    "mesa_mm2": 4047.2,
-    "balanco_bruto_mm2": 0.2,
+    "area_total_mm2": 9620.7,
+    "mesa_mm2": 4310.6,
+    "balanco_bruto_mm2": 0.0,
     "sem_apoio_mm2": 0.0,
     "sem_apoio_pct": 0.0,
     "limite_mm2": 30.0,
     "tolerado_mm2": {
-     "fragmentos": 0.2,
+     "fragmentos": 0.0,
      "furos": 0.0,
      "pontes": 0.0,
      "beiras": 0.0
@@ -171,67 +171,35 @@
     "orientacao": "base plana (face de colar) na mesa"
    },
    "dedo-dir-3": {
-    "area_total_mm2": 660.1,
-    "mesa_mm2": 49.1,
-    "balanco_bruto_mm2": 54.8,
-    "sem_apoio_mm2": 40.7,
-    "sem_apoio_pct": 6.17,
+    "area_total_mm2": 597.1,
+    "mesa_mm2": 139.0,
+    "balanco_bruto_mm2": 0.0,
+    "sem_apoio_mm2": 0.0,
+    "sem_apoio_pct": 0.0,
     "limite_mm2": 30.0,
     "tolerado_mm2": {
-     "fragmentos": 1.1,
+     "fragmentos": 0.0,
      "furos": 0.0,
      "pontes": 0.0,
-     "beiras": 12.9
+     "beiras": 0.0
     },
     "por_tipo_mm2": {
      "ponte longa": 0.0,
-     "balanço livre": 40.7,
+     "balanço livre": 0.0,
      "teto": 0.0
     },
     "maior_ponte_mm": 0.0,
-    "maior_balanco_mm": 6.0,
+    "maior_balanco_mm": 0.0,
     "pontes_longas": [],
     "inicios_no_ar": [],
     "n_inicios_no_ar": 0,
-    "n_regioes": 1,
-    "regioes": [
-     {
-      "tipo": "balanço livre",
-      "area_mm2": 40.7,
-      "caixa": [
-       [
-        -8.4,
-        -2.8,
-        4.3
-       ],
-       [
-        -2.0,
-        6.8,
-        7.1
-       ]
-      ],
-      "fundo_mm": 6.0,
-      "caixa_montagem": [
-       [
-        77.7,
-        30.5,
-        2.6
-       ],
-       [
-        88.0,
-        38.1,
-        14.2
-       ]
-      ]
-     }
-    ],
-    "precisa_suporte": true,
-    "motivos": [
-     "41 mm² sem apoio (limite 30)"
-    ],
+    "n_regioes": 0,
+    "regioes": [],
+    "precisa_suporte": false,
+    "motivos": [],
     "suporte": "não",
-    "veredito": "REPROVADA",
-    "onde": "balanço livre 41 mm² em x -8..-2, y -3..7, z 4..7, fundo 6",
+    "veredito": "ok sem suporte",
+    "onde": "",
     "material": "PLA",
     "perimetros": 3,
     "infill": 15,
@@ -311,67 +279,35 @@
     "orientacao": "base plana (face de colar) na mesa"
    },
    "dedo-esq-3": {
-    "area_total_mm2": 660.2,
-    "mesa_mm2": 48.9,
-    "balanco_bruto_mm2": 54.5,
-    "sem_apoio_mm2": 40.6,
-    "sem_apoio_pct": 6.15,
+    "area_total_mm2": 597.1,
+    "mesa_mm2": 138.8,
+    "balanco_bruto_mm2": 0.0,
+    "sem_apoio_mm2": 0.0,
+    "sem_apoio_pct": 0.0,
     "limite_mm2": 30.0,
     "tolerado_mm2": {
-     "fragmentos": 0.8,
+     "fragmentos": 0.0,
      "furos": 0.0,
      "pontes": 0.0,
-     "beiras": 13.1
+     "beiras": 0.0
     },
     "por_tipo_mm2": {
      "ponte longa": 0.0,
-     "balanço livre": 40.6,
+     "balanço livre": 0.0,
      "teto": 0.0
     },
     "maior_ponte_mm": 0.0,
-    "maior_balanco_mm": 5.8,
+    "maior_balanco_mm": 0.0,
     "pontes_longas": [],
     "inicios_no_ar": [],
     "n_inicios_no_ar": 0,
-    "n_regioes": 1,
-    "regioes": [
-     {
-      "tipo": "balanço livre",
-      "area_mm2": 40.6,
-      "caixa": [
-       [
-        1.6,
-        -2.6,
-        4.4
-       ],
-       [
-        8.3,
-        6.5,
-        7.1
-       ]
-      ],
-      "fundo_mm": 5.8,
-      "caixa_montagem": [
-       [
-        -88.2,
-        30.4,
-        2.7
-       ],
-       [
-        -77.9,
-        37.9,
-        13.9
-       ]
-      ]
-     }
-    ],
-    "precisa_suporte": true,
-    "motivos": [
-     "41 mm² sem apoio (limite 30)"
-    ],
+    "n_regioes": 0,
+    "regioes": [],
+    "precisa_suporte": false,
+    "motivos": [],
     "suporte": "não",
-    "veredito": "REPROVADA",
-    "onde": "balanço livre 41 mm² em x 2..8, y -3..6, z 4..7, fundo 6",
+    "veredito": "ok sem suporte",
+    "onde": "",
     "material": "PLA",
     "perimetros": 3,
     "infill": 15,
@@ -379,14 +315,14 @@
     "orientacao": "base plana (face de colar) na mesa"
    },
    "mancha-dir": {
-    "area_total_mm2": 805.6,
-    "mesa_mm2": 139.5,
-    "balanco_bruto_mm2": 16.7,
+    "area_total_mm2": 843.5,
+    "mesa_mm2": 142.4,
+    "balanco_bruto_mm2": 0.1,
     "sem_apoio_mm2": 0.0,
     "sem_apoio_pct": 0.0,
     "limite_mm2": 30.0,
     "tolerado_mm2": {
-     "fragmentos": 16.7,
+     "fragmentos": 0.1,
      "furos": 0.0,
      "pontes": 0.0,
      "beiras": 0.0
@@ -415,14 +351,14 @@
     "orientacao": "base plana (face de colar) na mesa"
    },
    "mancha-esq": {
-    "area_total_mm2": 808.3,
-    "mesa_mm2": 136.2,
-    "balanco_bruto_mm2": 16.3,
+    "area_total_mm2": 843.4,
+    "mesa_mm2": 142.5,
+    "balanco_bruto_mm2": 0.0,
     "sem_apoio_mm2": 0.0,
     "sem_apoio_pct": 0.0,
     "limite_mm2": 30.0,
     "tolerado_mm2": {
-     "fragmentos": 16.3,
+     "fragmentos": 0.0,
      "furos": 0.0,
      "pontes": 0.0,
      "beiras": 0.0
@@ -618,25 +554,25 @@
     "orientacao": "ponta de fora (2 faces chatas) na mesa, rebaixo do horn para cima"
    },
    "corpo": {
-    "area_total_mm2": 120966.1,
-    "mesa_mm2": 1064.5,
-    "balanco_bruto_mm2": 6688.2,
-    "sem_apoio_mm2": 4731.2,
-    "sem_apoio_pct": 3.91,
-    "limite_mm2": 241.9,
+    "area_total_mm2": 115236.2,
+    "mesa_mm2": 1136.8,
+    "balanco_bruto_mm2": 4201.2,
+    "sem_apoio_mm2": 2664.9,
+    "sem_apoio_pct": 2.31,
+    "limite_mm2": 230.5,
     "tolerado_mm2": {
-     "fragmentos": 71.3,
-     "furos": 605.9,
-     "pontes": 55.9,
-     "beiras": 1223.9
+     "fragmentos": 58.7,
+     "furos": 548.4,
+     "pontes": 49.5,
+     "beiras": 879.7
     },
     "por_tipo_mm2": {
-     "ponte longa": 18.1,
-     "balanço livre": 1050.7,
-     "teto": 3662.4
+     "ponte longa": 16.9,
+     "balanço livre": 672.9,
+     "teto": 1975.1
     },
     "maior_ponte_mm": 24.7,
-    "maior_balanco_mm": 11.1,
+    "maior_balanco_mm": 38.1,
     "pontes_longas": [
      {
       "vao_mm": 24.7,
@@ -656,7 +592,7 @@
      },
      {
       "vao_mm": 24.7,
-      "area_mm2": 7.5,
+      "area_mm2": 6.3,
       "caixa": [
        [
         32.7,
@@ -674,49 +610,27 @@
     "inicios_no_ar": [
      {
       "ponto": [
-       -4.5,
-       -51.5,
-       110.9
+       -53.5,
+       -42.8,
+       86.9
       ],
-      "saliencia_mm": 14.1
+      "saliencia_mm": 5.4
+     },
+     {
+      "ponto": [
+       53.5,
+       -42.8,
+       86.9
+      ],
+      "saliencia_mm": 5.4
      }
     ],
-    "n_inicios_no_ar": 1,
-    "n_regioes": 33,
+    "n_inicios_no_ar": 2,
+    "n_regioes": 32,
     "regioes": [
      {
       "tipo": "teto",
-      "area_mm2": 1591.0,
-      "caixa": [
-       [
-        -46.7,
-        -51.7,
-        125.2
-       ],
-       [
-        46.7,
-        7.8,
-        134.4
-       ]
-      ],
-      "vao_mm": 56.5,
-      "fundo_mm": 11.1,
-      "caixa_montagem": [
-       [
-        -46.7,
-        -57.8,
-        130.2
-       ],
-       [
-        46.7,
-        1.7,
-        139.4
-       ]
-      ]
-     },
-     {
-      "tipo": "teto",
-      "area_mm2": 912.9,
+      "area_mm2": 912.0,
       "caixa": [
        [
         -84.0,
@@ -775,96 +689,6 @@
       ]
      },
      {
-      "tipo": "teto",
-      "area_mm2": 330.1,
-      "caixa": [
-       [
-        -27.3,
-        -56.7,
-        122.4
-       ],
-       [
-        27.2,
-        -45.9,
-        126.9
-       ]
-      ],
-      "vao_mm": 47.7,
-      "fundo_mm": 3.6,
-      "caixa_montagem": [
-       [
-        -27.3,
-        -62.8,
-        127.4
-       ],
-       [
-        27.2,
-        -52.0,
-        131.9
-       ]
-      ]
-     },
-     {
-      "tipo": "balanço livre",
-      "area_mm2": 113.1,
-      "caixa": [
-       [
-        -64.4,
-        -34.9,
-        75.6
-       ],
-       [
-        -57.1,
-        -19.0,
-        79.0
-       ]
-      ],
-      "vao_mm": 10.6,
-      "fundo_mm": 5.8,
-      "caixa_montagem": [
-       [
-        -64.4,
-        -41.0,
-        80.6
-       ],
-       [
-        -57.1,
-        -25.1,
-        84.0
-       ]
-      ]
-     },
-     {
-      "tipo": "balanço livre",
-      "area_mm2": 105.5,
-      "caixa": [
-       [
-        57.2,
-        -35.0,
-        75.6
-       ],
-       [
-        64.4,
-        -18.9,
-        79.1
-       ]
-      ],
-      "vao_mm": 10.6,
-      "fundo_mm": 4.9,
-      "caixa_montagem": [
-       [
-        57.2,
-        -41.1,
-        80.6
-       ],
-       [
-        64.4,
-        -25.0,
-        84.1
-       ]
-      ]
-     },
-     {
       "tipo": "balanço livre",
       "area_mm2": 102.4,
       "caixa": [
@@ -896,65 +720,184 @@
      },
      {
       "tipo": "balanço livre",
-      "area_mm2": 94.9,
+      "area_mm2": 82.9,
       "caixa": [
        [
-        -15.4,
-        44.1,
-        131.0
+        60.2,
+        -30.6,
+        63.6
        ],
        [
-        15.8,
-        48.2,
-        131.5
+        66.9,
+        -15.3,
+        66.7
        ]
       ],
-      "fundo_mm": 5.1,
+      "fundo_mm": 4.9,
       "caixa_montagem": [
        [
-        -15.4,
-        38.0,
-        136.0
+        60.2,
+        -36.7,
+        68.6
        ],
        [
-        15.8,
-        42.1,
-        136.5
+        66.9,
+        -21.4,
+        71.7
+       ]
+      ]
+     },
+     {
+      "tipo": "balanço livre",
+      "area_mm2": 80.2,
+      "caixa": [
+       [
+        -67.1,
+        -30.6,
+        63.6
+       ],
+       [
+        -60.4,
+        -15.2,
+        66.7
+       ]
+      ],
+      "fundo_mm": 6.0,
+      "caixa_montagem": [
+       [
+        -67.1,
+        -36.7,
+        68.6
+       ],
+       [
+        -60.4,
+        -21.3,
+        71.7
+       ]
+      ]
+     },
+     {
+      "tipo": "balanço livre",
+      "area_mm2": 73.7,
+      "caixa": [
+       [
+        51.3,
+        -10.0,
+        92.6
+       ],
+       [
+        57.6,
+        10.6,
+        93.6
+       ]
+      ],
+      "vao_mm": 13.7,
+      "fundo_mm": 7.1,
+      "caixa_montagem": [
+       [
+        51.3,
+        -16.1,
+        97.6
+       ],
+       [
+        57.6,
+        4.5,
+        98.6
+       ]
+      ]
+     },
+     {
+      "tipo": "balanço livre",
+      "area_mm2": 69.6,
+      "caixa": [
+       [
+        29.6,
+        21.4,
+        96.6
+       ],
+       [
+        45.2,
+        38.2,
+        97.9
+       ]
+      ],
+      "vao_mm": 24.7,
+      "fundo_mm": 4.9,
+      "caixa_montagem": [
+       [
+        29.6,
+        15.3,
+        101.6
+       ],
+       [
+        45.2,
+        32.1,
+        102.9
+       ]
+      ]
+     },
+     {
+      "tipo": "balanço livre",
+      "area_mm2": 59.5,
+      "caixa": [
+       [
+        -57.7,
+        -9.9,
+        92.5
+       ],
+       [
+        -51.3,
+        10.8,
+        93.5
+       ]
+      ],
+      "vao_mm": 14.6,
+      "fundo_mm": 7.1,
+      "caixa_montagem": [
+       [
+        -57.7,
+        -16.0,
+        97.5
+       ],
+       [
+        -51.3,
+        4.7,
+        98.5
        ]
       ]
      }
     ],
     "precisa_suporte": true,
     "motivos": [
-     "4731 mm² sem apoio (limite 242)",
-     "1 ponto(s) que nascem no ar"
+     "2665 mm² sem apoio (limite 230)",
+     "2 ponto(s) que nascem no ar"
     ],
-    "suporte": "sim (a declarar no pacote 3)",
+    "suporte": "sim (árvore POR DENTRO: teto das 2 coxas, sobre as rodas; degraus de dentro dos assentos planos (barriga, braços, manchas); por fora nada)",
     "veredito": "precisa de suporte (declarado)",
-    "onde": "teto 1591 mm² em x -47..47, y -52..8, z 125..134, vão 56; teto 913 mm² em x -84..-52, y -18..30, z 54..70, vão 50; teto 897 mm² em x 53..84, y -18..30, z 54..70, vão 50; +30 regiões; nasce no ar em (-4.5, -51.5, 110.9) (saliência 14.1 mm)",
+    "onde": "teto 912 mm² em x -84..-52, y -18..30, z 54..70, vão 50; teto 897 mm² em x 53..84, y -18..30, z 54..70, vão 50; balanço livre 102 mm² em x -45..-30, y 21..38, z 97..98, vão 25; +29 regiões; nasce no ar em (-53.5, -42.8, 86.9) (saliência 5.4 mm); nasce no ar em (53.5, -42.8, 86.9) (saliência 5.4 mm)",
     "material": "PLA",
     "perimetros": 4,
     "infill": 15,
-    "reforco": "2 abas atrás (M3 horizontal nos postes do chassi); lábio por dentro da borda de trás; 4 perímetros porque o corpo é aberto atrás",
-    "orientacao": "borda de baixo (z=5) na mesa, em pé como um vaso; boca (z=144) para cima"
+    "reforco": "2 abas maciças atrás (M3 horizontal nos postes do chassi); lábio por dentro da borda de trás; colarinho maciço atrás e 3 ressaltos com inserto na borda de cima; 4 perímetros porque o corpo é aberto atrás",
+    "orientacao": "borda de baixo (z=5) na mesa, em pé como um vaso; boca (z=134) para cima"
    },
    "traseira": {
-    "area_total_mm2": 66551.3,
-    "mesa_mm2": 1348.2,
-    "balanco_bruto_mm2": 3478.8,
-    "sem_apoio_mm2": 1937.7,
-    "sem_apoio_pct": 2.91,
-    "limite_mm2": 133.1,
+    "area_total_mm2": 65889.9,
+    "mesa_mm2": 1103.0,
+    "balanco_bruto_mm2": 2950.4,
+    "sem_apoio_mm2": 1596.5,
+    "sem_apoio_pct": 2.42,
+    "limite_mm2": 131.8,
     "tolerado_mm2": {
-     "fragmentos": 148.4,
-     "furos": 487.3,
-     "pontes": 45.7,
-     "beiras": 859.6
+     "fragmentos": 137.4,
+     "furos": 423.8,
+     "pontes": 46.4,
+     "beiras": 746.3
     },
     "por_tipo_mm2": {
      "ponte longa": 4.2,
-     "balanço livre": 759.6,
-     "teto": 1174.0
+     "balanço livre": 756.8,
+     "teto": 835.6
     },
     "maior_ponte_mm": 23.6,
     "maior_balanco_mm": 40.1,
@@ -965,20 +908,29 @@
       "caixa": [
        [
         -4.1,
-        -48.5,
+        -51.2,
         79.7
        ],
        [
         4.0,
-        -48.0,
+        -50.7,
         79.8
        ]
       ]
      }
     ],
-    "inicios_no_ar": [],
-    "n_inicios_no_ar": 0,
-    "n_regioes": 25,
+    "inicios_no_ar": [
+     {
+      "ponto": [
+       -0.0,
+       -10.5,
+       103.8
+      ],
+      "saliencia_mm": 12.6
+     }
+    ],
+    "n_inicios_no_ar": 1,
+    "n_regioes": 20,
     "regioes": [
      {
       "tipo": "balanço livre",
@@ -986,12 +938,12 @@
       "caixa": [
        [
         -5.5,
-        25.4,
+        22.7,
         1.5
        ],
        [
-        5.5,
-        64.3,
+        5.3,
+        61.6,
         28.7
        ]
       ],
@@ -1003,7 +955,7 @@
         91.2
        ],
        [
-        5.5,
+        5.3,
         -59.7,
         130.1
        ]
@@ -1011,20 +963,20 @@
      },
      {
       "tipo": "teto",
-      "area_mm2": 414.8,
+      "area_mm2": 449.0,
       "caixa": [
        [
         -31.2,
-        27.2,
-        9.6
+        24.5,
+        6.9
        ],
        [
         -7.6,
-        58.9,
+        58.5,
         34.0
        ]
       ],
-      "vao_mm": 31.0,
+      "vao_mm": 32.9,
       "fundo_mm": 3.4,
       "caixa_montagem": [
        [
@@ -1034,23 +986,23 @@
        ],
        [
         -7.6,
-        -67.8,
-        124.7
+        -65.1,
+        127.0
        ]
       ]
      },
      {
       "tipo": "teto",
-      "area_mm2": 414.6,
+      "area_mm2": 438.3,
       "caixa": [
        [
         7.6,
-        27.3,
-        8.8
+        24.6,
+        7.0
        ],
        [
         30.9,
-        58.6,
+        58.5,
         33.9
        ]
       ],
@@ -1064,37 +1016,8 @@
        ],
        [
         30.9,
-        -67.0,
-        124.4
-       ]
-      ]
-     },
-     {
-      "tipo": "teto",
-      "area_mm2": 391.4,
-      "caixa": [
-       [
-        -8.6,
-        -21.7,
-        115.1
-       ],
-       [
-        8.9,
-        8.0,
-        129.4
-       ]
-      ],
-      "vao_mm": 19.5,
-      "caixa_montagem": [
-       [
-        -8.6,
-        -187.7,
-        44.1
-       ],
-       [
-        8.9,
-        -173.3,
-        73.8
+        -65.2,
+        127.0
        ]
       ]
      },
@@ -1104,12 +1027,12 @@
       "caixa": [
        [
         -5.3,
-        23.3,
+        20.6,
         70.1
        ],
        [
         5.3,
-        34.6,
+        31.9,
         70.5
        ]
       ],
@@ -1133,12 +1056,12 @@
       "caixa": [
        [
         -11.2,
-        -51.7,
+        -54.4,
         77.2
        ],
        [
         10.5,
-        -49.9,
+        -52.6,
         77.3
        ]
       ],
@@ -1158,112 +1081,201 @@
      },
      {
       "tipo": "balanço livre",
-      "area_mm2": 5.8,
+      "area_mm2": 6.8,
       "caixa": [
        [
-        -12.7,
-        61.1,
-        6.8
+        -29.7,
+        -58.8,
+        2.2
        ],
        [
-        -9.2,
-        62.4,
-        7.8
+        -22.6,
+        -56.2,
+        2.2
        ]
       ],
-      "vao_mm": 8.4,
-      "fundo_mm": 2.3,
+      "fundo_mm": 3.6,
       "caixa_montagem": [
        [
-        -12.7,
-        -66.0,
-        126.9
+        -29.7,
+        -60.5,
+        9.7
        ],
        [
-        -9.2,
-        -65.0,
-        128.2
+        -22.6,
+        -60.5,
+        12.3
        ]
       ]
      },
      {
       "tipo": "balanço livre",
+      "area_mm2": 6.7,
+      "caixa": [
+       [
+        22.7,
+        -58.8,
+        2.2
+       ],
+       [
+        29.5,
+        -56.4,
+        2.2
+       ]
+      ],
+      "fundo_mm": 3.6,
+      "caixa_montagem": [
+       [
+        22.7,
+        -60.5,
+        9.7
+       ],
+       [
+        29.5,
+        -60.5,
+        12.1
+       ]
+      ]
+     },
+     {
+      "tipo": "ponte longa",
       "area_mm2": 5.8,
       "caixa": [
        [
-        9.2,
-        61.1,
-        6.8
+        -4.1,
+        -51.5,
+        79.7
        ],
        [
-        12.1,
-        62.4,
-        7.8
+        4.0,
+        -50.7,
+        79.8
        ]
       ],
-      "fundo_mm": 2.3,
+      "vao_mm": 23.6,
+      "fundo_mm": 1.4,
       "caixa_montagem": [
        [
-        9.2,
-        -66.0,
-        126.9
+        -4.1,
+        -138.0,
+        17.0
        ],
        [
-        12.1,
-        -65.0,
-        128.2
+        4.0,
+        -137.9,
+        17.8
        ]
       ]
      }
     ],
     "precisa_suporte": true,
     "motivos": [
-     "1938 mm² sem apoio (limite 133)"
+     "1597 mm² sem apoio (limite 132)",
+     "1 ponto(s) que nascem no ar"
     ],
-    "suporte": "sim (a declarar no pacote 3)",
+    "suporte": "sim (árvore POR DENTRO: teto de cima da anca (53° da vertical) e nervura do rasgo da crista; por fora nada)",
     "veredito": "precisa de suporte (declarado)",
-    "onde": "balanço livre 541 mm² em x -6..6, y 25..64, z 2..29, fundo 40; teto 415 mm² em x -31..-8, y 27..59, z 10..34, vão 31; teto 415 mm² em x 8..31, y 27..59, z 9..34, vão 29; +22 regiões",
+    "onde": "balanço livre 541 mm² em x -6..5, y 23..62, z 2..29, fundo 40; teto 449 mm² em x -31..-8, y 24..58, z 7..34, vão 33; teto 438 mm² em x 8..31, y 25..58, z 7..34, vão 29; +17 regiões; nasce no ar em (-0.0, -10.5, 103.8) (saliência 12.6 mm)",
     "material": "PLA",
     "perimetros": 4,
     "infill": 15,
-    "reforco": "nervura por dentro ao longo do rasgo da crista; 2 almofadas nos parafusos de baixo",
+    "reforco": "nervura por dentro ao longo do rasgo da crista; 2 almofadas nos parafusos de baixo; ponta da cauda maciça em cone",
     "orientacao": "borda da frente (plano da costura) na mesa, cauda para cima"
    },
    "gola": {
-    "area_total_mm2": 29200.9,
-    "mesa_mm2": 1144.3,
-    "balanco_bruto_mm2": 2.5,
-    "sem_apoio_mm2": 0.0,
-    "sem_apoio_pct": 0.0,
-    "limite_mm2": 58.4,
+    "area_total_mm2": 39585.8,
+    "mesa_mm2": 3864.1,
+    "balanco_bruto_mm2": 37.0,
+    "sem_apoio_mm2": 3.7,
+    "sem_apoio_pct": 0.01,
+    "limite_mm2": 79.2,
     "tolerado_mm2": {
-     "fragmentos": 2.5,
-     "furos": 0.0,
+     "fragmentos": 2.7,
+     "furos": 2.8,
      "pontes": 0.0,
-     "beiras": 0.0
+     "beiras": 27.7
     },
     "por_tipo_mm2": {
      "ponte longa": 0.0,
-     "balanço livre": 0.0,
+     "balanço livre": 3.7,
      "teto": 0.0
     },
     "maior_ponte_mm": 0.0,
-    "maior_balanco_mm": 0.0,
+    "maior_balanco_mm": 1.8,
     "pontes_longas": [],
     "inicios_no_ar": [],
     "n_inicios_no_ar": 0,
-    "n_regioes": 0,
-    "regioes": [],
+    "n_regioes": 2,
+    "regioes": [
+     {
+      "tipo": "balanço livre",
+      "area_mm2": 2.2,
+      "caixa": [
+       [
+        -52.3,
+        7.2,
+        0.9
+       ],
+       [
+        -51.5,
+        9.1,
+        1.1
+       ]
+      ],
+      "fundo_mm": 1.7,
+      "caixa_montagem": [
+       [
+        -52.3,
+        -1.1,
+        135.2
+       ],
+       [
+        -51.5,
+        0.8,
+        135.3
+       ]
+      ]
+     },
+     {
+      "tipo": "balanço livre",
+      "area_mm2": 1.5,
+      "caixa": [
+       [
+        51.7,
+        8.7,
+        0.9
+       ],
+       [
+        52.0,
+        9.1,
+        1.1
+       ]
+      ],
+      "fundo_mm": 1.8,
+      "caixa_montagem": [
+       [
+        51.7,
+        0.4,
+        135.2
+       ],
+       [
+        52.0,
+        0.8,
+        135.3
+       ]
+      ]
+     }
+    ],
     "precisa_suporte": false,
     "motivos": [],
     "suporte": "não",
     "veredito": "ok sem suporte",
-    "onde": "",
+    "onde": "balanço livre 2 mm² em x -52..-52, y 7..9, z 1..1, fundo 2; balanço livre 2 mm² em x 52..52, y 9..9, z 1..1, fundo 2",
     "material": "PLA",
     "perimetros": 4,
     "infill": 20,
-    "reforco": "maciça entre a esfera e a pele de fora; 2 abas na base (frente e trás) para os M3",
-    "orientacao": "base (z=144) na mesa; a esfera sobe e fica aberta em cima"
+    "reforco": "maciça entre a esfera e a pele de fora (sem teto em balanço); 3 furos M3 com rebaixo fundo",
+    "orientacao": "base (z=134) na mesa; a esfera sobe e fica aberta em cima"
    },
    "crista-costas": {
     "area_total_mm2": 4562.6,
@@ -1602,7 +1614,7 @@
      "12051 mm² sem apoio (limite 245)",
      "2 ponto(s) que nascem no ar"
     ],
-    "suporte": "sim (a declarar no pacote 3)",
+    "suporte": "sim (árvore POR DENTRO: teto do crânio, fundo dos copos dos olhos e nervura da crista; e por baixo, fora do rosto: borda do céu da boca, que fica 40 mm acima da mesa)",
     "veredito": "precisa de suporte (declarado)",
     "onde": "teto 5534 mm² em x -38..47, y -61..67, z 80..112, vão 120; balanço livre 2187 mm² em x -51..51, y 21..79, z 25..34, vão 65; balanço livre 1069 mm² em x -52..-18, y -29..5, z 74..81, nasce no ar; +26 regiões; nasce no ar em (-11.9, -69.7, 5.2) (saliência 1.7 mm); nasce no ar em (12.1, -69.7, 5.2) (saliência 2.6 mm)",
     "material": "PLA",
@@ -1612,67 +1624,37 @@
     "orientacao": "borda de baixo na mesa, em pé"
    },
    "mandibula": {
-    "area_total_mm2": 9720.3,
+    "area_total_mm2": 9271.9,
     "mesa_mm2": 429.4,
-    "balanco_bruto_mm2": 1300.1,
-    "sem_apoio_mm2": 1012.5,
-    "sem_apoio_pct": 10.42,
+    "balanco_bruto_mm2": 563.0,
+    "sem_apoio_mm2": 455.3,
+    "sem_apoio_pct": 4.91,
     "limite_mm2": 30.0,
     "tolerado_mm2": {
      "fragmentos": 10.7,
-     "furos": 100.6,
+     "furos": 80.1,
      "pontes": 0.0,
-     "beiras": 176.3
+     "beiras": 16.8
     },
     "por_tipo_mm2": {
      "ponte longa": 0.0,
-     "balanço livre": 196.7,
-     "teto": 815.8
+     "balanço livre": 430.9,
+     "teto": 24.4
     },
     "maior_ponte_mm": 0.0,
     "maior_balanco_mm": 29.5,
     "pontes_longas": [],
     "inicios_no_ar": [],
     "n_inicios_no_ar": 0,
-    "n_regioes": 2,
+    "n_regioes": 6,
     "regioes": [
      {
-      "tipo": "teto",
-      "area_mm2": 862.6,
-      "caixa": [
-       [
-        -27.7,
-        -14.7,
-        21.5
-       ],
-       [
-        27.1,
-        6.9,
-        33.1
-       ]
-      ],
-      "vao_mm": 53.2,
-      "fundo_mm": 16.2,
-      "caixa_montagem": [
-       [
-        -27.7,
-        61.5,
-        171.5
-       ],
-       [
-        27.1,
-        73.1,
-        193.1
-       ]
-      ]
-     },
-     {
       "tipo": "balanço livre",
-      "area_mm2": 149.9,
+      "area_mm2": 432.5,
       "caixa": [
        [
         -28.1,
-        9.7,
+        7.0,
         0.9
        ],
        [
@@ -1681,6 +1663,7 @@
         11.2
        ]
       ],
+      "vao_mm": 58.4,
       "fundo_mm": 29.5,
       "caixa_montagem": [
        [
@@ -1691,40 +1674,187 @@
        [
         28.1,
         51.2,
-        168.7
+        171.4
+       ]
+      ]
+     },
+     {
+      "tipo": "balanço livre",
+      "area_mm2": 10.0,
+      "caixa": [
+       [
+        -27.2,
+        -14.9,
+        21.8
+       ],
+       [
+        -25.2,
+        -9.4,
+        22.9
+       ]
+      ],
+      "fundo_mm": 2.7,
+      "caixa_montagem": [
+       [
+        -27.2,
+        61.8,
+        187.8
+       ],
+       [
+        -25.2,
+        62.9,
+        193.3
+       ]
+      ]
+     },
+     {
+      "tipo": "balanço livre",
+      "area_mm2": 5.5,
+      "caixa": [
+       [
+        -23.3,
+        -14.2,
+        24.3
+       ],
+       [
+        -21.9,
+        -10.6,
+        25.0
+       ]
+      ],
+      "fundo_mm": 2.5,
+      "caixa_montagem": [
+       [
+        -23.3,
+        64.3,
+        189.0
+       ],
+       [
+        -21.9,
+        65.0,
+        192.6
+       ]
+      ]
+     },
+     {
+      "tipo": "balanço livre",
+      "area_mm2": 2.8,
+      "caixa": [
+       [
+        21.8,
+        -14.2,
+        24.5
+       ],
+       [
+        22.5,
+        -10.9,
+        25.0
+       ]
+      ],
+      "fundo_mm": 1.7,
+      "caixa_montagem": [
+       [
+        21.8,
+        64.5,
+        189.3
+       ],
+       [
+        22.5,
+        65.0,
+        192.6
+       ]
+      ]
+     },
+     {
+      "tipo": "teto",
+      "area_mm2": 2.3,
+      "caixa": [
+       [
+        16.0,
+        -13.9,
+        27.1
+       ],
+       [
+        19.0,
+        -13.6,
+        28.1
+       ]
+      ],
+      "vao_mm": 6.9,
+      "fundo_mm": 1.8,
+      "caixa_montagem": [
+       [
+        16.0,
+        67.1,
+        192.0
+       ],
+       [
+        19.0,
+        68.1,
+        192.3
+       ]
+      ]
+     },
+     {
+      "tipo": "teto",
+      "area_mm2": 2.2,
+      "caixa": [
+       [
+        -18.9,
+        -13.9,
+        27.2
+       ],
+       [
+        -16.0,
+        -13.6,
+        28.1
+       ]
+      ],
+      "vao_mm": 6.9,
+      "fundo_mm": 1.9,
+      "caixa_montagem": [
+       [
+        -18.9,
+        67.2,
+        192.0
+       ],
+       [
+        -16.0,
+        68.1,
+        192.3
        ]
       ]
      }
     ],
     "precisa_suporte": true,
     "motivos": [
-     "1013 mm² sem apoio (limite 30)"
+     "455 mm² sem apoio (limite 30)"
     ],
-    "suporte": "sim (a declarar no pacote 3)",
+    "suporte": "sim (pouco: sob o recorte esférico de trás, que nasce 2 a 10 mm acima da mesa; face escondida, virada para o pescoço)",
     "veredito": "precisa de suporte (declarado)",
-    "onde": "teto 863 mm² em x -28..27, y -15..7, z 22..33, vão 53; balanço livre 150 mm² em x -28..28, y 10..18, z 1..11, fundo 30",
+    "onde": "balanço livre 432 mm² em x -28..28, y 7..18, z 1..11, vão 58; balanço livre 10 mm² em x -27..-25, y -15..-9, z 22..23, fundo 3; balanço livre 6 mm² em x -23..-22, y -14..-11, z 24..25, fundo 2; +3 regiões",
     "material": "PLA",
     "perimetros": 4,
     "infill": 20,
-    "reforco": "almofadas maciças nos 2 lados do eixo; 2 nervuras que abraçam o horn",
+    "reforco": "almofadas maciças nos 2 lados do eixo; 2 nervuras que abraçam o horn; ponta do queixo maciça à frente de um plano a 45°",
     "orientacao": "face de trás (plano de corte) na mesa, ponta do queixo para cima"
    },
    "mesa-cabeca": {
-    "area_total_mm2": 14630.6,
-    "mesa_mm2": 4560.9,
-    "balanco_bruto_mm2": 126.5,
-    "sem_apoio_mm2": 31.6,
-    "sem_apoio_pct": 0.22,
+    "area_total_mm2": 14439.7,
+    "mesa_mm2": 4494.6,
+    "balanco_bruto_mm2": 104.7,
+    "sem_apoio_mm2": 17.4,
+    "sem_apoio_pct": 0.12,
     "limite_mm2": 30.0,
     "tolerado_mm2": {
      "fragmentos": 8.0,
-     "furos": 41.7,
+     "furos": 38.1,
      "pontes": 33.2,
-     "beiras": 12.0
+     "beiras": 8.0
     },
     "por_tipo_mm2": {
      "ponte longa": 0.0,
-     "balanço livre": 31.6,
+     "balanço livre": 17.4,
      "teto": 0.0
     },
     "maior_ponte_mm": 12.9,
@@ -1732,7 +1862,7 @@
     "pontes_longas": [],
     "inicios_no_ar": [],
     "n_inicios_no_ar": 0,
-    "n_regioes": 2,
+    "n_regioes": 1,
     "regioes": [
      {
       "tipo": "balanço livre",
@@ -1762,44 +1892,13 @@
         195.0
        ]
       ]
-     },
-     {
-      "tipo": "balanço livre",
-      "area_mm2": 14.2,
-      "caixa": [
-       [
-        5.5,
-        -33.6,
-        6.0
-       ],
-       [
-        8.4,
-        -28.7,
-        6.0
-       ]
-      ],
-      "fundo_mm": 5.6,
-      "caixa_montagem": [
-       [
-        5.1,
-        36.6,
-        220.5
-       ],
-       [
-        8.0,
-        41.5,
-        220.5
-       ]
-      ]
      }
     ],
-    "precisa_suporte": true,
-    "motivos": [
-     "32 mm² sem apoio (limite 30)"
-    ],
+    "precisa_suporte": false,
+    "motivos": [],
     "suporte": "não",
-    "veredito": "REPROVADA",
-    "onde": "balanço livre 17 mm² em x -37..-32, y -39..-36, z 32..32, fundo 6; balanço livre 14 mm² em x 6..8, y -34..-29, z 6..6, fundo 6",
+    "veredito": "ok sem suporte",
+    "onde": "balanço livre 17 mm² em x -37..-32, y -39..-36, z 32..32, fundo 6",
     "material": "PETG",
     "perimetros": 4,
     "infill": 30,
@@ -2059,112 +2158,85 @@
     "orientacao": "face de trás na mesa"
    },
    "chassi": {
-    "area_total_mm2": 81336.2,
-    "mesa_mm2": 11552.4,
-    "balanco_bruto_mm2": 1046.4,
-    "sem_apoio_mm2": 329.1,
-    "sem_apoio_pct": 0.4,
-    "limite_mm2": 162.7,
+    "area_total_mm2": 81576.1,
+    "mesa_mm2": 11522.0,
+    "balanco_bruto_mm2": 884.0,
+    "sem_apoio_mm2": 157.6,
+    "sem_apoio_pct": 0.19,
+    "limite_mm2": 163.2,
     "tolerado_mm2": {
-     "fragmentos": 27.7,
-     "furos": 584.8,
-     "pontes": 8.9,
-     "beiras": 95.9
+     "fragmentos": 28.6,
+     "furos": 623.8,
+     "pontes": 8.1,
+     "beiras": 66.0
     },
     "por_tipo_mm2": {
      "ponte longa": 0.0,
-     "balanço livre": 291.7,
-     "teto": 37.4
+     "balanço livre": 157.3,
+     "teto": 0.3
     },
-    "maior_ponte_mm": 7.7,
-    "maior_balanco_mm": 7.5,
+    "maior_ponte_mm": 11.0,
+    "maior_balanco_mm": 10.2,
     "pontes_longas": [],
-    "inicios_no_ar": [
-     {
-      "ponto": [
-       35.0,
-       14.6,
-       43.9
-      ],
-      "saliencia_mm": 1.6
-     },
-     {
-      "ponto": [
-       -14.5,
-       66.6,
-       88.5
-      ],
-      "saliencia_mm": 6.9
-     },
-     {
-      "ponto": [
-       10.7,
-       66.6,
-       88.5
-      ],
-      "saliencia_mm": 10.8
-     }
-    ],
-    "n_inicios_no_ar": 3,
-    "n_regioes": 10,
+    "inicios_no_ar": [],
+    "n_inicios_no_ar": 0,
+    "n_regioes": 12,
     "regioes": [
      {
       "tipo": "balanço livre",
-      "area_mm2": 128.3,
+      "area_mm2": 29.6,
       "caixa": [
        [
-        20.5,
-        -35.3,
-        0.2
+        -24.1,
+        63.7,
+        88.5
        ],
        [
-        27.7,
-        -12.1,
-        4.9
+        -15.1,
+        66.4,
+        88.5
        ]
       ],
-      "vao_mm": 24.9,
-      "fundo_mm": 6.5,
+      "fundo_mm": 10.2,
       "caixa_montagem": [
        [
-        20.5,
-        -82.9,
-        9.2
+        -24.1,
+        16.1,
+        97.5
        ],
        [
-        27.7,
-        -59.7,
-        13.9
+        -15.1,
+        18.8,
+        97.5
        ]
       ]
      },
      {
       "tipo": "balanço livre",
-      "area_mm2": 124.8,
+      "area_mm2": 25.5,
       "caixa": [
        [
-        -27.7,
-        -35.3,
-        0.2
+        14.5,
+        63.7,
+        88.5
        ],
        [
-        -20.5,
-        -12.3,
-        4.9
+        24.1,
+        66.2,
+        88.5
        ]
       ],
-      "vao_mm": 24.6,
-      "fundo_mm": 7.5,
+      "fundo_mm": 5.3,
       "caixa_montagem": [
        [
-        -27.7,
-        -82.9,
-        9.2
+        14.5,
+        16.1,
+        97.5
        ],
        [
-        -20.5,
-        -59.9,
-        13.9
+        24.1,
+        18.6,
+        97.5
        ]
       ]
      },
@@ -2228,6 +2300,36 @@
      },
      {
       "tipo": "balanço livre",
+      "area_mm2": 12.6,
+      "caixa": [
+       [
+        19.9,
+        -19.8,
+        0.6
+       ],
+       [
+        22.6,
+        -12.0,
+        2.3
+       ]
+      ],
+      "vao_mm": 6.0,
+      "fundo_mm": 3.1,
+      "caixa_montagem": [
+       [
+        19.9,
+        -67.4,
+        9.6
+       ],
+       [
+        22.6,
+        -59.6,
+        11.3
+       ]
+      ]
+     },
+     {
+      "tipo": "balanço livre",
       "area_mm2": 12.2,
       "caixa": [
        [
@@ -2257,100 +2359,68 @@
      },
      {
       "tipo": "balanço livre",
-      "area_mm2": 7.9,
+      "area_mm2": 10.3,
       "caixa": [
        [
-        35.0,
-        17.3,
-        50.9
+        -22.5,
+        -18.7,
+        0.6
        ],
        [
-        36.2,
-        22.6,
-        50.9
-       ]
-      ],
-      "fundo_mm": 2.2,
-      "caixa_montagem": [
-       [
-        35.0,
-        -30.3,
-        59.9
-       ],
-       [
-        36.2,
-        -25.0,
-        59.9
-       ]
-      ]
-     },
-     {
-      "tipo": "balanço livre",
-      "area_mm2": 7.7,
-      "caixa": [
-       [
-        35.0,
-        27.2,
-        50.9
-       ],
-       [
-        36.2,
-        32.8,
-        50.9
-       ]
-      ],
-      "fundo_mm": 2.2,
-      "caixa_montagem": [
-       [
-        35.0,
         -20.4,
-        59.9
+        -12.0,
+        2.2
+       ]
+      ],
+      "fundo_mm": 3.0,
+      "caixa_montagem": [
+       [
+        -22.5,
+        -66.3,
+        9.6
        ],
        [
-        36.2,
-        -14.8,
-        59.9
+        -20.4,
+        -59.6,
+        11.2
        ]
       ]
      },
      {
       "tipo": "balanço livre",
-      "area_mm2": 7.5,
+      "area_mm2": 8.5,
       "caixa": [
        [
-        -36.2,
-        28.1,
-        59.4
+        37.0,
+        -0.9,
+        4.0
        ],
        [
-        -35.0,
-        33.4,
-        59.4
+        41.9,
+        0.8,
+        4.0
        ]
       ],
-      "fundo_mm": 2.2,
+      "fundo_mm": 3.6,
       "caixa_montagem": [
        [
-        -36.2,
-        -19.5,
-        68.4
+        37.0,
+        -48.5,
+        13.0
        ],
        [
-        -35.0,
-        -14.2,
-        68.4
+        41.9,
+        -46.8,
+        13.0
        ]
       ]
      }
     ],
-    "precisa_suporte": true,
-    "motivos": [
-     "329 mm² sem apoio (limite 163)",
-     "3 ponto(s) que nascem no ar"
-    ],
+    "precisa_suporte": false,
+    "motivos": [],
     "suporte": "não",
-    "veredito": "REPROVADA",
-    "onde": "balanço livre 128 mm² em x 20..28, y -35..-12, z 0..5, vão 25; balanço livre 125 mm² em x -28..-20, y -35..-12, z 0..5, vão 25; balanço livre 15 mm² em x -36..-34, y 11..16, z 59..59, fundo 6; +7 regiões; nasce no ar em (35.0, 14.6, 43.9) (saliência 1.6 mm); nasce no ar em (-14.5, 66.6, 88.5) (saliência 6.9 mm)",
+    "veredito": "ok sem suporte",
+    "onde": "balanço livre 30 mm² em x -24..-15, y 64..66, z 88..88, fundo 10; balanço livre 26 mm² em x 14..24, y 64..66, z 88..88, fundo 5; balanço livre 15 mm² em x -36..-34, y 11..16, z 59..59, fundo 6; +9 regiões",
     "material": "PETG",
     "perimetros": 4,
     "infill": 25,
@@ -2848,14 +2918,14 @@
    }
   },
   "teste_negativo": {
-   "peca": "bandeja-pi",
-   "antes_mm2": 0.0,
+   "peca": "chassi",
+   "antes_mm2": 157.6,
    "tentativas": [
     {
      "giro": "180° em X",
-     "sem_apoio_mm2": 3886.7,
-     "sem_apoio_pct": 38.48,
-     "limite_mm2": 30.0,
+     "sem_apoio_mm2": 11536.8,
+     "sem_apoio_pct": 14.14,
+     "limite_mm2": 163.2,
      "acusou": true
     }
    ]
@@ -2865,141 +2935,141 @@
   {
    "pose": "neutra",
    "cg": [
-    -0.1,
-    -18.6,
-    107.2
+    -0.3,
+    -18.7,
+    108.3
    ],
-   "margem_mm": 18.6,
+   "margem_mm": 18.7,
    "tomba_graus": 9.8,
-   "massa_g": 1530.0
+   "massa_g": 1603.0
   },
   {
    "pose": "pan-esq",
    "cg": [
-    -3.5,
-    -20.5,
-    107.2
+    -4.0,
+    -21.0,
+    108.3
    ],
-   "margem_mm": 20.5,
-   "tomba_graus": 10.8,
-   "massa_g": 1530.0
+   "margem_mm": 21.0,
+   "tomba_graus": 11.0,
+   "massa_g": 1603.0
   },
   {
    "pose": "pan-dir",
    "cg": [
-    3.3,
-    -20.5,
-    107.2
+    3.6,
+    -20.8,
+    108.3
    ],
-   "margem_mm": 20.5,
-   "tomba_graus": 10.8,
-   "massa_g": 1530.0
+   "margem_mm": 20.8,
+   "tomba_graus": 10.9,
+   "massa_g": 1603.0
   },
   {
    "pose": "tilt-cima",
    "cg": [
-    -0.1,
-    -24.3,
-    107.6
+    -0.3,
+    -24.2,
+    108.9
    ],
-   "margem_mm": 24.3,
-   "tomba_graus": 12.7,
-   "massa_g": 1530.0
+   "margem_mm": 24.2,
+   "tomba_graus": 12.5,
+   "massa_g": 1603.0
   },
   {
    "pose": "tilt-baixo",
    "cg": [
-    -0.1,
-    -14.5,
-    105.7
+    -0.3,
+    -14.8,
+    106.7
    ],
-   "margem_mm": 14.5,
-   "tomba_graus": 7.8,
-   "massa_g": 1530.0
+   "margem_mm": 14.8,
+   "tomba_graus": 7.9,
+   "massa_g": 1603.0
   },
   {
    "pose": "boca-aberta",
    "cg": [
-    -0.1,
-    -18.6,
-    107.2
+    -0.3,
+    -18.7,
+    108.3
    ],
-   "margem_mm": 18.6,
+   "margem_mm": 18.7,
    "tomba_graus": 9.8,
-   "massa_g": 1530.0
+   "massa_g": 1603.0
   },
   {
    "pose": "pan+tilt-baixo+boca",
    "cg": [
-    -6.9,
-    -18.5,
-    105.7
+    -7.3,
+    -19.1,
+    106.6
    ],
-   "margem_mm": 18.5,
-   "tomba_graus": 9.9,
-   "massa_g": 1530.0
+   "margem_mm": 19.1,
+   "tomba_graus": 10.2,
+   "massa_g": 1603.0
   },
   {
    "pose": "pan+tilt-cima",
    "cg": [
-    -1.7,
-    -23.4,
-    107.6
+    -1.2,
+    -23.5,
+    108.9
    ],
-   "margem_mm": 23.4,
-   "tomba_graus": 12.3,
-   "massa_g": 1530.0
+   "margem_mm": 23.5,
+   "tomba_graus": 12.2,
+   "massa_g": 1603.0
   },
   {
    "pose": "bracos-cima",
    "cg": [
-    -0.1,
-    -18.6,
-    107.3
+    -0.3,
+    -18.7,
+    108.4
    ],
-   "margem_mm": 18.6,
+   "margem_mm": 18.7,
    "tomba_graus": 9.8,
-   "massa_g": 1530.0
+   "massa_g": 1603.0
   },
   {
    "pose": "bracos-baixo",
    "cg": [
-    -0.1,
-    -18.6,
-    107.2
+    -0.3,
+    -18.7,
+    108.3
    ],
-   "margem_mm": 18.6,
+   "margem_mm": 18.7,
    "tomba_graus": 9.8,
-   "massa_g": 1530.0
+   "massa_g": 1603.0
   },
   {
    "pose": "tudo-1",
    "cg": [
-    -6.9,
-    -18.5,
-    105.7
+    -7.3,
+    -19.1,
+    106.7
    ],
-   "margem_mm": 18.5,
-   "tomba_graus": 9.9,
-   "massa_g": 1530.0
+   "margem_mm": 19.1,
+   "tomba_graus": 10.2,
+   "massa_g": 1603.0
   },
   {
    "pose": "tudo-2",
    "cg": [
-    6.7,
-    -18.5,
-    105.7
+    6.9,
+    -18.9,
+    106.6
    ],
-   "margem_mm": 18.5,
-   "tomba_graus": 10.0,
-   "massa_g": 1530.0
+   "margem_mm": 18.9,
+   "tomba_graus": 10.1,
+   "massa_g": 1603.0
   }
  ],
  "resumo": {
   "pecas_distintas": 33,
   "pecas_total": 34,
-  "massa_impressa_g": 935.0,
-  "tempo_total_h": 37.4,
-  "ok": false
+  "massa_impressa_g": 1008.0,
+  "tempo_total_h": 40.1,
+  "ok": true
  }
 }

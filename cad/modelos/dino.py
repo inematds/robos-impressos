@@ -72,7 +72,8 @@ def _chassi(E, p_corpo, dentro) -> Peca:
 
     # --- rack: paredes X0..X1. Na anca (atrás de ype) o fundo é estreito: a parede nasce de um alargamento a 45° do piso
     def perfil(zr):
-        return [(a - 2.5, Z0), (a, Z0), (X1, Z0 + X1 - a), (X1, zr), (X0, zr), (X0, Z1 + X0 - a + 1.2), (a - 1.2, Z1), (a - 2.5, Z1)]
+        ai = a + 0.7                                    # face de dentro (a bateria, de ±20,5, passa)
+        return [(a - 2.5, Z0), (a, Z0), (X1, Z0 + X1 - a), (X1, zr), (X0, zr), (X0, Z1 + X0 - ai), (ai, Z1), (a - 2.5, Z1)]
 
     rack = uniao(prisma(perfil(zr_d), "y", py0, ype), caixa(X0, X1, ype - 0.01, ty0 + 0.01, Z1 - 0.01, zr_d),
                  espelho_x(prisma(perfil(zr_e), "y", py0, ype)), caixa(-X1, -X0, ype - 0.01, ty0 + 0.01, Z1 - 0.01, zr_e))
@@ -91,8 +92,10 @@ def _chassi(E, p_corpo, dentro) -> Peca:
     misula = sim(prisma([(X0 + 0.01, dz0 - L), (X0 + 0.01, dz0 + 0.01), (X0 - L, dz0 + 0.01)], "y", ty1 - 0.01, py1))
     # língua da frente (em balanço, livre por baixo: o L298N e o BMS entram pela frente): 2 mísulas ao lado da janela +
     # cunha sob a aba da frente do servo; a face de baixo sobe a 45° a partir da frente das mísulas das paredes
-    cunha_ = lambda y0_, xa_, xb_: prisma([(y0_, dz0 - (fy1 - y0_)), (y0_, dz0 + 0.01), (fy1, dz0 + 0.01)], "x", xa_, xb_)
-    arco = sim(cunha_(py1 - 0.01, jw + 0.25, xl) + cunha_(wy1 + 0.5, 8.0, xl)) + cunha_(wy1 + 0.5, -8.01, 8.01)
+    # arco em "V" invertido entre as paredes (z >= deck - |x|), que apoia a cunha a 45° sob a língua
+    lam = prisma([(-X0 - 0.01, dz0 - X0), (0.0, dz0), (X0 + 0.01, dz0 - X0), (X0 + 0.01, dz0 + 0.01), (-X0 - 0.01, dz0 + 0.01)], "y", py1 - 3.0, fy1)
+    cunha_ = prisma([(py1 - 3.0, dz0 - (fy1 - py1)), (py1, dz0 - (fy1 - py1)), (fy1, dz0), (fy1, dz0 + 0.01), (py1 - 3.0, dz0 + 0.01)], "x", -X0 - 0.01, X0 + 0.01)
+    arco = (lam ^ cunha_) ^ (caixa(-X0 - 0.01, X0 + 0.01, py1 - 3.0, py1, 0, 400) + caixa(-xl, xl, py1 - 0.01, fy1, 0, 400))
     # --- orelhas dos micro servos dos braços (em "U" aberto em cima: o corpo do servo entra por fora, sem ponte)
     oy, oz = K.braco.eixo[0] + DY, K.braco.eixo[1]
     xo0, xo1 = e.ombro_x
@@ -129,7 +132,7 @@ def _chassi(E, p_corpo, dentro) -> Peca:
             tr = caixa(X0 - 0.1, X0 + E.trilho_prof, py0 - 1, ty0 + 0.01, tz, tz + E.trilho_alt) \
                 + prisma([(X0 - 0.1, tz + E.trilho_alt - 0.01), (X0 + E.trilho_prof, tz + E.trilho_alt - 0.01), (X0 - 0.1, tz + E.trilho_alt + E.trilho_prof + 0.1)], "y", py0 - 1, ty0 + 0.01)
             cortes.append(tr if s > 0 else espelho_x(tr))
-        cortes.append(furo((s * (X0 - 1), ty0 - 12.0, 52.0), (s, 0, 0), E.parede_esp + 2, 6.0))          # cabos rack -> motores
+        cortes.append(furo((s * (X0 - 1), py1 - 4.0, 40.0), (s, 0, 0), E.parede_esp + 2, 6.0))          # fios dos motores -> L298N (à frente do motor)
         cortes.append(inserto((s * (pp.x[0] + pp.x[1]) / 2, pp.y[0] + DY, pp.z_parafuso), (0, 1, 0)))
         cortes.append(furo((s * e.traseira_parafuso[0], e.traseira_parafuso[1] + DY, Z0 - 0.01), (0, 0, 1), 3.8, F.m3_piloto))
     # deck: janela do servo de pan, rasgos das abas, passagem de cabos (flat da câmera e fios da cabeça)
@@ -139,7 +142,7 @@ def _chassi(E, p_corpo, dentro) -> Peca:
         for sy in (1, -1):
             yy = ycp + sy * s9.furos_aba[0] / 2
             cortes.append(rasgo((sx * s9.furos_aba[1] / 2, yy - 1.5, dz0 - 12), (sx * s9.furos_aba[1] / 2, yy + 1.5, dz0 - 12), F.m3_passante, (0, 0, 1), 18))
-    cortes.append(caixa(12.0, 20.0, cy + 19.0, cy + 30.0, dz0 - 25, E.deck_z + 1))
+    cortes.append(caixa(11.0, 29.0, cy + 17.5, cy + 20.0, dz0 - 25, E.deck_z + 1))          # rasgo do flat da câmera e dos fios da cabeça (18 x 2,5), à direita do servo
     # travessa: L298N (4 furos piloto pela frente) + passagens de fios
     h = P.L298N.furos / 2
     for sx in (1, -1):
@@ -306,6 +309,7 @@ def construir() -> Modelo:
     tilts = np.unique(np.concatenate([np.linspace(N.tilt[0], 0, 3), np.linspace(0, N.tilt[1], 3)]))
     S = CA.zona_varrida(base, H, C0, pans, tilts, (-95, C0[1] - 115, 100), (95, C0[1] + 70, z_top + 14), chave=f"{K.pele}|{DY}|{K.soquete_r}|{zb}")
     del H, Hj
+    p_livre = cheia.combinar(lambda Pp, Fp: np.maximum(Fp, K.folga_junta - S))      # pele fora da zona varrida (a barriga sobe até onde a cabeça não passa)
 
     # ------------------------------------------------------------ peças em relevo e assentos (regiões no robô)
     lo, hi = (_v(v, dyv) for v in K.barriga.caixa)
@@ -369,6 +373,7 @@ def construir() -> Modelo:
     c_car = [c.solido for c in comps_esq if c.nome.startswith("carregador")][0]
     obst_t = (chassi.solido ^ caixa(-400, 400, -400, yd + 3.0, -50, 400)) + cil((0, ye, -5.0), (0, ye, E.piso_z[0] + 10.5 + 0.6), 14.5) + c_car
     tras = maior_corpo(tras - CA.sombra_frente(obst_t, list(np.arange(yd - 140.0, yd + 2.6, 2.5)), 0.6))
+    tras = tras + (ext ^ cil((0.0, yd - 104.0, 58.0), (0.0, yd - 164.0, 58.0), 0.05, 60.0))          # ponta da cauda maciça, em cone de 45° (sem teto na impressão em pé)
     # carregador USB-C: o plugue entra por trás, por um rasgo sob a raiz da cauda
     ycg, zcg = K.esq.carregador[0] + DY, K.esq.carregador[1]
     tras = tras - caixa(-6.5, 6.5, yd - 160.0, ycg - P.CARREGADOR2S.cx[0] / 2 + 1.0, zcg + 0.2, zcg + 7.5)
@@ -384,11 +389,22 @@ def construir() -> Modelo:
         corpo = corpo + aba - cil((sx * xp, yd - 5, pp.z_parafuso), (sx * xp, yd + 12, pp.z_parafuso), F.m3_passante / 2, seg=24)
         # ombro: furo por onde o cubo do braço chega ao horn do micro servo
         corpo = corpo - cil((sx * 30.0, oy, oz), (sx * 90.0, oy, oz), br.r_furo)
-        # gola: ressalto por dentro da borda de cima (frente e trás), com inserto vertical; a face de baixo sobe a 45°
-        rg_, zt_ = K.esq.gola_ressalto, K.z_gola - 0.05
-        ya, yb = C0[1] + sx * (rg_ - 4.0), max(C0[1] + sx * (rg_ + 16.0), yd + 0.4)
-        res = prisma([(ya, zt_), (yb, zt_), (yb, zt_ - 28.0), (ya, zt_ - 8.0)], "x", -4.5, 4.5) ^ ext
-        corpo = corpo + res - inserto((0.0, C0[1] + sx * rg_, zt_), (0, 0, -1))
+    # colarinho maciço por dentro da borda de cima, na metade de trás (onde as costas fecham para o pescoço): a face de baixo
+    # é um cone a 45° que nasce na parede; sem teto em balanço
+    zc_ = K.z_gola - 0.05
+    colar = (cil((C0[0], C0[1], zc_ - 54.0), (C0[0], C0[1], zc_), 95.0) - cil((C0[0], C0[1], zc_ - 54.01), (C0[0], C0[1], zc_ + 0.01), K.gola_boca_r + 54.5, K.gola_boca_r + 0.5)) \
+        ^ ext ^ caixa(-400, 400, yd + 0.4, C0[1] - 15.0, -50, 400)
+    corpo = corpo + colar
+    # gola: 3 ressaltos por dentro da borda de cima do corpo, com inserto vertical; a face de baixo sobe a 45° até a parede
+    rg_, angs_g = K.esq.gola_ressalto
+    zt_ = K.z_gola - 0.05
+    pos_g = []
+    for ang in angs_g:
+        res = prisma([(C0[1] + rg_ - 4.0, zt_), (C0[1] + rg_ + 30.0, zt_), (C0[1] + rg_ + 30.0, zt_ - 42.0), (C0[1] + rg_ - 4.0, zt_ - 8.0)], "x", -4.5, 4.5)
+        res = girar(res, (0.0, C0[1], 0.0), (0, 0, 1), ang) ^ ext ^ caixa(-400, 400, yd + 0.4, 400, -50, 400)
+        pg_ = (-rg_ * np.sin(np.radians(ang)), C0[1] + rg_ * np.cos(np.radians(ang)))
+        pos_g.append(pg_)
+        corpo = corpo + res - inserto((pg_[0], pg_[1], zt_), (0, 0, -1))
     # traseira: 2 M3 auto-atarraxantes POR BAIXO (cabeça abaulada para fora, 2 mm abaixo do fundo), no piso do chassi
     tx, ty = K.esq.traseira_parafuso[0], K.esq.traseira_parafuso[1] + DY
     for sx in (1, -1):
@@ -413,14 +429,16 @@ def construir() -> Modelo:
 
     # ------------------------------------------------------------ gola (esfera do pescoço)
     zg = K.z_gola + F.encaixe
-    gola = maior_corpo(CA.fatia_z(ext, zg, z_top) - esfera(C0, r_gola_in, seg=128))
-    for (gx, gy) in ((0.0, K.esq.gola_ressalto), (0.0, -K.esq.gola_ressalto)):
-        aba = caixa(gx - 4.2, gx + 4.2, C0[1] + gy - 4.2, C0[1] + gy + 4.2, zg, zg + 3.0) ^ esfera(C0, r_gola - 0.5, seg=64)
-        gola = gola + aba - cil((gx, C0[1] + gy, zg - 1), (gx, C0[1] + gy, zg + 4), F.m3_passante / 2, seg=24) \
-            - cil((gx, C0[1] + gy, zg + 3.0), (gx, C0[1] + gy, zg + 12.0), F.cabeca_m3_d / 2 + 0.2, seg=24)
+    gola = CA.fatia_z(ext, zg, z_top) - esfera(C0, r_gola_in, seg=128)
+    gola = gola - cil((C0[0], C0[1], zg - 1.0), tuple(C0), K.gola_boca_r - 0.5, seg=128)      # por baixo a boca tem o mesmo raio da de cima: a gola desce por cima do garfo
+    for sx in (1, -1):                                  # acima dos ombros a face de baixo da gola sobe a 45° (o corpo foi afastado do que o braço varre)
+        gola = gola - (prisma([(sx * (br.x_base - 0.4), zg - 1.0), (sx * (br.x_base + 40.0), zg - 1.0), (sx * (br.x_base + 40.0), zg + 40.4)], "y", oy - 35.0, oy + 50.0))
+    gola = maior_corpo(gola)
+    for (gx, gy) in pos_g:                               # 3 M3 por cima: furo passante + rebaixo fundo (a chave entra pela boca da gola)
+        gola = gola - cil((gx, gy, zg - 1), (gx, gy, zg + 4), F.m3_passante / 2, seg=24) - cil((gx, gy, zg + 3.0), (gx, gy, zg + 32.0), F.cabeca_m3_d / 2 + 0.2, seg=24)
 
     # ------------------------------------------------------------ peças em relevo (barriga e dedos creme) e braços
-    pc = {nm: r_.peca(cheia) for nm, r_ in rel.items()}
+    pc = {nm: r_.peca(p_livre if nm == "barriga" else cheia) for nm, r_ in rel.items()}
     creme = dict(cor="creme", macica=True, suporte="não", orientacao="base plana (face de colar) na mesa")
     pecas.append(Peca("barriga", pc["barriga"], imprimir=rel["barriga"].imprimir, explode=(0, 110, 0), obs="barriga creme; cola no assento plano do corpo", **creme))
     for nm in rel:
@@ -464,20 +482,21 @@ def construir() -> Modelo:
 
     # a base de cada vaso tem de sair PLANA: desfaz arestas beliscadas aqui e refaz o corte da base
     corpo, gola = (maior_corpo(CA.fatia_z(desbeliscar(limpar(m)), z0, 900.0)) for m, z0 in ((corpo, K.z_fundo), (gola, zg)))
-    tras = maior_corpo(desbeliscar(limpar(tras)) ^ caixa(-400, 400, -400, yd - F.encaixe, -50, 400))
+    tras = maior_corpo(desbeliscar(limpar(tras)) ^ caixa(-400, 400, -400, yd - F.encaixe, 3.0, 400))      # nada abaixo de z=3 (o fundo da pele fica em z=4; a cortina do corpo deixava uma lasca na costura)
     pecas += [
-        Peca("corpo", corpo, cor="verde", explode=(0, 0, 60), perimetros=4, infill=15, suporte="sim (a declarar no pacote 3)",
-             orientacao="borda de baixo (z=5) na mesa, em pé como um vaso; boca (z=144) para cima",
-             reforco="2 abas atrás (M3 horizontal nos postes do chassi); lábio por dentro da borda de trás; 4 perímetros porque o corpo é aberto atrás",
-             obs="pernas, barriga e peito; desce por cima do chassi; 2 M3 por trás (cobertos pela traseira) + preso em cima pela gola"),
-        Peca("traseira", tras, cor="verde", imprimir=rot("x", -90), explode=(0, -140, 0), perimetros=4, infill=15, suporte="sim (a declarar no pacote 3)",
+        Peca("corpo", corpo, cor="verde", explode=(0, 0, 60), perimetros=4, infill=15, suporte="sim (árvore POR DENTRO: teto das 2 coxas, sobre as rodas; degraus de dentro dos assentos planos (barriga, braços, manchas); por fora nada)",
+             orientacao="borda de baixo (z=5) na mesa, em pé como um vaso; boca (z=134) para cima",
+             reforco="2 abas maciças atrás (M3 horizontal nos postes do chassi); lábio por dentro da borda de trás; colarinho maciço atrás e 3 ressaltos com inserto na borda de cima; 4 perímetros porque o corpo é aberto atrás",
+             obs="pernas, barriga e peito; desce por cima do chassi; 2 M3 por trás (cobertos pela traseira); a borda de trás encaixa na traseira"),
+        Peca("traseira", tras, cor="verde", imprimir=rot("x", -90), explode=(0, -140, 0), perimetros=4, infill=15,
+             suporte="sim (árvore POR DENTRO: teto de cima da anca (53° da vertical) e nervura do rasgo da crista; por fora nada)",
              orientacao="borda da frente (plano da costura) na mesa, cauda para cima",
-             reforco="nervura por dentro ao longo do rasgo da crista; 2 almofadas nos parafusos de baixo",
+             reforco="nervura por dentro ao longo do rasgo da crista; 2 almofadas nos parafusos de baixo; ponta da cauda maciça em cone",
              obs="anca + cauda: sai para trás e dá acesso à bateria e às bandejas sem tirar a cabeça; 2 M3 auto-atarraxantes por baixo"),
         Peca("gola", gola, cor="verde", suporte="não", explode=(0, 0, 100), perimetros=4, infill=20,
-             orientacao="base (z=144) na mesa; a esfera sobe e fica aberta em cima",
-             reforco="maciça entre a esfera e a pele de fora; 2 abas na base (frente e trás) para os M3",
-             obs="gola: esfera em que a cabeça gira; assenta na borda do corpo; 2 M3 por cima, nos ressaltos do corpo (por dentro, antes da cabeça)"),
+             orientacao="base (z=134) na mesa; a esfera sobe e fica aberta em cima",
+             reforco="maciça entre a esfera e a pele de fora (sem teto em balanço); 3 furos M3 com rebaixo fundo",
+             obs="gola: esfera em que a cabeça gira; assenta na borda do corpo; 3 M3 por cima, nos ressaltos do corpo (por dentro, antes da cabeça)"),
         Peca("crista-costas", lam_c, cor="azul", imprimir=rot("y", 90), macica=True, explode=(0, -190, 30), suporte="não",
              orientacao="deitada (lâmina de 6 mm)", obs="crista das costas e da raiz da cauda; pressão ou cola no rasgo da traseira"),
     ]
@@ -491,6 +510,12 @@ def construir() -> Modelo:
     p_cab = p_cab_cheia.combinar(lambda Pp, Fp: CA.sem_crista(p_cab0, CA.sem_crista(p_cab0, Fp, cr.xc, lo_k, hi_k), cr.xc, lo_n, hi_n))
     boca = _boca(ds[1], ds[2])
     cran, mand, c_ext, c_int = BI.cabeca(p_cab, boca, r_soquete=K.soquete_r, cabeca_z=K.cabeca_z, recuo=0.5)
+    # ponta do queixo maciça à frente de um plano a 45°: a mandíbula imprime de pé (plano de trás na mesa) e a cavidade fecha sem teto
+    zpl_ = boca["z0"] - boca["folga"] / 2
+    acima = girar(caixa(-200, 200, -300, 300, zpl_, zpl_ + 200), (0, boca["y_ref"], zpl_), (1, 0, 0), float(np.degrees(np.arctan(boca["incl"]))))
+    ym_, zm0_ = K.boca_macico[0] + ds[1], K.boca_macico[1] + ds[2]
+    cunha_q = prisma([(ym_, zm0_ - 60.0), (ym_, zm0_), (ym_ + 90.0, zm0_ + 90.0), (ym_ + 300.0, zm0_ + 90.0), (ym_ + 300.0, zm0_ - 60.0)], "x", -200, 200)
+    mand = mand + (((c_ext - acima) ^ caixa(-200, 200, boca["y_corte"], 400, 0, 500)) ^ cunha_q)
     for th in angs_boca:                                # alívio da mandíbula: a esfera do soquete vista por ela em cada ângulo de abertura
         mand = mand - esfera((BS.CX, BS.CY, BS.CZ), K.soquete_r + 0.5, seg=96).transform(mat_giro((0.0, boca["y_eixo"], boca["z_eixo"]), (-1, 0, 0), -th)[:3, :])
     # canto de trás da mandíbula, acima do eixo: ao abrir ele recua; chanfro que acompanha a abertura máxima (+3°)
@@ -533,15 +558,14 @@ def construir() -> Modelo:
     zmt = BS.CZ + N.mesa_z + N.mesa_esp
     xsf, ysf, rf = K.falante[0], K.falante[1] + ds[1], P.FALANTE.d / 2
     mesa = mesa + (cil((xsf, ysf, zmt - N.mesa_esp), (xsf, ysf, zmt), rf + 2.6) ^ p_cab.deslocado(-F.parede - 1.2))
-    mesa = mesa - cil((xsf, ysf, zmt - 6), (xsf, ysf, zmt + 1), rf - 2.0) - cil((xsf, ysf, zmt - 2.5), (xsf, ysf, zmt + 0.01), rf - 2.0, rf + 0.6)
+    mesa = mesa - cil((xsf, ysf, zmt - N.mesa_esp - 0.01), (xsf, ysf, zmt + 1), rf - 2.0) - cil((xsf, ysf, zmt - 2.5), (xsf, ysf, zmt + 0.01), rf - 2.0, rf + 0.6)
+    mesa = mesa - caixa(-29.0, -11.0, BS.CY + 4.0, BS.CY + 10.0, zmt - N.mesa_esp - 1, zmt + 1)      # os cabos sobem aqui (o alto-falante cobre o rasgo do meio)
     comps_cab.append(Comp("alto-falante (fase 2)", C.falante().transform(C.M([(1, 0, 0), (0, 0, -1), (0, 1, 0)], (xsf, ysf, zmt - 0.55))[:3, :]),
                           "cabeca", P.FALANTE.massa, "preto", fase2=True))
     for c_o in c_olhos:                                 # as orelhas crânio -> mesa nascem depois dos olhos: reabrir o lugar do olho
         cran = cran - esfera(c_o, o.r + F.encaixe / 2, seg=64)
     cran = maior_corpo(cran)
     # nada da mandíbula (almofadas do eixo incluídas) passa do plano da boca
-    zpl_ = boca["z0"] - boca["folga"] / 2
-    acima = girar(caixa(-200, 200, -300, 300, zpl_, zpl_ + 200), (0, boca["y_ref"], zpl_), (1, 0, 0), float(np.degrees(np.arctan(boca["incl"]))))
     mand = maior_corpo(mand - acima - cran - cran.translate([0, 0, -0.6]))
     Tl = list(T)
     for c in comps_cab:
@@ -554,12 +578,12 @@ def construir() -> Modelo:
     cran_r = maior_corpo(g(cran) + nv - rg)
     pecas += [
         Peca("cranio", cran_r, cor="verde", grupo="cabeca", explode=(0, 0, 150), perimetros=3, infill=15,
-             suporte="sim (a declarar no pacote 3)",
+             suporte="sim (árvore POR DENTRO: teto do crânio, fundo dos copos dos olhos e nervura da crista; e por baixo, fora do rosto: borda do céu da boca, que fica 40 mm acima da mesa)",
              orientacao="borda de baixo na mesa, em pé", reforco="3 orelhas internas com inserto M3 para a mesa; copos dos olhos fechados por trás (só a janela do cabo)",
              obs="3 M3x12 por baixo, pela mesa (na bancada); 2 furos no alto, sob a crista, dão acesso aos parafusos da coluna"),
         Peca("mandibula", g(mand), cor="verde", grupo="mandibula", imprimir=rot("x", 90), explode=(0, 70, 85), perimetros=4, infill=20,
-             suporte="sim (a declarar no pacote 3)", orientacao="face de trás (plano de corte) na mesa, ponta do queixo para cima",
-             reforco="almofadas maciças nos 2 lados do eixo; 2 nervuras que abraçam o horn",
+             suporte="sim (pouco: sob o recorte esférico de trás, que nasce 2 a 10 mm acima da mesa; face escondida, virada para o pescoço)", orientacao="face de trás (plano de corte) na mesa, ponta do queixo para cima",
+             reforco="almofadas maciças nos 2 lados do eixo; 2 nervuras que abraçam o horn; ponta do queixo maciça à frente de um plano a 45°",
              obs="sem parafuso por fora: o horn encaixa entre 2 nervuras (direita) e o pino da mesa entra no soquete cego (esquerda)"),
         Peca("mesa-cabeca", g(mesa), material="PETG", cor="grafite", grupo="cabeca", imprimir=rot("x", 180), macica=True, explode=(0, 0, 95),
              suporte="não", perimetros=4, infill=30, orientacao="de cabeça para baixo: face de cima na mesa",

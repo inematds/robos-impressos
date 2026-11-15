@@ -2,6 +2,9 @@
 
 | data | o que quebrou | menor correção | prompt \| infra |
 |---|---|---|---|
+| 2026-11-14 | dino: a traseira saía 2 mm abaixo do chão (lasca de 0,2 mm na costura, deixada pela "cortina" entre as pernas); nenhum dos 11 testes olha z < 0 e só a medida do envelope mostrou | a traseira é cortada em z ≥ 3 e a cortina começa à frente da costura | prompt |
+| 2026-11-14 | dino: valores que a conta pedia ficaram velhos em `parametros.py` (parafuso da traseira em x=12 dentro do rasgo da esfera; postes da gola em 13,5 dentro do servo de pan) e viraram interferência nos testes 5 e 9 | corrigir o parâmetro; conferir com `grep` o valor gravado antes de rodar | prompt |
+| 2026-11-14 | dino: a casca do corpo saía com rasgos verticais ao lado da barriga e nos flancos: a "sombra do chassi" herdada da capivara usa UMA fatia do piso ao topo e, num corpo que estreita para cima, corta a casca também ACIMA das paredes; os testes 1–9 passavam e só o render mostrou | sombra em fatias de 5 mm (`_obstaculos` em `cad/modelos/dino.py`): cada fatia só vê o que o chassi tem acima dela | prompt |
 | 2026-11-14 | cubo: a montagem pedia servo em 90° e "ligue a energia" sem sketch, sem esquema fio a fio e sem dizer como o Raspberry Pi fala com o Arduino; o revisor independente reprovou (6/10) | `centrar_servos.ino` + `LIGACAO.md` e SVG gerados da lista `ligacoes` de `cubo.dados.json` + 3 preparos de bancada antes da montagem | prompt |
 | 2026-11-14 | cubo: o LEIA-ME do zip mandava abrir `pecas/cubo/stl/`, mas dentro do zip a pasta é `cubo/stl/` (era cópia do IMPRIMIR.md do repo) | `leia_zip()` troca os caminhos pelos do zip; `conferir` acusa se voltar | prompt |
 | 2026-11-14 | cubo: página e docs em inglês com vírgula decimal (o pedido de tradução manda "números ficam iguais") | `PONTO()` troca a vírgula decimal por ponto ao ler a tradução EN; `conferir` acusa `\d,\d` no inglês | prompt |

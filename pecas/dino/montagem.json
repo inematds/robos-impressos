@@ -30,13 +30,13 @@
       0.0,
       1.1102230246251565e-16,
       1.0,
-      37.019999999999975
+      37.01999999999997
      ],
      [
       0.0,
       -1.0,
       1.1102230246251565e-16,
-      99.49999809265137
+      102.99999809265137
      ],
      [
       0.0,
@@ -56,13 +56,13 @@
    "macica": true,
    "dim": [
     63.4,
-    72.4,
+    79.4,
     13.3
    ],
-   "tris": 7304,
-   "plastico_cm3": 17.3,
-   "massa_g": 21.5,
-   "tempo_h": 0.88,
+   "tris": 7630,
+   "plastico_cm3": 18.0,
+   "massa_g": 22.4,
+   "tempo_h": 0.92,
    "obs": "barriga creme; cola no assento plano do corpo",
    "liso": true,
    "perimetros": 3,
@@ -225,22 +225,22 @@
    "para_montagem": [
     [
      [
-      0.7517131790644552,
-      -0.4320190684278479,
-      0.49828387585345846,
-      84.76692447321993
+      1.1102230246251565e-16,
+      0.0,
+      1.0,
+      89.01999999999998
      ],
      [
-      -0.4320190684278478,
-      0.24828682093554486,
-      0.8670139439850177,
-      26.582306488245877
+      0.0,
+      1.0,
+      0.0,
+      23.000004768371582
      ],
      [
-      -0.49828387585345846,
-      -0.8670139439850177,
-      8.411133851874144e-17,
-      7.541995352738713
+      -1.0,
+      0.0,
+      1.1102230246251565e-16,
+      8.34286117553711
      ],
      [
       0.0,
@@ -259,14 +259,14 @@
    "comum": false,
    "macica": true,
    "dim": [
+    12.7,
     17.4,
-    13.8,
-    11.1
+    6.9
    ],
-   "tris": 768,
-   "plastico_cm3": 1.1,
-   "massa_g": 1.3,
-   "tempo_h": 0.13,
+   "tris": 672,
+   "plastico_cm3": 1.0,
+   "massa_g": 1.2,
+   "tempo_h": 0.12,
    "obs": "dedo do pé; cola",
    "liso": true,
    "perimetros": 3,
@@ -429,22 +429,22 @@
    "para_montagem": [
     [
      [
-      0.7517131790644552,
-      0.4320190684278479,
-      -0.49828387585345846,
-      -84.76450417794453
+      1.1102230246251565e-16,
+      0.0,
+      -1.0,
+      -89.01999999999998
      ],
      [
-      0.4320190684278478,
-      0.24828682093554486,
-      0.8670139439850177,
-      26.583697462542087
+      0.0,
+      1.0,
+      0.0,
+      23.000004768371582
      ],
      [
-      0.49828387585345846,
-      -0.8670139439850177,
-      8.411133851874144e-17,
-      7.537286643100411
+      1.0,
+      0.0,
+      1.1102230246251565e-16,
+      8.34286117553711
      ],
      [
       0.0,
@@ -463,14 +463,14 @@
    "comum": false,
    "macica": true,
    "dim": [
+    12.7,
     17.4,
-    13.9,
-    11.1
+    6.9
    ],
-   "tris": 740,
-   "plastico_cm3": 1.1,
-   "massa_g": 1.3,
-   "tempo_h": 0.13,
+   "tris": 658,
+   "plastico_cm3": 1.0,
+   "massa_g": 1.2,
+   "tempo_h": 0.12,
    "obs": "dedo do pé; cola",
    "liso": true,
    "perimetros": 3,
@@ -500,19 +500,19 @@
       1.1102230246251565e-16,
       0.0,
       1.0,
-      58.51999999999998
+      62.01999999999998
      ],
      [
       0.0,
       1.0,
       0.0,
-      -33.000000953674316
+      -29.00001335144043
      ],
      [
       -1.0,
       0.0,
       1.1102230246251565e-16,
-      92.0000114440918
+      79.99997329711914
      ],
      [
       0.0,
@@ -533,11 +533,11 @@
    "dim": [
     17.4,
     17.4,
-    9.4
+    8.6
    ],
-   "tris": 978,
-   "plastico_cm3": 1.2,
-   "massa_g": 1.5,
+   "tris": 1020,
+   "plastico_cm3": 1.3,
+   "massa_g": 1.7,
    "tempo_h": 0.14,
    "obs": "mancha do flanco: janela do sensor de distância lateral (fase 2); cola no assento plano do corpo",
    "liso": true,
@@ -568,19 +568,19 @@
       1.1102230246251565e-16,
       0.0,
       -1.0,
-      -58.24191656147441
+      -62.01999999999998
      ],
      [
       0.0,
       1.0,
       0.0,
-      -33.000000953674316
+      -29.00001335144043
      ],
      [
       1.0,
       0.0,
       1.1102230246251565e-16,
-      92.0000114440918
+      80.0
      ],
      [
       0.0,
@@ -601,11 +601,11 @@
    "dim": [
     17.4,
     17.4,
-    9.7
+    8.6
    ],
-   "tris": 1094,
-   "plastico_cm3": 1.2,
-   "massa_g": 1.5,
+   "tris": 1036,
+   "plastico_cm3": 1.3,
+   "massa_g": 1.7,
    "tempo_h": 0.14,
    "obs": "mancha do flanco: janela do sensor de distância lateral (fase 2); cola no assento plano do corpo",
    "liso": true,
@@ -894,24 +894,24 @@
     0,
     60
    ],
-   "suporte": "sim (a declarar no pacote 3)",
+   "suporte": "sim (árvore POR DENTRO: teto das 2 coxas, sobre as rodas; degraus de dentro dos assentos planos (barriga, braços, manchas); por fora nada)",
    "comum": false,
    "macica": false,
    "dim": [
     194.1,
     113.7,
-    139.0
+    129.4
    ],
-   "tris": 107816,
-   "plastico_cm3": 146.3,
-   "massa_g": 181.5,
-   "tempo_h": 6.85,
-   "obs": "pernas, barriga e peito; desce por cima do chassi; 2 M3 por trás (cobertos pela traseira) + preso em cima pela gola",
+   "tris": 100868,
+   "plastico_cm3": 162.3,
+   "massa_g": 201.2,
+   "tempo_h": 7.59,
+   "obs": "pernas, barriga e peito; desce por cima do chassi; 2 M3 por trás (cobertos pela traseira); a borda de trás encaixa na traseira",
    "liso": true,
    "perimetros": 4,
    "infill": 15,
-   "reforco": "2 abas atrás (M3 horizontal nos postes do chassi); lábio por dentro da borda de trás; 4 perímetros porque o corpo é aberto atrás",
-   "orientacao": "borda de baixo (z=5) na mesa, em pé como um vaso; boca (z=144) para cima"
+   "reforco": "2 abas maciças atrás (M3 horizontal nos postes do chassi); lábio por dentro da borda de trás; colarinho maciço atrás e 3 ressaltos com inserto na borda de cima; 4 perímetros porque o corpo é aberto atrás",
+   "orientacao": "borda de baixo (z=5) na mesa, em pé como um vaso; boca (z=134) para cima"
   },
   {
    "nome": "traseira",
@@ -947,7 +947,7 @@
       0.0,
       1.0,
       1.1102230246251565e-16,
-      65.80204163080028
+      68.5
      ],
      [
       0.0,
@@ -962,23 +962,23 @@
     -140,
     0
    ],
-   "suporte": "sim (a declarar no pacote 3)",
+   "suporte": "sim (árvore POR DENTRO: teto de cima da anca (53° da vertical) e nervura do rasgo da crista; por fora nada)",
    "comum": false,
    "macica": false,
    "dim": [
     126.1,
-    137.1,
+    131.0,
     131.9
    ],
-   "tris": 76648,
-   "plastico_cm3": 77.0,
-   "massa_g": 95.5,
-   "tempo_h": 3.65,
+   "tris": 76068,
+   "plastico_cm3": 82.5,
+   "massa_g": 102.3,
+   "tempo_h": 3.9,
    "obs": "anca + cauda: sai para trás e dá acesso à bateria e às bandejas sem tirar a cabeça; 2 M3 auto-atarraxantes por baixo",
    "liso": true,
    "perimetros": 4,
    "infill": 15,
-   "reforco": "nervura por dentro ao longo do rasgo da crista; 2 almofadas nos parafusos de baixo",
+   "reforco": "nervura por dentro ao longo do rasgo da crista; 2 almofadas nos parafusos de baixo; ponta da cauda maciça em cone",
    "orientacao": "borda da frente (plano da costura) na mesa, cauda para cima"
   },
   {
@@ -1003,19 +1003,19 @@
       1.0,
       0.0,
       0.0,
-      -1.9073486328125e-06
+      -0.0005298566858087383
      ],
      [
       0.0,
       1.0,
       0.0,
-      -6.000181198120117
+      -8.25547860103433
      ],
      [
       0.0,
       0.0,
       1.0,
-      144.25
+      134.25
      ],
      [
       0.0,
@@ -1034,20 +1034,20 @@
    "comum": false,
    "macica": false,
    "dim": [
-    96.0,
-    96.0,
-    46.1
+    114.1,
+    100.5,
+    56.1
    ],
-   "tris": 19308,
-   "plastico_cm3": 46.0,
-   "massa_g": 57.1,
-   "tempo_h": 2.21,
-   "obs": "gola: esfera em que a cabeça gira; assenta na borda do corpo; 2 M3 por cima, nos ressaltos do corpo (por dentro, antes da cabeça)",
+   "tris": 25460,
+   "plastico_cm3": 67.7,
+   "massa_g": 83.9,
+   "tempo_h": 3.21,
+   "obs": "gola: esfera em que a cabeça gira; assenta na borda do corpo; 3 M3 por cima, nos ressaltos do corpo (por dentro, antes da cabeça)",
    "liso": true,
    "perimetros": 4,
    "infill": 20,
-   "reforco": "maciça entre a esfera e a pele de fora; 2 abas na base (frente e trás) para os M3",
-   "orientacao": "base (z=144) na mesa; a esfera sobe e fica aberta em cima"
+   "reforco": "maciça entre a esfera e a pele de fora (sem teto em balanço); 3 furos M3 com rebaixo fundo",
+   "orientacao": "base (z=134) na mesa; a esfera sobe e fica aberta em cima"
   },
   {
    "nome": "crista-costas",
@@ -1166,7 +1166,7 @@
     0,
     150
    ],
-   "suporte": "sim (a declarar no pacote 3)",
+   "suporte": "sim (árvore POR DENTRO: teto do crânio, fundo dos copos dos olhos e nervura da crista; e por baixo, fora do rosto: borda do céu da boca, que fica 40 mm acima da mesa)",
    "comum": false,
    "macica": false,
    "dim": [
@@ -1234,7 +1234,7 @@
     70,
     85
    ],
-   "suporte": "sim (a declarar no pacote 3)",
+   "suporte": "sim (pouco: sob o recorte esférico de trás, que nasce 2 a 10 mm acima da mesa; face escondida, virada para o pescoço)",
    "comum": false,
    "macica": false,
    "dim": [
@@ -1242,15 +1242,15 @@
     37.0,
     35.6
    ],
-   "tris": 10220,
-   "plastico_cm3": 12.3,
-   "massa_g": 15.3,
-   "tempo_h": 0.65,
+   "tris": 9030,
+   "plastico_cm3": 27.7,
+   "massa_g": 34.4,
+   "tempo_h": 1.36,
    "obs": "sem parafuso por fora: o horn encaixa entre 2 nervuras (direita) e o pino da mesa entra no soquete cego (esquerda)",
    "liso": true,
    "perimetros": 4,
    "infill": 20,
-   "reforco": "almofadas maciças nos 2 lados do eixo; 2 nervuras que abraçam o horn",
+   "reforco": "almofadas maciças nos 2 lados do eixo; 2 nervuras que abraçam o horn; ponta do queixo maciça à frente de um plano a 45°",
    "orientacao": "face de trás (plano de corte) na mesa, ponta do queixo para cima"
   },
   {
@@ -1310,10 +1310,10 @@
     122.3,
     45.8
    ],
-   "tris": 2446,
-   "plastico_cm3": 23.2,
-   "massa_g": 29.4,
-   "tempo_h": 1.15,
+   "tris": 2420,
+   "plastico_cm3": 22.9,
+   "massa_g": 29.1,
+   "tempo_h": 1.14,
    "obs": "mesa da cabeça: 2 M3x10 na coluna do berço (por cima, pelos furos sob a crista); segura o servo da boca e o pino do eixo da mandíbula",
    "liso": true,
    "perimetros": 4,
@@ -1854,10 +1854,10 @@
     179.2,
     121.0
    ],
-   "tris": 7862,
-   "plastico_cm3": 135.7,
-   "massa_g": 172.4,
-   "tempo_h": 6.36,
+   "tris": 8056,
+   "plastico_cm3": 135.9,
+   "massa_g": 172.6,
+   "tempo_h": 6.37,
    "obs": "piso recortado da seção da pele + rack das bandejas (atrás) + torre e deck do servo de pan + orelhas dos servos dos braços + ressalto da esfera de trás",
    "liso": true,
    "perimetros": 4,
@@ -3710,16 +3710,16 @@
  "obs": {
   "parede_medida": {
    "corpo": {
-    "min": 2.28,
+    "min": 2.3,
     "med": 2.39,
-    "max": 2.69,
+    "max": 2.79,
     "amostras": 4000
    },
    "gola": {
     "min": 3.38,
-    "med": 3.39,
-    "max": 3.52,
-    "amostras": 2324
+    "med": 3.7,
+    "max": 9.75,
+    "amostras": 2704
    },
    "cabeça": {
     "min": 2.31,
@@ -3774,16 +3774,16 @@
  ],
  "parede_medida": {
   "corpo": {
-   "min": 2.28,
+   "min": 2.3,
    "med": 2.39,
-   "max": 2.69,
+   "max": 2.79,
    "amostras": 4000
   },
   "gola": {
    "min": 3.38,
-   "med": 3.39,
-   "max": 3.52,
-   "amostras": 2324
+   "med": 3.7,
+   "max": 9.75,
+   "amostras": 2704
   },
   "cabeça": {
    "min": 2.31,
