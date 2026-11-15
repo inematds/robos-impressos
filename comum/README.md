@@ -12,7 +12,6 @@ confere as peças e as peças impressas iguais em mais de um robô. As decisões
 | `cad/comum/` | Biblioteca: geometria, componentes comprados, esqueleto e casca dos bichos, robôs quadrados, imprimibilidade |
 | `cad/peles/` | Pele dos bichos (grade de distância que o gerador lê) |
 | `pecas/stl/`, `pecas/3mf/` | Peças iguais em mais de um robô, já na posição de impressão |
-| `legado/` | Peças comuns da versão 1.0.2 que nenhum robô usa mais (veja o [LEIA-ME](legado/LEIA-ME.md)) |
 
 ## Peças comuns e quem usa
 
