@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Before and after: the capybara and dinosaur beside the reference drawing — robos-impressos</title>
-<meta name="description" content="The robos-impressos capybara and dinosaur before (v1.0.2) and after (v1.1.2), beside the reference drawing: images from the same views, similarity measure per view (IoU), ceiling, target, and what changed in the skeleton.">
+<title>Before and after: the capybara, the dinosaur, and the square robot next to the reference drawing — robos-impressos</title>
+<meta name="description" content="The capybara, the dinosaur, and the square desktop robot from robos-impressos before (v1.0.2) and after (v1.1.2), next to the reference drawing: images from the same views, similarity measurement by view (IoU), ceiling, target, what changed inside, and the old banner next to the new one.">
 <link rel="alternate" hreflang="pt-BR" href="https://inematds.github.io/robos-impressos/guia/evolucao/">
 <link rel="alternate" hreflang="en" href="https://inematds.github.io/robos-impressos/guia/en/evolucao/">
 <link rel="alternate" hreflang="es" href="https://inematds.github.io/robos-impressos/guia/es/evolucao/">
@@ -169,6 +169,16 @@
   .tabela.cartoes td:first-child{font-weight:600;font-size:1rem;padding-bottom:6px}
 }
 
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.bn{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:22px}
+.trio figure,.bn figure{margin:0;min-width:0}
+.trio img,.bn img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line);background:#e9e9ee}
+.trio figcaption,.bn figcaption{font-size:.86rem;color:var(--mut);margin-top:6px;text-align:center}
+.trio figcaption b,.bn figcaption b{font-family:Sora;color:var(--txt)}
+.bn figcaption{text-align:left;font-size:.9rem;line-height:1.5}
+@media(max-width:860px){.bn{grid-template-columns:1fr}}
+@media(max-width:560px){.trio{gap:6px}.trio img{border-radius:8px}.trio figcaption{font-size:.76rem;line-height:1.35}}
+
 .par{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .par figure,.ref,.regua figure{margin:0}
 .par img,.ref img,.regua img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line);background:#e9e9ee}
@@ -176,7 +186,7 @@
 .par figcaption b,.regua figcaption b{font-family:Sora;color:var(--txt)}
 .par.capa{gap:0}.par.capa div{position:relative}.par.capa img{border:0;border-radius:0}
 .par.capa span{position:absolute;left:10px;top:10px;background:rgba(12,12,16,.78);color:#fff;font:600 .78rem Sora,sans-serif;padding:.25em .6em;border-radius:8px}
-.vistas{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.vistas{display:grid;grid-template-columns:1fr;gap:16px;max-width:980px}
 .vista h4{font-family:Sora;font-size:1rem;margin:0 0 10px}
 .ref{max-width:720px}.ref figcaption{font-size:.82rem;color:var(--mut);margin-top:8px}
 .regua{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
@@ -188,7 +198,9 @@
 .bicho .numero b{font-size:1.9rem}
 .lista{color:var(--mut)}
 #quadrados .cta{display:flex;gap:12px;flex-wrap:wrap}
-@media(max-width:860px){.vistas,.regua{grid-template-columns:1fr}}
+.regua.uma{grid-template-columns:1fr;max-width:980px}
+@media(max-width:860px){.regua{grid-template-columns:1fr}}
+@media(max-width:560px){.vista.card{padding-left:12px;padding-right:12px}}
 </style>
 </head>
 <body>
@@ -205,6 +217,7 @@
     <a class="sec" href="#ler">How to read the number</a>
     <a class="sec" href="#capivara">Capybara</a>
     <a class="sec" href="#dino">Dinosaur</a>
+    <a class="sec" href="#cubo">Square robot</a>
     <a class="sec" href="#metodo">Method</a>
     <span class="lang"><a href="../../evolucao/">PT</a><a class="on" href="./">EN</a><a href="../../es/evolucao/">ES</a></span>
     <button class="tgl" id="themeToggle" aria-label="Switch light/dark theme" title="Switch light/dark theme">🌙</button>
@@ -218,7 +231,7 @@
     <div>
       <span class="chip">Drawing evolution · v1.0.2 → v1.1.2</span>
       <h1>Did the robot become <span class="amb">more like the drawing</span>? See each view, with a number</h1>
-      <p class="lead">You choose a robot by how it looks. But between the drawing and the printed part come the motor, battery, and screw, and the little guy may turn out quite different from what you saw: in the first version, the capybara came out with a long neck. Here you can see the capybara and the dinosaur before and after, alongside the reference drawing, and learn to read the ruler that measures how closely they match.</p>
+      <p class="lead">You choose a robot by how it looks. But between the drawing and the printed part, motors, batteries, and screws come into play, and the robot can turn out very different from what you saw: in the first version, the capybara came out with a long neck. Here you can see the capybara, the dinosaur, and the square desktop robot before and after, next to the reference drawing, and learn to read the ruler that measures how much they came closer.</p>
       <div class="cta">
         <a class="btn" href="#capivara">See the capybara</a>
         <a class="btn ghost" href="#dino">See the dinosaur</a>
@@ -237,8 +250,16 @@
 
 <section id="resumo" class="resumo"><div class="wrap">
   <span class="chip">In brief</span>
-  <p>The two creatures in robos-impressos started from a reference drawing. In version 1.0.2, the shell was drawn with simple rounded shapes over a skeleton shared by both, and the result looked far from the drawing. In version 1.1.2, the shape began to come from a 3D mesh generated on the computer from the drawing itself, and each creature’s skeleton was redesigned to fit inside it. To find out whether it really improved, and not just by eye, the project measures the robot’s outline against the drawing’s outline, view by view. The capybara went from 0.777 to 0.920, and the dinosaur from 0.814 to 0.872, on a scale from 0 to 1. This page shows the images, the numbers, and what the number cannot see.</p>
-  <p class="nota">The robot images are renders: computer images made from the print files. The reference drawing is an illustration and appears here only for comparison. The other robots and their individual pages are in the <a href="../">general robots guide</a>.</p>
+  <p>The robos-impressos robots started from a reference drawing. In version 1.0.2, the shells of both animals were made from simple rounded shapes, over a skeleton shared by both, and the result was far from the drawing. In version 1.1.2, the animals’ shapes started coming from a 3D mesh generated on the computer from the drawing itself, and each skeleton was redesigned to fit inside it. The square desktop robot was redesigned without a mesh. To find out whether it really improved, and not just by eye, the project measures the robot’s outline against the drawing’s outline, view by view. The capybara went from 0.777 to 0.920, the dinosaur from 0.814 to 0.872, and the square robot from 0.755 to 0.797, on a scale from 0 to 1. Both animals passed their target; the square robot improved, but remained below its target. This page shows the images, the numbers, and what the number cannot see.</p>
+  <p class="nota">The robot images are renders: computer images made from the print files. The reference drawings are the images the project started from, and appear here only for comparison. The other robots and their individual pages are at <a href="../">general robots guide</a>.</p>
+</div></section>
+
+<section id="banner"><div class="wrap">
+  <span class="chip">The banner</span>
+  <h2>The banner changed too: from illustration to render</h2>
+  <p class="sub">The banner is the guide’s first image. The old one did not show the project’s robots; the new one comes from the same models that generate the parts.</p>
+  <div class="bn"><figure><a href="../../evolucao/assets/banner-antes-en.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../../evolucao/assets/banner-antes-en.jpg" alt="Old banner from version 1.0.2: illustration of a green dinosaur, an orange capybara, and a white robot with arms and legs, next to a 3D printer"></a><figcaption><b>Before (v1.0.2)</b>: AI-generated illustration. It did not come from the project models and got the limbs wrong: the square robot appears with arms and legs it never had, the capybara without its hands on its belly, and the dinosaur with a body and limbs that differ from the model.</figcaption></figure><figure><a href="../../assets/banner-en.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../../assets/banner-en.jpg" alt="New banner: render of the project’s four robots on a wooden table: dinosaur, capybara, square desktop robot, and square robot on wheels"></a><figcaption><b>After (v1.1.2)</b>: render of the project’s 3D models, the same ones that generate the files you print. All four robots appear as they are.</figcaption></figure></div>
+  <p class="nota">Tap the image to enlarge. The old banner had a different illustration in each language: in the English version, the dinosaur was shown standing on all four legs. Neither banner is a photo: nothing has been printed yet.</p>
 </div></section>
 
 <section id="ler"><div class="wrap">
@@ -258,14 +279,14 @@
     </div>
     <div class="grid">
       <div class="card"><h3>The scale goes from 0 to 1</h3><p>At 1, the two outlines are identical. At 0, they do not touch at all. On this page, 0.777 is the long-necked capybara, and 0.920 is the capybara whose differences remain along the edge and the bandana bow.</p></div>
-      <div class="card"><h3>What the ruler sees</h3><p>Only the outline, from four views. Before comparing, both silhouettes are set to the same height, their bases are placed on the same line, and their centers are aligned. The robot’s actual size is not part of the calculation.</p></div>
+      <div class="card"><h3>What the ruler sees</h3><p>Only the outline, in each drawing view: four for the animals, one for the square robot. Before comparing, both silhouettes are given the same height, their bases are placed on the same line, and their centers are aligned. The robot’s actual size is not part of the calculation.</p></div>
     </div>
   </div>
   <div class="grid g2" style="margin-top:16px">
     <div class="card"><h3>What the ruler doesn't see</h3><p>Color, eyes, mouth, seams, holes, and everything inside the outline. Two robots that look very different from the front can have the same number. That is why the images are here: the number confirms what your eye sees; it does not replace it.</p></div>
     <div class="card"><h3>It's a thick ruler</h3><p>The exact camera used in the drawing is unknown. So the ruler starts from a chosen angle for each view, tests nearby angles (up to 25° on either side, in steps of 5°), and keeps the best one. This accounts for a camera mismatch, but it can also hide small differences. One or two thousandths are noise; you can see a large difference in the images.</p></div>
-    <div class="card"><h3>The ceiling</h3><p>It’s the raw 3D mesh, generated on the computer from the drawing and measured with the same ruler. It doesn’t even reach 1: the capybara’s score is 0.926 and the dinosaur’s is 0.897. The robot still has wheels, cutouts, and gaps: as a rule, it stays below the ceiling.</p></div>
-    <div class="card"><h3>The target</h3><p>It was set before measuring the result, so no one could choose the target after seeing the outcome: halfway between the before and the ceiling. This rule applies to the average across the four views. The target for each view, shown in the tables, is the same calculation applied to that view.</p></div>
+    <div class="card"><h3>The ceiling</h3><p>It is the raw 3D mesh, generated on the computer from the drawing and measured with the same ruler. Even it does not reach 1: the capybara’s marks 0.926 and the dinosaur’s, 0.897. The robot still has wheels, cuts, and clearances: as a rule, it stays below the ceiling. The square robot had no mesh and therefore has no ceiling.</p></div>
+    <div class="card"><h3>The target</h3><p>It was set before measuring the after version, so no one could choose the goal by looking at the result: halfway between the before version and the ceiling. The rule applies to the average across views. The target for each view in the tables uses the same calculation for that view. Without a mesh, there is no ceiling: in that case, the target is 0.10 above the before value.</p></div>
   </div>
 </div></section>
 
@@ -283,13 +304,13 @@
   <h3 class="sep3">The reference drawing</h3>
   <p class="sub">It's the illustration the robot was based on, shown in four views. The ruler compares the robot with each one.</p>
   <figure class="ref"><a href="../../evolucao/assets/capivara-referencia.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../../evolucao/assets/capivara-referencia.jpg" alt="Reference drawing of the capybara in four views: front, three-quarter, side, and back. Orange pear-shaped body, brown snout, green bandana with a bow at the back of the neck, and a blue ring on the thigh"></a><figcaption>Project reference illustration. Not a photo or render.</figcaption></figure>
-  <h3 class="sep3">Before and after, in the same views</h3>
-  <p class="sub">Model renders, from the same camera, side by side. The IoU for each view is below its image.</p>
+  <h3 class="sep3">The drawing, the before, and the after, in the same views</h3>
+  <p class="sub">Each row has three images: the reference drawing in that view, the before render, and the after render, both from the same camera. The IoU for that view is below each render. Tap an image to enlarge.</p>
   <div class="vistas">
-    <div class="card vista"><h4>front</h4><div class="par"><figure><img loading="lazy" src="../../evolucao/assets/capivara-antes-frente.jpg" alt="Before render (v1.0.2), view: front"><figcaption>before · IoU <b>0.783</b></figcaption></figure><figure><img loading="lazy" src="../../evolucao/assets/capivara-depois-frente.jpg" alt="After render (v1.1.2), view: front"><figcaption>after · IoU <b>0.944</b></figcaption></figure></div></div>
-    <div class="card vista"><h4>three-quarter</h4><div class="par"><figure><img loading="lazy" src="../../evolucao/assets/capivara-antes-tres-quartos.jpg" alt="Before render (v1.0.2), view: three-quarter"><figcaption>before · IoU <b>0.784</b></figcaption></figure><figure><img loading="lazy" src="../../evolucao/assets/capivara-depois-tres-quartos.jpg" alt="After render (v1.1.2), view: three-quarter"><figcaption>after · IoU <b>0.908</b></figcaption></figure></div></div>
-    <div class="card vista"><h4>side</h4><div class="par"><figure><img loading="lazy" src="../../evolucao/assets/capivara-antes-lado.jpg" alt="Before render (v1.0.2), view: side"><figcaption>before · IoU <b>0.736</b></figcaption></figure><figure><img loading="lazy" src="../../evolucao/assets/capivara-depois-lado.jpg" alt="After render (v1.1.2), view: side"><figcaption>after · IoU <b>0.906</b></figcaption></figure></div></div>
-    <div class="card vista"><h4>back</h4><div class="par"><figure><img loading="lazy" src="../../evolucao/assets/capivara-antes-costas.jpg" alt="Before render (v1.0.2), view: back"><figcaption>before · IoU <b>0.803</b></figcaption></figure><figure><img loading="lazy" src="../../evolucao/assets/capivara-depois-costas.jpg" alt="After render (v1.1.2), view: back"><figcaption>after · IoU <b>0.925</b></figcaption></figure></div></div>
+    <div class="card vista"><h4>front</h4><div class="trio"><figure><a href="../../evolucao/assets/capivara-ref-frente.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../../evolucao/assets/capivara-ref-frente.jpg" alt="Reference drawing, view: front"></a><figcaption>drawing</figcaption></figure><figure><a href="../../evolucao/assets/capivara-antes-frente.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../../evolucao/assets/capivara-antes-frente.jpg" alt="Before render (v1.0.2), view: front"></a><figcaption>before · IoU <b>0.783</b></figcaption></figure><figure><a href="../../evolucao/assets/capivara-depois-frente.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../../evolucao/assets/capivara-depois-frente.jpg" alt="After render (v1.1.2), view: front"></a><figcaption>after · IoU <b>0.944</b></figcaption></figure></div></div>
+    <div class="card vista"><h4>three-quarter</h4><div class="trio"><figure><a href="../../evolucao/assets/capivara-ref-tres-quartos.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../../evolucao/assets/capivara-ref-tres-quartos.jpg" alt="Reference drawing, view: three-quarter"></a><figcaption>drawing</figcaption></figure><figure><a href="../../evolucao/assets/capivara-antes-tres-quartos.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../../evolucao/assets/capivara-antes-tres-quartos.jpg" alt="Before render (v1.0.2), view: three-quarter"></a><figcaption>before · IoU <b>0.784</b></figcaption></figure><figure><a href="../../evolucao/assets/capivara-depois-tres-quartos.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../../evolucao/assets/capivara-depois-tres-quartos.jpg" alt="After render (v1.1.2), view: three-quarter"></a><figcaption>after · IoU <b>0.908</b></figcaption></figure></div></div>
+    <div class="card vista"><h4>side</h4><div class="trio"><figure><a href="../../evolucao/assets/capivara-ref-lado.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../../evolucao/assets/capivara-ref-lado.jpg" alt="Reference drawing, view: side"></a><figcaption>drawing</figcaption></figure><figure><a href="../../evolucao/assets/capivara-antes-lado.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../../evolucao/assets/capivara-antes-lado.jpg" alt="Before render (v1.0.2), view: side"></a><figcaption>before · IoU <b>0.736</b></figcaption></figure><figure><a href="../../evolucao/assets/capivara-depois-lado.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../../evolucao/assets/capivara-depois-lado.jpg" alt="After render (v1.1.2), view: side"></a><figcaption>after · IoU <b>0.906</b></figcaption></figure></div></div>
+    <div class="card vista"><h4>back</h4><div class="trio"><figure><a href="../../evolucao/assets/capivara-ref-costas.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../../evolucao/assets/capivara-ref-costas.jpg" alt="Reference drawing, view: back"></a><figcaption>drawing</figcaption></figure><figure><a href="../../evolucao/assets/capivara-antes-costas.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../../evolucao/assets/capivara-antes-costas.jpg" alt="Before render (v1.0.2), view: back"></a><figcaption>before · IoU <b>0.803</b></figcaption></figure><figure><a href="../../evolucao/assets/capivara-depois-costas.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../../evolucao/assets/capivara-depois-costas.jpg" alt="After render (v1.1.2), view: back"></a><figcaption>after · IoU <b>0.925</b></figcaption></figure></div></div>
   </div>
   <h3 class="sep3">The numbers, view by view</h3>
   <p class="arraste">↔ on your phone, drag the table sideways</p>
@@ -309,15 +330,15 @@
     <figure><a href="../../evolucao/assets/capivara-regua-antes.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../../evolucao/assets/capivara-regua-antes.jpg" alt="Similarity ruler, with the drawing, the model, and the silhouettes overlaid in each view: Before (v1.0.2)"></a><figcaption><b>Before (v1.0.2)</b></figcaption></figure>
     <figure><a href="../../evolucao/assets/capivara-regua-depois.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../../evolucao/assets/capivara-regua-depois.jpg" alt="Similarity ruler, with the drawing, the model, and the silhouettes overlaid in each view: After (v1.1.2)"></a><figcaption><b>After (v1.1.2)</b></figcaption></figure>
   </div>
-  <p class="nota">Tap the image to enlarge. The text inside these images is in Portuguese. In the middle model, the ruler paints the wheels over the shell; on the robot, they are hidden. The "adjusted" value is a second measurement with a small allowance for scale and position: the tables on this page use IoU without adjustment. The average written in the image title may differ from the table by 1 thousandth due to rounding.</p>
+  <p class="nota">Tap the image to enlarge. The text inside these images is in Portuguese. The “adjusted” value is a second measurement, allowing a small margin in scale and position: the tables on this page use IoU without adjustment. The average written in the image title may differ from the table by 1 thousandth due to rounding. In the middle model, the ruler paints the wheels over the shell; on the robot, they are hidden.</p>
   <h3 class="sep3">What changed inside, and why</h3>
   <div class="grid g2" style="margin-top:22px">
     <div class="card"><h3>The shape comes from the drawing</h3><p>Before, the shell was drawn with simple rounded shapes. Now a 3D mesh generated from the drawing has become the robot's skin: the shell is this skin with 2.4 mm walls, cut into pieces.</p></div>
-    <div class="card"><h3>A low skeleton, just for her</h3><p>In the old skeleton, shared by both animals, the neck joint was 185 mm above the floor: that is why the neck was long. In the new one, it was lowered to 150 mm, with the servo that turns the head lying on its side.</p></div>
+    <div class="card"><h3>A low skeleton, just for her</h3><p>In the old skeleton, shared by both animals, the neck joint was 185 mm above the ground: that is why the neck was long. In the new one, it was lowered to 150 mm, with the servo that turns the head placed crosswise in the body: its case sits sideways, while the shaft still points upward.</p></div>
     <div class="card"><h3>Support at the front</h3><p>The head is large and sits at the front, and the weight went with it: the center of mass falls in front of the wheel axis. The support ball, which used to be a single one at the back, became two at the front, under the paws.</p></div>
     <div class="card"><h3>Shell printed in vases</h3><p>The torso in two halves, with separate legs and rear, gave way to three large pieces: the whole body, rear door, and collar. Each has a flat base on the build plate and walls that rise close to vertical, so it prints with almost no supports. The collar is the green bandana itself.</p></div>
   </div>
-  <p class="nota">What still separates the capybara from the drawing: the bandana knot at the back of the neck, which was left out because the head, when tilted upward, passes through its spot, and the flat facet left there. The shopping list, files, and assembly instructions are on the <a href="../capivara/">capybara page</a>.</p>
+  <p class="nota">What still separates the capybara from the drawing: the bandana bow at the back of the neck, which was left out because the head, when tilted upward, passes through its place; the flat facet left there; and the edge of the collar-bandana, hands, and apron, which is smooth in the drawing but comes out in steps (jagged) in the model, a known limitation of the mesh cut that the outline does not measure. The shopping list, files, and assembly instructions are at <a href="../capivara/">capybara page</a>.</p>
 </div></section>
 
 <section id="dino" class="bicho"><div class="wrap">
@@ -334,13 +355,13 @@
   <h3 class="sep3">The reference drawing</h3>
   <p class="sub">It's the illustration the robot was based on, shown in four views. The ruler compares the robot with each one.</p>
   <figure class="ref"><a href="../../evolucao/assets/dino-referencia.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../../evolucao/assets/dino-referencia.jpg" alt="Reference drawing of the dinosaur in four views: front, two three-quarter angles, and side. Green body, cream belly, large blue eyes, blue spikes on the back, and tail"></a><figcaption>Project reference illustration. Not a photo or render.</figcaption></figure>
-  <h3 class="sep3">Before and after, in the same views</h3>
-  <p class="sub">Model renders, from the same camera, side by side. The IoU for each view is below its image.</p>
+  <h3 class="sep3">The drawing, the before, and the after, in the same views</h3>
+  <p class="sub">Each row has three images: the reference drawing in that view, the before render, and the after render, both from the same camera. The IoU for that view is below each render. Tap an image to enlarge.</p>
   <div class="vistas">
-    <div class="card vista"><h4>front</h4><div class="par"><figure><img loading="lazy" src="../../evolucao/assets/dino-antes-frente.jpg" alt="Before render (v1.0.2), view: front"><figcaption>before · IoU <b>0.875</b></figcaption></figure><figure><img loading="lazy" src="../../evolucao/assets/dino-depois-frente.jpg" alt="After render (v1.1.2), view: front"><figcaption>after · IoU <b>0.910</b></figcaption></figure></div></div>
-    <div class="card vista"><h4>three-quarter (a)</h4><div class="par"><figure><img loading="lazy" src="../../evolucao/assets/dino-antes-tres-quartos-a.jpg" alt="Before render (v1.0.2), view: three-quarter (a)"><figcaption>before · IoU <b>0.808</b></figcaption></figure><figure><img loading="lazy" src="../../evolucao/assets/dino-depois-tres-quartos-a.jpg" alt="After render (v1.1.2), view: three-quarter (a)"><figcaption>after · IoU <b>0.874</b></figcaption></figure></div></div>
-    <div class="card vista"><h4>three-quarter (b)</h4><div class="par"><figure><img loading="lazy" src="../../evolucao/assets/dino-antes-tres-quartos-b.jpg" alt="Before render (v1.0.2), view: three-quarter (b)"><figcaption>before · IoU <b>0.787</b></figcaption></figure><figure><img loading="lazy" src="../../evolucao/assets/dino-depois-tres-quartos-b.jpg" alt="After render (v1.1.2), view: three-quarter (b)"><figcaption>after · IoU <b>0.862</b></figcaption></figure></div></div>
-    <div class="card vista"><h4>side</h4><div class="par"><figure><img loading="lazy" src="../../evolucao/assets/dino-antes-lado.jpg" alt="Before render (v1.0.2), view: side"><figcaption>before · IoU <b>0.786</b></figcaption></figure><figure><img loading="lazy" src="../../evolucao/assets/dino-depois-lado.jpg" alt="After render (v1.1.2), view: side"><figcaption>after · IoU <b>0.842</b></figcaption></figure></div></div>
+    <div class="card vista"><h4>front</h4><div class="trio"><figure><a href="../../evolucao/assets/dino-ref-frente.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../../evolucao/assets/dino-ref-frente.jpg" alt="Reference drawing, view: front"></a><figcaption>drawing</figcaption></figure><figure><a href="../../evolucao/assets/dino-antes-frente.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../../evolucao/assets/dino-antes-frente.jpg" alt="Before render (v1.0.2), view: front"></a><figcaption>before · IoU <b>0.875</b></figcaption></figure><figure><a href="../../evolucao/assets/dino-depois-frente.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../../evolucao/assets/dino-depois-frente.jpg" alt="After render (v1.1.2), view: front"></a><figcaption>after · IoU <b>0.910</b></figcaption></figure></div></div>
+    <div class="card vista"><h4>three-quarter (a)</h4><div class="trio"><figure><a href="../../evolucao/assets/dino-ref-tres-quartos-a.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../../evolucao/assets/dino-ref-tres-quartos-a.jpg" alt="Reference drawing, view: three-quarter (a)"></a><figcaption>drawing</figcaption></figure><figure><a href="../../evolucao/assets/dino-antes-tres-quartos-a.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../../evolucao/assets/dino-antes-tres-quartos-a.jpg" alt="Before render (v1.0.2), view: three-quarter (a)"></a><figcaption>before · IoU <b>0.808</b></figcaption></figure><figure><a href="../../evolucao/assets/dino-depois-tres-quartos-a.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../../evolucao/assets/dino-depois-tres-quartos-a.jpg" alt="After render (v1.1.2), view: three-quarter (a)"></a><figcaption>after · IoU <b>0.874</b></figcaption></figure></div></div>
+    <div class="card vista"><h4>three-quarter (b)</h4><div class="trio"><figure><a href="../../evolucao/assets/dino-ref-tres-quartos-b.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../../evolucao/assets/dino-ref-tres-quartos-b.jpg" alt="Reference drawing, view: three-quarter (b)"></a><figcaption>drawing</figcaption></figure><figure><a href="../../evolucao/assets/dino-antes-tres-quartos-b.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../../evolucao/assets/dino-antes-tres-quartos-b.jpg" alt="Before render (v1.0.2), view: three-quarter (b)"></a><figcaption>before · IoU <b>0.787</b></figcaption></figure><figure><a href="../../evolucao/assets/dino-depois-tres-quartos-b.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../../evolucao/assets/dino-depois-tres-quartos-b.jpg" alt="After render (v1.1.2), view: three-quarter (b)"></a><figcaption>after · IoU <b>0.862</b></figcaption></figure></div></div>
+    <div class="card vista"><h4>side</h4><div class="trio"><figure><a href="../../evolucao/assets/dino-ref-lado.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../../evolucao/assets/dino-ref-lado.jpg" alt="Reference drawing, view: side"></a><figcaption>drawing</figcaption></figure><figure><a href="../../evolucao/assets/dino-antes-lado.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../../evolucao/assets/dino-antes-lado.jpg" alt="Before render (v1.0.2), view: side"></a><figcaption>before · IoU <b>0.786</b></figcaption></figure><figure><a href="../../evolucao/assets/dino-depois-lado.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../../evolucao/assets/dino-depois-lado.jpg" alt="After render (v1.1.2), view: side"></a><figcaption>after · IoU <b>0.842</b></figcaption></figure></div></div>
   </div>
   <h3 class="sep3">The numbers, view by view</h3>
   <p class="arraste">↔ on your phone, drag the table sideways</p>
@@ -359,7 +380,7 @@
     <figure><a href="../../evolucao/assets/dino-regua-antes.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../../evolucao/assets/dino-regua-antes.jpg" alt="Similarity ruler, with the drawing, the model, and the silhouettes overlaid in each view: Before (v1.0.2)"></a><figcaption><b>Before (v1.0.2)</b></figcaption></figure>
     <figure><a href="../../evolucao/assets/dino-regua-depois.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../../evolucao/assets/dino-regua-depois.jpg" alt="Similarity ruler, with the drawing, the model, and the silhouettes overlaid in each view: After (v1.1.2)"></a><figcaption><b>After (v1.1.2)</b></figcaption></figure>
   </div>
-  <p class="nota">Tap the image to enlarge. The text inside these images is in Portuguese. In the middle model, the ruler paints the wheels over the shell; on the robot, they are hidden. The "adjusted" value is a second measurement with a small allowance for scale and position: the tables on this page use IoU without adjustment. The average written in the image title may differ from the table by 1 thousandth due to rounding.</p>
+  <p class="nota">Tap the image to enlarge. The text inside these images is in Portuguese. The “adjusted” value is a second measurement, allowing a small margin in scale and position: the tables on this page use IoU without adjustment. The average written in the image title may differ from the table by 1 thousandth due to rounding. In the middle model, the ruler paints the wheels over the shell; on the robot, they are hidden.</p>
   <h3 class="sep3">What changed inside, and why</h3>
   <div class="grid g2" style="margin-top:22px">
     <div class="card"><h3>The shape comes from the drawing</h3><p>As with the capybara, the shell is no longer drawn with simple shapes: it is the skin of the 3D mesh generated from the drawing, with 2.4 mm walls, cut into pieces.</p></div>
@@ -367,25 +388,64 @@
     <div class="card"><h3>Support at the back and a shorter neck</h3><p>The center of mass is behind the wheel axis, so the support ball is at the back, under the base of the tail. The neck joint was lowered from 185 to 164 mm above the floor, so the neck would be short like in the drawing.</p></div>
     <div class="card"><h3>Shell printed in vases and an almost straight mouth</h3><p>The body, back, and collar print upright, with the flat edge on the build plate, instead of the torso in two halves. The mesh had an open mouth: the gap was closed, and the mouth opens 12°. The jaw sits flush against the neck sphere, and each extra degree would make the chin move back against it.</p></div>
   </div>
-  <p class="nota">What still separates the dinosaur from the mesh: the closed mouth, the straight band between the legs, and the smooth arms. The shopping list, files, and assembly instructions are on the <a href="../dino/">dinosaur page</a>.</p>
+  <p class="nota">What still separates the dinosaur from the drawing: the closed mouth, the straight band between the legs, and the smooth arms. The shopping list, files, and assembly instructions are at <a href="../dino/">dinosaur page</a>.</p>
+</div></section>
+
+<section id="cubo" class="bicho"><div class="wrap">
+  <span class="chip">🤖 Square desktop robot</span>
+  <h2>Square robot: dark face, rounded corners, and a base that is still too tall</h2>
+  <p class="sub">The square robot reference is a single, small, dimensioned image in three-quarter view. That is why it is measured in one view and has no mesh.</p>
+  <div class="grid g3">
+    <div class="card numero"><b>0.755</b><span>before (v1.0.2), in one view</span></div>
+    <div class="card numero"><b>0.797</b><span>after (v1.1.2)</span></div>
+    <div class="card numero"><b>0.855</b><span>target: 0.10 above the before value</span></div>
+  </div>
+  <p class="nota"><strong>Target not reached.</strong> With the pan servo upright and the gear on top of it, the base cannot be lower than about 60 mm. In the drawing, the base and neck make up 20% of the height; in the robot, 41%.</p>
+  <h3 class="sep3">The drawing, the before, and the after, in the same views</h3>
+  <p class="sub">Each row has three images: the reference drawing in that view, the before render, and the after render, both from the same camera. The IoU for that view is below each render. Tap an image to enlarge.</p>
+  <div class="vistas">
+    <div class="card vista"><h4>three-quarter</h4><div class="trio"><figure><a href="../../evolucao/assets/cubo-ref-tres-quartos.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../../evolucao/assets/cubo-ref-tres-quartos.jpg" alt="Reference drawing, view: three-quarter"></a><figcaption>drawing</figcaption></figure><figure><a href="../../evolucao/assets/cubo-antes-tres-quartos.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../../evolucao/assets/cubo-antes-tres-quartos.jpg" alt="Before render (v1.0.2), view: three-quarter"></a><figcaption>before · IoU <b>0.755</b></figcaption></figure><figure><a href="../../evolucao/assets/cubo-depois-tres-quartos.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../../evolucao/assets/cubo-depois-tres-quartos.jpg" alt="After render (v1.1.2), view: three-quarter"></a><figcaption>after · IoU <b>0.797</b></figcaption></figure></div></div>
+  </div>
+  <h3 class="sep3">The numbers, view by view</h3>
+  <p class="arraste">↔ on your phone, drag the table sideways</p>
+  <div class="tabela-wrap"><table class="tabela">
+    <thead><tr><th>View</th><th>Before (v1.0.2)</th><th>After (v1.1.2)</th><th>Ceiling</th><th>Target</th><th>Gain</th></tr></thead>
+    <tbody>
+      <tr><td>three-quarter</td><td>0.755</td><td>0.797</td><td>—</td><td>0.855</td><td>+0.042</td></tr>
+    </tbody></table></div>
+  <p class="nota">This robot had no mesh: there is no ceiling, and the target is 0.10 above the before value.</p>
+  <h3 class="sep3">The ruler, side by side</h3>
+  <p class="sub">This is the image saved by the measurement program. Each row is a view: the reference drawing on the left, the model in the camera view selected by the ruler in the middle, and the two silhouettes overlaid on the right. Red is what only the drawing has, blue is what only the robot has, and green is what they share.</p>
+  <div class="regua uma">
+    <figure><a href="../../evolucao/assets/cubo-regua-antes.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../../evolucao/assets/cubo-regua-antes.jpg" alt="Similarity ruler, with the drawing, the model, and the silhouettes overlaid in each view: Before (v1.0.2)"></a><figcaption><b>Before (v1.0.2)</b></figcaption></figure>
+    <figure><a href="../../evolucao/assets/cubo-regua-depois.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../../evolucao/assets/cubo-regua-depois.jpg" alt="Similarity ruler, with the drawing, the model, and the silhouettes overlaid in each view: After (v1.1.2)"></a><figcaption><b>After (v1.1.2)</b></figcaption></figure>
+  </div>
+  <p class="nota">Tap the image to enlarge. The text inside these images is in Portuguese. The “adjusted” value is a second measurement, allowing a small margin in scale and position: the tables on this page use IoU without adjustment. The average written in the image title may differ from the table by 1 thousandth due to rounding.</p>
+  <h3 class="sep3">What changed inside, and why</h3>
+  <div class="grid g2" style="margin-top:22px">
+    <div class="card"><h3>Dark face, as in the reference</h3><p>The front of the head is a single dark panel, fitted into the head, with the screen and camera behind it. The eyes and mouth shown in the render are the image on the active screen, not a separate part.</p></div>
+    <div class="card"><h3>The fork moved inside the head</h3><p>In the previous version, the head was held by a fork on the outside, with the servo horn exposed. Now the fork sits inside the head, at the top of the neck tube, and no mechanism is visible from the outside.</p></div>
+    <div class="card"><h3>No screws on the front or top</h3><p>The base cover is secured from below, and the head and battery door from behind. The switch and the charger's USB-C port are also at the back.</p></div>
+    <div class="card"><h3>Rounded corners and a lower base</h3><p>The edges of the head are rounded, as in the reference drawing, and the base is lower and wider. Even so, it is still too tall for the drawing: the height of the base is what keeps the number from going higher.</p></div>
+  </div>
+  <p class="nota">What still separates the square robot from the drawing: the height of the base and neck. The shopping list, files, and assembly instructions are on the <a href="../cubo/">square desktop robot page</a>.</p>
 </div></section>
 
 <section id="metodo"><div class="wrap">
   <span class="chip">Method</span>
   <h2>How the measurement works</h2>
   <p class="sub">The protocol is the same for the before, after, and mesh. If the ruler changed midway, the numbers would not be comparable.</p>
-  <ol class="lista"><li>Each drawing view becomes a silhouette: the character cut out from the background.</li><li>The model is drawn without perspective, using only the printed parts, wheels, and support ball, in the neutral pose and without the phase 2 components.</li><li>Both silhouettes have the same height (400 pixels), their bases on the same line, and their centers aligned.</li><li>The ruler starts at the agreed angle for the view, tests nearby angles (25° in either direction, in 5° increments, and five camera heights), and keeps the highest IoU.</li><li>Each creature's number is the simple average of its views.</li></ol>
+  <ol class="lista"><li>Each view of the drawing becomes a silhouette: the character cut out from the background.</li><li>The model is drawn without perspective, using only the printed parts, wheels, and support ball, in a neutral pose and without the phase 2 components.</li><li>Both silhouettes have the same height (400 pixels), the base is on the same line, and their centers are aligned.</li><li>The ruler starts from the agreed angle for the view, tests nearby angles (25° on either side, in 5° steps, and five camera heights), and keeps the highest IoU.</li><li>Each robot's score is the simple average of the measured views.</li></ol>
   <p class="nota">Dinosaur: the target is 0.855. The calculation uses the unrounded values (0.8137 and 0.8972). Using the already rounded numbers from the tables (0.814 and 0.897), it would give 0.856: the difference is only due to rounding.</p>
   <p class="nota">The numbers come from <code>comparacao/semelhanca.json</code>, saved by the program <code>comum/cad/comparar.py</code>. The full table, with the chosen angle for each view, is at <a href="https://github.com/inematds/robos-impressos/blob/main/comparacao/semelhanca.md" target="_blank" rel="noopener">comparacao/semelhanca.md</a> (in Portuguese).</p>
   <p class="nota">To repeat the measurement, the reference images are needed. They are not part of the repository: only the ones shown on this page have been published.</p>
 </div></section>
 
 <section id="quadrados"><div class="wrap">
-  <span class="chip">The other two robots</span>
-  <h2>The square robots have a score, but not this story</h2>
-  <p class="sub">The square desktop robot was measured in just one view and had no mesh: it came in at 0.797 (it was 0.755), below the target of 0.855. The square robot on wheels is new and has no drawing of its own. The number and explanation are on each one's page.</p>
+  <span class="chip">The fourth robot</span>
+  <h2>The square robot on wheels has a score, but not this story</h2>
+  <p class="sub">The square robot on wheels is new and has no drawing of its own. Its score compares it with the drawing of the square desktop robot and is not a target. The explanation is on its page.</p>
   <div class="cta">
-    <a class="btn ghost" href="../cubo/#semelhanca">Square desktop robot</a>
     <a class="btn ghost" href="../cubo-rodas/#semelhanca">Square robot on wheels</a>
     <a class="btn" href="../">Back to the four robots guide</a>
   </div>

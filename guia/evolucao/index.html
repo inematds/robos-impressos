@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Antes e depois: a capivara e o dinossauro ao lado do desenho de referência — robos-impressos</title>
-<meta name="description" content="A capivara e o dinossauro do robos-impressos antes (v1.0.2) e depois (v1.1.2), ao lado do desenho de referência: imagens nas mesmas vistas, medida de semelhança por vista (IoU), teto, alvo e o que mudou no esqueleto.">
+<title>Antes e depois: a capivara, o dinossauro e o robô quadrado ao lado do desenho de referência — robos-impressos</title>
+<meta name="description" content="A capivara, o dinossauro e o robô quadrado de mesa do robos-impressos antes (v1.0.2) e depois (v1.1.2), ao lado do desenho de referência: imagens nas mesmas vistas, medida de semelhança por vista (IoU), teto, alvo, o que mudou por dentro e o banner antigo ao lado do novo.">
 <link rel="alternate" hreflang="pt-BR" href="https://inematds.github.io/robos-impressos/guia/evolucao/">
 <link rel="alternate" hreflang="en" href="https://inematds.github.io/robos-impressos/guia/en/evolucao/">
 <link rel="alternate" hreflang="es" href="https://inematds.github.io/robos-impressos/guia/es/evolucao/">
@@ -169,6 +169,16 @@
   .tabela.cartoes td:first-child{font-weight:600;font-size:1rem;padding-bottom:6px}
 }
 
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.bn{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:22px}
+.trio figure,.bn figure{margin:0;min-width:0}
+.trio img,.bn img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line);background:#e9e9ee}
+.trio figcaption,.bn figcaption{font-size:.86rem;color:var(--mut);margin-top:6px;text-align:center}
+.trio figcaption b,.bn figcaption b{font-family:Sora;color:var(--txt)}
+.bn figcaption{text-align:left;font-size:.9rem;line-height:1.5}
+@media(max-width:860px){.bn{grid-template-columns:1fr}}
+@media(max-width:560px){.trio{gap:6px}.trio img{border-radius:8px}.trio figcaption{font-size:.76rem;line-height:1.35}}
+
 .par{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .par figure,.ref,.regua figure{margin:0}
 .par img,.ref img,.regua img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line);background:#e9e9ee}
@@ -176,7 +186,7 @@
 .par figcaption b,.regua figcaption b{font-family:Sora;color:var(--txt)}
 .par.capa{gap:0}.par.capa div{position:relative}.par.capa img{border:0;border-radius:0}
 .par.capa span{position:absolute;left:10px;top:10px;background:rgba(12,12,16,.78);color:#fff;font:600 .78rem Sora,sans-serif;padding:.25em .6em;border-radius:8px}
-.vistas{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.vistas{display:grid;grid-template-columns:1fr;gap:16px;max-width:980px}
 .vista h4{font-family:Sora;font-size:1rem;margin:0 0 10px}
 .ref{max-width:720px}.ref figcaption{font-size:.82rem;color:var(--mut);margin-top:8px}
 .regua{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
@@ -188,7 +198,9 @@
 .bicho .numero b{font-size:1.9rem}
 .lista{color:var(--mut)}
 #quadrados .cta{display:flex;gap:12px;flex-wrap:wrap}
-@media(max-width:860px){.vistas,.regua{grid-template-columns:1fr}}
+.regua.uma{grid-template-columns:1fr;max-width:980px}
+@media(max-width:860px){.regua{grid-template-columns:1fr}}
+@media(max-width:560px){.vista.card{padding-left:12px;padding-right:12px}}
 </style>
 </head>
 <body>
@@ -205,6 +217,7 @@
     <a class="sec" href="#ler">Como ler o número</a>
     <a class="sec" href="#capivara">Capivara</a>
     <a class="sec" href="#dino">Dinossauro</a>
+    <a class="sec" href="#cubo">Robô quadrado</a>
     <a class="sec" href="#metodo">Método</a>
     <span class="lang"><a class="on" href="./">PT</a><a href="../en/evolucao/">EN</a><a href="../es/evolucao/">ES</a></span>
     <button class="tgl" id="themeToggle" aria-label="Alternar tema claro/escuro" title="Alternar tema claro/escuro">🌙</button>
@@ -218,7 +231,7 @@
     <div>
       <span class="chip">Evolução do desenho · v1.0.2 → v1.1.2</span>
       <h1>O robô ficou <span class="amb">parecido com o desenho</span>? Veja vista por vista, com número</h1>
-      <p class="lead">Você escolhe um robô pela cara dele. Só que entre o desenho e a peça impressa entram motor, bateria e parafuso, e o bicho pode sair bem diferente do que você viu: na primeira versão, a capivara saiu de pescoço comprido. Aqui você vê a capivara e o dinossauro antes e depois, ao lado do desenho de referência, e aprende a ler a régua que mede o quanto eles se aproximaram.</p>
+      <p class="lead">Você escolhe um robô pela cara dele. Só que entre o desenho e a peça impressa entram motor, bateria e parafuso, e o robô pode sair bem diferente do que você viu: na primeira versão, a capivara saiu de pescoço comprido. Aqui você vê a capivara, o dinossauro e o robô quadrado de mesa antes e depois, ao lado do desenho de referência, e aprende a ler a régua que mede o quanto eles se aproximaram.</p>
       <div class="cta">
         <a class="btn" href="#capivara">Ver a capivara</a>
         <a class="btn ghost" href="#dino">Ver o dinossauro</a>
@@ -237,8 +250,16 @@
 
 <section id="resumo" class="resumo"><div class="wrap">
   <span class="chip">Em resumo</span>
-  <p>Os dois bichos do robos-impressos nasceram de um desenho de referência. Na versão 1.0.2 a casca era desenhada com formas arredondadas simples, por cima de um esqueleto comum aos dois, e o resultado ficou longe do desenho. Na versão 1.1.2 a forma passou a vir de uma malha 3D, gerada no computador a partir do próprio desenho, e o esqueleto de cada bicho foi refeito para caber dentro dela. Para saber se melhorou de verdade, e não só no olho, o projeto mede o contorno do robô contra o contorno do desenho, vista por vista. A capivara foi de 0,777 para 0,920 e o dinossauro, de 0,814 para 0,872, numa escala de 0 a 1. Esta página mostra as imagens, os números e também o que o número não enxerga.</p>
-  <p class="nota">As imagens do robô são renders: imagens de computador feitas a partir dos arquivos de impressão. O desenho de referência é uma ilustração e aparece aqui só para a comparação. Os outros robôs e as páginas de cada um estão no <a href="../">guia geral dos robôs</a>.</p>
+  <p>Os robôs do robos-impressos nasceram de um desenho de referência. Na versão 1.0.2 a casca dos dois bichos era desenhada com formas arredondadas simples, por cima de um esqueleto comum aos dois, e o resultado ficou longe do desenho. Na versão 1.1.2 a forma dos bichos passou a vir de uma malha 3D, gerada no computador a partir do próprio desenho, e o esqueleto de cada um foi refeito para caber dentro dela. O robô quadrado de mesa foi redesenhado sem malha. Para saber se melhorou de verdade, e não só no olho, o projeto mede o contorno do robô contra o contorno do desenho, vista por vista. A capivara foi de 0,777 para 0,920, o dinossauro, de 0,814 para 0,872, e o robô quadrado, de 0,755 para 0,797, numa escala de 0 a 1. Os dois bichos passaram do alvo; o robô quadrado melhorou, mas ficou abaixo do dele. Esta página mostra as imagens, os números e também o que o número não enxerga.</p>
+  <p class="nota">As imagens do robô são renders: imagens de computador feitas a partir dos arquivos de impressão. Os desenhos de referência são as imagens de onde o projeto partiu e aparecem aqui só para a comparação. Os outros robôs e as páginas de cada um estão no <a href="../">guia geral dos robôs</a>.</p>
+</div></section>
+
+<section id="banner"><div class="wrap">
+  <span class="chip">O banner</span>
+  <h2>O banner também mudou: de ilustração para render</h2>
+  <p class="sub">O banner é a primeira imagem do guia. O antigo não mostrava os robôs do projeto; o novo sai dos mesmos modelos que geram as peças.</p>
+  <div class="bn"><figure><a href="assets/banner-antes.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/banner-antes.jpg" alt="Banner antigo, da versão 1.0.2: ilustração de um dinossauro verde, uma capivara laranja e um robô branco de braços e pernas, ao lado de uma impressora 3D"></a><figcaption><b>Antes (v1.0.2)</b>: ilustração feita por IA. Não saiu dos modelos do projeto e errava os membros: o robô quadrado aparece com braços e pernas que ele nunca teve, a capivara sem as mãos na barriga e o dinossauro com corpo e membros diferentes dos do modelo.</figcaption></figure><figure><a href="../assets/banner.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../assets/banner.jpg" alt="Banner novo: render dos quatro robôs do projeto sobre uma mesa de madeira: dinossauro, capivara, robô quadrado de mesa e robô quadrado com rodas"></a><figcaption><b>Depois (v1.1.2)</b>: render dos modelos 3D do projeto, os mesmos que geram os arquivos que você imprime. Os quatro robôs aparecem como são.</figcaption></figure></div>
+  <p class="nota">Toque na imagem para ampliar. O banner antigo tinha uma ilustração diferente em cada idioma: na versão em inglês, o dinossauro aparecia apoiado em quatro patas. Nenhum dos dois banners é foto: nada foi impresso ainda.</p>
 </div></section>
 
 <section id="ler"><div class="wrap">
@@ -258,14 +279,14 @@
     </div>
     <div class="grid">
       <div class="card"><h3>A escala vai de 0 a 1</h3><p>Com 1, os dois contornos são idênticos. Com 0, eles nem se tocam. Nesta página, 0,777 é a capivara de pescoço comprido e 0,920 é a capivara em que a diferença ficou na borda e no laço da bandana.</p></div>
-      <div class="card"><h3>O que a régua vê</h3><p>Só o contorno, em quatro vistas. Antes de comparar, as duas silhuetas ficam com a mesma altura, a base na mesma linha e o centro alinhado. O tamanho real do robô não entra na conta.</p></div>
+      <div class="card"><h3>O que a régua vê</h3><p>Só o contorno, em cada vista do desenho: quatro nos bichos, uma no robô quadrado. Antes de comparar, as duas silhuetas ficam com a mesma altura, a base na mesma linha e o centro alinhado. O tamanho real do robô não entra na conta.</p></div>
     </div>
   </div>
   <div class="grid g2" style="margin-top:16px">
     <div class="card"><h3>O que a régua não vê</h3><p>Cor, olhos, boca, costuras, furos e tudo o que fica dentro do contorno. Dois robôs bem diferentes de frente podem ter o mesmo número. Por isso as imagens estão aqui: o número confirma o que o olho vê, não substitui.</p></div>
     <div class="card"><h3>É uma régua grossa</h3><p>A câmera exata do desenho não é conhecida. Então a régua parte de um ângulo combinado para cada vista, testa os ângulos vizinhos (até 25° para cada lado, de 5 em 5) e fica com o melhor. Isso perdoa um erro de câmera, mas também esconde diferença pequena. Um ou dois milésimos são ruído; diferença grande você enxerga nas imagens.</p></div>
-    <div class="card"><h3>O teto</h3><p>É a malha 3D crua, gerada no computador a partir do desenho e medida com a mesma régua. Nem ela chega a 1: a da capivara marca 0,926 e a do dinossauro, 0,897. O robô ainda tem rodas, cortes e folgas: em regra, fica abaixo do teto.</p></div>
-    <div class="card"><h3>O alvo</h3><p>Foi definido antes de medir o depois, para ninguém escolher a meta olhando o resultado: metade do caminho entre o antes e o teto. A regra vale para a média das quatro vistas. O alvo por vista, nas tabelas, é a mesma conta aplicada a cada vista.</p></div>
+    <div class="card"><h3>O teto</h3><p>É a malha 3D crua, gerada no computador a partir do desenho e medida com a mesma régua. Nem ela chega a 1: a da capivara marca 0,926 e a do dinossauro, 0,897. O robô ainda tem rodas, cortes e folgas: em regra, fica abaixo do teto. O robô quadrado não teve malha e, por isso, não tem teto.</p></div>
+    <div class="card"><h3>O alvo</h3><p>Foi definido antes de medir o depois, para ninguém escolher a meta olhando o resultado: metade do caminho entre o antes e o teto. A regra vale para a média das vistas. O alvo por vista, nas tabelas, é a mesma conta aplicada a cada vista. Sem malha não há teto: aí o alvo é 0,10 acima do antes.</p></div>
   </div>
 </div></section>
 
@@ -283,13 +304,13 @@
   <h3 class="sep3">O desenho de referência</h3>
   <p class="sub">É a ilustração de onde o robô partiu, em quatro vistas. A régua compara o robô com cada uma delas.</p>
   <figure class="ref"><a href="assets/capivara-referencia.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/capivara-referencia.jpg" alt="Desenho de referência da capivara em quatro vistas: frente, três quartos, lado e costas. Corpo laranja em forma de pera, focinho marrom, bandana verde com laço na nuca e um aro azul na coxa"></a><figcaption>Ilustração de referência do projeto. Não é foto nem render.</figcaption></figure>
-  <h3 class="sep3">Antes e depois, nas mesmas vistas</h3>
-  <p class="sub">Renders do modelo, na mesma câmera, lado a lado. Embaixo de cada imagem está o IoU daquela vista.</p>
+  <h3 class="sep3">O desenho, o antes e o depois, nas mesmas vistas</h3>
+  <p class="sub">Em cada linha, três imagens: o desenho de referência naquela vista, o render de antes e o render de depois, os dois na mesma câmera. Embaixo de cada render está o IoU daquela vista. Toque numa imagem para ampliar.</p>
   <div class="vistas">
-    <div class="card vista"><h4>frente</h4><div class="par"><figure><img loading="lazy" src="assets/capivara-antes-frente.jpg" alt="Render de antes (v1.0.2), vista: frente"><figcaption>antes · IoU <b>0,783</b></figcaption></figure><figure><img loading="lazy" src="assets/capivara-depois-frente.jpg" alt="Render de depois (v1.1.2), vista: frente"><figcaption>depois · IoU <b>0,944</b></figcaption></figure></div></div>
-    <div class="card vista"><h4>três quartos</h4><div class="par"><figure><img loading="lazy" src="assets/capivara-antes-tres-quartos.jpg" alt="Render de antes (v1.0.2), vista: três quartos"><figcaption>antes · IoU <b>0,784</b></figcaption></figure><figure><img loading="lazy" src="assets/capivara-depois-tres-quartos.jpg" alt="Render de depois (v1.1.2), vista: três quartos"><figcaption>depois · IoU <b>0,908</b></figcaption></figure></div></div>
-    <div class="card vista"><h4>lado</h4><div class="par"><figure><img loading="lazy" src="assets/capivara-antes-lado.jpg" alt="Render de antes (v1.0.2), vista: lado"><figcaption>antes · IoU <b>0,736</b></figcaption></figure><figure><img loading="lazy" src="assets/capivara-depois-lado.jpg" alt="Render de depois (v1.1.2), vista: lado"><figcaption>depois · IoU <b>0,906</b></figcaption></figure></div></div>
-    <div class="card vista"><h4>costas</h4><div class="par"><figure><img loading="lazy" src="assets/capivara-antes-costas.jpg" alt="Render de antes (v1.0.2), vista: costas"><figcaption>antes · IoU <b>0,803</b></figcaption></figure><figure><img loading="lazy" src="assets/capivara-depois-costas.jpg" alt="Render de depois (v1.1.2), vista: costas"><figcaption>depois · IoU <b>0,925</b></figcaption></figure></div></div>
+    <div class="card vista"><h4>frente</h4><div class="trio"><figure><a href="assets/capivara-ref-frente.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/capivara-ref-frente.jpg" alt="Desenho de referência, vista: frente"></a><figcaption>desenho</figcaption></figure><figure><a href="assets/capivara-antes-frente.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/capivara-antes-frente.jpg" alt="Render de antes (v1.0.2), vista: frente"></a><figcaption>antes · IoU <b>0,783</b></figcaption></figure><figure><a href="assets/capivara-depois-frente.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/capivara-depois-frente.jpg" alt="Render de depois (v1.1.2), vista: frente"></a><figcaption>depois · IoU <b>0,944</b></figcaption></figure></div></div>
+    <div class="card vista"><h4>três quartos</h4><div class="trio"><figure><a href="assets/capivara-ref-tres-quartos.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/capivara-ref-tres-quartos.jpg" alt="Desenho de referência, vista: três quartos"></a><figcaption>desenho</figcaption></figure><figure><a href="assets/capivara-antes-tres-quartos.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/capivara-antes-tres-quartos.jpg" alt="Render de antes (v1.0.2), vista: três quartos"></a><figcaption>antes · IoU <b>0,784</b></figcaption></figure><figure><a href="assets/capivara-depois-tres-quartos.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/capivara-depois-tres-quartos.jpg" alt="Render de depois (v1.1.2), vista: três quartos"></a><figcaption>depois · IoU <b>0,908</b></figcaption></figure></div></div>
+    <div class="card vista"><h4>lado</h4><div class="trio"><figure><a href="assets/capivara-ref-lado.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/capivara-ref-lado.jpg" alt="Desenho de referência, vista: lado"></a><figcaption>desenho</figcaption></figure><figure><a href="assets/capivara-antes-lado.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/capivara-antes-lado.jpg" alt="Render de antes (v1.0.2), vista: lado"></a><figcaption>antes · IoU <b>0,736</b></figcaption></figure><figure><a href="assets/capivara-depois-lado.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/capivara-depois-lado.jpg" alt="Render de depois (v1.1.2), vista: lado"></a><figcaption>depois · IoU <b>0,906</b></figcaption></figure></div></div>
+    <div class="card vista"><h4>costas</h4><div class="trio"><figure><a href="assets/capivara-ref-costas.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/capivara-ref-costas.jpg" alt="Desenho de referência, vista: costas"></a><figcaption>desenho</figcaption></figure><figure><a href="assets/capivara-antes-costas.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/capivara-antes-costas.jpg" alt="Render de antes (v1.0.2), vista: costas"></a><figcaption>antes · IoU <b>0,803</b></figcaption></figure><figure><a href="assets/capivara-depois-costas.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/capivara-depois-costas.jpg" alt="Render de depois (v1.1.2), vista: costas"></a><figcaption>depois · IoU <b>0,925</b></figcaption></figure></div></div>
   </div>
   <h3 class="sep3">Os números, vista por vista</h3>
   <p class="arraste">↔ no celular, arraste a tabela para o lado</p>
@@ -309,15 +330,15 @@
     <figure><a href="assets/capivara-regua-antes.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/capivara-regua-antes.jpg" alt="Régua de semelhança, com o desenho, o modelo e as silhuetas sobrepostas em cada vista: Antes (v1.0.2)"></a><figcaption><b>Antes (v1.0.2)</b></figcaption></figure>
     <figure><a href="assets/capivara-regua-depois.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/capivara-regua-depois.jpg" alt="Régua de semelhança, com o desenho, o modelo e as silhuetas sobrepostas em cada vista: Depois (v1.1.2)"></a><figcaption><b>Depois (v1.1.2)</b></figcaption></figure>
   </div>
-  <p class="nota">Toque na imagem para ampliar. O texto dentro destas imagens está em português. No modelo do meio, a régua pinta as rodas por cima da casca; no robô elas ficam escondidas. O valor "ajustado" é uma segunda medida, com uma pequena folga de escala e de posição: as tabelas desta página usam o IoU sem ajuste. A média escrita no título da imagem pode diferir da tabela em 1 milésimo, por arredondamento.</p>
+  <p class="nota">Toque na imagem para ampliar. O texto dentro destas imagens está em português. O valor "ajustado" é uma segunda medida, com uma pequena folga de escala e de posição: as tabelas desta página usam o IoU sem ajuste. A média escrita no título da imagem pode diferir da tabela em 1 milésimo, por arredondamento. No modelo do meio, a régua pinta as rodas por cima da casca; no robô elas ficam escondidas.</p>
   <h3 class="sep3">O que mudou por dentro, e por quê</h3>
   <div class="grid g2" style="margin-top:22px">
     <div class="card"><h3>A forma vem do desenho</h3><p>Antes, a casca era desenhada com formas arredondadas simples. Agora uma malha 3D gerada a partir do desenho virou a pele do robô: a casca é essa pele com 2,4 mm de parede, cortada em peças.</p></div>
-    <div class="card"><h3>Esqueleto baixo, só dela</h3><p>No esqueleto antigo, comum aos dois bichos, a junta do pescoço ficava a 185 mm do chão: daí o pescoço comprido. No novo ela desceu para 150 mm, com o servo que vira a cabeça deitado de lado.</p></div>
+    <div class="card"><h3>Esqueleto baixo, só dela</h3><p>No esqueleto antigo, comum aos dois bichos, a junta do pescoço ficava a 185 mm do chão: daí o pescoço comprido. No novo ela desceu para 150 mm, com o servo que vira a cabeça atravessado no corpo: a caixa dele fica de lado e o eixo continua apontando para cima.</p></div>
     <div class="card"><h3>Apoio na frente</h3><p>A cabeça é grande e fica à frente, e o peso foi junto: o centro de massa cai à frente do eixo das rodas. A esfera de apoio, que era uma só e ficava atrás, virou duas, na frente, sob as patas.</p></div>
     <div class="card"><h3>Casca em vasos</h3><p>O torso em duas metades, com pernas e traseiro separados, deu lugar a três peças grandes: corpo inteiro, porta traseira e gola. Cada uma tem a base plana na mesa e paredes que sobem perto da vertical, e por isso imprime quase sem suporte. A gola é a própria bandana verde.</p></div>
   </div>
-  <p class="nota">O que ainda separa a capivara do desenho: o laço da bandana na nuca, que ficou de fora porque a cabeça, ao inclinar para cima, passa pelo lugar dele, e a faceta chata que ficou ali. Lista de compras, arquivos e montagem estão na <a href="../capivara/">página da capivara</a>.</p>
+  <p class="nota">O que ainda separa a capivara do desenho: o laço da bandana na nuca, que ficou de fora porque a cabeça, ao inclinar para cima, passa pelo lugar dele; a faceta chata que ficou ali; e a borda da gola-bandana, das mãos e do avental, que no desenho é lisa e no modelo sai em degraus (serrilhada), uma limitação conhecida do corte da malha que o contorno não mede. Lista de compras, arquivos e montagem estão na <a href="../capivara/">página da capivara</a>.</p>
 </div></section>
 
 <section id="dino" class="bicho"><div class="wrap">
@@ -334,13 +355,13 @@
   <h3 class="sep3">O desenho de referência</h3>
   <p class="sub">É a ilustração de onde o robô partiu, em quatro vistas. A régua compara o robô com cada uma delas.</p>
   <figure class="ref"><a href="assets/dino-referencia.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/dino-referencia.jpg" alt="Desenho de referência do dinossauro em quatro vistas: frente, dois ângulos de três quartos e lado. Corpo verde, barriga creme, olhos azuis grandes, espinhos azuis nas costas e cauda"></a><figcaption>Ilustração de referência do projeto. Não é foto nem render.</figcaption></figure>
-  <h3 class="sep3">Antes e depois, nas mesmas vistas</h3>
-  <p class="sub">Renders do modelo, na mesma câmera, lado a lado. Embaixo de cada imagem está o IoU daquela vista.</p>
+  <h3 class="sep3">O desenho, o antes e o depois, nas mesmas vistas</h3>
+  <p class="sub">Em cada linha, três imagens: o desenho de referência naquela vista, o render de antes e o render de depois, os dois na mesma câmera. Embaixo de cada render está o IoU daquela vista. Toque numa imagem para ampliar.</p>
   <div class="vistas">
-    <div class="card vista"><h4>frente</h4><div class="par"><figure><img loading="lazy" src="assets/dino-antes-frente.jpg" alt="Render de antes (v1.0.2), vista: frente"><figcaption>antes · IoU <b>0,875</b></figcaption></figure><figure><img loading="lazy" src="assets/dino-depois-frente.jpg" alt="Render de depois (v1.1.2), vista: frente"><figcaption>depois · IoU <b>0,910</b></figcaption></figure></div></div>
-    <div class="card vista"><h4>três quartos (a)</h4><div class="par"><figure><img loading="lazy" src="assets/dino-antes-tres-quartos-a.jpg" alt="Render de antes (v1.0.2), vista: três quartos (a)"><figcaption>antes · IoU <b>0,808</b></figcaption></figure><figure><img loading="lazy" src="assets/dino-depois-tres-quartos-a.jpg" alt="Render de depois (v1.1.2), vista: três quartos (a)"><figcaption>depois · IoU <b>0,874</b></figcaption></figure></div></div>
-    <div class="card vista"><h4>três quartos (b)</h4><div class="par"><figure><img loading="lazy" src="assets/dino-antes-tres-quartos-b.jpg" alt="Render de antes (v1.0.2), vista: três quartos (b)"><figcaption>antes · IoU <b>0,787</b></figcaption></figure><figure><img loading="lazy" src="assets/dino-depois-tres-quartos-b.jpg" alt="Render de depois (v1.1.2), vista: três quartos (b)"><figcaption>depois · IoU <b>0,862</b></figcaption></figure></div></div>
-    <div class="card vista"><h4>lado</h4><div class="par"><figure><img loading="lazy" src="assets/dino-antes-lado.jpg" alt="Render de antes (v1.0.2), vista: lado"><figcaption>antes · IoU <b>0,786</b></figcaption></figure><figure><img loading="lazy" src="assets/dino-depois-lado.jpg" alt="Render de depois (v1.1.2), vista: lado"><figcaption>depois · IoU <b>0,842</b></figcaption></figure></div></div>
+    <div class="card vista"><h4>frente</h4><div class="trio"><figure><a href="assets/dino-ref-frente.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/dino-ref-frente.jpg" alt="Desenho de referência, vista: frente"></a><figcaption>desenho</figcaption></figure><figure><a href="assets/dino-antes-frente.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/dino-antes-frente.jpg" alt="Render de antes (v1.0.2), vista: frente"></a><figcaption>antes · IoU <b>0,875</b></figcaption></figure><figure><a href="assets/dino-depois-frente.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/dino-depois-frente.jpg" alt="Render de depois (v1.1.2), vista: frente"></a><figcaption>depois · IoU <b>0,910</b></figcaption></figure></div></div>
+    <div class="card vista"><h4>três quartos (a)</h4><div class="trio"><figure><a href="assets/dino-ref-tres-quartos-a.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/dino-ref-tres-quartos-a.jpg" alt="Desenho de referência, vista: três quartos (a)"></a><figcaption>desenho</figcaption></figure><figure><a href="assets/dino-antes-tres-quartos-a.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/dino-antes-tres-quartos-a.jpg" alt="Render de antes (v1.0.2), vista: três quartos (a)"></a><figcaption>antes · IoU <b>0,808</b></figcaption></figure><figure><a href="assets/dino-depois-tres-quartos-a.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/dino-depois-tres-quartos-a.jpg" alt="Render de depois (v1.1.2), vista: três quartos (a)"></a><figcaption>depois · IoU <b>0,874</b></figcaption></figure></div></div>
+    <div class="card vista"><h4>três quartos (b)</h4><div class="trio"><figure><a href="assets/dino-ref-tres-quartos-b.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/dino-ref-tres-quartos-b.jpg" alt="Desenho de referência, vista: três quartos (b)"></a><figcaption>desenho</figcaption></figure><figure><a href="assets/dino-antes-tres-quartos-b.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/dino-antes-tres-quartos-b.jpg" alt="Render de antes (v1.0.2), vista: três quartos (b)"></a><figcaption>antes · IoU <b>0,787</b></figcaption></figure><figure><a href="assets/dino-depois-tres-quartos-b.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/dino-depois-tres-quartos-b.jpg" alt="Render de depois (v1.1.2), vista: três quartos (b)"></a><figcaption>depois · IoU <b>0,862</b></figcaption></figure></div></div>
+    <div class="card vista"><h4>lado</h4><div class="trio"><figure><a href="assets/dino-ref-lado.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/dino-ref-lado.jpg" alt="Desenho de referência, vista: lado"></a><figcaption>desenho</figcaption></figure><figure><a href="assets/dino-antes-lado.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/dino-antes-lado.jpg" alt="Render de antes (v1.0.2), vista: lado"></a><figcaption>antes · IoU <b>0,786</b></figcaption></figure><figure><a href="assets/dino-depois-lado.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/dino-depois-lado.jpg" alt="Render de depois (v1.1.2), vista: lado"></a><figcaption>depois · IoU <b>0,842</b></figcaption></figure></div></div>
   </div>
   <h3 class="sep3">Os números, vista por vista</h3>
   <p class="arraste">↔ no celular, arraste a tabela para o lado</p>
@@ -359,7 +380,7 @@
     <figure><a href="assets/dino-regua-antes.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/dino-regua-antes.jpg" alt="Régua de semelhança, com o desenho, o modelo e as silhuetas sobrepostas em cada vista: Antes (v1.0.2)"></a><figcaption><b>Antes (v1.0.2)</b></figcaption></figure>
     <figure><a href="assets/dino-regua-depois.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/dino-regua-depois.jpg" alt="Régua de semelhança, com o desenho, o modelo e as silhuetas sobrepostas em cada vista: Depois (v1.1.2)"></a><figcaption><b>Depois (v1.1.2)</b></figcaption></figure>
   </div>
-  <p class="nota">Toque na imagem para ampliar. O texto dentro destas imagens está em português. No modelo do meio, a régua pinta as rodas por cima da casca; no robô elas ficam escondidas. O valor "ajustado" é uma segunda medida, com uma pequena folga de escala e de posição: as tabelas desta página usam o IoU sem ajuste. A média escrita no título da imagem pode diferir da tabela em 1 milésimo, por arredondamento.</p>
+  <p class="nota">Toque na imagem para ampliar. O texto dentro destas imagens está em português. O valor "ajustado" é uma segunda medida, com uma pequena folga de escala e de posição: as tabelas desta página usam o IoU sem ajuste. A média escrita no título da imagem pode diferir da tabela em 1 milésimo, por arredondamento. No modelo do meio, a régua pinta as rodas por cima da casca; no robô elas ficam escondidas.</p>
   <h3 class="sep3">O que mudou por dentro, e por quê</h3>
   <div class="grid g2" style="margin-top:22px">
     <div class="card"><h3>A forma vem do desenho</h3><p>Como na capivara, a casca deixou de ser desenhada com formas simples: é a pele da malha 3D gerada a partir do desenho, com 2,4 mm de parede, cortada em peças.</p></div>
@@ -367,25 +388,64 @@
     <div class="card"><h3>Apoio atrás e pescoço mais curto</h3><p>O centro de massa fica atrás do eixo das rodas, então a esfera de apoio fica atrás, sob a raiz da cauda. A junta do pescoço desceu de 185 para 164 mm do chão, para o pescoço ficar curto como no desenho.</p></div>
     <div class="card"><h3>Casca em vasos e boca quase reta</h3><p>Corpo, traseira e gola imprimem em pé, com a borda plana na mesa, no lugar do torso em duas metades. A malha vinha de boca aberta: o vão foi fechado e a boca abre 12°. A mandíbula fica rente à esfera do pescoço, e cada grau a mais faria o queixo recuar contra ela.</p></div>
   </div>
-  <p class="nota">O que ainda separa o dinossauro da malha: a boca fechada, a faixa reta entre as pernas e os braços lisos. Lista de compras, arquivos e montagem estão na <a href="../dino/">página do dinossauro</a>.</p>
+  <p class="nota">O que ainda separa o dinossauro do desenho: a boca fechada, a faixa reta entre as pernas e os braços lisos. Lista de compras, arquivos e montagem estão na <a href="../dino/">página do dinossauro</a>.</p>
+</div></section>
+
+<section id="cubo" class="bicho"><div class="wrap">
+  <span class="chip">🤖 Robô quadrado de mesa</span>
+  <h2>Robô quadrado: rosto escuro, cantos redondos e uma base ainda alta</h2>
+  <p class="sub">A referência do robô quadrado é uma imagem só, pequena e com cotas, em três quartos. Por isso ele é medido em uma vista, e não teve malha.</p>
+  <div class="grid g3">
+    <div class="card numero"><b>0,755</b><span>antes (v1.0.2), em uma vista</span></div>
+    <div class="card numero"><b>0,797</b><span>depois (v1.1.2)</span></div>
+    <div class="card numero"><b>0,855</b><span>alvo: 0,10 acima do antes</span></div>
+  </div>
+  <p class="nota"><strong>Alvo não atingido.</strong> Com o servo de pan em pé e a engrenagem por cima dele, a base não fica mais baixa que cerca de 60 mm. No desenho, base e pescoço somam 20 % da altura; no robô, 41 %.</p>
+  <h3 class="sep3">O desenho, o antes e o depois, nas mesmas vistas</h3>
+  <p class="sub">Em cada linha, três imagens: o desenho de referência naquela vista, o render de antes e o render de depois, os dois na mesma câmera. Embaixo de cada render está o IoU daquela vista. Toque numa imagem para ampliar.</p>
+  <div class="vistas">
+    <div class="card vista"><h4>três quartos</h4><div class="trio"><figure><a href="assets/cubo-ref-tres-quartos.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/cubo-ref-tres-quartos.jpg" alt="Desenho de referência, vista: três quartos"></a><figcaption>desenho</figcaption></figure><figure><a href="assets/cubo-antes-tres-quartos.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/cubo-antes-tres-quartos.jpg" alt="Render de antes (v1.0.2), vista: três quartos"></a><figcaption>antes · IoU <b>0,755</b></figcaption></figure><figure><a href="assets/cubo-depois-tres-quartos.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/cubo-depois-tres-quartos.jpg" alt="Render de depois (v1.1.2), vista: três quartos"></a><figcaption>depois · IoU <b>0,797</b></figcaption></figure></div></div>
+  </div>
+  <h3 class="sep3">Os números, vista por vista</h3>
+  <p class="arraste">↔ no celular, arraste a tabela para o lado</p>
+  <div class="tabela-wrap"><table class="tabela">
+    <thead><tr><th>Vista</th><th>Antes (v1.0.2)</th><th>Depois (v1.1.2)</th><th>Teto</th><th>Alvo</th><th>Ganho</th></tr></thead>
+    <tbody>
+      <tr><td>três quartos</td><td>0,755</td><td>0,797</td><td>—</td><td>0,855</td><td>+0,042</td></tr>
+    </tbody></table></div>
+  <p class="nota">Este robô não teve malha: não há teto, e o alvo é 0,10 acima do antes.</p>
+  <h3 class="sep3">A régua, lado a lado</h3>
+  <p class="sub">É a imagem que o programa de medida grava. Cada linha é uma vista: à esquerda o desenho de referência, no meio o modelo na câmera que a régua escolheu, à direita as duas silhuetas sobrepostas. Vermelho é o que só o desenho tem, azul o que só o robô tem, verde o que os dois têm.</p>
+  <div class="regua uma">
+    <figure><a href="assets/cubo-regua-antes.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/cubo-regua-antes.jpg" alt="Régua de semelhança, com o desenho, o modelo e as silhuetas sobrepostas em cada vista: Antes (v1.0.2)"></a><figcaption><b>Antes (v1.0.2)</b></figcaption></figure>
+    <figure><a href="assets/cubo-regua-depois.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/cubo-regua-depois.jpg" alt="Régua de semelhança, com o desenho, o modelo e as silhuetas sobrepostas em cada vista: Depois (v1.1.2)"></a><figcaption><b>Depois (v1.1.2)</b></figcaption></figure>
+  </div>
+  <p class="nota">Toque na imagem para ampliar. O texto dentro destas imagens está em português. O valor "ajustado" é uma segunda medida, com uma pequena folga de escala e de posição: as tabelas desta página usam o IoU sem ajuste. A média escrita no título da imagem pode diferir da tabela em 1 milésimo, por arredondamento.</p>
+  <h3 class="sep3">O que mudou por dentro, e por quê</h3>
+  <div class="grid g2" style="margin-top:22px">
+    <div class="card"><h3>Rosto escuro, como na referência</h3><p>A frente da cabeça é um painel escuro inteiro, encaixado na cabeça, com a tela e a câmera atrás dele. Os olhos e a boca que aparecem no render são a imagem da tela ligada, não uma peça.</p></div>
+    <div class="card"><h3>O garfo foi para dentro da cabeça</h3><p>Na versão anterior, a cabeça ficava presa num garfo por fora, com o braço do servo à mostra. Agora o garfo fica dentro da cabeça, no alto do tubo do pescoço, e por fora não aparece mecanismo.</p></div>
+    <div class="card"><h3>Nenhum parafuso na frente nem em cima</h3><p>A tampa da base é presa por baixo, e a cabeça e a porta da bateria, por trás. A chave e a entrada USB-C do carregador também ficam atrás.</p></div>
+    <div class="card"><h3>Cantos redondos e base mais baixa</h3><p>As arestas da cabeça ficaram arredondadas, como na referência, e a base ficou mais baixa e mais larga. Mesmo assim ela ainda é alta para o desenho: é a altura da base que impede o número de subir mais.</p></div>
+  </div>
+  <p class="nota">O que ainda separa o robô quadrado do desenho: a altura da base e do pescoço. Lista de compras, arquivos e montagem estão na <a href="../cubo/">página do robô quadrado de mesa</a>.</p>
 </div></section>
 
 <section id="metodo"><div class="wrap">
   <span class="chip">Método</span>
   <h2>Como a medida é feita</h2>
   <p class="sub">O protocolo é o mesmo para o antes, o depois e a malha. Se a régua mudasse no meio, os números não se comparariam.</p>
-  <ol class="lista"><li>Cada vista do desenho vira uma silhueta: o personagem recortado do fundo.</li><li>O modelo é desenhado sem perspectiva, só com as peças impressas, as rodas e a esfera de apoio, na pose neutra e sem os componentes da fase 2.</li><li>As duas silhuetas ficam com a mesma altura (400 pixels), a base na mesma linha e o centro alinhado.</li><li>A régua parte do ângulo combinado para a vista, testa os vizinhos (25° para cada lado, de 5 em 5, e cinco alturas de câmera) e guarda o maior IoU.</li><li>O número de cada bicho é a média simples das vistas.</li></ol>
+  <ol class="lista"><li>Cada vista do desenho vira uma silhueta: o personagem recortado do fundo.</li><li>O modelo é desenhado sem perspectiva, só com as peças impressas, as rodas e a esfera de apoio, na pose neutra e sem os componentes da fase 2.</li><li>As duas silhuetas ficam com a mesma altura (400 pixels), a base na mesma linha e o centro alinhado.</li><li>A régua parte do ângulo combinado para a vista, testa os vizinhos (25° para cada lado, de 5 em 5, e cinco alturas de câmera) e guarda o maior IoU.</li><li>O número de cada robô é a média simples das vistas medidas.</li></ol>
   <p class="nota">Dinossauro: o alvo é 0,855. A conta usa os valores sem arredondar (0,8137 e 0,8972). Feita com os números já arredondados das tabelas (0,814 e 0,897), ela daria 0,856: a diferença é só de arredondamento.</p>
   <p class="nota">Os números saem de <code>comparacao/semelhanca.json</code>, gravado pelo programa <code>comum/cad/comparar.py</code>. A tabela completa, com o ângulo escolhido em cada vista, está em <a href="https://github.com/inematds/robos-impressos/blob/main/comparacao/semelhanca.md" target="_blank" rel="noopener">comparacao/semelhanca.md</a> (em português).</p>
   <p class="nota">Para repetir a medida são necessárias as imagens de referência. Elas não fazem parte do repositório: só as mostradas nesta página foram publicadas.</p>
 </div></section>
 
 <section id="quadrados"><div class="wrap">
-  <span class="chip">Os outros dois robôs</span>
-  <h2>Os robôs quadrados têm número, mas não têm esta história</h2>
-  <p class="sub">O robô quadrado de mesa foi medido em uma vista só e não teve malha: ficou em 0,797 (era 0,755), abaixo do alvo de 0,855. O robô quadrado que roda é novo e não tem desenho próprio. O número e a explicação estão na página de cada um.</p>
+  <span class="chip">O quarto robô</span>
+  <h2>O robô quadrado que roda tem número, mas não tem esta história</h2>
+  <p class="sub">O robô quadrado que roda é novo e não tem desenho próprio. O número dele compara com o desenho do robô quadrado de mesa e não é meta. A explicação está na página dele.</p>
   <div class="cta">
-    <a class="btn ghost" href="../cubo/#semelhanca">Robô quadrado de mesa</a>
     <a class="btn ghost" href="../cubo-rodas/#semelhanca">Robô quadrado que roda</a>
     <a class="btn" href="../">Voltar ao guia dos quatro robôs</a>
   </div>

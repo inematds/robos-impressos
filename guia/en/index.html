@@ -169,6 +169,16 @@
   .tabela.cartoes td:first-child{font-weight:600;font-size:1rem;padding-bottom:6px}
 }
 
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.bn{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:22px}
+.trio figure,.bn figure{margin:0;min-width:0}
+.trio img,.bn img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line);background:#e9e9ee}
+.trio figcaption,.bn figcaption{font-size:.86rem;color:var(--mut);margin-top:6px;text-align:center}
+.trio figcaption b,.bn figcaption b{font-family:Sora;color:var(--txt)}
+.bn figcaption{text-align:left;font-size:.9rem;line-height:1.5}
+@media(max-width:860px){.bn{grid-template-columns:1fr}}
+@media(max-width:560px){.trio{gap:6px}.trio img{border-radius:8px}.trio figcaption{font-size:.76rem;line-height:1.35}}
+
 .robos .card{display:flex;flex-direction:column}
 .robos .card h3{font-size:1.05rem}
 .robos .fatos{font-family:Sora;font-weight:600;font-size:.84rem;color:var(--txt);margin:.9em 0 0}
@@ -176,10 +186,9 @@
 .robos .card .ir{margin-top:auto;padding-top:14px}
 .robos .card .btn{display:block;text-align:center;font-size:.88rem}
 @media(min-width:861px) and (max-width:1100px){.robos{grid-template-columns:repeat(2,1fr)}}
-.par{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:760px}
-.par figure{margin:0}
-.par img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line);background:#e9e9ee}
-.par figcaption{font-size:.86rem;color:var(--mut);margin-top:6px;text-align:center}
+.evo-robo{max-width:900px;margin:22px 0 0}
+.evo-robo h4{font-family:Sora;font-size:1.02rem;margin:0 0 10px}
+.evo-robo h4 small{font-weight:600;color:var(--amb);margin-left:.5em;white-space:nowrap}
 .zips{display:flex;flex-wrap:wrap;gap:10px;margin:.4em 0 1em}
 .zips .btn{font-size:.88rem}.zips small{font-weight:400;opacity:.8}
 .barra{grid-template-columns:200px 1fr 60px}
@@ -341,12 +350,16 @@ nav .brand,nav .links a.sec{white-space:nowrap}
 
 <section id="evolucao"><div class="wrap">
   <span class="chip">Design evolution</span>
-  <h2>The animals became more like the drawing</h2>
-  <p class="sub">In the previous version, the capybara and dinosaur looked little like the reference drawing. In this version, the shape comes from a 3D mesh generated from the drawing itself, and similarity is measured by the outline on a scale from 0 to 1 (IoU).</p>
-  <div class="par evo">
-    <figure><img loading="lazy" src="../evolucao/assets/capivara-antes-tres-quartos.jpg" alt="Render of the capybara in version 1.0.2, in three-quarter view: long neck and upright body"><figcaption>Capybara before (v1.0.2)</figcaption></figure>
-    <figure><img loading="lazy" src="../evolucao/assets/capivara-depois-tres-quartos.jpg" alt="Render of the capybara in this version, in three-quarter view: pear-shaped body, head touching the body, and green bandana"><figcaption>Capybara after (v1.1.2)</figcaption></figure>
-  </div>
+  <h2>The robots look more like the drawings</h2>
+  <p class="sub">In the previous version, the capybara and the dinosaur looked far from the reference drawing, and the guide banner was an illustration that didn't show the project robots. In this version, the animals' shapes come from a 3D mesh generated from the drawing itself, the square desktop robot was redesigned, and the banner is a render of the models. Similarity is measured by the outline on a scale from 0 to 1 (IoU).</p>
+  <h3 class="sep3">The banner: from illustration to render</h3>
+  <div class="bn"><figure><a href="../evolucao/assets/banner-antes-en.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../evolucao/assets/banner-antes-en.jpg" alt="Old banner from version 1.0.2: illustration of a green dinosaur, an orange capybara, and a white robot with arms and legs, next to a 3D printer"></a><figcaption><b>Before (v1.0.2)</b>: AI-generated illustration. It wasn't made from the project models and got the parts wrong: the square robot appears with arms and legs it never had, the capybara has no hands on its belly, and the dinosaur's body and limbs differ from the model.</figcaption></figure><figure><a href="../assets/banner-en.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../assets/banner-en.jpg" alt="New banner: render of the project&#x27;s four robots on a wooden table: dinosaur, capybara, square desktop robot, and square robot on wheels"></a><figcaption><b>After (v1.1.2)</b>: A render of the project's 3D models, the same ones used to generate the files you print. All four robots look as they should.</figcaption></figure></div>
+  <h3 class="sep3">Reference drawing, before, and after</h3>
+  <p class="sub">For each robot, three images from the same view: the drawing it started from, the render from version 1.0.2, and the render from this version. Tap an image to enlarge it.</p>
+  <div class="evo-robo"><h4>🦫 Capybara <small>IoU 0.777 → 0.920</small></h4><div class="trio"><figure><a href="../evolucao/assets/capivara-ref-frente.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../evolucao/assets/capivara-ref-frente.jpg" alt="Reference drawing: Capybara"></a><figcaption>reference drawing</figcaption></figure><figure><a href="../evolucao/assets/capivara-antes-frente.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../evolucao/assets/capivara-antes-frente.jpg" alt="Render from version 1.0.2: Capybara"></a><figcaption>before (v1.0.2)</figcaption></figure><figure><a href="../evolucao/assets/capivara-depois-frente.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../evolucao/assets/capivara-depois-frente.jpg" alt="Render from this version: Capybara"></a><figcaption>after (v1.1.2)</figcaption></figure></div></div>
+  <div class="evo-robo"><h4>🦖 Dinosaur <small>IoU 0.814 → 0.872</small></h4><div class="trio"><figure><a href="../evolucao/assets/dino-ref-frente.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../evolucao/assets/dino-ref-frente.jpg" alt="Reference drawing: Dinosaur"></a><figcaption>reference drawing</figcaption></figure><figure><a href="../evolucao/assets/dino-antes-frente.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../evolucao/assets/dino-antes-frente.jpg" alt="Render from version 1.0.2: Dinosaur"></a><figcaption>before (v1.0.2)</figcaption></figure><figure><a href="../evolucao/assets/dino-depois-frente.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../evolucao/assets/dino-depois-frente.jpg" alt="Render from this version: Dinosaur"></a><figcaption>after (v1.1.2)</figcaption></figure></div></div>
+  <div class="evo-robo"><h4>🤖 Square desktop robot <small>IoU 0.755 → 0.797</small></h4><div class="trio"><figure><a href="../evolucao/assets/cubo-ref-tres-quartos.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../evolucao/assets/cubo-ref-tres-quartos.jpg" alt="Reference drawing: Square desktop robot"></a><figcaption>reference drawing</figcaption></figure><figure><a href="../evolucao/assets/cubo-antes-tres-quartos.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../evolucao/assets/cubo-antes-tres-quartos.jpg" alt="Render from version 1.0.2: Square desktop robot"></a><figcaption>before (v1.0.2)</figcaption></figure><figure><a href="../evolucao/assets/cubo-depois-tres-quartos.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../evolucao/assets/cubo-depois-tres-quartos.jpg" alt="Render from this version: Square desktop robot"></a><figcaption>after (v1.1.2)</figcaption></figure></div></div>
+  <h3 class="sep3">The numbers</h3>
   <p class="arraste">↔ on mobile, drag the table sideways</p>
   <div class="tabela-wrap"><table class="tabela">
 <thead><tr><th>Robot</th><th>Before (v1.0.2)</th><th>After</th><th>Ceiling (drawing mesh)</th><th>Target</th><th>Result</th></tr></thead>
@@ -356,7 +369,8 @@ nav .brand,nav .links a.sec{white-space:nowrap}
 <tr><td><a href="cubo/#semelhanca">Square desktop robot</a></td><td>0.755</td><td>0.797</td><td>—</td><td>0.855</td><td>target not reached</td></tr>
 <tr><td><a href="cubo-rodas/#semelhanca">Square robot on wheels</a></td><td>—</td><td>0.669</td><td>—</td><td>—</td><td>new robot: compared with the desktop robot drawing, not a goal</td></tr>
 </tbody></table></div>
-  <p class="nota">The ceiling is the raw 3D mesh generated from the drawing, measured the same way. The target was set before measuring the new version: halfway between the previous version and the ceiling, or 0.10 above the previous version when there is no mesh. The square desktop robot fell short of the target; its page explains why.</p>
+  <p class="nota">The ceiling is the raw 3D mesh generated from the drawing, measured the same way. The target was set before measuring the after result: halfway between the before result and the ceiling, or 0.10 above the before result when there is no mesh.</p>
+  <p class="nota"><strong>The square desktop robot had no mesh and didn't reach the target: it went from 0.755 to 0.797 and needed to reach 0.855.</strong> With the pan servo upright and the gear on top of it, the base cannot be lower than about 60 mm. In the drawing, the base and neck make up 20% of the height; in the robot, 41%.</p>
   <p style="margin-top:18px"><a class="btn" href="evolucao/">See before and after, view by view</a></p>
 </div></section>
 

@@ -169,6 +169,16 @@
   .tabela.cartoes td:first-child{font-weight:600;font-size:1rem;padding-bottom:6px}
 }
 
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.bn{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:22px}
+.trio figure,.bn figure{margin:0;min-width:0}
+.trio img,.bn img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line);background:#e9e9ee}
+.trio figcaption,.bn figcaption{font-size:.86rem;color:var(--mut);margin-top:6px;text-align:center}
+.trio figcaption b,.bn figcaption b{font-family:Sora;color:var(--txt)}
+.bn figcaption{text-align:left;font-size:.9rem;line-height:1.5}
+@media(max-width:860px){.bn{grid-template-columns:1fr}}
+@media(max-width:560px){.trio{gap:6px}.trio img{border-radius:8px}.trio figcaption{font-size:.76rem;line-height:1.35}}
+
 .robos .card{display:flex;flex-direction:column}
 .robos .card h3{font-size:1.05rem}
 .robos .fatos{font-family:Sora;font-weight:600;font-size:.84rem;color:var(--txt);margin:.9em 0 0}
@@ -176,10 +186,9 @@
 .robos .card .ir{margin-top:auto;padding-top:14px}
 .robos .card .btn{display:block;text-align:center;font-size:.88rem}
 @media(min-width:861px) and (max-width:1100px){.robos{grid-template-columns:repeat(2,1fr)}}
-.par{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:760px}
-.par figure{margin:0}
-.par img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line);background:#e9e9ee}
-.par figcaption{font-size:.86rem;color:var(--mut);margin-top:6px;text-align:center}
+.evo-robo{max-width:900px;margin:22px 0 0}
+.evo-robo h4{font-family:Sora;font-size:1.02rem;margin:0 0 10px}
+.evo-robo h4 small{font-weight:600;color:var(--amb);margin-left:.5em;white-space:nowrap}
 .zips{display:flex;flex-wrap:wrap;gap:10px;margin:.4em 0 1em}
 .zips .btn{font-size:.88rem}.zips small{font-weight:400;opacity:.8}
 .barra{grid-template-columns:200px 1fr 60px}
@@ -341,12 +350,16 @@ nav .brand,nav .links a.sec{white-space:nowrap}
 
 <section id="evolucao"><div class="wrap">
   <span class="chip">Evolución del dibujo</span>
-  <h2>Los animales quedaron más parecidos al dibujo</h2>
-  <p class="sub">En la versión anterior, el carpincho y el dinosaurio quedaron lejos del dibujo de referencia. En esta, la forma viene de una malla 3D generada a partir del propio dibujo, y la semejanza se mide por el contorno, en una escala de 0 a 1 (IoU).</p>
-  <div class="par evo">
-    <figure><img loading="lazy" src="../evolucao/assets/capivara-antes-tres-quartos.jpg" alt="Render del carpincho en la versión 1.0.2, en tres cuartos: cuello largo y cuerpo erguido"><figcaption>Carpincho antes (v1.0.2)</figcaption></figure>
-    <figure><img loading="lazy" src="../evolucao/assets/capivara-depois-tres-quartos.jpg" alt="Render del carpincho en esta versión, en tres cuartos: cuerpo en forma de pera, cabeza pegada al cuerpo y pañuelo verde"><figcaption>Carpincho después (v1.1.2)</figcaption></figure>
-  </div>
+  <h2>Los robots se parecen más al dibujo</h2>
+  <p class="sub">En la versión anterior, el carpincho y el dinosaurio quedaron lejos del dibujo de referencia, y el banner de la guía era una ilustración que no mostraba los robots del proyecto. En esta versión, la forma de los animales viene de una malla 3D generada a partir del propio dibujo, el robot cuadrado de mesa fue rediseñado y el banner es un render de los modelos. La similitud se mide por el contorno, en una escala de 0 a 1 (IoU).</p>
+  <h3 class="sep3">El banner: de ilustración a render</h3>
+  <div class="bn"><figure><a href="../evolucao/assets/banner-antes-es.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../evolucao/assets/banner-antes-es.jpg" alt="Banner antiguo, de la versión 1.0.2: ilustración de un dinosaurio verde, un carpincho naranja y un robot blanco con brazos y piernas, junto a una impresora 3D"></a><figcaption><b>Antes (v1.0.2)</b>: ilustración hecha con IA. No salió de los modelos del proyecto y representaba mal los miembros: el robot cuadrado aparece con brazos y piernas que nunca tuvo, el carpincho sin las manos en la barriga y el dinosaurio con un cuerpo y miembros diferentes a los del modelo.</figcaption></figure><figure><a href="../assets/banner-es.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../assets/banner-es.jpg" alt="Banner nuevo: render de los cuatro robots del proyecto sobre una mesa de madera: dinosaurio, carpincho, robot cuadrado de mesa y robot cuadrado con ruedas"></a><figcaption><b>Después (v1.1.2)</b>: render de los modelos 3D del proyecto, los mismos que generan los archivos que imprimes. Los cuatro robots aparecen tal como son.</figcaption></figure></div>
+  <h3 class="sep3">Dibujo de referencia, antes y después</h3>
+  <p class="sub">Para cada robot, tres imágenes desde la misma vista: el dibujo del que partió, el render de la versión 1.0.2 y el render de esta versión. Toca una imagen para ampliarla.</p>
+  <div class="evo-robo"><h4>🦫 Carpincho <small>IoU 0,777 → 0,920</small></h4><div class="trio"><figure><a href="../evolucao/assets/capivara-ref-frente.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../evolucao/assets/capivara-ref-frente.jpg" alt="Dibujo de referencia: Carpincho"></a><figcaption>dibujo de referencia</figcaption></figure><figure><a href="../evolucao/assets/capivara-antes-frente.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../evolucao/assets/capivara-antes-frente.jpg" alt="Render de la versión 1.0.2: Carpincho"></a><figcaption>antes (v1.0.2)</figcaption></figure><figure><a href="../evolucao/assets/capivara-depois-frente.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../evolucao/assets/capivara-depois-frente.jpg" alt="Render de esta versión: Carpincho"></a><figcaption>después (v1.1.2)</figcaption></figure></div></div>
+  <div class="evo-robo"><h4>🦖 Dinosaurio <small>IoU 0,814 → 0,872</small></h4><div class="trio"><figure><a href="../evolucao/assets/dino-ref-frente.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../evolucao/assets/dino-ref-frente.jpg" alt="Dibujo de referencia: Dinosaurio"></a><figcaption>dibujo de referencia</figcaption></figure><figure><a href="../evolucao/assets/dino-antes-frente.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../evolucao/assets/dino-antes-frente.jpg" alt="Render de la versión 1.0.2: Dinosaurio"></a><figcaption>antes (v1.0.2)</figcaption></figure><figure><a href="../evolucao/assets/dino-depois-frente.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../evolucao/assets/dino-depois-frente.jpg" alt="Render de esta versión: Dinosaurio"></a><figcaption>después (v1.1.2)</figcaption></figure></div></div>
+  <div class="evo-robo"><h4>🤖 Robot cuadrado de mesa <small>IoU 0,755 → 0,797</small></h4><div class="trio"><figure><a href="../evolucao/assets/cubo-ref-tres-quartos.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../evolucao/assets/cubo-ref-tres-quartos.jpg" alt="Dibujo de referencia: Robot cuadrado de mesa"></a><figcaption>dibujo de referencia</figcaption></figure><figure><a href="../evolucao/assets/cubo-antes-tres-quartos.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../evolucao/assets/cubo-antes-tres-quartos.jpg" alt="Render de la versión 1.0.2: Robot cuadrado de mesa"></a><figcaption>antes (v1.0.2)</figcaption></figure><figure><a href="../evolucao/assets/cubo-depois-tres-quartos.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../evolucao/assets/cubo-depois-tres-quartos.jpg" alt="Render de esta versión: Robot cuadrado de mesa"></a><figcaption>después (v1.1.2)</figcaption></figure></div></div>
+  <h3 class="sep3">Los números</h3>
   <p class="arraste">↔ en el celular, arrastra la tabla hacia un lado</p>
   <div class="tabela-wrap"><table class="tabela">
 <thead><tr><th>Robot</th><th>Antes (v1.0.2)</th><th>Después</th><th>Techo (malla del dibujo)</th><th>Objetivo</th><th>Resultado</th></tr></thead>
@@ -356,7 +369,8 @@ nav .brand,nav .links a.sec{white-space:nowrap}
 <tr><td><a href="cubo/#semelhanca">Robot cuadrado de mesa</a></td><td>0,755</td><td>0,797</td><td>—</td><td>0,855</td><td>objetivo no alcanzado</td></tr>
 <tr><td><a href="cubo-rodas/#semelhanca">Robot cuadrado con ruedas</a></td><td>—</td><td>0,669</td><td>—</td><td>—</td><td>robot nuevo: se compara con el dibujo del robot de mesa, no es una meta</td></tr>
 </tbody></table></div>
-  <p class="nota">El techo es la malla 3D en bruto generada a partir del dibujo, medida de la misma manera. El objetivo se definió antes de medir el resultado: la mitad del camino entre el valor anterior y el techo, o 0,10 por encima del valor anterior cuando no hay malla. El robot cuadrado de mesa quedó por debajo del objetivo; su página explica por qué.</p>
+  <p class="nota">El techo es la malla 3D sin procesar generada a partir del dibujo, medida de la misma manera. El objetivo se definió antes de medir el después: a mitad de camino entre el antes y el techo, o 0,10 por encima del antes cuando no hay malla.</p>
+  <p class="nota"><strong>El robot cuadrado de mesa no tuvo malla y no alcanzó el objetivo: pasó de 0,755 a 0,797 y necesitaba 0,855.</strong> Con el servo de pan en posición vertical y el engranaje encima, la base no queda por debajo de unos 60 mm. En el diseño, la base y el cuello suman el 20 % de la altura; en el robot, el 41 %.</p>
   <p style="margin-top:18px"><a class="btn" href="evolucao/">Ver el antes y el después, vista por vista</a></p>
 </div></section>
 

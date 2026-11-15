@@ -5,7 +5,7 @@ semelhança) sai dos arquivos de cada robô na hora de montar: nada é digitado 
 
 Fontes: projetos/<robô>/montagem.json · mesas.json · verificacao.json e guia/src/robos/<robô>.dados.json (pela classe Robo de
 pagina_robo.py, a mesma das páginas de cada robô), comparacao/semelhanca.json (guia/src/semelhanca.py) e
-guia/evolucao/assets/dados.json (as duas imagens do antes × depois).
+guia/evolucao/assets/dados.json (banner antigo × novo e, por robô, desenho de referência · antes · depois).
 
 Este módulo também dá às outras páginas do guia a cabeça, o CSS e o rodapé do template (cabeca_rodape) e a versão (VERSAO).
 
@@ -61,10 +61,9 @@ CSS_ENTRADA = """
 .robos .card .ir{margin-top:auto;padding-top:14px}
 .robos .card .btn{display:block;text-align:center;font-size:.88rem}
 @media(min-width:861px) and (max-width:1100px){.robos{grid-template-columns:repeat(2,1fr)}}
-.par{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:760px}
-.par figure{margin:0}
-.par img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line);background:#e9e9ee}
-.par figcaption{font-size:.86rem;color:var(--mut);margin-top:6px;text-align:center}
+.evo-robo{max-width:900px;margin:22px 0 0}
+.evo-robo h4{font-family:Sora;font-size:1.02rem;margin:0 0 10px}
+.evo-robo h4 small{font-weight:600;color:var(--amb);margin-left:.5em;white-space:nowrap}
 .zips{display:flex;flex-wrap:wrap;gap:10px;margin:.4em 0 1em}
 .zips .btn{font-size:.88rem}.zips small{font-weight:400;opacity:.8}
 .barra{grid-template-columns:200px 1fr 60px}
@@ -76,6 +75,27 @@ nav .brand,nav .links a.sec{white-space:nowrap}
 @media(max-width:1240px){nav .links .sec{display:none}}
 @media(max-width:860px){.barra{grid-template-columns:118px 1fr 50px}}
 """
+
+
+# trio = desenho de referência · antes · depois; bn = banner antigo × novo (entrada e página de evolução)
+CSS_TRIO = """
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.bn{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:22px}
+.trio figure,.bn figure{margin:0;min-width:0}
+.trio img,.bn img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line);background:#e9e9ee}
+.trio figcaption,.bn figcaption{font-size:.86rem;color:var(--mut);margin-top:6px;text-align:center}
+.trio figcaption b,.bn figcaption b{font-family:Sora;color:var(--txt)}
+.bn figcaption{text-align:left;font-size:.9rem;line-height:1.5}
+@media(max-width:860px){.bn{grid-template-columns:1fr}}
+@media(max-width:560px){.trio{gap:6px}.trio img{border-radius:8px}.trio figcaption{font-size:.76rem;line-height:1.35}}
+"""
+
+
+def figuras(figs, classe="trio"):
+    """Figuras lado a lado; cada uma (src, alt, legenda em HTML). A imagem abre em tamanho grande."""
+    return (f'<div class="{classe}">' + "".join(
+        f'<figure><a href="{src}" target="_blank" rel="noopener"><img loading="lazy" src="{src}" alt="{html.escape(alt)}"></a><figcaption>{cap}</figcaption></figure>'
+        for src, alt, cap in figs) + "</div>")
 
 
 def cabeca_rodape():
@@ -202,11 +222,25 @@ def montar(lg):
     fixos["BARRAS"] = "\n    ".join(f'<div class="barra"><span>{esc(nome[m])}</span><i style="width:{horas[m] / max(horas.values()) * 100:.0f}%"></i><b>~{n(horas[m])} h</b></div>' for m in MODELOS)
     fixos["SAIDA_VERIF"] = html.escape("\n".join(P.saida_verif(R[m]) for m in MODELOS), quote=False)
 
-    # --- antes × depois da capivara (as imagens moram em guia/evolucao/assets/)
-    ev = json.loads((GUIA / "evolucao" / "assets" / "dados.json").read_text())["bichos"]["capivara"]["vistas"]
-    v = next(x for x in ev if x["vista"] == "tres-quartos")
+    # --- evolução do desenho: banner antigo × novo e, por robô, desenho de referência · antes · depois
+    #     (imagens em guia/evolucao/assets/, gravadas por comum/cad/evolucao.py; o banner novo é o de guia/assets/)
+    ev = json.loads((GUIA / "evolucao" / "assets" / "dados.json").read_text())
     E = "evolucao/assets/" if lg == "pt" else "../evolucao/assets/"
-    fixos["EVO_ANTES"], fixos["EVO_DEPOIS"] = E + v["imagem_antes"], E + v["imagem_depois"]
+    fixos["EVO_BANNER"] = figuras([(E + ev["banner"]["antes"][lg], t("evo_bn_alt_antes"), f'<b>{esc(t("evo_bn_antes"))}</b>: {esc(t("evo_bn_antes_p"))}'),
+                                   (A + ev["banner"]["depois"][lg], t("evo_bn_alt_depois"), f'<b>{esc(t("evo_bn_depois")).replace("[[VERSAO]]", VERSAO)}</b>: {esc(t("evo_bn_depois_p"))}')], "bn")
+    do_id = {R[m].cfg["id"]: m for m in MODELOS}
+    blocos = []
+    for id, b in ev["bichos"].items():
+        m = do_id[id]
+        v = next(x for x in b["vistas"] if x["vista"] == b["vista_da_entrada"])
+        figs = [(E + v["imagem_" + k], f'{t("evo_alt_" + k)} {nome[m]}', esc(t("evo_" + k)).replace("[[VERSAO]]", VERSAO)) for k in ("ref", "antes", "depois")]
+        blocos.append(f'  <div class="evo-robo"><h4>{R[m].cfg["emoji"]} {esc(nome[m])} <small>IoU {f3(S[m]["antes"])} → {f3(S[m]["depois"])}</small></h4>{figuras(figs)}</div>')
+    fixos["EVO_TRIOS"] = "\n".join(blocos)
+    # o robô de mesa é o único com "antes" que ficou abaixo do alvo: a frase e o porquê (o da página dele) dependem disso
+    assert [m for m in MODELOS if S[m]["atingiu"] is False] == ["cubo"], "mudou quem atinge o alvo: reescreva evo_cubo em textos.pt.json"
+    for k in ("antes", "depois", "alvo"):
+        fixos[f"SEM_CUBO_{k.upper()}"] = f3(S["cubo"][k])
+    fixos["CUBO_PORQUE"] = P.Tx(R["cubo"], lg).d["sem_extra"]
 
     faltam = set()
 
@@ -226,7 +260,7 @@ def montar(lg):
     head = (head.replace("{{PROJETO}} — {{TAGLINE}}", tx["titulo"]).replace("{{META_DESCRICAO}}", html.escape(tx["meta"])).replace("{{SLUG}}", "robos-impressos"))
     head = head.replace('<html lang="pt-BR">', {"pt": '<html lang="pt-BR">', "en": '<html lang="en">', "es": '<html lang="es">'}[lg])
     i = head.rindex("</style>")
-    head = head[:i] + P.CSS + CSS_ENTRADA + head[i:]
+    head = head[:i] + P.CSS + CSS_TRIO + CSS_ENTRADA + head[i:]
     script = script.replace("{{SLUG}}", "robos-impressos")
     pagina = head + "\n\n" + corpo + "\n" + script
     assert "{{" not in pagina.replace("${{", ""), "placeholder do template sobrando"
