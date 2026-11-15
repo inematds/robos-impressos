@@ -58,8 +58,8 @@ indicado sem bater no que já está montado. Os passos com "(bancada)" são feit
 |---|---|---|---|
 | 1 | base | por cima | Antes deste passo, faça os 4 preparos da bancada (energia ajustada, servos em 90°, cabo da serial e divisor prontos, cartão gravado) e assente os 16 insertos a quente. |
 | 2 | servo de pan nos 2 postes | por cima | 4 × M3 × 12, eixo para cima. O servo já está em 90° (preparo 2): não gire o eixo com a mão. |
-| 3 | Arduino Uno nos 4 ressaltos | por cima | 4 × M3 × 8, USB virado para a esquerda. O sketch já tem de estar gravado (preparo 2): com o Uno parafusado, o cabo USB não entra. O shield encaixa por cima, com o jumper SEL retirado. |
-| 4 | módulos de energia nos berços (1 abraçadeira cada) | por cima | O chicote já vem soldado e conferido do preparo 1. 3 abraçadeiras (conversor, UBEC, carregador) e fita dupla-face na placa de proteção. A boca USB-C do carregador encosta na janela de trás. A barra de emenda, com o divisor já preso nela (preparo 3), fica solta ao lado do Arduino. |
+| 3 | Arduino Uno nos 4 ressaltos | por cima | 4 × M3 × 8, USB virado para a esquerda, com o Uno SEM o shield, que cobre parte dos furos. O sketch já tem de estar gravado (preparo 2): com o Uno parafusado, o cabo USB não entra. Depois encaixe o shield de volta, com o jumper SEL retirado. |
+| 4 | módulos de energia nos berços (1 abraçadeira cada) | por cima | O chicote já vem soldado e conferido do preparo 1. 3 abraçadeiras (conversor, UBEC, carregador) e fita dupla-face na placa de proteção. A boca USB-C do carregador encosta na janela de trás. A barra de emenda, com o divisor já preso nela (preparo 3), fica solta ao lado do Arduino. Refaça no shield as ligações que você desfez no fim do preparo 2: fios do UBEC e capacitor no borne azul, os 2 jumpers da barra de emenda no + e no − do conector COM, servo de pan no D9. |
 | 5 | chave (por fora, atrás) | por trás | Já está no lugar desde o preparo 1. Ela encaixa por pressão no recorte, por fora, com os 2 fios passando pelo recorte. |
 | 6 | alto-falante nos trilhos da parede de trás | por cima | Fase 2: é opcional agora, pode pular. |
 | 7 | engrenagem do servo no horn | por cima | Horn redondo no rebaixo da engrenagem, 4 × M2 × 8 pelos rasgos e o parafuso central do servo pelo furo de 6 mm. Não gire o eixo: ele está em 90°. |
@@ -73,7 +73,7 @@ indicado sem bater no que já está montado. Os passos com "(bancada)" são feit
 | 15 | tubo do pescoço na tampa, por cima (bancada) | por cima | A flange cônica apoia na tampa. |
 | 16 | engrenagem do pescoço por baixo da tampa (bancada) | por baixo | Alinhe os 3 furos com os do tubo. |
 | 17 | cabeça sobre o tubo; 3 tirantes M3 por baixo (bancada) | por cima | Enfie os 8 fios pelo tubo do pescoço, de cima para baixo, e só então assente a cabeça, sem prender fio entre o garfo e o tubo. 3 × M3 × 45 por baixo da engrenagem, até os insertos do garfo. |
-| 18 | tampa + pescoço + cabeça sobre a base; 4 M3 por baixo | por cima | Chave desligada. Nenhuma solda aqui, só bornes e encaixes: os 2 fios de 5,1 V nos bornes 1 e 2 da barra de emenda; o fio azul no borne 3; o conector do fio verde no pino S do D0 e o do preto no pino G do D0; o jumper do divisor no pino S do D1; a extensão do servo de tilt no D10. Deixe 10 cm de folga para o giro. Com a cabeça olhando para a frente e o servo de pan em 90°, engrene os dentes. 4 × M3 × 10 por baixo, com a chave Allen longa. |
+| 18 | tampa + pescoço + cabeça sobre a base; 4 M3 por baixo | por cima | Chave desligada. Nenhuma solda aqui, só bornes e encaixes: os 2 fios de 5,1 V nos bornes 1 e 2 da barra de emenda; o fio azul no borne 3; o conector do fio verde no pino S do D0 e o do preto no pino G do D0; o jumper do divisor no pino S do D1; a extensão do servo de tilt no D10. No D0 e no D1, o pino do meio (V) fica vazio: ele tem os 6 V dos servos, que queimam o Raspberry Pi. Deixe 10 cm de folga para o giro. Com a cabeça olhando para a frente e o servo de pan em 90°, engrene os dentes. 4 × M3 × 10 por baixo, com a chave Allen longa. |
 | 19 | porta traseira (1 M3) | por trás | 1 × M3 × 8 na orelha da tampa; o pé da porta encosta nos 2 batentes do piso. |
 <!-- /GERADO -->
 
@@ -93,7 +93,7 @@ Trocar a bateria ou mexer nas placas não exige desmontar a cabeça.
 
 Pack 2S (2 × 18650, 6 a 8,4 V) → fusível retardado de 3 A (T3A) → placa de proteção BMS 2S → chave (KCD11-101, 3 A) → duas linhas separadas:
 
-- **5,1 V do Raspberry Pi e do Arduino:** conversor LM2596 (cerca de 2 A contínuos). Mantém os 5 V até o pack cair a cerca de 6,5 V. O Arduino recebe pelo pino 5V do conector POWER do Sensor Shield.
+- **5,1 V do Raspberry Pi e do Arduino:** conversor LM2596 (cerca de 2 A contínuos). Mantém os 5 V até o pack cair a cerca de 6,5 V. O Arduino recebe pelos pinos + e − do conector COM do Sensor Shield.
 - **6 V dos 2 servos:** UBEC de 3 A, pelo borne azul do Sensor Shield (jumper SEL retirado), com capacitor de 1000 µF.
 - **Carga:** módulo USB-C com balanceamento, antes da chave, com a boca numa janela atrás da base e um 3º fio no
   ponto que une as duas células.

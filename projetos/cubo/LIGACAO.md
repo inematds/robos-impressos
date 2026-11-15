@@ -29,7 +29,7 @@ numerados dos 4 preparos são os mesmos da página.
 - **Pack 2S:** duas células 18650 em série, de 6 V (vazio) a 8,4 V (cheio). Passa pelo fusível e pela placa de proteção (BMS).
 - **Carregador USB-C:** fica ligado na saída da placa de proteção, antes da chave. O robô carrega desligado, por uma fonte USB-C de 15 W ou mais.
 - **Chave:** corta o positivo que vai para os dois conversores.
-- **LM2596, ajustado em 5,1 V:** a saída vai a uma barra de emenda na base. Dela saem o par que alimenta o Raspberry Pi (pelo adaptador USB-C com bornes) e o par que alimenta o Arduino (pelo pino 5V do conector POWER do Sensor Shield).
+- **LM2596, ajustado em 5,1 V:** a saída vai a uma barra de emenda na base. Dela saem o par que alimenta o Raspberry Pi (pelo adaptador USB-C com bornes) e o par que alimenta o Arduino (pelos pinos + e − do conector COM do Sensor Shield).
 - **UBEC em 6 V:** alimenta só os 2 servos, pelo borne azul do Sensor Shield, com o jumper SEL retirado.
 - **Negativo (GND):** é um só para o robô inteiro.
 
@@ -41,8 +41,8 @@ parte da descarga abaixo de 7 V.
 
 É uma barra de bornes de parafuso (tipo sindal) que fica solta na base. Você usa 3 bornes dela:
 
-- **Borne 1, os 5,1 V:** de um lado, o fio vermelho que vem do LM2596. Do outro, o fio vermelho que sobe ao Raspberry Pi e o jumper que vai ao pino 5V do Arduino.
-- **Borne 2, o negativo:** de um lado, o fio preto do LM2596 e uma ponta do par de resistores. Do outro, o fio preto que sobe ao Raspberry Pi e o jumper que vai ao pino GND do Arduino.
+- **Borne 1, os 5,1 V:** de um lado, o fio vermelho que vem do LM2596. Do outro, o fio vermelho que sobe ao Raspberry Pi e o jumper que vai ao pino + do conector COM do shield.
+- **Borne 2, o negativo:** de um lado, o fio preto do LM2596 e uma ponta do par de resistores. Do outro, o fio preto que sobe ao Raspberry Pi e o jumper que vai ao pino − do conector COM.
 - **Borne 3, a serial:** de um lado, os resistores do divisor. Do outro, o fio azul que desce do Raspberry Pi.
 
 ## Tabela de ligações, fio a fio
@@ -74,8 +74,8 @@ parte da descarga abaixo de 7 V.
 | Saída OUT− do LM2596 | Barra de emenda, borne 2 | preto | 20 AWG, curto |  |
 | Barra de emenda, borne 1 (5,1 V) | Pelo pescoço, até o borne + do adaptador USB-C, que entra na porta USB-C do Raspberry Pi | vermelho | 20 AWG | Fio grosso e o mais curto que der: fio fino faz o Pi acusar subtensão. |
 | Barra de emenda, borne 2 (negativo) | Pelo pescoço, até o borne − do adaptador USB-C | preto | 20 AWG |  |
-| Barra de emenda, borne 1 (5,1 V) | Pino 5V do conector POWER do Sensor Shield | vermelho | jumper Dupont com uma ponta cortada e descascada | É por aqui que o Arduino recebe energia. Antes, com o Uno só na USB e o jumper SEL retirado, confirme com o multímetro que esse pino marca cerca de 5 V e que o pino V do D9 marca 0 V. Um pino errado aqui põe os 6 V dos servos no Raspberry Pi. |
-| Barra de emenda, borne 2 (negativo) | Pino GND do conector POWER do Sensor Shield | preto | jumper Dupont com uma ponta cortada e descascada |  |
+| Barra de emenda, borne 1 (5,1 V) | Pino + do conector COM do Sensor Shield | vermelho | jumper Dupont com uma ponta cortada e descascada | É por aqui que o Arduino recebe energia. Antes, com o Uno só na USB e o jumper SEL retirado, confirme com o multímetro que esse pino marca cerca de 5 V e que o pino V do D9 marca 0 V. Um pino errado aqui põe os 6 V dos servos no Raspberry Pi. |
+| Barra de emenda, borne 2 (negativo) | Pino − do conector COM do Sensor Shield | preto | jumper Dupont com uma ponta cortada e descascada |  |
 
 ### 6 V: servos
 
@@ -104,7 +104,8 @@ parte da descarga abaixo de 7 V.
 Faça na bancada, com a base impressa ao lado. A chave é a primeira peça a entrar na base, e entra antes de ser soldada
 no resto. Os nomes das ilhas mudam de placa para placa. No carregador são B+, BM e B−. Na placa de proteção da loja
 consultada só o verso tem nomes: B+, B1 (meio), B− e C−. Pela foto, a C− é a saída negativa e a saída positiva é a
-própria B+; é leitura de foto, não confirmada: confira com o multímetro.
+própria B+; é leitura de foto, não confirmada: confira com o multímetro. No Sensor Shield da mesma loja, a foto mostra
+o conector COM com 4 pinos em pé (TX, RX, − e +) e o jumper SEL ao lado do borne azul.
 
 <!-- GERADO:prep1 -->
 1. Solde o 3º fio (amarelo) na lâmina de metal que une as duas células, com as células fora do suporte.
@@ -127,14 +128,15 @@ o centro e os mantém lá.
 1. Abra o sketch `centrar_servos.ino` na Arduino IDE. Ligue o Arduino Uno ao computador pelo cabo USB, sem o shield e sem bateria.
 2. No menu Ferramentas, escolha a placa Arduino Uno e a porta em que ela apareceu. Clique em Carregar.
 3. Tire o cabo USB, encaixe o Sensor Shield no Uno e retire o jumper SEL do shield: é a capinha de plástico sobre 2 pinos, ao lado do borne azul.
-4. Ligue o cabo USB de novo, só para medir com o multímetro: o pino 5V do conector POWER do shield tem de marcar cerca de 5 V, e o pino V do D9 tem de marcar 0 V.
-5. Se o V do D9 marcar 5 V, o jumper SEL ainda está posto. Se o seu shield não tiver o conector POWER, use o pino + do conector COM e meça do mesmo jeito. Um pino errado aqui põe os 6 V dos servos no Raspberry Pi.
+4. Ligue o cabo USB de novo, só para medir com o multímetro. O conector COM do shield tem 4 pinos em pé, marcados TX, RX, − e +. Entre o + e o − tem de dar cerca de 5 V. No conector D9, entre o pino V e o pino G, tem de dar 0 V.
+5. Se o V do D9 marcar 5 V, o jumper SEL ainda está posto. Se o + do COM não marcar 5 V, o seu shield é diferente do da foto da loja: procure outro pino marcado + ou 5V que marque 5 V com o SEL retirado. Um pino errado aqui põe os 6 V dos servos no Raspberry Pi.
 6. Tire o cabo USB.
 7. Ligue os 6 V do UBEC no borne azul (VCC e GND) e o capacitor de 1000 µF no mesmo borne, com a perna comprida no VCC.
-8. Pegue 2 jumpers de 40 cm, corte o conector de uma ponta de cada um e descasque. Aperte um no borne 1 da barra de emenda e encaixe o conector dele no pino 5V do conector POWER; o outro vai do borne 2 ao pino GND do mesmo conector.
+8. Pegue 2 jumpers de 40 cm, corte o conector de uma ponta de cada um e descasque. Aperte um no borne 1 da barra de emenda, do lado oposto ao do conversor, e encaixe o conector dele no pino + do conector COM. O outro vai do borne 2 ao pino − do mesmo conector.
 9. Ligue o servo de pan no D9 e o servo de tilt no D10: fio marrom ou preto no G, vermelho no V, laranja ou amarelo no S.
 10. Ligue a chave: os dois servos vão para o centro (90°) e o LED do Uno pisca uma vez por segundo.
 11. Desligue a chave. Daqui em diante não gire os eixos dos servos com a mão.
+12. Desfaça as ligações de teste, porque o Uno é parafusado na base sem o shield: tire os 2 servos do D9 e do D10, solte do borne azul os fios do UBEC e o capacitor, tire os 2 jumpers do conector COM e desencaixe o shield. Tudo volta ao lugar na montagem.
 <!-- /GERADO -->
 
 Três avisos:
@@ -156,18 +158,23 @@ divisor e 2 que levam energia ao Arduino (preparo 2). Um kit de 40 sobra.
 <!-- GERADO:prep3 -->
 1. Com o alicate de corte, corte da barra de pinos fêmea um pedaço de 2 × 2: 2 fileiras com 2 furos cada. É o conector baixo que vai nos pinos 31 a 34 do Raspberry Pi.
 2. Separe 3 jumpers de 40 cm: um verde, um azul e um preto (ou marque 3 de outra cor com fita). Corte o conector de UMA ponta de cada um e descasque 3 mm.
-3. Ache os pinos no Raspberry Pi: o pino 1 é o do canto, do lado do cartão microSD, na fileira de dentro. Os ímpares ficam na fileira de dentro e os pares na fileira da borda. Os pinos 31 e 32 são o 16º par; os pinos 33 e 34, o 17º.
+3. Ache os pinos no Raspberry Pi: o pino 1 é o do canto, do lado do cartão microSD, na fileira de dentro; o pino 40 fica no canto oposto, na fileira da borda. Os ímpares ficam na fileira de dentro e os pares na fileira da borda. Os pinos 31 e 32 são o 16º par; os pinos 33 e 34, o 17º.
 4. Solde as 3 pontas nos terminais do conector 2 × 2, com os fios saindo deitados, para o lado: o verde no furo que vai entrar no pino 32, o azul no do pino 33, o preto no do pino 34. O terminal do pino 31 fica vazio. Vista um pedaço de termo-retrátil fino em cada solda.
-5. No fio azul, corte também o conector da outra ponta e descasque 6 mm: essa ponta vai num borne. O verde e o preto ficam com o conector fêmea, que encaixa no shield.
-6. Agora o divisor. Solde 2 resistores de 1 kΩ um no outro, perna com perna, e cubra a emenda com termo-retrátil. Esse par vale 2 kΩ.
-7. Corte um jumper ao meio. Solde a ponta cortada de uma das metades numa perna do 3º resistor e cubra com termo-retrátil. O conector fêmea dessa metade é o que vai no D1.
-8. Na barra de emenda, do lado do conversor, aperte no borne 3 a perna livre do 3º resistor junto com uma ponta do par de 2 kΩ. Aperte a outra ponta do par no borne 2, junto com o fio preto que já está lá. Dobre a ponta de cada perna antes de apertar, para o parafuso morder.
-9. Confira com o multímetro, em ohms: entre o conector fêmea do jumper do D1 e o borne 3, cerca de 1 kΩ; entre o borne 3 e o borne 2, cerca de 2 kΩ.
-10. Guarde o cabo: o conector 2 × 2 entra no Raspberry Pi na montagem, antes da tela. Na base, o azul vai no borne 3 da barra, o verde no pino S do D0 e o preto no pino G do D0, tudo por borne ou encaixe, sem solda.
+5. Marque com caneta o canto do conector onde ficou o terminal vazio, o do pino 31. Na hora de encaixar, a marca fica na fileira de dentro, virada para o lado do cartão microSD. Para conferir: entre o conector e a tela sobram 2 pares de pinos vazios (27 a 30) e, do outro lado, 3 pares (35 a 40). Virado ao contrário, o conector troca os fios de lugar.
+6. No fio azul, corte também o conector da outra ponta e descasque 6 mm: essa ponta vai num borne. O verde e o preto ficam com o conector fêmea, que encaixa no shield.
+7. Agora o divisor. Solde 2 resistores de 1 kΩ um no outro, perna com perna, e cubra a emenda com termo-retrátil. Esse par vale 2 kΩ.
+8. Corte um jumper ao meio. Solde a ponta cortada de uma das metades numa perna do 3º resistor e cubra com termo-retrátil. O conector fêmea dessa metade é o que vai no D1.
+9. Na barra de emenda, do lado do conversor, aperte no borne 3 a perna livre do 3º resistor junto com uma ponta do par de 2 kΩ. Aperte a outra ponta do par no borne 2, junto com o fio preto que já está lá. Dobre a ponta de cada perna antes de apertar, para o parafuso morder.
+10. Confira com o multímetro, em ohms: entre o conector fêmea do jumper do D1 e o borne 3, cerca de 1 kΩ; entre o borne 3 e o borne 2, cerca de 2 kΩ.
+11. Guarde o cabo: o conector 2 × 2 entra no Raspberry Pi na montagem, antes da tela. Na base, o azul vai no borne 3 da barra, o verde no pino S do D0 e o preto no pino G do D0, tudo por borne ou encaixe, sem solda. Atenção: nos conectores de 3 pinos do D0 e do D1, o pino do meio (V) fica sempre vazio. Com o jumper SEL retirado ele tem os 6 V dos servos, e 6 V num fio da serial queimam o Raspberry Pi.
 <!-- /GERADO -->
 
 Por que um conector baixo: os pinos 31 a 34 ficam embaixo da placa da tela, onde sobram cerca de 17,5 mm (medida não
 confirmada). O conector Dupont comum, de 14 mm, não cabe em pé.
+
+Onde fica o pino 1 e por que o número do pino não é o número do GPIO:
+[documentação da Raspberry Pi](https://github.com/raspberrypi/documentation/blob/master/documentation/asciidoc/computers/raspberry-pi/gpio-on-raspberry-pi.adoc).
+No Pi já ligado, o comando `pinout` desenha o mapa dos pinos.
 
 ## Preparo 4: grave o cartão microSD, instale o driver da tela e ligue a serial
 
@@ -209,7 +216,7 @@ O furo de cabos do pescoço tem 9 mm e um plugue USB não passa por ele. Por iss
 - **No Raspberry Pi:** pino 32 (GPIO12, TX), pino 33 (GPIO13, RX) e pino 34 (GND). A tela ocupa os pinos 1 a 26; estes três ficam livres.
 - **Número do pino e número do GPIO:** "pino 32" é a posição na fileira de 40 pinos, contada a partir do canto do cartão microSD. "GPIO12" é o nome do sinal que sai por esse pino. Os dois números não são iguais.
 - **Tensão:** o Arduino trabalha em 5 V e o Pi em 3,3 V. O fio que vai do Arduino para o Pi passa por um divisor de 3 resistores de 1 kΩ, que baixa 5 V para 3,3 V. O fio que vai do Pi para o Arduino é direto.
-- **Por que resistores e não um módulo conversor de nível:** o divisor resolve com 3 resistores presos na barra de emenda, sem mais uma placa solta na base. O módulo também serve: o lado de 3,3 V dele (LV) vai no pino 3V3 do conector POWER do shield e o lado de 5 V (HV) no pino 5V.
+- **Por que resistores e não um módulo conversor de nível:** o divisor resolve com 3 resistores presos na barra de emenda, sem mais uma placa solta na base. O módulo também serviria, mas pede um pino de 3,3 V: na foto do shield aparece a marca 3V3, sem dar para confirmar se há pino em pé ali.
 
 ## Os 8 fios que passam pelo pescoço
 

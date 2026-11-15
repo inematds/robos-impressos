@@ -597,7 +597,7 @@ def esquema_svg(X):
     txt(475, 423, t("sv_capn"), 10.5, anc="middle", cor="#3565a8", peso=600)
     caixa(60, 470, 570, 150, fundo="#eef6ee", borda="#2f6b3a")
     txt(110, 488, t("sv_5v"), 11, anc="middle", peso=700)
-    txt(166, 488, "GND", 11, anc="middle", peso=700)
+    txt(166, 488, "− (COM)", 11, anc="middle", peso=700)
     txt(430, 488, "VCC", 11, anc="middle", peso=700)
     txt(520, 488, "GND", 11, anc="middle", peso=700)
     txt(475, 504, t("sv_borne"), 10.5, anc="middle", cor="#3565a8", peso=600)
@@ -723,7 +723,7 @@ def pagina(R, lg):
     lang = "".join(f'<a{" class=\"on\"" if k == lg else ""} href="{"./" if k == lg else fundo + ("" if k == "pt" else k + "/") + R.nome + "/"}">{k.upper()}</a>' for k in IDIOMAS)
     C = R.custo()
     rs = lambda k: f"R$ {C[k][0]}–{C[k][1]}"
-    fixos = {"LANG": f'<span class="lang">{lang}</span>', "LG": lg, "A": A, "GA": fundo + "assets/", "G": "../", "RAW": RAW, "BLOB": BLOB, "TREE": TREE, "REPO": REPO,
+    fixos = {"LANG": f'<span class="lang">{lang}</span>', "LG": lg, "LEIA": LEIA[lg], "A": A, "GA": fundo + "assets/", "G": "../", "RAW": RAW, "BLOB": BLOB, "TREE": TREE, "REPO": REPO,
              "EMOJI": R.cfg["emoji"], "ID": R.cfg["id"], "PECAS": R.cfg["pecas"], "DOCS": R.cfg["docs"], "ZIP": RAW + f'{R.cfg["docs"]}/{R.nome}-stl.zip',
              "N_ALTURA": X.n(R.mj["obs"]["altura_mm"] / 10, 0), "N_PECAS": str(R.n_pecas()), "N_DISTINTAS": str(len(R.mj["pecas"])), "N_MESAS": str(len(R.mesas)),
              "N_HORAS": X.n(R.horas(), 0), "N_GRAMAS": X.n(R.gramas(), 0), "N_INSERTOS": str(R.d["insertos"]), "N_TESTES": str(len(R.verif["testes"])),
