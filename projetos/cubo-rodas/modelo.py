@@ -95,15 +95,18 @@ def construir() -> Modelo:
     xch, zch = Q.chave_xz
     cortes.append(caixa(xch - rw_ / 2, xch + rw_ / 2, y0 - 1, y0 + t + 1, zch - rh_ / 2, zch + rh_ / 2))
     cortes.append(caixa(xch - rw_ / 2 - 2.5, xch + rw_ / 2 + 2.5, y0 + P.CHAVE.painel, y0 + t + 1, zch - rh_ / 2 - 2.5, zch + rh_ / 2 + 2.5))
-    # fase 2: sensor de queda (janela no piso, na frente) e 3 ToF (entalhe na borda, escondido na fresta do deck)
+    # fase 2: sensor de queda (janela no piso, na frente) e 3 ToF (frente e 2 lados). A janela de cada ToF é CEGA: um
+    # bolso em gota por DENTRO da parede, que deixa uma pele de 0,8 mm por fora (nada aparece de frente nem de 3/4; antes
+    # eram 3 entalhes abertos de 14 x 5 mm na borda da base). Ela fica entre os 2 furos piloto do suporte do sensor, na
+    # mesma altura; quem montar o sensor na fase 2 abre a pele com broca de 6 mm, por dentro, guiada pelo bolso.
     cortes.append(caixa(-7, 7, y1 - t - 9, y1 - t - 3, zc - 1, zf + 1) + BS.universal_z(0, y1 - t - 6, zc, zf))
-    cortes.append(caixa(-7, 7, y1 - t - 1, y1 + 1, zd0 - 4.0, zd0 + 1))
+    zj, dj, pele_j = zd0 - Q.tof_z, P.TOF.janela_d + 0.5, Q.tof_pele
+    cortes.append(gota((0.0, y1 - t - 0.01, zj), (0, 1, 0), t - pele_j, dj, (0, 0, 1)))
     for sx in (1, -1):
-        cortes.append(furo((sx * 10.0, y1 - t - 0.01, zd0 - 10.0), (0, 1, 0), 2.0, F.m25_piloto))
-        xa, xb = sorted((sx * (xi - 1), sx * (W / 2 + 1)))
-        cortes.append(caixa(xa, xb, yc - 7, yc + 7, zd0 - 4.0, zd0 + 1))
+        cortes.append(furo((sx * 10.0, y1 - t - 0.01, zj), (0, 1, 0), 2.0, F.m25_piloto))
+        cortes.append(gota((sx * (xi - 0.01), yc, zj), (sx, 0, 0), t - pele_j, dj, (0, 0, 1)))
         for sy in (1, -1):
-            cortes.append(furo((sx * (xi - 0.01), yc + sy * 10.0, zd0 - 10.0), (sx, 0, 0), 2.0, F.m25_piloto))
+            cortes.append(furo((sx * (xi - 0.01), yc + sy * 10.0, zj), (sx, 0, 0), 2.0, F.m25_piloto))
     for c in cortes:
         base = base - c
 
@@ -194,7 +197,7 @@ def construir() -> Modelo:
     pecas += [
         Peca("base-rodas", base, material="PETG", cor="grafite", macica=True, explode=(0, 0, -70), perimetros=5, infill=25,
              orientacao="piso na mesa", reforco="paredes dos motores com reforço de 4 mm e furo em gota; 4 postes Ø12 nos cantos; ressaltos nervurados do alçapão e da capa; assento cônico da bola a 45°; chanfro de 45° embaixo",
-             obs="cuba da base móvel: motores entram pela lateral (flange atrás da roda), bateria num alçapão por baixo, carregador USB-C e chave atrás, janela do sensor de queda e entalhes dos ToF"),
+             obs="cuba da base móvel: motores entram pela lateral (flange atrás da roda), bateria num alçapão por baixo, carregador USB-C e chave atrás, janela do sensor de queda no piso; por dentro, 3 janelas cegas dos sensores de distância da fase 2 (frente e lados): por fora a parede é lisa"),
         Peca("tampa-bateria", alc, material="PETG", cor="grafite", macica=True, explode=(0, 0, -110), perimetros=4, infill=25,
              orientacao="face de baixo na mesa, cantoneiras para cima", reforco="4 cantoneiras + abraçadeira seguram o suporte 3x18650",
              obs="alçapão da bateria: 4 M3x8 por baixo; a bateria desce junto com ele"),

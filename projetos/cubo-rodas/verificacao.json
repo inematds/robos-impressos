@@ -63,14 +63,14 @@
   },
   "pecas": {
    "base-rodas": {
-    "area_total_mm2": 135079.8,
+    "area_total_mm2": 135487.3,
     "mesa_mm2": 14514.6,
-    "balanco_bruto_mm2": 618.9,
+    "balanco_bruto_mm2": 619.1,
     "sem_apoio_mm2": 32.9,
     "sem_apoio_pct": 0.02,
-    "limite_mm2": 270.2,
+    "limite_mm2": 271.0,
     "tolerado_mm2": {
-     "fragmentos": 22.3,
+     "fragmentos": 22.5,
      "furos": 478.8,
      "pontes": 50.4,
      "beiras": 34.5
@@ -757,7 +757,7 @@
     -47.2,
     127.4
    ],
-   "margem_mm": 39.4,
+   "margem_mm": 39.5,
    "tomba_graus": 17.2,
    "massa_g": 2214.0
   },
@@ -832,7 +832,7 @@
   "pecas_distintas": 15,
   "pecas_total": 19,
   "massa_impressa_g": 1143.0,
-  "tempo_total_h": 43.4,
+  "tempo_total_h": 43.5,
   "ok": true
  }
 }

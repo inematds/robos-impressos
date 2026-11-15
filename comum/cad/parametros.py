@@ -548,7 +548,8 @@ CUBO_RODAS = NS(
     larg=130.0, y=(-150.0, 32.0),      # corpo: largura e (trás, frente); o eixo das rodas é Y=0 (rodas na FRENTE, bola atrás)
     raio=20.0, parede=3.0, chanfro=3.0,
     chao=20.0,                         # vão livre sob o piso (soleira/tapete: ver Modelo.obs)
-    z_deck=92.0, deck_esp=3.0, deck_recuo=1.5,   # o deck fica entre a base e o tronco, 1,5 mm para dentro (fresta de sombra dos ToF)
+    z_deck=92.0, deck_esp=3.0, deck_recuo=1.5,   # o deck fica entre a base e o tronco, 1,5 mm para dentro (fresta de sombra)
+    tof_z=10.0, tof_pele=0.8,          # fase 2: janela CEGA de cada ToF (frente e 2 lados), 10 mm abaixo da borda da base, entre os 2 furos piloto; pele de 0,8 mm por fora
     tampa_esp=4.0, chanfro_topo=6.0,
     eixo_y=-62.0,                      # eixo do pescoço (pan)
     ang_servo=90.0, ang_corpo=0.0,     # servo de pan na frente do eixo, corpo para +X

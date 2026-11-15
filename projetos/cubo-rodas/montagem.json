@@ -59,11 +59,11 @@
     182.0,
     72.0
    ],
-   "tris": 7336,
-   "plastico_cm3": 209.6,
-   "massa_g": 266.2,
-   "tempo_h": 9.78,
-   "obs": "cuba da base móvel: motores entram pela lateral (flange atrás da roda), bateria num alçapão por baixo, carregador USB-C e chave atrás, janela do sensor de queda e entalhes dos ToF",
+   "tris": 7728,
+   "plastico_cm3": 209.9,
+   "massa_g": 266.5,
+   "tempo_h": 9.8,
+   "obs": "cuba da base móvel: motores entram pela lateral (flange atrás da roda), bateria num alçapão por baixo, carregador USB-C e chave atrás, janela do sensor de queda no piso; por dentro, 3 janelas cegas dos sensores de distância da fase 2 (frente e lados): por fora a parede é lisa",
    "liso": false,
    "perimetros": 5,
    "infill": 25,
@@ -2495,7 +2495,7 @@
      "a_max_m_s2": {
       "frente": 3.51,
       "tras": 5.2,
-      "esq": 3.92,
+      "esq": 3.93,
       "dir": 4.72
      }
     },
