@@ -124,8 +124,8 @@ preço conferido em loja: as faixas deles são só referência.
 
 | Item (o nome abre a busca) | Usa / comprar | Para que serve | Preço estimado | Visto em loja |
 |---|---|---|---|---|
-| [Filamento PETG de 1,75 mm, rolo de 1 kg](https://lista.mercadolivre.com.br/filamento-petg-1.75mm-1kg) | 822 g, em 4 cores sugeridas (amarelo, branco, grafite e prata) / 1 rolo de qualquer cor (ou 4 rolos, um de cada cor sugerida) | As peças que fazem força: base, alçapão, capa da bola, flanges, deck, tronco, pescoço, engrenagens, garfo e quadro da cabeça. A cor é só sugestão; o material não: mantenha PETG. Um rolo de 1 kg dá com pouca sobra: a conta é uma estimativa sem fatiador, e se uma peça grande falhar no meio falta filamento. | R$ 90–150 (rolo) | não conferido |
-| [Filamento PLA de 1,75 mm, rolo de 1 kg](https://lista.mercadolivre.com.br/filamento-pla-1.75mm-1kg) | 321 g, em 3 cores sugeridas (branco, cinza e preto) / 1 rolo de qualquer cor (ou 3 rolos, um de cada cor sugerida) | As peças que só vestem o robô: copo da cabeça, painel do rosto, espaçadores e cupom de teste. A cor é só sugestão. | R$ 80–140 (rolo) | não conferido |
+| [Filamento PETG de 1,75 mm, rolo de 1 kg](https://lista.mercadolivre.com.br/filamento-petg-1.75mm-1kg) | 823 g, em 4 cores sugeridas (amarelo, branco, grafite e prata) / 1 rolo de qualquer cor (ou 4 rolos, um de cada cor sugerida) | As peças que fazem força: base, alçapão, capa da bola, flanges, deck, tronco, pescoço, engrenagens, garfo e quadro da cabeça. A cor é só sugestão; o material não: mantenha PETG. Um rolo de 1 kg dá com pouca sobra: a conta é uma estimativa sem fatiador, e se uma peça grande falhar no meio falta filamento. | R$ 90–150 (rolo) | não conferido |
+| [Filamento PLA de 1,75 mm, rolo de 1 kg](https://lista.mercadolivre.com.br/filamento-pla-1.75mm-1kg) | 320 g, em 3 cores sugeridas (branco, cinza e preto) / 1 rolo de qualquer cor (ou 3 rolos, um de cada cor sugerida) | As peças que só vestem o robô: copo da cabeça, painel do rosto, espaçadores e cupom de teste. A cor é só sugestão. | R$ 80–140 (rolo) | não conferido |
 
 ### Ferramentas e material de solda (se você não tiver)
 
@@ -188,10 +188,10 @@ PLA, e sobra muito filamento. As duas linhas de filamento estão na lista acima.
 |---|---|---|
 | PETG amarelo | 108 | 4,1 |
 | PETG branco | 236 | 8,7 |
-| PETG grafite | 453 | 17,1 |
+| PETG grafite | 454 | 17,1 |
 | PETG prata | 25 | 1,1 |
 | PLA branco | 248 | 9,3 |
-| PLA cinza | 16 | 0,9 |
+| PLA cinza | 15 | 0,9 |
 | PLA preto | 57 | 2,2 |
 | **Total** | **1143** | **43,4** |
 <!-- /GERADO -->
@@ -211,7 +211,7 @@ nenhum desses furos aparece de frente: a coluna "Onde vai" diz onde cada um est�
 | [Amplificador de áudio pequeno (PAM8403 ou MAX98357A)](https://lista.mercadolivre.com.br/amplificador-pam8403) | 1 | Sem lugar modelado ainda: vai solto no deck, com fita dupla-face. | R$ 5–35 | R$ 5,47 a R$ 11,34 (PAM8403) |
 | [Sensor de movimento IMU MPU-6050](https://lista.mercadolivre.com.br/mpu-6050-gy-521) | 1 | No ponto universal do deck (par de furos M3 a 20 mm), perto do eixo das rodas. | R$ 15–35 | R$ 34,09 |
 | [LiDAR LD19](https://lista.mercadolivre.com.br/lidar-ld19) | 1 | No topo da cabeça, o único lugar com 360° livres: 3 furos cegos por dentro e um rebaixo cego para o cabo. A pele de 0,8 mm só é furada quando o sensor for instalado; até lá, nada aparece por fora. Com ele o robô fica com 341 mm de altura. NC: posição dos 3 furos no corpo do sensor. | R$ 400–900 | não conferido |
-| [Sensor de distância ToF VL53L1X (placa pequena)](https://lista.mercadolivre.com.br/sensor-vl53l1x-tof) | 3 | Atrás de 3 entalhes de 14 × 4 mm na borda de cima da base, um na frente e um de cada lado, escondidos na fresta de sombra do deck. Cada um tem 2 furos cegos por dentro para parafuso M2,5. NC: tamanho da placa (25 × 10,7 mm) e distância entre os furos. | R$ 40–110 | R$ 102,32 |
+| [Sensor de distância ToF VL53L1X (placa pequena)](https://lista.mercadolivre.com.br/sensor-vl53l1x-tof) | 3 | Por dentro da parede da base, 10 mm abaixo da borda de cima: um na frente e um de cada lado. Cada ponto tem 2 furos cegos para parafuso M2,5 e, entre eles, uma janela cega: por fora a parede é lisa, com 0,8 mm de plástico na frente da janela. Na instalação, fure essa pele por dentro com broca de 6 mm. Depois disso ficam 3 furos de 6 mm à vista na base. NC: tamanho da placa (25 × 10,7 mm) e distância entre os furos. | R$ 40–110 | R$ 102,32 |
 | [Sensor de queda (reflexivo infravermelho, por exemplo TCRT5000)](https://lista.mercadolivre.com.br/sensor-reflexivo-infravermelho-tcrt5000) | 1 | Numa janela de 14 × 6 mm no piso da base, na frente, olhando para o chão, com um par de furos M3 a 20 mm. Só aparece por baixo. | R$ 5–15 | R$ 7,92 |
 <!-- /GERADO -->
 

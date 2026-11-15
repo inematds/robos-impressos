@@ -64,11 +64,11 @@ Primeiro as peças pequenas que se encaixam umas nas outras; por último as impr
 <!-- GERADO:mesas -->
 | Ordem | Arquivo da mesa | Material e cor | Peças | Filamento (g) | Tempo (h) | Por que nesta ordem |
 |---|---|---|---|---|---|---|
-| 1 | [cubo_rodas-mesa-07-pla-cinza.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/mesas/cubo_rodas-mesa-07-pla-cinza.3mf) | PLA cinza | Cupom de teste (teste-encaixe), 4 × Espaçador do Raspberry Pi (espacador-pi) | 16 | 0,9 | Comece por aqui. O cupom de teste mostra se os insertos e os parafusos M3 entram com a folga certa na SUA impressora. Menos de 1 hora, com os 4 espaçadores do Raspberry Pi. |
+| 1 | [cubo_rodas-mesa-07-pla-cinza.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/mesas/cubo_rodas-mesa-07-pla-cinza.3mf) | PLA cinza | Cupom de teste (teste-encaixe), 4 × Espaçador do Raspberry Pi (espacador-pi) | 15 | 0,9 | Comece por aqui. O cupom de teste mostra se os insertos e os parafusos M3 entram com a folga certa na SUA impressora. Menos de 1 hora, com os 4 espaçadores do Raspberry Pi. |
 | 2 | [cubo_rodas-mesa-05-petg-prata.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/mesas/cubo_rodas-mesa-05-petg-prata.3mf) | PETG prata | Tubo do pescoço (tubo-pescoco), Engrenagem do pescoço (engrenagem-pescoco) | 25 | 1,1 | Tubo e engrenagem do pescoço: peças pequenas que já testam o encaixe com os tirantes. |
 | 3 | [cubo_rodas-mesa-01-petg-amarelo.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/mesas/cubo_rodas-mesa-01-petg-amarelo.3mf) | PETG amarelo | Quadro da cabeça (quadro-cabeca), Engrenagem do servo (engrenagem-servo) | 108 | 4,1 | Quadro da cabeça e engrenagem do servo: confira se o servo entra no rasgo e se as duas engrenagens rodam juntas sem prender. |
 | 4 | [cubo_rodas-mesa-04-petg-grafite.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/mesas/cubo_rodas-mesa-04-petg-grafite.3mf) | PETG grafite | Deck (bandeja das placas) (deck), Alçapão da bateria (tampa-bateria), 2 × Flange do motor (flange-motor), Capa da bola (capa-esfera), Garfo (garfo) | 187 | 7,3 | Deck, alçapão, as 2 flanges, capa da bola e garfo. Confira já: os 6 furos da flange contra o motor, o parafuso M5 no braço do garfo e as placas nos ressaltos do deck. |
-| 5 | [cubo_rodas-mesa-03-petg-grafite.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/mesas/cubo_rodas-mesa-03-petg-grafite.3mf) | PETG grafite | Base com rodas (base-rodas) | 266 | 9,8 | Base com rodas: a impressão mais longa. Antes dela, confira com a flange da mesa anterior se o motor passa num furo de 40,6 mm. |
+| 5 | [cubo_rodas-mesa-03-petg-grafite.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/mesas/cubo_rodas-mesa-03-petg-grafite.3mf) | PETG grafite | Base com rodas (base-rodas) | 267 | 9,8 | Base com rodas: a impressão mais longa. Antes dela, confira com a flange da mesa anterior se o motor passa num furo de 40,6 mm. |
 | 6 | [cubo_rodas-mesa-02-petg-branco.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/mesas/cubo_rodas-mesa-02-petg-branco.3mf) | PETG branco | Tronco (tronco) | 236 | 8,7 | Tronco: imprime de cabeça para baixo, com o topo na mesa. |
 | 7 | [cubo_rodas-mesa-08-pla-preto.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/mesas/cubo_rodas-mesa-08-pla-preto.3mf) | PLA preto | Painel do rosto (cabeca-face) | 57 | 2,2 | Painel do rosto: a face que aparece vai na mesa, então limpe bem a mesa antes. |
 | 8 | [cubo_rodas-mesa-06-pla-branco.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/mesas/cubo_rodas-mesa-06-pla-branco.3mf) | PLA branco | Copo da cabeça (cabeca-corpo) | 248 | 9,3 | Copo da cabeça: a impressão mais longa em PLA. Deixe por último, com a impressora já ajustada. |
@@ -83,7 +83,7 @@ parênteses é o nome do arquivo.
 <!-- GERADO:pecas -->
 | Peça | Arquivo | Qtd | Material e cor | Tamanho na mesa (mm) | Como vai na mesa | Suporte | Paredes | Preenchimento | Filamento (g) | Tempo (h) |
 |---|---|---|---|---|---|---|---|---|---|---|
-| Base com rodas (base-rodas) | [cubo_rodas-base-rodas.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/stl/cubo_rodas-base-rodas.stl) | 1 | PETG grafite | 130 × 182 × 72 | piso na mesa | não | 5 | 25 % | 266 | 9,8 |
+| Base com rodas (base-rodas) | [cubo_rodas-base-rodas.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/stl/cubo_rodas-base-rodas.stl) | 1 | PETG grafite | 130 × 182 × 72 | piso na mesa | não | 5 | 25 % | 267 | 9,8 |
 | Alçapão da bateria (tampa-bateria) | [cubo_rodas-tampa-bateria.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/stl/cubo_rodas-tampa-bateria.stl) | 1 | PETG grafite | 108 × 84 × 7 | face de baixo na mesa, cantoneiras para cima | não | 4 | 25 % | 34 | 1,3 |
 | Capa da bola (capa-esfera) | [cubo_rodas-capa-esfera.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/stl/cubo_rodas-capa-esfera.stl) | 1 | PETG grafite | 56,9 × 47,2 × 12 | de cabeça para baixo: a face que encosta no piso na mesa; a boca fecha a 45° | não | 4 | 40 % | 9 | 0,4 |
 | Flange do motor (flange-motor) | [cubo_rodas-flange-motor.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/stl/cubo_rodas-flange-motor.stl) | 2 | PETG grafite | 62 × 62 × 4 | deitada, a face que encosta na parede na mesa | não | 5 | 60 % | 28 | 1,2 |
@@ -96,7 +96,7 @@ parênteses é o nome do arquivo.
 | Quadro da cabeça (quadro-cabeca) | [cubo_rodas-quadro-cabeca.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/stl/cubo_rodas-quadro-cabeca.stl) | 1 | PETG amarelo | 145,2 × 93,5 × 62,7 | frente da travessa na mesa, laterais para cima | não | 4 | 30 % | 85 | 3,2 |
 | Copo da cabeça (cabeca-corpo) | [cubo_rodas-cabeca-corpo.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/stl/cubo_rodas-cabeca-corpo.stl) | 1 | PLA branco | 152 × 128 × 110 | costas na mesa, boca (frente) para cima, como um copo | não | 3 | 15 % | 248 | 9,3 |
 | Painel do rosto (cabeca-face) | [cubo_rodas-cabeca-face.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/stl/cubo_rodas-cabeca-face.stl) | 1 | PLA preto | 145,9 × 121,9 × 43,2 | face da frente (a que aparece) na mesa, pilares para cima | não | 3 | 20 % | 57 | 2,2 |
-| Espaçador do Raspberry Pi (espacador-pi) | [cubo_rodas-espacador-pi.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/stl/cubo_rodas-espacador-pi.stl) | 4 | PLA cinza | 6 × 6 × 4 | em pé | não | 3 | 15 % | 1 | 0,3 |
+| Espaçador do Raspberry Pi (espacador-pi) | [cubo_rodas-espacador-pi.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/stl/cubo_rodas-espacador-pi.stl) | 4 | PLA cinza | 6 × 6 × 4 | em pé | não | 3 | 15 % | <1 | 0,3 |
 | Cupom de teste (teste-encaixe) | [comum-teste-encaixe.stl](https://github.com/inematds/robos-impressos/raw/main/comum/pecas/stl/comum-teste-encaixe.stl) | 1 | PLA cinza | 70 × 34 × 8 | deitada | não | 3 | 15 % | 15 | 0,6 |
 | **Total** |  | **19** |  |  |  |  |  |  | **1143** | **43,4** |
 <!-- /GERADO -->
@@ -110,10 +110,10 @@ Filamento e tempo são estimativas por volume, sem fatiador. O fatiador vai dar 
 |---|---|---|
 | PETG amarelo | 108 | 4,1 |
 | PETG branco | 236 | 8,7 |
-| PETG grafite | 453 | 17,1 |
+| PETG grafite | 454 | 17,1 |
 | PETG prata | 25 | 1,1 |
 | PLA branco | 248 | 9,3 |
-| PLA cinza | 16 | 0,9 |
+| PLA cinza | 15 | 0,9 |
 | PLA preto | 57 | 2,2 |
 | **Total** | **1143** | **43,4** |
 <!-- /GERADO -->
@@ -123,7 +123,7 @@ Filamento e tempo são estimativas por volume, sem fatiador. O fatiador vai dar 
 <!-- GERADO:reforcos -->
 | Peça | Reforço | O que é |
 |---|---|---|
-| Base com rodas (base-rodas) | paredes dos motores com reforço de 4 mm e furo em gota; 4 postes Ø12 nos cantos; ressaltos nervurados do alçapão e da capa; assento cônico da bola a 45°; chanfro de 45° embaixo | cuba da base móvel: motores entram pela lateral (flange atrás da roda), bateria num alçapão por baixo, carregador USB-C e chave atrás, janela do sensor de queda e entalhes dos ToF |
+| Base com rodas (base-rodas) | paredes dos motores com reforço de 4 mm e furo em gota; 4 postes Ø12 nos cantos; ressaltos nervurados do alçapão e da capa; assento cônico da bola a 45°; chanfro de 45° embaixo | cuba da base móvel: motores entram pela lateral (flange atrás da roda), bateria num alçapão por baixo, carregador USB-C e chave atrás, janela do sensor de queda no piso; por dentro, 3 janelas cegas dos sensores de distância da fase 2 (frente e lados): por fora a parede é lisa |
 | Alçapão da bateria (tampa-bateria) | 4 cantoneiras + abraçadeira seguram o suporte 3x18650 | alçapão da bateria: 4 M3x8 por baixo; a bateria desce junto com ele |
 | Capa da bola (capa-esfera) | 4 orelhas; boca cônica a 45° | segura a bola de 40 mm no poço; 4 M3x8 por baixo; a 8 mm do chão |
 | Flange do motor (flange-motor) | disco quase maciço (5 perímetros, 60 %): leva o peso e o torque do motor | prende o motor JGB37 (6 M3x6) e fecha o furo lateral da base (4 M3x10); fica escondida atrás da roda |

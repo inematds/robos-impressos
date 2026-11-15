@@ -4,7 +4,7 @@
 
 | Modelo | Altura (mm) | Peças | Mesas (impressões) | Filamento total (g)* | Impressão total (h)* | Robô montado (g)* |
 |---|---|---|---|---|---|---|
-| Dinossauro | 300 | 34 | 12 | 1010 | 40 | 1605 |
+| Dinossauro | 300 | 34 | 12 | 1002 | 40 | 1597 |
 | Capivara | 300 | 32 | 11 | 1129 | 44 | 1714 |
 | Robô quadrado | 200 | 15 | 7 | 735 | 28 | 1147 |
 | Robô quadrado que roda | 306 | 19 | 8 | 1143 | 43 | 2214 |
@@ -23,14 +23,14 @@
 | dedo-esq-1 | 17 × 13 × 8 | 1 | PLA | creme | não | 1 | 0.1 |
 | dedo-esq-2 | 17 × 13 × 7 | 1 | PLA | creme | não | 1 | 0.1 |
 | dedo-esq-3 | 13 × 17 × 7 | 1 | PLA | creme | não | 1 | 0.1 |
-| mancha-dir | 17 × 17 × 9 | 1 | PLA | verde-escuro | não | 2 | 0.1 |
-| mancha-esq | 17 × 17 × 9 | 1 | PLA | verde-escuro | não | 2 | 0.1 |
+| mancha-dir | 21 × 26 × 8 | 1 | PLA | verde-escuro | não | 2 | 0.1 |
+| mancha-esq | 21 × 26 × 8 | 1 | PLA | verde-escuro | não | 2 | 0.1 |
 | braco-dir | 28 × 59 × 16 | 1 | PLA | verde | não | 8 | 0.4 |
 | braco-esq | 28 × 59 × 16 | 1 | PLA | verde | não | 8 | 0.4 |
 | cubo-braco | 17 × 17 × 13 | 2 | PETG | grafite | não | 5 | 0.4 |
-| corpo | 194 × 114 × 129 | 1 | PLA | verde | sim | 201 | 7.6 |
+| corpo | 194 × 114 × 129 | 1 | PLA | verde | sim | 200 | 7.5 |
 | traseira | 126 × 131 × 132 | 1 | PLA | verde | sim | 102 | 3.9 |
-| gola | 121 × 100 × 56 | 1 | PLA | verde | não | 86 | 3.3 |
+| gola | 112 × 100 × 56 | 1 | PLA | verde | não | 79 | 3.0 |
 | crista-costas | 46 × 67 × 6 | 1 | PLA | azul | não | 10 | 0.4 |
 | cranio | 134 × 174 × 118 | 1 | PLA | verde | sim | 179 | 6.8 |
 | mandibula | 91 × 37 × 36 | 1 | PLA | verde | sim | 34 | 1.4 |
@@ -49,7 +49,7 @@
 | garfo-pescoco (comum) | 65 × 48 × 51 | 1 | PETG | grafite | sim | 17 | 0.7 |
 | berco-tilt (comum) | 38 × 23 × 77 | 1 | PETG | grafite | sim | 15 | 0.6 |
 | teste-encaixe (comum) | 70 × 34 × 8 | 1 | PLA | cinza | não | 15 | 0.6 |
-| **Total** |  | 34 |  |  |  | **1010** | **40** |
+| **Total** |  | 34 |  |  |  | **1002** | **40** |
 
 * estimativa por volume, sem fatiador
 
@@ -60,13 +60,13 @@
 | 1 contagem | PASSOU | 33 peças distintas, 34 no total (esperado 34); faltando 0; sobrando 0 |
 | 2 malha | PASSOU | 33 STL fechados, 1 corpo cada |
 | 3 mesa | PASSOU | todas cabem em 256 x 256 x 256 mm; maior dimensão 194.1 mm (corpo) |
-| 4 parede | PASSOU | corpo 2.28–2.64 mm; gola 3.38–9.75 mm; cabeça 2.31–2.55 mm (mínimo exigido 2.0) |
+| 4 parede | PASSOU | corpo 2.27–2.62 mm; gola 2.89–9.75 mm; cabeça 2.31–2.55 mm (mínimo exigido 2.0) |
 | 5 interferência | PASSOU | 59 sólidos (33 impressos + 26 componentes), 12 poses, 0 sobreposições; 2 encaixe(s) previsto(s) fora da conta: motor-tt-dir x roda-dir (eixo do motor entra no cubo da roda); motor-tt-esq x roda-esq (eixo do motor entra no cubo da roda) |
 | 6 teste negativo | PASSOU | 'chassi' deslocada 3 mm em X → 15 sobreposições acusadas (tem que ser > 0) |
 | 7 peça solta | PASSOU | as 33 peças montadas encostam (≤ 1.5 mm) em outra |
-| 8 equilíbrio | PASSOU | massa estimada 1605 g; CG neutro em x=-0.2 y=-18.6 z=108.4 mm, margem 18.6 mm (tomba com 10°); pior pose 'tilt-baixo': margem 14.8 mm (8°); mínimo exigido 10 mm |
+| 8 equilíbrio | PASSOU | massa estimada 1597 g; CG neutro em x=-0.3 y=-18.7 z=108.2 mm, margem 18.7 mm (tomba com 10°); pior pose 'tilt-baixo': margem 14.9 mm (8°); mínimo exigido 10 mm |
 | 9 caminho | PASSOU | 31 passos (montagem + abertura para manutenção), cada peça entra ou sai pela direção declarada sem atravessar o que está montado |
-| 10 imprimibilidade | PASSOU | 33 peças distintas: 27 saem sem suporte; 6 com suporte declarado: cranio (12051 mm² = 9.8 %, ponte de 65 mm, 2 ponto(s) no ar), corpo (2674 mm² = 2.3 %, ponte de 20 mm, 2 ponto(s) no ar), traseira (1596 mm² = 2.4 %, ponte de 24 mm, 1 ponto(s) no ar), garfo-pescoco (1488 mm² = 16.1 %, ponte de 21 mm), berco-tilt (516 mm² = 7.0 %, ponte de 21 mm), mandibula (455 mm² = 4.9 %); 0 REPROVADA(S) (declaradas sem suporte, mas com área sem apoio acima de max(30 mm², 0.2 % da área) a mais de 45° ou ponto que nasce no ar) |
+| 10 imprimibilidade | PASSOU | 33 peças distintas: 27 saem sem suporte; 6 com suporte declarado: cranio (12051 mm² = 9.8 %, ponte de 65 mm, 2 ponto(s) no ar), corpo (2514 mm² = 2.2 %, ponte de 20 mm, 2 ponto(s) no ar), traseira (1596 mm² = 2.4 %, ponte de 24 mm, 1 ponto(s) no ar), garfo-pescoco (1488 mm² = 16.1 %, ponte de 21 mm), berco-tilt (516 mm² = 7.0 %, ponte de 21 mm), mandibula (455 mm² = 4.9 %); 0 REPROVADA(S) (declaradas sem suporte, mas com área sem apoio acima de max(30 mm², 0.2 % da área) a mais de 45° ou ponto que nasce no ar) |
 | 11 negativo impr. | PASSOU | 'chassi' na orientação declarada: 158 mm² sem apoio (limite 163); girada 180° em X → 11537 mm² = 14.1 % (acusou; tem que acusar) |
 
 ## Capivara — peças impressas

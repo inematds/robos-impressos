@@ -26,7 +26,7 @@ Las imágenes y el banner son **renders** de las piezas del proyecto.
 <!-- TABELA:resumo -->
 | Modelo | Altura (mm) | Piezas | Camas (impresiones) | Filamento total (g)* | Impresión total (h)* | Robot armado (g)* |
 |---|---|---|---|---|---|---|
-| Dinosaurio | 300 | 34 | 12 | 1010 | 40 | 1605 |
+| Dinosaurio | 300 | 34 | 12 | 1002 | 40 | 1597 |
 | Carpincho | 300 | 32 | 11 | 1129 | 44 | 1714 |
 | Robot cuadrado | 200 | 15 | 7 | 735 | 28 | 1147 |
 | Robot cuadrado con ruedas | 306 | 19 | 8 | 1143 | 43 | 2214 |

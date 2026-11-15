@@ -58,11 +58,11 @@ Print the small parts that fit together first; do the long prints last.
 <!-- GERADO:mesas -->
 | Order | Build plate file | Material and color | Parts | Filament (g) | Time (h) | Why this order |
 |---|---|---|---|---|---|---|
-| 1 | [cubo_rodas-mesa-07-pla-cinza.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/mesas/cubo_rodas-mesa-07-pla-cinza.3mf) | PLA gray | Test coupon (teste-encaixe), 4 × Raspberry Pi spacer (espacador-pi) | 16 | 0.9 | Start here. The test coupon shows whether threaded inserts and M3 screws fit with the right clearance on YOUR printer. Less than 1 hour, with the 4 Raspberry Pi spacers. |
+| 1 | [cubo_rodas-mesa-07-pla-cinza.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/mesas/cubo_rodas-mesa-07-pla-cinza.3mf) | PLA gray | Test coupon (teste-encaixe), 4 × Raspberry Pi spacer (espacador-pi) | 15 | 0.9 | Start here. The test coupon shows whether threaded inserts and M3 screws fit with the right clearance on YOUR printer. Less than 1 hour, with the 4 Raspberry Pi spacers. |
 | 2 | [cubo_rodas-mesa-05-petg-prata.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/mesas/cubo_rodas-mesa-05-petg-prata.3mf) | PETG silver | Neck tube (tubo-pescoco), Neck gear (engrenagem-pescoco) | 25 | 1.1 | Neck tube and gear: small parts that already test the fit with the tie rods. |
 | 3 | [cubo_rodas-mesa-01-petg-amarelo.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/mesas/cubo_rodas-mesa-01-petg-amarelo.3mf) | PETG yellow | Head frame (quadro-cabeca), Servo gear (engrenagem-servo) | 108 | 4.1 | Head frame and servo gear: check whether the servo fits in the slot and whether the two gears turn together without binding. |
 | 4 | [cubo_rodas-mesa-04-petg-grafite.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/mesas/cubo_rodas-mesa-04-petg-grafite.3mf) | PETG graphite | Deck (board tray) (deck), Battery hatch (tampa-bateria), 2 × Motor flange (flange-motor), Ball cover (capa-esfera), Fork (garfo) | 187 | 7.3 | Deck, battery hatch, the 2 flanges, ball cover, and fork. Check now: the flange’s 6 holes against the motor, the M5 screw in the fork arm, and the plates on the deck’s raised areas. |
-| 5 | [cubo_rodas-mesa-03-petg-grafite.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/mesas/cubo_rodas-mesa-03-petg-grafite.3mf) | PETG graphite | Wheeled base (base-rodas) | 266 | 9.8 | Base with wheels: the longest print. Before printing it, check with the previous build plate flange that the motor fits through a 40.6 mm hole. |
+| 5 | [cubo_rodas-mesa-03-petg-grafite.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/mesas/cubo_rodas-mesa-03-petg-grafite.3mf) | PETG graphite | Wheeled base (base-rodas) | 267 | 9.8 | Base with wheels: the longest print. Before printing it, check with the previous build plate flange that the motor fits through a 40.6 mm hole. |
 | 6 | [cubo_rodas-mesa-02-petg-branco.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/mesas/cubo_rodas-mesa-02-petg-branco.3mf) | PETG white | Torso (tronco) | 236 | 8.7 | Torso: print upside down, with the top on the build plate. |
 | 7 | [cubo_rodas-mesa-08-pla-preto.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/mesas/cubo_rodas-mesa-08-pla-preto.3mf) | PLA black | Face panel (cabeca-face) | 57 | 2.2 | Face panel: the visible side goes on the build plate, so clean the build plate well first. |
 | 8 | [cubo_rodas-mesa-06-pla-branco.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/mesas/cubo_rodas-mesa-06-pla-branco.3mf) | PLA white | Head shell (cabeca-corpo) | 248 | 9.3 | Head cup: the longest print in PLA. Leave it for last, once the printer is dialed in. |
@@ -77,7 +77,7 @@ parentheses is the file name.
 <!-- GERADO:pecas -->
 | Part | File | Qty | Material and color | Size on the build plate (mm) | How it sits on the build plate | Support | Walls | Infill | Filament (g) | Time (h) |
 |---|---|---|---|---|---|---|---|---|---|---|
-| Wheeled base (base-rodas) | [cubo_rodas-base-rodas.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/stl/cubo_rodas-base-rodas.stl) | 1 | PETG graphite | 130 × 182 × 72 | base on the build plate | no | 5 | 25 % | 266 | 9.8 |
+| Wheeled base (base-rodas) | [cubo_rodas-base-rodas.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/stl/cubo_rodas-base-rodas.stl) | 1 | PETG graphite | 130 × 182 × 72 | base on the build plate | no | 5 | 25 % | 267 | 9.8 |
 | Battery hatch (tampa-bateria) | [cubo_rodas-tampa-bateria.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/stl/cubo_rodas-tampa-bateria.stl) | 1 | PETG graphite | 108 × 84 × 7 | bottom face on the build plate, brackets facing up | no | 4 | 25 % | 34 | 1.3 |
 | Ball cover (capa-esfera) | [cubo_rodas-capa-esfera.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/stl/cubo_rodas-capa-esfera.stl) | 1 | PETG graphite | 56.9 × 47.2 × 12 | upside down: the face that touches the floor on the build plate; the opening closes at 45° | no | 4 | 40 % | 9 | 0.4 |
 | Motor flange (flange-motor) | [cubo_rodas-flange-motor.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/stl/cubo_rodas-flange-motor.stl) | 2 | PETG graphite | 62 × 62 × 4 | lying down, the face that touches the wall on the build plate | no | 5 | 60 % | 28 | 1.2 |
@@ -90,7 +90,7 @@ parentheses is the file name.
 | Head frame (quadro-cabeca) | [cubo_rodas-quadro-cabeca.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/stl/cubo_rodas-quadro-cabeca.stl) | 1 | PETG yellow | 145.2 × 93.5 × 62.7 | front of the crossbar on the build plate, sides facing up | no | 4 | 30 % | 85 | 3.2 |
 | Head shell (cabeca-corpo) | [cubo_rodas-cabeca-corpo.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/stl/cubo_rodas-cabeca-corpo.stl) | 1 | PLA white | 152 × 128 × 110 | back on the build plate, opening (front) facing up, like a cup | no | 3 | 15 % | 248 | 9.3 |
 | Face panel (cabeca-face) | [cubo_rodas-cabeca-face.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/stl/cubo_rodas-cabeca-face.stl) | 1 | PLA black | 145.9 × 121.9 × 43.2 | front face (the visible one) on the build plate, pillars facing up | no | 3 | 20 % | 57 | 2.2 |
-| Raspberry Pi spacer (espacador-pi) | [cubo_rodas-espacador-pi.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/stl/cubo_rodas-espacador-pi.stl) | 4 | PLA gray | 6 × 6 × 4 | upright | no | 3 | 15 % | 1 | 0.3 |
+| Raspberry Pi spacer (espacador-pi) | [cubo_rodas-espacador-pi.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/stl/cubo_rodas-espacador-pi.stl) | 4 | PLA gray | 6 × 6 × 4 | upright | no | 3 | 15 % | <1 | 0.3 |
 | Test coupon (teste-encaixe) | [comum-teste-encaixe.stl](https://github.com/inematds/robos-impressos/raw/main/comum/pecas/stl/comum-teste-encaixe.stl) | 1 | PLA gray | 70 × 34 × 8 | lying flat | no | 3 | 15 % | 15 | 0.6 |
 | **Total** |  | **19** |  |  |  |  |  |  | **1143** | **43.4** |
 <!-- /GERADO -->
@@ -104,10 +104,10 @@ Filament and time are volume estimates, without a slicer. The slicer will give y
 |---|---|---|
 | PETG yellow | 108 | 4.1 |
 | PETG white | 236 | 8.7 |
-| PETG graphite | 453 | 17.1 |
+| PETG graphite | 454 | 17.1 |
 | PETG silver | 25 | 1.1 |
 | PLA white | 248 | 9.3 |
-| PLA gray | 16 | 0.9 |
+| PLA gray | 15 | 0.9 |
 | PLA black | 57 | 2.2 |
 | **Total** | **1143** | **43.4** |
 <!-- /GERADO -->
@@ -117,7 +117,7 @@ Filament and time are volume estimates, without a slicer. The slicer will give y
 <!-- GERADO:reforcos -->
 | Part | Reinforcement | What it is |
 |---|---|---|
-| Wheeled base (base-rodas) | motor walls with 4 mm reinforcement and teardrop holes; 4 Ø12 posts at the corners; ribbed bosses for the battery hatch and cover; 45° conical ball seat; 45° chamfer underneath | mobile base tub: motors enter from the side (flange behind the wheel), battery in a hatch underneath, USB-C charger and switch at the back, drop sensor window and ToF notches |
+| Wheeled base (base-rodas) | motor walls with 4 mm reinforcement and teardrop holes; 4 Ø12 posts at the corners; ribbed bosses for the battery hatch and cover; 45° conical ball seat; 45° chamfer underneath | mobile base tub: motors enter from the side (flange behind the wheel), battery in a hatch underneath, USB-C charger and switch at the back, drop sensor window in the floor; inside, 3 blind windows for the phase 2 distance sensors (front and sides): the outside wall is smooth |
 | Battery hatch (tampa-bateria) | 4 brackets + zip tie hold the 3x18650 holder | battery hatch: 4 M3x8 screws underneath; the battery comes down with it |
 | Ball cover (capa-esfera) | 4 ears; 45° conical opening | holds the 40 mm ball in the well; 4 M3x8 screws underneath; 8 mm off the ground |
 | Motor flange (flange-motor) | nearly solid disk (5 perimeters, 60%): carries the motor's weight and torque | holds the JGB37 motor (6 M3x6) and closes the base side hole (4 M3x10); hidden behind the wheel |

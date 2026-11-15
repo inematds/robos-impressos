@@ -615,7 +615,7 @@
     },
     {
      "item": "Filamento PLA de 1,75 mm, rolo de 1 kg",
-     "usa": "739 g, em 7 cores sugeridas (verde, azul, creme, branco, cinza, verde-escuro e preto)",
+     "usa": "731 g, em 7 cores sugeridas (verde, azul, creme, branco, cinza, verde-escuro e preto)",
      "comprar": "1 rolo de 1 kg, se for tudo de uma cor só; nas cores sugeridas, 1 rolo da cor do corpo e sobras ou rolos pequenos das outras",
      "n": 1,
      "para": "As peças que vestem o robô: corpo, cabeça, olhos e as peças coloridas. A cor é só sugestão.",
@@ -628,7 +628,7 @@
      "ml": "filamento-pla-1.75mm-1kg",
      "confere": {
       "material": "PLA",
-      "g": 739,
+      "g": 731,
       "cores": 7
      }
     }
@@ -877,7 +877,7 @@
   {
    "item": "Sensor de distância ToF VL53L1X (placa de cerca de 25 × 11 mm)",
    "qtd": "3",
-   "onde": "1 atrás da pupila do olho esquerdo (janela de 6 mm): mede a distância do que a cabeça está olhando. 2 nas laterais, atrás das 2 manchas verde-escuras dos flancos (janela de 6 mm no miolo de cada mancha).",
+   "onde": "1 atrás da pupila do olho esquerdo (janela de 6 mm): mede a distância do que a cabeça está olhando. 2 nas laterais, atrás das 2 manchas verde-escuras dos flancos (janela de 5 mm em cada mancha, fora do centro).",
    "faixa": [
     30,
     110

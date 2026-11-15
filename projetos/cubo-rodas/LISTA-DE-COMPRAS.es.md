@@ -124,8 +124,8 @@ precio de ninguno de los tres en una tienda: sus rangos son solo una referencia.
 
 | Artículo (el nombre abre la búsqueda) | Usa / comprar | Para qué sirve | Precio estimado | Visto en tienda |
 |---|---|---|---|---|
-| [Filamento PETG de 1,75 mm, rollo de 1 kg](https://lista.mercadolivre.com.br/filamento-petg-1.75mm-1kg) | 822 g, en 4 colores sugeridos (amarillo, blanco, grafito y plata) / 1 rollo de cualquier color (o 4 rollos, uno de cada color sugerido) | Las piezas que soportan esfuerzo: base, tapa de la batería, tapa de la bola, bridas, deck, torso, cuello, engranajes, horquilla y cuadro de la cabeza. El color es solo una sugerencia; el material no: mantén PETG. Un rollo de 1 kg alcanza con poco sobrante: el cálculo es una estimación sin laminador, y si una pieza grande falla a mitad de impresión, faltará filamento. | R$ 90–150 (rollo) | no verificado |
-| [Filamento PLA de 1,75 mm, rollo de 1 kg](https://lista.mercadolivre.com.br/filamento-pla-1.75mm-1kg) | 321 g, en 3 colores sugeridos (blanco, gris y negro) / 1 rollo de cualquier color (o 3 rollos, uno de cada color sugerido) | Las piezas que solo recubren el robot: carcasa de la cabeza, panel del rostro, espaciadores y cupón de prueba. El color es solo una sugerencia. | R$ 80–140 (rollo) | no verificado |
+| [Filamento PETG de 1,75 mm, rollo de 1 kg](https://lista.mercadolivre.com.br/filamento-petg-1.75mm-1kg) | 823 g, en 4 colores sugeridos (amarillo, blanco, grafito y plata) / 1 rollo de cualquier color (o 4 rollos, uno de cada color sugerido) | Las piezas que soportan esfuerzo: base, tapa de la batería, tapa de la bola, bridas, deck, torso, cuello, engranajes, horquilla y cuadro de la cabeza. El color es solo una sugerencia; el material no: mantén PETG. Un rollo de 1 kg alcanza con poco sobrante: el cálculo es una estimación sin laminador, y si una pieza grande falla a mitad de impresión, faltará filamento. | R$ 90–150 (rollo) | no verificado |
+| [Filamento PLA de 1,75 mm, rollo de 1 kg](https://lista.mercadolivre.com.br/filamento-pla-1.75mm-1kg) | 320 g, en 3 colores sugeridos (blanco, gris y negro) / 1 rollo de cualquier color (o 3 rollos, uno de cada color sugerido) | Las piezas que solo recubren el robot: carcasa de la cabeza, panel del rostro, espaciadores y cupón de prueba. El color es solo una sugerencia. | R$ 80–140 (rollo) | no verificado |
 
 ### Herramientas y materiales de soldadura (si no los tienes)
 
@@ -184,10 +184,10 @@ mantén PETG donde indica PETG. El mínimo son 2 rollos de 1 kg, uno de PETG y o
 |---|---|---|
 | PETG amarillo | 108 | 4,1 |
 | PETG blanco | 236 | 8,7 |
-| PETG grafito | 453 | 17,1 |
+| PETG grafito | 454 | 17,1 |
 | PETG plateado | 25 | 1,1 |
 | PLA blanco | 248 | 9,3 |
-| PLA gris | 16 | 0,9 |
+| PLA gris | 15 | 0,9 |
 | PLA negro | 57 | 2,2 |
 | **Total** | **1143** | **43,4** |
 <!-- /GERADO -->
@@ -206,7 +206,7 @@ Nada de esto es necesario para imprimir, montar y conectar. Las piezas ya tienen
 | [Amplificador de audio pequeño (PAM8403 o MAX98357A)](https://lista.mercadolivre.com.br/amplificador-pam8403) | 1 | Todavía no tiene un lugar diseñado: queda suelto sobre el deck, con cinta doble cara. | R$ 5–35 | R$ 5,47 a R$ 11,34 (PAM8403) |
 | [Sensor de movimiento IMU MPU-6050](https://lista.mercadolivre.com.br/mpu-6050-gy-521) | 1 | En el punto universal del deck (par de orificios M3 separados por 20 mm), cerca del eje de las ruedas. | R$ 15–35 | R$ 34,09 |
 | [LiDAR LD19](https://lista.mercadolivre.com.br/lidar-ld19) | 1 | En la parte superior de la cabeza, el único lugar con 360° libres: 3 orificios ciegos por dentro y un rebaje ciego para el cable. La pared de 0,8 mm solo se perfora cuando se instala el sensor; hasta entonces, no se ve nada por fuera. Con él, el robot queda con 341 mm de altura. NC: posición de los 3 orificios en el cuerpo del sensor. | R$ 400–900 | no verificado |
-| [Sensor de distancia ToF VL53L1X (placa pequeña)](https://lista.mercadolivre.com.br/sensor-vl53l1x-tof) | 3 | Detrás de 3 muescas de 14 × 4 mm en el borde superior de la base, una al frente y una a cada lado, ocultas en la ranura de sombra del deck. Cada una tiene 2 orificios ciegos por dentro para tornillos M2,5. NC: tamaño de la placa (25 × 10,7 mm) y distancia entre los orificios. | R$ 40–110 | R$ 102,32 |
+| [Sensor de distancia ToF VL53L1X (placa pequeña)](https://lista.mercadolivre.com.br/sensor-vl53l1x-tof) | 3 | Por dentro de la pared de la base, 10 mm por debajo del borde superior: uno al frente y uno a cada lado. Cada punto tiene 2 orificios ciegos para tornillos M2,5 y, entre ellos, una ventana ciega: por fuera, la pared es lisa, con 0,8 mm de plástico delante de la ventana. Durante la instalación, perfora esta capa desde adentro con una broca de 6 mm. Después, quedan 3 orificios de 6 mm a la vista en la base. NC: tamaño de la placa (25 × 10,7 mm) y distancia entre los orificios. | R$ 40–110 | R$ 102,32 |
 | [Sensor de caída (infrarrojo reflectivo, por ejemplo TCRT5000)](https://lista.mercadolivre.com.br/sensor-reflexivo-infravermelho-tcrt5000) | 1 | En una ventana de 14 × 6 mm en el piso de la base, al frente, apuntando al suelo, con un par de orificios M3 separados por 20 mm. Solo se ve desde abajo. | R$ 5–15 | R$ 7,92 |
 <!-- /GERADO -->
 

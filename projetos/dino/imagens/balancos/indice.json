@@ -16,13 +16,13 @@
   {
    "peca": "corpo",
    "imagem": "dino-corpo.jpg",
-   "massa_g": 201.3,
+   "massa_g": 199.5,
    "material": "PLA",
    "suporte": "sim (árvore POR DENTRO: teto das 2 coxas, sobre as rodas; degraus de dentro dos assentos planos (barriga, braços, manchas); por fora nada)",
    "veredito": "precisa de suporte (declarado)",
-   "sem_apoio_mm2": 2674.3,
-   "sem_apoio_pct": 2.32,
-   "limite_mm2": 230.7,
+   "sem_apoio_mm2": 2513.6,
+   "sem_apoio_pct": 2.2,
+   "limite_mm2": 228.6,
    "maior_ponte_mm": 20.4,
    "orientacao": "borda de baixo (z=5) na mesa, em pé como um vaso; boca (z=134) para cima"
   },
@@ -68,13 +68,13 @@
   {
    "peca": "gola",
    "imagem": "dino-gola.jpg",
-   "massa_g": 85.8,
+   "massa_g": 78.6,
    "material": "PLA",
    "suporte": "não",
    "veredito": "ok sem suporte",
    "sem_apoio_mm2": 0.0,
    "sem_apoio_pct": 0.0,
-   "limite_mm2": 82.0,
+   "limite_mm2": 77.9,
    "maior_ponte_mm": 0.0,
    "orientacao": "base (z=134) na mesa; a esfera sobe e fica aberta em cima"
   },

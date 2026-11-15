@@ -12,11 +12,11 @@ feita; a seção 7 diz o que já tem lugar nas peças. **Nada foi impresso ainda
 <!-- GERADO:numeros -->
 - Altura montado: 300,0 mm.
 - Peças impressas: 34 (33 arquivos diferentes), em 12 mesas.
-- Filamento: 1010 g. Tempo de impressão: 40,2 h. As duas contas são estimativas por volume, sem fatiador.
+- Filamento: 1002 g. Tempo de impressão: 39,9 h. As duas contas são estimativas por volume, sem fatiador.
 - Insertos M3 a quente: 13.
 <!-- /GERADO -->
 - Tamanho: 194 mm de largura (nas coxas) × 293 mm da cauda ao focinho × 300 mm de altura (ponta da crista). Maior peça: o corpo, com 194 mm.
-- Massa: 1605 g montado (estimativa): 1010 g de peças impressas e cerca de 600 g de componentes.
+- Massa: 1597 g montado (estimativa): 1002 g de peças impressas e cerca de 600 g de componentes.
 - Movimentos: pan ±60°, tilt de −15° a +20°, boca de 0 a 12°, braços de −15° a +20°. O verificador confere 12 poses, inclusive tudo ao mesmo tempo.
 
 ## 2. Decisões e porquês
@@ -71,14 +71,14 @@ abaixo trazem, por peça, a orientação na mesa, o suporte, os perímetros, o p
 | Dedo do pé esquerdo 1 (dedo-esq-1) | [dino-dedo-esq-1.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-dedo-esq-1.stl) | 1 | PLA creme | 17,2 × 12,7 × 8,5 | base plana (face de colar) na mesa | não | 3 | 15 % | 1 | 0,1 |
 | Dedo do pé esquerdo 2 (dedo-esq-2) | [dino-dedo-esq-2.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-dedo-esq-2.stl) | 1 | PLA creme | 17 × 12,7 × 7,4 | base plana (face de colar) na mesa | não | 3 | 15 % | 1 | 0,1 |
 | Dedo do pé esquerdo 3 (dedo-esq-3) | [dino-dedo-esq-3.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-dedo-esq-3.stl) | 1 | PLA creme | 12,7 × 17,4 × 6,9 | base plana (face de colar) na mesa | não | 3 | 15 % | 1 | 0,1 |
-| Mancha do flanco direito (mancha-dir) | [dino-mancha-dir.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-mancha-dir.stl) | 1 | PLA verde-escuro | 17,4 × 17,4 × 8,6 | base plana (face de colar) na mesa | não | 3 | 15 % | 2 | 0,1 |
-| Mancha do flanco esquerdo (mancha-esq) | [dino-mancha-esq.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-mancha-esq.stl) | 1 | PLA verde-escuro | 17,4 × 17,4 × 8,6 | base plana (face de colar) na mesa | não | 3 | 15 % | 2 | 0,1 |
+| Mancha do flanco direito (mancha-dir) | [dino-mancha-dir.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-mancha-dir.stl) | 1 | PLA verde-escuro | 21,3 × 26,4 × 7,6 | base plana (face de colar) na mesa | não | 3 | 15 % | 2 | 0,2 |
+| Mancha do flanco esquerdo (mancha-esq) | [dino-mancha-esq.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-mancha-esq.stl) | 1 | PLA verde-escuro | 21,3 × 26,4 × 7,6 | base plana (face de colar) na mesa | não | 3 | 15 % | 2 | 0,2 |
 | Braço direito (braco-dir) | [dino-braco-dir.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-braco-dir.stl) | 1 | PLA verde | 27,5 × 59 × 16 | face de dentro (plana) na mesa | não | 3 | 20 % | 8 | 0,4 |
 | Braço esquerdo (braco-esq) | [dino-braco-esq.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-braco-esq.stl) | 1 | PLA verde | 27,5 × 59 × 16 | face de dentro (plana) na mesa | não | 3 | 20 % | 8 | 0,4 |
 | Cubo do braço (cubo-braco) | [dino-cubo-braco.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-cubo-braco.stl) | 2 | PETG grafite | 17 × 17 × 12,8 | ponta de fora (2 faces chatas) na mesa, rebaixo do horn para cima | não | 4 | 60 % | 6 | 0,4 |
-| Corpo (corpo) | [dino-corpo.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-corpo.stl) | 1 | PLA verde | 194,1 × 113,7 × 129,4 | borda de baixo (z=5) na mesa, em pé como um vaso; boca (z=134) para cima | sim (árvore POR DENTRO: teto das 2 coxas, sobre as rodas; degraus de dentro dos assentos planos (barriga, braços, manchas); por fora nada) | 4 | 15 % | 201 | 7,6 |
+| Corpo (corpo) | [dino-corpo.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-corpo.stl) | 1 | PLA verde | 194,1 × 113,7 × 129,4 | borda de baixo (z=5) na mesa, em pé como um vaso; boca (z=134) para cima | sim (árvore POR DENTRO: teto das 2 coxas, sobre as rodas; degraus de dentro dos assentos planos (barriga, braços, manchas); por fora nada) | 4 | 15 % | 200 | 7,5 |
 | Traseira (anca e cauda) (traseira) | [dino-traseira.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-traseira.stl) | 1 | PLA verde | 126,1 × 131 × 131,9 | borda da frente (plano da costura) na mesa, cauda para cima | sim (árvore POR DENTRO: teto de cima da anca (53° da vertical) e nervura do rasgo da crista; por fora nada) | 4 | 15 % | 102 | 3,9 |
-| Gola do pescoço (gola) | [dino-gola.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-gola.stl) | 1 | PLA verde | 120,6 × 100,5 × 56,1 | base (z=134) na mesa; a esfera sobe e fica aberta em cima | não | 4 | 20 % | 86 | 3,3 |
+| Gola do pescoço (gola) | [dino-gola.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-gola.stl) | 1 | PLA verde | 112,3 × 100,5 × 56,1 | base (z=134) na mesa; a esfera sobe e fica aberta em cima | não | 4 | 20 % | 79 | 3,0 |
 | Crista das costas (crista-costas) | [dino-crista-costas.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-crista-costas.stl) | 1 | PLA azul | 46,4 × 67,3 × 6 | deitada (lâmina de 6 mm) | não | 3 | 15 % | 10 | 0,4 |
 | Crânio (cranio) | [dino-cranio.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-cranio.stl) | 1 | PLA verde | 134,2 × 174,5 × 118,2 | borda de baixo na mesa, em pé | sim (árvore POR DENTRO: teto do crânio, fundo dos copos dos olhos e nervura da crista; e por baixo, fora do rosto: borda do céu da boca, que fica 40 mm acima da mesa) | 3 | 15 % | 179 | 6,8 |
 | Mandíbula (mandibula) | [dino-mandibula.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-mandibula.stl) | 1 | PLA verde | 91,4 × 37 × 35,6 | face de trás (plano de corte) na mesa, ponta do queixo para cima | sim (pouco: sob o recorte esférico de trás, que nasce 2 a 10 mm acima da mesa; face escondida, virada para o pescoço) | 4 | 20 % | 34 | 1,4 |
@@ -88,7 +88,7 @@ abaixo trazem, por peça, a orientação na mesa, o suporte, os perímetros, o p
 | Olho esquerdo (olho-esq) | [dino-olho-esq.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-olho-esq.stl) | 1 | PLA branco | 44 × 44 × 22,6 | face de trás (plana) na mesa | não | 3 | 15 % | 15 | 0,6 |
 | Íris direita (iris) | [dino-iris.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-iris.stl) | 1 | PLA azul | 30 × 30 × 9,9 | face de trás na mesa | não | 3 | 15 % | 5 | 0,3 |
 | Íris esquerda (iris-esq) | [dino-iris-esq.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-iris-esq.stl) | 1 | PLA azul | 30 × 30 × 9,9 | face de trás na mesa | não | 3 | 15 % | 5 | 0,3 |
-| Pupila direita (pupila) | [dino-pupila.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-pupila.stl) | 1 | PLA preto | 19 × 19 × 7,9 | face de trás na mesa | não | 3 | 15 % | 2 | 0,2 |
+| Pupila direita (pupila) | [dino-pupila.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-pupila.stl) | 1 | PLA preto | 19 × 19 × 7,9 | face de trás na mesa | não | 3 | 15 % | 2 | 0,1 |
 | Pupila esquerda (pupila-esq) | [dino-pupila-esq.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-pupila-esq.stl) | 1 | PLA preto | 19 × 19 × 8,2 | face de trás na mesa | não | 3 | 15 % | 2 | 0,2 |
 | Chassi (chassi) | [dino-chassi.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-chassi.stl) | 1 | PETG grafite | 105,9 × 179,2 × 121 | piso na mesa (em pé) | não | 4 | 25 % | 173 | 6,4 |
 | Capa da esfera (capa-esfera) | [comum-capa-esfera.stl](https://github.com/inematds/robos-impressos/raw/main/comum/pecas/stl/comum-capa-esfera.stl) | 1 | PETG grafite | 29 × 29 × 5,6 | deitada | não | 3 | 15 % | 3 | 0,2 |
@@ -97,7 +97,7 @@ abaixo trazem, por peça, a orientação na mesa, o suporte, os perímetros, o p
 | Garfo do pescoço (garfo-pescoco) | [comum-garfo-pescoco.stl](https://github.com/inematds/robos-impressos/raw/main/comum/pecas/stl/comum-garfo-pescoco.stl) | 1 | PETG grafite | 65 × 48 × 50,8 | base na mesa, montantes para cima | sim (1,8 mm sob a base, em volta do anel de centragem do horn; suporte normal, fora de vista) | 5 | 40 % | 17 | 0,7 |
 | Berço do tilt (berco-tilt) | [comum-berco-tilt.stl](https://github.com/inematds/robos-impressos/raw/main/comum/pecas/stl/comum-berco-tilt.stl) | 1 | PETG grafite | 38,5 × 23 × 77 | de cabeça para baixo: topo da coluna na mesa | sim (pouco, sob a ponte) | 5 | 40 % | 15 | 0,6 |
 | Cupom de teste (teste-encaixe) | [comum-teste-encaixe.stl](https://github.com/inematds/robos-impressos/raw/main/comum/pecas/stl/comum-teste-encaixe.stl) | 1 | PLA cinza | 70 × 34 × 8 | deitada | não | 3 | 15 % | 15 | 0,6 |
-| **Total** |  | **34** |  |  |  |  |  |  | **1010** | **40,2** |
+| **Total** |  | **34** |  |  |  |  |  |  | **1002** | **39,9** |
 <!-- /GERADO -->
 
 <!-- GERADO:reforcos -->
@@ -110,8 +110,8 @@ abaixo trazem, por peça, a orientação na mesa, o suporte, os perímetros, o p
 | Dedo do pé esquerdo 1 (dedo-esq-1) | — | dedo do pé; cola |
 | Dedo do pé esquerdo 2 (dedo-esq-2) | — | dedo do pé; cola |
 | Dedo do pé esquerdo 3 (dedo-esq-3) | — | dedo do pé; cola |
-| Mancha do flanco direito (mancha-dir) | — | mancha do flanco: janela do sensor de distância lateral (fase 2); cola no assento plano do corpo |
-| Mancha do flanco esquerdo (mancha-esq) | — | mancha do flanco: janela do sensor de distância lateral (fase 2); cola no assento plano do corpo |
+| Mancha do flanco direito (mancha-dir) | — | mancha do flanco, de contorno orgânico e nivelada com a pele em volta: a janela do sensor de distância lateral (fase 2) é o furo pequeno, fora do centro; cola no assento plano do corpo |
+| Mancha do flanco esquerdo (mancha-esq) | — | mancha do flanco, de contorno orgânico e nivelada com a pele em volta: a janela do sensor de distância lateral (fase 2) é o furo pequeno, fora do centro; cola no assento plano do corpo |
 | Braço direito (braco-dir) | — | braço direito; encaixa por pressão no cubo (2 faces chatas), sem parafuso por fora |
 | Braço esquerdo (braco-esq) | — | braço esquerdo |
 | Cubo do braço (cubo-braco) | maciço em volta do rebaixo do horn | cubo do braço: entra pelo furo do ombro, abraça o horn do micro servo e é preso pelo parafuso central do servo (fica escondido pelo braço) |
@@ -263,14 +263,14 @@ que o bicho já tem.
 |---|---|
 | Câmera | Pupila do olho direito (furo de 8,5 mm) |
 | Distância à frente (ToF) | Pupila do olho esquerdo (janela de 6 mm) |
-| Distância nas laterais (ToF) | Miolo de 2 manchas verde-escuras nos flancos (janela de 6 mm) |
+| Distância nas laterais (ToF) | Dentro de 2 manchas verde-escuras de contorno irregular nos flancos (janela de 5 mm, fora do centro da mancha) |
 | Microfones | As 2 narinas, no alto do focinho (furo de 2 mm, com anel de encaixe por dentro) |
 | Alto-falante | Em cima da mesa da cabeça, virado para baixo: o som sai pela fresta da boca e pelo vão do pescoço |
 | Carga USB-C | Rasgo de 13 × 7 mm sob a raiz da cauda: só aparece por trás e por baixo |
 | Chave liga/desliga | Por baixo do piso, entre as pernas |
 | Cabos da cabeça | Face chata da coluna do berço, rasgo do garfo e rasgo de 18 × 2,5 mm no deck, à direita do servo de pan |
 
-De frente e de três quartos aparecem só as narinas, o furinho das pupilas, o miolo das manchas e a fresta da boca.
+De frente e de três quartos aparecem só as narinas, o furinho das pupilas, o furinho de cada mancha e a fresta da boca.
 
 LiDAR: avaliado e deixado de fora. Num bicho, a cabeça tampa a volta inteira de que o sensor precisa.
 
@@ -282,7 +282,7 @@ LiDAR: avaliado e deixado de fora. Num bicho, a cabeça tampa a volta inteira de
 | [Raspberry Pi Camera Module 3 Wide (placa de 25 × 24 mm)](https://lista.mercadolivre.com.br/raspberry-pi-camera-module-3-wide) | 1 | Atrás da pupila do olho direito: a placa entra por trás do olho e encosta na íris, em 4 furos para parafuso M2. A lente olha pelo furo de 8,5 mm da pupila. NC: furos da placa e altura da lente. | R$ 200–400 | não conferido |
 | [Cabo flat de câmera de 50 cm (no Raspberry Pi 5, o cabo de 22 para 15 vias)](https://lista.mercadolivre.com.br/cabo-flat-camera-raspberry-pi-50cm) | 1 | Sai pela janela de trás do olho, desce pela face chata da coluna do pescoço e pelo rasgo do garfo, até o Raspberry Pi. Deixe uma barriga em S dentro da gola: a cabeça gira 60° para cada lado. NC: comprimento: os 50 cm são estimativa pelo modelo. | R$ 15–45 | não conferido |
 | [Parafuso M2 × 6 mm auto-atarraxante](https://lista.mercadolivre.com.br/parafuso-m2x6-auto-atarraxante) | 4 | Prende a câmera nos 4 furos da íris direita. | R$ 3–8 | R$ 5,98 o kit com 10 |
-| [Sensor de distância ToF VL53L1X (placa de cerca de 25 × 11 mm)](https://lista.mercadolivre.com.br/sensor-distancia-vl53l1x) | 3 | 1 atrás da pupila do olho esquerdo (janela de 6 mm): mede a distância do que a cabeça está olhando. 2 nas laterais, atrás das 2 manchas verde-escuras dos flancos (janela de 6 mm no miolo de cada mancha). NC: tamanho da placa e lugar da janela: meça antes de imprimir o olho esquerdo. | R$ 30–110 | R$ 102,32 (VL53L1X, até 4 m); R$ 31,81 (VL53L0X, até 2 m) |
+| [Sensor de distância ToF VL53L1X (placa de cerca de 25 × 11 mm)](https://lista.mercadolivre.com.br/sensor-distancia-vl53l1x) | 3 | 1 atrás da pupila do olho esquerdo (janela de 6 mm): mede a distância do que a cabeça está olhando. 2 nas laterais, atrás das 2 manchas verde-escuras dos flancos (janela de 5 mm em cada mancha, fora do centro). NC: tamanho da placa e lugar da janela: meça antes de imprimir o olho esquerdo. | R$ 30–110 | R$ 102,32 (VL53L1X, até 4 m); R$ 31,81 (VL53L0X, até 2 m) |
 | [Microfone I2S INMP441](https://lista.mercadolivre.com.br/microfone-inmp441-i2s) | 2 | Atrás das 2 narinas: cada narina é um furo de som de 2 mm e a placa redonda encaixa por dentro. NC: placa redonda de 14 mm de diâmetro: meça a sua. | R$ 15–55 | R$ 54,26 |
 | [Alto-falante de 40 mm, 3 W](https://lista.mercadolivre.com.br/alto-falante-40mm-3w-4-ohms) | 1 | Em cima da mesa da cabeça, virado para baixo. O som sai pela fresta da boca e pelo vão do pescoço: não há grade à mostra. NC: diâmetro e profundidade. | R$ 7–20 | não conferido |
 | [Amplificador de áudio pequeno (PAM8403 ou MAX98357A)](https://lista.mercadolivre.com.br/amplificador-pam8403) | 1 | Sem lugar modelado ainda: vai solto dentro do corpo, com fita dupla-face. | R$ 5–35 | R$ 5,47 a R$ 11,34 (PAM8403) |
@@ -297,11 +297,11 @@ dela.
 
 | Vista | Antes (v1.0.2) | Depois | Teto (malha) |
 |---|---|---|---|
-| frente | 0,875 | 0,913 | 0,942 |
-| três quartos (a) | 0,808 | 0,874 | 0,888 |
+| frente | 0,875 | 0,910 | 0,942 |
+| três quartos (a) | 0,808 | 0,873 | 0,888 |
 | três quartos (b) | 0,787 | 0,862 | 0,889 |
-| lado | 0,786 | 0,837 | 0,870 |
-| **média** | **0,814** | **0,871** | **0,897** |
+| lado | 0,786 | 0,842 | 0,870 |
+| **média** | **0,814** | **0,872** | **0,897** |
 
 Alvo definido antes de medir o depois: 0,855. O alvo (metade do caminho entre o antes e o teto) foi passado. O que ainda separa o robô da malha: a boca fechada, a faixa reta entre as pernas e os braços lisos. A tabela completa e o método estão em
 [comparacao/semelhanca.md](../../comparacao/semelhanca.md).
@@ -316,13 +316,13 @@ Saída real de `.venv/bin/python comum/cad/verificar.py dino`:
   [PASSOU] 1 contagem: 33 peças distintas, 34 no total (esperado 34); faltando 0; sobrando 0
   [PASSOU] 2 malha: 33 STL fechados, 1 corpo cada
   [PASSOU] 3 mesa: todas cabem em 256 x 256 x 256 mm; maior dimensão 194.1 mm (corpo)
-  [PASSOU] 4 parede: corpo 2.28–2.64 mm; gola 3.38–9.75 mm; cabeça 2.31–2.55 mm (mínimo exigido 2.0)
+  [PASSOU] 4 parede: corpo 2.27–2.62 mm; gola 2.89–9.75 mm; cabeça 2.31–2.55 mm (mínimo exigido 2.0)
   [PASSOU] 5 interferência: 59 sólidos (33 impressos + 26 componentes), 12 poses, 0 sobreposições; 2 encaixe(s) previsto(s) fora da conta: motor-tt-dir x roda-dir (eixo do motor entra no cubo da roda); motor-tt-esq x roda-esq (eixo do motor entra no cubo da roda)
   [PASSOU] 6 teste negativo: 'chassi' deslocada 3 mm em X → 15 sobreposições acusadas (tem que ser > 0)
   [PASSOU] 7 peça solta: as 33 peças montadas encostam (≤ 1.5 mm) em outra
-  [PASSOU] 8 equilíbrio: massa estimada 1605 g; CG neutro em x=-0.2 y=-18.6 z=108.4 mm, margem 18.6 mm (tomba com 10°); pior pose 'tilt-baixo': margem 14.8 mm (8°); mínimo exigido 10 mm
+  [PASSOU] 8 equilíbrio: massa estimada 1597 g; CG neutro em x=-0.3 y=-18.7 z=108.2 mm, margem 18.7 mm (tomba com 10°); pior pose 'tilt-baixo': margem 14.9 mm (8°); mínimo exigido 10 mm
   [PASSOU] 9 caminho: 31 passos (montagem + abertura para manutenção), cada peça entra ou sai pela direção declarada sem atravessar o que está montado
-  [PASSOU] 10 imprimibilidade: 33 peças distintas: 27 saem sem suporte; 6 com suporte declarado: cranio (12051 mm² = 9.8 %, ponte de 65 mm, 2 ponto(s) no ar), corpo (2674 mm² = 2.3 %, ponte de 20 mm, 2 ponto(s) no ar), traseira (1596 mm² = 2.4 %, ponte de 24 mm, 1 ponto(s) no ar), garfo-pescoco (1488 mm² = 16.1 %, ponte de 21 mm), berco-tilt (516 mm² = 7.0 %, ponte de 21 mm), mandibula (455 mm² = 4.9 %); 0 REPROVADA(S) (declaradas sem suporte, mas com área sem apoio acima de max(30 mm², 0.2 % da área) a mais de 45° ou ponto que nasce no ar)
+  [PASSOU] 10 imprimibilidade: 33 peças distintas: 27 saem sem suporte; 6 com suporte declarado: cranio (12051 mm² = 9.8 %, ponte de 65 mm, 2 ponto(s) no ar), corpo (2514 mm² = 2.2 %, ponte de 20 mm, 2 ponto(s) no ar), traseira (1596 mm² = 2.4 %, ponte de 24 mm, 1 ponto(s) no ar), garfo-pescoco (1488 mm² = 16.1 %, ponte de 21 mm), berco-tilt (516 mm² = 7.0 %, ponte de 21 mm), mandibula (455 mm² = 4.9 %); 0 REPROVADA(S) (declaradas sem suporte, mas com área sem apoio acima de max(30 mm², 0.2 % da área) a mais de 45° ou ponto que nasce no ar)
   [PASSOU] 11 negativo impr.: 'chassi' na orientação declarada: 158 mm² sem apoio (limite 163); girada 180° em X → 11537 mm² = 14.1 % (acusou; tem que acusar)
 ```
 <!-- /GERADO -->
@@ -331,10 +331,11 @@ Saída real de `.venv/bin/python comum/cad/verificar.py dino`:
 
 - O canto de trás do queixo fica recortado e a boca é uma fresta reta, não o sorriso aberto da referência.
 - Entre as pernas a barriga desce reta até perto do chão: é o que mantém o chassi inteiro sobre o piso.
-- Os braços são lisos, sem os 3 dedinhos, e há uma risca escura de cerca de 1 mm entre o corpo e o braço, vista de frente.
+- Os braços são lisos, sem os 3 dedinhos. Entre o corpo e a base de cada braço fica uma junta de 0,6 mm.
 - Os espinhos da cauda saem na cor do corpo (são relevo da casca) e os da nuca não existem, porque a cabeça passa por ali.
 - O 3º dedo de cada pé ficou na lateral de fora, não na frente.
-- Acabamento do ombro: a base da gola tem uma tampa reta acima de cada ombro.
+- Na base da gola, atrás de cada ombro, aparece de lado um ponto escuro de cerca de 2 mm: é o rebaixo do parafuso de trás da gola.
+- O sensor de distância lateral fica cerca de 9,5 mm atrás da pele: o campo de visão pela janela de 5 mm não foi conferido.
 - O crânio ainda pede suporte por dentro.
 - O chassi chega a 2,8 mm da casca num canto dos postes do corpo (o projeto pedia 2,9 mm; não há interferência).
 - O chassi passa no teste de imprimibilidade por pouco: 158 mm² sem apoio, para um limite de 163 mm².

@@ -111,7 +111,7 @@ O que ainda não foi testado. Leia antes de gastar.
 | Item (o nome abre a busca) | Usa / comprar | Para que serve | Preço estimado | Visto em loja |
 |---|---|---|---|---|
 | [Filamento PETG de 1,75 mm, rolo de 1 kg](https://lista.mercadolivre.com.br/filamento-petg-1.75mm-1kg) | 271 g, em 2 cores sugeridas (grafite e amarelo) / 1 rolo de qualquer cor (ou um rolo de cada cor sugerida) | As peças que fazem força: chassi, bandejas, garfo, berço, mesa da cabeça e capa da esfera. A cor é só sugestão; o material não: mantenha PETG. | R$ 90–150 (rolo) | não conferido |
-| [Filamento PLA de 1,75 mm, rolo de 1 kg](https://lista.mercadolivre.com.br/filamento-pla-1.75mm-1kg) | 739 g, em 7 cores sugeridas (verde, azul, creme, branco, cinza, verde-escuro e preto) / 1 rolo de 1 kg, se for tudo de uma cor só; nas cores sugeridas, 1 rolo da cor do corpo e sobras ou rolos pequenos das outras | As peças que vestem o robô: corpo, cabeça, olhos e as peças coloridas. A cor é só sugestão. | R$ 80–140 (rolo) | não conferido |
+| [Filamento PLA de 1,75 mm, rolo de 1 kg](https://lista.mercadolivre.com.br/filamento-pla-1.75mm-1kg) | 731 g, em 7 cores sugeridas (verde, azul, creme, branco, cinza, verde-escuro e preto) / 1 rolo de 1 kg, se for tudo de uma cor só; nas cores sugeridas, 1 rolo da cor do corpo e sobras ou rolos pequenos das outras | As peças que vestem o robô: corpo, cabeça, olhos e as peças coloridas. A cor é só sugestão. | R$ 80–140 (rolo) | não conferido |
 
 ### Ferramentas e material de solda (se você não tiver)
 
@@ -176,10 +176,10 @@ resolvem. As duas linhas de filamento estão na lista acima.
 | PLA branco | 28 | 1,2 |
 | PLA cinza | 15 | 0,6 |
 | PLA creme | 28 | 1,5 |
-| PLA preto | 4 | 0,4 |
-| PLA verde | 618 | 23,8 |
-| PLA verde-escuro | 4 | 0,2 |
-| **Total** | **1010** | **40,2** |
+| PLA preto | 4 | 0,3 |
+| PLA verde | 610 | 23,4 |
+| PLA verde-escuro | 4 | 0,4 |
+| **Total** | **1002** | **39,9** |
 <!-- /GERADO -->
 
 ## Fase 2 (opcional agora)
@@ -193,7 +193,7 @@ furo da lente da câmera e a pupila esquerda tem a janela do sensor de distânci
 | [Raspberry Pi Camera Module 3 Wide (placa de 25 × 24 mm)](https://lista.mercadolivre.com.br/raspberry-pi-camera-module-3-wide) | 1 | Atrás da pupila do olho direito: a placa entra por trás do olho e encosta na íris, em 4 furos para parafuso M2. A lente olha pelo furo de 8,5 mm da pupila. NC: furos da placa e altura da lente. | R$ 200–400 | não conferido |
 | [Cabo flat de câmera de 50 cm (no Raspberry Pi 5, o cabo de 22 para 15 vias)](https://lista.mercadolivre.com.br/cabo-flat-camera-raspberry-pi-50cm) | 1 | Sai pela janela de trás do olho, desce pela face chata da coluna do pescoço e pelo rasgo do garfo, até o Raspberry Pi. Deixe uma barriga em S dentro da gola: a cabeça gira 60° para cada lado. NC: comprimento: os 50 cm são estimativa pelo modelo. | R$ 15–45 | não conferido |
 | [Parafuso M2 × 6 mm auto-atarraxante](https://lista.mercadolivre.com.br/parafuso-m2x6-auto-atarraxante) | 4 | Prende a câmera nos 4 furos da íris direita. | R$ 3–8 | R$ 5,98 o kit com 10 |
-| [Sensor de distância ToF VL53L1X (placa de cerca de 25 × 11 mm)](https://lista.mercadolivre.com.br/sensor-distancia-vl53l1x) | 3 | 1 atrás da pupila do olho esquerdo (janela de 6 mm): mede a distância do que a cabeça está olhando. 2 nas laterais, atrás das 2 manchas verde-escuras dos flancos (janela de 6 mm no miolo de cada mancha). NC: tamanho da placa e lugar da janela: meça antes de imprimir o olho esquerdo. | R$ 30–110 | R$ 102,32 (VL53L1X, até 4 m); R$ 31,81 (VL53L0X, até 2 m) |
+| [Sensor de distância ToF VL53L1X (placa de cerca de 25 × 11 mm)](https://lista.mercadolivre.com.br/sensor-distancia-vl53l1x) | 3 | 1 atrás da pupila do olho esquerdo (janela de 6 mm): mede a distância do que a cabeça está olhando. 2 nas laterais, atrás das 2 manchas verde-escuras dos flancos (janela de 5 mm em cada mancha, fora do centro). NC: tamanho da placa e lugar da janela: meça antes de imprimir o olho esquerdo. | R$ 30–110 | R$ 102,32 (VL53L1X, até 4 m); R$ 31,81 (VL53L0X, até 2 m) |
 | [Microfone I2S INMP441](https://lista.mercadolivre.com.br/microfone-inmp441-i2s) | 2 | Atrás das 2 narinas: cada narina é um furo de som de 2 mm e a placa redonda encaixa por dentro. NC: placa redonda de 14 mm de diâmetro: meça a sua. | R$ 15–55 | R$ 54,26 |
 | [Alto-falante de 40 mm, 3 W](https://lista.mercadolivre.com.br/alto-falante-40mm-3w-4-ohms) | 1 | Em cima da mesa da cabeça, virado para baixo. O som sai pela fresta da boca e pelo vão do pescoço: não há grade à mostra. NC: diâmetro e profundidade. | R$ 7–20 | não conferido |
 | [Amplificador de áudio pequeno (PAM8403 ou MAX98357A)](https://lista.mercadolivre.com.br/amplificador-pam8403) | 1 | Sem lugar modelado ainda: vai solto dentro do corpo, com fita dupla-face. | R$ 5–35 | R$ 5,47 a R$ 11,34 (PAM8403) |

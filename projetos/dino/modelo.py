@@ -482,7 +482,7 @@ def construir() -> Modelo:
         corpo = corpo - jan(P.TOF.janela_d)
         pecas.append(Peca(f"mancha-{lado}", maior_corpo(pc[f"mancha-{lado}"] - jan(mc.janela_d)), cor="verde-escuro", macica=True, suporte="não", imprimir=rel[f"mancha-{lado}"].imprimir,
                           explode=(sx * 110, 0, 0), orientacao="base plana (face de colar) na mesa",
-                          obs="mancha do flanco, de contorno orgânico e rente à pele: a janela do sensor de distância lateral (fase 2) é o furo pequeno, fora do centro; cola no assento plano do corpo"))
+                          obs="mancha do flanco, de contorno orgânico e nivelada com a pele em volta: a janela do sensor de distância lateral (fase 2) é o furo pequeno, fora do centro; cola no assento plano do corpo"))
         cx_ = caixa(xb_ - P.TOF.esp, xb_, ym - P.TOF.placa[0] / 2, ym + P.TOF.placa[0] / 2, zm_ - P.TOF.placa[1] / 2, zm_ + P.TOF.placa[1] / 2)
         comps.append(Comp(f"tof-{lado} (fase 2)", cx_ if sx > 0 else espelho_x(cx_), "corpo", P.TOF.massa, "verde", fase2=True))
 

@@ -26,7 +26,7 @@ The images and banner are **renders** of the project parts.
 <!-- TABELA:resumo -->
 | Model | Height (mm) | Parts | Plates (print jobs) | Total filament (g)* | Total print time (h)* | Assembled robot (g)* |
 |---|---|---|---|---|---|---|
-| Dinosaur | 300 | 34 | 12 | 1010 | 40 | 1605 |
+| Dinosaur | 300 | 34 | 12 | 1002 | 40 | 1597 |
 | Capybara | 300 | 32 | 11 | 1129 | 44 | 1714 |
 | Square robot | 200 | 15 | 7 | 735 | 28 | 1147 |
 | Square robot on wheels | 306 | 19 | 8 | 1143 | 43 | 2214 |

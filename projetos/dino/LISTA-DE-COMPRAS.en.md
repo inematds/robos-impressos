@@ -111,7 +111,7 @@ What has not been tested yet. Read before spending.
 | Item (the name opens a search) | Uses / buy | What it's for | Estimated price | Seen in store |
 |---|---|---|---|---|
 | [1.75 mm PETG filament, 1 kg spool](https://lista.mercadolivre.com.br/filamento-petg-1.75mm-1kg) | 271 g, in 2 suggested colors (graphite and yellow) / 1 spool in any color (or one spool in each suggested color) | The parts that bear loads: chassis, trays, fork, cradle, head plate, and support ball cover. The color is only a suggestion; the material isn’t: use PETG. | R$ 90–150 (roll) | not verified |
-| [1.75 mm PLA filament, 1 kg spool](https://lista.mercadolivre.com.br/filamento-pla-1.75mm-1kg) | 739 g, in 7 suggested colors (green, blue, cream, white, gray, dark green, and black) / 1 kg spool if everything is one color; for the suggested colors, 1 spool in the body color plus leftovers or small spools of the others | The parts that dress the robot: body, head, eyes, and colored parts. The color is only a suggestion. | R$ 80–140 (roll) | not verified |
+| [1.75 mm PLA filament, 1 kg spool](https://lista.mercadolivre.com.br/filamento-pla-1.75mm-1kg) | 731 g, in 7 suggested colors (green, blue, cream, white, gray, dark green, and black) / 1 kg spool if everything is one color; for the suggested colors, 1 spool in the body color plus leftovers or small spools of the others | The parts that dress the robot: body, head, eyes, and colored parts. The color is only a suggestion. | R$ 80–140 (roll) | not verified |
 
 ### Tools and soldering supplies (if you don’t have them)
 
@@ -176,10 +176,10 @@ leftovers will do. The two filament lines are in the list above.
 | PLA white | 28 | 1.2 |
 | PLA gray | 15 | 0.6 |
 | PLA cream | 28 | 1.5 |
-| PLA black | 4 | 0.4 |
-| PLA green | 618 | 23.8 |
-| PLA dark green | 4 | 0.2 |
-| **Total** | **1010** | **40.2** |
+| PLA black | 4 | 0.3 |
+| PLA green | 610 | 23.4 |
+| PLA dark green | 4 | 0.4 |
+| **Total** | **1002** | **39.9** |
 <!-- /GERADO -->
 
 ## Phase 2 (optional for now)
@@ -193,7 +193,7 @@ camera lens hole and the left pupil has the distance sensor window.
 | [Raspberry Pi Camera Module 3 Wide (25 × 24 mm board)](https://lista.mercadolivre.com.br/raspberry-pi-camera-module-3-wide) | 1 | Behind the right eye’s pupil: the board fits behind the eye and touches the iris, using 4 holes for M2 screws. The lens looks through the pupil’s 8.5 mm hole. NC: board holes and lens height. | R$ 200–400 | not verified |
 | [50 cm camera ribbon cable (for Raspberry Pi 5, the 22-to-15-pin cable)](https://lista.mercadolivre.com.br/cabo-flat-camera-raspberry-pi-50cm) | 1 | It exits through the rear window of the eye, runs down the flat face of the neck column and through the fork slot, to the Raspberry Pi. Leave an S-shaped loop inside the collar: the head turns 60° to each side. NC: length: 50 cm is an estimate based on the model. | R$ 15–45 | not verified |
 | [M2 × 6 mm self-tapping screw](https://lista.mercadolivre.com.br/parafuso-m2x6-auto-atarraxante) | 4 | Attach the camera to the 4 holes in the right iris. | R$ 3–8 | R$ 5.98 for a kit of 10 |
-| [VL53L1X ToF distance sensor (board about 25 × 11 mm)](https://lista.mercadolivre.com.br/sensor-distancia-vl53l1x) | 3 | 1 behind the left eye pupil (6 mm window): measures the distance to what the head is looking at. 2 on the sides, behind the 2 dark green flank spots (6 mm window in the centre of each spot). NC: board size and window location: measure before printing the left eye. | R$ 30–110 | R$ 102.32 (VL53L1X, up to 4 m); R$ 31.81 (VL53L0X, up to 2 m) |
+| [VL53L1X ToF distance sensor (board about 25 × 11 mm)](https://lista.mercadolivre.com.br/sensor-distancia-vl53l1x) | 3 | 1 behind the left eye’s pupil (6 mm window): measures the distance to what the head is looking at. 2 on the sides, behind the 2 dark green flank spots (5 mm window in each spot, off-center). NC: board size and window location: measure before printing the left eye. | R$ 30–110 | R$ 102.32 (VL53L1X, up to 4 m); R$ 31.81 (VL53L0X, up to 2 m) |
 | [I2S INMP441 microphone](https://lista.mercadolivre.com.br/microfone-inmp441-i2s) | 2 | Behind the 2 nostrils: each nostril is a 2 mm sound hole, and the round board fits inside. NC: 14 mm diameter round board: measure yours. | R$ 15–55 | R$ 54.26 |
 | [40 mm speaker, 3 W](https://lista.mercadolivre.com.br/alto-falante-40mm-3w-4-ohms) | 1 | On top of the head plate, facing down. Sound comes out through the mouth gap and the neck opening: no grille is visible. NC: diameter and depth. | R$ 7–20 | not verified |
 | [Small audio amplifier (PAM8403 or MAX98357A)](https://lista.mercadolivre.com.br/amplificador-pam8403) | 1 | No modeled location yet: it sits loose inside the body, held with double-sided tape. | R$ 5–35 | R$ 5.47 to R$ 11.34 (PAM8403) |

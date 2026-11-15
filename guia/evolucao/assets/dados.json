@@ -123,10 +123,10 @@
      "az_nominal": 0.0,
      "el_nominal": 15.0,
      "antes": 0.875,
-     "depois": 0.913,
+     "depois": 0.91,
      "teto": 0.942,
      "alvo_derivado": 0.908,
-     "ganho": 0.038,
+     "ganho": 0.035,
      "az_el_escolhidos": {
       "antes": [
        0,
@@ -189,17 +189,17 @@
      "az_nominal": -75.0,
      "el_nominal": 15.0,
      "antes": 0.786,
-     "depois": 0.837,
+     "depois": 0.842,
      "teto": 0.87,
      "alvo_derivado": 0.828,
-     "ganho": 0.051,
+     "ganho": 0.056,
      "az_el_escolhidos": {
       "antes": [
        -70,
        20
       ],
       "depois": [
-       -65,
+       -70,
        10
       ]
      },
@@ -209,12 +209,12 @@
    ],
    "media": {
     "antes": 0.814,
-    "depois": 0.871,
+    "depois": 0.872,
     "teto": 0.897,
     "alvo": 0.856,
-    "ganho": 0.057,
+    "ganho": 0.058,
     "atingiu_o_alvo": true,
-    "caminho_percorrido_pct": 69
+    "caminho_percorrido_pct": 70
    },
    "teto_e": "malha crua do image-to-3D local (malha-dino-hy2mv-fl-s2), medida contra a mesma referência",
    "regua_antes": "dino-regua-antes.jpg",

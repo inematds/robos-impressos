@@ -81,14 +81,14 @@ Primero las piezas pequeñas y el esqueleto; al final, las impresiones largas: e
 | 3 | [dino-mesa-02-petg-grafite.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/mesas/dino-mesa-02-petg-grafite.3mf) | PETG grafito | Chasis (chassi), Placa de la cabeza (mesa-cabeca), Horquilla del cuello (garfo-pescoco), Cubierta de la esfera (capa-esfera), Cuna del tilt (berco-tilt), 2 × Cubo del brazo (cubo-braco) | 243 | 9,4 | Todo el esqueleto en PETG: chasis, placa de la cabeza, horquilla, cuna, cubierta de la esfera y los 2 cubos de los brazos. La horquilla y la cuna requieren soportes. Comprueba si el servo MG996R cabe en la cuna antes de las impresiones largas. |
 | 4 | [dino-mesa-04-pla-branco.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/mesas/dino-mesa-04-pla-branco.3mf) | PLA blanco | Ojo derecho (olho), Ojo izquierdo (olho-esq) | 28 | 1,2 | Los 2 ojos. |
 | 5 | [dino-mesa-03-pla-azul.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/mesas/dino-mesa-03-pla-azul.3mf) | PLA azul | Cresta de la cabeza (crista-cabeca), Cresta de la espalda (crista-costas), Iris derecha (iris), Iris izquierda (iris-esq) | 42 | 1,9 | Crestas e iris, en azul. |
-| 6 | [dino-mesa-07-pla-preto.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/mesas/dino-mesa-07-pla-preto.3mf) | PLA negro | Pupila derecha (pupila), Pupila izquierda (pupila-esq) | 4 | 0,4 | Las 2 pupilas. |
-| 7 | [dino-mesa-12-pla-verde-escuro.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/mesas/dino-mesa-12-pla-verde-escuro.3mf) | PLA verde oscuro | Mancha del flanco derecho (mancha-dir), Mancha del flanco izquierdo (mancha-esq) | 4 | 0,2 | Las 2 manchas de los flancos. |
+| 6 | [dino-mesa-07-pla-preto.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/mesas/dino-mesa-07-pla-preto.3mf) | PLA negro | Pupila derecha (pupila), Pupila izquierda (pupila-esq) | 4 | 0,3 | Las 2 pupilas. |
+| 7 | [dino-mesa-12-pla-verde-escuro.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/mesas/dino-mesa-12-pla-verde-escuro.3mf) | PLA verde oscuro | Mancha del flanco derecho (mancha-dir), Mancha del flanco izquierdo (mancha-esq) | 4 | 0,4 | Las 2 manchas de los flancos. |
 | 8 | [dino-mesa-06-pla-creme.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/mesas/dino-mesa-06-pla-creme.3mf) | PLA crema | Barriga (barriga), Dedo del pie derecho 3 (dedo-dir-3), Dedo del pie izquierdo 3 (dedo-esq-3), Dedo del pie derecho 1 (dedo-dir-1), Dedo del pie derecho 2 (dedo-dir-2), Dedo del pie izquierdo 1 (dedo-esq-1), Dedo del pie izquierdo 2 (dedo-esq-2) | 28 | 1,5 | Vientre y los 6 dedos de los pies: la cara que se pega va en la cama. |
 | 9 | [dino-mesa-11-pla-verde.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/mesas/dino-mesa-11-pla-verde.3mf) | PLA verde | Mandíbula (mandibula) | 34 | 1,4 | Mandíbula: de pie, con un poco de soporte detrás. |
 | 10 | [dino-mesa-09-pla-verde.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/mesas/dino-mesa-09-pla-verde.3mf) | PLA verde | Carcasa trasera (cadera y cola) (traseira) | 102 | 3,9 | Carcasa trasera: de pie sobre la costura, con soportes tipo árbol solo por dentro. |
 | 11 | [dino-mesa-08-pla-verde.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/mesas/dino-mesa-08-pla-verde.3mf) | PLA verde | Cráneo (cranio) | 179 | 6,8 | Cráneo: soportes tipo árbol por dentro y debajo del paladar. Ningún soporte en la cara. |
-| 12 | [dino-mesa-10-pla-verde.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/mesas/dino-mesa-10-pla-verde.3mf) | PLA verde | Cuerpo (corpo), Collar del cuello (gola), Brazo derecho (braco-dir), Brazo izquierdo (braco-esq) | 303 | 11,7 | Cuerpo, collar y los 2 brazos: la impresión más larga. Déjala para el final, con la impresora ya ajustada. El cuerpo lleva soportes tipo árbol solo por dentro. |
-| **Total** |  |  |  | **1010** | **40,2** |  |
+| 12 | [dino-mesa-10-pla-verde.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/mesas/dino-mesa-10-pla-verde.3mf) | PLA verde | Cuerpo (corpo), Collar del cuello (gola), Brazo derecho (braco-dir), Brazo izquierdo (braco-esq) | 295 | 11,3 | Cuerpo, collar y los 2 brazos: la impresión más larga. Déjala para el final, con la impresora ya ajustada. El cuerpo lleva soportes tipo árbol solo por dentro. |
+| **Total** |  |  |  | **1002** | **39,9** |  |
 <!-- /GERADO -->
 
 ## 3. Pieza por pieza
@@ -106,14 +106,14 @@ nombre del archivo.
 | Dedo del pie izquierdo 1 (dedo-esq-1) | [dino-dedo-esq-1.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-dedo-esq-1.stl) | 1 | PLA crema | 17,2 × 12,7 × 8,5 | base plana (cara del collar) en la cama | no | 3 | 15 % | 1 | 0,1 |
 | Dedo del pie izquierdo 2 (dedo-esq-2) | [dino-dedo-esq-2.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-dedo-esq-2.stl) | 1 | PLA crema | 17 × 12,7 × 7,4 | base plana (cara del collar) en la cama | no | 3 | 15 % | 1 | 0,1 |
 | Dedo del pie izquierdo 3 (dedo-esq-3) | [dino-dedo-esq-3.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-dedo-esq-3.stl) | 1 | PLA crema | 12,7 × 17,4 × 6,9 | base plana (cara del collar) en la cama | no | 3 | 15 % | 1 | 0,1 |
-| Mancha del flanco derecho (mancha-dir) | [dino-mancha-dir.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-mancha-dir.stl) | 1 | PLA verde oscuro | 17,4 × 17,4 × 8,6 | base plana (cara del collar) en la cama | no | 3 | 15 % | 2 | 0,1 |
-| Mancha del flanco izquierdo (mancha-esq) | [dino-mancha-esq.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-mancha-esq.stl) | 1 | PLA verde oscuro | 17,4 × 17,4 × 8,6 | base plana (cara del collar) en la cama | no | 3 | 15 % | 2 | 0,1 |
+| Mancha del flanco derecho (mancha-dir) | [dino-mancha-dir.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-mancha-dir.stl) | 1 | PLA verde oscuro | 21,3 × 26,4 × 7,6 | base plana (cara del collar) en la cama | no | 3 | 15 % | 2 | 0,2 |
+| Mancha del flanco izquierdo (mancha-esq) | [dino-mancha-esq.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-mancha-esq.stl) | 1 | PLA verde oscuro | 21,3 × 26,4 × 7,6 | base plana (cara del collar) en la cama | no | 3 | 15 % | 2 | 0,2 |
 | Brazo derecho (braco-dir) | [dino-braco-dir.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-braco-dir.stl) | 1 | PLA verde | 27,5 × 59 × 16 | cara interior (plana) en la cama | no | 3 | 20 % | 8 | 0,4 |
 | Brazo izquierdo (braco-esq) | [dino-braco-esq.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-braco-esq.stl) | 1 | PLA verde | 27,5 × 59 × 16 | cara interior (plana) en la cama | no | 3 | 20 % | 8 | 0,4 |
 | Cubo del brazo (cubo-braco) | [dino-cubo-braco.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-cubo-braco.stl) | 2 | PETG grafito | 17 × 17 × 12,8 | punta exterior (2 caras planas) en la cama, rebaje del horn hacia arriba | no | 4 | 60 % | 6 | 0,4 |
-| Cuerpo (corpo) | [dino-corpo.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-corpo.stl) | 1 | PLA verde | 194,1 × 113,7 × 129,4 | borde inferior (z=5) en la cama, de pie como un vaso; boca (z=134) hacia arriba | sí (soportes en árbol POR DENTRO: techo de los 2 muslos, sobre las ruedas; escalones interiores de los asientos planos (vientre, brazos, manchas); nada por fuera) | 4 | 15 % | 201 | 7,6 |
+| Cuerpo (corpo) | [dino-corpo.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-corpo.stl) | 1 | PLA verde | 194,1 × 113,7 × 129,4 | borde inferior (z=5) en la cama, de pie como un vaso; boca (z=134) hacia arriba | sí (soportes en árbol POR DENTRO: techo de los 2 muslos, sobre las ruedas; escalones interiores de los asientos planos (vientre, brazos, manchas); nada por fuera) | 4 | 15 % | 200 | 7,5 |
 | Carcasa trasera (cadera y cola) (traseira) | [dino-traseira.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-traseira.stl) | 1 | PLA verde | 126,1 × 131 × 131,9 | borde delantero (plano de la unión) en la cama, cola hacia arriba | sí (soportes en árbol POR DENTRO: techo superior de la cadera (53° de la vertical) y nervadura de la ranura de la cresta; nada por fuera) | 4 | 15 % | 102 | 3,9 |
-| Collar del cuello (gola) | [dino-gola.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-gola.stl) | 1 | PLA verde | 120,6 × 100,5 × 56,1 | base (z=134) en la cama; la esfera queda hacia arriba y abierta en la parte superior | no | 4 | 20 % | 86 | 3,3 |
+| Collar del cuello (gola) | [dino-gola.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-gola.stl) | 1 | PLA verde | 112,3 × 100,5 × 56,1 | base (z=134) en la cama; la esfera queda hacia arriba y abierta en la parte superior | no | 4 | 20 % | 79 | 3,0 |
 | Cresta de la espalda (crista-costas) | [dino-crista-costas.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-crista-costas.stl) | 1 | PLA azul | 46,4 × 67,3 × 6 | acostada (lámina de 6 mm) | no | 3 | 15 % | 10 | 0,4 |
 | Cráneo (cranio) | [dino-cranio.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-cranio.stl) | 1 | PLA verde | 134,2 × 174,5 × 118,2 | borde inferior en la cama, de pie | sí (soportes en árbol POR DENTRO: techo del cráneo, fondo de las copas de los ojos y nervadura de la cresta; y por debajo, fuera de la cara: borde del paladar, que queda 40 mm por encima de la cama) | 3 | 15 % | 179 | 6,8 |
 | Mandíbula (mandibula) | [dino-mandibula.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-mandibula.stl) | 1 | PLA verde | 91,4 × 37 × 35,6 | cara trasera (plano de corte) en la cama, punta del mentón hacia arriba | sí (poco: bajo el recorte esférico trasero, que nace entre 2 y 10 mm por encima de la cama; cara oculta, orientada hacia el cuello) | 4 | 20 % | 34 | 1,4 |
@@ -123,7 +123,7 @@ nombre del archivo.
 | Ojo izquierdo (olho-esq) | [dino-olho-esq.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-olho-esq.stl) | 1 | PLA blanco | 44 × 44 × 22,6 | cara trasera (plana) sobre la cama | no | 3 | 15 % | 15 | 0,6 |
 | Iris derecha (iris) | [dino-iris.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-iris.stl) | 1 | PLA azul | 30 × 30 × 9,9 | cara trasera sobre la cama | no | 3 | 15 % | 5 | 0,3 |
 | Iris izquierda (iris-esq) | [dino-iris-esq.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-iris-esq.stl) | 1 | PLA azul | 30 × 30 × 9,9 | cara trasera sobre la cama | no | 3 | 15 % | 5 | 0,3 |
-| Pupila derecha (pupila) | [dino-pupila.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-pupila.stl) | 1 | PLA negro | 19 × 19 × 7,9 | cara trasera sobre la cama | no | 3 | 15 % | 2 | 0,2 |
+| Pupila derecha (pupila) | [dino-pupila.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-pupila.stl) | 1 | PLA negro | 19 × 19 × 7,9 | cara trasera sobre la cama | no | 3 | 15 % | 2 | 0,1 |
 | Pupila izquierda (pupila-esq) | [dino-pupila-esq.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-pupila-esq.stl) | 1 | PLA negro | 19 × 19 × 8,2 | cara trasera sobre la cama | no | 3 | 15 % | 2 | 0,2 |
 | Chasis (chassi) | [dino-chassi.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-chassi.stl) | 1 | PETG grafito | 105,9 × 179,2 × 121 | piso sobre la cama (de pie) | no | 4 | 25 % | 173 | 6,4 |
 | Cubierta de la esfera (capa-esfera) | [comum-capa-esfera.stl](https://github.com/inematds/robos-impressos/raw/main/comum/pecas/stl/comum-capa-esfera.stl) | 1 | PETG grafito | 29 × 29 × 5,6 | acostada | no | 3 | 15 % | 3 | 0,2 |
@@ -132,7 +132,7 @@ nombre del archivo.
 | Horquilla del cuello (garfo-pescoco) | [comum-garfo-pescoco.stl](https://github.com/inematds/robos-impressos/raw/main/comum/pecas/stl/comum-garfo-pescoco.stl) | 1 | PETG grafito | 65 × 48 × 50,8 | base sobre la cama, montantes hacia arriba | sí (1,8 mm bajo la base, alrededor del anillo de centrado del horn; soportes normales, fuera de la vista) | 5 | 40 % | 17 | 0,7 |
 | Cuna del tilt (berco-tilt) | [comum-berco-tilt.stl](https://github.com/inematds/robos-impressos/raw/main/comum/pecas/stl/comum-berco-tilt.stl) | 1 | PETG grafito | 38,5 × 23 × 77 | boca abajo: parte superior de la columna sobre la cama | sí (poco, bajo el puente) | 5 | 40 % | 15 | 0,6 |
 | Cupón de prueba (teste-encaixe) | [comum-teste-encaixe.stl](https://github.com/inematds/robos-impressos/raw/main/comum/pecas/stl/comum-teste-encaixe.stl) | 1 | PLA gris | 70 × 34 × 8 | acostada | no | 3 | 15 % | 15 | 0,6 |
-| **Total** |  | **34** |  |  |  |  |  |  | **1010** | **40,2** |
+| **Total** |  | **34** |  |  |  |  |  |  | **1002** | **39,9** |
 <!-- /GERADO -->
 
 El filamento y el tiempo son estimaciones por volumen, sin laminador. El laminador dará el valor exacto.
@@ -148,10 +148,10 @@ El filamento y el tiempo son estimaciones por volumen, sin laminador. El laminad
 | PLA blanco | 28 | 1,2 |
 | PLA gris | 15 | 0,6 |
 | PLA crema | 28 | 1,5 |
-| PLA negro | 4 | 0,4 |
-| PLA verde | 618 | 23,8 |
-| PLA verde oscuro | 4 | 0,2 |
-| **Total** | **1010** | **40,2** |
+| PLA negro | 4 | 0,3 |
+| PLA verde | 610 | 23,4 |
+| PLA verde oscuro | 4 | 0,4 |
+| **Total** | **1002** | **39,9** |
 <!-- /GERADO -->
 
 ## Dónde se refuerza cada pieza
@@ -166,8 +166,8 @@ El filamento y el tiempo son estimaciones por volumen, sin laminador. El laminad
 | Dedo del pie izquierdo 1 (dedo-esq-1) | — | dedo del pie; pega |
 | Dedo del pie izquierdo 2 (dedo-esq-2) | — | dedo del pie; pega |
 | Dedo del pie izquierdo 3 (dedo-esq-3) | — | dedo del pie; pega |
-| Mancha del flanco derecho (mancha-dir) | — | mancha del flanco: ventana del sensor de distancia lateral (fase 2); pega en el asiento plano del cuerpo |
-| Mancha del flanco izquierdo (mancha-esq) | — | mancha del flanco: ventana del sensor de distancia lateral (fase 2); pega en el asiento plano del cuerpo |
+| Mancha del flanco derecho (mancha-dir) | — | mancha del flanco, de contorno orgánico y al ras de la piel que la rodea: la ventana del sensor de distancia lateral (fase 2) es el agujero pequeño, descentrado; pega en el asiento plano del cuerpo |
+| Mancha del flanco izquierdo (mancha-esq) | — | mancha del flanco, de contorno orgánico y al ras de la piel que la rodea: la ventana del sensor de distancia lateral (fase 2) es el agujero pequeño, descentrado; pega en el asiento plano del cuerpo |
 | Brazo derecho (braco-dir) | — | brazo derecho; encaja a presión en el cubo (2 caras planas), sin tornillo por fuera |
 | Brazo izquierdo (braco-esq) | — | brazo izquierdo |
 | Cubo del brazo (cubo-braco) | macizo alrededor del rebaje del horn | cubo del brazo: entra por el orificio del hombro, abraza el horn del microservo y se sujeta con el tornillo central del servo (queda oculto por el brazo) |

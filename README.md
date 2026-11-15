@@ -26,7 +26,7 @@ As imagens e o banner são **renders** das peças do projeto.
 <!-- TABELA:resumo -->
 | Modelo | Altura (mm) | Peças | Mesas (impressões) | Filamento total (g)* | Impressão total (h)* | Robô montado (g)* |
 |---|---|---|---|---|---|---|
-| Dinossauro | 300 | 34 | 12 | 1010 | 40 | 1605 |
+| Dinossauro | 300 | 34 | 12 | 1002 | 40 | 1597 |
 | Capivara | 300 | 32 | 11 | 1129 | 44 | 1714 |
 | Robô quadrado | 200 | 15 | 7 | 735 | 28 | 1147 |
 | Robô quadrado que roda | 306 | 19 | 8 | 1143 | 43 | 2214 |

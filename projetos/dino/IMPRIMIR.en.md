@@ -81,14 +81,14 @@ Print the small parts and skeleton first; the long prints last: the skull, rear 
 | 3 | [dino-mesa-02-petg-grafite.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/mesas/dino-mesa-02-petg-grafite.3mf) | PETG graphite | Chassis (chassi), Head plate (mesa-cabeca), Neck fork (garfo-pescoco), Sphere cover (capa-esfera), Tilt cradle (berco-tilt), 2 × Arm hub (cubo-braco) | 243 | 9.4 | The entire skeleton in PETG: chassis, head plate, fork, cradle, ball shell, and the 2 arm cubes. The fork and cradle need supports. Check that the MG996R servo fits in the cradle before the long prints. |
 | 4 | [dino-mesa-04-pla-branco.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/mesas/dino-mesa-04-pla-branco.3mf) | PLA white | Right eye (olho), Left eye (olho-esq) | 28 | 1.2 | The 2 eyes. |
 | 5 | [dino-mesa-03-pla-azul.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/mesas/dino-mesa-03-pla-azul.3mf) | PLA blue | Head crest (crista-cabeca), Back crest (crista-costas), Right iris (iris), Left iris (iris-esq) | 42 | 1.9 | Crests and irises, in blue. |
-| 6 | [dino-mesa-07-pla-preto.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/mesas/dino-mesa-07-pla-preto.3mf) | PLA black | Right pupil (pupila), Left pupil (pupila-esq) | 4 | 0.4 | The 2 pupils. |
-| 7 | [dino-mesa-12-pla-verde-escuro.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/mesas/dino-mesa-12-pla-verde-escuro.3mf) | PLA dark green | Right flank spot (mancha-dir), Left flank spot (mancha-esq) | 4 | 0.2 | The 2 flank spots. |
+| 6 | [dino-mesa-07-pla-preto.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/mesas/dino-mesa-07-pla-preto.3mf) | PLA black | Right pupil (pupila), Left pupil (pupila-esq) | 4 | 0.3 | The 2 pupils. |
+| 7 | [dino-mesa-12-pla-verde-escuro.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/mesas/dino-mesa-12-pla-verde-escuro.3mf) | PLA dark green | Right flank spot (mancha-dir), Left flank spot (mancha-esq) | 4 | 0.4 | The 2 flank spots. |
 | 8 | [dino-mesa-06-pla-creme.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/mesas/dino-mesa-06-pla-creme.3mf) | PLA cream | Belly (barriga), Right toe 3 (dedo-dir-3), Left toe 3 (dedo-esq-3), Right toe 1 (dedo-dir-1), Right toe 2 (dedo-dir-2), Left toe 1 (dedo-esq-1), Left toe 2 (dedo-esq-2) | 28 | 1.5 | Belly and the 6 toes: the glue face goes on the build plate. |
 | 9 | [dino-mesa-11-pla-verde.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/mesas/dino-mesa-11-pla-verde.3mf) | PLA green | Jaw (mandibula) | 34 | 1.4 | Jaw: upright, with a little support at the back. |
 | 10 | [dino-mesa-09-pla-verde.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/mesas/dino-mesa-09-pla-verde.3mf) | PLA green | Rear shell (hip and tail) (traseira) | 102 | 3.9 | Rear shell: upright on the seam, with tree supports only on the inside. |
 | 11 | [dino-mesa-08-pla-verde.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/mesas/dino-mesa-08-pla-verde.3mf) | PLA green | Skull (cranio) | 179 | 6.8 | Skull: tree supports on the inside and under the roof of the mouth. No supports on the face. |
-| 12 | [dino-mesa-10-pla-verde.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/mesas/dino-mesa-10-pla-verde.3mf) | PLA green | Body (corpo), Neck collar (gola), Right arm (braco-dir), Left arm (braco-esq) | 303 | 11.7 | Body shell, collar, and the 2 arms: the longest print. Leave these for last, once your printer is tuned. The body shell needs tree supports only on the inside. |
-| **Total** |  |  |  | **1010** | **40.2** |  |
+| 12 | [dino-mesa-10-pla-verde.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/mesas/dino-mesa-10-pla-verde.3mf) | PLA green | Body (corpo), Neck collar (gola), Right arm (braco-dir), Left arm (braco-esq) | 295 | 11.3 | Body shell, collar, and the 2 arms: the longest print. Leave these for last, once your printer is tuned. The body shell needs tree supports only on the inside. |
+| **Total** |  |  |  | **1002** | **39.9** |  |
 <!-- /GERADO -->
 
 ## 3. Part by part
@@ -106,14 +106,14 @@ filename.
 | Left toe 1 (dedo-esq-1) | [dino-dedo-esq-1.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-dedo-esq-1.stl) | 1 | PLA cream | 17.2 × 12.7 × 8.5 | flat base (collar face) on the build plate | no | 3 | 15 % | 1 | 0.1 |
 | Left toe 2 (dedo-esq-2) | [dino-dedo-esq-2.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-dedo-esq-2.stl) | 1 | PLA cream | 17 × 12.7 × 7.4 | flat base (collar face) on the build plate | no | 3 | 15 % | 1 | 0.1 |
 | Left toe 3 (dedo-esq-3) | [dino-dedo-esq-3.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-dedo-esq-3.stl) | 1 | PLA cream | 12.7 × 17.4 × 6.9 | flat base (collar face) on the build plate | no | 3 | 15 % | 1 | 0.1 |
-| Right flank spot (mancha-dir) | [dino-mancha-dir.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-mancha-dir.stl) | 1 | PLA dark green | 17.4 × 17.4 × 8.6 | flat base (collar face) on the build plate | no | 3 | 15 % | 2 | 0.1 |
-| Left flank spot (mancha-esq) | [dino-mancha-esq.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-mancha-esq.stl) | 1 | PLA dark green | 17.4 × 17.4 × 8.6 | flat base (collar face) on the build plate | no | 3 | 15 % | 2 | 0.1 |
+| Right flank spot (mancha-dir) | [dino-mancha-dir.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-mancha-dir.stl) | 1 | PLA dark green | 21.3 × 26.4 × 7.6 | flat base (collar face) on the build plate | no | 3 | 15 % | 2 | 0.2 |
+| Left flank spot (mancha-esq) | [dino-mancha-esq.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-mancha-esq.stl) | 1 | PLA dark green | 21.3 × 26.4 × 7.6 | flat base (collar face) on the build plate | no | 3 | 15 % | 2 | 0.2 |
 | Right arm (braco-dir) | [dino-braco-dir.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-braco-dir.stl) | 1 | PLA green | 27.5 × 59 × 16 | inner face (flat) on the build plate | no | 3 | 20 % | 8 | 0.4 |
 | Left arm (braco-esq) | [dino-braco-esq.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-braco-esq.stl) | 1 | PLA green | 27.5 × 59 × 16 | inner face (flat) on the build plate | no | 3 | 20 % | 8 | 0.4 |
 | Arm hub (cubo-braco) | [dino-cubo-braco.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-cubo-braco.stl) | 2 | PETG graphite | 17 × 17 × 12.8 | outer tip (2 flat faces) on the build plate, horn recess facing up | no | 4 | 60 % | 6 | 0.4 |
-| Body (corpo) | [dino-corpo.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-corpo.stl) | 1 | PLA green | 194.1 × 113.7 × 129.4 | bottom edge (z=5) on the build plate, upright like a vase; opening (z=134) facing up | yes (supports INSIDE: tops of both thighs, above the wheels; inner steps of the flat seats (belly, arms, spots); none on the outside) | 4 | 15 % | 201 | 7.6 |
+| Body (corpo) | [dino-corpo.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-corpo.stl) | 1 | PLA green | 194.1 × 113.7 × 129.4 | bottom edge (z=5) on the build plate, upright like a vase; opening (z=134) facing up | yes (supports INSIDE: tops of both thighs, above the wheels; inner steps of the flat seats (belly, arms, spots); none on the outside) | 4 | 15 % | 200 | 7.5 |
 | Rear shell (hip and tail) (traseira) | [dino-traseira.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-traseira.stl) | 1 | PLA green | 126.1 × 131 × 131.9 | front edge (seam plane) on the build plate, tail pointing up | yes (supports INSIDE: top of the hip (53° from vertical) and ridge of the crest slot; none on the outside) | 4 | 15 % | 102 | 3.9 |
-| Neck collar (gola) | [dino-gola.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-gola.stl) | 1 | PLA green | 120.6 × 100.5 × 56.1 | base (z=134) on the build plate; sphere facing up, open at the top | no | 4 | 20 % | 86 | 3.3 |
+| Neck collar (gola) | [dino-gola.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-gola.stl) | 1 | PLA green | 112.3 × 100.5 × 56.1 | base (z=134) on the build plate; sphere facing up, open at the top | no | 4 | 20 % | 79 | 3.0 |
 | Back crest (crista-costas) | [dino-crista-costas.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-crista-costas.stl) | 1 | PLA blue | 46.4 × 67.3 × 6 | lying flat (6 mm blade) | no | 3 | 15 % | 10 | 0.4 |
 | Skull (cranio) | [dino-cranio.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-cranio.stl) | 1 | PLA green | 134.2 × 174.5 × 118.2 | bottom edge on the build plate, upright | yes (supports INSIDE: top of the skull, bottoms of the eye cups, and crest ridge; also underneath, outside the face: edge of the palate, which is 40 mm above the build plate) | 3 | 15 % | 179 | 6.8 |
 | Jaw (mandibula) | [dino-mandibula.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-mandibula.stl) | 1 | PLA green | 91.4 × 37 × 35.6 | rear face (cut plane) on the build plate, chin tip pointing up | yes (slight: under the rear spherical cutout, which starts 2 to 10 mm above the build plate; hidden face, toward the neck) | 4 | 20 % | 34 | 1.4 |
@@ -123,7 +123,7 @@ filename.
 | Left eye (olho-esq) | [dino-olho-esq.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-olho-esq.stl) | 1 | PLA white | 44 × 44 × 22.6 | flat back face on the build plate | no | 3 | 15 % | 15 | 0.6 |
 | Right iris (iris) | [dino-iris.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-iris.stl) | 1 | PLA blue | 30 × 30 × 9.9 | back face on the build plate | no | 3 | 15 % | 5 | 0.3 |
 | Left iris (iris-esq) | [dino-iris-esq.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-iris-esq.stl) | 1 | PLA blue | 30 × 30 × 9.9 | back face on the build plate | no | 3 | 15 % | 5 | 0.3 |
-| Right pupil (pupila) | [dino-pupila.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-pupila.stl) | 1 | PLA black | 19 × 19 × 7.9 | back face on the build plate | no | 3 | 15 % | 2 | 0.2 |
+| Right pupil (pupila) | [dino-pupila.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-pupila.stl) | 1 | PLA black | 19 × 19 × 7.9 | back face on the build plate | no | 3 | 15 % | 2 | 0.1 |
 | Left pupil (pupila-esq) | [dino-pupila-esq.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-pupila-esq.stl) | 1 | PLA black | 19 × 19 × 8.2 | back face on the build plate | no | 3 | 15 % | 2 | 0.2 |
 | Chassis (chassi) | [dino-chassi.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/dino/stl/dino-chassi.stl) | 1 | PETG graphite | 105.9 × 179.2 × 121 | floor on the build plate (standing upright) | no | 4 | 25 % | 173 | 6.4 |
 | Sphere cover (capa-esfera) | [comum-capa-esfera.stl](https://github.com/inematds/robos-impressos/raw/main/comum/pecas/stl/comum-capa-esfera.stl) | 1 | PETG graphite | 29 × 29 × 5.6 | lying flat | no | 3 | 15 % | 3 | 0.2 |
@@ -132,7 +132,7 @@ filename.
 | Neck fork (garfo-pescoco) | [comum-garfo-pescoco.stl](https://github.com/inematds/robos-impressos/raw/main/comum/pecas/stl/comum-garfo-pescoco.stl) | 1 | PETG graphite | 65 × 48 × 50.8 | base on the build plate, uprights facing up | yes (1.8 mm under the base, around the servo horn centring ring; normal supports, out of sight) | 5 | 40 % | 17 | 0.7 |
 | Tilt cradle (berco-tilt) | [comum-berco-tilt.stl](https://github.com/inematds/robos-impressos/raw/main/comum/pecas/stl/comum-berco-tilt.stl) | 1 | PETG graphite | 38.5 × 23 × 77 | upside down: top of the column on the build plate | yes (a little, under the bridge) | 5 | 40 % | 15 | 0.6 |
 | Test coupon (teste-encaixe) | [comum-teste-encaixe.stl](https://github.com/inematds/robos-impressos/raw/main/comum/pecas/stl/comum-teste-encaixe.stl) | 1 | PLA gray | 70 × 34 × 8 | lying flat | no | 3 | 15 % | 15 | 0.6 |
-| **Total** |  | **34** |  |  |  |  |  |  | **1010** | **40.2** |
+| **Total** |  | **34** |  |  |  |  |  |  | **1002** | **39.9** |
 <!-- /GERADO -->
 
 Filament and time are volume estimates, without a slicer. The slicer will give you the actual numbers.
@@ -148,10 +148,10 @@ Filament and time are volume estimates, without a slicer. The slicer will give y
 | PLA white | 28 | 1.2 |
 | PLA gray | 15 | 0.6 |
 | PLA cream | 28 | 1.5 |
-| PLA black | 4 | 0.4 |
-| PLA green | 618 | 23.8 |
-| PLA dark green | 4 | 0.2 |
-| **Total** | **1010** | **40.2** |
+| PLA black | 4 | 0.3 |
+| PLA green | 610 | 23.4 |
+| PLA dark green | 4 | 0.4 |
+| **Total** | **1002** | **39.9** |
 <!-- /GERADO -->
 
 ## Where Each Part Is Reinforced
@@ -166,8 +166,8 @@ Filament and time are volume estimates, without a slicer. The slicer will give y
 | Left toe 1 (dedo-esq-1) | — | toe; glue |
 | Left toe 2 (dedo-esq-2) | — | toe; glue |
 | Left toe 3 (dedo-esq-3) | — | toe; glue |
-| Right flank spot (mancha-dir) | — | flank spot: side distance sensor window (phase 2); glue to the body's flat seat |
-| Left flank spot (mancha-esq) | — | flank spot: side distance sensor window (phase 2); glue to the body's flat seat |
+| Right flank spot (mancha-dir) | — | flank patch, with an organic outline and flush with the surrounding skin: the side distance sensor window (phase 2) is the small, off-centre hole; glue it to the body's flat seat |
+| Left flank spot (mancha-esq) | — | flank patch, with an organic outline and flush with the surrounding skin: the side distance sensor window (phase 2) is the small, off-centre hole; glue it to the body's flat seat |
 | Right arm (braco-dir) | — | right arm; press-fits onto the hub (2 flat faces), no outer screw |
 | Left arm (braco-esq) | — | left arm |
 | Arm hub (cubo-braco) | solid around the horn recess | arm hub: passes through the shoulder hole, fits around the micro servo horn, and is secured by the servo’s centre screw (hidden by the arm) |

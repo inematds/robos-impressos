@@ -57,7 +57,7 @@ do verificador, que mede em cada peça a área virada para baixo a mais de 45° 
 <!-- GERADO:pecas -->
 | Peça | Arquivo | Qtd | Material e cor | Tamanho na mesa (mm) | Como vai na mesa | Suporte | Paredes | Preenchimento | Filamento (g) | Tempo (h) |
 |---|---|---|---|---|---|---|---|---|---|---|
-| Base com rodas (base-rodas) | [cubo_rodas-base-rodas.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/stl/cubo_rodas-base-rodas.stl) | 1 | PETG grafite | 130 × 182 × 72 | piso na mesa | não | 5 | 25 % | 266 | 9,8 |
+| Base com rodas (base-rodas) | [cubo_rodas-base-rodas.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/stl/cubo_rodas-base-rodas.stl) | 1 | PETG grafite | 130 × 182 × 72 | piso na mesa | não | 5 | 25 % | 267 | 9,8 |
 | Alçapão da bateria (tampa-bateria) | [cubo_rodas-tampa-bateria.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/stl/cubo_rodas-tampa-bateria.stl) | 1 | PETG grafite | 108 × 84 × 7 | face de baixo na mesa, cantoneiras para cima | não | 4 | 25 % | 34 | 1,3 |
 | Capa da bola (capa-esfera) | [cubo_rodas-capa-esfera.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/stl/cubo_rodas-capa-esfera.stl) | 1 | PETG grafite | 56,9 × 47,2 × 12 | de cabeça para baixo: a face que encosta no piso na mesa; a boca fecha a 45° | não | 4 | 40 % | 9 | 0,4 |
 | Flange do motor (flange-motor) | [cubo_rodas-flange-motor.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/stl/cubo_rodas-flange-motor.stl) | 2 | PETG grafite | 62 × 62 × 4 | deitada, a face que encosta na parede na mesa | não | 5 | 60 % | 28 | 1,2 |
@@ -70,7 +70,7 @@ do verificador, que mede em cada peça a área virada para baixo a mais de 45° 
 | Quadro da cabeça (quadro-cabeca) | [cubo_rodas-quadro-cabeca.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/stl/cubo_rodas-quadro-cabeca.stl) | 1 | PETG amarelo | 145,2 × 93,5 × 62,7 | frente da travessa na mesa, laterais para cima | não | 4 | 30 % | 85 | 3,2 |
 | Copo da cabeça (cabeca-corpo) | [cubo_rodas-cabeca-corpo.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/stl/cubo_rodas-cabeca-corpo.stl) | 1 | PLA branco | 152 × 128 × 110 | costas na mesa, boca (frente) para cima, como um copo | não | 3 | 15 % | 248 | 9,3 |
 | Painel do rosto (cabeca-face) | [cubo_rodas-cabeca-face.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/stl/cubo_rodas-cabeca-face.stl) | 1 | PLA preto | 145,9 × 121,9 × 43,2 | face da frente (a que aparece) na mesa, pilares para cima | não | 3 | 20 % | 57 | 2,2 |
-| Espaçador do Raspberry Pi (espacador-pi) | [cubo_rodas-espacador-pi.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/stl/cubo_rodas-espacador-pi.stl) | 4 | PLA cinza | 6 × 6 × 4 | em pé | não | 3 | 15 % | 1 | 0,3 |
+| Espaçador do Raspberry Pi (espacador-pi) | [cubo_rodas-espacador-pi.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo-rodas/stl/cubo_rodas-espacador-pi.stl) | 4 | PLA cinza | 6 × 6 × 4 | em pé | não | 3 | 15 % | <1 | 0,3 |
 | Cupom de teste (teste-encaixe) | [comum-teste-encaixe.stl](https://github.com/inematds/robos-impressos/raw/main/comum/pecas/stl/comum-teste-encaixe.stl) | 1 | PLA cinza | 70 × 34 × 8 | deitada | não | 3 | 15 % | 15 | 0,6 |
 | **Total** |  | **19** |  |  |  |  |  |  | **1143** | **43,4** |
 <!-- /GERADO -->
@@ -93,7 +93,7 @@ Onde cada peça é reforçada:
 <!-- GERADO:reforcos -->
 | Peça | Reforço | O que é |
 |---|---|---|
-| Base com rodas (base-rodas) | paredes dos motores com reforço de 4 mm e furo em gota; 4 postes Ø12 nos cantos; ressaltos nervurados do alçapão e da capa; assento cônico da bola a 45°; chanfro de 45° embaixo | cuba da base móvel: motores entram pela lateral (flange atrás da roda), bateria num alçapão por baixo, carregador USB-C e chave atrás, janela do sensor de queda e entalhes dos ToF |
+| Base com rodas (base-rodas) | paredes dos motores com reforço de 4 mm e furo em gota; 4 postes Ø12 nos cantos; ressaltos nervurados do alçapão e da capa; assento cônico da bola a 45°; chanfro de 45° embaixo | cuba da base móvel: motores entram pela lateral (flange atrás da roda), bateria num alçapão por baixo, carregador USB-C e chave atrás, janela do sensor de queda no piso; por dentro, 3 janelas cegas dos sensores de distância da fase 2 (frente e lados): por fora a parede é lisa |
 | Alçapão da bateria (tampa-bateria) | 4 cantoneiras + abraçadeira seguram o suporte 3x18650 | alçapão da bateria: 4 M3x8 por baixo; a bateria desce junto com ele |
 | Capa da bola (capa-esfera) | 4 orelhas; boca cônica a 45° | segura a bola de 40 mm no poço; 4 M3x8 por baixo; a 8 mm do chão |
 | Flange do motor (flange-motor) | disco quase maciço (5 perímetros, 60 %): leva o peso e o torque do motor | prende o motor JGB37 (6 M3x6) e fecha o furo lateral da base (4 M3x10); fica escondida atrás da roda |
@@ -239,7 +239,7 @@ Nenhum furo técnico aparece de frente nem de 3/4:
 | Câmera | Atrás do painel do rosto, acima da tela; 4 postes para parafuso M2 | Um furo escuro de 8 mm no painel escuro |
 | Microfones (2) | Por baixo da cabeça, 2 furos de 2 mm | Nada, de frente ou de lado |
 | Alto-falante de 40 mm | Parede de trás do tronco, em 2 trilhos | Grade de fendas verticais, só por trás |
-| Sensores de distância (3) | 3 entalhes de 14 × 4 mm na borda de cima da base: frente e 2 lados; 2 furos cegos por dentro em cada | Ficam na fresta de sombra entre a base e o deck |
+| Sensores de distância (3) | Por dentro da parede da base, 10 mm abaixo da borda de cima: frente e 2 lados; em cada ponto, 2 furos cegos e, entre eles, uma janela cega de 6,5 mm | Nada, até a pele de 0,8 mm ser furada na instalação; depois, 3 furos de 6 mm |
 | Sensor de queda | Janela de 14 × 6 mm no piso da base, na frente | Só por baixo |
 | Sensor de movimento (IMU) | Par de furos M3 a 20 mm no deck, perto do eixo das rodas | Nada (fica dentro) |
 | LiDAR LD19 | Topo da cabeça: 3 furos cegos por dentro e um rebaixo cego do cabo | Nada, até a pele de 0,8 mm ser furada na instalação |
@@ -258,7 +258,7 @@ mapear com a cabeça reta e descontar o ângulo do pescoço.
 | [Amplificador de áudio pequeno (PAM8403 ou MAX98357A)](https://lista.mercadolivre.com.br/amplificador-pam8403) | 1 | Sem lugar modelado ainda: vai solto no deck, com fita dupla-face. | R$ 5–35 | R$ 5,47 a R$ 11,34 (PAM8403) |
 | [Sensor de movimento IMU MPU-6050](https://lista.mercadolivre.com.br/mpu-6050-gy-521) | 1 | No ponto universal do deck (par de furos M3 a 20 mm), perto do eixo das rodas. | R$ 15–35 | R$ 34,09 |
 | [LiDAR LD19](https://lista.mercadolivre.com.br/lidar-ld19) | 1 | No topo da cabeça, o único lugar com 360° livres: 3 furos cegos por dentro e um rebaixo cego para o cabo. A pele de 0,8 mm só é furada quando o sensor for instalado; até lá, nada aparece por fora. Com ele o robô fica com 341 mm de altura. NC: posição dos 3 furos no corpo do sensor. | R$ 400–900 | não conferido |
-| [Sensor de distância ToF VL53L1X (placa pequena)](https://lista.mercadolivre.com.br/sensor-vl53l1x-tof) | 3 | Atrás de 3 entalhes de 14 × 4 mm na borda de cima da base, um na frente e um de cada lado, escondidos na fresta de sombra do deck. Cada um tem 2 furos cegos por dentro para parafuso M2,5. NC: tamanho da placa (25 × 10,7 mm) e distância entre os furos. | R$ 40–110 | R$ 102,32 |
+| [Sensor de distância ToF VL53L1X (placa pequena)](https://lista.mercadolivre.com.br/sensor-vl53l1x-tof) | 3 | Por dentro da parede da base, 10 mm abaixo da borda de cima: um na frente e um de cada lado. Cada ponto tem 2 furos cegos para parafuso M2,5 e, entre eles, uma janela cega: por fora a parede é lisa, com 0,8 mm de plástico na frente da janela. Na instalação, fure essa pele por dentro com broca de 6 mm. Depois disso ficam 3 furos de 6 mm à vista na base. NC: tamanho da placa (25 × 10,7 mm) e distância entre os furos. | R$ 40–110 | R$ 102,32 |
 | [Sensor de queda (reflexivo infravermelho, por exemplo TCRT5000)](https://lista.mercadolivre.com.br/sensor-reflexivo-infravermelho-tcrt5000) | 1 | Numa janela de 14 × 6 mm no piso da base, na frente, olhando para o chão, com um par de furos M3 a 20 mm. Só aparece por baixo. | R$ 5–15 | R$ 7,92 |
 <!-- /GERADO -->
 

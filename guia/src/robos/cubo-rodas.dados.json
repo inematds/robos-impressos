@@ -623,7 +623,7 @@
    "itens": [
     {
      "item": "Filamento PETG de 1,75 mm, rolo de 1 kg",
-     "usa": "822 g, em 4 cores sugeridas (amarelo, branco, grafite e prata)",
+     "usa": "823 g, em 4 cores sugeridas (amarelo, branco, grafite e prata)",
      "comprar": "1 rolo de qualquer cor (ou 4 rolos, um de cada cor sugerida)",
      "n": 1,
      "para": "As peças que fazem força: base, alçapão, capa da bola, flanges, deck, tronco, pescoço, engrenagens, garfo e quadro da cabeça. A cor é só sugestão; o material não: mantenha PETG. Um rolo de 1 kg dá com pouca sobra: a conta é uma estimativa sem fatiador, e se uma peça grande falhar no meio falta filamento.",
@@ -636,13 +636,13 @@
      "ml": "filamento-petg-1.75mm-1kg",
      "confere": {
       "material": "PETG",
-      "g": 822,
+      "g": 823,
       "cores": 4
      }
     },
     {
      "item": "Filamento PLA de 1,75 mm, rolo de 1 kg",
-     "usa": "321 g, em 3 cores sugeridas (branco, cinza e preto)",
+     "usa": "320 g, em 3 cores sugeridas (branco, cinza e preto)",
      "comprar": "1 rolo de qualquer cor (ou 3 rolos, um de cada cor sugerida)",
      "n": 1,
      "para": "As peças que só vestem o robô: copo da cabeça, painel do rosto, espaçadores e cupom de teste. A cor é só sugestão.",
@@ -655,7 +655,7 @@
      "ml": "filamento-pla-1.75mm-1kg",
      "confere": {
       "material": "PLA",
-      "g": 321,
+      "g": 320,
       "cores": 3
      }
     }
@@ -950,7 +950,7 @@
   {
    "item": "Sensor de distância ToF VL53L1X (placa pequena)",
    "qtd": "3",
-   "onde": "Atrás de 3 entalhes de 14 × 4 mm na borda de cima da base, um na frente e um de cada lado, escondidos na fresta de sombra do deck. Cada um tem 2 furos cegos por dentro para parafuso M2,5.",
+   "onde": "Por dentro da parede da base, 10 mm abaixo da borda de cima: um na frente e um de cada lado. Cada ponto tem 2 furos cegos para parafuso M2,5 e, entre eles, uma janela cega: por fora a parede é lisa, com 0,8 mm de plástico na frente da janela. Na instalação, fure essa pele por dentro com broca de 6 mm. Depois disso ficam 3 furos de 6 mm à vista na base.",
    "faixa": [
     40,
     110

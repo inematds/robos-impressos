@@ -14,7 +14,7 @@ referência, o resumo da imprimibilidade e as fontes das medidas. As decisões d
 <!-- TABELA:resumo -->
 | Modelo | Altura (mm) | Peças | Mesas (impressões) | Filamento total (g)* | Impressão total (h)* | Robô montado (g)* |
 |---|---|---|---|---|---|---|
-| Dinossauro | 300 | 34 | 12 | 1010 | 40 | 1605 |
+| Dinossauro | 300 | 34 | 12 | 1002 | 40 | 1597 |
 | Capivara | 300 | 32 | 11 | 1129 | 44 | 1714 |
 | Robô quadrado | 200 | 15 | 7 | 735 | 28 | 1147 |
 | Robô quadrado que roda | 306 | 19 | 8 | 1143 | 43 | 2214 |
@@ -67,7 +67,7 @@ definido antes de medir o depois: metade do caminho entre o antes e o teto, ou 0
 <!-- TABELA:semelhanca -->
 | Modelo | Antes (v1.0.2) | Depois | Teto (malha da imagem) | Alvo | Resultado |
 |---|---|---|---|---|---|
-| Dinossauro | 0,814 | 0,871 | 0,897 | 0,855 | alvo atingido |
+| Dinossauro | 0,814 | 0,872 | 0,897 | 0,855 | alvo atingido |
 | Capivara | 0,777 | 0,920 | 0,926 | 0,852 | alvo atingido |
 | Robô quadrado | 0,755 | 0,797 | — | 0,855 | alvo não atingido |
 | Robô quadrado que roda | — | 0,669 | — | — | robô novo: compara com a foto do robô de mesa, não é meta |

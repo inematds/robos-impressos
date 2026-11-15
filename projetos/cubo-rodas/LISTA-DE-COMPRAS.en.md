@@ -124,8 +124,8 @@ were checked at a store: the price ranges are only estimates.
 
 | Item (the name opens a search) | Uses / buy | What it's for | Estimated price | Seen in store |
 |---|---|---|---|---|
-| [1.75 mm PETG filament, 1 kg spool](https://lista.mercadolivre.com.br/filamento-petg-1.75mm-1kg) | 822 g, in 4 suggested colors (yellow, white, graphite, and silver) / 1 spool in any color (or 4 spools, one in each suggested color) | The parts that take the load: base, battery hatch, ball cover, flanges, deck, torso, neck, gears, fork, and head frame. The color is only a suggestion; the material is not: keep PETG. One 1 kg spool is enough with little to spare: this is an estimate without a slicer, and if a large part fails partway through, you may run out of filament. | R$ 90–150 (roll) | not verified |
-| [1.75 mm PLA filament, 1 kg spool](https://lista.mercadolivre.com.br/filamento-pla-1.75mm-1kg) | 321 g, in 3 suggested colors (white, gray, and black) / 1 spool in any color (or 3 spools, one in each suggested color) | The parts that only cover the robot: head shell, face panel, spacers and test coupon. The color is just a suggestion. | R$ 80–140 (roll) | not verified |
+| [1.75 mm PETG filament, 1 kg spool](https://lista.mercadolivre.com.br/filamento-petg-1.75mm-1kg) | 823 g, in 4 suggested colors (yellow, white, graphite, and silver) / 1 spool in any color (or 4 spools, one in each suggested color) | The parts that take the load: base, battery hatch, ball cover, flanges, deck, torso, neck, gears, fork, and head frame. The color is only a suggestion; the material is not: keep PETG. One 1 kg spool is enough with little to spare: this is an estimate without a slicer, and if a large part fails partway through, you may run out of filament. | R$ 90–150 (roll) | not verified |
+| [1.75 mm PLA filament, 1 kg spool](https://lista.mercadolivre.com.br/filamento-pla-1.75mm-1kg) | 320 g, in 3 suggested colors (white, gray, and black) / 1 spool in any color (or 3 spools, one in each suggested color) | The parts that only cover the robot: head shell, face panel, spacers and test coupon. The color is just a suggestion. | R$ 80–140 (roll) | not verified |
 
 ### Tools and soldering supplies (if you don’t have them)
 
@@ -188,10 +188,10 @@ PLA, and a lot of filament will be left over. The two filament lines are in the 
 |---|---|---|
 | PETG yellow | 108 | 4.1 |
 | PETG white | 236 | 8.7 |
-| PETG graphite | 453 | 17.1 |
+| PETG graphite | 454 | 17.1 |
 | PETG silver | 25 | 1.1 |
 | PLA white | 248 | 9.3 |
-| PLA gray | 16 | 0.9 |
+| PLA gray | 15 | 0.9 |
 | PLA black | 57 | 2.2 |
 | **Total** | **1143** | **43.4** |
 <!-- /GERADO -->
@@ -211,7 +211,7 @@ none of these holes are visible from the front: the “Where it goes” column s
 | [Small audio amplifier (PAM8403 or MAX98357A)](https://lista.mercadolivre.com.br/amplificador-pam8403) | 1 | No modeled spot yet: it sits loose on the deck, held with double-sided tape. | R$ 5–35 | R$ 5.47 to R$ 11.34 (PAM8403) |
 | [MPU-6050 IMU motion sensor](https://lista.mercadolivre.com.br/mpu-6050-gy-521) | 1 | At the universal spot on the deck (pair of M3 holes 20 mm apart), near the wheel axle. | R$ 15–35 | R$ 34.09 |
 | [LiDAR LD19](https://lista.mercadolivre.com.br/lidar-ld19) | 1 | At the top of the head, the only spot with 360° of clearance: 3 blind holes inside and a blind recess for the cable. The 0.8 mm shell is drilled only when the sensor is installed; until then, nothing is visible from the outside. With it, the robot is 341 mm tall. NC: position of the 3 holes in the sensor body. | R$ 400–900 | not verified |
-| [VL53L1X ToF distance sensor (small board)](https://lista.mercadolivre.com.br/sensor-vl53l1x-tof) | 3 | Behind 3 notches measuring 14 × 4 mm along the top edge of the base, one at the front and one on each side, hidden in the deck's shadow gap. Each has 2 blind holes inside for an M2.5 screw. NC: board size (25 × 10.7 mm) and distance between the holes. | R$ 40–110 | R$ 102.32 |
+| [VL53L1X ToF distance sensor (small board)](https://lista.mercadolivre.com.br/sensor-vl53l1x-tof) | 3 | Inside the base wall, 10 mm below the top edge: one at the front and one on each side. Each point has 2 blind holes for M2.5 screws and, between them, a blind window: the outside wall is smooth, with 0.8 mm of plastic in front of the window. During installation, drill through this skin from the inside with a 6 mm drill bit. After that, 3 visible 6 mm holes remain in the base. NC: board size (25 × 10.7 mm) and distance between the holes. | R$ 40–110 | R$ 102.32 |
 | [Drop sensor (infrared reflective, such as TCRT5000)](https://lista.mercadolivre.com.br/sensor-reflexivo-infravermelho-tcrt5000) | 1 | In a 14 × 6 mm window in the base floor, at the front, facing the ground, with a pair of M3 holes 20 mm apart. Visible only from underneath. | R$ 5–15 | R$ 7.92 |
 <!-- /GERADO -->
 
