@@ -190,7 +190,8 @@
  "sv_leg4": "verde e azul: serial",
  "sv_leg5": "laranja: cabo de servo (3 fios)",
  "sv_leg6": "ponto cheio: emenda de fios",
- "sv_leg7": "Fio: 20 AWG no par de 5,1 V até o Raspberry Pi, 22 AWG no resto da energia, Dupont nos sinais. Fusível de 3 A.",
+ "sv_leg7": "Fio: 20 AWG no par de 5,1 V até o Raspberry Pi, 22 AWG no resto da energia, Dupont nos sinais.",
+ "sv_leg8": "Fusível de 3 A no fio positivo, logo depois do suporte das baterias.",
  "sv_bat": "6 a 8,4 V",
  "sv_51": "5,1 V",
  "sv_6": "6 V"

@@ -14,21 +14,21 @@ Page with the same diagram: https://inematds.github.io/robos-impressos/guia/en/c
 
 ## Lithium Battery Safety
 
-- **Polarity:** red to positive, black to negative. Measure with a multimeter before each new connection. Reversed wires will burn out the board immediately.
-- **Adjust before connecting the load:** set the LM2596 to 5.1 V and the UBEC to 6 V, measured with a multimeter, with the Raspberry Pi, Arduino, and servos disconnected.
-- **A short circuit can start a fire:** solder with the cells OUT of the holder and insulate each joint with heat-shrink tubing. No metal should be exposed.
-- **Fuse:** 5 A, on the positive wire, a few centimeters from the battery holder.
-- **Matching cells:** use two 18650 cells that are the same brand and model, and are new. Take dented, swollen, or hot cells to a battery recycling collection point; do not use them in the robot.
+- **Polarity:** red to positive, black to negative. Check with the multimeter before each new connection. Reversed wiring burns out the board immediately.
+- **Adjust before connecting the load:** LM2596 to 5.1 V and UBEC to 6 V, measured with the multimeter, with the Raspberry Pi, Arduino, and servos disconnected.
+- **A short can start a fire:** solder with the cells OUT of the holder and insulate each splice with heat-shrink tubing. No metal can be exposed.
+- **Fuse:** 3 A, on the positive wire, a few centimeters from the battery holder.
+- **Matching cells:** use two new 18650 cells of the same brand and model. A dented, swollen, or hot cell goes to battery recycling, not in the robot.
 - **First charge:** stay nearby, with the robot on a nonflammable surface.
 
 ## What Powers What
 
-- **2S pack:** two 18650 cells in series, from 6 V (empty) to 8.4 V (full). It passes through the fuse and the protection board (BMS).
-- **USB-C charger:** connected to the protection board output, before the switch. Charge the robot while it is off, using a USB-C power supply of 15 W or more.
+- **2S pack:** two 18650 cells in series, from 6 V (empty) to 8.4 V (full). It runs through the fuse and the protection board (BMS).
+- **USB-C charger:** connects to the protection board’s output, before the switch. Charge the robot while it is off, using a 15 W or higher USB-C power supply.
 - **Switch:** cuts the positive wire going to both converters.
-- **LM2596, set to 5.1 V:** powers the Raspberry Pi (through the USB-C adapter with screw terminals) and the Arduino (through the Sensor Shield 5 V pin).
-- **UBEC at 6 V:** powers only the 2 servos, through the Sensor Shield blue screw terminal, with the SEL jumper removed.
-- **Negative (GND):** shared by the entire robot.
+- **LM2596, set to 5.1 V:** powers the Raspberry Pi (through the USB-C adapter with screw terminals) and the Arduino (through the 5V pin on the Sensor Shield POWER connector).
+- **UBEC at 6 V:** powers only the 2 servos, through the Sensor Shield’s blue screw terminal, with the SEL jumper removed.
+- **Negative (GND):** one shared negative for the entire robot.
 
 Why the Arduino gets 5.1 V from the LM2596 instead of the battery voltage: the Arduino Uno VIN input requires 7 to 12 V
 ([Arduino Uno R3 datasheet](https://docs.arduino.cc/resources/datasheets/A000066-datasheet.pdf)), and the pack stays below 7 V for a good
@@ -41,28 +41,28 @@ part of its discharge.
 
 | From | To | Color | Wire | Attention |
 |---|---|---|---|---|
-| Battery holder: red wire (pack positive) | 5 A fuse holder and, after it, B+ solder pad on the protection board | red | 22 AWG | The fuse goes a few centimeters from the holder. |
+| Battery holder: red wire (pack positive) | 3 A fuse holder and, after it, the protection board B+ solder pad | red | 22 AWG | The fuse goes a few centimeters from the holder. |
 | Battery holder: black wire (pack negative) | B− solder pad on the protection board | black | 22 AWG |  |
-| Battery holder: metal strip that joins the 2 cells (middle point) | BM solder pad on the protection board | yellow | 22 AWG | This is the 3rd wire. Solder it to the strip with the cells OUT of the holder. |
-| BM solder pad on the protection board | USB-C charger: middle screw terminal (pack middle point) | yellow | 22 AWG | Without this wire, the charger cannot balance the two cells. |
-| USB-C charger: positive output | P+ solder pad on the protection board | red | 22 AWG | The charger goes before the switch: the robot charges while switched off. |
-| USB-C charger: negative output | P− solder pad on the protection board | black | 22 AWG |  |
+| Battery holder: metal strip that joins the 2 cells (middle point) | Middle solder pad on the protection board (BM or B1) | yellow | 22 AWG | This is the 3rd wire. Solder it to the strip with the cells OUT of the holder. |
+| Middle solder pad on the protection board (BM or B1) | BM solder pad on the USB-C charger | yellow | 22 AWG | Without this wire, the charger cannot balance the two cells. |
+| B+ solder pad on the USB-C charger | Positive output of the protection board (P+; if the board has no P+, use the B+ solder pad itself) | red | 22 AWG | The charger goes before the switch: the robot charges while switched off. |
+| B− solder pad on the USB-C charger | Negative output of the protection board (P− or C−) | black | 22 AWG | Do not connect to the B− solder pad on the protection board: charging must pass through the protection circuit. |
 
 ### Switch and converters
 
 | From | To | Color | Wire | Attention |
 |---|---|---|---|---|
-| P+ solder pad on the protection board | On/off switch and, after it, LM2596 IN+ input and UBEC red input wire | red | 22 AWG | The switch cuts only the positive. |
-| P− solder pad on the protection board | LM2596 IN− input and UBEC black input wire | black | 22 AWG | This is the common negative (GND) for the entire robot. |
+| Positive output of the protection board (P+ or B+) | On/off switch and, after it, LM2596 IN+ input and UBEC red input wire | red | 22 AWG | The switch cuts only the positive. |
+| Negative output of the protection board (P− or C−) | LM2596 IN− input and UBEC black input wire | black | 22 AWG | This is the common negative (GND) for the entire robot. |
 
 ### 5 V: Raspberry Pi and Arduino
 
 | From | To | Color | Wire | Attention |
 |---|---|---|---|---|
-| LM2596 OUT+ output (5.1 V) | Through the neck, to the + screw terminal on the USB-C adapter, which plugs into the Raspberry Pi USB-C port | red | 22 AWG | Set the 5.1 V BEFORE connecting this wire. |
-| LM2596 OUT− output | Through the neck, to the − screw terminal on the USB-C adapter | black | 22 AWG |  |
-| LM2596 OUT+ output (5.1 V) | 5 V pin on the Sensor Shield (the + on the COM or IIC connector) | red | Dupont | This is how the Arduino receives power. First, with the Uno powered only by USB and the SEL jumper removed, use a multimeter to confirm that this pin reads about 5 V and the D9 V pin reads 0 V. The wrong pin here sends the servos’ 6 V to the Raspberry Pi. |
-| LM2596 OUT− output | − (GND) pin on the same Sensor Shield connector | black | Dupont |  |
+| LM2596 OUT+ output (5.1 V) | Splice bar at the base, then through the neck to the + terminal on the USB-C adapter, which plugs into the Raspberry Pi USB-C port | red | 20 AWG | Adjust to 5.1 V BEFORE connecting this wire. Keep it short and thick: a thin wire can make the Pi report undervoltage. |
+| LM2596 OUT− output | Splice bar at the base, then through the neck to the − terminal on the USB-C adapter | black | 20 AWG |  |
+| LM2596 OUT+ output (5.1 V) | 5V pin on the Sensor Shield POWER connector | red | Dupont | This is how the Arduino receives power. First, with the Uno powered only by USB and the SEL jumper removed, use a multimeter to confirm that this pin reads about 5 V and the D9 V pin reads 0 V. The wrong pin here sends the servos’ 6 V to the Raspberry Pi. |
+| LM2596 OUT− output | GND pin on the Sensor Shield POWER connector | black | Dupont |  |
 
 ### 6 V: servos
 
@@ -89,13 +89,13 @@ part of its discharge.
 
 Do this at the workbench, before assembling the robot, with the printed base beside you as a guide for wire lengths.
 
-1. Solder the 3rd wire (yellow) to the metal strip that connects the two cells, with the cells out of the holder.
-2. Connect the holder, fuse, protection board, and charger according to the table.
-3. Fit the switch into the cutout on the base from the outside, with the wires passing through the cutout, and solder it to the positive wire.
-4. Connect the LM2596 and UBEC inputs. Leave their outputs loose and unconnected.
+1. Solder the 3rd wire (yellow) to the metal strip joining the two cells, with the cells out of the holder.
+2. Connect the holder, fuse, protection board, and charger as shown in the table. Solder pad names vary from board to board: on the protection board from the store we checked, they are B+, B1 (middle), B−, and C− (negative output); on the charger, they are B+, BM, and B−.
+3. Fit the switch into the cutout on the outside of the base, with the wires passing through the cutout, and solder it to the positive wire.
+4. Connect the LM2596 and UBEC inputs. At the LM2596 output, solder 2 short wires (20 AWG) that end at the splice bar. Don’t connect anything else to the outputs.
 5. Put the cells in the holder, checking the positive side, and turn on the switch.
-6. With the multimeter on the LM2596 output, turn the adjustment screw with a screwdriver until it reads 5.1 V. It takes several turns.
-7. Measure the UBEC output: it should read 6 V. If it reads 5 V, move its jumper to 6 V.
+6. With the multimeter at the LM2596 output, turn the adjustment screw with a screwdriver until it reads 5.1 V. It takes several turns.
+7. Measure the UBEC output: it must read 6 V. If it reads 5 V, move its jumper to 6 V.
 8. Turn off the switch.
 
 ## Prep Step 2: Upload the Program and Set Both Servos to 90°
@@ -103,16 +103,16 @@ Do this at the workbench, before assembling the robot, with the printed base bes
 The program is the sketch [centrar_servos.ino](firmware/centrar_servos/centrar_servos.ino). It moves both servos to
 the center and holds them there.
 
-1. Open the sketch in the Arduino IDE. Connect the Arduino Uno to your computer with the USB cable, without the shield or battery.
-2. In Tools, select the Arduino Uno board and the port it appeared on. Click Upload.
-3. Unplug the USB cable, fit the Sensor Shield onto the Uno, and remove the shield’s SEL jumper.
-4. Plug the USB cable back in, just to measure with the multimeter: the 5 V pin you’ll use on the shield (the + on the COM or IIC connector) should read about 5 V, and the V pin on D9 should read 0 V.
-5. If the V pin on D9 reads 5 V, the SEL jumper is still in place. If the 5 V pin reads 0 V, choose another + pin and measure again. A wrong pin here sends the servos’ 6 V to the Raspberry Pi.
+1. Open the sketch in Arduino IDE. Connect the Arduino Uno to the computer with the USB cable, without the shield or battery.
+2. Under Tools, select the Arduino Uno board and the port it appeared on. Click Upload.
+3. Unplug the USB cable, fit the Sensor Shield onto the Uno, and remove the shield’s SEL jumper: it’s the plastic cap over 2 pins next to the blue screw terminal.
+4. Reconnect the USB cable just to measure with the multimeter: the 5V pin on the shield’s POWER connector should read about 5 V, and the V pin on D9 should read 0 V.
+5. If V on D9 reads 5 V, the SEL jumper is still in place. If your shield doesn’t have a POWER connector, use the + pin on the COM connector and measure the same way. A wrong pin here sends the servos’ 6 V to the Raspberry Pi.
 6. Unplug the USB cable.
-7. Connect the UBEC’s 6 V to the blue screw terminal (VCC and GND), and connect the 1000 µF capacitor to the same terminal.
-8. Connect the LM2596’s 5.1 V to the shield’s 5 V pin and the negative wire to a G pin.
+7. Connect the UBEC’s 6 V to the blue screw terminal (VCC and GND) and the 1000 µF capacitor to the same terminal.
+8. Connect the LM2596’s 5.1 V to the 5V pin on the shield’s POWER connector and the negative wire to the GND pin on the same connector.
 9. Connect the pan servo to D9 and the tilt servo to D10.
-10. Turn on the switch: both servos move to the center (90°), and the Uno’s LED flashes once per second.
+10. Turn on the switch: both servos move to the middle point (90°) and the Uno’s LED blinks once per second.
 11. Turn it off. From now on, don’t turn the servo shafts by hand.
 
 Three notes:
@@ -126,10 +126,17 @@ run on an assembled robot.
 
 ## Prep Step 3: Flash the microSD Card and Install the Screen Driver
 
-1. Flash the card with Raspberry Pi Imager, the free Raspberry Pi program. Choose your Pi model, the Raspberry Pi OS (64-bit) system, and the card.
-2. Before flashing, open Imager settings: set the username, password, and Wi-Fi, and enable SSH. This lets you access the Pi over the network, without a keyboard.
-3. The screen is the MPI3501: 3.5 inches, 480 × 320, ILI9486 controller, connected over SPI on pins 1 to 26. It only lights up after you install the driver.
-4. The manufacturer recommends the LCD-show package. On the Pi, over the network, run the three commands below.
+You write the card on your computer using a microSD card reader. Then you connect to the Raspberry Pi over the network,
+using SSH: you type commands on your computer, and they run on the Pi.
+
+1. Install Raspberry Pi Imager, the free Raspberry Pi program, on your computer, and put the card in the reader.
+2. In Imager, choose your Pi model, the Raspberry Pi OS (64-bit) system, and the card.
+3. Before writing the image, open Imager’s settings: give your Pi a name (for example, `robo`), create a username and password, enter your Wi-Fi name and password, and enable SSH. Write the image.
+4. Put the card in the Pi, fit the screen onto pins 1 to 26 just for this test, and power on the Pi with a 5 V, 3 A USB-C power supply. Wait about 2 minutes.
+5. On your computer, open the terminal: on Windows, use PowerShell; on Mac and Linux, use Terminal.
+6. Type `ssh usuario@robo.local`, replacing `usuario` and `robo` with the names you created. Type `yes` the first time, then enter the password.
+7. If `robo.local` doesn’t respond, open your router’s page, find the Pi in the list of connected devices, and use its number (the IP address), for example, `ssh usuario@192.168.0.50`.
+8. When the terminal shows the Pi’s name, you’re in. Type the three commands below, one per line, pressing Enter after each one. The Pi needs an internet connection.
 
 ```
 git clone https://github.com/goodtft/LCD-show.git
@@ -137,9 +144,17 @@ cd LCD-show
 sudo ./LCD35-show
 ```
 
-Source for the model, pins, and driver: [MPI3501 page on lcdwiki](http://www.lcdwiki.com/3.5inch_RPi_Display).
-The script replaces the Pi's configuration file and restarts it. Not bench-tested: the manufacturer lists tests through the
-Raspberry Pi 3B+; adjustments may be needed on the Pi 4 and Pi 5.
+The Pi restarts on its own and the screen turns on. Then shut down the Pi with `sudo poweroff`, wait for the green LED to stop, and remove the screen for assembly.
+
+The screen is the MPI3501: 3.5 inches, 480 × 320, ILI9486 controller, connected via SPI on pins 1 to 26. Sources:
+[MPI3501 page on lcdwiki](http://www.lcdwiki.com/3.5inch_RPi_Display) (model, pins, and driver) and
+[Raspberry Pi documentation](https://www.raspberrypi.com/documentation/computers/remote-access.html) (SSH).
+Not bench-tested: the manufacturer lists tests up to the Raspberry Pi 3B+, and the script replaces the Pi’s configuration file.
+
+Plan B, also not tested, if the screen stays white or blank:
+
+- Instead of the script, add the line `dtoverlay=piscreen,drm` to the end of the `/boot/firmware/config.txt` file and restart. This is the official overlay for a 3.5-inch screen with the same ILI9486 controller ([overlay list](https://github.com/raspberrypi/firmware/blob/master/boot/overlays/README)); the source doesn’t guarantee that it works with the MPI3501.
+- If it still doesn’t turn on, write the Raspberry Pi OS (Legacy) image to the card again and repeat the manufacturer’s script.
 
 ## How the Raspberry Pi Communicates with the Arduino
 
@@ -171,43 +186,56 @@ serial connection is part of phase 2.
 
 ## The 8 Wires That Pass Through the Neck
 
-Pass the wires through the 9 mm hole before closing the head over the tube, in this order:
+There are 8 wires: 2 power wires (5.1 V from the Raspberry Pi, 20 AWG), 3 serial wires, and the 3 wires from the tilt servo cable. They must be
+connected inside the head BEFORE the head shell, because the Raspberry Pi is enclosed afterward. They also can’t hang down
+under the fork at this point, because the bottom of the head shell passes beneath it. Follow this order:
 
-1. The tilt servo extension: the 3-pin connector is 7.6 mm wide and fits snugly.
-2. The Raspberry Pi's 2 power wires, 5.1 V (red and black). The USB-C adapter is screwed onto them later.
-3. The 3 serial wires (green, blue, and black).
+1. With the head still open (frame, screen, tilt servo, and fork in place), screw the 2 wires carrying 5.1 V into the USB-C adapter and plug it into the Raspberry Pi.
+2. Check the low-profile serial connector on pins 31 to 34. It goes in before the screen, with the 3 wires already soldered.
+3. Connect the 30 cm extension to the tilt servo cable.
+4. Feed the 8 wires down through the 9 mm hole in the fork, from top to bottom. Feed the extension connector first; it’s 7.6 mm wide and fits snugly.
+5. Stop when the ends are flush with the underside of the fork. Leave about 5 cm of extra wire inside the head: it tilts around the fork.
+6. Close the head with the head shell. Use tweezers to pull the ends of all 8 wires out through the slot in the bottom of the head shell.
+7. Feed the wires through the neck tube and seat the head on it.
+8. At the base, with the switch off: connect the 2 wires carrying 5.1 V to the splice bar, the extension to D10, and the 3 serial wires as shown in the table.
 
-Leave about 10 cm of slack inside the base: the neck turns almost one full rotation and twists the wires.
+Leave about 10 cm of slack inside the base: the neck turns almost one full rotation and twists the wires. This routing has never been
+tested with the printed parts.
 
 ## Current, Wire, and Fuse
 
 The values below are calculated from the specifications, not measured.
 
-- Normal use: about 2 A from the pack (Raspberry Pi with about 1 A at 5 V and servos with less than 1 A at 6 V).
-- Worst case: about 6 A, with the LM2596 and UBEC at their 3 A limit and the pack at 6.5 V.
-- 22 AWG wire (0.33 mm²) throughout the power section. In the neck section, at 2 A, the calculated drop is 0.1 V: that’s why the setting is 5.1 V, not 5.0 V.
-- 5 A fuse: above normal use and below the protection board’s 10 A rating.
-- KCD11 switch: usually rated for 3 A (rating not confirmed; read the value printed on your switch).
-- The phase 2 program must not let both servos push at the same time at the end of their travel.
+- Normal use: about 2 A from the pack. The Raspberry Pi draws about 1 A at 5.1 V, and the servos draw less than 1 A at 6 V.
+- Peak: about 5 A, with the LM2596 at 2 A, the UBEC at its 3 A limit, and the pack at 6.5 V.
+- KCD11-101 switch: 3 A at 250 V~ and 6 A at 125 V~ ([store listing](https://eletronicamaker.com.br/produto/mini-chave-gangorra-kcd11-101-liga-desliga-3a-250v-vm-c)). The listing gives no value for DC current.
+- 3 A fuse: the lowest rating for the switch. Normal use stays below it. A peak lasting a few seconds won’t blow it; a sustained overload blows the fuse before the switch heats up (typical glass-fuse behavior; not confirmed by measurement).
+- If the fuse blows during normal robot use, don’t install a larger one: measure the current and find what is drawing too much.
+- 22 AWG wire (0.33 mm²) for power in the base. 20 AWG wire (0.5 mm²) for the 5.1 V pair running up to the Raspberry Pi: at 2 A, the calculated voltage drop along this section is 0.06 V.
+- The LM2596 can handle about 2 A continuously without a heatsink (typical value; not confirmed by measurement). Use the Raspberry Pi 4, or the Pi 5 without USB accessories.
+- If the Raspberry Pi reports undervoltage, shorten the 5.1 V pair and check the setting. To check, type `vcgencmd get_throttled` on the Pi: the expected response is `throttled=0x0`.
+- The phase 2 program must not let both servos strain against their end stops at the same time.
 
 ## First time you turn on the assembled robot
 
-1. Switch off. Use a multimeter to check that there is no continuity between the pack’s positive and negative terminals.
-2. Turn on the switch. Measure 5.1 V at the USB-C adapter, still disconnected from the Pi, and 6 V at the blue screw terminal.
-3. Turn off, plug the USB-C adapter into the Raspberry Pi, and turn it on again.
-4. The Arduino LED blinks, both servos hold the center position, and the Raspberry Pi power LED lights up.
+1. Switch off. With the multimeter set to continuity, check that the pack’s positive and negative terminals aren’t shorted.
+2. Before joining the 2 wires coming down from the Raspberry Pi, turn on the switch and measure at the splice bar, on the converter side: 5.1 V, with the red probe on positive. Measure 6 V at the blue screw terminal. Turn it off.
+3. Join the Pi wires at the bar, red to red and black to black, and turn the switch on again.
+4. The Arduino LED blinks, both servos hold the middle point, the Raspberry Pi power LED turns on, and in about 1 minute the screen shows the system.
+5. If nothing turns on, switch off and check the fuse.
 
 ## What has not been tested yet
 
 <!-- GERADO:riscos -->
 - Nothing has been printed or assembled yet. The electrical section of this page has not been bench-tested: it was based on the component datasheets.
-- The table 3MF files have never been opened in Bambu Studio. If one won't open, use the STL files.
+- The 3MF files for the build plates have never been opened in Bambu Studio. If one won’t open, use the STL files.
 - The USB-C plug that powers the Raspberry Pi is not in the 3D model. There may not be room for it next to the Pi inside the head.
 - Raspberry Pi pins 31 to 34 are under the screen board. The clearance there (17.5 mm in the model) is unconfirmed: if the low-profile connector doesn't fit, the 3 serial wires will have to be soldered.
-- The test coupon doesn't check the MG996R servo window or the M5 pin hole. Check both on table 01 before the long prints.
+- The test coupon does not check the MG996R servo window or the M5 screw thread. Check the servo window in the head frame (build plate 01). The M5 thread is in the fork arm (build plate 03). Both are printed before the long print jobs.
 - With the Arduino screwed to the base, the USB cable won't fit: there is about 10 mm of clearance to the wall. To reprogram it, you need to remove its 4 screws.
-- The fuse holder and the 3 serial resistors have no modeled mounting place: they hang loose on the wires, insulated with heat-shrink tubing.
+- The fuse holder, splice bar, and 3 serial resistors don’t have modeled locations: they sit loose among the wires, insulated with heat-shrink tubing.
 - Measurements marked NC come from store listings. Measure your part before printing the section that touches it.
+- The path for the 8 wires through the fork hole and the slot in the bottom of the head shell has never been tested with printed parts.
 <!-- /GERADO -->
 
 ## Glossary
@@ -221,6 +249,11 @@ The values below are calculated from the specifications, not measured.
 - **Heat-set threaded insert:** A brass bushing with an internal thread. It goes into the hole in the plastic when pushed in with a soldering iron, creating a metal thread.
 - **NC:** Unconfirmed: a measurement from a store listing that has not yet been checked against the part in hand.
 - **Slicer:** The software that turns the 3D file into the layers the printer prints. Bambu Lab's slicer is called Bambu Studio.
+- **SSH:** A way to use the Raspberry Pi over the network: you type commands in your computer's terminal, and they run on the Pi without connecting a keyboard or monitor to it.
+- **SPI:** A data connection that uses a few wires and a clock to keep things in step. The Raspberry Pi sends the image to the screen through it.
+- **UART (serial):** A simple data connection: one wire to send (TX) and one to receive (RX). The Raspberry Pi sends commands to the Arduino through it.
+- **SEL jumper:** A small plastic cap over 2 Sensor Shield pins, next to the blue screw terminal, marked SEL. When installed, it connects the Arduino's 5 V to the servo connectors. When removed, the servos receive only the power supplied through the blue screw terminal.
+- **Screw terminal:** A screw connector: the wire goes into the hole and the screw tightens it. On the Sensor Shield, it is the blue block marked GND and VCC.
 <!-- /GERADO -->
 
 What to buy: [LISTA-DE-COMPRAS.en.md](LISTA-DE-COMPRAS.en.md). How to print: [IMPRIMIR.en.md](IMPRIMIR.en.md).

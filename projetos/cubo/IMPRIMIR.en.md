@@ -6,6 +6,12 @@
 
 Reference printer: Bambu Lab A1 (256 × 256 × 256 mm build plate), 0.4 mm nozzle, 0.2 mm layer height.
 
+Suggested settings, not yet tested with these parts:
+
+- Textured PEI plate for both materials.
+- In Bambu Studio, use the Generic PLA profile for PLA and Generic PETG for PETG, with the temperatures included in each profile.
+- Typical values to check: PLA with the nozzle at 220 °C and the build plate at 55–65 °C; PETG with the nozzle at 250–255 °C and the build plate at 70–80 °C. The [Bambu filament guide](https://wiki.bambulab.com/en/general/filament-guide-material-table) gives a nozzle range of 240 to 270 °C for PETG.
+
 Page with the same tables: https://inematds.github.io/robos-impressos/guia/en/cubo/#imprimir
 
 ## The files are already in print orientation
@@ -29,17 +35,18 @@ less than 1 hour) is on build plate 06, with the 4 Raspberry Pi spacers. On the 
 - one M3 threaded insert in each of the 3 holes (3.9, 4.0, and 4.1 mm);
 - one M3 screw in the through-hole (3.4 mm) and another in the hole for threading directly into the plastic (2.7 mm).
 
-The dimple marks the measurement used by the project. If another measurement works better on your printer, change the value in the
-`FOLGA` block in `cad/parametros.py` and regenerate the parts (`.venv/bin/python cad/gerar.py cubo`).
+The dimple marks the dimension used by the design. If a different hole works better on your printer, you don’t need to remake the
+parts: in Bambu Studio, the X-Y hole compensation (Quality tab, Precision group) opens or closes all the holes in the part.
+With +0.05 mm, the 4.0 hole comes out like a 4.1; with −0.05 mm, like a 3.9. Print the test coupon again to confirm.
+
+If you work with the code, you can change the value in the `FOLGA` block in `cad/parametros.py` and generate the parts again
+(`.venv/bin/python cad/gerar.py cubo`).
 
 Three notes:
 
-- The coupon is shared with the other robots in the project. Its servo window is for a micro servo (SG90/MG90S), and the pin sockets and
-  TT motor hole are for the other robots: the square robot uses none of these three. The coupon's M2.5 and M2 holes are for threading into
-  the plastic; on the square robot, the Raspberry Pi uses a through-hole with a nut.
-- The MG996R servo fit and the M5 pin hole are not on the coupon. Check both on build plate 01 (head frame), the third in the order below,
-  before the long prints.
-- The coupon is printed in PLA, but 12 of the 16 threaded inserts go into PETG parts. Print a second coupon in PETG.
+- The test coupon is shared with the project’s other robots. Its servo window is for the micro servo (SG90/MG90S), and its pin sockets and TT motor hole are for the other robots: the square robot uses none of these three. The coupon’s M2.5 and M2 holes are threaded into the plastic; on the square robot, the Raspberry Pi uses a clearance hole with a nut.
+- The MG996R servo fit and the M5 screw thread are not on the coupon. Check the servo on the head frame (plate 01, the third in the order below). Check the M5 thread on the fork arm (plate 03, the fourth). Both are printed before the long prints.
+- The coupon prints in PLA, but 12 of the 16 inserts go into PETG parts. Print a second coupon in PETG.
 
 ## 2. Suggested build plate order
 
@@ -51,7 +58,7 @@ First, the small parts that fit together; last, the two long prints.
 | 1 | [cubo-mesa-06-pla-cinza.3mf](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-06-pla-cinza.3mf) | PLA gray | Test coupon (teste-encaixe), 4 × Raspberry Pi spacer (espacador-pi) | 15 | 0.9 | Start here. The test coupon shows whether the inserts and M3 screws fit with the right clearance on YOUR printer. Less than 1 hour. |
 | 2 | [cubo-mesa-04-petg-prata.3mf](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-04-petg-prata.3mf) | PETG silver | Neck tube (tubo-pescoco), Neck gear (engrenagem-pescoco) | 24 | 1.1 | Neck tube and gear: small parts that already test the fit with the tie rods. |
 | 3 | [cubo-mesa-01-petg-amarelo.3mf](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-01-petg-amarelo.3mf) | PETG yellow | Head frame (quadro-cabeca), Servo gear (engrenagem-servo) | 88 | 3.3 | Head frame and servo gear: check whether the servo fits in the slot and whether the two gears turn together without binding. |
-| 4 | [cubo-mesa-03-petg-grafite.3mf](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-03-petg-grafite.3mf) | PETG graphite | Base cover (tampa-base), Rear door (porta-traseira), Fork (garfo) | 129 | 5.0 | Lid, door, and fork. |
+| 4 | [cubo-mesa-03-petg-grafite.3mf](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-03-petg-grafite.3mf) | PETG graphite | Base cover (tampa-base), Rear door (porta-traseira), Fork (garfo) | 129 | 5.0 | Lid, door, and fork. On the fork, check that the M5 screw threads into the hole in the fork arm; with the previous frame on the workbench, check that the head tilts without getting stuck. |
 | 5 | [cubo-mesa-02-petg-grafite.3mf](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-02-petg-grafite.3mf) | PETG graphite | Base (base) | 222 | 8.2 | Base: the longest print in PETG. |
 | 6 | [cubo-mesa-07-pla-preto.3mf](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-07-pla-preto.3mf) | PLA black | Face panel (cabeca-face) | 53 | 2.0 | Face panel: the visible side goes on the build plate, so clean the build plate well first. |
 | 7 | [cubo-mesa-05-pla-branco.3mf](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-05-pla-branco.3mf) | PLA white | Head shell (cabeca-corpo) | 204 | 7.7 | Head cup: the longest print in PLA. Leave it for last, once the printer is dialed in. |

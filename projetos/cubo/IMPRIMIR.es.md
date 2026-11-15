@@ -6,6 +6,12 @@
 
 Impresora de referencia: Bambu Lab A1 (cama de 256 × 256 × 256 mm), boquilla de 0,4 mm, capa de 0,2 mm.
 
+Sugerencia de ajuste, todavía no probada con estas piezas:
+
+- Placa PEI texturizada para los dos materiales.
+- En Bambu Studio, perfil Generic PLA para el PLA y Generic PETG para el PETG, con las temperaturas del perfil.
+- Valores habituales para que los compruebes: PLA con la boquilla a 220 °C y la cama a 55–65 °C; PETG con la boquilla a 250–255 °C y la cama a 70–80 °C. La [guía de filamentos de Bambu](https://wiki.bambulab.com/en/general/filament-guide-material-table) indica de 240 a 270 °C para la boquilla con PETG.
+
 Página con las mismas tablas: https://inematds.github.io/robos-impressos/guia/es/cubo/#imprimir
 
 ## Los archivos ya están en la posición de impresión
@@ -29,17 +35,18 @@ menos de 1 hora) está en la cama 06, con los 4 espaciadores del Raspberry Pi. E
 - un inserto M3 en cada uno de los 3 orificios (3,9, 4,0 y 4,1 mm);
 - un tornillo M3 en el orificio pasante (3,4 mm) y otro en el orificio para roscar directamente en el plástico (2,7 mm).
 
-El hoyuelo marca la medida que usa el proyecto. Si otra medida funciona mejor en tu impresora, cambia el valor en el bloque
-`FOLGA` de `cad/parametros.py` y vuelve a generar las piezas (`.venv/bin/python cad/gerar.py cubo`).
+El hoyuelo marca la medida que usa el proyecto. Si otro agujero queda mejor en tu impresora, no tienes que rehacer las
+piezas: en Bambu Studio, la compensación de agujeros X-Y (pestaña Calidad, grupo Precisión) abre o cierra todos los agujeros de la pieza.
+Con +0,05 mm, el agujero de 4,0 sale como uno de 4,1; con −0,05 mm, como uno de 3,9. Vuelve a imprimir el cupón para confirmarlo.
+
+Si trabajas con el código, puedes cambiar el valor en el bloque `FOLGA` de `cad/parametros.py` y volver a generar las piezas
+(`.venv/bin/python cad/gerar.py cubo`).
 
 Tres avisos:
 
-- El cupón es común a los demás robots del proyecto. Su abertura para servo es para microservos (SG90/MG90S) y los enchufes de
-  pines y el orificio del motor TT son para los otros robots: el robot cuadrado no usa ninguno de los tres. Los orificios M2,5 y M2 del cupón
-  son para roscar en el plástico; en el robot cuadrado, el Raspberry Pi usa un orificio pasante con tuerca.
-- El encaje del servo MG996R y el orificio para el pin M5 no están en el cupón. Comprueba ambos en la cama 01 (marco de la
-  cabeza), la tercera en el orden siguiente, antes de las impresiones largas.
-- El cupón se imprime en PLA, pero 12 de los 16 insertos quedan en piezas de PETG. Imprime un segundo cupón en PETG.
+- El cupón es común a los otros robots del proyecto. Su abertura para el servo es para el micro servo (SG90/MG90S), y los alojamientos para pines y el agujero del motor TT son para los otros robots: el robot cuadrado no usa ninguno de los tres. Los agujeros M2,5 y M2 del cupón son para roscar en el plástico; en el robot cuadrado, Raspberry Pi usa un agujero pasante con tuerca.
+- El encaje del servo MG996R y la rosca del tornillo M5 no están en el cupón. Comprueba el servo en el marco de la cabeza (mesa 01, la tercera en el orden de abajo). La rosca M5 está en el brazo de la horquilla (mesa 03, la cuarta). Ambas comprobaciones se hacen antes de las impresiones largas.
+- El cupón se imprime en PLA, pero 12 de los 16 insertos roscados van en piezas de PETG. Imprime un segundo cupón en PETG.
 
 ## 2. Orden sugerido de las camas
 
@@ -51,7 +58,7 @@ Primero, las piezas pequeñas que encajan entre sí; al final, las dos impresion
 | 1 | [cubo-mesa-06-pla-cinza.3mf](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-06-pla-cinza.3mf) | PLA gris | Cupón de prueba (teste-encaixe), 4 × Espaciador de Raspberry Pi (espacador-pi) | 15 | 0,9 | Empieza por aquí. El cupón de prueba muestra si los insertos y los tornillos M3 entran con la holgura correcta en TU impresora. Menos de 1 hora. |
 | 2 | [cubo-mesa-04-petg-prata.3mf](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-04-petg-prata.3mf) | PETG plateado | Tubo del cuello (tubo-pescoco), Engranaje del cuello (engrenagem-pescoco) | 24 | 1,1 | Tubo y engranaje del cuello: piezas pequeñas que ya prueban el ajuste con las varillas de unión. |
 | 3 | [cubo-mesa-01-petg-amarelo.3mf](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-01-petg-amarelo.3mf) | PETG amarillo | Marco de la cabeza (quadro-cabeca), Engranaje del servo (engrenagem-servo) | 88 | 3,3 | Marco de la cabeza y engranaje del servo: comprueba si el servo entra en la ranura y si los dos engranajes giran juntos sin trabarse. |
-| 4 | [cubo-mesa-03-petg-grafite.3mf](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-03-petg-grafite.3mf) | PETG grafito | Tapa de la base (tampa-base), Puerta trasera (porta-traseira), Horquilla (garfo) | 129 | 5,0 | Tapa, puerta y horquilla. |
+| 4 | [cubo-mesa-03-petg-grafite.3mf](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-03-petg-grafite.3mf) | PETG grafito | Tapa de la base (tampa-base), Puerta trasera (porta-traseira), Horquilla (garfo) | 129 | 5,0 | Tapa, puerta y horquilla. En la horquilla, comprueba que el tornillo M5 enrosque en el orificio del brazo de la horquilla; con el marco de la mesa anterior, verifica que la cabeza se incline sin trabarse. |
 | 5 | [cubo-mesa-02-petg-grafite.3mf](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-02-petg-grafite.3mf) | PETG grafito | Base (base) | 222 | 8,2 | Base: la impresión más larga en PETG. |
 | 6 | [cubo-mesa-07-pla-preto.3mf](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-07-pla-preto.3mf) | PLA negro | Panel de la cara (cabeca-face) | 53 | 2,0 | Panel de la cara: la cara visible va en la cama, así que limpia bien la cama antes. |
 | 7 | [cubo-mesa-05-pla-branco.3mf](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-05-pla-branco.3mf) | PLA blanco | Carcasa de la cabeza (cabeca-corpo) | 204 | 7,7 | Copa de la cabeza: la impresión más larga en PLA. Déjala para el final, cuando la impresora ya esté ajustada. |

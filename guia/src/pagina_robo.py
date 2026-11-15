@@ -498,7 +498,7 @@ def esquema_svg(X):
         o.append(f'<circle cx="{x}" cy="{y}" r="4.6" fill="{COR[cor]}" stroke="#fff" stroke-width="1"/>')
 
     # ---- fundo, título, zonas
-    o.append('<rect x="0" y="0" width="760" height="1026" fill="#ffffff"/>')
+    o.append('<rect x="0" y="0" width="760" height="1046" fill="#ffffff"/>')
     txt(20, 28, t("sv_titulo"), 17, peso=700)
     txt(20, 47, t("sv_aviso"), 12, cor="#a14a00", peso=600)
     tr = ' stroke-dasharray="6 5"'
@@ -631,8 +631,9 @@ def esquema_svg(X):
             o.append(f'<line x1="{x + i * w}" y1="{y - 4}" x2="{x + (i + 1) * w}" y2="{y - 4}" stroke="{COR[c]}" stroke-width="4"/>')
         txt(x + 32, y, t(chave), 11.5)
     txt(20, 1012, t("sv_leg7"), 11.5, peso=600)
+    txt(20, 1032, t("sv_leg8"), 11.5, peso=600)
     corpo = "\n".join(o)
-    return ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 1026" width="760" height="1026" '
+    return ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 1046" width="760" height="1046" '
             f'font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" role="img"><title>{e(t("sv_titulo"))}</title>\n{corpo}\n</svg>\n')
 
 

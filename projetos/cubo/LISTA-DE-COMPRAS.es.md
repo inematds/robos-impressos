@@ -29,18 +29,21 @@ Lo que aún no se ha probado. Léelo antes de gastar.
 - Los archivos 3MF de las camas nunca se abrieron en Bambu Studio. Si alguno no abre, usa los STL.
 - El enchufe USB-C que alimenta la Raspberry Pi no está en el modelo 3D. Puede que no haya espacio para él junto a la Pi, dentro de la cabeza.
 - Los pines 31 a 34 de la Raspberry Pi quedan debajo de la placa de la pantalla. El espacio libre allí (17,5 mm en el modelo) es una medida sin confirmar: si el conector bajo no cabe, habrá que soldar los 3 cables de la serial.
-- El cupón de prueba no verifica la ventana del servo MG996R ni el agujero del pin M5. Comprueba ambos en la cama 01, antes de las impresiones largas.
+- El cupón de prueba no verifica la ventana del servo MG996R ni la rosca del tornillo M5. Comprueba la ventana del servo en el marco de la cabeza (mesa 01). La rosca para el M5 está en el brazo de la horquilla (mesa 03). Ambas se revisan antes de las impresiones largas.
 - Con el Arduino atornillado a la base, el cable USB no entra: quedan unos 10 mm hasta la pared. Para volver a grabar el programa, hay que quitarle los 4 tornillos.
-- El portafusible y los 3 resistores de la serial no tienen un lugar modelado: quedan sueltos en los cables, aislados con tubo termorretráctil.
+- El portafusible, la barra de empalme y las 3 resistencias de la serie no tienen un lugar modelado: quedan sueltos en los cables, aislados con tubo termorretráctil.
 - Las medidas marcadas como NC provienen de anuncios de tiendas. Mide tu pieza antes de imprimir la parte que hace contacto con ella.
+- Nunca se probó el paso de los 8 cables por el agujero de la horquilla y la ranura de la parte inferior de la cabeza con las piezas impresas.
 <!-- /GERADO -->
 
 ## Cuánto cuesta
 
 <!-- GERADO:custo -->
-- Piezas compradas de la fase 1 (sin herramientas ni filamento): **R$ 872–1840**.
-- Si ya tienes el Arduino Uno: **R$ 829–1750**.
-- Filamento, según el peso de las piezas: R$ 66–110 (735 g; R$ 90–150 el kilo).
+- Piezas de la fase 1 (sin filamento ni herramientas): **R$ 880–1865**.
+- Desde cero (piezas, 2 rollos de filamento y todas las herramientas): **R$ 1264–2830**.
+- Solo los 2 rollos de filamento (1 de PETG y 1 de PLA): R$ 170–290.
+- Si ya tienes el Arduino Uno, descuenta: R$ 43–90.
+- Si ya tienes todas las herramientas, descuenta: R$ 214–675.
 <!-- /GERADO -->
 
 ## Fase 1: qué comprar
@@ -50,13 +53,13 @@ Lo que aún no se ha probado. Léelo antes de gastar.
 
 | Artículo (el nombre abre la búsqueda) | Usa / comprar | Para qué sirve | Precio estimado | Visto en tienda |
 |---|---|---|---|---|
-| [Raspberry Pi 4 Model B, 4 GB](https://lista.mercadolivre.com.br/raspberry-pi-4-model-b-4gb) | 1 / 1 | El cerebro del robot. Va dentro de la cabeza, detrás de la pantalla. El Pi 5 también sirve, pero el convertidor de 3 A limita sus puertos USB a 0,6 A. | R$ 450–800 (cada uno) | no verificado |
+| [Raspberry Pi 4 Model B, 4 GB](https://lista.mercadolivre.com.br/raspberry-pi-4-model-b-4gb) | 1 / 1 | El cerebro del robot. Va dentro de la cabeza, detrás de la pantalla. El Pi 5 también sirve, pero sin accesorios USB: el convertidor entrega cerca de 2 A. | R$ 450–800 (cada uno) | no verificado |
 | [Tarjeta microSD de 32 GB clase 10](https://lista.mercadolivre.com.br/cartao-micro-sd-32gb-classe-10) | 1 / 1 | Sistema del Raspberry Pi. | R$ 25–50 (cada uno) | no verificado |
 | [Pantalla TFT de 3,5" 480 × 320 para Raspberry Pi (MPI3501, encaja en el GPIO)](https://lista.mercadolivre.com.br/display-lcd-tft-3.5-raspberry-pi-mpi3501) | 1 / 1 | La cara del robot. Se encaja directamente en los pines 1 a 26 de la Pi, sin tornillos. NC: grosor del conjunto (7 mm) y altura sobre el Pi (24,5 mm). | R$ 90–200 (cada uno) | R$ 193,57 |
 | [Servo MG996R de 180° (de posición, no de rotación continua)](https://lista.mercadolivre.com.br/servo-mg996r-180-graus) | 2 / 2 | Uno gira el cuello (pan), el otro inclina la cabeza (tilt). El kit del servo debe incluir el horn redondo (disco). NC: grosor y orificios de las pestañas, diámetro y grosor del horn redondo. | R$ 30–75 (cada uno) | R$ 70,45 |
 | [Extensión de servo de 30 cm (cable extensor de 3 hilos, macho-hembra)](https://lista.mercadolivre.com.br/extensao-servo-30cm) | 1 / 1 | Lleva el cable del servo de tilt, que está en la cabeza, por el cuello hasta el shield, que está en la base, con holgura para que la cabeza gire. NC: longitud del cable de fábrica del servo (por lo general 30 cm). | R$ 5–15 (cada uno) | no verificado |
 | [Arduino Uno R3](https://lista.mercadolivre.com.br/arduino-uno-r3) (quizás ya tienes) | 1 / 1 | Controla los 2 servos. Va en el piso de la base, sobre 4 salientes. | R$ 43–90 (cada uno) | R$ 43,28 a R$ 89,95 |
-| [Sensor Shield V5.0 para Arduino](https://lista.mercadolivre.com.br/sensor-shield-v5-arduino) | 1 / 1 | Se encaja encima del Uno y ofrece conectores de 3 pines para los servos, con alimentación separada por el borne azul. NC: nombre impreso de los pines de 5 V; compruébalo con el multímetro. | R$ 11–35 (cada uno) | R$ 18,13 |
+| [Sensor Shield V5.0 para Arduino](https://lista.mercadolivre.com.br/sensor-shield-v5-arduino) | 1 / 1 | Se conecta encima del Uno y proporciona los conectores de 3 pines para los servos, con alimentación separada por el borne azul. El pin de 5 V del Arduino va al conector POWER del shield. NC: hay versiones del shield con los pines en otro lugar; mide antes de conectar. | R$ 11–35 (cada uno) | R$ 18,13 |
 | [Resistor de 1 kΩ, 1/4 W](https://lista.mercadolivre.com.br/resistor-1k-1-4w) | 3 / 1 paquete de 10 | Divisor de tensión en la serial: baja los 5 V del Arduino a los 3,3 V que acepta la Raspberry Pi. | R$ 1–5 (paquete) | no verificado |
 | [Barra de pines hembra de 2 filas, paso de 2,54 mm (2 × 20)](https://lista.mercadolivre.com.br/barra-pinos-femea-2x20-2.54mm) | 1 pieza de 2 × 2 / 1 barra | Conector bajo para los pines 31 a 34 de la Raspberry Pi, que quedan debajo de la pantalla. El cable Dupont común no cabe allí en posición vertical. NC: espacio libre entre la Pi y la placa de la pantalla (17,5 mm en el modelo). | R$ 3–10 (cada uno) | no verificado |
 
@@ -66,23 +69,25 @@ Lo que aún no se ha probado. Léelo antes de gastar.
 |---|---|---|---|---|
 | [Batería 18650 de ion de litio de 3,7 V (celda suelta)](https://lista.mercadolivre.com.br/bateria-18650-3.7v) | 2 / 2 | Pack 2S: 7,4 V nominales (8,4 V con carga completa). Compra dos iguales, nuevas y de una marca conocida. | R$ 13–45 (cada uno) | R$ 26,08 el kit con 2 |
 | [Soporte para 2 baterías 18650 lado a lado, con cables](https://lista.mercadolivre.com.br/suporte-2-baterias-18650) | 1 / 1 | Sujeta las 2 celdas en serie. Se desliza en el soporte de la base y sale por la puerta trasera. NC: la cuna admite hasta 78 × 41 × 22 mm. | R$ 5–15 (cada uno) | R$ 6,22 |
-| [Portafusible con cables para fusible de vidrio de 5 × 20 mm, con fusible de 5 A](https://lista.mercadolivre.com.br/porta-fusivel-5x20-fio) | 1 / 1 (y 1 fusible de repuesto) | En el cable positivo, justo después del soporte de las baterías. Abre el circuito si hay un cortocircuito, antes de que el cable se caliente. No tiene un lugar modelado: queda suelto en el cable. | R$ 4–12 (conjunto) | no verificado |
-| [Placa de protección BMS 2S 10 A (modelo 10A2S, ~24 × 11 mm)](https://lista.mercadolivre.com.br/bms-2s-10a-18650) | 1 / 1 | Corta la descarga profunda, la sobrecarga y el cortocircuito. Va soldada a los cables de la batería y fijada con cinta doble faz. NC: nombre impreso de los pads de soldadura (por lo general B+, BM, B−, P+, P−). | R$ 8–20 (cada uno) | no verificado |
-| [Cargador USB-C 2S/3S con balanceo (LX-USC-V2)](https://lista.mercadolivre.com.br/carregador-usb-c-2s-18650-balanceamento) | 1 / 1 | Carga el pack sin abrir el robot. Requiere un 3.er cable soldado en el punto medio del soporte (entre las dos celdas). NC: tamaño de la abertura USB-C en la ventana trasera (9,2 × 3,4 mm) y nombre impreso de los bornes. | R$ 15–30 (cada uno) | R$ 17,90 |
-| [Convertidor step-down LM2596 ajustable (placa azul, 3 A)](https://lista.mercadolivre.com.br/modulo-step-down-lm2596) | 1 / 1 | Baja la tensión del pack a los 5 V de la Raspberry Pi y del Arduino. Ajústalo a 5,1 V con el multímetro ANTES de conectar cualquier placa. El XL4015 no sirve aquí: requiere un mínimo de 8 V. | R$ 8–20 (cada uno) | R$ 10,22 |
+| [Portafusible en línea para fusible de vidrio de 5 × 20 mm, con fusible de 3 A](https://lista.mercadolivre.com.br/porta-fusivel-5x20-fio) | 1 / 1 (y 1 fusible de repuesto) | En el cable positivo, justo después del soporte de baterías. Es de 3 A porque el interruptor es de 3 A: ante una sobrecarga, el fusible se abre antes de que el interruptor se caliente. No tiene un lugar modelado: queda suelto en el cable. | R$ 4–12 (conjunto) | no verificado |
+| [Placa de protección BMS 2S 10 A (modelo 10A2S, ~24 × 11 mm)](https://lista.mercadolivre.com.br/bms-2s-10a-18650) | 1 / 1 | Corta la descarga profunda, la sobrecarga y el cortocircuito. Va soldada a los cables de la batería y fijada con cinta doble faz. NC: nombre impreso de los pads de soldadura. En la placa de la tienda consultada son B+, B1 (medio), B− y C− (salida negativa); en otras, BM, P+ y P−. | R$ 8–20 (cada uno) | no verificado |
+| [Cargador USB-C 2S/3S con balanceo (LX-USC-V2)](https://lista.mercadolivre.com.br/carregador-usb-c-2s-18650-balanceamento) | 1 / 1 | Carga el pack sin abrir el robot. Los pads de soldadura son B+, BM y B−. BM requiere un 3.er cable, soldado en el punto medio del soporte (entre las dos celdas). NC: tamaño de la abertura USB-C en la ventana trasera (9,2 × 3,4 mm). | R$ 15–30 (cada uno) | R$ 17,90 |
+| [Convertidor step-down LM2596 ajustable (placa azul, 3 A)](https://lista.mercadolivre.com.br/modulo-step-down-lm2596) | 1 / 1 | Reduce el voltaje del pack a los 5 V del Raspberry Pi y del Arduino. Ajústalo a 5,1 V con el multímetro ANTES de conectar cualquier placa. La placa soporta cerca de 2 A continuos sin disipador. El XL4015 no sirve aquí: necesita al menos 8 V. NC: los 2 A continuos son el valor habitual de esta placa, sin ficha que lo confirme. | R$ 8–20 (cada uno) | R$ 10,22 |
 | [UBEC 6 V 3 A (Hobbywing UBEC 3A 2-6S o equivalente)](https://lista.mercadolivre.com.br/ubec-3a-5v-6v-hobbywing) | 1 / 1 | Alimenta los 2 servos a 6 V, por separado de la Pi. Pon su jumper en 6 V. | R$ 25–60 (cada uno) | no verificado |
 | [Capacitor electrolítico 1000 µF 16 V](https://lista.mercadolivre.com.br/capacitor-eletrolitico-1000uf-16v) | 1 / 1 | En el borne de 6 V de los servos: soporta el pico de corriente del arranque. | R$ 1–4 (cada uno) | R$ 2,33 |
-| [Interruptor basculante KCD11 (recorte de 13,5 × 9 mm)](https://lista.mercadolivre.com.br/chave-gangorra-kcd11) | 1 / 1 | Enciende y apaga. Se encaja a presión en la pared trasera, por fuera. NC: grosor de panel que acepta el seguro y corriente del interruptor (por lo general 3 A). | R$ 3–8 (cada uno) | R$ 3,74 a R$ 5,40 (modelos KCD1; comprueba el recorte) |
+| [Interruptor basculante KCD11-101 de 3 A (recorte de 13,5 × 9 mm)](https://lista.mercadolivre.com.br/chave-gangorra-kcd11) | 1 / 1 | Enciende y apaga. Se encaja a presión en la pared trasera, desde afuera. La ficha indica 3 A a 250 V~ y 6 A a 125 V~, sin especificar el valor para corriente continua: por eso el fusible es de 3 A. NC: grosor de panel que admite el seguro. | R$ 3–8 (cada uno) | R$ 3,74 a R$ 5,40 (modelos KCD1; comprueba el recorte) |
 | [Adaptador USB-C macho con bornes (2 pines)](https://lista.mercadolivre.com.br/adaptador-usb-c-macho-borne) | 1 / 1 | Lleva los 5 V del convertidor hasta la entrada USB-C de la Raspberry Pi (los pines de 5 V del GPIO quedan debajo de la pantalla). El enchufe no está en el modelo 3D: comprueba que quepa al lado de la Pi, dentro de la cabeza. | R$ 8–20 (cada uno) | R$ 13,11 |
-| [Cable flexible de 22 AWG (0,33 mm²): rojo, negro y un tercer color](https://lista.mercadolivre.com.br/fio-flexivel-22awg-vermelho-preto) | alrededor de 1,5 m de rojo, 1,5 m de negro y 30 cm de amarillo / 2 m de rojo, 2 m de negro, 1 m de amarillo | Toda la parte de alimentación. El amarillo es el 3.º cable, del punto medio del paquete. | R$ 12–30 (total) | R$ 22,40 (5 m bicolor) |
-| [Jumpers Dupont de 20 cm (kits de 20: uno hembra-hembra, uno macho-hembra)](https://lista.mercadolivre.com.br/jumper-dupont-20cm) | alrededor de 8 cables / 2 kits de 20 | Señales seriales y los 5 V del Arduino. Para bajarlos por el cuello, empalma dos jumpers o usa un cable de 40 cm con un conector Dupont en un extremo. | R$ 6–12 (kit) | R$ 6,61 el kit |
+| [Cable flexible de 22 AWG (0,33 mm²): rojo, negro y un tercer color](https://lista.mercadolivre.com.br/fio-flexivel-22awg-vermelho-preto) | cerca de 1 m de cable rojo, 1 m de negro y 30 cm de amarillo / 2 m de rojo, 2 m de negro, 1 m de amarillo | La parte de alimentación que queda en la base. El cable amarillo es el 3.er cable, conectado al punto medio del pack. | R$ 12–30 (total) | R$ 22,40 (5 m bicolor) |
+| [Cable flexible 20 AWG (0,5 mm²), rojo y negro](https://lista.mercadolivre.com.br/fio-flexivel-20awg-vermelho-preto) | cerca de 50 cm de cada color / 1 m de cada color | Solo el par de 5,1 V que sube por el cuello hasta el Raspberry Pi. El cable más grueso pierde menos voltaje en el recorrido; con uno delgado, el Pi indica subtensión. | R$ 5–15 (total) | no verificado |
+| [Regleta de bornes de empalme (tipo sindal), de 2 vías, para cable delgado](https://lista.mercadolivre.com.br/barra-bornes-sindal-12-vias) | 2 vías / 1 regleta de 12 vías | Empalma, dentro de la base, los 2 cables de 5,1 V que bajan del Raspberry Pi con los 2 que salen del convertidor. Sin ella habría que soldar con el robot montado. No tiene un lugar modelado: queda suelta. | R$ 3–10 (regleta) | no verificado |
+| [Jumpers Dupont de 20 cm (kits de 20: uno hembra-hembra, uno macho-hembra)](https://lista.mercadolivre.com.br/jumper-dupont-20cm) | alrededor de 8 cables / 2 kits de 20 | Señales de la serial y los 5 V del Arduino. Para bajarlos por el cuello, empalma dos jumpers macho-hembra: 20 cm no alcanzan para llegar desde la cabeza hasta el Arduino. | R$ 6–12 (kit) | R$ 6,61 el kit |
 
 ### Fijación
 
 | Artículo (el nombre abre la búsqueda) | Usa / comprar | Para qué sirve | Precio estimado | Visto en tienda |
 |---|---|---|---|---|
 | [Inserto de latón M3 para inserción en caliente (para orificio de 4,0 mm, hasta 5,7 mm de largo)](https://lista.mercadolivre.com.br/inserto-latao-m3-impressao-3d) | 16 / 1 paquete de 20 o más | La rosca de metal de las piezas: 4 en la tapa, 1 en la oreja de la puerta, 4 en los pilares del panel del rostro, 4 en las columnas de la estructura, 3 en la horquilla. | R$ 15–40 (paquete) | no verificado |
-| [Tornillo M3 × 8 mm, cabeza cilíndrica Allen](https://lista.mercadolivre.com.br/parafuso-allen-m3x8) | 13 / 2 kits de 10 | 4 del Arduino, 4 del panel del rostro, 4 del vaso de la cabeza, 1 de la puerta. | R$ 3–8 (kit de 10) | R$ 6,14 el kit de 10 (tipo de cabeza no informado) |
+| [Tornillo M3 × 8 mm, cabeza cilíndrica Allen](https://lista.mercadolivre.com.br/parafuso-allen-m3x8) | 13 / 2 kits de 10 | 4 del Arduino, 4 del panel de la cara, 4 de la carcasa de la cabeza, 1 de la puerta. | R$ 3–8 (kit de 10) | R$ 6,14 el kit de 10 (tipo de cabeza no informado) |
 | [Tornillo M3 × 10 mm, cabeza cilíndrica Allen](https://lista.mercadolivre.com.br/parafuso-allen-m3x10) | 4 / 1 kit de 10 | Tapa de la base, por debajo. Debe ser Allen de cabeza cilíndrica: la cabeza queda en el fondo de un orificio de 44 mm. | R$ 3–8 (kit de 10) | R$ 3,55 el kit de 10 (Phillips) |
 | [Tornillo M3 × 12 mm](https://lista.mercadolivre.com.br/parafuso-m3x12) | 8 / 1 kit de 10 | 4 en cada servo MG996R, enroscados directamente en el plástico (orificio de 2,7 mm). | R$ 3–8 (kit de 10) | no verificado |
 | [Tornillo M3 × 45 mm, cabeza cilíndrica Allen](https://lista.mercadolivre.com.br/parafuso-allen-m3x45) | 3 / 3 (se venden por unidad) | Tirantes del cuello: entran por debajo del engranaje, atraviesan el tubo y se enroscan en los insertos de la horquilla. | R$ 1–3 (cada uno) | no verificado |
@@ -91,6 +96,13 @@ Lo que aún no se ha probado. Léelo antes de gastar.
 | [Tornillo autorroscante M2 × 8 mm](https://lista.mercadolivre.com.br/parafuso-m2x8-auto-atarraxante) | 8 / 1 kit de 10 | 4 en cada horn redondo: fija el engranaje al servo de pan y la horquilla al servo de tilt. NC: diámetro de los orificios del horn redondo. | R$ 3–8 (kit de 10) | R$ 3,31 el kit de 10 (comprueba si es autorroscante) |
 | [Brida de nylon de 3,6 mm de ancho (150 a 200 mm)](https://lista.mercadolivre.com.br/abracadeira-nylon-3.6x200) | 3 / 1 paquete de 100 | Una en cada soporte: convertidor de 5 V, UBEC y cargador. | R$ 8–20 (paquete) | no verificado |
 | [Cinta de espuma de doble cara](https://lista.mercadolivre.com.br/fita-dupla-face-espuma) | alrededor de 5 cm / 1 rollo | Sujeta la placa de protección (BMS) en el compartimento poco profundo del piso. | R$ 8–20 (rollo) | no verificado |
+
+### Filamento
+
+| Artículo (el nombre abre la búsqueda) | Usa / comprar | Para qué sirve | Precio estimado | Visto en tienda |
+|---|---|---|---|---|
+| [Filamento PETG de 1,75 mm, rollo de 1 kg](https://lista.mercadolivre.com.br/filamento-petg-1.75mm-1kg) | 463 g, en 3 colores sugeridos (amarillo, grafito y plata) / 1 rollo de cualquier color (o 3 rollos, uno de cada color sugerido) | Las piezas que soportan fuerza: base, tapa, cuello, engranajes, horquilla y marco de la cabeza. El color es solo una sugerencia; el material no: mantén PETG. | R$ 90–150 (rollo) | no verificado |
+| [Filamento PLA de 1,75 mm, rollo de 1 kg](https://lista.mercadolivre.com.br/filamento-pla-1.75mm-1kg) | 272 g, en 3 colores sugeridos (blanco, gris y negro) / 1 rollo de cualquier color (o 3 rollos, uno de cada color sugerido) | Las piezas que solo recubren el robot: carcasa de la cabeza, panel del rostro, espaciadores y cupón de prueba. El color es solo una sugerencia. | R$ 80–140 (rollo) | no verificado |
 
 ### Herramientas y materiales de soldadura (si no los tienes)
 
@@ -101,11 +113,15 @@ Lo que aún no se ha probado. Léelo antes de gastar.
 | [Estaño para soldar con fundente, de 0,8 a 1 mm (tubo pequeño)](https://lista.mercadolivre.com.br/estanho-solda-1mm-tubo) | menos de 1 m / 1 tubo | Todos los empalmes de cables y los pads de soldadura de la placa de protección. | R$ 8–25 (tubo) | no verificado |
 | [Tubo termorretráctil de 2 a 3 mm y de 5 a 6 mm (o cinta aislante)](https://lista.mercadolivre.com.br/tubo-termo-retratil-3mm) | alrededor de 30 cm de cada uno / 1 m de cada uno | Aísla cada empalme de cable. No puede quedar ningún metal expuesto cerca de la batería. | R$ 5–20 (total) | no verificado |
 | [Multímetro](https://lista.mercadolivre.com.br/multimetro-digital) | 1 / 1 | Ajusta el convertidor a 5,1 V, comprueba los 6 V del UBEC y la polaridad antes de conectar las placas. | R$ 40–100 (cada uno) | no verificado |
-| [Destornillador de precisión de 2 mm](https://lista.mercadolivre.com.br/chave-de-fenda-precisao-2mm) | 1 / 1 | Gira el tornillo de ajuste del LM2596 y aprieta los bornes. | R$ 5–20 (cada uno) | no verificado |
+| [Destornillador plano de precisión de 2 mm y destornillador Phillips pequeño (PH0 o PH1)](https://lista.mercadolivre.com.br/jogo-chaves-precisao-fenda-phillips) | 1 / 1 | El plano sirve para girar el tornillo de ajuste del LM2596 y apretar los bornes. El Phillips sirve para apretar los tornillos M2 de los horns, el tornillo central de los servos y los tornillos M3 y M5 de cabeza Phillips. | R$ 10–35 (cada uno) | no verificado |
+| [Alicates de corte pequeños](https://lista.mercadolivre.com.br/alicate-de-corte-eletronica) | 1 / 1 | Corta los cables, las patas de las resistencias, el sobrante de las bridas y la tira de pines. | R$ 15–40 (cada uno) | no verificado |
+| [Pelacables (o un cúter, con cuidado)](https://lista.mercadolivre.com.br/descascador-de-fios) | 1 / 1 | Retira el aislamiento de los extremos de los cables 20 y 22 AWG sin cortar los hilitos de cobre. | R$ 15–45 (cada uno) | no verificado |
+| [Pinzas de punta fina](https://lista.mercadolivre.com.br/pinca-ponta-fina-eletronica) | 1 / 1 | Pasa los extremos de los cables por la ranura del fondo de la cabeza y sujeta las resistencias al soldar. | R$ 5–20 (cada uno) | no verificado |
 | [Llave Allen larga de 2,5 mm (vástago de 50 mm o más)](https://lista.mercadolivre.com.br/chave-allen-2.5mm-longa) | 1 / 1 | Aprieta los 4 tornillos de la tapa desde el fondo de los orificios de la base y los 3 tirantes del cuello. | R$ 8–25 (cada uno) | no verificado |
 | [Calibrador](https://lista.mercadolivre.com.br/paquimetro-digital-150mm) | 1 / 1 | Comprueba las medidas marcadas como NC antes de imprimir. | R$ 25–80 (cada uno) | no verificado |
 | [Fuente USB-C de 15 W o más (5 V 3 A; sirve la del celular) con cable USB-C](https://lista.mercadolivre.com.br/carregador-usb-c-20w) | 1 / 1 | Carga el pack por el puerto USB-C de atrás. El cargador acepta hasta 15 W. | R$ 25–80 (cada uno) | no verificado |
 | [Cable USB A-B (el de impresora) y una computadora con Arduino IDE](https://lista.mercadolivre.com.br/cabo-usb-a-b-arduino-uno) | 1 / 1 | Graba el sketch en el Arduino Uno antes de atornillarlo a la base. | R$ 8–25 (cada uno) | no verificado |
+| [Lector de tarjetas microSD (USB)](https://lista.mercadolivre.com.br/leitor-cartao-micro-sd-usb) | 1 / 1 | Graba el sistema del Raspberry Pi en la tarjeta desde tu computadora. Muchas laptops ya tienen una ranura. | R$ 10–30 (cada uno) | no verificado |
 <!-- /GERADO -->
 
 Opcional: 4 patas de goma adhesivas debajo de la base. No modifican ningún encaje.
@@ -136,7 +152,8 @@ Los tornillos del horn central y los anillos de goma de los servos vienen en el 
 ## Filamento
 
 Gramos por color, sumando las 15 piezas (estimación por volumen, sin laminador). El color es una sugerencia; el material no:
-mantén el PETG donde se indica PETG. Un rollo de 1 kg de PETG y uno de PLA son suficientes si no te importan los colores.
+mantén PETG donde dice PETG. El mínimo son 2 rollos de 1 kg, uno de PETG y otro de PLA, de cualquier color. Con los 6 colores
+sugeridos son 6 rollos, 3 de PETG y 3 de PLA, y sobra mucho filamento. Las dos opciones de filamento están en la lista de arriba.
 
 <!-- GERADO:filamento -->
 | Material y color | Filamento (g) | Tiempo (h) |
@@ -177,6 +194,11 @@ Nada de esto es necesario para imprimir, ensamblar y conectar. Las piezas ya tie
 - **Inserto en caliente:** Buje de latón con rosca interna. Se introduce en el orificio del plástico con el cautín y se convierte en una rosca metálica.
 - **NC:** No confirmado: una medida tomada de un anuncio de una tienda que aún no se ha verificado con la pieza en mano.
 - **Laminador:** El programa que convierte el archivo 3D en las capas que imprime la impresora. El de Bambu Lab se llama Bambu Studio.
+- **SSH:** Forma de usar el Raspberry Pi por la red: escribes los comandos en la terminal de tu computadora y se ejecutan en el Pi, sin conectarle teclado ni monitor.
+- **SPI:** Conexión de datos con pocos cables y un reloj que marca el ritmo. Por ella, el Raspberry Pi envía la imagen a la pantalla.
+- **UART (serial):** Conexión de datos sencilla: un cable para hablar (TX) y otro para escuchar (RX). Por ella, el Raspberry Pi envía órdenes al Arduino.
+- **Jumper SEL:** Cubierta de plástico sobre 2 pines del Sensor Shield, junto al borne azul, con la marca SEL. Colocada, conecta los 5 V del Arduino a los conectores de los servos. Retirada, los servos reciben solo lo que entra por el borne azul.
+- **Borne:** Conector de tornillo: el cable entra por el orificio y se aprieta con el tornillo. En el Sensor Shield es el bloque azul marcado GND y VCC.
 <!-- /GERADO -->
 
 Cómo conectar todo lo que aparece en esta lista: [LIGACAO.es.md](LIGACAO.es.md). Cómo imprimir: [IMPRIMIR.es.md](IMPRIMIR.es.md).

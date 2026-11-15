@@ -26,21 +26,24 @@ What has not been tested yet. Read before spending.
 
 <!-- GERADO:riscos -->
 - Nothing has been printed or assembled yet. The electrical section of this page has not been bench-tested: it was based on the component datasheets.
-- The table 3MF files have never been opened in Bambu Studio. If one won't open, use the STL files.
+- The 3MF files for the build plates have never been opened in Bambu Studio. If one won’t open, use the STL files.
 - The USB-C plug that powers the Raspberry Pi is not in the 3D model. There may not be room for it next to the Pi inside the head.
 - Raspberry Pi pins 31 to 34 are under the screen board. The clearance there (17.5 mm in the model) is unconfirmed: if the low-profile connector doesn't fit, the 3 serial wires will have to be soldered.
-- The test coupon doesn't check the MG996R servo window or the M5 pin hole. Check both on table 01 before the long prints.
+- The test coupon does not check the MG996R servo window or the M5 screw thread. Check the servo window in the head frame (build plate 01). The M5 thread is in the fork arm (build plate 03). Both are printed before the long print jobs.
 - With the Arduino screwed to the base, the USB cable won't fit: there is about 10 mm of clearance to the wall. To reprogram it, you need to remove its 4 screws.
-- The fuse holder and the 3 serial resistors have no modeled mounting place: they hang loose on the wires, insulated with heat-shrink tubing.
+- The fuse holder, splice bar, and 3 serial resistors don’t have modeled locations: they sit loose among the wires, insulated with heat-shrink tubing.
 - Measurements marked NC come from store listings. Measure your part before printing the section that touches it.
+- The path for the 8 wires through the fork hole and the slot in the bottom of the head shell has never been tested with printed parts.
 <!-- /GERADO -->
 
 ## How much it costs
 
 <!-- GERADO:custo -->
-- Phase 1 parts purchased (excluding tools and filament): **R$ 872–1840**.
-- If you already have the Arduino Uno: **R$ 829–1750**.
-- Filament, based on the parts' weight: R$ 66–110 (735 g; R$ 90–150 per kilogram).
+- Phase 1 parts (excluding filament and tools): **R$ 880–1865**.
+- Starting from scratch (parts, 2 rolls of filament, and all tools): **R$ 1264–2830**.
+- Just the 2 rolls of filament (1 PETG and 1 PLA): R$ 170–290.
+- If you already have the Arduino Uno, subtract: R$ 43–90.
+- If you already have all the tools, subtract: R$ 214–675.
 <!-- /GERADO -->
 
 ## Phase 1: what to buy
@@ -50,13 +53,13 @@ What has not been tested yet. Read before spending.
 
 | Item (the name opens a search) | Uses / buy | What it's for | Estimated price | Seen in store |
 |---|---|---|---|---|
-| [Raspberry Pi 4 Model B, 4 GB](https://lista.mercadolivre.com.br/raspberry-pi-4-model-b-4gb) | 1 / 1 | The robot’s brain. It sits inside the head, behind the screen. The Pi 5 also works, but the 3 A converter limits its USB ports to 0.6 A. | R$ 450–800 (each) | not verified |
+| [Raspberry Pi 4 Model B, 4 GB](https://lista.mercadolivre.com.br/raspberry-pi-4-model-b-4gb) | 1 / 1 | The robot’s brain. It sits inside the head, behind the screen. The Pi 5 also works, but only without USB accessories: the converter supplies about 2 A. | R$ 450–800 (each) | not verified |
 | [32 GB class 10 microSD card](https://lista.mercadolivre.com.br/cartao-micro-sd-32gb-classe-10) | 1 / 1 | Raspberry Pi operating system. | R$ 25–50 (each) | not verified |
 | [3.5" 480 × 320 TFT screen for Raspberry Pi (MPI3501, fits the GPIO)](https://lista.mercadolivre.com.br/display-lcd-tft-3.5-raspberry-pi-mpi3501) | 1 / 1 | The robot's face. Fits directly onto Pi pins 1 to 26, with no screws. NC: assembly thickness (7 mm) and height above the Pi (24.5 mm). | R$ 90–200 (each) | R$ 193.57 |
 | [180° MG996R servo (positional, not continuous rotation)](https://lista.mercadolivre.com.br/servo-mg996r-180-graus) | 2 / 2 | One rotates the neck (pan), the other tilts the head (tilt). The servo kit must include the round horn (disk). NC: thickness and holes in the tabs, diameter and thickness of the round horn. | R$ 30–75 (each) | R$ 70.45 |
 | [30 cm servo extension (3-wire male-to-female extension cable)](https://lista.mercadolivre.com.br/extensao-servo-30cm) | 1 / 1 | Runs the tilt servo cable from the head, through the neck to the shield in the base, with enough slack for the head to turn. NC: factory servo cable length (usually 30 cm). | R$ 5–15 (each) | not verified |
 | [Arduino Uno R3](https://lista.mercadolivre.com.br/arduino-uno-r3) (you may already have) | 1 / 1 | Controls the 2 servos. It sits on the base floor, on 4 raised bosses. | R$ 43–90 (each) | R$ 43.28 to R$ 89.95 |
-| [Sensor Shield V5.0 for Arduino](https://lista.mercadolivre.com.br/sensor-shield-v5-arduino) | 1 / 1 | Fits on top of the Uno and provides 3-pin servo connectors, with separate power through the blue screw terminal. NC: printed label for the 5 V pins; check with a multimeter. | R$ 11–35 (each) | R$ 18.13 |
+| [Sensor Shield V5.0 for Arduino](https://lista.mercadolivre.com.br/sensor-shield-v5-arduino) | 1 / 1 | Fits on top of the Uno and provides 3-pin servo connectors, with separate power through the blue screw terminal. The Arduino’s 5 V pin goes to the shield’s POWER connector. NC: some shield versions have the pins in a different place; measure before connecting. | R$ 11–35 (each) | R$ 18.13 |
 | [1 kΩ resistor, 1/4 W](https://lista.mercadolivre.com.br/resistor-1k-1-4w) | 3 / 1 pack of 10 | Voltage divider for the serial connection: lowers the Arduino's 5 V to the 3.3 V that the Raspberry Pi accepts. | R$ 1–5 (pack) | not verified |
 | [2-row female pin header, 2.54 mm pitch (2 × 20)](https://lista.mercadolivre.com.br/barra-pinos-femea-2x20-2.54mm) | 1 piece of 2 × 2 / 1 strip | Low-profile connector for Raspberry Pi pins 31 to 34, which are under the screen. A regular Dupont wire won't fit upright there. NC: clearance between the Pi and the screen board (17.5 mm in the model). | R$ 3–10 (each) | not verified |
 
@@ -66,16 +69,18 @@ What has not been tested yet. Read before spending.
 |---|---|---|---|---|
 | [3.7 V lithium-ion 18650 battery (loose cell)](https://lista.mercadolivre.com.br/bateria-18650-3.7v) | 2 / 2 | 2S pack: 7.4 V nominal (8.4 V fully charged). Buy two identical, new batteries from a reputable brand. | R$ 13–45 (each) | R$ 26.08 for the kit with 2 |
 | [Holder for 2 side-by-side 18650 batteries, with wires](https://lista.mercadolivre.com.br/suporte-2-baterias-18650) | 1 / 1 | Holds the 2 cells in series. Slides into the base cradle and exits through the rear door. NC: the cradle accepts up to 78 × 41 × 22 mm. | R$ 5–15 (each) | R$ 6.22 |
-| [Inline fuse holder for a 5 × 20 mm glass fuse, with a 5 A fuse](https://lista.mercadolivre.com.br/porta-fusivel-5x20-fio) | 1 / 1 (and 1 spare fuse) | On the positive wire, right after the battery holder. Opens the circuit if there's a short, before the wire heats up. No mounting place is modeled: it hangs loose on the wire. | R$ 4–12 (set) | not verified |
-| [2S 10 A BMS protection board (model 10A2S, ~24 × 11 mm)](https://lista.mercadolivre.com.br/bms-2s-10a-18650) | 1 / 1 | Cuts off deep discharge, overcharging, and short circuits. Solder it to the battery wires and secure it with double-sided tape. NC: printed label on the solder pads (usually B+, BM, B−, P+, P−). | R$ 8–20 (each) | not verified |
-| [USB-C 2S/3S balance charger (LX-USC-V2)](https://lista.mercadolivre.com.br/carregador-usb-c-2s-18650-balanceamento) | 1 / 1 | Charges the pack without opening the robot. Requires a 3rd wire soldered to the holder's middle point (between the two cells). NC: size of the USB-C opening in the rear window (9.2 × 3.4 mm) and printed label on the screw terminals. | R$ 15–30 (each) | R$ 17.90 |
-| [Adjustable LM2596 step-down converter (blue board, 3 A)](https://lista.mercadolivre.com.br/modulo-step-down-lm2596) | 1 / 1 | Steps the pack voltage down to 5 V for the Raspberry Pi and Arduino. Adjust it to 5.1 V with a multimeter BEFORE connecting any board. The XL4015 won't work here: it requires at least 8 V. | R$ 8–20 (each) | R$ 10.22 |
+| [Inline fuse holder for a 5 × 20 mm glass fuse, with a 3 A fuse](https://lista.mercadolivre.com.br/porta-fusivel-5x20-fio) | 1 / 1 (and 1 spare fuse) | On the positive wire, just after the battery holder. It is rated at 3 A because the switch is rated at 3 A: in an overload, the fuse blows before the switch heats up. There is no modeled slot for it: it sits loose on the wire. | R$ 4–12 (set) | not verified |
+| [2S 10 A BMS protection board (model 10A2S, ~24 × 11 mm)](https://lista.mercadolivre.com.br/bms-2s-10a-18650) | 1 / 1 | Cuts off deep discharge, overcharging, and short circuits. Solder it to the battery wires and secure it with double-sided tape. NC: printed names for the solder pads. On the board from the shop we checked, they are B+, B1 (middle), B− and C− (negative output); on others, BM, P+ and P−. | R$ 8–20 (each) | not verified |
+| [USB-C 2S/3S balance charger (LX-USC-V2)](https://lista.mercadolivre.com.br/carregador-usb-c-2s-18650-balanceamento) | 1 / 1 | Charges the pack without opening the robot. The solder pads are B+, BM and B−. BM needs a 3rd wire, soldered to the pack’s middle point (between the two cells). NC: size of the USB-C opening in the rear window (9.2 × 3.4 mm). | R$ 15–30 (each) | R$ 17.90 |
+| [Adjustable LM2596 step-down converter (blue board, 3 A)](https://lista.mercadolivre.com.br/modulo-step-down-lm2596) | 1 / 1 | Steps the pack voltage down to 5 V for the Raspberry Pi and Arduino. Adjust it to 5.1 V with a multimeter BEFORE connecting any board. The board handles about 2 A continuously without a heatsink. The XL4015 will not work here: it needs at least 8 V. NC: 2 A continuous is the usual rating for this board; we have no datasheet to confirm it. | R$ 8–20 (each) | R$ 10.22 |
 | [6 V 3 A UBEC (Hobbywing UBEC 3A 2-6S or equivalent)](https://lista.mercadolivre.com.br/ubec-3a-5v-6v-hobbywing) | 1 / 1 | Powers the 2 servos at 6 V, separate from the Pi. Set its jumper to 6 V. | R$ 25–60 (each) | not verified |
 | [1000 µF 16 V electrolytic capacitor](https://lista.mercadolivre.com.br/capacitor-eletrolitico-1000uf-16v) | 1 / 1 | On the servos' 6 V screw terminal: handles the startup current spike. | R$ 1–4 (each) | R$ 2.33 |
-| [KCD11 rocker switch (13.5 × 9 mm cutout)](https://lista.mercadolivre.com.br/chave-gangorra-kcd11) | 1 / 1 | Turns it on and off. Press-fits into the rear wall from the outside. NC: panel thickness accepted by the latch and switch current rating (usually 3 A). | R$ 3–8 (each) | R$ 3.74 to R$ 5.40 (KCD1 models; check the cutout) |
+| [KCD11-101 3 A rocker switch (13.5 × 9 mm cutout)](https://lista.mercadolivre.com.br/chave-gangorra-kcd11) | 1 / 1 | Turns the power on and off. Press-fits into the rear wall from the outside. The datasheet rates it at 3 A at 250 V~ and 6 A at 125 V~, with no DC rating: that is why the fuse is 3 A. NC: panel thickness accepted by the latch. | R$ 3–8 (each) | R$ 3.74 to R$ 5.40 (KCD1 models; check the cutout) |
 | [USB-C male adapter with screw terminals (2 pins)](https://lista.mercadolivre.com.br/adaptador-usb-c-macho-borne) | 1 / 1 | It carries 5 V from the converter to the Raspberry Pi’s USB-C input (the GPIO 5 V pins are under the screen). The plug isn’t in the 3D model: check that it fits beside the Pi, inside the head. | R$ 8–20 (each) | R$ 13.11 |
-| [Flexible 22 AWG wire (0.33 mm²): red, black, and a third color](https://lista.mercadolivre.com.br/fio-flexivel-22awg-vermelho-preto) | about 1.5 m of red, 1.5 m of black, and 30 cm of yellow / 2 m of red, 2 m of black, 1 m of yellow | All the power wiring. Yellow is the 3rd wire, from the middle point of the pack. | R$ 12–30 (total) | R$ 22.40 (5 m two-color) |
-| [20 cm Dupont jumpers (kits of 20: one female-female, one male-female)](https://lista.mercadolivre.com.br/jumper-dupont-20cm) | about 8 wires / 2 kits of 20 | Serial signals and Arduino’s 5 V. To run them down through the neck, splice two jumpers together or use 40 cm wire with a Dupont connector on one end. | R$ 6–12 (kit) | R$ 6.61 per kit |
+| [Flexible 22 AWG wire (0.33 mm²): red, black, and a third color](https://lista.mercadolivre.com.br/fio-flexivel-22awg-vermelho-preto) | about 1 m of red, 1 m of black and 30 cm of yellow / 2 m of red, 2 m of black, 1 m of yellow | The power wiring that stays in the base. The yellow wire is the 3rd wire from the pack’s middle point. | R$ 12–30 (total) | R$ 22.40 (5 m two-color) |
+| [Flexible 20 AWG wire (0.5 mm²), red and black](https://lista.mercadolivre.com.br/fio-flexivel-20awg-vermelho-preto) | about 50 cm of each color / 1 m of each color | Only the 5.1 V pair that runs up the neck to the Raspberry Pi. Thicker wire loses less voltage along the way; with thin wire, the Pi reports undervoltage. | R$ 5–15 (total) | not verified |
+| [2-way screw terminal block (barrier strip type), for thin wire](https://lista.mercadolivre.com.br/barra-bornes-sindal-12-vias) | 2-way / 1 12-way terminal block | Connects the 2 wires at 5.1 V coming down from the Raspberry Pi to the 2 coming from the converter, inside the base. Without it, you would have to solder with the robot assembled. There is no modeled slot for it: it sits loose. | R$ 3–10 (block) | not verified |
+| [20 cm Dupont jumpers (kits of 20: one female-female, one male-female)](https://lista.mercadolivre.com.br/jumper-dupont-20cm) | about 8 wires / 2 kits of 20 | Serial signals and the Arduino’s 5 V. To run them down the neck, join two male-to-female jumper wires: 20 cm is not long enough to reach from the head to the Arduino. | R$ 6–12 (kit) | R$ 6.61 per kit |
 
 ### Fasteners
 
@@ -92,6 +97,13 @@ What has not been tested yet. Read before spending.
 | [3.6 mm wide nylon cable tie (150 to 200 mm)](https://lista.mercadolivre.com.br/abracadeira-nylon-3.6x200) | 3 / 1 pack of 100 | One in each cradle: 5 V converter, UBEC, and charger. | R$ 8–20 (pack) | not verified |
 | [Double-sided foam tape](https://lista.mercadolivre.com.br/fita-dupla-face-espuma) | about 5 cm / 1 roll | Secures the protection board (BMS) in the shallow floor pocket. | R$ 8–20 (roll) | not verified |
 
+### Filament
+
+| Item (the name opens a search) | Uses / buy | What it's for | Estimated price | Seen in store |
+|---|---|---|---|---|
+| [1.75 mm PETG filament, 1 kg spool](https://lista.mercadolivre.com.br/filamento-petg-1.75mm-1kg) | 463 g, in 3 suggested colors (yellow, graphite and silver) / 1 spool in any color (or 3 spools, one in each suggested color) | The parts that bear loads: base, cover, neck, gears, fork and head frame. The color is just a suggestion; the material is not: use PETG. | R$ 90–150 (roll) | not verified |
+| [1.75 mm PLA filament, 1 kg spool](https://lista.mercadolivre.com.br/filamento-pla-1.75mm-1kg) | 272 g, in 3 suggested colors (white, gray and black) / 1 spool in any color (or 3 spools, one in each suggested color) | The parts that only cover the robot: head shell, face panel, spacers and test coupon. The color is just a suggestion. | R$ 80–140 (roll) | not verified |
+
 ### Tools and soldering supplies (if you don’t have them)
 
 | Item (the name opens a search) | Uses / buy | What it's for | Estimated price | Seen in store |
@@ -101,11 +113,15 @@ What has not been tested yet. Read before spending.
 | [Rosin-core solder, 0.8 to 1 mm (small spool)](https://lista.mercadolivre.com.br/estanho-solda-1mm-tubo) | less than 1 m / 1 spool | All wire splices and solder pads on the protection board. | R$ 8–25 (spool) | not verified |
 | [2 to 3 mm and 5 to 6 mm heat-shrink tubing (or electrical tape)](https://lista.mercadolivre.com.br/tubo-termo-retratil-3mm) | about 30 cm of each / 1 m of each | Insulate every wire splice. No metal should be exposed near the battery. | R$ 5–20 (total) | not verified |
 | [Multimeter](https://lista.mercadolivre.com.br/multimetro-digital) | 1 / 1 | Set the converter to 5.1 V, check the UBEC’s 6 V output and the polarity before connecting the boards. | R$ 40–100 (each) | not verified |
-| [2 mm precision screwdriver](https://lista.mercadolivre.com.br/chave-de-fenda-precisao-2mm) | 1 / 1 | Turn the LM2596 adjustment screw and tighten the screw terminals. | R$ 5–20 (each) | not verified |
+| [2 mm precision flathead screwdriver and small Phillips screwdriver (PH0 or PH1)](https://lista.mercadolivre.com.br/jogo-chaves-precisao-fenda-phillips) | 1 / 1 | Use the flathead to turn the LM2596 adjustment screw and tighten the screw terminals. Use the Phillips to tighten the M2 servo horn screws, the central servo screws, and the Phillips-head M3 and M5 screws. | R$ 10–35 (each) | not verified |
+| [Small wire cutters](https://lista.mercadolivre.com.br/alicate-de-corte-eletronica) | 1 / 1 | Cuts wires, resistor leads, excess zip ties, and the pin header. | R$ 15–40 (each) | not verified |
+| [Wire stripper (or a utility knife, carefully)](https://lista.mercadolivre.com.br/descascador-de-fios) | 1 / 1 | Removes the insulation from the ends of 20 and 22 AWG wires without cutting the copper strands. | R$ 15–45 (each) | not verified |
+| [Fine-tip tweezers](https://lista.mercadolivre.com.br/pinca-ponta-fina-eletronica) | 1 / 1 | Pulls wire ends through the slot in the bottom of the head and holds resistors while you solder. | R$ 5–20 (each) | not verified |
 | [Long 2.5 mm Allen key (shaft 50 mm or longer)](https://lista.mercadolivre.com.br/chave-allen-2.5mm-longa) | 1 / 1 | Tightens the 4 cover screws through the bottoms of the base holes and the 3 neck braces. | R$ 8–25 (each) | not verified |
 | [Caliper](https://lista.mercadolivre.com.br/paquimetro-digital-150mm) | 1 / 1 | Checks the dimensions marked NC before printing. | R$ 25–80 (each) | not verified |
 | [15 W or higher USB-C power supply (5 V 3 A; a phone charger works) with a USB-C cable](https://lista.mercadolivre.com.br/carregador-usb-c-20w) | 1 / 1 | Charge the pack through the rear USB-C port. The charger accepts up to 15 W. | R$ 25–80 (each) | not verified |
 | [USB A-B cable (the printer cable) and a computer with the Arduino IDE](https://lista.mercadolivre.com.br/cabo-usb-a-b-arduino-uno) | 1 / 1 | Upload the sketch to the Arduino Uno before screwing it onto the base. | R$ 8–25 (each) | not verified |
+| [microSD card reader (USB)](https://lista.mercadolivre.com.br/leitor-cartao-micro-sd-usb) | 1 / 1 | Writes the Raspberry Pi system to the card from your computer. Many laptops already have a slot. | R$ 10–30 (each) | not verified |
 <!-- /GERADO -->
 
 Optional: 4 adhesive rubber feet under the base. They do not change any fit.
@@ -135,8 +151,9 @@ The center horn screws and the servo rubber rings come in the MG996R kit.
 
 ## Filament
 
-Grams per color, totaling the 15 parts (volume estimate, without a slicer). The color is a suggestion; the material is not:
-keep PETG where it says PETG. One 1 kg spool of PETG and one of PLA are enough if you do not need the specific colors.
+Grams per color, adding up the 15 parts (volume estimate, without a slicer). Color is a suggestion; material is not:
+keep PETG wherever PETG is specified. The minimum is 2 rolls of 1 kg each, one PETG and one PLA, in any colors. With the 6
+suggested colors, you need 6 rolls, 3 PETG and 3 PLA, and a lot of filament will be left over. Both filament options are in the list above.
 
 <!-- GERADO:filamento -->
 | Material and color | Filament (g) | Time (h) |
@@ -177,6 +194,11 @@ None of this is needed to print, assemble, and wire the robot. The parts already
 - **Heat-set threaded insert:** A brass bushing with an internal thread. It goes into the hole in the plastic when pushed in with a soldering iron, creating a metal thread.
 - **NC:** Unconfirmed: a measurement from a store listing that has not yet been checked against the part in hand.
 - **Slicer:** The software that turns the 3D file into the layers the printer prints. Bambu Lab's slicer is called Bambu Studio.
+- **SSH:** A way to use the Raspberry Pi over the network: you type commands in your computer's terminal, and they run on the Pi without connecting a keyboard or monitor to it.
+- **SPI:** A data connection that uses a few wires and a clock to keep things in step. The Raspberry Pi sends the image to the screen through it.
+- **UART (serial):** A simple data connection: one wire to send (TX) and one to receive (RX). The Raspberry Pi sends commands to the Arduino through it.
+- **SEL jumper:** A small plastic cap over 2 Sensor Shield pins, next to the blue screw terminal, marked SEL. When installed, it connects the Arduino's 5 V to the servo connectors. When removed, the servos receive only the power supplied through the blue screw terminal.
+- **Screw terminal:** A screw connector: the wire goes into the hole and the screw tightens it. On the Sensor Shield, it is the blue block marked GND and VCC.
 <!-- /GERADO -->
 
 How to wire everything on this list: [LIGACAO.en.md](LIGACAO.en.md). How to print: [IMPRIMIR.en.md](IMPRIMIR.en.md).
