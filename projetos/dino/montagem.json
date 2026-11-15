@@ -484,9 +484,9 @@
    "material": "PLA",
    "cor": "verde-escuro",
    "rgb": [
-    0.16,
-    0.45,
-    0.1
+    0.11,
+    0.34,
+    0.08
    ],
    "grupo": "corpo",
    "grupos": [
@@ -500,19 +500,19 @@
       1.1102230246251565e-16,
       0.0,
       1.0,
-      62.01999999999998
+      63.01999999999998
      ],
      [
       0.0,
       1.0,
       0.0,
-      -29.00001335144043
+      -26.993220806121826
      ],
      [
       -1.0,
       0.0,
       1.1102230246251565e-16,
-      79.99997329711914
+      80.44858932495116
      ],
      [
       0.0,
@@ -531,15 +531,15 @@
    "comum": false,
    "macica": true,
    "dim": [
-    17.4,
-    17.4,
-    8.6
+    21.3,
+    26.4,
+    7.6
    ],
-   "tris": 1020,
-   "plastico_cm3": 1.3,
-   "massa_g": 1.7,
-   "tempo_h": 0.14,
-   "obs": "mancha do flanco: janela do sensor de distância lateral (fase 2); cola no assento plano do corpo",
+   "tris": 1290,
+   "plastico_cm3": 1.6,
+   "massa_g": 2.0,
+   "tempo_h": 0.15,
+   "obs": "mancha do flanco, de contorno orgânico e rente à pele: a janela do sensor de distância lateral (fase 2) é o furo pequeno, fora do centro; cola no assento plano do corpo",
    "liso": true,
    "perimetros": 3,
    "infill": 15,
@@ -552,9 +552,9 @@
    "material": "PLA",
    "cor": "verde-escuro",
    "rgb": [
-    0.16,
-    0.45,
-    0.1
+    0.11,
+    0.34,
+    0.08
    ],
    "grupo": "corpo",
    "grupos": [
@@ -568,19 +568,19 @@
       1.1102230246251565e-16,
       0.0,
       -1.0,
-      -62.01999999999998
+      -63.019999999999975
      ],
      [
       0.0,
       1.0,
       0.0,
-      -29.00001335144043
+      -26.993197917938232
      ],
      [
       1.0,
       0.0,
       1.1102230246251565e-16,
-      80.0
+      80.44858932495116
      ],
      [
       0.0,
@@ -599,15 +599,15 @@
    "comum": false,
    "macica": true,
    "dim": [
-    17.4,
-    17.4,
-    8.6
+    21.3,
+    26.4,
+    7.6
    ],
-   "tris": 1036,
-   "plastico_cm3": 1.3,
-   "massa_g": 1.7,
-   "tempo_h": 0.14,
-   "obs": "mancha do flanco: janela do sensor de distância lateral (fase 2); cola no assento plano do corpo",
+   "tris": 1304,
+   "plastico_cm3": 1.6,
+   "massa_g": 2.0,
+   "tempo_h": 0.15,
+   "obs": "mancha do flanco, de contorno orgânico e rente à pele: a janela do sensor de distância lateral (fase 2) é o furo pequeno, fora do centro; cola no assento plano do corpo",
    "liso": true,
    "perimetros": 3,
    "infill": 15,
@@ -902,10 +902,10 @@
     113.7,
     129.4
    ],
-   "tris": 99604,
-   "plastico_cm3": 162.4,
-   "massa_g": 201.3,
-   "tempo_h": 7.6,
+   "tris": 99588,
+   "plastico_cm3": 160.9,
+   "massa_g": 199.5,
+   "tempo_h": 7.53,
    "obs": "pernas, barriga e peito; desce por cima do chassi; 2 M3 por trás (cobertos pela traseira); a borda de trás encaixa na traseira",
    "liso": true,
    "perimetros": 4,
@@ -1003,7 +1003,7 @@
       1.0,
       0.0,
       0.0,
-      0.0
+      0.0008791218853225757
      ],
      [
       0.0,
@@ -1034,14 +1034,14 @@
    "comum": false,
    "macica": false,
    "dim": [
-    120.6,
+    112.3,
     100.5,
     56.1
    ],
-   "tris": 25562,
-   "plastico_cm3": 69.2,
-   "massa_g": 85.8,
-   "tempo_h": 3.28,
+   "tris": 24902,
+   "plastico_cm3": 63.4,
+   "massa_g": 78.6,
+   "tempo_h": 3.01,
    "obs": "gola: esfera em que a cabeça gira; assenta na borda do corpo; 3 M3 por cima, nos ressaltos do corpo (por dentro, antes da cabeça)",
    "liso": true,
    "perimetros": 4,
@@ -3710,14 +3710,14 @@
  "obs": {
   "parede_medida": {
    "corpo": {
-    "min": 2.28,
+    "min": 2.27,
     "med": 2.39,
-    "max": 2.64,
+    "max": 2.62,
     "amostras": 4000
    },
    "gola": {
-    "min": 3.38,
-    "med": 3.7,
+    "min": 2.89,
+    "med": 3.55,
     "max": 9.75,
     "amostras": 2704
    },
@@ -3774,14 +3774,14 @@
  ],
  "parede_medida": {
   "corpo": {
-   "min": 2.28,
+   "min": 2.27,
    "med": 2.39,
-   "max": 2.64,
+   "max": 2.62,
    "amostras": 4000
   },
   "gola": {
-   "min": 3.38,
-   "med": 3.7,
+   "min": 2.89,
+   "med": 3.55,
    "max": 9.75,
    "amostras": 2704
   },

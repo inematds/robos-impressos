@@ -223,6 +223,21 @@ class Regiao:
         return cls(cil(p0, p1, r, seg=64), f)
 
     @classmethod
+    def organica_x(cls, lobos, x0, x1, k=3.0):
+        """Mancha de contorno ORGÂNICO, vista de lado: união suave (largura k) de círculos `lobos` = [((y, z), raio), ...]
+        no plano (y, z), de x0 a x1. O sólido é só o envelope (o `Relevo` usa a caixa dele); quem recorta é o campo."""
+        from cad.comum.geo import cil, smin, uniao
+
+        def f(P):
+            d = None
+            for (cy, cz), r in lobos:
+                di = np.hypot(P[..., 1] - cy, P[..., 2] - cz) - r
+                d = di if d is None else smin(d, di, k)
+            return np.maximum(d, np.maximum(x0 - P[..., 0], P[..., 0] - x1))
+
+        return cls(uniao(*[cil((x0, cy, cz), (x1, cy, cz), r + k, seg=48) for (cy, cz), r in lobos]), f)
+
+    @classmethod
     def triangulo_xz(cls, a, b, c, y0, y1):
         """Prisma de um triângulo no plano (x, z), de y0 a y1."""
         pts = [a, b, c]
@@ -247,14 +262,19 @@ class Relevo:
     do plano (o corpo fica com um assento plano e a casca nasce com parede atrás dele); `peca(ext)` recorta a peça
     da pele ORIGINAL (base plana, imprime sem suporte com `imprimir`)."""
 
-    def __init__(self, regiao: Regiao, p0, n, folga=0.25):
-        self.regiao, self.folga = regiao, folga
+    def __init__(self, regiao: Regiao, p0, n, folga=0.25, suave=0.0):
+        self.regiao, self.folga, self.suave = regiao, folga, suave
         self.p0 = np.asarray(p0, float)
         self.n = np.asarray(n, float) / np.linalg.norm(n)
 
     def tirar(self, P, d):
         alem = campo_meio_espaco(P, self.p0 - self.n * self.folga, self.n)          # > 0 além do plano (com folga)
-        return np.maximum(d, -np.maximum(self.regiao.campo(P), -alem))     # tira (região ∩ além do plano)
+        corte = -np.maximum(self.regiao.campo(P), -alem)                   # > 0 dentro de (região ∩ além do plano)
+        if self.suave > 0:                                                 # quinas arredondadas (raio ~suave): região de contorno curvo,
+            from cad.comum.geo import smin                                 # que não segue a grade, sai sem serrilha na borda
+
+            return -smin(-d, -corte, self.suave)
+        return np.maximum(d, corte)                                        # tira (região ∩ além do plano)
 
     def peca(self, pele: PeleGrade, chanfro=1.6, folga_lado=0.3) -> Manifold:
         """A peça, recortada da pele ORIGINAL (sem os assentos). A borda da base sai com chanfro de 45° (a região

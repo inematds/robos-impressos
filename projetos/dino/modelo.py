@@ -320,14 +320,41 @@ def construir() -> Modelo:
             rel[f"dedo-{lado}-{i + 1}"] = CA.Relevo(R.cil(c_ - n_ * 4.0, c_ + n_ * 30.0, K.dedo_r), c_, n_)
         mc = K.mancha
         cm = np.array([s * mc.x, mc.c[0] + DY, mc.c[1]])
-        rel[f"mancha-{lado}"] = CA.Relevo(R.cil(cm - (s * 8.0, 0, 0), cm + (s * 25.0, 0, 0), mc.r), cm, (s, 0, 0))
+        xa, xb = sorted((s * (mc.x - 8.0), s * (mc.x + 25.0)))
+        rel[f"mancha-{lado}"] = CA.Relevo(R.organica_x([((ly + DY, lz), lr) for (ly, lz, lr) in mc.lobos], xa, xb, mc.k), cm, (s, 0, 0))
     assentos = []                                      # o relevo dos braços da malha sai (entram os braços que giram)
     for s in (1, -1):
-        lo, hi = (_v(v, dyv) * (s, 1, 1) for v in br.ombro)
-        assentos.append(CA.Relevo(R.caixa(np.minimum(lo, hi), np.maximum(lo, hi)), (s * (br.x_base - 0.5), 0, 0), (s, 0, 0), folga=0.0))
-        lo, hi = (_v(v, dyv) * (s, 1, 1) for v in br.mao)
+        # ombro: assento plano a folga_ax da base do braço (o braço gira colado nele: de frente não sobra fenda). Sai o
+        # que a malha tem além desse plano numa caixa cujas faces de trás, de baixo e de cima ABREM a 45° (rampa em vez
+        # de degrau reto atrás e embaixo do braço; na gola, nenhum teto reto) e de quinas arredondadas (suave).
         n_ = np.asarray(br.mao_n, float) * (s, 1, 1)
-        assentos.append(CA.Relevo(R.caixa(np.minimum(lo, hi), np.maximum(lo, hi)), _v(np.asarray(br.mao_n, float) * br.mao_d, dyv) * (s, 1, 1), n_, folga=0.0))
+        p_ = _v(np.asarray(br.mao_n, float) * br.mao_d, dyv) * (s, 1, 1)
+        eixo_, xs_ = (br.eixo[0] + DY, br.eixo[1]), s * (br.x_base - br.folga_ax)
+        lo, hi = (_v(v, dyv) * (s, 1, 1) for v in br.ombro)
+        lo, hi = np.minimum(lo, hi), np.maximum(lo, hi)
+
+        def f_ombro(Pq, lo=lo, hi=hi, xs_=xs_, s=s):
+            alt = np.maximum(s * (Pq[..., 0] - xs_), 0.0)                           # altura além do assento
+            return np.maximum(np.maximum(lo[0] - Pq[..., 0], Pq[..., 0] - hi[0]),
+                              np.maximum(np.maximum(lo[1] - Pq[..., 1] - alt, Pq[..., 1] - hi[1]),
+                                         np.maximum(lo[2] - Pq[..., 2], Pq[..., 2] - hi[2]) - alt))
+
+        assentos.append(CA.Relevo(R(caixa(lo[0], hi[0], lo[1], hi[1], lo[2], hi[2]), f_ombro), (xs_, 0, 0), (s, 0, 0), folga=0.0, suave=br.suave))
+        # acima do assento (na gola) o ombro sobe INCLINADO a 45° até a esfera do pescoço, como um ombro caído. Antes a
+        # saliência da malha ficava cortada reta em x (uma "ombreira" de face chata, com uma tampa plana por cima).
+        n_o = np.array([s * 0.70710678, 0.0, 0.70710678])
+        p_o = np.array([xs_, 0.0, K.z_gola])
+        ya, yb = br.ombreira_y[0] + DY, br.ombreira_y[1] + DY
+
+        def f_ombreira(Pq, n_o=n_o, p_o=p_o, s=s):
+            alt = np.maximum(CA.campo_meio_espaco(Pq, p_o, n_o), 0.0)
+            fora_esfera = (r_gola + 0.6) - np.linalg.norm(Pq - C0.astype(np.float32), axis=-1)     # a esfera da gola não se toca
+            return np.maximum(np.maximum(np.maximum(ya - Pq[..., 1] - alt, Pq[..., 1] - yb), (K.z_gola - 4.0) - Pq[..., 2]),
+                              np.maximum(30.0 - s * Pq[..., 0], fora_esfera))
+
+        assentos.append(CA.Relevo(R(caixa(-1, 1, -1, 1, -1, 1), f_ombreira), p_o, n_o, folga=0.0, suave=br.suave))
+        lo, hi = (_v(v, dyv) * (s, 1, 1) for v in br.mao)
+        assentos.append(CA.Relevo(R.caixa(np.minimum(lo, hi), np.maximum(lo, hi)), p_, n_, folga=0.0, suave=br.suave_mao))
 
     # braços que giram: blobs (no robô), face de dentro plana em x_base; o corpo se afasta 2 mm do que eles varrem
     oy, oz = br.eixo[0] + DY, br.eixo[1]
@@ -340,7 +367,9 @@ def construir() -> Modelo:
         c_, s_ = np.cos(th), np.sin(th)
         Q = np.stack([Pb[..., 0], oy + (Pb[..., 1] - oy) * c_ + (Pb[..., 2] - oz) * s_, oz - (Pb[..., 1] - oy) * s_ + (Pb[..., 2] - oz) * c_], axis=-1)
         varre = np.minimum(varre, f_braco(Q.astype(np.float32)))
-    varre = np.maximum(varre, (br.x_base - 1.0) - Pb[..., 0])      # o braço de verdade só existe de x_base para fora (o blob inteiro abriria um bolso no ombro)
+    # o braço de verdade só existe de x_base para fora e a base dele é plana: por baixo dela o corpo chega a folga_ax
+    # (antes ficava a 3 mm: de frente via-se o cubo grafite pela fenda); em volta do que o braço varre continuam 2 mm
+    varre = np.maximum(varre, (br.x_base + 2.0 - br.folga_ax) - Pb[..., 0])
     nx = len(base.eixos[0])
     sl_e = (slice(nx - sl_b[0].stop, nx - sl_b[0].start), sl_b[1], sl_b[2])          # o mesmo bloco, espelhado em X
 
@@ -432,11 +461,6 @@ def construir() -> Modelo:
     zg = K.z_gola + F.encaixe
     gola = CA.fatia_z(ext, zg, z_top) - esfera(C0, r_gola_in, seg=128)
     gola = gola - cil((C0[0], C0[1], zg - 1.0), tuple(C0), K.gola_boca_r - 0.5, seg=128)      # por baixo a boca tem o mesmo raio da de cima: a gola desce por cima do garfo
-    for sx in (1, -1):                                  # acima dos ombros a face de baixo da gola sobe a 45° (o corpo foi afastado do que o braço varre)
-        gola = gola - (prisma([(sx * (br.x_base - 0.4), zg - 1.0), (sx * (br.x_base + 40.0), zg - 1.0), (sx * (br.x_base + 40.0), zg + 40.4)], "y", br.ombro[0][1] + DY, br.ombro[1][1] + DY))      # só na faixa do assento plano do ombro (fora dela a borda do corpo ficaria descoberta)
-    for sx in (1, -1):                                  # tampa sobre o ombro: o corte z_gola passa pelo alto da saliência do ombro, que é oca; sem ela ficava uma fresta aberta para dentro
-        xa, xb = sorted((sx * (K.gola_boca_r + 2.0), sx * (br.x_base - 0.5)))
-        gola = gola + caixa(xa, xb, br.ombro[0][1] + DY, br.ombro[1][1] + DY, zg, zg + 2.4)
     gola = maior_corpo(gola)
     for (gx, gy) in pos_g:                               # 3 M3 por cima: furo passante + rebaixo fundo (a chave entra pela boca da gola)
         gola = gola - cil((gx, gy, zg - 1), (gx, gy, zg + 4), F.m3_passante / 2, seg=24) - cil((gx, gy, zg + 3.0), (gx, gy, zg + 32.0), F.cabeca_m3_d / 2 + 0.2, seg=24)
@@ -454,11 +478,11 @@ def construir() -> Modelo:
     xb_ = mc.x - 0.25 - F.parede - 0.6
     for sx, lado in ((1, "dir"), (-1, "esq")):
         ym, zm_ = mc.c[0] + DY, mc.c[1]
-        jan = cil((sx * (mc.x - 8.0), ym, zm_), (sx * (mc.x + 30.0), ym, zm_), P.TOF.janela_d / 2, seg=24)
-        corpo = corpo - jan
-        pecas.append(Peca(f"mancha-{lado}", maior_corpo(pc[f"mancha-{lado}"] - jan), cor="verde-escuro", macica=True, suporte="não", imprimir=rel[f"mancha-{lado}"].imprimir,
+        jan = lambda d_: cil((sx * (mc.x - 8.0), ym, zm_), (sx * (mc.x + 30.0), ym, zm_), d_ / 2, seg=24)
+        corpo = corpo - jan(P.TOF.janela_d)
+        pecas.append(Peca(f"mancha-{lado}", maior_corpo(pc[f"mancha-{lado}"] - jan(mc.janela_d)), cor="verde-escuro", macica=True, suporte="não", imprimir=rel[f"mancha-{lado}"].imprimir,
                           explode=(sx * 110, 0, 0), orientacao="base plana (face de colar) na mesa",
-                          obs="mancha do flanco: janela do sensor de distância lateral (fase 2); cola no assento plano do corpo"))
+                          obs="mancha do flanco, de contorno orgânico e rente à pele: a janela do sensor de distância lateral (fase 2) é o furo pequeno, fora do centro; cola no assento plano do corpo"))
         cx_ = caixa(xb_ - P.TOF.esp, xb_, ym - P.TOF.placa[0] / 2, ym + P.TOF.placa[0] / 2, zm_ - P.TOF.placa[1] / 2, zm_ + P.TOF.placa[1] / 2)
         comps.append(Comp(f"tof-{lado} (fase 2)", cx_ if sx > 0 else espelho_x(cx_), "corpo", P.TOF.massa, "verde", fase2=True))
 

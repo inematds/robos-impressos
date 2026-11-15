@@ -374,7 +374,11 @@ DINO = NS(
     olho=NS(c=(35.0, 47.0, 266.0), r=22.0, dir=(0.30, 0.90, 0.30), iris_r=15.0, pupila_r=9.5),   # pele: centro, raio e para onde olha (o esquerdo espelha)
     narina=NS(x=13.0, y=126.0),        # pele: narinas no alto do focinho = portas de som dos 2 microfones (furo Ø2)
     falante=(0.0, 61.0),              # pele (x, y): centro do alto-falante, em cima da mesa da cabeça, virado para baixo (som sai pela boca e pelo vão do pescoço)
-    mancha=NS(c=(14.0, 80.0), r=9.0, x=62.0),   # pele: mancha verde-escura no flanco (y, z), assento plano em x: janela do sensor de distância lateral (fase 2)
+    # pele: mancha verde-escura no flanco = janela do sensor de distância lateral (fase 2). Contorno ORGÂNICO (3 lobos
+    # (y, z, raio) fundidos, como as manchas do desenho de referência), rente à pele; c = centro da janela e do sensor,
+    # FORA do centro da mancha (janela concêntrica num disco parecia tampa de parafuso); assento plano em x, pelo menos
+    # 2 mm abaixo da pele em todo o contorno (a pele ali vai de x = 65 a 70); janela_d = furo na mancha (o do corpo é TOF.janela_d)
+    mancha=NS(c=(14.0, 80.0), x=63.0, lobos=((17.0, 82.5, 8.0), (9.0, 76.0, 6.5), (24.5, 86.5, 5.0)), k=3.0, janela_d=5.0),
     # crista azul: lâminas de 6 mm no plano de simetria, com o contorno dos espinhos da própria malha (caixas em (y, z) da pele)
     crista=NS(esp=6.0, fundo=4.0, xc=11.25,
               cabeca=((-75.0, 195.0), (70.0, 310.0)),
@@ -382,9 +386,13 @@ DINO = NS(
               nuca=((-75.0, 142.0), (-2.0, 195.0))),      # nuca: os espinhos somem (a cabeça varre o lugar ao inclinar para trás; sobrariam lascas)
     # braços: a malha traz os braços colados ao peito (não giram). Sai o relevo da malha e entra um braço próprio,
     # de blobs, com a face de dentro plana em x = x_base, que gira no eixo X do ombro (micro servo no chassi).
-    braco=NS(eixo=(47.0, 122.5), x_base=53.0, x_ponta=46.0, lim=(-15.0, 20.0), r_cubo=8.5, r_furo=10.5, encaixe=4.0,
+    braco=NS(eixo=(47.0, 122.5), x_base=53.0, x_ponta=46.0, lim=(-15.0, 20.0), r_cubo=8.5, r_furo=9.1, encaixe=4.0,
              blobs=[((57.0, 47.0, 122.5), (12.0, 13.0, 12.0)), ((60.0, 66.0, 119.0), (9.0, 12.0, 10.0)), ((54.0, 83.0, 116.0), (9.0, 10.0, 9.0))],
-             ombro=((45.0, 28.0, 100.0), (80.0, 72.0, 146.0)),                    # pele: saliência do ombro da malha além de x_base - 0,5 (sai)
+             folga_ax=0.6,             # folga entre a base plana do braço e o fundo do soquete do ombro (o mínimo para girar sem raspar)
+             suave=2.5,                # raio de concordância das quinas do assento do ombro (sem isto as rampas saem serrilhadas)
+             suave_mao=6.0,            # idem na caixa do antebraço: arredonda a quina da frente do ombro (de frente era uma face chata)
+             ombro=((45.0, 28.0, 100.0), (80.0, 72.0, 146.0)),                    # pele: saliência do ombro da malha além do assento (sai); atrás, embaixo e em cima a caixa abre a 45°
+             ombreira_y=(28.0, 85.0),  # pele: faixa em y em que, acima do corte da gola, o ombro sobe inclinado a 45° (atrás abre a 45°)
              mao=((30.0, 62.0, 104.0), (60.0, 96.0, 142.0)), mao_n=(0.87, 0.5, 0.0), mao_d=64.0),   # pele: antebraço e mão em relevo além do plano n·p = d (saem)
     barriga=NS(caixa=((-32.0, 60.0, 63.0), (32.0, 130.0, 143.0)), plano_y=80.0),   # pele: barriga creme = o que a pele tem além do plano
     dedos=(((43.0, 88.5, 6.0), (0.0, 1.0, 0.0)), ((68.0, 88.5, 6.0), (0.0, 1.0, 0.0)), ((89.0, 66.0, 6.0), (1.0, 0.0, 0.0))),   # pele: (ponto, normal) do plano de cada dedo creme do pé direito
@@ -582,5 +590,5 @@ CORES = {
     "branco": (0.97, 0.97, 0.97), "preto": (0.03, 0.03, 0.04), "cinza": (0.42, 0.44, 0.47),
     "laranja": (0.93, 0.52, 0.13), "marrom": (0.36, 0.19, 0.10), "verde-bandana": (0.30, 0.66, 0.16),
     "ciano": (0.25, 0.85, 0.95), "rosa": (0.92, 0.48, 0.52), "grafite": (0.22, 0.23, 0.25),
-    "prata": (0.78, 0.79, 0.80), "amarelo": (0.98, 0.80, 0.08), "verde-escuro": (0.16, 0.45, 0.10),
+    "prata": (0.78, 0.79, 0.80), "amarelo": (0.98, 0.80, 0.08), "verde-escuro": (0.11, 0.34, 0.08),
 }
