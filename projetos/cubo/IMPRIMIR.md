@@ -36,8 +36,10 @@ menos de 1 hora) está na mesa 06, com os 4 espaçadores do Raspberry Pi. No rob
 - um parafuso M3 no furo passante (3,4 mm) e outro no furo de rosquear direto no plástico (2,7 mm).
 
 A covinha marca a medida que o projeto usa. Se outro furo ficar melhor na sua impressora, você não precisa refazer as
-peças: no Bambu Studio, a compensação de furo X-Y (aba Qualidade, grupo Precisão) abre ou fecha todos os furos da peça.
-Com +0,05 mm, o furo de 4,0 sai como o de 4,1; com −0,05 mm, como o de 3,9. Imprima o cupom de novo para confirmar.
+peças: no Bambu Studio, a opção X-Y hole compensation (compensação de furo X-Y; aba Qualidade, grupo Precisão, com o
+modo avançado ligado) abre ou fecha todos os furos da peça: valor positivo abre, negativo fecha
+([fonte: código do Bambu Studio](https://github.com/bambulab/BambuStudio/blob/master/src/libslic3r/PrintConfig.cpp)).
+A fonte não diz se o valor conta por lado ou no diâmetro: comece com 0,05 mm e imprima o cupom de novo. O cupom decide.
 
 Quem mexe no código pode mudar o valor no bloco `FOLGA` de `cad/parametros.py` e gerar as peças de novo
 (`.venv/bin/python cad/gerar.py cubo`).

@@ -35,9 +35,11 @@ less than 1 hour) is on build plate 06, with the 4 Raspberry Pi spacers. On the 
 - one M3 threaded insert in each of the 3 holes (3.9, 4.0, and 4.1 mm);
 - one M3 screw in the through-hole (3.4 mm) and another in the hole for threading directly into the plastic (2.7 mm).
 
-The dimple marks the dimension used by the design. If a different hole works better on your printer, you don’t need to remake the
-parts: in Bambu Studio, the X-Y hole compensation (Quality tab, Precision group) opens or closes all the holes in the part.
-With +0.05 mm, the 4.0 hole comes out like a 4.1; with −0.05 mm, like a 3.9. Print the test coupon again to confirm.
+The small dimple marks the measurement used by the design. If a different hole works better on your printer, you don’t need to remake the
+parts: in Bambu Studio, the X-Y hole compensation option (X-Y hole compensation; Quality tab, Precision group, with
+advanced mode enabled) opens or closes every hole in the part: a positive value opens them, a negative value closes them
+([source: Bambu Studio code](https://github.com/bambulab/BambuStudio/blob/master/src/libslic3r/PrintConfig.cpp)).
+The source doesn’t say whether the value applies per side or to the diameter: start with 0.05 mm and print the test coupon again. The coupon decides.
 
 If you work with the code, you can change the value in the `FOLGA` block in `cad/parametros.py` and generate the parts again
 (`.venv/bin/python cad/gerar.py cubo`).

@@ -36,8 +36,10 @@ menos de 1 hora) está en la cama 06, con los 4 espaciadores del Raspberry Pi. E
 - un tornillo M3 en el orificio pasante (3,4 mm) y otro en el orificio para roscar directamente en el plástico (2,7 mm).
 
 El hoyuelo marca la medida que usa el proyecto. Si otro agujero queda mejor en tu impresora, no tienes que rehacer las
-piezas: en Bambu Studio, la compensación de agujeros X-Y (pestaña Calidad, grupo Precisión) abre o cierra todos los agujeros de la pieza.
-Con +0,05 mm, el agujero de 4,0 sale como uno de 4,1; con −0,05 mm, como uno de 3,9. Vuelve a imprimir el cupón para confirmarlo.
+piezas: en Bambu Studio, la opción X-Y hole compensation (compensación de agujeros X-Y; pestaña Calidad, grupo Precisión, con el
+modo avanzado activado) abre o cierra todos los agujeros de la pieza: un valor positivo los abre y uno negativo los cierra
+([fuente: código de Bambu Studio](https://github.com/bambulab/BambuStudio/blob/master/src/libslic3r/PrintConfig.cpp)).
+La fuente no indica si el valor cuenta por lado o por diámetro: empieza con 0,05 mm e imprime el cupón de prueba de nuevo. El cupón decide.
 
 Si trabajas con el código, puedes cambiar el valor en el bloque `FOLGA` de `cad/parametros.py` y volver a generar las piezas
 (`.venv/bin/python cad/gerar.py cubo`).

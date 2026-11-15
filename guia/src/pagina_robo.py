@@ -537,7 +537,7 @@ def esquema_svg(X):
     fio([(388, 692), (400, 692)], "p", 2.4)                              # divisor: nó → 2 × 1 kΩ → GND
     fio([(400, 620), (400, 840)], "p")                                   # G ↔ pino 34 (GND)
     fio([(530, 877), (540, 877)], "c", 9)                                # tela encaixada no Pi
-    for x, y, c in ((326, 140, "a"), (505, 106, "v"), (555, 174, "p"), (520, 300, "p"), (430, 280, "v"), (110, 430, "v"), (160, 448, "p"),
+    for x, y, c in ((326, 140, "a"), (505, 106, "v"), (555, 174, "p"), (520, 300, "p"), (430, 280, "v"),
                     (430, 440, "v"), (520, 440, "p"), (300, 692, "z"), (400, 692, "p")):
         no(x, y, c)
     # ---- faixa do pescoço (texto por cima dos fios)
@@ -581,7 +581,7 @@ def esquema_svg(X):
     txt(520, 399, "−", 13, anc="middle", peso=700)
     txt(585, 366, t("sv_ubec"), 13, anc="middle", peso=700)
     txt(585, 383, t("sv_ubec2"), 10.5, anc="middle", cor="#a14a00", peso=600)
-    txt(118, 424, t("sv_51"), 11, cor=COR["v"], peso=600)
+    txt(102, 416, t("sv_51"), 11, anc="end", cor=COR["v"], peso=600)
     txt(424, 462, t("sv_6"), 11, anc="end", cor=COR["v"], peso=600)
     caixa(442, 429, 66, 22, fundo="#e6f1ff", borda="#3565a8", raio=5)
     txt(475, 444, t("sv_cap"), 10.5, anc="middle", peso=600)
@@ -603,8 +603,8 @@ def esquema_svg(X):
     txt(300, 657, t("sv_r1"), 10.5, anc="middle", peso=600)
     caixa(326, 681, 62, 22, fundo="#fff", borda="#3b3d4a", raio=3)
     txt(357, 696, t("sv_r2"), 10.5, anc="middle", peso=600)
-    caixa(22, 664, 38, 22, fundo="#fff4d6", borda="#a17400", raio=4)
-    txt(66, 679, t("sv_emenda"), 10.5, cor="#6b4e00", peso=600)
+    caixa(98, 421, 76, 36, fundo="#fff4d6", borda="#a17400", raio=4)
+    txt(182, 443, t("sv_emenda"), 10.5, cor="#6b4e00", peso=600)
     caixa(660, 478, 90, 44, fundo="#fdebd9", borda="#a8581a")
     txt(705, 504, t("sv_pan"), 11, anc="middle", peso=700)
     txt(692, 700, t("sv_ext"), 11, anc="end", cor="#a8581a", peso=600)
@@ -667,7 +667,7 @@ CSS = """
 .dobra .tabela-wrap{margin-top:8px}
 .step ol{margin:.2em 0 .8em 1.25em;padding:0;color:var(--mut)}
 .step ol li{margin:.45em 0}
-.topo{position:fixed;right:16px;bottom:16px;width:44px;height:44px;border-radius:50%;background:var(--amb);color:#1a1206;font:800 1.3rem/44px Sora,sans-serif;text-align:center;box-shadow:0 4px 14px rgba(0,0,0,.35);z-index:50}
+.topo{position:fixed;right:14px;bottom:14px;width:40px;height:40px;border-radius:50%;background:var(--amb);color:#1a1206;opacity:.88;font:800 1.2rem/40px Sora,sans-serif;text-align:center;box-shadow:0 4px 14px rgba(0,0,0,.35);z-index:50}
 .tabela.estreita{min-width:0}
 .tabela td b{font-family:Sora}
 .step p a,.nota a,.mini a{text-decoration:underline}
