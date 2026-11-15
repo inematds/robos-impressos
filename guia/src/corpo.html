@@ -39,7 +39,7 @@
   <span class="chip">[[resumo_chip]]</span>
   <p>[[resumo]]</p>
   <figure style="margin:26px 0 0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000"><img src="[[A]]banner-grade[[SUF]].jpg" alt="[[grade_alt]]" style="display:block;width:100%"></figure>
-  <p class="nota">[[nota_ilustracao]]</p>
+  <p class="nota">[[nota_banner]]</p>
 </div></section>
 
 <!-- VIDEO: entra o explicavideo do projeto quando publicado -->
@@ -48,14 +48,12 @@
   <span class="chip">[[modelos_chip]]</span>
   <h2>[[modelos_h2]]</h2>
   <p class="sub">[[modelos_sub]]</p>
-  <div class="grid g3">
-    <div class="card"><img class="shot" src="[[A]]dino-montado.jpg" alt="[[dino_alt]]"><h3>🦖 [[dino_nome]]</h3><p>[[dino_txt]]</p><p class="mini">[[dino_mini]]</p></div>
-    <div class="card"><img class="shot" src="[[A]]capivara-montado.jpg" alt="[[capi_alt]]"><h3>🦫 [[capi_nome]]</h3><p>[[capi_txt]]</p><p class="mini">[[capi_mini]]</p></div>
-    <div class="card"><img class="shot" src="[[A]]cubo-montado.jpg" alt="[[cubo_alt]]"><h3>🤖 [[cubo_nome]]</h3><p>[[cubo_txt]]</p><p class="mini">[[cubo_mini]]</p></div>
+  <div class="grid g4 robos">
+[[CARTOES]]
   </div>
-<!-- TABELA:resumo -->
-<!-- /TABELA -->
-  <p class="nota">[[modelos_nota]] <a href="#pecas">[[link_guia]]</a></p>
+  <p class="arraste">[[arraste]]</p>
+  [[TAB_RESUMO]]
+  <p class="nota">[[modelos_nota]]</p>
 </div></section>
 
 <section id="como"><div class="wrap">
@@ -63,22 +61,28 @@
   <h2>[[como_h2]]</h2>
   <p class="sub">[[como_sub]]</p>
   <div class="grid g2">
-    <div class="card"><img class="shot" src="[[A]]dino-esqueleto.jpg" alt="[[esq_alt]]"><h3>[[como1_t]]</h3><p>[[como1_p]]</p></div>
-    <div class="card"><img class="shot" src="[[A]]dino-explodido.jpg" alt="[[exp_alt]]"><h3>[[como2_t]]</h3><p>[[como2_p]]</p></div>
-    <div class="card"><img class="shot" src="[[A]]capivara-vistas.jpg" alt="[[capiv_alt]]"><h3>[[como3_t]]</h3><p>[[como3_p]]</p></div>
-    <div class="card"><img class="shot" src="[[A]]cubo-explodido.jpg" alt="[[cuboexp_alt]]"><h3>[[como4_t]]</h3><p>[[como4_p]]</p></div>
+    <div class="card"><img class="shot" loading="lazy" src="[[A]]dino-esqueleto.jpg" alt="[[esq_alt]]"><h3>[[como1_t]]</h3><p>[[como1_p]]</p></div>
+    <div class="card"><img class="shot" loading="lazy" src="[[A]]capivara-explodido.jpg" alt="[[exp_alt]]"><h3>[[como2_t]]</h3><p>[[como2_p]]</p></div>
+    <div class="card"><img class="shot" loading="lazy" src="[[A]]capivara-vistas.jpg" alt="[[capiv_alt]]"><h3>[[como3_t]]</h3><p>[[como3_p]]</p></div>
+    <div class="card"><img class="shot" loading="lazy" src="[[A]]cubo-explodido.jpg" alt="[[cuboexp_alt]]"><h3>[[como4_t]]</h3><p>[[como4_p]]</p></div>
   </div>
   <p class="arraste">[[arraste]]</p>
-  <div class="tabela-wrap"><table class="tabela">
-    <thead><tr><th>[[mv_h0]]</th><th>[[dino_nome]]</th><th>[[capi_nome]]</th><th>[[cubo_nome]]</th></tr></thead>
-    <tbody>
-      <tr><td>[[mv_1]]</td><td>±60°</td><td>±60°</td><td>±170°</td></tr>
-      <tr><td>[[mv_2]]</td><td>−15° … +20°</td><td>−15° … +20°</td><td>−25° … +30°</td></tr>
-      <tr><td>[[mv_3]]</td><td>0 … 18°</td><td>0 … 18°</td><td>[[mv_tela]]</td></tr>
-      <tr><td>[[mv_4]]</td><td>−15° … +40°</td><td>[[mv_parado]]</td><td>—</td></tr>
-      <tr><td>[[mv_5]]</td><td>[[mv_roda]]</td><td>[[mv_roda]]</td><td>[[mv_mesa]]</td></tr>
-    </tbody></table></div>
+  [[TAB_MOV]]
   <p class="nota">[[mv_nota]]</p>
+</div></section>
+
+<section id="comum"><div class="wrap">
+  <span class="chip">[[comum_chip]]</span>
+  <h2>[[comum_h2]]</h2>
+  <p class="sub">[[comum_sub]]</p>
+  <div class="grid g3">
+    <div class="card"><h3>🔌 [[c1_t]]</h3><p>[[c1_p]]</p></div>
+    <div class="card"><h3>🖨️ [[c2_t]]</h3><p>[[c2_p]]</p></div>
+    <div class="card"><h3>🧪 [[c3_t]]</h3><p>[[c3_p]]</p></div>
+    <div class="card"><h3>📐 [[c4_t]]</h3><p>[[c4_p]]</p></div>
+    <div class="card"><h3>🦖🦫 [[c5_t]]</h3><p>[[c5_p]]</p></div>
+    <div class="card"><h3>🤖🤖 [[c6_t]]</h3><p>[[c6_p]]</p></div>
+  </div>
 </div></section>
 
 <section id="prova"><div class="wrap">
@@ -95,10 +99,27 @@
     <p class="mini">[[barra_titulo]]</p>
     [[BARRAS]]
   </div>
+  <h3 class="sep3">[[testes_t]]</h3>
+  <p class="arraste">[[arraste]]</p>
+  [[TAB_TESTES]]
   <div class="grid g2" style="margin-top:22px">
     <div class="card"><h3>✅ [[prova_ok_t]]</h3><ul>[[prova_ok_li]]</ul></div>
     <div class="card"><h3>⚠️ [[prova_nao_t]]</h3><ul>[[prova_nao_li]]</ul></div>
   </div>
+</div></section>
+
+<section id="evolucao"><div class="wrap">
+  <span class="chip">[[evo_chip]]</span>
+  <h2>[[evo_h2]]</h2>
+  <p class="sub">[[evo_sub]]</p>
+  <div class="par evo">
+    <figure><img loading="lazy" src="[[EVO_ANTES]]" alt="[[evo_alt_antes]]"><figcaption>[[evo_antes]]</figcaption></figure>
+    <figure><img loading="lazy" src="[[EVO_DEPOIS]]" alt="[[evo_alt_depois]]"><figcaption>[[evo_depois]]</figcaption></figure>
+  </div>
+  <p class="arraste">[[arraste]]</p>
+  [[TAB_SEM]]
+  <p class="nota">[[evo_nota]]</p>
+  <p style="margin-top:18px"><a class="btn" href="evolucao/">[[evo_link]]</a></p>
 </div></section>
 
 <section id="plano"><div class="wrap">
@@ -110,7 +131,7 @@
   <div class="phase"><div class="tag">3</div><div class="d"><strong>[[pl3_t]]</strong><span>[[pl3_p]]</span></div></div>
   <div class="phase"><div class="tag">4</div><div class="d"><strong>[[pl4_t]]</strong><span>[[pl4_p]]</span></div></div>
   <div class="phase"><div class="tag">5</div><div class="d"><strong>[[pl5_t]]</strong><span>[[pl5_p]]</span></div></div>
-  <p class="nota">[[plano_nota]] <a href="#guia">[[link_guia]]</a></p>
+  <p class="nota">[[plano_nota]] [[LINKS_ROBOS]].</p>
 </div></section>
 
 <section id="palavras"><div class="wrap">
@@ -133,7 +154,7 @@
   <div class="grid g3">
     <div class="card"><h3>📐 [[p1_t]]</h3><p>[[p1_p]]</p></div>
     <div class="card"><h3>🔍 [[p2_t]]</h3><p>[[p2_p]]</p></div>
-    <div class="card"><h3>🦴 [[p3_t]]</h3><p>[[p3_p]]</p></div>
+    <div class="card"><h3>🗂️ [[p3_t]]</h3><p>[[p3_p]]</p></div>
   </div>
 </div></section>
 
@@ -144,7 +165,7 @@
   <div class="flow">
     <span>comum/cad/parametros.py</span><span class="arr">→</span>
     <span>comum/cad/gerar.py</span><span class="arr">→</span>
-    <span>projetos/&lt;modelo&gt;/stl + 3mf + montagem.json</span><span class="arr">→</span>
+    <span>projetos/&lt;robô&gt;/stl + 3mf + montagem.json</span><span class="arr">→</span>
     <span>comum/cad/verificar.py</span><span class="arr">→</span>
     <span>comum/cad/renders.sh</span>
   </div>
@@ -161,10 +182,10 @@
   <p class="sub">[[pre_sub]]</p>
   <div class="grid g3">
     <div class="card"><h3>[[pre1_t]]</h3><p>[[pre1_p]]</p></div>
-    <div class="card"><h3>[[pre2_t]]</h3><p>[[pre2_p]]</p><pre><span class="c"># [[pre2_c]]</span>
-<span class="k">python3</span> --version
-<span class="k">git</span> --version</pre></div>
+    <div class="card"><h3>[[pre2_t]]</h3><p>[[pre2_p]]</p></div>
     <div class="card"><h3>[[pre3_t]]</h3><p>[[pre3_p]]</p><pre><span class="c"># [[pre3_c]]</span>
+<span class="k">python3</span> --version
+<span class="k">git</span> --version
 <span class="k">blender</span> --version</pre></div>
   </div>
 </div></section>
@@ -176,86 +197,42 @@
 
   <div class="step"><div class="b">1</div><div>
     <h3>[[g1_t]]</h3><p>[[g1_p]]</p>
-    <p><a class="btn" href="https://github.com/inematds/robos-impressos/archive/refs/heads/main.zip">[[g1_zip]]</a></p>
+    <div class="zips">[[ZIPS]]</div>
     <p class="mini">[[g1_git]]</p>
 <pre><span class="k">git clone</span> <span class="s">https://github.com/inematds/robos-impressos.git</span>
 <span class="k">cd</span> robos-impressos
-<span class="k">ls</span> projetos/dino/stl projetos/capivara/stl projetos/cubo/stl comum/pecas/stl</pre>
+<span class="k">ls</span> projetos/dino/stl projetos/capivara/stl projetos/cubo/stl projetos/cubo-rodas/stl comum/pecas/stl</pre>
   </div></div>
   <div class="step"><div class="b">2</div><div>
     <h3>[[g2_t]]</h3><p>[[g2_p]]</p>
 <pre><span class="c"># [[g2_c]]</span>
 comum/pecas/stl/comum-teste-encaixe.stl</pre>
-    <a href="[[A]]teste-encaixe.png" target="_blank" rel="noopener"><img class="shot" src="[[A]]teste-encaixe.png" alt="[[teste_alt]]" style="max-width:640px;background:#fff"></a>
+    <a href="[[A]]teste-encaixe.png" target="_blank" rel="noopener"><img class="shot" loading="lazy" src="[[A]]teste-encaixe.png" alt="[[teste_alt]]" style="max-width:640px;background:#fff"></a>
     <p class="mini">[[teste_ampliar]]</p>
     <p class="mini"><a href="https://github.com/inematds/robos-impressos/blob/main/comum/pecas/stl/comum-teste-encaixe.stl">[[g2_link]]</a></p>
   </div></div>
   <div class="step"><div class="b">3</div><div>
     <h3>[[g3_t]]</h3><p>[[g3_p]]</p>
-<pre><span class="k">python3</span> -m venv .venv
-<span class="k">.venv/bin/pip</span> install -r requirements.txt
-<span class="c"># [[g3_c]]</span>
-<span class="k">.venv/bin/python</span> comum/cad/gerar.py todos
-<span class="k">.venv/bin/python</span> comum/cad/verificar.py todos</pre>
-    <p class="mini">[[g3_win]]</p>
   </div></div>
   <div class="step"><div class="b">4</div><div>
     <h3>[[g4_t]]</h3><p>[[g4_p]]</p>
-<pre><span class="c"># [[g4_c]]</span>
-projetos/dino/mesas/     projetos/capivara/mesas/     projetos/cubo/mesas/</pre>
-    <h4 class="sep4">🦖 [[dino_nome]]</h4>
-    <img class="shot" src="[[A]]dino-mesas.jpg" alt="[[mesas_alt]]">
-<!-- TABELA:mesas:dino -->
-<!-- /TABELA -->
-    <h4 class="sep4">🦫 [[capi_nome]]</h4>
-    <img class="shot" src="[[A]]capivara-mesas.jpg" alt="[[mesas_alt]]">
-<!-- TABELA:mesas:capivara -->
-<!-- /TABELA -->
-    <h4 class="sep4">🤖 [[cubo_nome]]</h4>
-    <img class="shot" src="[[A]]cubo-mesas.jpg" alt="[[mesas_alt]]">
-<!-- TABELA:mesas:cubo -->
-<!-- /TABELA -->
-  </div></div>
-  <div class="step"><div class="b">5</div><div>
-    <h3>[[g5_t]]</h3><p>[[g5_p]]</p>
-    <ol class="lista">[[g5_li]]</ol>
-  </div></div>
-  <div class="step"><div class="b">6</div><div>
-    <h3>[[g6_t]]</h3><p>[[g6_p]]</p>
-    <ol class="lista">[[g6_li]]</ol>
+<pre><span class="k">python3</span> -m venv .venv
+<span class="k">.venv/bin/pip</span> install -r requirements.txt
+<span class="c"># [[g4_c]]</span>
+<span class="k">.venv/bin/python</span> comum/cad/gerar.py todos
+<span class="k">.venv/bin/python</span> comum/cad/verificar.py todos</pre>
+    <p class="mini">[[g4_win]]</p>
   </div></div>
 
-  <h3 class="sep3" id="pecas">🦖 [[dino_nome]] — [[pecas_titulo]]</h3>
-<!-- TABELA:pecas:dino -->
-<!-- /TABELA -->
-  <h3 class="sep3">🦫 [[capi_nome]] — [[pecas_titulo]]</h3>
-<!-- TABELA:pecas:capivara -->
-<!-- /TABELA -->
-  <h3 class="sep3">🤖 [[cubo_nome]] — [[pecas_titulo]]</h3>
-<!-- TABELA:pecas:cubo -->
-<!-- /TABELA -->
-  <h3 class="sep3" id="compras">[[compras_titulo]]</h3>
+  <h3 class="sep3" id="pecas">[[pecas_titulo]]</h3>
+  <p class="sub">[[pecas_sub]]</p>
   <p class="arraste">[[arraste]]</p>
-  <div class="tabela-wrap"><table class="tabela">
-    <thead><tr><th>[[cp_h0]]</th><th>[[dino_nome]]</th><th>[[capi_nome]]</th><th>[[cubo_nome]]</th></tr></thead>
-    <tbody>
-      <tr><td>[[cp_1]]</td><td>2</td><td>2</td><td>2</td></tr>
-      <tr><td>[[cp_2]]</td><td>3</td><td>1</td><td>—</td></tr>
-      <tr><td>[[cp_3]]</td><td>2</td><td>2</td><td>—</td></tr>
-      <tr><td>[[cp_4]]</td><td>1</td><td>1</td><td>—</td></tr>
-      <tr><td>[[cp_5]]</td><td>1</td><td>1</td><td>1</td></tr>
-      <tr><td>[[cp_6]]</td><td>1</td><td>1</td><td>1</td></tr>
-      <tr><td>[[cp_7]]</td><td>[[cp_opc]]</td><td>[[cp_opc]]</td><td>1</td></tr>
-      <tr><td>[[cp_8]]</td><td>—</td><td>—</td><td>1</td></tr>
-      <tr><td>[[cp_9]]</td><td>1</td><td>1</td><td>—</td></tr>
-      <tr><td>[[cp_10]]</td><td>25</td><td>25</td><td>14</td></tr>
-      <tr><td>[[cp_11]]</td><td>kit</td><td>kit</td><td>kit</td></tr>
-      <tr><td>[[cp_12]]</td><td>[[cp_opc]]</td><td>[[cp_opc]]</td><td>[[cp_opc]]</td></tr>
-      <tr><td>[[cp_13]]</td><td>—</td><td>—</td><td>4</td></tr>
-    </tbody></table></div>
-  <p class="nota">[[compras_nota]]</p>
+  [[TAB_PECAS]]
+  <h3 class="sep3" id="compras">[[compras_titulo]]</h3>
+  <p class="sub">[[compras_sub]]</p>
+  <p class="arraste">[[arraste]]</p>
+  [[TAB_COMPRAS]]
   <p class="nota">[[custo_nota]]</p>
-  <p class="nota">[[ferramentas]]</p>
   <p class="nota">[[pilhas_nota]]</p>
 </div></section>
 
@@ -264,32 +241,28 @@ projetos/dino/mesas/     projetos/capivara/mesas/     projetos/cubo/mesas/</pre>
   <h2>[[ex_h2]]</h2>
   <p class="sub">[[ex_sub]]</p>
   <div class="ex">
-    <figure><img src="[[A]]dino-vistas.jpg" alt="[[ex1_alt]]"><figcaption>[[ex1_cap]]</figcaption></figure>
-    <figure><img src="[[A]]capivara-explodido.jpg" alt="[[ex2_alt]]"><figcaption>[[ex2_cap]]</figcaption></figure>
-    <figure><img src="[[A]]cubo-vistas.jpg" alt="[[ex3_alt]]"><figcaption>[[ex3_cap]]</figcaption></figure>
-    <figure><img src="[[A]]cubo-esqueleto.jpg" alt="[[ex4_alt]]"><figcaption>[[ex4_cap]]</figcaption></figure>
+    <figure><img loading="lazy" src="[[A]]dino-vistas.jpg" alt="[[ex1_alt]]"><figcaption>[[ex1_cap]]</figcaption></figure>
+    <figure><img loading="lazy" src="[[A]]capivara-vistas.jpg" alt="[[ex2_alt]]"><figcaption>[[ex2_cap]]</figcaption></figure>
+    <figure><img loading="lazy" src="[[A]]cubo-vistas.jpg" alt="[[ex3_alt]]"><figcaption>[[ex3_cap]]</figcaption></figure>
+    <figure><img loading="lazy" src="[[A]]cubo_rodas-vistas.jpg" alt="[[ex4_alt]]"><figcaption>[[ex4_cap]]</figcaption></figure>
   </div>
   <h3 class="sep3">[[verif_titulo]]</h3>
   <p class="sub">[[verif_sub]]</p>
+  <details class="dobra"><summary>[[verif_dobra]]</summary>
 <pre class="saida">[[SAIDA_VERIF]]</pre>
+  </details>
 </div></section>
 
 <section id="fase2"><div class="wrap">
   <span class="chip">[[f2_chip]]</span>
   <h2>[[f2_h2]]</h2>
   <p class="sub">[[f2_sub]]</p>
-  <p class="arraste">[[arraste]]</p>
-  <div class="tabela-wrap"><table class="tabela">
-    <thead><tr><th>[[f2_h0]]</th><th>[[f2_h1]]</th><th>[[cubo_nome]]</th></tr></thead>
-    <tbody>
-      <tr><td>[[f2_1]]</td><td>[[f2_1a]]</td><td>[[f2_1b]]</td></tr>
-      <tr><td>[[f2_2]]</td><td>[[f2_2a]]</td><td>[[f2_2b]]</td></tr>
-      <tr><td>[[f2_3]]</td><td>[[f2_3a]]</td><td>[[f2_3b]]</td></tr>
-      <tr><td>[[f2_4]]</td><td>[[f2_4a]]</td><td>[[f2_4b]]</td></tr>
-      <tr><td>[[f2_5]]</td><td>[[f2_5a]]</td><td>[[f2_5b]]</td></tr>
-      <tr><td>[[f2_6]]</td><td>[[f2_6a]]</td><td>[[f2_6b]]</td></tr>
-      <tr><td>[[f2_7]]</td><td>[[f2_7a]]</td><td>[[f2_7b]]</td></tr>
-    </tbody></table></div>
+  <div class="grid g3">
+    <div class="card"><h3>👀 [[f2a_t]]</h3><p>[[f2a_p]]</p></div>
+    <div class="card"><h3>🎙️ [[f2b_t]]</h3><p>[[f2b_p]]</p></div>
+    <div class="card"><h3>🔗 [[f2c_t]]</h3><p>[[f2c_p]]</p></div>
+  </div>
+  <p class="nota">[[f2_nota]] [[LINKS_FASE2]].</p>
 </div></section>
 
 <section id="roadmap"><div class="wrap">
@@ -306,8 +279,10 @@ projetos/dino/mesas/     projetos/capivara/mesas/     projetos/cubo/mesas/</pre>
 <footer>
   <div class="wrap">
     <div class="pill">Python · trimesh · manifold3d</div><div class="pill">Blender (renders)</div><div class="pill">Bambu Lab A1 · PLA + PETG</div>
-    <p style="margin-top:18px">robos-impressos · [[rodape]] ·
+    <p style="margin-top:18px">robos-impressos · [[VERSAO]] · [[rodape]] ·
       <a href="https://github.com/inematds/robos-impressos">inematds/robos-impressos</a> ·
       <a href="https://inema.club">INEMA.CLUB</a></p>
   </div>
 </footer>
+<a class="topo" href="#top" aria-label="[[voltar_topo]]" title="[[voltar_topo]]">↑</a>
+<script>(function(){var t=document.querySelector(".topo");function f(){t.style.display=window.scrollY>700?"block":"none"}f();window.addEventListener("scroll",f,{passive:true})})()</script>
