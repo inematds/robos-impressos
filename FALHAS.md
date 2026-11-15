@@ -2,6 +2,10 @@
 
 | data | o que quebrou | menor correção | prompt \| infra |
 |---|---|---|---|
+| 2026-11-15 | dino (E5b2, tentativa não commitada): ombro em cone sobre faceta inclinada ficou mais fundo que o assento antigo; a sombra do micro servo furou a parede e o motor amarelo aparecia por 2 buracos; os 11 testes passavam | voltar ao assento plano em x_base − 0,6 e só abrir as faces da caixa a 45°; visto no render de 1200 px com componentes | prompt |
+| 2026-11-15 | dino: de frente, fenda escura de 3 mm entre cada braço e o corpo (o afastamento de 2 mm do que o braço varre valia também por baixo da base plana do braço) e tampa reta na gola | folga axial própria de 0,6 mm (`br.folga_ax`), furo do cubo de 21 para 18,2 mm, ombro inclinado na gola em vez da tampa | prompt |
+| 2026-11-15 | dino: a mancha do ToF lateral era um disco com furo concêntrico: de 3/4 parecia tampa de parafuso | contorno orgânico de 3 lobos, janela de 5 mm fora do centro | prompt |
+| 2026-11-15 | cubo_rodas: as 3 janelas dos ToF da fase 2 eram entalhes abertos de 14 × 5 mm na borda da base: rasgos escuros de frente e de 3/4 | bolso cego por dentro, pele de 0,8 mm por fora | prompt |
 | 2026-11-14 | capivara, docs: o passo da porta dizia que o carregador vinha "já soldado no chicote" e entrava no rabo com os fios pelo furo da porta; o furo tem 7 mm e a placa (32 × 18 × 5) fica do lado de fora: não passa | os 3 fios atravessam a porta ANTES da solda (preparo 1, tabela, passo da porta); risco e pendência novos (a porta fica presa ao chicote) | prompt |
 | 2026-11-14 | capivara, docs: "cerca de 17 mm" de folga sobre o Raspberry Pi, com o rótulo "medida do modelo", era a medida do dino copiada; a da capivara é ~19 mm (`trilho_z` 37/66) | número refeito por robô a partir de `parametros.py` nos 4 lugares (risco, dissipador, preparo 3, LIGACAO) | prompt |
 | 2026-11-14 | dino, IMPRIMIR: "5 dos 13 insertos em PETG"; pela própria tabela de parafusos são 7 (chassi 4, berço 2, garfo 1) | recontado pela tabela | prompt |
