@@ -1,0 +1,108 @@
+{
+ "modelo": "cubo",
+ "vistas": [
+  "por baixo, frente/direita",
+  "por baixo, trás/esquerda",
+  "por cima, como sai da mesa"
+ ],
+ "cores": {
+  "vermelho": "sem apoio (balanço livre, teto, ponte longa)",
+  "amarelo": "balanço tolerado (furo, ponte curta, beira)",
+  "azul": "face na mesa",
+  "cinza": "sem balanço"
+ },
+ "regra": "peça com suporte declarado, ou >= 50 g, ou ponto de carga (garfo, berco, tubo-pescoco, chassi)",
+ "pecas": [
+  {
+   "peca": "base",
+   "imagem": "cubo-base.jpg",
+   "massa_g": 222.4,
+   "material": "PETG",
+   "suporte": "não",
+   "veredito": "ok sem suporte",
+   "sem_apoio_mm2": 0.0,
+   "sem_apoio_pct": 0.0,
+   "limite_mm2": 246.7,
+   "maior_ponte_mm": 18.5,
+   "orientacao": "piso na mesa"
+  },
+  {
+   "peca": "cabeca-corpo",
+   "imagem": "cubo-cabeca-corpo.jpg",
+   "massa_g": 204.3,
+   "material": "PLA",
+   "suporte": "não",
+   "veredito": "ok sem suporte",
+   "sem_apoio_mm2": 0.0,
+   "sem_apoio_pct": 0.0,
+   "limite_mm2": 240.8,
+   "maior_ponte_mm": 0.0,
+   "orientacao": "costas na mesa, boca (frente) para cima, como um copo"
+  },
+  {
+   "peca": "tampa-base",
+   "imagem": "cubo-tampa-base.jpg",
+   "massa_g": 100.6,
+   "material": "PETG",
+   "suporte": "não",
+   "veredito": "ok sem suporte",
+   "sem_apoio_mm2": 0.0,
+   "sem_apoio_pct": 0.0,
+   "limite_mm2": 96.5,
+   "maior_ponte_mm": 0.0,
+   "orientacao": "de cabeça para baixo: a face de cima na mesa"
+  },
+  {
+   "peca": "quadro-cabeca",
+   "imagem": "cubo-quadro-cabeca.jpg",
+   "massa_g": 64.6,
+   "material": "PETG",
+   "suporte": "não",
+   "veredito": "ok sem suporte",
+   "sem_apoio_mm2": 0.0,
+   "sem_apoio_pct": 0.0,
+   "limite_mm2": 61.8,
+   "maior_ponte_mm": 0.0,
+   "orientacao": "frente da travessa na mesa, laterais para cima"
+  },
+  {
+   "peca": "cabeca-face",
+   "imagem": "cubo-cabeca-face.jpg",
+   "massa_g": 52.6,
+   "material": "PLA",
+   "suporte": "não",
+   "veredito": "ok sem suporte",
+   "sem_apoio_mm2": 0.0,
+   "sem_apoio_pct": 0.0,
+   "limite_mm2": 57.5,
+   "maior_ponte_mm": 0.0,
+   "orientacao": "face da frente (a que aparece) na mesa, pilares para cima"
+  },
+  {
+   "peca": "garfo",
+   "imagem": "cubo-garfo.jpg",
+   "massa_g": 19.3,
+   "material": "PETG",
+   "suporte": "não",
+   "veredito": "ok sem suporte",
+   "sem_apoio_mm2": 0.0,
+   "sem_apoio_pct": 0.0,
+   "limite_mm2": 30.0,
+   "maior_ponte_mm": 0.0,
+   "orientacao": "deitado, costas na mesa: as camadas correm do bloco para os braços"
+  },
+  {
+   "peca": "tubo-pescoco",
+   "imagem": "cubo-tubo-pescoco.jpg",
+   "massa_g": 15.8,
+   "material": "PETG",
+   "suporte": "não",
+   "veredito": "ok sem suporte",
+   "sem_apoio_mm2": 0.0,
+   "sem_apoio_pct": 0.0,
+   "limite_mm2": 30.0,
+   "maior_ponte_mm": 0.0,
+   "orientacao": "de cabeça para baixo: o topo (lado do garfo) na mesa, a flange cônica abre a 45°"
+  }
+ ]
+}

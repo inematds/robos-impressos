@@ -1,0 +1,231 @@
+{
+ "fonte": "comparacao/semelhanca.json (comum/cad/comparar.py, protocolo v1)",
+ "como_ler": "IoU = área comum ÷ área total das duas silhuetas (0 a 1). Mede só o contorno em cada vista, não cor nem detalhe.",
+ "regra_do_alvo": "alvo = metade do caminho entre o 'antes' e o teto (a malha crua medida contra a mesma referência); a regra vale para a MÉDIA do bicho; o alvo por vista é a mesma conta aplicada à vista (derivado)",
+ "antes": "tag v1.0.2",
+ "depois": "v1.1.2",
+ "bichos": {
+  "capivara": {
+   "vistas": [
+    {
+     "vista": "frente",
+     "az_nominal": 0.0,
+     "el_nominal": 15.0,
+     "antes": 0.783,
+     "depois": 0.944,
+     "teto": 0.943,
+     "alvo_derivado": 0.863,
+     "ganho": 0.161,
+     "az_el_escolhidos": {
+      "antes": [
+       10,
+       5
+      ],
+      "depois": [
+       0,
+       5
+      ]
+     },
+     "imagem_antes": "capivara-antes-frente.jpg",
+     "imagem_depois": "capivara-depois-frente.jpg"
+    },
+    {
+     "vista": "tres-quartos",
+     "az_nominal": -45.0,
+     "el_nominal": 15.0,
+     "antes": 0.784,
+     "depois": 0.908,
+     "teto": 0.911,
+     "alvo_derivado": 0.848,
+     "ganho": 0.124,
+     "az_el_escolhidos": {
+      "antes": [
+       -70,
+       10
+      ],
+      "depois": [
+       -45,
+       5
+      ]
+     },
+     "imagem_antes": "capivara-antes-tres-quartos.jpg",
+     "imagem_depois": "capivara-depois-tres-quartos.jpg"
+    },
+    {
+     "vista": "lado",
+     "az_nominal": -80.0,
+     "el_nominal": 15.0,
+     "antes": 0.736,
+     "depois": 0.906,
+     "teto": 0.925,
+     "alvo_derivado": 0.831,
+     "ganho": 0.17,
+     "az_el_escolhidos": {
+      "antes": [
+       -70,
+       10
+      ],
+      "depois": [
+       -70,
+       10
+      ]
+     },
+     "imagem_antes": "capivara-antes-lado.jpg",
+     "imagem_depois": "capivara-depois-lado.jpg"
+    },
+    {
+     "vista": "costas",
+     "az_nominal": 180.0,
+     "el_nominal": 15.0,
+     "antes": 0.803,
+     "depois": 0.925,
+     "teto": 0.927,
+     "alvo_derivado": 0.865,
+     "ganho": 0.122,
+     "az_el_escolhidos": {
+      "antes": [
+       170,
+       5
+      ],
+      "depois": [
+       190,
+       10
+      ]
+     },
+     "imagem_antes": "capivara-antes-costas.jpg",
+     "imagem_depois": "capivara-depois-costas.jpg"
+    }
+   ],
+   "media": {
+    "antes": 0.777,
+    "depois": 0.92,
+    "teto": 0.926,
+    "alvo": 0.852,
+    "ganho": 0.143,
+    "atingiu_o_alvo": true,
+    "caminho_percorrido_pct": 96
+   },
+   "teto_e": "malha crua do image-to-3D local (malha-capivara-hy2mv-flb-s2), medida contra a mesma referência",
+   "regua_antes": "capivara-regua-antes.jpg",
+   "regua_depois": "capivara-regua-depois.jpg",
+   "referencia": "capivara-referencia.jpg",
+   "colunas_da_regua": [
+    "referência",
+    "nosso modelo (mesma câmera)",
+    "silhuetas sobrepostas: vermelho = só na referência; azul = só no nosso; verde = nos dois"
+   ],
+   "aviso_da_regua": "o texto dentro das imagens da régua está em português; no desenho do nosso modelo a régua pinta as rodas por cima da casca (no robô elas ficam escondidas)"
+  },
+  "dino": {
+   "vistas": [
+    {
+     "vista": "frente",
+     "az_nominal": 0.0,
+     "el_nominal": 15.0,
+     "antes": 0.875,
+     "depois": 0.913,
+     "teto": 0.942,
+     "alvo_derivado": 0.908,
+     "ganho": 0.038,
+     "az_el_escolhidos": {
+      "antes": [
+       0,
+       15
+      ],
+      "depois": [
+       5,
+       10
+      ]
+     },
+     "imagem_antes": "dino-antes-frente.jpg",
+     "imagem_depois": "dino-depois-frente.jpg"
+    },
+    {
+     "vista": "tres-quartos-a",
+     "az_nominal": -45.0,
+     "el_nominal": 15.0,
+     "antes": 0.808,
+     "depois": 0.874,
+     "teto": 0.888,
+     "alvo_derivado": 0.848,
+     "ganho": 0.066,
+     "az_el_escolhidos": {
+      "antes": [
+       -65,
+       20
+      ],
+      "depois": [
+       -55,
+       15
+      ]
+     },
+     "imagem_antes": "dino-antes-tres-quartos-a.jpg",
+     "imagem_depois": "dino-depois-tres-quartos-a.jpg"
+    },
+    {
+     "vista": "tres-quartos-b",
+     "az_nominal": -40.0,
+     "el_nominal": 15.0,
+     "antes": 0.787,
+     "depois": 0.862,
+     "teto": 0.889,
+     "alvo_derivado": 0.838,
+     "ganho": 0.075,
+     "az_el_escolhidos": {
+      "antes": [
+       -45,
+       25
+      ],
+      "depois": [
+       -50,
+       20
+      ]
+     },
+     "imagem_antes": "dino-antes-tres-quartos-b.jpg",
+     "imagem_depois": "dino-depois-tres-quartos-b.jpg"
+    },
+    {
+     "vista": "lado",
+     "az_nominal": -75.0,
+     "el_nominal": 15.0,
+     "antes": 0.786,
+     "depois": 0.837,
+     "teto": 0.87,
+     "alvo_derivado": 0.828,
+     "ganho": 0.051,
+     "az_el_escolhidos": {
+      "antes": [
+       -70,
+       20
+      ],
+      "depois": [
+       -65,
+       10
+      ]
+     },
+     "imagem_antes": "dino-antes-lado.jpg",
+     "imagem_depois": "dino-depois-lado.jpg"
+    }
+   ],
+   "media": {
+    "antes": 0.814,
+    "depois": 0.871,
+    "teto": 0.897,
+    "alvo": 0.856,
+    "ganho": 0.057,
+    "atingiu_o_alvo": true,
+    "caminho_percorrido_pct": 69
+   },
+   "teto_e": "malha crua do image-to-3D local (malha-dino-hy2mv-fl-s2), medida contra a mesma referência",
+   "regua_antes": "dino-regua-antes.jpg",
+   "regua_depois": "dino-regua-depois.jpg",
+   "referencia": "dino-referencia.jpg",
+   "colunas_da_regua": [
+    "referência",
+    "nosso modelo (mesma câmera)",
+    "silhuetas sobrepostas: vermelho = só na referência; azul = só no nosso; verde = nos dois"
+   ],
+   "aviso_da_regua": "o texto dentro das imagens da régua está em português; no desenho do nosso modelo a régua pinta as rodas por cima da casca (no robô elas ficam escondidas)"
+  }
+ }
+}

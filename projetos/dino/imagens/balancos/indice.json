@@ -1,0 +1,121 @@
+{
+ "modelo": "dino",
+ "vistas": [
+  "por baixo, frente/direita",
+  "por baixo, trás/esquerda",
+  "por cima, como sai da mesa"
+ ],
+ "cores": {
+  "vermelho": "sem apoio (balanço livre, teto, ponte longa)",
+  "amarelo": "balanço tolerado (furo, ponte curta, beira)",
+  "azul": "face na mesa",
+  "cinza": "sem balanço"
+ },
+ "regra": "peça com suporte declarado, ou >= 50 g, ou ponto de carga (garfo, berco, tubo-pescoco, chassi)",
+ "pecas": [
+  {
+   "peca": "corpo",
+   "imagem": "dino-corpo.jpg",
+   "massa_g": 201.3,
+   "material": "PLA",
+   "suporte": "sim (árvore POR DENTRO: teto das 2 coxas, sobre as rodas; degraus de dentro dos assentos planos (barriga, braços, manchas); por fora nada)",
+   "veredito": "precisa de suporte (declarado)",
+   "sem_apoio_mm2": 2674.3,
+   "sem_apoio_pct": 2.32,
+   "limite_mm2": 230.7,
+   "maior_ponte_mm": 20.4,
+   "orientacao": "borda de baixo (z=5) na mesa, em pé como um vaso; boca (z=134) para cima"
+  },
+  {
+   "peca": "cranio",
+   "imagem": "dino-cranio.jpg",
+   "massa_g": 179.3,
+   "material": "PLA",
+   "suporte": "sim (árvore POR DENTRO: teto do crânio, fundo dos copos dos olhos e nervura da crista; e por baixo, fora do rosto: borda do céu da boca, que fica 40 mm acima da mesa)",
+   "veredito": "precisa de suporte (declarado)",
+   "sem_apoio_mm2": 12051.4,
+   "sem_apoio_pct": 9.84,
+   "limite_mm2": 245.1,
+   "maior_ponte_mm": 64.7,
+   "orientacao": "borda de baixo na mesa, em pé"
+  },
+  {
+   "peca": "chassi",
+   "imagem": "dino-chassi.jpg",
+   "massa_g": 172.6,
+   "material": "PETG",
+   "suporte": "não",
+   "veredito": "ok sem suporte",
+   "sem_apoio_mm2": 157.6,
+   "sem_apoio_pct": 0.19,
+   "limite_mm2": 163.2,
+   "maior_ponte_mm": 11.0,
+   "orientacao": "piso na mesa (em pé)"
+  },
+  {
+   "peca": "traseira",
+   "imagem": "dino-traseira.jpg",
+   "massa_g": 102.3,
+   "material": "PLA",
+   "suporte": "sim (árvore POR DENTRO: teto de cima da anca (53° da vertical) e nervura do rasgo da crista; por fora nada)",
+   "veredito": "precisa de suporte (declarado)",
+   "sem_apoio_mm2": 1596.5,
+   "sem_apoio_pct": 2.42,
+   "limite_mm2": 131.8,
+   "maior_ponte_mm": 23.6,
+   "orientacao": "borda da frente (plano da costura) na mesa, cauda para cima"
+  },
+  {
+   "peca": "gola",
+   "imagem": "dino-gola.jpg",
+   "massa_g": 85.8,
+   "material": "PLA",
+   "suporte": "não",
+   "veredito": "ok sem suporte",
+   "sem_apoio_mm2": 0.0,
+   "sem_apoio_pct": 0.0,
+   "limite_mm2": 82.0,
+   "maior_ponte_mm": 0.0,
+   "orientacao": "base (z=134) na mesa; a esfera sobe e fica aberta em cima"
+  },
+  {
+   "peca": "mandibula",
+   "imagem": "dino-mandibula.jpg",
+   "massa_g": 34.4,
+   "material": "PLA",
+   "suporte": "sim (pouco: sob o recorte esférico de trás, que nasce 2 a 10 mm acima da mesa; face escondida, virada para o pescoço)",
+   "veredito": "precisa de suporte (declarado)",
+   "sem_apoio_mm2": 455.3,
+   "sem_apoio_pct": 4.91,
+   "limite_mm2": 30.0,
+   "maior_ponte_mm": 0.0,
+   "orientacao": "face de trás (plano de corte) na mesa, ponta do queixo para cima"
+  },
+  {
+   "peca": "garfo-pescoco",
+   "imagem": "dino-garfo-pescoco.jpg",
+   "massa_g": 17.4,
+   "material": "PETG",
+   "suporte": "sim (1,8 mm sob a base, em volta do anel de centragem do horn; suporte normal, fora de vista)",
+   "veredito": "precisa de suporte (declarado)",
+   "sem_apoio_mm2": 1488.0,
+   "sem_apoio_pct": 16.07,
+   "limite_mm2": 30.0,
+   "maior_ponte_mm": 20.8,
+   "orientacao": "base na mesa, montantes para cima"
+  },
+  {
+   "peca": "berco-tilt",
+   "imagem": "dino-berco-tilt.jpg",
+   "massa_g": 15.1,
+   "material": "PETG",
+   "suporte": "sim (pouco, sob a ponte)",
+   "veredito": "precisa de suporte (declarado)",
+   "sem_apoio_mm2": 515.6,
+   "sem_apoio_pct": 6.99,
+   "limite_mm2": 30.0,
+   "maior_ponte_mm": 21.0,
+   "orientacao": "de cabeça para baixo: topo da coluna na mesa"
+  }
+ ]
+}

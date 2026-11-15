@@ -12,7 +12,10 @@ Fontes:
   projetos/<robo>/*.md                 docs em português; os blocos <!-- GERADO:x --> são preenchidos aqui. Os arquivos
                                        <nome>.en.md e <nome>.es.md são GERADOS (prosa pelo inema-traduz, tabelas daqui)
 
-Uso (sempre com o venv do repo):
+Robôs: cubo, dino, capivara, cubo-rodas (dicionário ROBOS). O esquema dos bichos é guia/src/esquema_bicho.py e o do cubo
+que roda, guia/src/esquema_cubo_rodas.py (os dois desenham com guia/src/esquema_base.py).
+
+Uso (sempre com o venv do repo; troque `cubo` pelo robô):
   .venv/bin/python guia/src/pagina_robo.py docs cubo [pt en es]   blocos GERADO dos .md + versões .en.md/.es.md
   .venv/bin/python guia/src/pagina_robo.py traduzir cubo [en es]  EN e ES pelo inema-traduz (só o que falta ou mudou)
   .venv/bin/python guia/src/pagina_robo.py esquema cubo [pt en es] ligacao.<lg>.svg (docs e guia/<robô>/assets/)
@@ -49,12 +52,14 @@ TREE = REPO + "/tree/main/"
 ML = "https://lista.mercadolivre.com.br/"
 # página → robô. A chave é o nome da página (guia/<nome>/) e da pasta projetos/<nome>/; `id` é o id do modelo no código.
 # `pecas` (stl, mesas, montagem.json) e `docs` são a MESMA pasta do robô, tirada do registro único comum/cad/caminhos.py.
-def _robo(id, emoji):
+# `esquema` = módulo de guia/src/ com svg(X, R) (esquema de ligação do robô); None = o desenho do cubo, que mora neste arquivo.
+def _robo(id, emoji, esquema=None):
     p = f"projetos/{MODELOS[id]}"
-    return dict(id=id, pecas=p, docs=p, emoji=emoji)
+    return dict(id=id, pecas=p, docs=p, emoji=emoji, esquema=esquema)
 
 
-ROBOS = {"cubo": _robo("cubo", "🤖")}
+ROBOS = {"cubo": _robo("cubo", "🤖"), "dino": _robo("dino", "🦖", "esquema_bicho"), "capivara": _robo("capivara", "🦫", "esquema_bicho"),
+         "cubo-rodas": _robo("cubo_rodas", "🤖", "esquema_cubo_rodas")}
 CUPOM = "comum/pecas/stl/comum-teste-encaixe.stl"               # peça comum citada à mão nos docs
 IDIOMAS = ("pt", "en", "es")
 DOCS_LG = ("LISTA-DE-COMPRAS", "IMPRIMIR", "LIGACAO")            # docs que ganham versão .en.md e .es.md
@@ -131,6 +136,10 @@ class Robo:
                 if c:
                     cores = [(g, k) for k, (g, _) in self.por_cor() if k[0] == c["material"]]
                     assert round(sum(g for g, _ in cores)) == c["g"] and len(cores) == c["cores"], f'filamento {c["material"]}: a lista diz {c["g"]} g em {c["cores"]} cores, as peças dão {sum(g for g, _ in cores):.0f} g em {len(cores)}'
+
+    def altura(self):
+        """Altura do robô montado (mm): a que o modelo calcula (obs.altura_mm); senão a de <robô>.dados.json (envelope medido)."""
+        return self.mj["obs"].get("altura_mm") or self.d["altura_mm"]
 
     def caminho(self, p):
         """Caminho no repo do arquivo de uma peça (o montagem.json guarda relativo à pasta do modelo)."""
@@ -256,7 +265,7 @@ def arq_cache(R, lg, docs=False):
     return AQUI / "robos" / (f".cache.{R.nome}.docs.{lg}.json" if docs else f".cache.{R.nome}.{lg}.json")
 
 
-def _traduz(pt, dest, cache, lg, lote=36):
+def _traduz(pt, dest, cache, lg, lote=36, extra=""):
     feito = ler(dest) if dest.exists() else {}
     marcas = ler(cache) if cache.exists() else {}
     pend = [k for k in pt if k not in feito or marcas.get(k) != sha(pt[k])]
@@ -267,7 +276,7 @@ def _traduz(pt, dest, cache, lg, lote=36):
     for i in range(0, len(pend), lote):
         chaves = pend[i:i + lote]
         bloco = {k: pt[k] for k in chaves}
-        regras = GLOSSARIO + ("\n" + MD_REGRA if any(k.startswith("d_") for k in bloco) else "")
+        regras = GLOSSARIO + extra + ("\n" + MD_REGRA if any(k.startswith("d_") for k in bloco) else "")
         out = None
         for tentativa in range(3):
             r = subprocess.run(["inema-traduz"], input=TR.pedido(lg, bloco).replace("- Números, unidades", regras + "\n- Números, unidades", 1), capture_output=True, text=True, timeout=1500)
@@ -301,8 +310,9 @@ def _traduz(pt, dest, cache, lg, lote=36):
 
 
 def traduzir(R, lg):
-    _traduz(textos_pt(R), arq_lg(R, lg), arq_cache(R, lg), lg)
-    _traduz(docs_pt(R), arq_lg(R, lg, True), arq_cache(R, lg, True), lg)
+    extra = ("\n- " + R.d["glossario_traducao"]) if R.d.get("glossario_traducao") else ""     # termos só deste robô
+    _traduz(textos_pt(R), arq_lg(R, lg), arq_cache(R, lg), lg, extra=extra)
+    _traduz(docs_pt(R), arq_lg(R, lg, True), arq_cache(R, lg, True), lg, extra=extra)
 
 
 def _carrega(pt, dest, cache, lg):
@@ -401,12 +411,13 @@ def tabelas(R, X):
         for x in R.d["passos_extra"]:
             if x["antes"] == o["passo"]:
                 mont.append([str(len(mont) + 1), a(x["passo"]), a(x["vem"]), a(x["nota"])])
-        d = tuple(int(round(v)) for v in o["dir"])
         if o.get("sai"):
             abre.append([str(len(abre) + 1), a(o["passo"]), a(R.d["passos_nota"].get(o["passo"], ""))])
         else:
             # na montagem a peça vem de fora: por cima desce, por trás entra
-            como = {(0, 0, 1): t("vem_cima"), (0, 0, -1): t("vem_baixo"), (0, -1, 0): t("vem_tras"), (0, 1, 0): t("vem_frente")}[d]
+            e = max(range(3), key=lambda i: abs(o["dir"][i]))                 # eixo dominante (há passos um pouco inclinados)
+            como = t({(2, 1): "vem_cima", (2, -1): "vem_baixo", (1, -1): "vem_tras", (1, 1): "vem_frente",
+                      (0, 1): "vem_direita", (0, -1): "vem_esquerda"}[(e, 1 if o["dir"][e] > 0 else -1)])
             mont.append([str(len(mont) + 1), a(o["passo"]), como, a(R.d["passos_nota"].get(o["passo"], ""))])
     T["passos"] = ([t("th_num"), t("th_passo"), t("th_vem"), t("th_nota")], mont)
     T["abrir"] = ([t("th_num"), t("th_passo"), t("th_nota")], abre)
@@ -659,9 +670,10 @@ def esquema_svg(X):
             f'font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" role="img"><title>{e(t("sv_titulo"))}</title>\n{corpo}\n</svg>\n')
 
 
-def esquema(R, lg):
-    svg = esquema_svg(Tx(R, lg))
-    for d in (R.docs, GUIA / R.nome / "assets"):
+def esquema(R, lg, no_guia=True):
+    X = Tx(R, lg)
+    svg = __import__(R.cfg["esquema"]).svg(X, R) if R.cfg.get("esquema") else esquema_svg(X)
+    for d in [R.docs] + ([GUIA / R.nome / "assets"] if no_guia else []):
         d.mkdir(parents=True, exist_ok=True)
         (d / f"ligacao.{lg}.svg").write_text(svg)
     print(f'{R.cfg["docs"]}/ligacao.{lg}.svg', len(svg))
@@ -736,7 +748,7 @@ def pagina(R, lg):
     rs = lambda k: f"R$ {C[k][0]}–{C[k][1]}"
     fixos = {"LANG": f'<span class="lang">{lang}</span>', "LG": lg, "LEIA": LEIA[lg], "A": A, "GA": fundo + "assets/", "G": "../", "RAW": RAW, "BLOB": BLOB, "TREE": TREE, "REPO": REPO,
              "EMOJI": R.cfg["emoji"], "ID": R.cfg["id"], "PECAS": R.cfg["pecas"], "DOCS": R.cfg["docs"], "ZIP": RAW + f'{R.cfg["docs"]}/{R.nome}-stl.zip',
-             "N_ALTURA": X.n(R.mj["obs"]["altura_mm"] / 10, 0), "N_PECAS": str(R.n_pecas()), "N_DISTINTAS": str(len(R.mj["pecas"])), "N_MESAS": str(len(R.mesas)),
+             "N_ALTURA": X.n(R.altura() / 10, 0), "N_PECAS": str(R.n_pecas()), "N_DISTINTAS": str(len(R.mj["pecas"])), "N_MESAS": str(len(R.mesas)),
              "N_HORAS": X.n(R.horas(), 0), "N_GRAMAS": X.n(R.gramas(), 0), "N_INSERTOS": str(R.d["insertos"]), "N_TESTES": str(len(R.verif["testes"])),
              "CUSTO": rs("pecas"), "CUSTO_TEM": rs("tem"), "CUSTO_ZERO": rs("zero"), "CUSTO_FIL": rs("fil"), "CUSTO_FERR": rs("ferr"),
              "PRECO_DATA": R.d["preco_data"], "PRECO_FONTE": R.d["preco_fonte"],
@@ -798,7 +810,10 @@ def conferir(R):
         print("  " + msg)
 
     conta = {}
-    for lg in IDIOMAS:
+    tem_pagina = all((GUIA / (f"{R.nome}/index.html" if lg == "pt" else f"{lg}/{R.nome}/index.html")).exists() for lg in IDIOMAS)
+    if not tem_pagina:
+        print("  (página do guia ainda não gerada para este robô: conferindo só os docs e o zip)")
+    for lg in (IDIOMAS if tem_pagina else ()):
         f = GUIA / (f"{R.nome}/index.html" if lg == "pt" else f"{lg}/{R.nome}/index.html")
         h = f.read_text()
         for u in re.findall(r'(?:src|href)="([^"#]+)(?:#[^"]*)?"', h):
@@ -825,7 +840,7 @@ def conferir(R):
         for pad in INTERNAS:
             for m in sorted(set(re.findall(pad, visivel))):
                 falha(f"{lg}: nota interna na página: '{m}'")
-    for lg in ("en", "es"):
+    for lg in (("en", "es") if tem_pagina else ()):
         if conta[lg] != conta["pt"]:
             falha(f"{lg}: contagem de tags diferente do PT: {conta[lg]} x {conta['pt']}")
     # docs: versões por idioma, blocos preenchidos, sem nota interna
@@ -850,7 +865,7 @@ def conferir(R):
                     falha(f"{f.name}: link relativo quebrado {u}")
     z = R.docs / f"{R.nome}-stl.zip"
     nomes = set(zipfile.ZipFile(z).namelist())
-    for n in list(LEIA.values()) + [f"stl/{Path(R.caminho(p)).name}" for p in R.mj["pecas"]] + ["firmware/centrar_servos/centrar_servos.ino"]:
+    for n in list(LEIA.values()) + [f"stl/{Path(R.caminho(p)).name}" for p in R.mj["pecas"]] + [str(f.relative_to(R.docs)) for f in sorted((R.docs / "firmware").rglob("*.ino"))]:
         if f"{R.nome}/{n}" not in nomes:
             falha(f"zip sem {n}")
     for n in sorted(nomes):                                  # todo link relativo de um .md do zip existe no zip
@@ -863,7 +878,7 @@ def conferir(R):
         corpo = zipfile.ZipFile(z).read(f"{R.nome}/{arq}").decode() if f"{R.nome}/{arq}" in nomes else ""
         if not corpo or f'{R.cfg["pecas"]}/stl/' in re.sub(r"https?://[^\s)]+", "", corpo.split("\n\n", 3)[-1]):
             falha(f"zip/{arq}: falta ou ainda manda abrir {R.cfg['pecas']}/stl/")
-    print("conferir:", "OK" if ok else "FALHOU", conta["pt"])
+    print("conferir:", "OK" if ok else "FALHOU", conta.get("pt", "(sem página)"))
     return ok
 
 
@@ -883,7 +898,7 @@ def blocos(R, X):
     Bk["custo"] = (f"- {t('doc_custo_1')} **{rs('pecas')}**.\n- {t('doc_custo_2')} **{rs('zero')}**.\n- {t('doc_custo_3')} {rs('fil')}.\n"
                    f"- {t('doc_custo_4')} {rs('tem')}.\n- {t('doc_custo_5')} {rs('ferr')}.")
     Bk["verificacao"] = "```\n" + saida_verif(R) + "\n```"
-    Bk["numeros"] = (f"- Altura montado: {X.n(R.mj['obs']['altura_mm'], 1)} mm.\n- Peças impressas: {R.n_pecas()} ({len(R.mj['pecas'])} arquivos diferentes), em {len(R.mesas)} mesas.\n"
+    Bk["numeros"] = (f"- Altura montado: {X.n(R.altura(), 1)} mm.\n- Peças impressas: {R.n_pecas()} ({len(R.mj['pecas'])} arquivos diferentes), em {len(R.mesas)} mesas.\n"
                      f"- Filamento: {X.n(R.gramas(), 0)} g. Tempo de impressão: {X.n(R.horas(), 1)} h. As duas contas são estimativas por volume, sem fatiador.\n"
                      f"- Insertos M3 a quente: {R.d['insertos']}.")
     return Bk
@@ -1043,7 +1058,7 @@ if __name__ == "__main__":
             traduzir(R, lg)
     elif cmd == "esquema":
         for lg in (lgs or IDIOMAS):
-            esquema(R, lg)
+            esquema(R, lg, (GUIA / R.nome / "index.html").exists())
     elif cmd == "pagina":
         for lg in (lgs or IDIOMAS):
             esquema(R, lg)

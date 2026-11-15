@@ -4,9 +4,12 @@
 
     <!-- TABELA:pecas:dino -->   ...   <!-- /TABELA -->        (peças impressas de um modelo)
     <!-- TABELA:verif:dino -->   ...   <!-- /TABELA -->        (saída do verificador)
-    <!-- TABELA:resumo -->       ...   <!-- /TABELA -->        (resumo dos 3 modelos)
+    <!-- TABELA:resumo -->       ...   <!-- /TABELA -->        (resumo dos 4 modelos)
+    <!-- TABELA:semelhanca -->   ...   <!-- /TABELA -->        (IoU antes × depois, de comparacao/semelhanca.json)
+    <!-- TABELA:imprimibilidade --> ... <!-- /TABELA -->       (peças sem suporte × com suporte declarado, por modelo)
 
-Uso:  .venv/bin/python comum/cad/tabelas.py      (reescreve projetos/TABELAS.md e injeta em PLANO.md, README*.md, guia/**/index.html)
+Uso:  .venv/bin/python comum/cad/tabelas.py          (reescreve projetos/TABELAS.md e injeta em PLANO.md, README*.md, guia/**/index.html)
+      .venv/bin/python comum/cad/tabelas.py --docs   (só projetos/TABELAS.md, PLANO.md e README*.md: não toca no guia)
 """
 from __future__ import annotations
 
@@ -35,9 +38,9 @@ NOMES = {"pt": {"dino": "Dinossauro", "capivara": "Capivara", "cubo": "Robô qua
          "en": {"dino": "Dinosaur", "capivara": "Capybara", "cubo": "Square robot", "cubo_rodas": "Square robot on wheels"},
          "es": {"dino": "Dinosaurio", "capivara": "Carpincho", "cubo": "Robot cuadrado", "cubo_rodas": "Robot cuadrado con ruedas"}}
 CORES = {"en": {"verde": "green", "creme": "cream", "azul": "blue", "branco": "white", "preto": "black", "cinza": "grey", "laranja": "orange",
-                "marrom": "brown", "verde-bandana": "green", "ciano": "cyan", "grafite": "graphite", "prata": "silver", "amarelo": "yellow"},
+                "marrom": "brown", "verde-bandana": "green", "ciano": "cyan", "grafite": "graphite", "prata": "silver", "amarelo": "yellow", "verde-escuro": "dark green"},
          "es": {"verde": "verde", "creme": "crema", "azul": "azul", "branco": "blanco", "preto": "negro", "cinza": "gris", "laranja": "naranja",
-                "marrom": "marrón", "verde-bandana": "verde", "ciano": "cian", "grafite": "grafito", "prata": "plata", "amarelo": "amarillo"}}
+                "marrom": "marrón", "verde-bandana": "verde", "ciano": "cian", "grafite": "grafito", "prata": "plata", "amarelo": "amarillo", "verde-escuro": "verde oscuro"}}
 
 
 def carrega(m):
@@ -111,6 +114,48 @@ def linhas_resumo(lg):
     return cab, ls
 
 
+def _n(x, lg, casas=3):
+    s_ = f"{x:.{casas}f}"
+    return s_ if lg == "en" else s_.replace(".", ",")
+
+
+def linhas_semelhanca(lg):
+    """IoU médio de silhueta por modelo: antes (v1.0.2), depois, teto (a melhor malha crua da imagem) e o alvo definido
+    antes de medir o depois: metade do caminho entre o antes e o teto, ou antes + 0,10 quando não há malha."""
+    R = json.loads((RAIZ / "comparacao" / "semelhanca.json").read_text())["resultados"]
+    cab = {"pt": ["Modelo", "Antes (v1.0.2)", "Depois", "Teto (malha da imagem)", "Alvo", "Resultado"],
+           "en": ["Model", "Before (v1.0.2)", "After", "Ceiling (mesh from the image)", "Target", "Result"],
+           "es": ["Modelo", "Antes (v1.0.2)", "Después", "Techo (malla de la imagen)", "Objetivo", "Resultado"]}[lg]
+    tx = {"pt": ("alvo atingido", "alvo não atingido", "robô novo: compara com a foto do robô de mesa, não é meta"),
+          "en": ("target met", "target not met", "new robot: compared with the desktop robot picture, not a target"),
+          "es": ("objetivo alcanzado", "objetivo no alcanzado", "robot nuevo: se compara con la foto del robot de mesa, no es una meta")}[lg]
+    ls = []
+    for m in MODELOS:
+        r = R.get(m, {})
+        antes, depois = r.get("antes", {}).get("media"), r.get("depois", {}).get("media")
+        malhas = [v["media"] for k, v in r.items() if k.startswith("malha")]
+        teto = max(malhas) if malhas else None
+        alvo = None if antes is None else (antes + (teto - antes) / 2 if teto else antes + 0.10)
+        res = tx[2] if antes is None else (tx[0] if depois >= alvo else tx[1])
+        f_ = lambda x: "—" if x is None else _n(x, lg)
+        ls.append([NOMES[lg][m], f_(antes), f_(depois), f_(teto), f_(alvo), res])
+    return cab, ls
+
+
+def linhas_imprimibilidade(lg):
+    """Por modelo: peças diferentes, quantas saem sem suporte, quantas têm suporte declarado (e quais), resultado do teste 10."""
+    cab = {"pt": ["Modelo", "Peças diferentes", "Sem suporte", "Com suporte declarado", "Quais pedem suporte", "Teste 10"],
+           "en": ["Model", "Different parts", "No supports", "Declared supports", "Which ones need supports", "Test 10"],
+           "es": ["Modelo", "Piezas distintas", "Sin soportes", "Con soportes declarados", "Cuáles piden soportes", "Prueba 10"]}[lg]
+    ls = []
+    for m in MODELOS:
+        mj, v, _ = carrega(m)
+        com = [p["nome"] for p in mj["pecas"] if p["suporte"].startswith("sim")]
+        ok = v["testes"]["10 imprimibilidade"]["ok"]
+        ls.append([NOMES[lg][m], str(len(mj["pecas"])), str(len(mj["pecas"]) - len(com)), str(len(com)), ", ".join(com) or "—", T[lg]["passou"] if ok else T[lg]["falhou"]])
+    return cab, ls
+
+
 ARRASTE = {"pt": "↔ no celular, arraste a tabela para o lado", "en": "↔ on a phone, swipe the table sideways", "es": "↔ en el celular, desliza la tabla hacia un lado"}
 LG_ATUAL = ["pt"]
 
@@ -138,6 +183,10 @@ def tabela(chave, lg, fmt):
         cab, ls = linhas_verif(partes[1], "pt" if fmt == "md" and lg == "pt" else lg)
     elif partes[0] == "resumo":
         cab, ls = linhas_resumo(lg)
+    elif partes[0] == "semelhanca":
+        cab, ls = linhas_semelhanca(lg)
+    elif partes[0] == "imprimibilidade":
+        cab, ls = linhas_imprimibilidade(lg)
     elif partes[0] == "mesas":
         cab, ls = linhas_mesas(partes[1], lg)
         if fmt == "md":
@@ -161,7 +210,7 @@ def injeta(arquivo: Path, lg, fmt):
         n += 1
         return f"<!-- TABELA:{mo.group(1)} -->\n{tabela(mo.group(1), lg, fmt)}\n<!-- /TABELA -->"
 
-    s2 = re.sub(r"<!-- TABELA:([a-z:]+) -->.*?<!-- /TABELA -->", troca, s, flags=re.S)
+    s2 = re.sub(r"<!-- TABELA:([a-z_:]+) -->.*?<!-- /TABELA -->", troca, s, flags=re.S)
     if s2 != s:
         arquivo.write_text(s2)
     return n
@@ -174,6 +223,8 @@ if __name__ == "__main__":
     (RAIZ / "projetos" / "TABELAS.md").write_text("\n".join(o) + "\n")
     alvos = [("PLANO.md", "pt", "md"), ("README.md", "pt", "md"), ("README.en.md", "en", "md"), ("README.es.md", "es", "md"),
              ("guia/index.html", "pt", "html"), ("guia/en/index.html", "en", "html"), ("guia/es/index.html", "es", "html")]
+    if "--docs" in sys.argv:
+        alvos = [a for a in alvos if not a[0].startswith("guia/")]
     for (a, lg, fmt) in alvos:
         n = injeta(RAIZ / a, lg, fmt)
         if n:

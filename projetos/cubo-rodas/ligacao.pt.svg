@@ -1,0 +1,322 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 1825" width="760" height="1825" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" role="img"><title>Esquema de ligação do robô quadrado que roda</title>
+<rect x="0" y="0" width="760" height="1825" fill="#ffffff"/>
+<text x="20" y="28" font-size="17" text-anchor="start" font-weight="700" fill="#1a1a22">Esquema de ligação do robô quadrado que roda</text>
+<text x="20" y="47" font-size="12" text-anchor="start" font-weight="600" fill="#a14a00">Não testado na bancada. Se a sua placa trouxer outro nome impresso, vale o da placa.</text>
+<g transform="translate(0,26)">
+<text x="20" y="46" font-size="12" text-anchor="start" font-weight="700" fill="#3b3d4a" letter-spacing="1">1 · ENERGIA</text>
+<rect x="10" y="58" width="740" height="228" rx="12" fill="none" stroke="#9aa0ad" stroke-width="1.5" stroke-dasharray="6 5"/>
+<text x="22" y="75" font-size="11" text-anchor="start" font-weight="700" fill="#6b7080" letter-spacing="1.5">NA BASE</text>
+<rect x="10" y="296" width="740" height="330" rx="12" fill="none" stroke="#9aa0ad" stroke-width="1.5" stroke-dasharray="6 5"/>
+<text x="22" y="313" font-size="11" text-anchor="start" font-weight="700" fill="#6b7080" letter-spacing="1.5">NO DECK</text>
+<rect x="10" y="634" width="740" height="28" rx="6" fill="#e9ecf2"/>
+<rect x="10" y="670" width="740" height="96" rx="12" fill="none" stroke="#9aa0ad" stroke-width="1.5" stroke-dasharray="6 5"/>
+<text x="22" y="687" font-size="11" text-anchor="start" font-weight="700" fill="#6b7080" letter-spacing="1.5">NA CABEÇA</text>
+<polyline points="402,106 420,106" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="402,106 420,106" fill="none" stroke="#d62828" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="490,106 524,106" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="490,106 524,106" fill="none" stroke="#d62828" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="402,202 524,202" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="402,202 524,202" fill="none" stroke="#22232b" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="402,138 524,138" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="402,138 524,138" fill="none" stroke="#e3a500" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="402,170 524,170" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="402,170 524,170" fill="none" stroke="#e3a500" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="232,138 174,138" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="232,138 174,138" fill="none" stroke="#e3a500" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="232,170 174,170" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="232,170 174,170" fill="none" stroke="#e3a500" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="674,106 708,106 708,78 200,78 200,106 174,106" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="674,106 708,106 708,78 200,78 200,106 174,106" fill="none" stroke="#d62828" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="674,202 690,202 690,236 200,236 200,202 174,202" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="674,202 690,202 690,236 200,236 200,202 174,202" fill="none" stroke="#22232b" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="708,106 708,246" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="708,106 708,246" fill="none" stroke="#d62828" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="708,274 708,310" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="708,274 708,310" fill="none" stroke="#d62828" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="640,236 640,310" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="640,236 640,310" fill="none" stroke="#22232b" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="640,330 640,346 185,346" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="640,330 640,346 185,346" fill="none" stroke="#22232b" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="185,346 185,376" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="185,346 185,376" fill="none" stroke="#22232b" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="335,346 335,376" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="335,346 335,376" fill="none" stroke="#22232b" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="585,346 585,376" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="585,346 585,376" fill="none" stroke="#22232b" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="708,330 708,376" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="708,330 708,376" fill="none" stroke="#d62828" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="708,362 95,362 95,376" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="708,362 95,362 95,376" fill="none" stroke="#d62828" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="385,362 385,376" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="385,362 385,376" fill="none" stroke="#d62828" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="335,452 335,470" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="335,452 335,470" fill="none" stroke="#22232b" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="385,452 385,470" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="385,452 385,470" fill="none" stroke="#d62828" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="397,480 585,480 585,452" fill="none" stroke="#fff" stroke-width="6.2" stroke-linejoin="round"/>
+<polyline points="397,480 585,480 585,452" fill="none" stroke="#d62828" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="95,452 95,540" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="95,452 95,540" fill="none" stroke="#d62828" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="185,452 185,540" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="185,452 185,540" fill="none" stroke="#22232b" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="95,501 107,501" fill="none" stroke="#fff" stroke-width="6.0" stroke-linejoin="round"/>
+<polyline points="95,501 107,501" fill="none" stroke="#d62828" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="173,501 185,501" fill="none" stroke="#fff" stroke-width="6.0" stroke-linejoin="round"/>
+<polyline points="173,501 185,501" fill="none" stroke="#22232b" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="335,490 335,540" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="335,490 335,540" fill="none" stroke="#22232b" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="385,490 385,540" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="385,490 385,540" fill="none" stroke="#d62828" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="385,520 470,520 470,694" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="385,520 470,520 470,694" fill="none" stroke="#d62828" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="323,480 266,480 266,694" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="323,480 266,480 266,694" fill="none" stroke="#22232b" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="530,724 560,724" fill="none" stroke="#fff" stroke-width="12.6" stroke-linejoin="round"/>
+<polyline points="530,724 560,724" fill="none" stroke="#8a8f9c" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="708" cy="106" r="4.6" fill="#d62828" stroke="#fff" stroke-width="1"/>
+<circle cx="640" cy="236" r="4.6" fill="#22232b" stroke="#fff" stroke-width="1"/>
+<circle cx="335" cy="346" r="4.6" fill="#22232b" stroke="#fff" stroke-width="1"/>
+<circle cx="585" cy="346" r="4.6" fill="#22232b" stroke="#fff" stroke-width="1"/>
+<circle cx="708" cy="362" r="4.6" fill="#d62828" stroke="#fff" stroke-width="1"/>
+<circle cx="385" cy="362" r="4.6" fill="#d62828" stroke="#fff" stroke-width="1"/>
+<circle cx="95" cy="501" r="4.6" fill="#d62828" stroke="#fff" stroke-width="1"/>
+<circle cx="185" cy="501" r="4.6" fill="#22232b" stroke="#fff" stroke-width="1"/>
+<circle cx="385" cy="520" r="4.6" fill="#d62828" stroke="#fff" stroke-width="1"/>
+<text x="610" y="652" font-size="11" text-anchor="middle" font-weight="700" fill="#3b3d4a">PESCOÇO · furo de 9 mm · passam 8 fios</text>
+<rect x="24" y="92" width="150" height="124" rx="8" fill="#f4f5f8" stroke="#3b3d4a" stroke-width="1.5"/>
+<text x="92" y="144" font-size="12" text-anchor="middle" font-weight="700" fill="#1a1a22">Carregador USB-C</text>
+<text x="92" y="160" font-size="10.5" text-anchor="middle" font-weight="600" fill="#a14a00">preparado para 3 células</text>
+<text x="167" y="110" font-size="11" text-anchor="end" font-weight="700" fill="#d62828">B+</text>
+<text x="167" y="206" font-size="11" text-anchor="end" font-weight="700" fill="#1a1a22">B−</text>
+<rect x="232" y="92" width="170" height="124" rx="8" fill="#f4f5f8" stroke="#3b3d4a" stroke-width="1.5"/>
+<text x="317" y="108" font-size="12" text-anchor="middle" font-weight="700" fill="#1a1a22">Suporte 3 × 18650</text>
+<rect x="272" y="116" width="90" height="24" rx="12" fill="#dfe6f3" stroke="#6b7896" stroke-width="1.5"/>
+<text x="317" y="132" font-size="11" text-anchor="middle" font-weight="400" fill="#1a1a22">célula 1</text>
+<rect x="272" y="148" width="90" height="24" rx="12" fill="#dfe6f3" stroke="#6b7896" stroke-width="1.5"/>
+<text x="317" y="164" font-size="11" text-anchor="middle" font-weight="400" fill="#1a1a22">célula 2</text>
+<rect x="272" y="180" width="90" height="24" rx="12" fill="#dfe6f3" stroke="#6b7896" stroke-width="1.5"/>
+<text x="317" y="196" font-size="11" text-anchor="middle" font-weight="400" fill="#1a1a22">célula 3</text>
+<text x="395" y="110" font-size="14" text-anchor="end" font-weight="700" fill="#d62828">+</text>
+<text x="395" y="206" font-size="14" text-anchor="end" font-weight="700" fill="#1a1a22">−</text>
+<rect x="420" y="94" width="70" height="24" rx="5" fill="#fff4d6" stroke="#a17400" stroke-width="1.5"/>
+<text x="455" y="110" font-size="10.5" text-anchor="middle" font-weight="600" fill="#1a1a22">fusível T3A</text>
+<rect x="524" y="92" width="150" height="124" rx="8" fill="#f4f5f8" stroke="#3b3d4a" stroke-width="1.5"/>
+<text x="531" y="110" font-size="11" text-anchor="start" font-weight="700" fill="#1a1a22">B+</text>
+<text x="531" y="206" font-size="11" text-anchor="start" font-weight="700" fill="#1a1a22">B−</text>
+<text x="516" y="131" font-size="10.5" text-anchor="end" font-weight="700" fill="#8a6500">≈ 8 V</text>
+<text x="516" y="163" font-size="10.5" text-anchor="end" font-weight="700" fill="#8a6500">≈ 4 V</text>
+<text x="667" y="110" font-size="11" text-anchor="end" font-weight="700" fill="#1a1a22">P+</text>
+<text x="667" y="206" font-size="11" text-anchor="end" font-weight="700" fill="#1a1a22">P−</text>
+<text x="599" y="152" font-size="12" text-anchor="middle" font-weight="700" fill="#1a1a22">Placa de proteção</text>
+<text x="599" y="168" font-size="11" text-anchor="middle" font-weight="400" fill="#4c4f5c">BMS 3S</text>
+<rect x="670" y="246" width="76" height="28" rx="8" fill="#e8eaf0" stroke="#3b3d4a" stroke-width="1.5"/>
+<text x="708" y="265" font-size="12" text-anchor="middle" font-weight="700" fill="#1a1a22">Chave</text>
+<text x="238" y="133" font-size="10.5" text-anchor="start" font-weight="700" fill="#8a6500">≈ 8 V</text>
+<text x="238" y="165" font-size="10.5" text-anchor="start" font-weight="700" fill="#8a6500">≈ 4 V</text>
+<rect x="696" y="310" width="24" height="20" rx="4" fill="#fff4d6" stroke="#a17400" stroke-width="1.5"/>
+<text x="708" y="324.5" font-size="11" text-anchor="middle" font-weight="700" fill="#6b4e00">4</text>
+<rect x="628" y="310" width="24" height="20" rx="4" fill="#fff4d6" stroke="#a17400" stroke-width="1.5"/>
+<text x="640" y="324.5" font-size="11" text-anchor="middle" font-weight="700" fill="#6b4e00">5</text>
+<rect x="60" y="376" width="200" height="76" rx="8" fill="#f4f5f8" stroke="#3b3d4a" stroke-width="1.5"/>
+<text x="95" y="393" font-size="11" text-anchor="middle" font-weight="700" fill="#1a1a22">IN+</text>
+<text x="185" y="393" font-size="11" text-anchor="middle" font-weight="700" fill="#1a1a22">IN−</text>
+<text x="95" y="445" font-size="13" text-anchor="middle" font-weight="700" fill="#d62828">+</text>
+<text x="185" y="445" font-size="13" text-anchor="middle" font-weight="700" fill="#1a1a22">−</text>
+<text x="140" y="414" font-size="13" text-anchor="middle" font-weight="700" fill="#1a1a22">UBEC</text>
+<text x="140" y="430" font-size="10.5" text-anchor="middle" font-weight="600" fill="#a14a00">jumper em 6 V</text>
+<rect x="300" y="376" width="230" height="76" rx="8" fill="#f4f5f8" stroke="#3b3d4a" stroke-width="1.5"/>
+<text x="335" y="393" font-size="11" text-anchor="middle" font-weight="700" fill="#1a1a22">IN−</text>
+<text x="385" y="393" font-size="11" text-anchor="middle" font-weight="700" fill="#1a1a22">IN+</text>
+<text x="335" y="445" font-size="11" text-anchor="middle" font-weight="700" fill="#1a1a22">OUT−</text>
+<text x="385" y="445" font-size="11" text-anchor="middle" font-weight="700" fill="#1a1a22">OUT+</text>
+<text x="462" y="414" font-size="13" text-anchor="middle" font-weight="700" fill="#1a1a22">XL4015</text>
+<text x="462" y="430" font-size="10.5" text-anchor="middle" font-weight="600" fill="#a14a00">ajuste a saída: 5,1 V</text>
+<rect x="550" y="376" width="200" height="76" rx="8" fill="#f4f5f8" stroke="#3b3d4a" stroke-width="1.5"/>
+<text x="585" y="393" font-size="11" text-anchor="middle" font-weight="700" fill="#1a1a22">GND</text>
+<text x="708" y="393" font-size="11" text-anchor="middle" font-weight="700" fill="#1a1a22">+12V</text>
+<text x="585" y="445" font-size="11" text-anchor="middle" font-weight="700" fill="#1a1a22">+5V</text>
+<text x="668" y="420" font-size="13" text-anchor="middle" font-weight="700" fill="#1a1a22">Driver L298N</text>
+<text x="668" y="436" font-size="10.5" text-anchor="middle" font-weight="600" fill="#a14a00">jumper de 5 V retirado</text>
+<rect x="323" y="470" width="24" height="20" rx="4" fill="#fff4d6" stroke="#a17400" stroke-width="1.5"/>
+<text x="335" y="484.5" font-size="11" text-anchor="middle" font-weight="700" fill="#6b4e00">2</text>
+<rect x="373" y="470" width="24" height="20" rx="4" fill="#fff4d6" stroke="#a17400" stroke-width="1.5"/>
+<text x="385" y="484.5" font-size="11" text-anchor="middle" font-weight="700" fill="#6b4e00">1</text>
+<text x="410" y="474" font-size="11" text-anchor="start" font-weight="600" fill="#d62828">5,1 V</text>
+<text x="87" y="472" font-size="11" text-anchor="end" font-weight="600" fill="#d62828">6 V</text>
+<rect x="107" y="490" width="66" height="22" rx="5" fill="#e6f1ff" stroke="#3565a8" stroke-width="1.5"/>
+<text x="140" y="505" font-size="10.5" text-anchor="middle" font-weight="600" fill="#1a1a22">1000 µF</text>
+<text x="140" y="485" font-size="10.5" text-anchor="middle" font-weight="600" fill="#3565a8">capacitor</text>
+<rect x="40" y="540" width="210" height="62" rx="8" fill="#eef6ee" stroke="#2f6b3a" stroke-width="1.5"/>
+<text x="95" y="557" font-size="11" text-anchor="middle" font-weight="700" fill="#1a1a22">VCC</text>
+<text x="185" y="557" font-size="11" text-anchor="middle" font-weight="700" fill="#1a1a22">GND</text>
+<text x="145" y="578" font-size="11.5" text-anchor="middle" font-weight="700" fill="#1a1a22">Sensor Shield: borne azul</text>
+<text x="145" y="593" font-size="10.5" text-anchor="middle" font-weight="600" fill="#a14a00">jumper SEL retirado</text>
+<rect x="276" y="540" width="188" height="62" rx="8" fill="#eef6ee" stroke="#2f6b3a" stroke-width="1.5"/>
+<text x="335" y="557" font-size="13" text-anchor="middle" font-weight="700" fill="#1a1a22">−</text>
+<text x="385" y="557" font-size="13" text-anchor="middle" font-weight="700" fill="#d62828">+</text>
+<text x="370" y="578" font-size="11.5" text-anchor="middle" font-weight="700" fill="#1a1a22">Sensor Shield: conector COM</text>
+<text x="370" y="593" font-size="10.5" text-anchor="middle" font-weight="400" fill="#4c4f5c">energia do Arduino</text>
+<rect x="200" y="694" width="330" height="60" rx="8" fill="#e9f6ea" stroke="#2f6b3a" stroke-width="1.5"/>
+<text x="266" y="711" font-size="11" text-anchor="middle" font-weight="700" fill="#1a1a22">pinos 6 e 9 (GND)</text>
+<text x="470" y="711" font-size="11" text-anchor="middle" font-weight="700" fill="#1a1a22">pinos 2 e 4 (5 V)</text>
+<text x="365" y="741" font-size="14" text-anchor="middle" font-weight="700" fill="#1a1a22">Raspberry Pi</text>
+<rect x="560" y="694" width="180" height="60" rx="8" fill="#e8eaf0" stroke="#3b3d4a" stroke-width="1.5"/>
+<text x="650" y="720" font-size="11.5" text-anchor="middle" font-weight="700" fill="#1a1a22">Tela de 5 polegadas</text>
+<text x="650" y="737" font-size="10.5" text-anchor="middle" font-weight="400" fill="#4c4f5c">cabo HDMI + cabo USB</text>
+</g>
+<g transform="translate(0,846)">
+<text x="20" y="14" font-size="12" text-anchor="start" font-weight="700" fill="#3b3d4a" letter-spacing="1">2 · SINAIS (a energia destas placas está no desenho de cima)</text>
+<rect x="10" y="24" width="740" height="108" rx="12" fill="none" stroke="#9aa0ad" stroke-width="1.5" stroke-dasharray="6 5"/>
+<text x="22" y="41" font-size="11" text-anchor="start" font-weight="700" fill="#6b7080" letter-spacing="1.5">NA BASE</text>
+<rect x="10" y="140" width="740" height="470" rx="12" fill="none" stroke="#9aa0ad" stroke-width="1.5" stroke-dasharray="6 5"/>
+<text x="22" y="157" font-size="11" text-anchor="start" font-weight="700" fill="#6b7080" letter-spacing="1.5"></text>
+<text x="232" y="158" font-size="11" text-anchor="start" font-weight="700" fill="#6b7080" letter-spacing="1.5">NO DECK</text>
+<rect x="10" y="618" width="740" height="28" rx="6" fill="#e9ecf2"/>
+<rect x="10" y="654" width="740" height="108" rx="12" fill="none" stroke="#9aa0ad" stroke-width="1.5" stroke-dasharray="6 5"/>
+<text x="22" y="671" font-size="11" text-anchor="start" font-weight="700" fill="#6b7080" letter-spacing="1.5">NA CABEÇA</text>
+<polyline points="114,120 114,275 270,275" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="114,120 114,275 270,275" fill="none" stroke="#1d6fd6" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="646,120 646,275 490,275" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="646,120 646,275 490,275" fill="none" stroke="#1d6fd6" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="148,120 148,245 270,245" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="148,120 148,245 270,245" fill="none" stroke="#22232b" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="612,120 612,245 490,245" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="612,120 612,245 490,245" fill="none" stroke="#22232b" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="182,120 182,215 270,215" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="182,120 182,215 270,215" fill="none" stroke="#8a8f9c" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="578,120 578,215 490,215" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="578,120 578,215 490,215" fill="none" stroke="#8a8f9c" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="214,120 214,190 270,190" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="214,120 214,190 270,190" fill="none" stroke="#d62828" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="546,120 546,190 490,190" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="546,120 546,190 490,190" fill="none" stroke="#d62828" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="46,120 46,400" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="46,120 46,400" fill="none" stroke="#e3a500" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="714,120 714,400" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="714,120 714,400" fill="none" stroke="#e3a500" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="80,120 80,400" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="80,120 80,400" fill="none" stroke="#2a9d4b" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="680,120 680,400" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="680,120 680,400" fill="none" stroke="#2a9d4b" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="300,320 300,400" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="300,320 300,400" fill="none" stroke="#7b3fb5" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="332,320 332,400" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="332,320 332,400" fill="none" stroke="#7b3fb5" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="364,320 364,400" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="364,320 364,400" fill="none" stroke="#7b3fb5" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="396,320 396,400" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="396,320 396,400" fill="none" stroke="#7b3fb5" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="428,320 428,400" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="428,320 428,400" fill="none" stroke="#7b3fb5" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="460,320 460,400" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="460,320 460,400" fill="none" stroke="#7b3fb5" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="150,510 150,686" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="150,510 150,686" fill="none" stroke="#2a9d4b" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="250,510 250,532" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="250,510 250,532" fill="none" stroke="#1d6fd6" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="250,554 250,686" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="250,554 250,686" fill="none" stroke="#1d6fd6" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="250,582 276,582" fill="none" stroke="#fff" stroke-width="6.0" stroke-linejoin="round"/>
+<polyline points="250,582 276,582" fill="none" stroke="#22232b" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="338,582 350,582" fill="none" stroke="#fff" stroke-width="6.0" stroke-linejoin="round"/>
+<polyline points="338,582 350,582" fill="none" stroke="#22232b" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="350,510 350,686" fill="none" stroke="#fff" stroke-width="6.800000000000001" stroke-linejoin="round"/>
+<polyline points="350,510 350,686" fill="none" stroke="#22232b" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="640,510 640,690" fill="none" stroke="#fff" stroke-width="8.0" stroke-linejoin="round"/>
+<polyline points="640,510 640,690" fill="none" stroke="#e07a1f" stroke-width="4.4" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="700,510 700,540" fill="none" stroke="#fff" stroke-width="8.0" stroke-linejoin="round"/>
+<polyline points="700,510 700,540" fill="none" stroke="#e07a1f" stroke-width="4.4" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="350" cy="582" r="4.6" fill="#22232b" stroke="#fff" stroke-width="1"/>
+<text x="495" y="636" font-size="11" text-anchor="middle" font-weight="700" fill="#3b3d4a">PESCOÇO · furo de 9 mm · passam 8 fios</text>
+<rect x="24" y="44" width="220" height="76" rx="8" fill="#fdebd9" stroke="#a8581a" stroke-width="1.5"/>
+<text x="134" y="62" font-size="12" text-anchor="middle" font-weight="700" fill="#1a1a22">Motor direito + encoder</text>
+<text x="134" y="76" font-size="10.5" text-anchor="middle" font-weight="400" fill="#4c4f5c">cabo de 6 fios</text>
+<text x="46" y="100" font-size="10" text-anchor="middle" font-weight="600" fill="#1a1a22">amarelo</text>
+<text x="80" y="113" font-size="10" text-anchor="middle" font-weight="600" fill="#1a1a22">verde</text>
+<text x="114" y="100" font-size="10" text-anchor="middle" font-weight="600" fill="#1a1a22">azul</text>
+<text x="148" y="113" font-size="10" text-anchor="middle" font-weight="600" fill="#1a1a22">preto</text>
+<text x="182" y="100" font-size="10" text-anchor="middle" font-weight="600" fill="#1a1a22">branco</text>
+<text x="214" y="113" font-size="10" text-anchor="middle" font-weight="600" fill="#1a1a22">vermelho</text>
+<rect x="516" y="44" width="220" height="76" rx="8" fill="#fdebd9" stroke="#a8581a" stroke-width="1.5"/>
+<text x="626" y="62" font-size="12" text-anchor="middle" font-weight="700" fill="#1a1a22">Motor esquerdo + encoder</text>
+<text x="626" y="76" font-size="10.5" text-anchor="middle" font-weight="400" fill="#4c4f5c">cabo de 6 fios</text>
+<text x="714" y="100" font-size="10" text-anchor="middle" font-weight="600" fill="#1a1a22">amarelo</text>
+<text x="680" y="113" font-size="10" text-anchor="middle" font-weight="600" fill="#1a1a22">verde</text>
+<text x="646" y="100" font-size="10" text-anchor="middle" font-weight="600" fill="#1a1a22">azul</text>
+<text x="612" y="113" font-size="10" text-anchor="middle" font-weight="600" fill="#1a1a22">preto</text>
+<text x="578" y="100" font-size="10" text-anchor="middle" font-weight="600" fill="#1a1a22">branco</text>
+<text x="546" y="113" font-size="10" text-anchor="middle" font-weight="600" fill="#1a1a22">vermelho</text>
+<rect x="270" y="170" width="220" height="150" rx="8" fill="#f4f5f8" stroke="#3b3d4a" stroke-width="1.5"/>
+<text x="277" y="194" font-size="11" text-anchor="start" font-weight="700" fill="#1a1a22">OUT1</text>
+<text x="483" y="194" font-size="11" text-anchor="end" font-weight="700" fill="#1a1a22">OUT3</text>
+<text x="277" y="219" font-size="11" text-anchor="start" font-weight="700" fill="#1a1a22">OUT2</text>
+<text x="483" y="219" font-size="11" text-anchor="end" font-weight="700" fill="#1a1a22">OUT4</text>
+<text x="277" y="249" font-size="11" text-anchor="start" font-weight="700" fill="#1a1a22">GND</text>
+<text x="483" y="249" font-size="11" text-anchor="end" font-weight="700" fill="#1a1a22">GND</text>
+<text x="277" y="279" font-size="11" text-anchor="start" font-weight="700" fill="#1a1a22">+5V</text>
+<text x="483" y="279" font-size="11" text-anchor="end" font-weight="700" fill="#1a1a22">+5V</text>
+<text x="380" y="226" font-size="12.5" text-anchor="middle" font-weight="700" fill="#1a1a22">Driver L298N</text>
+<text x="380" y="243" font-size="10.5" text-anchor="middle" font-weight="600" fill="#a14a00">sem os 3 jumpers</text>
+<text x="300" y="312" font-size="10.5" text-anchor="middle" font-weight="700" fill="#1a1a22">ENA</text>
+<text x="332" y="312" font-size="10.5" text-anchor="middle" font-weight="700" fill="#1a1a22">IN1</text>
+<text x="364" y="312" font-size="10.5" text-anchor="middle" font-weight="700" fill="#1a1a22">IN2</text>
+<text x="396" y="312" font-size="10.5" text-anchor="middle" font-weight="700" fill="#1a1a22">IN3</text>
+<text x="428" y="312" font-size="10.5" text-anchor="middle" font-weight="700" fill="#1a1a22">IN4</text>
+<text x="460" y="312" font-size="10.5" text-anchor="middle" font-weight="700" fill="#1a1a22">ENB</text>
+<rect x="24" y="400" width="712" height="110" rx="8" fill="#eef6ee" stroke="#2f6b3a" stroke-width="1.5"/>
+<text x="46" y="417" font-size="11" text-anchor="middle" font-weight="700" fill="#1a1a22">D2</text>
+<text x="80" y="417" font-size="11" text-anchor="middle" font-weight="700" fill="#1a1a22">A0</text>
+<text x="680" y="417" font-size="11" text-anchor="middle" font-weight="700" fill="#1a1a22">A1</text>
+<text x="714" y="417" font-size="11" text-anchor="middle" font-weight="700" fill="#1a1a22">D3</text>
+<text x="300" y="417" font-size="10.5" text-anchor="middle" font-weight="700" fill="#1a1a22">D5</text>
+<text x="332" y="417" font-size="10.5" text-anchor="middle" font-weight="700" fill="#1a1a22">D4</text>
+<text x="364" y="417" font-size="10.5" text-anchor="middle" font-weight="700" fill="#1a1a22">D7</text>
+<text x="396" y="417" font-size="10.5" text-anchor="middle" font-weight="700" fill="#1a1a22">D8</text>
+<text x="428" y="417" font-size="10.5" text-anchor="middle" font-weight="700" fill="#1a1a22">D12</text>
+<text x="460" y="417" font-size="10.5" text-anchor="middle" font-weight="700" fill="#1a1a22">D6</text>
+<text x="380" y="452" font-size="15" text-anchor="middle" font-weight="700" fill="#1a1a22">Arduino Uno + Sensor Shield V5.0</text>
+<text x="380" y="471" font-size="11.5" text-anchor="middle" font-weight="600" fill="#a14a00">jumper SEL retirado · fio de sinal só no pino S</text>
+<text x="150" y="502" font-size="11" text-anchor="middle" font-weight="700" fill="#1a1a22">D0 (RX)</text>
+<text x="250" y="502" font-size="11" text-anchor="middle" font-weight="700" fill="#1a1a22">D1 (TX)</text>
+<text x="350" y="502" font-size="11" text-anchor="middle" font-weight="700" fill="#1a1a22">G</text>
+<text x="640" y="502" font-size="11" text-anchor="middle" font-weight="700" fill="#1a1a22">D10</text>
+<text x="700" y="502" font-size="11" text-anchor="middle" font-weight="700" fill="#1a1a22">D9</text>
+<rect x="229" y="532" width="42" height="22" rx="3" fill="#fff" stroke="#3b3d4a" stroke-width="1.5"/>
+<text x="250" y="547" font-size="10.5" text-anchor="middle" font-weight="600" fill="#1a1a22">1 kΩ</text>
+<rect x="238" y="572" width="24" height="20" rx="4" fill="#fff4d6" stroke="#a17400" stroke-width="1.5"/>
+<text x="250" y="586.5" font-size="11" text-anchor="middle" font-weight="700" fill="#6b4e00">3</text>
+<rect x="276" y="571" width="62" height="22" rx="3" fill="#fff" stroke="#3b3d4a" stroke-width="1.5"/>
+<text x="307" y="586" font-size="10.5" text-anchor="middle" font-weight="600" fill="#1a1a22">2 × 1 kΩ</text>
+<rect x="652" y="540" width="94" height="44" rx="8" fill="#fdebd9" stroke="#a8581a" stroke-width="1.5"/>
+<text x="699" y="566" font-size="11" text-anchor="middle" font-weight="700" fill="#1a1a22">Servo de pan</text>
+<text x="632" y="604" font-size="11" text-anchor="end" font-weight="600" fill="#a8581a">extensão de 30 cm</text>
+<rect x="90" y="686" width="330" height="64" rx="8" fill="#e9f6ea" stroke="#2f6b3a" stroke-width="1.5"/>
+<text x="150" y="703" font-size="11" text-anchor="middle" font-weight="700" fill="#1a1a22">32 (TX)</text>
+<text x="250" y="703" font-size="11" text-anchor="middle" font-weight="700" fill="#1a1a22">33 (RX)</text>
+<text x="350" y="703" font-size="11" text-anchor="middle" font-weight="700" fill="#1a1a22">34 (GND)</text>
+<text x="255" y="736" font-size="14" text-anchor="middle" font-weight="700" fill="#1a1a22">Raspberry Pi</text>
+<rect x="573" y="690" width="134" height="44" rx="8" fill="#fdebd9" stroke="#a8581a" stroke-width="1.5"/>
+<text x="640" y="716" font-size="10.5" text-anchor="middle" font-weight="700" fill="#1a1a22">Servo de tilt</text>
+</g>
+<line x1="20.0" y1="1632" x2="44.0" y2="1632" stroke="#d62828" stroke-width="4"/>
+<text x="52" y="1636" font-size="11.5" text-anchor="start" font-weight="400" fill="#1a1a22">vermelho: positivo</text>
+<line x1="265.0" y1="1632" x2="289.0" y2="1632" stroke="#22232b" stroke-width="4"/>
+<text x="297" y="1636" font-size="11.5" text-anchor="start" font-weight="400" fill="#1a1a22">preto: negativo (GND)</text>
+<line x1="510.0" y1="1632" x2="534.0" y2="1632" stroke="#e3a500" stroke-width="4"/>
+<text x="542" y="1636" font-size="11.5" text-anchor="start" font-weight="400" fill="#1a1a22">amarelo: emendas das células</text>
+<line x1="20.0" y1="1654" x2="32.0" y2="1654" stroke="#2a9d4b" stroke-width="4"/>
+<line x1="32.0" y1="1654" x2="44.0" y2="1654" stroke="#1d6fd6" stroke-width="4"/>
+<text x="52" y="1658" font-size="11.5" text-anchor="start" font-weight="400" fill="#1a1a22">verde e azul: serial</text>
+<line x1="265.0" y1="1654" x2="289.0" y2="1654" stroke="#e07a1f" stroke-width="4"/>
+<text x="297" y="1658" font-size="11.5" text-anchor="start" font-weight="400" fill="#1a1a22">laranja: cabo de servo (3 fios)</text>
+<line x1="510.0" y1="1654" x2="534.0" y2="1654" stroke="#7b3fb5" stroke-width="4"/>
+<text x="542" y="1658" font-size="11.5" text-anchor="start" font-weight="400" fill="#1a1a22">roxo: sinais do driver</text>
+<circle cx="32" cy="1676" r="4.6" fill="#22232b"/>
+<text x="52" y="1680" font-size="11.5" text-anchor="start" font-weight="400" fill="#1a1a22">ponto cheio: emenda de fios</text>
+<text x="20" y="1704" font-size="11.5" text-anchor="start" font-weight="600" fill="#1a1a22">Caixinha amarela com número = borne da barra de emenda.</text>
+<text x="20" y="1724" font-size="11.5" text-anchor="start" font-weight="600" fill="#1a1a22">1 = 5,1 V · 2 = negativo · 3 = serial · 4 = positivo do pack (9 a 12,6 V) · 5 = negativo do pack</text>
+<text x="20" y="1744" font-size="11.5" text-anchor="start" font-weight="600" fill="#1a1a22">No desenho 2, os fios dos motores têm a cor do cabo de 6 fios (o branco aparece em cinza).</text>
+<text x="20" y="1764" font-size="11.5" text-anchor="start" font-weight="600" fill="#1a1a22">Fio: 20 AWG do pack à barra, ao conversor, ao driver e ao Pi; 22 AWG no resto; Dupont nos sinais.</text>
+<text x="20" y="1784" font-size="11.5" text-anchor="start" font-weight="600" fill="#1a1a22">Fusível retardado de 3 A (T3A) no fio positivo, logo depois do suporte das baterias.</text>
+<text x="20" y="1804" font-size="11.5" text-anchor="start" font-weight="600" fill="#1a1a22">No robô, os 3 resistores ficam presos na barra de emenda, entre os bornes 3 e 2.</text>
+</svg>

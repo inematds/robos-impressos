@@ -1,261 +1,140 @@
-# Plano — robos-impressos (fase 1: mecânica e encaixe)
+# Plano — robos-impressos (fase 1: corpo impresso, montado e ligado)
 
-Três robôs impressos em 3D numa **Bambu Lab A1** (mesa de 256 × 256 × 256 mm), com as peças geradas por código:
+Quatro robôs impressos em 3D numa **Bambu Lab A1** (mesa de 256 × 256 × 256 mm), com as peças geradas por código.
+Este arquivo guarda só o que vale para os quatro: as decisões gerais e os porquês, a semelhança com as imagens de
+referência, o resumo da imprimibilidade e as fontes das medidas. As decisões de cada robô estão no plano dele:
 
-| Modelo | O que é | Como se move |
-|---|---|---|
-| **Dinossauro** (`dino`) | filhote cartoon, ~33 cm | roda (2 motores TT escondidos nas pernas + esfera sob a cauda); pescoço vira e inclina, boca abre, 2 braços |
-| **Capivara** (`capivara`) | filhote sentado, ~33 cm, bandana verde | roda (rodas dentro das coxas, aro ciano na lateral; esfera dentro do rabo); pescoço vira e inclina, boca abre |
-| **Robô quadrado** (`cubo`) | cabeça-cubo com tela de 3,5", de mesa, ~20 cm | não roda; a cabeça gira ±170° e inclina |
-
-**Fase 1 = só mecânica:** peças, encaixes, lugar de cada componente, parafusos. Nada de fiação, firmware ou IA.
-**Nada disto foi impresso nem montado ainda.** O que existe é um protótipo digital conferido por script
-(`comum/cad/verificar.py`). Tempo, filamento e preço são **estimativas**. As imagens do guia são renders das peças, não fotos.
-
-Por que o repo se chama `robos-impressos` e não `dinobot`: o pedido começou com o dinossauro e virou três modelos
-que dividem as mesmas peças e o mesmo verificador. Um nome neutro evita ter uma capivara dentro de um "dinobot".
+| Robô | O que é | Plano | Resumo |
+|---|---|---|---|
+| **Dinossauro** (`dino`) | 30 cm; roda, vira e inclina a cabeça, abre a boca, mexe 2 braços | [projetos/dino/PLANO.md](projetos/dino/PLANO.md) | [README](projetos/dino/README.md) |
+| **Capivara** (`capivara`) | 30 cm, de bandana verde; roda, vira e inclina a cabeça, abre a boca | [projetos/capivara/PLANO.md](projetos/capivara/PLANO.md) | [README](projetos/capivara/README.md) |
+| **Robô quadrado de mesa** (`cubo`) | 20 cm; cabeça-cubo com tela de 3,5", gira ±170° e inclina; não roda | [projetos/cubo/PLANO.md](projetos/cubo/PLANO.md) | [README](projetos/cubo/README.md) |
+| **Robô quadrado que roda** (`cubo_rodas`, pasta `cubo-rodas`) | 30 cm; a mesma cabeça, maior, com tela de 5", sobre uma base com 2 motores com encoder | [projetos/cubo-rodas/PLANO.md](projetos/cubo-rodas/PLANO.md) | [README](projetos/cubo-rodas/README.md) |
 
 <!-- TABELA:resumo -->
 | Modelo | Altura (mm) | Peças | Mesas (impressões) | Filamento total (g)* | Impressão total (h)* | Robô montado (g)* |
 |---|---|---|---|---|---|---|
-| Dinossauro | 329 | 38 | 12 | 1107 | 44 | 1666 |
-| Capivara | 326 | 39 | 13 | 1049 | 42 | 1581 |
-| Robô quadrado | 201 | 14 | 8 | 638 | 25 | 1020 |
+| Dinossauro | 300 | 34 | 12 | 1010 | 40 | 1605 |
+| Capivara | 300 | 32 | 11 | 1129 | 44 | 1714 |
+| Robô quadrado | 200 | 15 | 7 | 735 | 28 | 1147 |
+| Robô quadrado que roda | 306 | 19 | 8 | 1143 | 43 | 2214 |
 
 * estimativa por volume, sem fatiador
 <!-- /TABELA -->
 
+**Fase 1 = corpo impresso, montado e ligado:** peças, encaixes, lugar de cada componente, parafusos, lista de compras
+e esquema de ligação. O programa (andar, voz, câmera, IA) é a fase 2 e não foi feito.
+**Nada disto foi impresso nem montado ainda, e a parte elétrica não foi testada na bancada.** O que existe é um
+protótipo digital conferido por script (`comum/cad/verificar.py`). Tempo, filamento e preço são **estimativas**. As
+imagens são renders das peças, não fotos.
+
+Por que o repositório se chama `robos-impressos` e não `dinobot`: o pedido começou com o dinossauro e virou quatro
+robôs que dividem o mesmo código, as mesmas regras e o mesmo verificador.
+
 ---
 
-## 1. Decisões de projeto (e o porquê)
+## 1. Decisões gerais (e o porquê)
 
-### 1.1 Locomoção: rodar. Andar fica como variante futura
-
-| Opção | Avaliação para um boneco de ~33 cm com cabeça grande |
+| Decisão | Por quê |
 |---|---|
-| **Rodar (escolhida)** | 2 motores TT + rodas de 65 mm, tração diferencial, 3º apoio numa esfera. Funciona sem sensor, aguenta ~1,7 kg, peças de R$ 15. |
-| Andar com servos | Bípede de cabeça pesada precisa de 6 a 10 servos fortes e controle de equilíbrio. Cai com facilidade e gasta engrenagem. Ruim para "fase 1 confiável". |
-| Rodar + andar | A fase 1 não constrói pernas que andam. As pernas/coxas são **cascas presas por 2 parafusos nas asas do piso**: uma perna articulada futura usa os mesmos 2 furos. |
+| **Cada robô na sua pasta** (`projetos/<robô>/`), com README, plano, lista de compras, guia de impressão, ligação, STL e zip; o que é de todos em `comum/` | Quem quer fazer um robô abre uma pasta e tem tudo dele. Na versão 1.0.2 era um plano só para os três, e a lista de compras misturava os robôs. |
+| **Rodar, não andar** (dino, capivara e o robô quadrado que roda) | Duas rodas com motor e um terceiro apoio funcionam sem sensor de equilíbrio. Um bípede de cabeça grande pede de 6 a 10 servos fortes e cai com facilidade. |
+| **Esqueleto de PETG, casca de PLA** | O esqueleto (chassi, bandejas, garfo, base, quadro) leva parafuso, inserto a quente e calor de motor. A casca só veste e sai sem desmontar o esqueleto. |
+| **A forma dos bichos vem de uma malha 3D da imagem de referência** | Desenhados com formas simples, os bichos ficavam longe das referências. A malha foi gerada no computador, sem serviço externo, e virou a pele de cada bicho (`comum/cad/peles/`). A seção 2 mede o ganho. |
+| **Cada bicho com o seu esqueleto** | Com a forma nova, o dino tem o peso atrás do eixo das rodas e a capivara, à frente: o terceiro apoio muda de lado. Continuam comuns o garfo do pescoço, o berço do tilt, a capa da esfera e o código da cabeça. |
+| **Os dois robôs quadrados dividem a cabeça e o pescoço** (`comum/cad/comum/quadrado.py`) | Mesma solução: tilt por dentro da cabeça, pan por engrenagens 2:1 e tubo oco com 3 tirantes de aço. |
+| **Imprimir sem suporte sempre que der** | Suporte marca a peça e gasta tempo. Regra: face plana na mesa, balanço de até 45°, ponte de até 20 mm, furo horizontal em gota, chanfro de 45° nas bordas viradas para baixo. Casca oca imprime em pé, como um vaso, com corte horizontal. Onde o suporte é inevitável, ele fica por dentro ou por baixo, em árvore, e é declarado peça por peça. A seção 3 traz o resultado. |
+| **Reforço onde há carga** | Insertos em postes ou ressaltos maciços, 4 ou 5 perímetros nas peças estruturais, camadas ao longo da carga no garfo e nos braços, tirantes de aço no pescoço dos robôs quadrados. Cada peça declara orientação, perímetros, preenchimento e o motivo do reforço. |
+| **Nenhum parafuso nem furo técnico de frente** | Parafusos só por baixo, por trás ou por dentro. Microfones nas narinas ou sob a cabeça, alto-falante sem grade à mostra, sensores atrás de detalhes que o robô já tem. O plano de cada robô diz onde está cada furo. |
+| **Nos bichos, os sensores ficam nos olhos** | Câmera atrás de uma pupila e sensor de distância atrás da outra: funciona com o Raspberry Pi 4 e mede a distância do que a cabeça olha. Duas câmeras pediriam o Pi 5 e outra bateria. |
+| **Energia: células 18650 com placa de proteção e carga por USB-C** | Carrega com fonte de celular, sem abrir o robô. A placa de proteção corta descarga funda e curto. |
+| **O conversor de 5 V é escolhido pela tensão mínima de entrada** | No pack de 2 células (6 a 8,4 V) vai o LM2596, que entra a partir de 4,5 V. No pack de 3 células (9 a 12,6 V) do robô que roda vai o XL4015, que pede 8 V. |
+| **Servos num UBEC de 6 V, separados dos 5 V das placas** | A partida de um servo não derruba o Raspberry Pi. |
+| **Raspberry Pi e Arduino conversam por uma serial de 3 fios** | Serve nos quatro: passa pelo pescoço de 9 mm dos robôs quadrados, por onde um plugue USB não passa, e resolve os bichos, em que o cabo USB não cabe (dinossauro, com o Arduino atravessado na bandeja) ou não teve o espaço conferido (capivara). |
+| **Toda medida de componente tem fonte ou a marca NC** | P = fabricante, T = loja ou terceiro, NC = não confirmada (valor usual: meça a sua peça). A seção 5 lista as fontes. |
+| **Os números dos documentos são gerados, não digitados** | Tabelas de peças, parafusos, passos e custos saem do `montagem.json` e de `guia/src/robos/<robô>.dados.json`. Número digitado à mão envelhece. |
+| **O verificador é o portão** | 11 testes sobre os arquivos exportados; nada é publicado com teste falhando. A seção 4 diz o que cada um prova. |
 
-- **Onde ficam as rodas:** dentro das pernas do dino e das coxas da capivara, com 3 mm de vão até o chão.
-  O motor TT fica **em pé**, aparafusado por fora na parede do rack; a roda sai pela lateral.
-- **3º apoio:** esfera de 16 mm num soquete na ponta da lança do chassi, coberta pela cauda (dino) ou pelo rabo (capivara).
-- **Centro de gravidade (calculado pelo verificador, com massas estimadas):** no dino fica 26 mm atrás do eixo das
-  rodas e 118 mm acima do chão (capivara: 25 e 117 mm). O robô só tomba para a frente depois de ~12° de inclinação
-  (~10° com a cabeça toda para baixo), e antes disso os dedos/patas (3 mm acima do chão, ~69 mm à frente do eixo)
-  encostam e seguram. Para chegar nisso o corpo foi recuado 16 mm em relação às rodas (a primeira versão tinha só 15 mm de margem).
-- **Largura:** ~204 mm entre as faces de fora das pernas. É o preço de usar roda de 65 mm com motor TT e um rack de 58 mm
-  entre eles. Motor N20 com roda de 43 mm deixaria o robô ~40 mm mais estreito, mas é menos comum e mais fraco; fica como troca possível.
+---
 
-### 1.2 Movimentos que a fase 1 já deixa prontos
+## 2. Semelhança com as imagens de referência (antes × depois)
 
-| Movimento | Dino | Capivara | Cubo | Servo | Faixa conferida sem colisão |
+Medida pelo contorno do robô nas mesmas vistas das imagens de referência. O número é o IoU: a área comum das duas
+silhuetas dividida pela área total, de 0 a 1. Quanto maior, mais parecido o contorno; cor e detalhe não entram.
+"Teto" é a malha crua gerada a partir da imagem: um robô com rodas, cortes e folgas não passa dela. O alvo foi
+definido antes de medir o depois: metade do caminho entre o antes e o teto, ou 0,10 a mais quando não há malha.
+
+<!-- TABELA:semelhanca -->
+| Modelo | Antes (v1.0.2) | Depois | Teto (malha da imagem) | Alvo | Resultado |
 |---|---|---|---|---|---|
-| Pescoço para os lados (pan) | sim | sim | sim | MG996R | bichos ±60°; cubo ±170° |
-| Pescoço para cima/baixo (tilt) | sim | sim | sim | MG996R | bichos −15° a +20°; cubo −25° a +30° |
-| Boca | sim | sim | — (boca é desenhada na tela) | SG90 ou MG90S | 0 a 18° |
-| Braços | 2 | parados (parte da casca) | — | SG90 ou MG90S | −15° a +40° (até +70° com a cabeça reta) |
-| Cauda | fixa (é o 3º apoio) | fixa | — | — | — |
+| Dinossauro | 0,814 | 0,871 | 0,897 | 0,855 | alvo atingido |
+| Capivara | 0,777 | 0,920 | 0,926 | 0,852 | alvo atingido |
+| Robô quadrado | 0,755 | 0,797 | — | 0,855 | alvo não atingido |
+| Robô quadrado que roda | — | 0,669 | — | — | robô novo: compara com a foto do robô de mesa, não é meta |
+<!-- /TABELA -->
 
-- **Junta do pescoço dos bichos = esfera.** O topo do torso é uma esfera de 58 mm de raio e a cabeça é um "capacete"
-  com 2 mm de folga em volta dela. Como a esfera é a mesma para pan e tilt, a folga não muda quando a cabeça mexe e
-  não aparece pescoço. Dentro da esfera ficam o garfo (gira com o pan) e o berço (inclina com o tilt).
-- **Tilt com servo padrão (MG996R), não micro servo:** a cabeça impressa pesa ~330 g (estimativa por volume), mais os
-  servos. Um MG90S seguraria parada, mas trabalharia perto do limite.
-- **Cubo: 360° ou limitado?** Avaliado: (a) servo de rotação contínua não sabe onde está; (b) motor de passo + anel
-  coletor (slip ring) exige sensor de zero, driver e passa a alimentação do Pi por contatos de 2 A; (c) servo de 270°
-  resolve, mas as abas do DS3218 não têm medida confirmada. **Escolhido:** servo comum de 180° com **engrenagens
-  impressas 2:1** (44 dentes no servo, 22 no pescoço, módulo 1,5). O pescoço gira ±170° sabendo a posição, e os cabos
-  sobem por dentro do **tubo oco do pescoço** (furo de 14 mm), torcendo no máximo meia volta para cada lado.
-  Giro contínuo com anel coletor fica como variante: o tubo oco já é o lugar dele.
+- **Dinossauro e capivara:** passaram do alvo. A capivara ficou praticamente no teto.
+- **Robô quadrado de mesa:** ficou abaixo do alvo. Com o servo de pan em pé e a engrenagem por cima dele, a base não fica
+  mais baixa que cerca de 60 mm; na referência, base e pescoço somam 20 % da altura, e no robô, 41 %.
+- **Robô quadrado que roda:** é um robô novo, sem imagem própria. O número compara com a foto do robô de mesa e não é meta.
 
-### 1.3 Esqueleto separado da casca
+Os números por vista, o método e a data de cada medida estão em [comparacao/semelhanca.md](comparacao/semelhanca.md),
+gerado por `comum/cad/comparar.py`.
 
-- **Bichos:** o **chassi** (uma peça só, PETG) é piso + rack + deck. Ele segura motores, bateria, placas e o servo de pan.
-  As cascas (PLA) só cobrem: saem todas sem desmontar o esqueleto.
-- **Mesmo esqueleto nos dois bichos:** chassi, bandejas, garfo, berço, capa da esfera, pinos e bucha são **os mesmos STL**
-  (`comum/pecas/`). Só a casca e a mesa da cabeça mudam.
-- **Cubo:** a base é caixa e estrutura ao mesmo tempo; a cabeça tem um **quadro** interno (PETG) que segura o Pi, o servo
-  de tilt e o eixo, e a casca branca entra por trás.
+---
 
-### 1.4 Onde ficam Arduino Uno e Raspberry Pi
+## 3. Imprimibilidade (resumo)
 
-- **Bichos: rack de bandejas deslizantes.** Entre as duas paredes do chassi (58 mm) há 2 trilhos. Cada bandeja
-  (`bandeja-uno`, `bandeja-pi`) tem o mesmo contorno e entra em qualquer trilho, por trás, travada por 1 parafuso M3.
-  Na fase 1 usa-se uma; na fase 2 as duas ao mesmo tempo (Uno + shield embaixo, Pi em cima). A bateria passa por baixo.
-- **Acesso:** para chegar às bandejas saem, nesta ordem, a cabeça (crista por pressão + 2 parafusos por cima), a cauda ou
-  o rabo (2 por baixo) e o `torso-costas` (3). A cabeça sai antes porque a metade de trás da esfera do pescoço fica
-  dentro dela. As pernas ficam no lugar: a casca delas foi recortada pelo caminho que as costas fazem ao sair.
-  Essa sequência é conferida pelo teste 9 do verificador (passos "ABRIR").
-- **Limite honesto:** o Pi fica com as portas USB-C/HDMI a 1 mm da parede. Na bandeja ele é alimentado pelos pinos
-  de 5 V do GPIO; as USB grandes ficam livres, viradas para trás. Sob o servo de pan sobram 14 mm acima da placa do Pi.
-- **Cubo:** Uno + shield no piso da base (USB virado para a porta de trás); Pi dentro da cabeça, atrás da tela.
+O teste 10 do verificador mede, em cada peça e na posição de impressão, a área de faces viradas para baixo a mais de
+45° que não nasce na mesa nem é ponte curta. Peça declarada sem suporte com área acima do limite (o maior entre 30 mm²
+e 0,2 % da área da peça) reprova. O teste 11 gira uma peça de cabeça para baixo e confere que o teste 10 acusa.
 
-### 1.5 Bateria e chave
+<!-- TABELA:imprimibilidade -->
+| Modelo | Peças diferentes | Sem suporte | Com suporte declarado | Quais pedem suporte | Teste 10 |
+|---|---|---|---|---|---|
+| Dinossauro | 33 | 27 | 6 | corpo, traseira, cranio, mandibula, garfo-pescoco, berco-tilt | PASSOU |
+| Capivara | 29 | 23 | 6 | corpo, porta, cranio, mandibula, garfo-pescoco, berco-tilt | PASSOU |
+| Robô quadrado | 12 | 12 | 0 | — | PASSOU |
+| Robô quadrado que roda | 15 | 15 | 0 | — | PASSOU |
+<!-- /TABELA -->
 
-- **Bichos:** baia no piso, 58 × 114 × 23 mm, para suporte 2×18650 (até 78 × 41 × 22). Largura útil de 48 mm na altura
-  do eixo dos motores (a ponta interna do eixo entra 4 mm na baia). A bateria entra e sai por trás, inclinada por cima
-  da chave, com a bandeja de baixo fora; fica presa pelo batente da frente e por fita dupla-face ou velcro. Chave gangorra KCD11 e furo de 8,2 mm para conector
-  de carga P4 ficam **no piso, sob a cauda/rabo** (como em brinquedo: liga por baixo).
-- **Cubo:** suporte 2×18650 no piso da base; sai pela **porta traseira** (1 parafuso), que leva a chave e o conector de carga.
+Antes (versão 1.0.2, medida com o mesmo teste): no dinossauro, 8 peças sem suporte, 8 com suporte e 14 que seriam
+reprovadas; na capivara, 8, 12 e 13; no robô quadrado de mesa, 7 das 10 peças próprias seriam reprovadas.
 
-### 1.6 Impressão
+Nos bichos, as 6 peças que ainda pedem suporte são as mesmas: crânio, corpo, a tampa de trás (traseira ou porta),
+mandíbula, garfo e berço. O suporte fica por dentro ou por baixo, nunca no rosto. O plano de cada robô diz onde, e o
+guia de impressão (`projetos/<robô>/IMPRIMIR.md`) traz a tabela por peça: orientação, suporte, perímetros,
+preenchimento, gramas e horas.
 
-| Material | Onde | Por quê |
+---
+
+## 4. Verificação
+
+`comum/cad/verificar.py` roda 11 testes sobre os arquivos exportados de cada robô. Todos têm de passar.
+
+| # | Teste | O que prova |
 |---|---|---|
-| **PETG** | chassi, bandejas, garfo, berço, mesa da cabeça, base/tampa/garfo/quadro/engrenagens do cubo | aguenta parafuso, inserto a quente e calor de motor |
-| **PLA** | cascas, olhos, cristas, unhas, painéis | acabamento e cor |
-| **TPU** | nenhuma peça nesta versão | pneus já vêm nas rodas; pés de borracha do cubo são comprados |
+| 1 | contagem | O número de peças é o esperado. |
+| 2 | malha | Cada STL é fechado e tem um corpo só. |
+| 3 | mesa | Cada peça cabe em 256 × 256 × 256 mm na posição de impressão. |
+| 4 | parede | As cascas têm 2,0 mm ou mais (medida real entre a pele de fora e a de dentro). |
+| 5 | interferência | Nenhuma peça atravessa outra nem um componente, em todas as poses. |
+| 6 | negativo da interferência | O teste 5 acusa quando uma peça é posta fora do lugar. |
+| 7 | peça solta | Toda peça montada encosta em outra: nenhuma fica flutuando. |
+| 8 | equilíbrio | O centro de massa fica dentro dos apoios, com 10 mm ou mais de margem, em todas as poses. |
+| 9 | caminho | Cada peça entra e sai pelo lado indicado na montagem, sem bater no que já está montado. |
+| 10 | imprimibilidade | Peça declarada sem suporte não tem área sem apoio acima do limite. |
+| 11 | negativo da imprimibilidade | O teste 10 acusa uma peça girada de cabeça para baixo. |
 
-- Parede das cascas: 2,4 mm nominal. Na geração, o script mede a distância real entre a pele de fora e a de dentro
-  (4.000 pontos por casca) e grava no `montagem.json`: **2,35 a 2,42 mm**. O verificador confere esse valor contra o mínimo de 2,0 mm.
-- Folga de encaixe: 0,25 mm (parâmetro `FOLGA.encaixe`). Imprima primeiro o `comum-teste-encaixe.stl`
-  (janela do micro servo, 3 furos de inserto, furo do eixo do motor TT, furos M3/M2,5/M2, 3 soquetes de pino; a covinha marca a medida do projeto) e ajuste antes das peças grandes.
-- Cascas orgânicas (torso, crânio, mandíbula, painéis) pedem **suporte em árvore**. Pernas, coxas, cauda e rabo só sob as 2 orelhas de parafuso.
-- Cada STL já sai deitado na posição de imprimir. `projetos/<modelo>/mesas/` tem um 3MF por mesa (peças juntas por cor e material); a lista está em `mesas.json`.
+O que os testes não provam: folga real na impressora, medidas NC, caminho da ferramenta e dos fios, força das peças em
+uso e toda a parte elétrica.
 
----
-
-## 2. Peças impressas
-
-Números gerados de `projetos/<modelo>/montagem.json` por `comum/cad/tabelas.py`. Tempo e filamento: volume de plástico ÷ vazão
-média de 6 mm³/s (suposição conservadora) e densidade do filamento; peça maciça conta 1,6 mm de casca + 15 % de miolo.
-**Não há fatiador nesta máquina: trate como ordem de grandeza** e confira no Bambu Studio. Suportes não entram na conta.
-
-### Dinossauro
-
-<!-- TABELA:pecas:dino -->
-| Peça | Tamanho deitada (mm) | Qtd | Material | Cor | Suporte | Filamento (g)* | Tempo (h)* |
-|---|---|---|---|---|---|---|---|
-| torso-frente | 145 × 226 × 96 | 1 | PLA | verde | sim | 122 | 4.7 |
-| torso-costas | 145 × 226 × 74 | 1 | PLA | verde | sim | 136 | 5.2 |
-| barriga | 79 × 87 × 26 | 1 | PLA | creme | sim | 24 | 1.0 |
-| crista-costas | 47 × 27 × 6 | 1 | PLA | azul | não | 5 | 0.3 |
-| pino-guia (comum) | 4 × 4 × 9 | 4 | PLA | cinza | não | 0 | 0.3 |
-| perna-dir | 60 × 127 × 113 | 1 | PLA | verde | não | 55 | 2.1 |
-| perna-esq | 60 × 127 × 113 | 1 | PLA | verde | não | 55 | 2.1 |
-| unha | 18 × 18 × 13 | 6 | PLA | creme | não | 13 | 1.0 |
-| cauda | 92 × 112 × 69 | 1 | PLA | verde | não | 55 | 2.1 |
-| crista-cauda | 26 × 38 × 6 | 1 | PLA | azul | não | 4 | 0.2 |
-| cranio | 156 × 184 × 120 | 1 | PLA | verde | sim | 187 | 7.1 |
-| mandibula | 116 × 59 × 49 | 1 | PLA | verde | sim | 26 | 1.1 |
-| mesa-cabeca | 104 × 138 × 36 | 1 | PETG | grafite | não | 41 | 1.6 |
-| crista-cabeca | 61 × 83 × 6 | 1 | PLA | azul | não | 7 | 0.4 |
-| olho | 48 × 38 × 48 | 1 | PLA | branco | não | 18 | 0.8 |
-| olho-esq | 48 × 38 × 48 | 1 | PLA | branco | não | 18 | 0.8 |
-| iris | 29 × 19 × 29 | 1 | PLA | azul | não | 5 | 0.3 |
-| iris-esq | 29 × 19 × 29 | 1 | PLA | azul | não | 5 | 0.3 |
-| pupila | 17 × 13 × 18 | 1 | PLA | preto | não | 2 | 0.1 |
-| pupila-esq | 17 × 13 × 18 | 1 | PLA | preto | não | 2 | 0.1 |
-| bucha-eixo (comum) | 7 × 7 × 3 | 1 | PLA | cinza | não | 0 | 0.1 |
-| braco-dir | 38 × 73 × 31 | 1 | PLA | verde | sim | 16 | 0.7 |
-| braco-esq | 38 × 73 × 31 | 1 | PLA | verde | sim | 16 | 0.7 |
-| chassi (comum) | 152 × 190 × 148 | 1 | PETG | grafite | não | 206 | 7.6 |
-| capa-esfera (comum) | 29 × 29 × 6 | 1 | PETG | grafite | não | 3 | 0.2 |
-| bandeja-uno (comum) | 61 × 90 × 16 | 1 | PETG | amarelo | não | 19 | 0.8 |
-| bandeja-pi (comum) | 61 × 90 × 16 | 1 | PETG | amarelo | não | 16 | 0.7 |
-| garfo-pescoco (comum) | 65 × 48 × 51 | 1 | PETG | grafite | não | 17 | 0.7 |
-| berco-tilt (comum) | 38 × 23 × 77 | 1 | PETG | grafite | sim | 15 | 0.6 |
-| teste-encaixe (comum) | 70 × 34 × 8 | 1 | PLA | cinza | não | 15 | 0.6 |
-| **Total** |  | 38 |  |  |  | **1107** | **44** |
-
-* estimativa por volume, sem fatiador
-<!-- /TABELA -->
-
-### Capivara
-
-<!-- TABELA:pecas:capivara -->
-| Peça | Tamanho deitada (mm) | Qtd | Material | Cor | Suporte | Filamento (g)* | Tempo (h)* |
-|---|---|---|---|---|---|---|---|
-| torso-frente | 156 × 226 × 96 | 1 | PLA | laranja | sim | 133 | 5.0 |
-| torso-costas | 156 × 226 × 74 | 1 | PLA | laranja | sim | 139 | 5.3 |
-| barriga | 79 × 87 × 29 | 1 | PLA | laranja | sim | 26 | 1.1 |
-| bandana-frente | 119 × 47 × 60 | 1 | PLA | verde-bandana | sim | 9 | 0.4 |
-| bandana-costas | 119 × 38 × 67 | 1 | PLA | verde-bandana | sim | 10 | 0.5 |
-| mao | 20 × 20 × 11 | 2 | PLA | marrom | não | 5 | 0.3 |
-| pino-guia (comum) | 4 × 4 × 9 | 4 | PLA | cinza | não | 0 | 0.3 |
-| coxa-dir | 46 × 119 × 82 | 1 | PLA | laranja | sim | 37 | 1.5 |
-| coxa-esq | 46 × 119 × 82 | 1 | PLA | laranja | sim | 37 | 1.5 |
-| aro | 40 × 40 × 3 | 2 | PLA | ciano | não | 4 | 0.3 |
-| pata-dir | 44 × 37 × 25 | 1 | PLA | marrom | não | 10 | 0.5 |
-| pata-esq | 44 × 37 × 25 | 1 | PLA | marrom | não | 10 | 0.5 |
-| rabo | 84 × 72 × 50 | 1 | PLA | marrom | sim | 34 | 1.4 |
-| cranio | 160 × 185 × 114 | 1 | PLA | laranja | sim | 179 | 6.8 |
-| mandibula | 119 × 58 × 44 | 1 | PLA | laranja | sim | 21 | 0.8 |
-| focinho | 79 × 41 × 40 | 1 | PLA | marrom | sim | 12 | 0.5 |
-| mesa-cabeca | 98 × 140 × 33 | 1 | PETG | grafite | não | 40 | 1.5 |
-| orelha | 28 × 28 × 15 | 2 | PLA | marrom | não | 9 | 0.5 |
-| topete | 16 × 26 × 6 | 1 | PLA | laranja | não | 2 | 0.2 |
-| olho | 42 × 29 × 42 | 1 | PLA | branco | não | 13 | 0.6 |
-| olho-esq | 42 × 29 × 42 | 1 | PLA | branco | não | 13 | 0.6 |
-| iris | 30 × 15 × 30 | 1 | PLA | marrom | não | 5 | 0.2 |
-| iris-esq | 30 × 15 × 30 | 1 | PLA | marrom | não | 5 | 0.2 |
-| pupila | 21 × 11 × 21 | 1 | PLA | preto | não | 2 | 0.2 |
-| pupila-esq | 21 × 11 × 21 | 1 | PLA | preto | não | 2 | 0.2 |
-| bucha-eixo (comum) | 7 × 7 × 3 | 1 | PLA | cinza | não | 0 | 0.1 |
-| chassi (comum) | 152 × 190 × 148 | 1 | PETG | grafite | não | 206 | 7.6 |
-| capa-esfera (comum) | 29 × 29 × 6 | 1 | PETG | grafite | não | 3 | 0.2 |
-| bandeja-uno (comum) | 61 × 90 × 16 | 1 | PETG | amarelo | não | 19 | 0.8 |
-| bandeja-pi (comum) | 61 × 90 × 16 | 1 | PETG | amarelo | não | 16 | 0.7 |
-| garfo-pescoco (comum) | 65 × 48 × 51 | 1 | PETG | grafite | não | 17 | 0.7 |
-| berco-tilt (comum) | 38 × 23 × 77 | 1 | PETG | grafite | sim | 15 | 0.6 |
-| teste-encaixe (comum) | 70 × 34 × 8 | 1 | PLA | cinza | não | 15 | 0.6 |
-| **Total** |  | 39 |  |  |  | **1049** | **42** |
-
-* estimativa por volume, sem fatiador
-<!-- /TABELA -->
-
-### Robô quadrado
-
-<!-- TABELA:pecas:cubo -->
-| Peça | Tamanho deitada (mm) | Qtd | Material | Cor | Suporte | Filamento (g)* | Tempo (h)* |
-|---|---|---|---|---|---|---|---|
-| base | 150 × 144 × 66 | 1 | PETG | grafite | não | 220 | 8.1 |
-| tampa-base | 150 × 144 × 18 | 1 | PETG | grafite | não | 94 | 3.5 |
-| porta-traseira | 137 × 62 × 5 | 1 | PETG | grafite | não | 32 | 1.3 |
-| tubo-pescoco | 36 × 36 × 28 | 1 | PETG | prata | não | 15 | 0.6 |
-| engrenagem-servo | 69 × 69 × 8 | 1 | PETG | amarelo | não | 23 | 0.9 |
-| garfo | 133 × 92 × 24 | 1 | PETG | grafite | não | 40 | 1.6 |
-| quadro-cabeca | 94 × 60 × 55 | 1 | PETG | amarelo | não | 30 | 1.2 |
-| cabeca-corpo | 112 × 100 × 89 | 1 | PLA | branco | não | 135 | 5.1 |
-| cabeca-face | 112 × 100 × 43 | 1 | PLA | preto | não | 34 | 1.3 |
-| espacador-pi | 6 × 6 × 5 | 4 | PLA | cinza | não | 0 | 0.3 |
-| teste-encaixe (comum) | 70 × 34 × 8 | 1 | PLA | cinza | não | 15 | 0.6 |
-| **Total** |  | 14 |  |  |  | **638** | **25** |
-
-* estimativa por volume, sem fatiador
-<!-- /TABELA -->
+A saída de cada robô está em `projetos/<robô>/verificacao-saida.txt` e no fim do README dele; as tabelas de todos, em
+[projetos/TABELAS.md](projetos/TABELAS.md).
 
 ---
 
-## 3. Peças compradas (estimativa de preço, nov/2026, lojas brasileiras)
-
-| Item | Dino | Capivara | Cubo | R$ (cada, estimativa) |
-|---|---|---|---|---|
-| Servo padrão MG996R (pan e tilt) | 2 | 2 | 2 | 30–45 |
-| Micro servo SG90 ou MG90S (boca, braços) | 3 | 1 | — | 12–30 |
-| Motor TT amarelo 1:48 + roda 65 mm | 2 | 2 | — | 12–20 |
-| Esfera de aço de 16 mm (ou bolinha de gude medida) | 1 | 1 | — | 3–10 |
-| Suporte 2×18650 + 2 células | 1 | 1 | 1 | 50–90 |
-| Chave gangorra KCD11 | 1 | 1 | 1 | 3–6 |
-| Arduino Uno R3 + Sensor Shield V5 | 1 | 1 | 1 | 70–165 |
-| Raspberry Pi 4 ou 5 (obrigatório só na fase 2; no cubo, já na fase 1 por causa da tela) | opcional | opcional | 1 | 400–700 |
-| Tela TFT 3,5" para Raspberry Pi (MPI3501) | — | — | 1 | 90–150 |
-| Driver L298N | 1 | 1 | — | 20–35 |
-| Inserto M3 a quente (compre 30) | 25 | 25 | 14 | 0,40–0,80 |
-| Parafusos M3 (6, 8, 10, 12, 16, 25 mm), porcas e arruelas M3 | kit | kit | kit | 25–40 o kit |
-| Parafuso M3 de cabeça chata (M3×12 nos bichos, M3×10 no robô quadrado) | 2 | 2 | 8 | — |
-| Parafuso M3×35 + porca (tubo do pescoço) | — | — | 3 | — |
-| Parafuso M2,5×8 (bandeja do Pi) / M2,5×12 + porca (cubo) | 4 | 4 | 4 | — |
-| 4 pés de borracha adesivos | — | — | 4 | 5–10 |
-
-**Total estimado sem a impressora e sem o Raspberry Pi:** R$ 330–560 por bicho; R$ 260–430 no cubo (+ Pi e tela).
-
-Ferramentas: chaves Phillips e Allen 2,5, ferro de solda (insertos), paquímetro, cola instantânea.
-
----
-
-## 4. Fontes das medidas dos componentes
+## 5. Fontes das medidas dos componentes
 
 Todas as medidas estão em `comum/cad/parametros.py`, cada uma com a marca **P** (fabricante), **T** (loja/terceiro) ou
 **NC** (não confirmada em fonte lida: valor usual de mercado, **meça a sua peça**). Clones variam; os bolsos têm
@@ -284,173 +163,53 @@ Todas as medidas estão em `comum/cad/parametros.py`, cada uma com a marca **P**
 | Tela 3,5" MPI3501 | placa 85,42 × 55,60; área ativa 73,44 × 48,96 | P: https://www.lcdwiki.com/3.5inch_RPi_Display |
 | Tela 3,5" | espessura 7 e altura do vidro acima do Pi 24,5 | **NC** |
 | Esfera de apoio | 16 mm | **NC** (bolinha de gude varia de 14 a 25 mm) |
-| Alto-falante 40 mm, câmera (furos 21 × 12,5), LiDAR Ø38, conector P4 Ø8,2 | fase 2 | **NC** |
+| Alto-falante 40 mm, câmera (furos 21 × 12,5) | fase 2 | **NC** |
 | Bambu Lab A1 | 256 × 256 × 256 mm | P: ficha técnica A1 (cópia em cdn.shopify.com/…/A1_Spec_EN_1.pdf) |
+| Conversor LM2596 (5 V no pack de 2 células) | placa 43 × 21 × 14, 10 g; entrada a partir de 4,5 V, 3 A máx. | T: https://curtocircuito.com.br/conversor-dc-dc-step-down-lm2596.html · queda de 1,16 a 1,4 V a 3 A: P https://www.ti.com/lit/ds/symlink/lm2596.pdf |
+| Conversor XL4015 (5 V no pack de 3 células) | placa 54 × 24 × 16 com dissipador, 15 g; entrada 8 a 35 V, 5 A | T: https://www.usinainfo.com.br/regulador-de-tensao/regulador-de-tensao-xl4015-step-down-saida-125-a-32v-dc-5a-8768.html |
+| UBEC 6 V 3 A (Hobbywing UBEC 3A 2-6S) | 43 × 17 × 7, 11 g; 5 ou 6 V a 3 A contínuos, entrada 5,5 a 26 V | P: https://www.hobbywing.com/en/products/ubec-3a-2-6s99.html · corrente de pico **NC** |
+| Carregador USB-C LX-USC-V2 (2S/3S, com balanceamento) | 32 × 18 × 5, 3 g; 8,4 V ou 12,6 V, 1,5 A | T: https://www.usinainfo.com.br/fonte-de-alimentacao/carregador-de-baterias-18650-litio-2s3s-com-balanceamento-usb-c-lx-usc-v2-8996.html · boca USB-C 9,2 × 3,4 **NC** |
+| Placa de proteção BMS 2S 10 A (10A2S) | cerca de 24 × 11 × 3, 1,3 g | T: https://www.usinainfo.com.br/controladores-de-carga/controlador-de-carga-placa-de-protecao-de-carga-bms-para-bateria-18650-2s-10a-84v-5446.html |
+| Placa de proteção BMS 3S 10 A (HX-3S-FL10) | 50 × 15 × 3, 3 g | T: https://www.usinainfo.com.br/controladores-de-carga-e-bms/placa-de-protecao-para-bateria-bms-18650-3s-10a-12v-hx-3s-fl10-8309.html |
+| Suporte 3×18650 | 75 × 61 × 20, 19 g | T: https://www.usinainfo.com.br/suporte-para-pilhas/suporte-para-3-baterias-18650-litio-5654.html |
+| Motor JGB37-520 12 V 1:56 com encoder | caixa Ø37 × 24, motor Ø33 × 22, eixo Ø6 a 7 mm do centro, 6 furos M3 num círculo de 31, 158 g, 107 rpm, bloqueio 4,8 kgf·cm | T: https://rcdrone.top/products/jgb37-520-dc-gear-motor-with-encoder · posição dos furos em relação ao eixo **NC** |
+| Roda 85 × 38 mm, sextavado 12 mm | Ø85 × 38, 52 g | T: https://www.usinainfo.com.br/rodas-roboticas/roda-85x38mm-azul-off-road-de-borracha-para-carrinho-robotico-nd031-8706.html |
+| Adaptador sextavado 12 mm para eixo de 6 mm | 20 mm de comprimento, 5,4 g | P: https://www.pololu.com/product/2686/specs · o de latão comum no Brasil (18 mm, ~14 g) **NC** |
+| Bola de tênis de mesa (apoio de trás do robô que roda) | 40 mm, 2,7 g | **NC** (regra da ITTF, não relida) |
+| Tela 5" HDMI (Waveshare 5inch HDMI LCD (B)) | placa 121 × 89,55, área ativa 108 × 64,8, furos 115 × 84 | P: https://www.waveshare.com/img/devkit/LCD/5BP/Exterior-Size.jpg · espessura (14) e massa (150 g) **NC** |
+| LiDAR LD19 | 54 × 46,29 × 34,8, 47 g, 3 furos Ø2,5 | P: https://www.waveshare.com/dtof-lidar-ld19.htm · posição dos furos no corpo **NC** |
+| Sensor de distância ToF VL53L1X, microfone INMP441 | placa 25 × 10,7 × 3,5; placa redonda Ø14 × 3,5 | **NC** |
 
 ---
 
-## 5. Verificação (saída real de `comum/cad/verificar.py`)
-
-O script lê os **STL exportados** e o `montagem.json`. São 9 testes:
-
-- **Interferência (5):** volume da interseção booleana entre cada par de sólidos (peças impressas + envelopes dos
-  componentes), em todas as poses declaradas. Encostar face com face não conta.
-- **Teste negativo (6):** desloca uma peça 3 mm de propósito e exige que a interferência apareça.
-- **Caminho de montagem e de abertura (9):** para cada passo da ordem de montagem, a peça (ou o conjunto) é trazida de
-  fora, na direção declarada, de 2,5 em 2,5 mm, contra tudo o que já está montado. Depois o script desmonta na ordem de
-  manutenção (cabeça, traseira, costas, bandejas) e confere que cada uma sai. Foi este teste que mostrou que a mesa da
-  cabeça não entrava no crânio, que as rodas têm de ir depois do torso e que as costas não saíam com a chave no caminho.
-
-Saída completa da última rodada: [`projetos/verificacao-saida.txt`](projetos/verificacao-saida.txt).
-
-### Dinossauro
-<!-- TABELA:verif:dino -->
-| Teste | Resultado |  |
-|---|---|---|
-| 1 contagem | PASSOU | 30 peças distintas, 38 no total (esperado 38); faltando 0; sobrando 0 |
-| 2 malha | PASSOU | 30 STL fechados, 1 corpo cada |
-| 3 mesa | PASSOU | todas cabem em 256 x 256 x 256 mm; maior dimensão 226.4 mm (torso-frente) |
-| 4 parede | PASSOU | torso 2.36–2.41 mm; cabeça 2.36–2.42 mm; perna 2.35–2.41 mm; cauda 2.35–2.41 mm (mínimo exigido 2.0) |
-| 5 interferência | PASSOU | 54 sólidos (37 impressos + 17 componentes), 12 poses, 0 sobreposições; 2 encaixe(s) previsto(s) fora da conta: motor-tt-dir x roda-dir (eixo do motor entra no cubo da roda); motor-tt-esq x roda-esq (eixo do motor entra no cubo da roda) |
-| 6 teste negativo | PASSOU | 'chassi' deslocada 3 mm em X → 13 sobreposições acusadas (tem que ser > 0) |
-| 7 peça solta | PASSOU | as 37 peças montadas encostam (≤ 1.5 mm) em outra |
-| 8 equilíbrio | PASSOU | massa estimada 1666 g; CG neutro em x=0.1 y=-26.1 z=118.2 mm, margem 26.1 mm (tomba com 12°); pior pose 'tilt-baixo': margem 22.1 mm (11°); mínimo exigido 10 mm |
-| 9 caminho | PASSOU | 31 passos (montagem + abertura para manutenção), cada peça entra ou sai pela direção declarada sem atravessar o que está montado |
-<!-- /TABELA -->
-
-### Capivara
-<!-- TABELA:verif:capivara -->
-| Teste | Resultado |  |
-|---|---|---|
-| 1 contagem | PASSOU | 33 peças distintas, 39 no total (esperado 39); faltando 0; sobrando 0 |
-| 2 malha | PASSOU | 33 STL fechados, 1 corpo cada |
-| 3 mesa | PASSOU | todas cabem em 256 x 256 x 256 mm; maior dimensão 226.4 mm (torso-frente) |
-| 4 parede | PASSOU | torso 2.36–2.41 mm; cabeça 2.36–2.41 mm; coxa 2.36–2.40 mm; rabo 2.36–2.41 mm (mínimo exigido 2.0) |
-| 5 interferência | PASSOU | 53 sólidos (38 impressos + 15 componentes), 8 poses, 0 sobreposições; 2 encaixe(s) previsto(s) fora da conta: motor-tt-dir x roda-dir (eixo do motor entra no cubo da roda); motor-tt-esq x roda-esq (eixo do motor entra no cubo da roda) |
-| 6 teste negativo | PASSOU | 'chassi' deslocada 3 mm em X → 12 sobreposições acusadas (tem que ser > 0) |
-| 7 peça solta | PASSOU | as 38 peças montadas encostam (≤ 1.5 mm) em outra |
-| 8 equilíbrio | PASSOU | massa estimada 1581 g; CG neutro em x=-0.0 y=-24.9 z=117.4 mm, margem 24.9 mm (tomba com 12°); pior pose 'tilt-baixo': margem 21.0 mm (10°); mínimo exigido 10 mm |
-| 9 caminho | PASSOU | 27 passos (montagem + abertura para manutenção), cada peça entra ou sai pela direção declarada sem atravessar o que está montado |
-<!-- /TABELA -->
-
-### Robô quadrado
-<!-- TABELA:verif:cubo -->
-| Teste | Resultado |  |
-|---|---|---|
-| 1 contagem | PASSOU | 11 peças distintas, 14 no total (esperado 14); faltando 0; sobrando 0 |
-| 2 malha | PASSOU | 11 STL fechados, 1 corpo cada |
-| 3 mesa | PASSOU | todas cabem em 256 x 256 x 256 mm; maior dimensão 150.0 mm (base) |
-| 4 parede | PASSOU | modelo sem casca orgânica (paredes são sólidos exatos ≥ 2,4 mm) |
-| 5 interferência | PASSOU | 22 sólidos (13 impressos + 9 componentes), 9 poses, 0 sobreposições; 1 encaixe(s) previsto(s) fora da conta: engrenagem-servo x servo-pan MG996R (horn do servo fica no rebaixo da engrenagem) |
-| 6 teste negativo | PASSOU | 'quadro-cabeca' deslocada 3 mm em X → 1 sobreposições acusadas (tem que ser > 0) |
-| 7 peça solta | PASSOU | as 13 peças montadas encostam (≤ 1.5 mm) em outra |
-| 8 equilíbrio | PASSOU | massa estimada 1020 g; CG neutro em x=-2.2 y=5.0 z=74.5 mm, margem 59.0 mm (tomba com 38°); pior pose 'pan+37': margem 58.8 mm (38°); mínimo exigido 10 mm |
-| 9 caminho | PASSOU | 12 passos (montagem + abertura para manutenção), cada peça entra ou sai pela direção declarada sem atravessar o que está montado |
-<!-- /TABELA -->
-
-**O que o script NÃO confere** (só a montagem real confirma): o encaixe lateral de 3 mm dos horns e da mandíbula
-no estriado dos servos, se a chave de fenda alcança cada parafuso, a passagem e a folga dos cabos, a resistência das
-peças e a qualidade de impressão das cascas com suporte. O caminho de montagem é testado em linha reta (a bateria, em dois trechos).
-
----
-
-## 6. Montagem, passo a passo
-
-### 6.1 Bichos (dino e capivara)
-
-A ordem abaixo é a mesma que o teste 9 do verificador percorre (`ordem_bicho` em `comum/cad/comum/base.py`).
-
-| # | Etapa | Parafusos | Atenção |
-|---|---|---|---|
-| 0 | Imprima `comum-teste-encaixe.stl` e teste servo, insertos e pino | — | Ajuste `FOLGA` em `comum/cad/parametros.py` e gere de novo se algo ficar duro ou frouxo |
-| 1 | Insertos M3 a quente: chassi (2 postes da frente, 1 atrás do deck, 2 da esfera), garfo (1), berço (2 no topo da coluna), mesa (1), bandejas (1 cada), crânio (3), torso-frente (1 + 2 do painel), torso-costas (2), pernas (2 cada), cauda/rabo (2) | 25 insertos | Ferro a ~230 °C em PETG; não afunde além da face |
-| 2 | Motores TT nas paredes do chassi, por fora, motor para cima | 2× M3×25 + porca e arruela por motor (rasgos) | O rasgo aceita 12,3 a 17,6 mm entre furos. A ponta interna do eixo passa pelo furo da parede |
-| 3 | Esfera no soquete da lança + `capa-esfera` por baixo | 2× M3×8 | A esfera tem que girar solta |
-| 4 | Chave no recorte do piso (por baixo) e, se quiser, conector de carga no furo ao lado | encaixe | O piso tem 1,6 mm de espessura só em volta da chave |
-| 5 | Servo de pan (MG996R) no deck, eixo para cima, corpo para a frente | 4× M3×12 + porca (rasgos) | Centralize o servo (90°) antes de pôr o horn |
-| 6 | Horn redondo no servo de pan; `garfo-pescoco` por cima do horn | parafusinhos do horn pelos 4 rasgos + parafuso central | O anel de baixo do garfo centra no horn |
-| 7 | Servo de tilt (MG996R) em pé no `berco-tilt`; horn redondo no montante direito do garfo | 4× M3×12 + porca; parafusinhos do horn por fora | — |
-| 8 | Berço dentro do garfo, por cima: estriado no horn (direita), parafuso-pino na esquerda | 1× M3×10 (entra no inserto do garfo e a ponta vira o pino) | Passe os cabos pela frente chata da coluna e pelo rasgo da base do garfo |
-| 9 | (Dino) 2 micro servos dos braços nas janelas das paredes, eixo para fora | 2 parafusinhos cada | — |
-| 10 | Bateria por trás, inclinada por cima da chave; L298N na travessa da frente; placas nas bandejas e bandejas nos trilhos | L298N 4× M3×8; Uno 4× M3×8; Pi 4× M2,5×8; trava 1× M3×12 por bandeja | Furos do L298N **não confirmados** (37 mm): confira ou use fita dupla-face. Bateria presa com fita ou velcro |
-| 11 | `torso-frente` pela frente, deslizando para trás | 1× M3×10 por baixo (na frente) + 2× M3×12 cabeça chata nos postes | Os 2 de cabeça chata ficam escondidos sob o painel da barriga |
-| 12 | **Rodas**, pelos poços laterais | pressão no eixo | As rodas vão **depois** do torso-frente: antes, a parede do torso não passa por elas |
-| 13 | `barriga` (painel = tampa da frente) | 2× M3×8 | Na fase 2 o alto-falante vai no anel de dentro do painel |
-| 14 | 4 pinos-guia na costura; `torso-costas` por trás | 2× M3×10 por baixo + 1× M3×10 no alto | No dino a `crista-costas` tampa o parafuso do alto: encaixe **sem cola** |
-| 15 | Pernas/coxas pelos lados | 2× M3×10 cada, por baixo | Cole antes as unhas (dino) ou as patas e o aro (capivara) |
-| 16 | Cauda/rabo por trás | 2× M3×10 por baixo | — |
-| 17 | **Cabeça na bancada:** `mesa-cabeca` por baixo, para dentro do `cranio`; micro servo da boca na mesa; `mandibula` (horn na almofada direita, bucha + parafuso na esquerda); olhos, íris e pupilas | 3× M3×12 por baixo, pela mesa; 2 parafusinhos do servo; parafuso central do horn por fora; 1× M3×16 | Desloque a mandíbula 3 mm para a esquerda para entrar no estriado. Este encaixe lateral **não** é coberto pelo teste 9 |
-| 18 | Cabeça inteira por cima do pescoço, até a mesa assentar na coluna do berço | 2× M3×10 por cima, pelos 2 furos do alto do crânio | A `crista-cabeca` (dino) ou o `topete` (capivara) tampa os 2 furos: encaixe **sem cola** |
-| 19 | Cristas/topete, orelhas, mãos, bandana | pressão ou cola | — |
-| 20 | (Dino) braços nos horns | parafuso central pelo furo de fora | — |
-
-**Para abrir depois:** crista/topete (pressão) → cabeça (2 parafusos por cima; solte os conectores dos cabos) → cauda/rabo (2 parafusos) → costas (3 parafusos) → bandejas (1 parafuso cada) → bateria.
-
-### 6.2 Robô quadrado
-
-| # | Etapa | Parafusos | Atenção |
-|---|---|---|---|
-| 1 | Insertos: 4 postes da base, 1 orelha da tampa, 4 cantos do corpo da cabeça, 4 blocos + 1 eixo do quadro | 14 insertos | — |
-| 2 | Servo de pan nos 2 postes do piso, eixo para cima | 4× M3×12 auto-atarraxante | — |
-| 3 | Horn redondo no servo; depois do Uno (passo 4), a `engrenagem-servo` (44 dentes) | parafusinhos do horn pelos rasgos | Centralize o servo antes: é o "olhar para a frente" |
-| 4 | Uno nos 4 pilares (USB para a porta), **antes** da engrenagem do servo; alto-falante (fase 2) por dentro, contra a grade; bateria no berço | 4× M3×8 | A engrenagem de 44 dentes fica por cima de um canto do Uno |
-| 5 | `tubo-pescoco` por baixo da `tampa-base`; tampa na base | 4× M3×10 cabeça chata | A engrenagem de 22 dentes fica sob a tampa e engrena na do servo |
-| 6 | `garfo` sobre a tampa, encaixado no topo do tubo | 3× M3×35 de cima + 3 porcas nos bolsos da engrenagem | Passe os cabos pelo furo do tubo antes |
-| 7 | No `quadro-cabeca`: servo de tilt na lateral direita; Pi na travessa com os 4 espaçadores; tela no GPIO | 4× M3×12 + porca; 4× M2,5×12 + porca | — |
-| 8 | `cabeca-corpo` por trás do quadro (o eixo do servo corre pelo rasgo lateral) | 4× M3×8 pelo fundo | Cabos saem pelo rasgo de baixo |
-| 9 | `cabeca-face` | 4× M3×10 cabeça chata | A lingueta da face fecha o rasgo lateral. A placa da tela encosta atrás da moldura (use espuma fina) |
-| 10 | Cabeça entre os braços do garfo: horn no estriado (direita), parafuso no inserto (esquerda) | parafusinhos do horn por fora; 1× M3×12 | — |
-| 11 | `porta-traseira` com a chave | 1× M3×8 | — |
-
----
-
-## 7. Preparado para a fase 2
-
-A fase 2 (eletrônica, voz, visão, navegação, IA) **não está feita**. A mecânica já deixa o lugar, os furos e a passagem de cabos:
-
-| Componente da fase 2 | Dino | Capivara | Robô quadrado |
-|---|---|---|---|
-| **Cérebro: Raspberry Pi 4/5** | bandeja-pi no trilho de cima do rack; 5 rasgos de ventilação nas costas | igual | dentro da cabeça, atrás da tela |
-| **Arduino Uno + shield** (motores e servos) | bandeja-uno no trilho de baixo (as duas bandejas cabem juntas) | igual | 4 pilares no piso da base |
-| **Microfone** (array de 2 a 4) | 4 furos Ø2 no peito, acima da barriga | 4 furos Ø2 no peito | 4 furos Ø2 no topo da cabeça + 4 na tampa da base |
-| **Alto-falante 40 mm** | anel por dentro do painel da barriga; as fendas do painel são a grade | igual (painel da frente) | anel + grade na parede da frente da base |
-| **Câmera do Pi** (25 × 24, cabo flat) | 4 pilares M2 dentro do focinho + furo da lente; move com a cabeça | 4 pilares na testa + furo da lente | 4 pilares atrás da face, acima da tela |
-| **Cabo flat / cabos da cabeça** | sobem pela face chata da coluna do berço, passam pelo rasgo do garfo e pelo rasgo do deck | igual | pelo tubo oco do pescoço (Ø14) e pelo rasgo de baixo da cabeça |
-| **Distância na frente** (ToF ou HC-SR04) | janela Ø10 abaixo da barriga | igual | não se aplica (de mesa) |
-| **Distância nas laterais / queda** | 4 pontos universais (par de furos M3 a 20 mm) no piso, na frente e atrás de cada roda | igual | 2 pontos universais no piso da base |
-| **Encoders** | 12 mm livres acima de cada motor TT (versão com encoder) + furo para a ponta interna do eixo | igual | — |
-| **IMU** | 2 furos M3 no deck, ao lado do eixo do pescoço | igual | ponto universal no piso da base |
-| **LiDAR (LD06/LD19)** | **não comporta** com 360° livres (a cabeça tampa). Lugar possível: sob a barriga, com ~180° para a frente | idem | **comporta**: ponto universal + furo de cabo no topo plano da cabeça |
-| **Bateria maior** | baia de 58 × 114 × 23 mm (2×18650 ou LiPo 2S até ~110 × 46 × 21); sai por trás, depois da bandeja de baixo; furo de 8,2 mm para carga no piso, para não precisar tirar | igual | 2×18650 no berço + espaço livre atrás, à direita; porta traseira |
-
-Limite conhecido: a baia dos bichos não recebe power bank nem 4 células lado a lado. Se a fase 2 pedir mais autonomia,
-a saída é LiPo 2S maior ou alongar o piso (parâmetro `BASE.piso_y`).
-
----
-
-## 8. Como gerar e conferir
+## 6. Como gerar e conferir
 
 ```bash
 python3 -m venv .venv && .venv/bin/pip install -r requirements.txt   # Python 3.12 ou mais novo
-.venv/bin/python comum/cad/gerar.py todos        # STL, 3MF, montagem.json, montagem.glb, mesas/
-.venv/bin/python comum/cad/verificar.py todos    # os 9 testes; sai com código 1 se algum falhar
-.venv/bin/python comum/cad/tabelas.py            # reescreve as tabelas dos documentos
-comum/cad/renders.sh dino                        # imagens (precisa do Blender)
+.venv/bin/python comum/cad/gerar.py todos          # STL, 3MF, montagem.json, montagem.glb, mesas/   (ou um id: dino, capivara, cubo, cubo_rodas)
+.venv/bin/python comum/cad/verificar.py todos      # os 11 testes; sai com código 1 se algum falhar
+.venv/bin/python comum/cad/comparar.py <id> --sem-gravar   # semelhança com a referência (precisa das imagens, que ficam fora do repositório)
+.venv/bin/python comum/cad/tabelas.py --docs       # tabelas deste arquivo, dos README e de projetos/TABELAS.md
+.venv/bin/python guia/src/pagina_robo.py docs <robô>       # documentos do robô (blocos gerados); veja o README de cada robô
+comum/cad/renders.sh <id>                          # imagens (precisa do Blender)
 ```
 
-Um modelo novo entra como `projetos/<nome>/modelo.py` + uma linha no registro `comum/cad/caminhos.py` + uma seção em `comum/cad/parametros.py`; se for um bicho que roda,
-reaproveita `comum/cad/comum/base.py` (esqueleto) e `comum/cad/comum/bicho.py` (casca, cabeça, painéis).
+Um robô novo entra como `projetos/<pasta>/modelo.py` + uma linha no registro `comum/cad/caminhos.py` + uma seção em
+`comum/cad/parametros.py`. O que é comum e como cada robô usa está em [comum/README.md](comum/README.md).
 
 ---
 
-## 9. Pendências
+## 7. Pendências gerais
 
-- **Abrir sem tirar a cabeça.** Hoje a calota de trás da esfera do pescoço pertence ao `torso-costas` e fica dentro da
-  cabeça, por isso a cabeça sai antes das costas. Melhoria prevista: transformar o topo da esfera numa peça própria, presa à frente.
-- **3MF por mesa** ainda não foi aberto num fatiador (só relido por script).
 - **Imprimir e montar.** Nada foi testado em plástico. Comece pelo cupom de teste e por uma peça pequena de cada tipo.
-- **Medidas NC** da tabela 4: medir com paquímetro e corrigir `comum/cad/parametros.py`.
-- **Altura:** os bichos ficaram com ~33 cm, não 30. O que manda é a pilha bateria + Uno com shield + Pi sob o servo de pan.
-- **Fatiar** para ter tempo e filamento de verdade.
-- **Vídeo explicativo do guia:** ainda não gravado.
-- **IA (Claude por `claude -p` ou API), reconhecimento e mapa da casa = fase 2.**
+- **Testar a parte elétrica na bancada.** Os esquemas saíram das fichas dos componentes.
+- **Chave liga/desliga de 3 A nos robôs que rodam.** Pela conta das fichas, nos dois bichos o uso normal (2,5 a 3 A) fica
+  perto do limite da chave; no robô quadrado que roda são cerca de 2 A em uso normal e 6,5 A no pior caso. Em esforço o
+  fusível de 3 A pode abrir. Uma chave maior pede mudar o recorte nas peças.
+- **Medidas NC** da seção 5: medir com paquímetro e corrigir `comum/cad/parametros.py`.
+- **Os 3MF das mesas** ainda não foram abertos num fatiador (só relidos por script). Fatiar dá o tempo e o filamento de verdade.
+- **Cupom de teste próprio dos robôs quadrados:** o atual não testa a janela do servo MG996R nem o furo do pino M5.
+- **Sem lugar modelado:** porta-fusível, barra de emenda, resistores da serial e amplificador de áudio, nos quatro robôs.
+- **Semelhança do robô quadrado de mesa** abaixo do alvo.
+- **Pendências de cada robô:** no fim do plano de cada um.
+- **IA, voz, visão, navegação e mapa da casa = fase 2.**

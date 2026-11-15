@@ -1,0 +1,121 @@
+{
+ "modelo": "capivara",
+ "vistas": [
+  "por baixo, frente/direita",
+  "por baixo, trás/esquerda",
+  "por cima, como sai da mesa"
+ ],
+ "cores": {
+  "vermelho": "sem apoio (balanço livre, teto, ponte longa)",
+  "amarelo": "balanço tolerado (furo, ponte curta, beira)",
+  "azul": "face na mesa",
+  "cinza": "sem balanço"
+ },
+ "regra": "peça com suporte declarado, ou >= 50 g, ou ponto de carga (garfo, berco, tubo-pescoco, chassi)",
+ "pecas": [
+  {
+   "peca": "cranio",
+   "imagem": "capivara-cranio.jpg",
+   "massa_g": 250.9,
+   "material": "PLA",
+   "suporte": "sim (árvore POR DENTRO: teto do crânio e fundo dos copos dos olhos; e por baixo, fora do rosto: céu da boca e curva de baixo das bochechas)",
+   "veredito": "precisa de suporte (declarado)",
+   "sem_apoio_mm2": 20414.6,
+   "sem_apoio_pct": 12.02,
+   "limite_mm2": 339.8,
+   "maior_ponte_mm": 6.1,
+   "orientacao": "borda de baixo (z=152) na mesa, em pé"
+  },
+  {
+   "peca": "corpo",
+   "imagem": "capivara-corpo.jpg",
+   "massa_g": 195.9,
+   "material": "PLA",
+   "suporte": "sim (pouco, árvore fina: teto de dentro das 2 patas, sobre os ressaltos das esferas; quinas de baixo do relevo dos braços; ponta de baixo dos 2 blocos de trás; ~1,0 % da área)",
+   "veredito": "precisa de suporte (declarado)",
+   "sem_apoio_mm2": 1306.5,
+   "sem_apoio_pct": 0.97,
+   "limite_mm2": 270.6,
+   "maior_ponte_mm": 0.0,
+   "orientacao": "borda de baixo (z=5) na mesa, em pé como um vaso; boca (z=124) para cima"
+  },
+  {
+   "peca": "chassi",
+   "imagem": "capivara-chassi.jpg",
+   "massa_g": 174.5,
+   "material": "PETG",
+   "suporte": "não",
+   "veredito": "ok sem suporte",
+   "sem_apoio_mm2": 84.3,
+   "sem_apoio_pct": 0.1,
+   "limite_mm2": 165.7,
+   "maior_ponte_mm": 6.9,
+   "orientacao": "piso na mesa (em pé)"
+  },
+  {
+   "peca": "gola",
+   "imagem": "capivara-gola.jpg",
+   "massa_g": 172.6,
+   "material": "PLA",
+   "suporte": "não",
+   "veredito": "ok sem suporte",
+   "sem_apoio_mm2": 0.0,
+   "sem_apoio_pct": 0.0,
+   "limite_mm2": 151.0,
+   "maior_ponte_mm": 0.0,
+   "orientacao": "base (z=124) na mesa; a esfera sobe até 45° e fica aberta em cima"
+  },
+  {
+   "peca": "porta",
+   "imagem": "capivara-porta.jpg",
+   "massa_g": 37.6,
+   "material": "PLA",
+   "suporte": "sim (pouco: ~110 mm² na curva de baixo, por fora e por baixo; não aparece)",
+   "veredito": "precisa de suporte (declarado)",
+   "sem_apoio_mm2": 111.1,
+   "sem_apoio_pct": 0.46,
+   "limite_mm2": 48.6,
+   "maior_ponte_mm": 0.0,
+   "orientacao": "borda de baixo na mesa, em pé"
+  },
+  {
+   "peca": "mandibula",
+   "imagem": "capivara-mandibula.jpg",
+   "massa_g": 19.6,
+   "material": "PLA",
+   "suporte": "sim (pouco: ~190 mm² no alívio esférico de trás, por dentro)",
+   "veredito": "precisa de suporte (declarado)",
+   "sem_apoio_mm2": 235.8,
+   "sem_apoio_pct": 2.1,
+   "limite_mm2": 30.0,
+   "maior_ponte_mm": 70.6,
+   "orientacao": "face de trás (plano de corte) na mesa, ponta do queixo para cima"
+  },
+  {
+   "peca": "garfo-pescoco",
+   "imagem": "capivara-garfo-pescoco.jpg",
+   "massa_g": 17.4,
+   "material": "PETG",
+   "suporte": "sim (1,8 mm sob a base, em volta do anel de centragem do horn; suporte normal, fora de vista)",
+   "veredito": "precisa de suporte (declarado)",
+   "sem_apoio_mm2": 1488.0,
+   "sem_apoio_pct": 16.07,
+   "limite_mm2": 30.0,
+   "maior_ponte_mm": 20.8,
+   "orientacao": "base na mesa, montantes para cima"
+  },
+  {
+   "peca": "berco-tilt",
+   "imagem": "capivara-berco-tilt.jpg",
+   "massa_g": 15.1,
+   "material": "PETG",
+   "suporte": "sim (pouco, sob a ponte)",
+   "veredito": "precisa de suporte (declarado)",
+   "sem_apoio_mm2": 515.6,
+   "sem_apoio_pct": 6.99,
+   "limite_mm2": 30.0,
+   "maior_ponte_mm": 21.0,
+   "orientacao": "de cabeça para baixo: topo da coluna na mesa"
+  }
+ ]
+}

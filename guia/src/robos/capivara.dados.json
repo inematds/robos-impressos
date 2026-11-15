@@ -1,0 +1,1540 @@
+{
+ "_": "Dados da capivara que NÃO saem do montagem.json: lista de compras (usa / comprar), parafusos, notas dos passos, ordem de impressão, rótulos das peças, ligações elétricas (fonte única do esquema SVG, da tabela da página e do LIGACAO.md), glossário e riscos. Fonte: projetos/capivara/modelo.py, comum/cad/comum/, comum/cad/parametros.py. Quem lê: guia/src/pagina_robo.py e guia/src/esquema_bicho.py.",
+ "preco_data": "14/11/2026",
+ "preco_fonte": "usinainfo.com.br",
+ "altura_mm": 300.0,
+ "servos": [
+  [
+   "sv_boca",
+   "D11"
+  ],
+  [
+   "sv_tilt",
+   "D10"
+  ],
+  [
+   "sv_pan",
+   "D9"
+  ]
+ ],
+ "glossario_traducao": "\"gola\" (a peça em volta do pescoço) = collar / collar. \"berço\" (do tilt) = cradle / cuna. \"mesa da cabeça\" (peça que fica dentro da cabeça) = head plate / placa de la cabeza; \"mesa\" sozinha, de impressão, continua build plate / cama. \"bandeja\" = tray / bandeja. \"traseira\" = rear shell / carcasa trasera. \"crista\" = crest / cresta. \"topete\" = tuft / copete. \"focinho\" = snout / hocico. \"bacia\" = body shell / carcasa del cuerpo. \"rabo\" = tail / cola. \"aro\" = ring / aro. \"miolo\" = centre disc / disco central. \"esfera de apoio\" = support ball / esfera de apoyo. \"driver\" (dos motores) = motor driver / driver de motores. \"dinossauro\" = dinosaur / dinosaurio. \"pan\" e \"tilt\" ficam pan e tilt. \"suporte\" de impressão = supports / soportes; \"suporte das baterias\" = battery holder / portapilas. Não traduza: LM2596, L298N, ENA, ENB, IN1, IN2, IN3, IN4, OUT1, OUT2, OUT3, OUT4, VL53L1X, ToF.",
+ "compras": [
+  {
+   "bloco": "Cérebro e movimento",
+   "itens": [
+    {
+     "item": "Raspberry Pi 4 Model B, 4 GB",
+     "usa": "1",
+     "comprar": "1",
+     "n": 1,
+     "para": "Cérebro do robô. Vai na bandeja de baixo, dentro do corpo. Na fase 1 ele só é ligado e configurado; quem quiser adiar esta compra pode montar tudo sem ele e deixar a bandeja vazia. O Pi 5 também serve, com 1 câmera e sem acessórios USB: o conversor entrega cerca de 2 A.",
+     "faixa": [
+      450,
+      800
+     ],
+     "base": "cada",
+     "conf": "",
+     "ml": "raspberry-pi-4-model-b-4gb"
+    },
+    {
+     "item": "Cartão microSD 32 GB classe 10",
+     "usa": "1",
+     "comprar": "1",
+     "n": 1,
+     "para": "Sistema do Raspberry Pi.",
+     "faixa": [
+      25,
+      50
+     ],
+     "base": "cada",
+     "conf": "",
+     "ml": "cartao-micro-sd-32gb-classe-10"
+    },
+    {
+     "item": "Kit de dissipadores adesivos para Raspberry Pi 4",
+     "usa": "1 kit",
+     "comprar": "1 kit",
+     "n": 1,
+     "para": "O Raspberry Pi fica fechado dentro do corpo, que é de PLA e não tem abertura de ventilação. Os dissipadores colados nos chips baixam a temperatura.",
+     "faixa": [
+      8,
+      25
+     ],
+     "base": "kit",
+     "conf": "",
+     "ml": "dissipador-raspberry-pi-4-kit",
+     "nc": "altura do dissipador: sobre o Raspberry Pi sobram cerca de 19 mm até a bandeja de cima"
+    },
+    {
+     "item": "Servo MG996R de 180° (posição, não o de rotação contínua)",
+     "usa": "2",
+     "comprar": "2",
+     "n": 2,
+     "para": "Um gira a cabeça para os lados (pan) e o outro inclina (tilt).",
+     "faixa": [
+      30,
+      75
+     ],
+     "base": "cada",
+     "conf": "R$ 70,45",
+     "ml": "servo-mg996r-180-graus",
+     "nc": "espessura e furos das abas, diâmetro e espessura do horn redondo"
+    },
+    {
+     "item": "Micro servo de 9 g, de 180°: MG90S ou SG90 (posição, não o de rotação contínua)",
+     "usa": "1",
+     "comprar": "1",
+     "n": 1,
+     "para": "Abre a boca. Prefira o MG90S, que tem engrenagens de metal.",
+     "faixa": [
+      15,
+      45
+     ],
+     "base": "cada",
+     "conf": "R$ 17,71 (SG90) a R$ 41,84 (MG90S)",
+     "ml": "micro-servo-mg90s-180-graus",
+     "nc": "espessura da aba, distância entre os furos e tamanho do horn de 1 braço"
+    },
+    {
+     "item": "Extensão de servo de 30 cm (cabo extensor de 3 fios, macho-fêmea)",
+     "usa": "2",
+     "comprar": "2",
+     "n": 2,
+     "para": "Uma leva o cabo do servo da boca até o Arduino; a outra é para o servo de tilt, se o cabo dele não alcançar.",
+     "faixa": [
+      5,
+      15
+     ],
+     "base": "cada",
+     "conf": "",
+     "ml": "extensao-servo-30cm",
+     "nc": "comprimento do cabo de fábrica de cada servo (de 15 a 30 cm): meça o caminho antes de fechar"
+    },
+    {
+     "item": "Motor DC 3 a 6 V com caixa de redução 1:48 (motor TT amarelo)",
+     "usa": "2",
+     "comprar": "2",
+     "n": 2,
+     "para": "Tração: um em cada roda. Se vier sem fios, você solda 2 fios em cada um no preparo 1.",
+     "faixa": [
+      7,
+      20
+     ],
+     "base": "cada",
+     "conf": "R$ 9,01",
+     "ml": "motor-dc-3-6v-caixa-de-reducao-48-1",
+     "nc": "distância entre os 2 furos de trás (o rasgo aceita de 12,3 a 17,6 mm) e espessura da caixa (18,6 mm no modelo)"
+    },
+    {
+     "item": "Roda de 65 mm para motor TT",
+     "usa": "2",
+     "comprar": "2",
+     "n": 2,
+     "para": "Encaixa por pressão no eixo do motor. Muitas lojas vendem o par motor + roda.",
+     "faixa": [
+      5,
+      15
+     ],
+     "base": "cada",
+     "conf": "R$ 20,54 o kit de 1 motor com 1 roda de 64 mm",
+     "ml": "roda-65mm-motor-dc-arduino",
+     "nc": "diâmetro (65 mm no modelo; há rodas de 64 a 68 mm) e largura (até 27 mm)"
+    },
+    {
+     "item": "Esfera de aço de 16 mm (ou bolinha de gude, medida)",
+     "usa": "2",
+     "comprar": "2",
+     "n": 2,
+     "para": "Apoios da frente, um sob cada pata. Cada esfera gira solta num soquete, presa por uma capa.",
+     "faixa": [
+      3,
+      10
+     ],
+     "base": "cada",
+     "conf": "",
+     "ml": "esfera-de-aco-16mm",
+     "nc": "diâmetro: o soquete é para 16 mm; bolinha de gude varia de 14 a 25 mm"
+    },
+    {
+     "item": "Driver de motores L298N (ponte H dupla)",
+     "usa": "1",
+     "comprar": "1",
+     "n": 1,
+     "para": "Liga e inverte os 2 motores das rodas, a mando do Arduino.",
+     "faixa": [
+      20,
+      35
+     ],
+     "base": "cada",
+     "conf": "R$ 21,51 a R$ 29,18",
+     "ml": "driver-ponte-h-l298n",
+     "nc": "distância entre os 4 furos (37 mm no modelo); se não bater, prenda com fita dupla-face"
+    },
+    {
+     "item": "Arduino Uno R3",
+     "usa": "1",
+     "comprar": "1",
+     "n": 1,
+     "para": "Comanda os 3 servos e os 2 motores. Vai na bandeja de cima, dentro do corpo.",
+     "faixa": [
+      43,
+      90
+     ],
+     "base": "cada",
+     "conf": "R$ 43,28 a R$ 89,95",
+     "ml": "arduino-uno-r3",
+     "tem": true
+    },
+    {
+     "item": "Sensor Shield V5.0 para Arduino",
+     "usa": "1",
+     "comprar": "1",
+     "n": 1,
+     "para": "Encaixa em cima do Uno e dá os conectores de 3 pinos dos servos, com alimentação separada pelo borne azul. O Arduino recebe os 5,1 V pelo pino + do conector COM do shield.",
+     "faixa": [
+      11,
+      35
+     ],
+     "base": "cada",
+     "conf": "R$ 18,13",
+     "ml": "sensor-shield-v5-arduino",
+     "nc": "pela foto da loja, o conector COM tem 4 pinos em pé, marcados TX, RX, − e +; há versões do shield com os pinos em outro lugar. Meça antes de ligar"
+    },
+    {
+     "item": "Resistor de 1 kΩ, 1/4 W",
+     "usa": "3",
+     "comprar": "1 pacote de 10",
+     "n": 1,
+     "para": "Divisor de tensão na serial: baixa os 5 V do Arduino para os 3,3 V que o Raspberry Pi aceita. Os 3 ficam presos na barra de emenda.",
+     "faixa": [
+      1,
+      5
+     ],
+     "base": "pacote",
+     "conf": "",
+     "ml": "resistor-1k-1-4w"
+    }
+   ]
+  },
+  {
+   "bloco": "Energia",
+   "itens": [
+    {
+     "item": "Bateria 18650 de íon de lítio 3,7 V (célula solta)",
+     "usa": "2",
+     "comprar": "2",
+     "n": 2,
+     "para": "Pack 2S: 7,4 V nominais (8,4 V cheio). Compre as duas iguais, novas e de marca conhecida.",
+     "faixa": [
+      13,
+      45
+     ],
+     "base": "cada",
+     "conf": "R$ 26,08 o kit com 2",
+     "ml": "bateria-18650-3.7v"
+    },
+    {
+     "item": "Suporte para 2 baterias 18650 lado a lado, com fios",
+     "usa": "1",
+     "comprar": "1",
+     "n": 1,
+     "para": "Segura as 2 células em série. Fica no piso do chassi e sai por trás.",
+     "faixa": [
+      5,
+      15
+     ],
+     "base": "cada",
+     "conf": "R$ 6,22",
+     "ml": "suporte-2-baterias-18650",
+     "nc": "a baia do chassi aceita até 78 × 41 × 22 mm"
+    },
+    {
+     "item": "Porta-fusível de fio para fusível de vidro 5 × 20 mm, com fusível retardado de 3 A (marcado T3A ou T3,15A)",
+     "usa": "1",
+     "comprar": "1 (e 1 fusível de reserva)",
+     "n": 1,
+     "para": "No fio positivo, logo depois do suporte das baterias. É de 3 A porque a chave é de 3 A: numa sobrecarga, o fusível abre antes de a chave esquentar. É retardado porque a partida dos servos e a carga do capacitor dão picos de uma fração de segundo, que queimariam um fusível rápido sem haver defeito. Não tem lugar modelado: fica solto no fio.",
+     "faixa": [
+      4,
+      12
+     ],
+     "base": "conjunto",
+     "conf": "",
+     "ml": "porta-fusivel-5x20-fio"
+    },
+    {
+     "item": "Placa de proteção BMS 2S 10 A (modelo 10A2S, ~24 × 11 mm)",
+     "usa": "1",
+     "comprar": "1",
+     "n": 1,
+     "para": "Corta a descarga funda, a sobrecarga e o curto. Vai soldada nos fios da bateria, presa com fita dupla-face.",
+     "faixa": [
+      8,
+      20
+     ],
+     "base": "cada",
+     "conf": "",
+     "ml": "bms-2s-10a-18650",
+     "nc": "nome impresso das ilhas de solda. Na placa da loja consultada só o verso tem nomes: B+, B1 (meio), B− e C−. Pela foto, a C− é a saída negativa (o papel da P− de outras placas) e a saída positiva é a própria B+; é leitura de foto, confira com o multímetro"
+    },
+    {
+     "item": "Carregador USB-C 2S/3S com balanceamento (LX-USC-V2)",
+     "usa": "1",
+     "comprar": "1",
+     "n": 1,
+     "para": "Carrega as duas células sem abrir o robô. Fica em pé dentro do rabo, com a boca para baixo: o plugue entra por baixo do rabo.",
+     "faixa": [
+      15,
+      30
+     ],
+     "base": "cada",
+     "conf": "R$ 17,90",
+     "ml": "carregador-usb-c-2s-18650-balanceamento",
+     "nc": "altura da boca USB-C no canal de baixo do rabo"
+    },
+    {
+     "item": "Conversor step-down LM2596 ajustável (placa azul, 3 A)",
+     "usa": "1",
+     "comprar": "1",
+     "n": 1,
+     "para": "Baixa a tensão do pack para os 5 V do Raspberry Pi e do Arduino. Ajuste para 5,1 V com o multímetro ANTES de ligar qualquer placa. A placa aguenta cerca de 2 A contínuos sem dissipador. O XL4015 não serve aqui: pede no mínimo 8 V.",
+     "faixa": [
+      8,
+      20
+     ],
+     "base": "cada",
+     "conf": "R$ 10,22",
+     "ml": "modulo-step-down-lm2596",
+     "nc": "os 2 A contínuos são o valor usual desta placa, sem ficha que confirme"
+    },
+    {
+     "item": "UBEC 6 V 3 A (Hobbywing UBEC 3A 2-6S ou equivalente)",
+     "usa": "1",
+     "comprar": "1",
+     "n": 1,
+     "para": "Dá os 6 V dos 3 servos, separados dos 5 V das placas.",
+     "faixa": [
+      25,
+      60
+     ],
+     "base": "cada",
+     "conf": "",
+     "ml": "ubec-3a-5v-6v-hobbywing"
+    },
+    {
+     "item": "Capacitor eletrolítico 1000 µF 16 V",
+     "usa": "1",
+     "comprar": "1",
+     "n": 1,
+     "para": "No borne de 6 V dos servos: segura o pico de corrente da partida.",
+     "faixa": [
+      1,
+      4
+     ],
+     "base": "cada",
+     "conf": "R$ 2,33",
+     "ml": "capacitor-eletrolitico-1000uf-16v"
+    },
+    {
+     "item": "Chave gangorra KCD11-101 de 3 A (recorte de 13,5 × 9 mm)",
+     "usa": "1",
+     "comprar": "1",
+     "n": 1,
+     "para": "Liga e desliga. Encaixa por baixo do piso, atrás do motor direito.",
+     "faixa": [
+      3,
+      8
+     ],
+     "base": "cada",
+     "conf": "R$ 3,74 a R$ 5,40 (modelos KCD1; confira o recorte)",
+     "ml": "chave-gangorra-kcd11",
+     "nc": "espessura de painel que a trava aceita"
+    },
+    {
+     "item": "Fio flexível 22 AWG (0,33 mm²): vermelho, preto e uma terceira cor",
+     "usa": "cerca de 2 m de vermelho, 2 m de preto e 30 cm de amarelo",
+     "comprar": "3 m de vermelho, 3 m de preto, 1 m de amarelo",
+     "n": 1,
+     "para": "Toda a parte de energia e os fios dos 2 motores. O amarelo é o 3º fio, do ponto do meio do pack.",
+     "faixa": [
+      12,
+      30
+     ],
+     "base": "total",
+     "conf": "R$ 22,40 (5 m bicolor)",
+     "ml": "fio-flexivel-22awg-vermelho-preto"
+    },
+    {
+     "item": "Barra de bornes de emenda (tipo sindal) de 12 vias, para fio fino",
+     "usa": "3 vias (bornes 1, 2 e 3)",
+     "comprar": "1 barra de 12 vias; corte um pedaço com 3",
+     "n": 1,
+     "para": "Fica dentro do corpo e evita soldar com o robô montado. Borne 1: os 5,1 V. Borne 2: o negativo. Borne 3: o fio azul da serial e os resistores do divisor. De um lado entram os fios que vêm do conversor; do outro, os que vão ao Raspberry Pi, ao Arduino e ao driver. Não tem lugar modelado: fica solta.",
+     "faixa": [
+      3,
+      10
+     ],
+     "base": "barra",
+     "conf": "",
+     "ml": "barra-bornes-sindal-12-vias"
+    },
+    {
+     "item": "Jumpers Dupont fêmea-fêmea de 20 cm (kit com 40)",
+     "usa": "16 fios",
+     "comprar": "1 kit de 40",
+     "n": 1,
+     "para": "Energia e serial do Raspberry Pi, energia do Arduino e os 6 sinais do driver dos motores.",
+     "faixa": [
+      8,
+      20
+     ],
+     "base": "o kit",
+     "conf": "",
+     "ml": "jumper-dupont-femea-femea-20cm"
+    }
+   ]
+  },
+  {
+   "bloco": "Fixação",
+   "itens": [
+    {
+     "item": "Inserto de latão M3 a quente (para furo de 4,0 mm, até 5,7 mm de comprimento)",
+     "usa": "18",
+     "comprar": "1 pacote de 30 ou mais (o de 20 deixa só 2 de sobra)",
+     "n": 1,
+     "para": "A rosca de metal das peças. Onde vai cada um está na tabela de parafusos.",
+     "faixa": [
+      15,
+      40
+     ],
+     "base": "pacote",
+     "conf": "",
+     "ml": "inserto-latao-m3-impressao-3d"
+    },
+    {
+     "item": "Parafuso M3 × 8 mm, cabeça cilíndrica Allen",
+     "usa": "14",
+     "comprar": "2 kits de 10",
+     "n": 2,
+     "para": "Driver dos motores, Arduino, capas das esferas e gola.",
+     "faixa": [
+      3,
+      8
+     ],
+     "base": "kit com 10",
+     "conf": "R$ 6,14 o kit com 10 (tipo de cabeça não informado)",
+     "ml": "parafuso-allen-m3x8"
+    },
+    {
+     "item": "Parafuso M3 × 10 mm, cabeça cilíndrica Allen",
+     "usa": "9",
+     "comprar": "1 kit de 10",
+     "n": 1,
+     "para": "Corpo, porta traseira, rabo, mesa da cabeça e pino do berço. Tem de ser Allen de cabeça cilíndrica: no corpo e na porta a cabeça fica no fundo de um furo.",
+     "faixa": [
+      3,
+      8
+     ],
+     "base": "kit com 10",
+     "conf": "R$ 3,55 o kit com 10 (Phillips)",
+     "ml": "parafuso-allen-m3x10"
+    },
+    {
+     "item": "Parafuso M3 × 12 mm",
+     "usa": "11",
+     "comprar": "2 kits de 10",
+     "n": 2,
+     "para": "4 em cada servo MG996R, com porca, e 3 que prendem a mesa da cabeça no crânio.",
+     "faixa": [
+      3,
+      8
+     ],
+     "base": "kit com 10",
+     "conf": "",
+     "ml": "parafuso-m3x12"
+    },
+    {
+     "item": "Parafuso M3 × 30 mm",
+     "usa": "4",
+     "comprar": "1 kit de 10",
+     "n": 1,
+     "para": "Prende os 2 motores das rodas. Com M3 × 25 a porca pega só 1,4 mm de rosca: são 18,6 mm de motor mais 5 mm de parede.",
+     "faixa": [
+      3,
+      10
+     ],
+     "base": "o kit de 10",
+     "conf": "R$ 3,44 o kit com 10 de M3 × 25 (o de 30 mm não foi visto)",
+     "ml": "parafuso-m3x30"
+    },
+    {
+     "item": "Porca sextavada M3",
+     "usa": "12",
+     "comprar": "1 kit de 20 ou mais",
+     "n": 1,
+     "para": "Nos parafusos dos 2 servos MG996R e dos 2 motores.",
+     "faixa": [
+      3,
+      10
+     ],
+     "base": "o kit",
+     "conf": "",
+     "ml": "porca-sextavada-m3"
+    },
+    {
+     "item": "Parafuso M2,5 × 8 mm auto-atarraxante",
+     "usa": "4",
+     "comprar": "1 kit",
+     "n": 1,
+     "para": "Prende o Raspberry Pi na bandeja.",
+     "faixa": [
+      5,
+      15
+     ],
+     "base": "o kit",
+     "conf": "",
+     "ml": "parafuso-m2.5x8-auto-atarraxante"
+    },
+    {
+     "item": "Parafuso M2 × 8 mm auto-atarraxante",
+     "usa": "8",
+     "comprar": "1 kit de 10",
+     "n": 1,
+     "para": "4 em cada horn redondo: prendem o garfo no servo de pan e o berço no servo de tilt.",
+     "faixa": [
+      3,
+      8
+     ],
+     "base": "kit com 10",
+     "conf": "R$ 3,31 o kit com 10 (confira se é auto-atarraxante)",
+     "ml": "parafuso-m2x8-auto-atarraxante",
+     "nc": "diâmetro dos furos do horn redondo"
+    },
+    {
+     "item": "Abraçadeira de nylon de 3,6 mm de largura (150 a 200 mm)",
+     "usa": "3",
+     "comprar": "1 pacote de 100",
+     "n": 1,
+     "para": "Prendem o conversor, o UBEC e a placa de proteção nos berços do chassi.",
+     "faixa": [
+      8,
+      20
+     ],
+     "base": "pacote",
+     "conf": "",
+     "ml": "abracadeira-nylon-3.6x200"
+    },
+    {
+     "item": "Fita dupla-face de espuma",
+     "usa": "cerca de 15 cm",
+     "comprar": "1 rolo",
+     "n": 1,
+     "para": "Segura o suporte das baterias no piso.",
+     "faixa": [
+      8,
+      20
+     ],
+     "base": "rolo",
+     "conf": "",
+     "ml": "fita-dupla-face-espuma"
+    },
+    {
+     "item": "Cola instantânea (cianoacrilato)",
+     "usa": "algumas gotas",
+     "comprar": "1 tubo pequeno",
+     "n": 1,
+     "para": "Cola as peças coloridas que não têm parafuso nem pressão.",
+     "faixa": [
+      5,
+      20
+     ],
+     "base": "o tubo",
+     "conf": "",
+     "ml": "cola-instantanea-cianoacrilato"
+    }
+   ]
+  },
+  {
+   "bloco": "Filamento",
+   "filamento": true,
+   "itens": [
+    {
+     "item": "Filamento PETG de 1,75 mm, rolo de 1 kg",
+     "usa": "281 g, em 2 cores sugeridas (grafite e amarelo)",
+     "comprar": "1 rolo de qualquer cor (ou um rolo de cada cor sugerida)",
+     "n": 1,
+     "para": "As peças que fazem força: chassi, bandejas, garfo, berço, mesa da cabeça e capa da esfera. A cor é só sugestão; o material não: mantenha PETG.",
+     "faixa": [
+      90,
+      150
+     ],
+     "base": "rolo",
+     "conf": "",
+     "ml": "filamento-petg-1.75mm-1kg",
+     "confere": {
+      "material": "PETG",
+      "g": 281,
+      "cores": 2
+     }
+    },
+    {
+     "item": "Filamento PLA de 1,75 mm, rolo de 1 kg",
+     "usa": "848 g, em 7 cores sugeridas (laranja, verde-bandana, marrom, branco, cinza, preto e ciano)",
+     "comprar": "1 rolo de 1 kg, se for tudo de uma cor só; nas cores sugeridas, 1 rolo da cor do corpo e sobras ou rolos pequenos das outras",
+     "n": 1,
+     "para": "As peças que vestem o robô: corpo, cabeça, olhos e as peças coloridas. A cor é só sugestão.",
+     "faixa": [
+      80,
+      140
+     ],
+     "base": "rolo",
+     "conf": "",
+     "ml": "filamento-pla-1.75mm-1kg",
+     "confere": {
+      "material": "PLA",
+      "g": 848,
+      "cores": 7
+     }
+    }
+   ]
+  },
+  {
+   "bloco": "Ferramentas e material de solda (se você não tiver)",
+   "ferramenta": true,
+   "itens": [
+    {
+     "item": "Ferro de solda de 30 a 60 W, de preferência com ajuste de temperatura",
+     "usa": "1",
+     "comprar": "1",
+     "n": 1,
+     "para": "Solda os fios de energia e assenta os 18 insertos a quente.",
+     "faixa": [
+      40,
+      150
+     ],
+     "base": "cada",
+     "conf": "",
+     "ml": "ferro-de-solda-60w-temperatura-ajustavel"
+    },
+    {
+     "item": "Ponta de ferro de solda para inserto M3 (opcional)",
+     "usa": "1",
+     "comprar": "1",
+     "n": 1,
+     "para": "Guia o inserto reto no furo. A ponta cônica comum também serve: apoie a ponta dentro do inserto e empurre devagar.",
+     "faixa": [
+      15,
+      40
+     ],
+     "base": "cada",
+     "conf": "",
+     "ml": "ponta-ferro-de-solda-inserto-m3",
+     "opcional": true
+    },
+    {
+     "item": "Estanho de solda com fluxo, 0,8 a 1 mm (tubo pequeno)",
+     "usa": "menos de 1 m",
+     "comprar": "1 tubo",
+     "n": 1,
+     "para": "Todas as emendas de fio e as ilhas da placa de proteção.",
+     "faixa": [
+      8,
+      25
+     ],
+     "base": "tubo",
+     "conf": "",
+     "ml": "estanho-solda-1mm-tubo"
+    },
+    {
+     "item": "Tubo termo-retrátil de 2 a 3 mm e de 5 a 6 mm (ou fita isolante)",
+     "usa": "cerca de 30 cm de cada",
+     "comprar": "1 m de cada",
+     "n": 1,
+     "para": "Isola cada emenda de fio. Nenhum metal pode ficar à mostra perto da bateria.",
+     "faixa": [
+      5,
+      20
+     ],
+     "base": "total",
+     "conf": "",
+     "ml": "tubo-termo-retratil-3mm"
+    },
+    {
+     "item": "Multímetro",
+     "usa": "1",
+     "comprar": "1",
+     "n": 1,
+     "para": "Ajusta o conversor em 5,1 V, confere os 6 V do UBEC e a polaridade antes de ligar as placas.",
+     "faixa": [
+      40,
+      100
+     ],
+     "base": "cada",
+     "conf": "",
+     "ml": "multimetro-digital"
+    },
+    {
+     "item": "Chave de fenda de precisão de 2 mm e chave Phillips pequena (PH0 ou PH1)",
+     "usa": "1",
+     "comprar": "1",
+     "n": 1,
+     "para": "A de fenda gira o parafuso de ajuste do LM2596 e aperta os bornes. A Phillips aperta os parafusos M2 dos horns, o parafuso central dos servos e os parafusos de cabeça Phillips.",
+     "faixa": [
+      10,
+      35
+     ],
+     "base": "cada",
+     "conf": "",
+     "ml": "jogo-chaves-precisao-fenda-phillips"
+    },
+    {
+     "item": "Alicate de corte pequeno",
+     "usa": "1",
+     "comprar": "1",
+     "n": 1,
+     "para": "Corta os fios, as pernas dos resistores e a sobra das abraçadeiras.",
+     "faixa": [
+      15,
+      40
+     ],
+     "base": "cada",
+     "conf": "",
+     "ml": "alicate-de-corte-eletronica"
+    },
+    {
+     "item": "Descascador de fio (ou um estilete, com cuidado)",
+     "usa": "1",
+     "comprar": "1",
+     "n": 1,
+     "para": "Tira a capa das pontas dos fios sem cortar os fiozinhos de cobre.",
+     "faixa": [
+      15,
+      45
+     ],
+     "base": "cada",
+     "conf": "",
+     "ml": "descascador-de-fios"
+    },
+    {
+     "item": "Pinça de ponta fina",
+     "usa": "1",
+     "comprar": "1",
+     "n": 1,
+     "para": "Segura os resistores na hora de soldar e alcança os conectores dentro do corpo.",
+     "faixa": [
+      5,
+      20
+     ],
+     "base": "cada",
+     "conf": "",
+     "ml": "pinca-ponta-fina-eletronica"
+    },
+    {
+     "item": "Chave Allen de 2,5 mm longa (haste de 50 mm ou mais)",
+     "usa": "1",
+     "comprar": "1",
+     "n": 1,
+     "para": "Aperta os parafusos Allen M3, inclusive os 4 de trás, que ficam no fundo de um furo da casca.",
+     "faixa": [
+      8,
+      25
+     ],
+     "base": "cada",
+     "conf": "",
+     "ml": "chave-allen-2.5mm-longa"
+    },
+    {
+     "item": "Paquímetro",
+     "usa": "1",
+     "comprar": "1",
+     "n": 1,
+     "para": "Confere as medidas marcadas como NC antes de imprimir.",
+     "faixa": [
+      25,
+      80
+     ],
+     "base": "cada",
+     "conf": "",
+     "ml": "paquimetro-digital-150mm"
+    },
+    {
+     "item": "Fonte USB-C de 5 V e 3 A (15 W), com cabo USB-C",
+     "usa": "1",
+     "comprar": "1",
+     "n": 1,
+     "para": "Carrega o pack pela boca USB-C do carregador e liga o Raspberry Pi na bancada, no preparo 4. Para o Pi 4 ela tem de entregar 5 V e 3 A: muita fonte de celular não chega a isso (leia a etiqueta). A fonte oficial do Raspberry Pi 4, de 5,1 V e 3 A, é a opção segura.",
+     "faixa": [
+      25,
+      80
+     ],
+     "base": "cada",
+     "conf": "",
+     "ml": "fonte-usb-c-5v-3a-raspberry-pi-4"
+    },
+    {
+     "item": "Cabo USB A-B (o de impressora) e um computador com a Arduino IDE",
+     "usa": "1",
+     "comprar": "1",
+     "n": 1,
+     "para": "Grava o sketch no Arduino Uno, com a bandeja dele fora do robô.",
+     "faixa": [
+      8,
+      25
+     ],
+     "base": "cada",
+     "conf": "",
+     "ml": "cabo-usb-a-b-arduino-uno"
+    },
+    {
+     "item": "Leitor de cartão microSD (USB)",
+     "usa": "1",
+     "comprar": "1",
+     "n": 1,
+     "para": "Grava o sistema do Raspberry Pi no cartão, pelo seu computador. Muitos notebooks já têm a entrada.",
+     "faixa": [
+      10,
+      30
+     ],
+     "base": "cada",
+     "conf": "",
+     "ml": "leitor-cartao-micro-sd-usb"
+    }
+   ]
+  }
+ ],
+ "fase2": [
+  {
+   "item": "Raspberry Pi Camera Module 3 Wide (placa de 25 × 24 mm)",
+   "qtd": "1",
+   "onde": "Atrás da pupila do olho direito: a placa entra por trás do olho e encosta na íris, em 4 furos para parafuso M2. A lente olha pelo furo de 8,5 mm da pupila.",
+   "faixa": [
+    200,
+    400
+   ],
+   "conf": "",
+   "ml": "raspberry-pi-camera-module-3-wide",
+   "nc": "furos da placa e altura da lente"
+  },
+  {
+   "item": "Cabo flat de câmera de 50 cm (no Raspberry Pi 5, o cabo de 22 para 15 vias)",
+   "qtd": "1",
+   "onde": "Sai pela janela de trás do olho, desce pela face chata da coluna do pescoço e pelo rasgo do garfo, até o Raspberry Pi. Deixe uma barriga em S dentro da gola: a cabeça gira 60° para cada lado.",
+   "faixa": [
+    15,
+    45
+   ],
+   "conf": "",
+   "ml": "cabo-flat-camera-raspberry-pi-50cm",
+   "nc": "comprimento: os 50 cm são estimativa pelo modelo"
+  },
+  {
+   "item": "Parafuso M2 × 6 mm auto-atarraxante",
+   "qtd": "4",
+   "onde": "Prende a câmera nos 4 furos da íris direita.",
+   "faixa": [
+    3,
+    8
+   ],
+   "conf": "R$ 5,98 o kit com 10",
+   "ml": "parafuso-m2x6-auto-atarraxante"
+  },
+  {
+   "item": "Sensor de distância ToF VL53L1X (placa de cerca de 25 × 11 mm)",
+   "qtd": "3",
+   "onde": "1 atrás da pupila do olho esquerdo (janela de 6 mm): mede a distância do que a cabeça está olhando. 2 nas laterais, atrás do miolo escuro dos 2 aros cianos das ancas (janela de 5 a 6 mm).",
+   "faixa": [
+    30,
+    110
+   ],
+   "conf": "R$ 102,32 (VL53L1X, até 4 m); R$ 31,81 (VL53L0X, até 2 m)",
+   "ml": "sensor-distancia-vl53l1x",
+   "nc": "tamanho da placa e lugar da janela: meça antes de imprimir o olho esquerdo"
+  },
+  {
+   "item": "Microfone I2S INMP441",
+   "qtd": "2",
+   "onde": "Atrás das 2 narinas: cada narina é um furo de som de 2 mm e a placa redonda encaixa por dentro.",
+   "faixa": [
+    15,
+    55
+   ],
+   "conf": "R$ 54,26",
+   "ml": "microfone-inmp441-i2s",
+   "nc": "placa redonda de 14 mm de diâmetro: meça a sua"
+  },
+  {
+   "item": "Alto-falante de 40 mm, 3 W",
+   "qtd": "1",
+   "onde": "Em cima da mesa da cabeça, virado para baixo. O som sai pela fresta da boca e pelo vão do pescoço: não há grade à mostra.",
+   "faixa": [
+    7,
+    20
+   ],
+   "conf": "",
+   "ml": "alto-falante-40mm-3w-4-ohms",
+   "nc": "diâmetro e profundidade"
+  },
+  {
+   "item": "Amplificador de áudio pequeno (PAM8403 ou MAX98357A)",
+   "qtd": "1",
+   "onde": "Sem lugar modelado ainda: vai solto dentro do corpo, com fita dupla-face.",
+   "faixa": [
+    5,
+    35
+   ],
+   "conf": "R$ 5,47 a R$ 11,34 (PAM8403)",
+   "ml": "amplificador-pam8403"
+  },
+  {
+   "item": "Sensor de movimento IMU MPU-6050",
+   "qtd": "1",
+   "onde": "Sem lugar modelado neste robô: fita dupla-face no piso do chassi, perto do eixo das rodas.",
+   "faixa": [
+    15,
+    35
+   ],
+   "conf": "R$ 34,09",
+   "ml": "mpu-6050-gy-521"
+  }
+ ],
+ "rotulos": {
+  "rabo": "Rabo",
+  "mao-dir": "Mão direita",
+  "mao-esq": "Mão esquerda",
+  "avental": "Ponta da bandana",
+  "aro": "Aro da anca",
+  "miolo": "Miolo do aro",
+  "corpo": "Corpo (bacia)",
+  "porta": "Porta traseira",
+  "gola": "Gola-bandana",
+  "cranio": "Crânio",
+  "mandibula": "Mandíbula",
+  "mesa-cabeca": "Mesa da cabeça",
+  "olho": "Olho direito",
+  "olho-esq": "Olho esquerdo",
+  "iris": "Íris direita",
+  "iris-esq": "Íris esquerda",
+  "pupila": "Pupila direita",
+  "pupila-esq": "Pupila esquerda",
+  "focinho": "Focinho",
+  "orelha-dir": "Orelha direita",
+  "orelha-esq": "Orelha esquerda",
+  "topete": "Topete",
+  "chassi": "Chassi",
+  "capa-esfera": "Capa da esfera",
+  "bandeja-pi": "Bandeja do Raspberry Pi",
+  "bandeja-uno": "Bandeja do Arduino",
+  "garfo-pescoco": "Garfo do pescoço",
+  "berco-tilt": "Berço do tilt",
+  "teste-encaixe": "Cupom de teste"
+ },
+ "parafusos": [
+  {
+   "onde": "Motores das rodas nas paredes do chassi",
+   "qtd": 4,
+   "tipo": "M3 × 30 + porca",
+   "rosca": "porca do lado de dentro da parede"
+  },
+  {
+   "onde": "Servo de pan no deck",
+   "qtd": 4,
+   "tipo": "M3 × 12 + porca",
+   "rosca": "porca por baixo do deck"
+  },
+  {
+   "onde": "Servo de tilt no berço",
+   "qtd": 4,
+   "tipo": "M3 × 12 + porca",
+   "rosca": "porca por dentro do berço"
+  },
+  {
+   "onde": "Pino do berço, no lado esquerdo do garfo",
+   "qtd": 1,
+   "tipo": "M3 × 10",
+   "rosca": "inserto no garfo"
+  },
+  {
+   "onde": "Driver L298N na travessa",
+   "qtd": 4,
+   "tipo": "M3 × 8",
+   "rosca": "direto no plástico (furo de 2,7 mm)"
+  },
+  {
+   "onde": "Capas das 2 esferas de apoio (por baixo)",
+   "qtd": 4,
+   "tipo": "M3 × 8",
+   "rosca": "inserto no chassi"
+  },
+  {
+   "onde": "Corpo nos postes do chassi (por trás, embaixo)",
+   "qtd": 2,
+   "tipo": "M3 × 10",
+   "rosca": "inserto nos postes do chassi"
+  },
+  {
+   "onde": "Gola nas orelhas da torre (por cima)",
+   "qtd": 2,
+   "tipo": "M3 × 8",
+   "rosca": "inserto nas orelhas da torre"
+  },
+  {
+   "onde": "Porta traseira (por trás, embaixo)",
+   "qtd": 2,
+   "tipo": "M3 × 10",
+   "rosca": "inserto nos postes do chassi"
+  },
+  {
+   "onde": "Rabo na porta (por dentro da porta)",
+   "qtd": 2,
+   "tipo": "M3 × 10",
+   "rosca": "inserto no rabo"
+  },
+  {
+   "onde": "Arduino Uno na bandeja",
+   "qtd": 4,
+   "tipo": "M3 × 8",
+   "rosca": "direto no plástico (furo de 2,7 mm)"
+  },
+  {
+   "onde": "Raspberry Pi na bandeja",
+   "qtd": 4,
+   "tipo": "M2,5 × 8 auto-atarraxante",
+   "rosca": "direto no plástico (furo de 2,2 mm)"
+  },
+  {
+   "onde": "Mesa da cabeça no crânio (por baixo)",
+   "qtd": 3,
+   "tipo": "M3 × 12",
+   "rosca": "inserto no crânio"
+  },
+  {
+   "onde": "Mesa da cabeça na coluna do berço (por cima)",
+   "qtd": 2,
+   "tipo": "M3 × 10",
+   "rosca": "inserto no topo do berço"
+  },
+  {
+   "onde": "Horn redondo dos 2 servos MG996R",
+   "qtd": 8,
+   "tipo": "M2 × 8 auto-atarraxante",
+   "rosca": "nos furos do horn"
+  },
+  {
+   "onde": "Micro servo da boca",
+   "qtd": 2,
+   "tipo": "parafuso que vem com o servo",
+   "rosca": "direto no plástico (furo de 1,7 mm)"
+  }
+ ],
+ "insertos": 18,
+ "passos_nota": {
+  "motor direito": "2 × M3 × 30 com porca, pelos rasgos da parede. A ponta de dentro do eixo passa pelo furo da parede. Leve os 2 fios do motor pelo furo de 6 mm, à frente dele, até o lugar do driver.",
+  "motor esquerdo": "Igual ao direito.",
+  "BMS 2S (no piso, sob o lugar do L298N)": "1 abraçadeira. A placa de proteção já está soldada no chicote e fica deitada no piso.",
+  "chave (por baixo do piso)": "Já está no lugar desde o preparo 1: encaixada por baixo, com os 2 fios passando pelo recorte.",
+  "roda direita": "Encaixa por pressão no eixo do motor. Se a roda trouxer parafuso, aperte-o pelo centro.",
+  "roda esquerda": "Igual à direita.",
+  "driver L298N (pela frente da torre)": "Antes, tire do módulo os 3 jumpers: ENA, ENB e o do regulador de 5 V. 4 × M3 × 8 na travessa. Aperte nos bornes: os 2 fios de cada motor, o vermelho e o preto do chicote (alimentação dos motores e GND) e o fio de 5,1 V que vem do borne 1 da barra de emenda. Encaixe os 6 jumpers de sinal nos pinos ENA, IN1, IN2, IN3, IN4 e ENB e deixe as outras pontas soltas, marcadas com fita.",
+  "servo de pan": "4 × M3 × 12 com porca, eixo para cima. O servo já está em 90° (preparo 2): não gire o eixo com a mão.",
+  "berço + servo de tilt": "Na bancada: servo de tilt em pé no berço, 4 × M3 × 12 com porca, e o horn redondo encaixado no eixo. Desça o berço entre os montantes do garfo até o horn assentar no rebaixo do montante direito (abra os montantes 1 mm com os dedos). Prenda o horn por FORA, com 4 × M2 × 8 pelos rasgos e o parafuso central do servo pelo furo de 9 mm. No montante esquerdo entra o M3 × 10, pelo inserto: a ponta dele é o pino do berço. Aperte até encostar e volte um quarto de volta, porque a cabeça inclina nele. Passe o cabo do servo pela face chata da coluna e pelo rasgo da base do garfo.",
+  "bandeja do Pi": "Na bancada: Raspberry Pi na bandeja com 4 × M2,5 × 8, blocos USB para trás, cartão microSD já gravado (preparo 4) e dissipadores colados. Encaixe os conectores ANTES de deslizar a bandeja: vermelhos nos pinos 2 e 4, pretos nos pinos 6 e 9, verde no 32, azul no 33 e preto da serial no 34. Dobre os fios logo acima dos conectores: sobre o Pi sobram cerca de 19 mm. É o trilho de baixo.",
+  "ABRIR: bandeja do Uno sai": "Desencaixe os conectores do shield, marcando cada um com fita e o nome do pino, e solte do borne azul os fios do UBEC. Puxe a bandeja para trás.",
+  "ABRIR: bandeja do Pi sai": "Desencaixe os conectores dos pinos do Raspberry Pi e puxe a bandeja para trás.",
+  "chassi": "Antes deste passo, faça os 4 preparos da bancada (energia ajustada, 3 servos em 90°, cabos do Raspberry Pi e divisor prontos, cartão gravado) e assente os 18 insertos a quente: 10 no chassi (4 nos ressaltos das esferas, 4 nos postes de trás e 2 nas orelhas da torre), 2 no rabo, 3 no crânio, 2 no topo do berço e 1 no garfo.",
+  "step-down 5 V (parede esquerda da torre, abraçadeira)": "O conversor já vem soldado no chicote do preparo 1. 1 abraçadeira; fica em pé na parede esquerda da torre, com o parafuso de ajuste à mostra.",
+  "UBEC 6 V (parede direita da torre, abraçadeira)": "1 abraçadeira, em pé na parede direita da torre.",
+  "esferas de apoio + capas": "Cada esfera entra no soquete por baixo e a capa prende com 2 × M3 × 8. As esferas têm de girar soltas.",
+  "corpo (bacia) desce por cima do chassi": "Cole antes as 2 mãos e a ponta da bandana nos assentos planos (os aros e os miolos podem ficar para a fase 2, se você for pôr os sensores laterais). O corpo desce por cima do chassi e abraça os ressaltos das esferas. 2 × M3 × 10 por trás, embaixo, nos postes do chassi: a cabeça do parafuso fica rebaixada na casca, use a chave Allen longa.",
+  "garfo (por dentro da boca da bacia)": "Prenda o horn redondo do servo de pan por baixo do garfo, com 4 × M2 × 8 pelos rasgos. Com o servo em 90°, encaixe o garfo no eixo com os montantes para os lados e aperte o parafuso central do servo pelo furo do meio.",
+  "gola-bandana": "A gola assenta na borda do corpo e é ela que o prende em cima. 2 × M3 × 8 por cima, pelas 2 abas da base, nos insertos das orelhas da torre. Passe por dentro dela o cabo do servo de tilt (e, na fase 2, o cabo flat da câmera).",
+  "bateria (entra por trás, pelo piso)": "O suporte já está soldado no chicote desde o preparo 1, sem as células. Ele entra por trás, deslizando no piso; prenda com fita dupla-face. Com a chave desligada, ponha agora as 2 células, conferindo o lado do positivo com o multímetro. Daqui em diante o chicote tem tensão: não deixe ponta de fio solta encostar em metal.",
+  "bandeja do Uno": "Na bancada: Arduino Uno com o shield na bandeja, 4 × M3 × 8, USB para trás. Deslize a bandeja no trilho de cima e refaça no shield as ligações do preparo 2: fios do UBEC e capacitor no borne azul, os 2 jumpers da barra no + e no − do conector COM, os 3 servos (D9, D10 e D11). Ligue os 6 sinais do driver (D5, D4, D7, D8, D12 e D6, só no pino S) e a serial: verde no S do D0, preto no G do D0 e o jumper do divisor no S do D1. No D0 e no D1, o pino do meio (V) fica vazio: ele tem os 6 V dos servos. Faça essas ligações com a bandeja ainda para fora, apoiada na entrada do trilho, e só então empurre-a até o fim, acomodando os fios. Esta manobra nunca foi ensaiada com as peças impressas.",
+  "porta traseira (com o rabo e o carregador USB-C)": "A porta já está presa ao chicote desde o preparo 1, pelos 3 fios do carregador que atravessam o furo dela. Na bancada: o carregador entra em pé no bolso do rabo, com a boca USB-C para baixo, e o rabo prende na porta com 2 × M3 × 10, por dentro. Depois a porta fecha por trás com 2 × M3 × 10, embaixo; acomode a folga dos fios para dentro do corpo.",
+  "mesa dentro do crânio (na bancada)": "Micro servo da boca na mesa, com os 2 parafusos do kit, já em 90°. A mesa entra por baixo, para dentro do crânio: 3 × M3 × 12 nos insertos. Mandíbula, com a boca fechada: o braço do horn entra entre as 2 nervuras (lado direito) e o pino da mesa entra no soquete cego (lado esquerdo), por pressão. Cole o focinho e as 2 orelhas. Olhos e íris: pressão ou cola. Pupilas: só pressão. O alto-falante é da fase 2.",
+  "cabeça no pescoço": "Ligue a extensão de 30 cm no cabo do servo da boca e desça-a pela face chata da coluna, junto com o cabo do servo de tilt. A cabeça desce até a mesa assentar na coluna do berço: 2 × M3 × 10 por cima, pelos 2 furos do alto do crânio. O topete tampa os furos: encaixe por pressão, sem cola.",
+  "ABRIR: porta traseira sai": "Solte os 2 parafusos de trás, embaixo, e puxe a porta. Ela sai com o rabo e o carregador e fica pendurada pelos 3 fios, que têm uns 15 cm de folga. A cabeça fica no lugar.",
+  "ABRIR: bateria sai": "Desligue a chave antes. O suporte desliza no piso e sai por trás."
+ },
+ "passos_extra": [],
+ "preparos": [
+  {
+   "titulo": "Solde a energia e ajuste as duas tensões",
+   "passos": [
+    "Solde o 3º fio (amarelo) na lâmina de metal que une as duas células, com as células fora do suporte.",
+    "Solde 2 fios vermelhos de 15 cm nos 2 terminais da chave. Passe as pontas livres pelo recorte do piso do chassi, de baixo para cima, e encaixe a chave no recorte, por baixo. Faça isso ANTES de soldar a chave no resto: ligada ao chicote, ela não passa pelo recorte de 13,5 × 9 mm.",
+    "Se os motores vieram sem fios, solde 2 fios de 20 cm (um vermelho e um preto, 22 AWG) nos 2 terminais de cada motor.",
+    "Com o chassi ao lado servindo de gabarito do comprimento dos fios, ligue o suporte, o fusível e a placa de proteção, conforme a tabela de ligações. Deixe uns 8 cm de folga nos fios do suporte, para ele sair por trás na hora de trocar as células.",
+    "O carregador fica do lado de FORA da porta traseira, dentro do rabo, e a placa dele não passa pelo furo de 7 mm da porta. Por isso: solde 3 fios de 20 cm (vermelho, amarelo e preto) na placa de proteção, passe as pontas livres pelo furo da porta, de dentro para fora, e só então solde-as no carregador. Daqui em diante a porta fica presa ao chicote por esses 3 fios.",
+    "Solde uma ponta da chave na saída positiva da placa de proteção. Na outra ponta junte 3 fios vermelhos: a entrada IN+ do LM2596, o fio vermelho de entrada do UBEC e um fio de 15 cm que vai ao borne de alimentação dos motores do driver. Na saída negativa da placa de proteção junte 3 fios pretos: a entrada IN− do LM2596, o fio preto de entrada do UBEC e um fio de 15 cm para o borne GND do driver. Isole cada emenda com termo-retrátil.",
+    "Na saída do LM2596, solde 2 fios curtos e aperte as outras pontas na barra de emenda: o vermelho no borne 1, o preto no borne 2. Não ligue mais nada nas saídas.",
+    "Ponha as células no suporte, conferindo o lado do positivo, e ligue a chave.",
+    "Com o multímetro na barra de emenda, gire o parafuso de ajuste do LM2596 com a chave de fenda até marcar 5,1 V. São várias voltas.",
+    "Meça a saída do UBEC: tem de marcar 6 V. Se marcar 5 V, mude o jumper dele para 6 V.",
+    "Desligue a chave."
+   ]
+  },
+  {
+   "titulo": "Grave o programa no Arduino e ponha os 3 servos em 90°",
+   "passos": [
+    "Abra o sketch `centrar_servos.ino` na Arduino IDE. Ligue o Arduino Uno ao computador pelo cabo USB, sem o shield e sem bateria.",
+    "No menu Ferramentas, escolha a placa Arduino Uno e a porta em que ela apareceu. Clique em Carregar.",
+    "Tire o cabo USB, encaixe o Sensor Shield no Uno e retire o jumper SEL do shield: é a capinha de plástico sobre 2 pinos, ao lado do borne azul.",
+    "Ligue o cabo USB de novo, só para medir com o multímetro. O conector COM do shield tem 4 pinos em pé, marcados TX, RX, − e +. Entre o + e o − tem de dar cerca de 5 V. No conector D9, entre o pino V e o pino G, tem de dar 0 V.",
+    "Se o V do D9 marcar 5 V, o jumper SEL ainda está posto. Se o + do COM não marcar 5 V, o seu shield é diferente do da foto da loja: procure outro pino marcado + ou 5V que marque 5 V com o SEL retirado. Um pino errado aqui põe os 6 V dos servos no Raspberry Pi.",
+    "Tire o cabo USB.",
+    "A saída do UBEC vem com um plugue de servo de 3 pinos: corte o plugue e descasque os fios. O vermelho é o positivo e o preto (ou marrom) é o negativo. Se houver um terceiro fio, branco ou laranja, isole a ponta dele com termo-retrátil. Aperte o vermelho no VCC e o preto no GND do borne azul. No mesmo borne vai o capacitor de 1000 µF, com a perna comprida no VCC.",
+    "Pegue 2 jumpers, corte o conector de uma ponta de cada um e descasque. Aperte um no borne 1 da barra de emenda, do lado oposto ao do conversor, e encaixe o conector dele no pino + do conector COM. O outro vai do borne 2 ao pino − do mesmo conector. Os pinos TX e RX, ao lado, ficam vazios: 5 V num deles chegam ao Raspberry Pi pelo fio da serial.",
+    "Ligue o servo de pan no D9, o de tilt no D10 e o da boca no D11: fio marrom ou preto no G, vermelho no V, laranja ou amarelo no S.",
+    "Ligue a chave: os 3 servos vão para o centro (90°) e o LED do Uno pisca uma vez por segundo.",
+    "Desligue a chave. Daqui em diante não gire os eixos dos servos com a mão.",
+    "Desfaça as ligações de teste para a montagem: tire os servos do shield, solte do borne azul os fios do UBEC e o capacitor e tire os 2 jumpers do conector COM. Marque cada cabo de servo com fita e o nome do pino. Tire as 2 células do suporte: elas só voltam na montagem, no passo da bateria."
+   ]
+  },
+  {
+   "titulo": "Prepare os cabos do Raspberry Pi, o divisor de resistores e os fios do driver",
+   "passos": [
+    "Separe 3 jumpers fêmea-fêmea para a serial: um verde, um azul e um preto (ou marque 3 de outra cor com fita). O verde e o preto ficam inteiros. No azul, corte o conector de uma ponta e descasque 6 mm: essa ponta vai num borne.",
+    "Agora o divisor. Solde 2 resistores de 1 kΩ um no outro, perna com perna, e cubra a emenda com termo-retrátil. Esse par vale 2 kΩ.",
+    "Corte um jumper ao meio. Solde a ponta cortada de uma das metades numa perna do 3º resistor e cubra com termo-retrátil. O conector fêmea dessa metade é o que vai no D1.",
+    "Na barra de emenda, do lado do conversor, aperte no borne 3 a perna livre do 3º resistor junto com uma ponta do par de 2 kΩ. Aperte a outra ponta do par no borne 2, junto com o fio preto que já está lá. Dobre a ponta de cada perna antes de apertar, para o parafuso morder.",
+    "Confira com o multímetro, em ohms: entre o conector fêmea do jumper do D1 e o borne 3, cerca de 1 kΩ; entre o borne 3 e o borne 2, cerca de 2 kΩ.",
+    "Separe mais 4 jumpers para a energia do Raspberry Pi, 2 vermelhos e 2 pretos (ou marque com fita). Corte o conector de uma ponta de cada um e descasque 6 mm. Aperte os 2 vermelhos juntos no borne 1 da barra de emenda, do lado oposto ao do conversor, e os 2 pretos juntos no borne 2.",
+    "Corte um fio vermelho de 15 cm (22 AWG) e aperte uma ponta dele no borne 1 da barra, junto com os 2 jumpers vermelhos: a outra ponta vai ao borne +5V do driver, na montagem.",
+    "Ache os pinos no Raspberry Pi: o pino 1 é o do canto, do lado do cartão microSD, na fileira de dentro; o pino 40 fica no canto oposto, na fileira da borda. Os ímpares ficam na fileira de dentro e os pares na fileira da borda. Os pinos 2, 4 e 6 são os 3 primeiros da fileira da borda; o pino 9 é o 5º da fileira de dentro; os pinos 32 e 34 são o 16º e o 17º da fileira da borda; o pino 33 é o 17º da fileira de dentro.",
+    "Marque cada conector com fita e o número do pino: 2 e 4 nos vermelhos, 6 e 9 nos pretos da energia, 32 no verde, 33 no azul, 34 no preto da serial. Um vermelho no pino errado põe 5 V num pino de sinal e queima o Raspberry Pi.",
+    "Separe 6 jumpers fêmea-fêmea inteiros para os sinais do driver e marque as pontas: ENA-D5, IN1-D4, IN2-D7, IN3-D8, IN4-D12 e ENB-D6.",
+    "Guarde os cabos: eles entram no Raspberry Pi, no shield e no driver na montagem, tudo por borne ou encaixe, sem solda. Atenção: nos conectores de 3 pinos do shield, os fios da serial e do driver usam só o pino S (e o pino G, no fio preto da serial). O pino do meio (V) fica sempre vazio: com o jumper SEL retirado ele tem os 6 V dos servos, e 6 V num desses fios queimam o Raspberry Pi ou o driver."
+   ]
+  },
+  {
+   "titulo": "Grave o cartão microSD e ligue a serial do Raspberry Pi",
+   "passos": [
+    "Instale no computador o Raspberry Pi Imager, o programa gratuito da Raspberry Pi, e ponha o cartão no leitor.",
+    "No Imager, escolha o modelo do seu Pi, o sistema Raspberry Pi OS (64-bit) e o cartão.",
+    "Antes de gravar, abra as configurações do Imager: dê um nome ao Pi (por exemplo `robo`), crie um usuário e uma senha, ponha o nome e a senha do seu Wi-Fi e ative o SSH. Grave.",
+    "Ponha o cartão no Raspberry Pi e ligue-o na bancada, fora do robô, por uma fonte USB-C de 5 V e 3 A. Espere uns 2 minutos.",
+    "No computador, abra o terminal: no Windows é o programa PowerShell; no Mac e no Linux, o Terminal.",
+    "Digite `ssh usuario@robo.local`, trocando `usuario` e `robo` pelos nomes que você criou. Responda `yes` na primeira vez e digite a senha.",
+    "Se `robo.local` não responder, abra a página do seu roteador, ache o Pi na lista de aparelhos ligados e use o número dele (o endereço IP), por exemplo `ssh usuario@192.168.0.50`.",
+    "Quando o terminal mostrar o nome do Pi, você está dentro dele. Ligue a serial: digite `sudo nano /boot/firmware/config.txt`, vá até o fim do arquivo e acrescente uma linha: `dtoverlay=uart5` no Raspberry Pi 4, ou `dtoverlay=uart4-pi5` no Raspberry Pi 5. Salve com Ctrl+O e Enter, saia com Ctrl+X.",
+    "Digite `sudo poweroff`, espere o LED verde do Pi parar de piscar e tire a fonte. Dentro do robô o Raspberry Pi não usa mais a porta USB-C: ele recebe os 5,1 V pelos pinos."
+   ]
+  }
+ ],
+ "ordem_impressao": [
+  {
+   "mesa": 6,
+   "porque": "Comece por aqui. O cupom de teste mostra se os insertos, os parafusos M3, o micro servo e o eixo do motor entram com a folga certa na SUA impressora. Menos de 1 hora."
+  },
+  {
+   "mesa": 1,
+   "porque": "As 2 bandejas: peças pequenas que já testam os furos do Raspberry Pi e do Arduino."
+  },
+  {
+   "mesa": 2,
+   "porque": "Mesa da cabeça: confira se o micro servo da boca entra na janela."
+  },
+  {
+   "mesa": 3,
+   "porque": "O esqueleto em PETG: chassi, garfo, berço e as 2 capas das esferas. Garfo e berço pedem suporte. Confira no berço se o servo MG996R entra, antes das impressões longas."
+  },
+  {
+   "mesa": 4,
+   "porque": "Os 2 olhos."
+  },
+  {
+   "mesa": 9,
+   "porque": "As peças marrons: focinho, rabo, mãos, orelhas e íris. A face de colar vai na mesa."
+  },
+  {
+   "mesa": 10,
+   "porque": "Miolos dos aros e pupilas."
+  },
+  {
+   "mesa": 5,
+   "porque": "Os 2 aros das ancas. Filamento translúcido, se você quiser pôr luz atrás deles na fase 2."
+  },
+  {
+   "mesa": 11,
+   "porque": "Gola-bandana e a ponta da bandana."
+  },
+  {
+   "mesa": 7,
+   "porque": "Crânio: a peça mais longa da cabeça. Suporte em árvore por dentro e sob o céu da boca. Nenhum suporte no rosto."
+  },
+  {
+   "mesa": 8,
+   "porque": "Corpo, porta traseira, mandíbula e topete: a impressão mais longa. Deixe por último, com a impressora já ajustada. O corpo leva um pouco de suporte em árvore por dentro."
+  }
+ ],
+ "ligacoes": [
+  {
+   "grupo": "Bateria, proteção e carga",
+   "fios": [
+    {
+     "de": "Suporte das baterias: fio vermelho (positivo do pack)",
+     "para": "Porta-fusível de 3 A e, depois dele, ilha B+ da placa de proteção",
+     "cor": "vermelho",
+     "fio": "22 AWG",
+     "nota": "O fusível fica a poucos centímetros do suporte."
+    },
+    {
+     "de": "Suporte das baterias: fio preto (negativo do pack)",
+     "para": "Ilha B− da placa de proteção",
+     "cor": "preto",
+     "fio": "22 AWG",
+     "nota": ""
+    },
+    {
+     "de": "Suporte das baterias: lâmina de metal que une as 2 células (ponto do meio)",
+     "para": "Ilha do meio da placa de proteção (BM ou B1)",
+     "cor": "amarelo",
+     "fio": "22 AWG",
+     "nota": "É o 3º fio. Solde-o na lâmina com as células FORA do suporte."
+    },
+    {
+     "de": "Ilha do meio da placa de proteção (BM ou B1)",
+     "para": "Ilha BM do carregador USB-C",
+     "cor": "amarelo",
+     "fio": "22 AWG",
+     "nota": "Sem este fio o carregador não equilibra as duas células."
+    },
+    {
+     "de": "Ilha B+ do carregador USB-C",
+     "para": "Saída positiva da placa de proteção (P+; se a placa não tiver P+, é a própria ilha B+)",
+     "cor": "vermelho",
+     "fio": "22 AWG",
+     "nota": "O carregador fica antes da chave: o robô carrega desligado. Ele mora do lado de fora da porta traseira, dentro do rabo: os 3 fios dele passam pelo furo de 7 mm da porta ANTES de serem soldados no carregador, com uns 15 cm de folga."
+    },
+    {
+     "de": "Ilha B− do carregador USB-C",
+     "para": "Saída negativa da placa de proteção (P−; na placa da loja consultada, a ilha C−)",
+     "cor": "preto",
+     "fio": "22 AWG",
+     "nota": "Não ligue na ilha B− da placa de proteção: a carga tem de passar pela proteção."
+    }
+   ]
+  },
+  {
+   "grupo": "Chave, conversores e alimentação dos motores",
+   "fios": [
+    {
+     "de": "Saída positiva da placa de proteção (P+ ou B+)",
+     "para": "Chave liga/desliga e, depois dela, 3 fios: entrada IN+ do LM2596, fio vermelho de entrada do UBEC e borne de alimentação dos motores do L298N (marcado +12V ou VS)",
+     "cor": "vermelho",
+     "fio": "22 AWG",
+     "nota": "A chave corta só o positivo. O borne do driver recebe a tensão da bateria (6 a 8,4 V), apesar do nome +12V."
+    },
+    {
+     "de": "Saída negativa da placa de proteção (P−; na placa da loja consultada, a ilha C−)",
+     "para": "Entrada IN− do LM2596, fio preto de entrada do UBEC e borne GND do L298N",
+     "cor": "preto",
+     "fio": "22 AWG",
+     "nota": "Este é o negativo comum (GND) de todo o robô."
+    }
+   ]
+  },
+  {
+   "grupo": "5 V: Raspberry Pi, Arduino e lógica do driver",
+   "fios": [
+    {
+     "de": "Saída OUT+ do LM2596 (5,1 V)",
+     "para": "Barra de emenda, borne 1",
+     "cor": "vermelho",
+     "fio": "22 AWG, curto",
+     "nota": "Ajuste os 5,1 V ANTES de ligar qualquer coisa do outro lado da barra."
+    },
+    {
+     "de": "Saída OUT− do LM2596",
+     "para": "Barra de emenda, borne 2",
+     "cor": "preto",
+     "fio": "22 AWG, curto",
+     "nota": ""
+    },
+    {
+     "de": "Barra de emenda, borne 1 (5,1 V)",
+     "para": "Raspberry Pi: pinos 2 e 4 (5 V), um fio em cada pino",
+     "cor": "vermelho",
+     "fio": "2 jumpers Dupont: uma ponta cortada e descascada no borne, a outra com o conector fêmea no pino",
+     "nota": "São 2 fios para dividir a corrente. Meça 5,1 V e a polaridade na barra antes de encaixar: por estes pinos, tensão errada ou fio trocado queima o Raspberry Pi."
+    },
+    {
+     "de": "Barra de emenda, borne 2 (negativo)",
+     "para": "Raspberry Pi: pinos 6 e 9 (GND), um fio em cada pino",
+     "cor": "preto",
+     "fio": "2 jumpers Dupont: uma ponta cortada e descascada no borne, a outra com o conector fêmea no pino",
+     "nota": ""
+    },
+    {
+     "de": "Barra de emenda, borne 1 (5,1 V)",
+     "para": "Pino + do conector COM do Sensor Shield",
+     "cor": "vermelho",
+     "fio": "jumper Dupont com uma ponta cortada e descascada",
+     "nota": "É por aqui que o Arduino recebe energia. Antes, com o Uno só na USB e o jumper SEL retirado, confirme com o multímetro que esse pino marca cerca de 5 V e que o pino V do D9 marca 0 V. Um pino errado aqui põe os 6 V dos servos no Raspberry Pi."
+    },
+    {
+     "de": "Barra de emenda, borne 2 (negativo)",
+     "para": "Pino − do conector COM do Sensor Shield",
+     "cor": "preto",
+     "fio": "jumper Dupont com uma ponta cortada e descascada",
+     "nota": ""
+    },
+    {
+     "de": "Barra de emenda, borne 1 (5,1 V)",
+     "para": "Borne +5V do L298N",
+     "cor": "vermelho",
+     "fio": "22 AWG, cerca de 15 cm",
+     "nota": "Só com o jumper do regulador de 5 V do L298N RETIRADO (o jumper ao lado dos bornes de alimentação). Com ele posto, o regulador do driver e o LM2596 ficam um contra o outro."
+    }
+   ]
+  },
+  {
+   "grupo": "6 V: servos",
+   "fios": [
+    {
+     "de": "Fio vermelho de saída do UBEC (6 V)",
+     "para": "Borne azul VCC do Sensor Shield",
+     "cor": "vermelho",
+     "fio": "fio do UBEC, com o plugue de 3 pinos cortado",
+     "nota": "Jumper SEL do shield RETIRADO e jumper do UBEC em 6 V. A saída do UBEC vem com um plugue de servo: corte o plugue e descasque os fios. O vermelho é o positivo."
+    },
+    {
+     "de": "Fio preto ou marrom de saída do UBEC",
+     "para": "Borne azul GND do Sensor Shield",
+     "cor": "preto",
+     "fio": "fio do UBEC, com o plugue de 3 pinos cortado",
+     "nota": "Se o plugue tiver um terceiro fio, branco ou laranja, isole a ponta dele com termo-retrátil: ele não é ligado."
+    },
+    {
+     "de": "Capacitor de 1000 µF: perna comprida (+)",
+     "para": "Borne azul VCC; a perna da listra (−) vai no borne azul GND",
+     "cor": "sem fio",
+     "fio": "pernas do capacitor",
+     "nota": "Capacitor invertido estoura."
+    },
+    {
+     "de": "Servo de pan (no deck do chassi)",
+     "para": "Conector D9 do Sensor Shield",
+     "cor": "cabo do servo",
+     "fio": "cabo de 3 fios do servo",
+     "nota": "G = marrom ou preto, V = vermelho, S = laranja ou amarelo."
+    },
+    {
+     "de": "Servo de tilt (no berço, dentro do pescoço)",
+     "para": "Pela face chata da coluna e pelo rasgo do garfo, até o conector D10 do Sensor Shield",
+     "cor": "cabo do servo",
+     "fio": "cabo de 3 fios do servo, com extensão de 30 cm se não alcançar",
+     "nota": "Mesma ordem de cores do D9. Deixe folga para a cabeça girar 60° para cada lado."
+    },
+    {
+     "de": "Micro servo da boca (na mesa da cabeça)",
+     "para": "Com a extensão de 30 cm, pela face chata da coluna, até o conector D11 do Sensor Shield",
+     "cor": "cabo do servo",
+     "fio": "cabo de 3 fios do servo + extensão de 30 cm",
+     "nota": "Mesma ordem de cores do D9."
+    }
+   ]
+  },
+  {
+   "grupo": "Motores das rodas e driver L298N",
+   "fios": [
+    {
+     "de": "Motor direito: os 2 terminais",
+     "para": "Bornes OUT1 e OUT2 do L298N",
+     "cor": "vermelho e preto",
+     "fio": "22 AWG, cerca de 20 cm, soldados no motor",
+     "nota": "Se a roda girar ao contrário do esperado, troque os 2 fios desse motor no borne."
+    },
+    {
+     "de": "Motor esquerdo: os 2 terminais",
+     "para": "Bornes OUT3 e OUT4 do L298N",
+     "cor": "vermelho e preto",
+     "fio": "22 AWG, cerca de 20 cm, soldados no motor",
+     "nota": ""
+    },
+    {
+     "de": "L298N: pino ENA (com o jumper retirado)",
+     "para": "Pino S do D5 do Sensor Shield",
+     "cor": "qualquer",
+     "fio": "jumper Dupont fêmea-fêmea",
+     "nota": "Velocidade do motor direito. Só o pino S: o pino V do shield tem os 6 V dos servos."
+    },
+    {
+     "de": "L298N: pinos IN1 e IN2",
+     "para": "Pino S do D4 (IN1) e pino S do D7 (IN2)",
+     "cor": "qualquer",
+     "fio": "2 jumpers Dupont fêmea-fêmea",
+     "nota": "Sentido do motor direito."
+    },
+    {
+     "de": "L298N: pinos IN3 e IN4",
+     "para": "Pino S do D8 (IN3) e pino S do D12 (IN4)",
+     "cor": "qualquer",
+     "fio": "2 jumpers Dupont fêmea-fêmea",
+     "nota": "Sentido do motor esquerdo."
+    },
+    {
+     "de": "L298N: pino ENB (com o jumper retirado)",
+     "para": "Pino S do D6 do Sensor Shield",
+     "cor": "qualquer",
+     "fio": "jumper Dupont fêmea-fêmea",
+     "nota": "Velocidade do motor esquerdo."
+    }
+   ]
+  },
+  {
+   "grupo": "Serial entre o Raspberry Pi e o Arduino",
+   "fios": [
+    {
+     "de": "Raspberry Pi: pino 32 (GPIO12, TX)",
+     "para": "Pino S do D0 (RX) do Sensor Shield",
+     "cor": "verde",
+     "fio": "jumper Dupont fêmea-fêmea inteiro",
+     "nota": "Direto: os 3,3 V do Pi já valem como nível alto para o Arduino."
+    },
+    {
+     "de": "Raspberry Pi: pino 34 (GND)",
+     "para": "Pino G do D0 do Sensor Shield",
+     "cor": "preto",
+     "fio": "jumper Dupont fêmea-fêmea inteiro",
+     "nota": ""
+    },
+    {
+     "de": "Raspberry Pi: pino 33 (GPIO13, RX)",
+     "para": "Borne 3 da barra de emenda",
+     "cor": "azul",
+     "fio": "jumper Dupont: conector fêmea no pino, a outra ponta cortada e descascada",
+     "nota": "Este fio nunca vai direto no D1: são 5 V num pino de 3,3 V."
+    },
+    {
+     "de": "Barra de emenda, borne 3",
+     "para": "Resistor de 1 kΩ e, depois dele, pino S do D1 (TX) do Sensor Shield",
+     "cor": "azul",
+     "fio": "metade de um jumper, soldada na perna do resistor, com o conector fêmea no shield",
+     "nota": "Montado na bancada, no preparo 3."
+    },
+    {
+     "de": "Barra de emenda, borne 3",
+     "para": "2 resistores de 1 kΩ em série e, depois deles, borne 2 da barra (negativo)",
+     "cor": "sem fio",
+     "fio": "pernas dos resistores",
+     "nota": "Os 3 resistores formam o divisor: 5 V viram 3,3 V."
+    }
+   ]
+  }
+ ],
+ "glossario": [
+  {
+   "termo": "GPIO",
+   "def": "A fileira de 40 pinos do Raspberry Pi, onde se ligam os fios de energia e de sinal. Neste guia, \"pino 32\" é a posição do pino na fileira; \"GPIO12\" é o nome do sinal que sai por ele."
+  },
+  {
+   "termo": "UBEC",
+   "def": "Conversor pequeno, usado em aeromodelos, que baixa a tensão da bateria para um valor fixo. Aqui, 6 V para os servos."
+  },
+  {
+   "termo": "BMS",
+   "def": "Placa de proteção da bateria de lítio. Desliga a bateria antes de ela descarregar demais, carregar demais ou entrar em curto."
+  },
+  {
+   "termo": "2S",
+   "def": "Duas células de lítio ligadas em série, uma depois da outra. As tensões somam: de 6 V (vazio) a 8,4 V (cheio)."
+  },
+  {
+   "termo": "Horn",
+   "def": "A peça de plástico que encaixa no eixo do servo e gira com ele. Os 2 servos grandes usam o horn redondo, em forma de disco; os micro servos, o de 1 braço."
+  },
+  {
+   "termo": "Inserto a quente",
+   "def": "Bucha de latão com rosca por dentro. Entra no furo do plástico empurrada com o ferro de solda e vira uma rosca de metal."
+  },
+  {
+   "termo": "NC",
+   "def": "Não confirmado: uma medida que veio de anúncio de loja e ainda não foi conferida com a peça na mão."
+  },
+  {
+   "termo": "Fatiador",
+   "def": "O programa que transforma o arquivo 3D nas camadas que a impressora imprime. O da Bambu Lab se chama Bambu Studio."
+  },
+  {
+   "termo": "SSH",
+   "def": "Jeito de usar o Raspberry Pi pela rede: você digita os comandos no terminal do seu computador e eles rodam no Pi, sem ligar teclado nem monitor nele."
+  },
+  {
+   "termo": "UART (serial)",
+   "def": "Ligação de dados simples: um fio para falar (TX) e um para ouvir (RX). É por ela que o Raspberry Pi manda ordens ao Arduino."
+  },
+  {
+   "termo": "Jumper SEL",
+   "def": "Capinha de plástico sobre 2 pinos do Sensor Shield, ao lado do borne azul, com a marca SEL. Posta, ela liga os 5 V do Arduino aos conectores dos servos. Retirada, os servos recebem só o que entra pelo borne azul."
+  },
+  {
+   "termo": "Borne",
+   "def": "Conector de parafuso: o fio entra no furo e o parafuso aperta. No Sensor Shield é o bloco azul marcado GND e VCC."
+  },
+  {
+   "termo": "Sketch",
+   "def": "O nome que a Arduino dá a um programa. Você abre o arquivo na Arduino IDE e grava na placa pelo cabo USB."
+  },
+  {
+   "termo": "Shield",
+   "def": "Placa que encaixa por cima do Arduino, nos pinos dele, e acrescenta conectores. Aqui, o Sensor Shield dá os conectores dos servos."
+  },
+  {
+   "termo": "AWG",
+   "def": "Medida da grossura do fio. Quanto menor o número, mais grosso: o 20 AWG é mais grosso que o 22 AWG."
+  },
+  {
+   "termo": "GND",
+   "def": "O negativo do circuito, também chamado de terra. Todos os negativos do robô são ligados entre si."
+  },
+  {
+   "termo": "Dupont",
+   "def": "Fio fino que já vem com um conector de encaixe em cada ponta, do tamanho dos pinos das placas. Também é chamado de jumper."
+  },
+  {
+   "termo": "Step-down",
+   "def": "Conversor que baixa a tensão. Aqui, o LM2596 baixa a tensão da bateria para 5,1 V."
+  },
+  {
+   "termo": "Termo-retrátil",
+   "def": "Tubinho de plástico que encolhe com calor. Você veste sobre a emenda de solda e aquece: ele aperta e isola."
+  },
+  {
+   "termo": "Ponte H (L298N)",
+   "def": "Placa que liga, desliga e inverte os motores das rodas a mando do Arduino. Também é chamada de driver de motores."
+  },
+  {
+   "termo": "Micro servo",
+   "def": "Servo pequeno, de 9 gramas (SG90 ou MG90S). Aqui ele abre a boca."
+  },
+  {
+   "termo": "Pan e tilt",
+   "def": "Os dois movimentos da cabeça: pan é girar para os lados, tilt é inclinar para cima e para baixo."
+  },
+  {
+   "termo": "ToF",
+   "def": "Sensor que mede distância pelo tempo que a luz leva para ir e voltar. É da fase 2."
+  },
+  {
+   "termo": "Suporte (de impressão)",
+   "def": "Material extra que o fatiador imprime embaixo de uma parte da peça que nasceria no ar. Você arranca depois de imprimir. Suporte em árvore é o tipo que sobe em galhos finos e sai mais fácil."
+  }
+ ],
+ "riscos": [
+  "Nada foi impresso nem montado ainda. A parte elétrica não foi testada na bancada: ela saiu das fichas dos componentes.",
+  "Seis peças pedem suporte de impressão: crânio, corpo, porta traseira, mandíbula, garfo do pescoço e berço do tilt. O suporte fica por dentro ou por baixo, fora do rosto, mas ninguém o tirou ainda de uma peça de verdade.",
+  "Os arquivos 3MF das mesas nunca foram abertos no Bambu Studio. Se algum não abrir, use os STL.",
+  "A chave liga/desliga é de 3 A e, pela conta das fichas, o uso normal chega perto disso (cerca de 2,5 A com as rodas andando e a cabeça mexendo). O fusível de 3 A protege a chave e pode abrir quando o robô fizer força. Uma chave maior pede mudar o recorte da peça: é uma pendência do projeto.",
+  "O Raspberry Pi recebe os 5,1 V pelos pinos de 5 V, porque na bandeja a porta USB-C dele fica encostada na parede do rack. É uma ligação comum, mas não foi testada neste robô: fio trocado ou tensão errada nesses pinos queima o Pi. Meça antes de encaixar.",
+  "Sobre o Raspberry Pi sobram cerca de 19 mm até a bandeja de cima (medida do modelo, não confirmada). O conector Dupont comum tem cerca de 16,5 mm em pé: cabe com pouca folga. Plano B: soldar os fios numa barra de pinos fêmea baixa, com os fios saindo de lado.",
+  "A porta traseira fica presa ao robô pelos 3 fios do carregador, que atravessam um furo de 7 mm nela. Para tirar a porta de vez é preciso dessoldar esses fios ou pôr neles um conector de 3 vias, que não está na lista.",
+  "O cupom de teste não confere a janela do servo MG996R. Confira o servo no berço do tilt, que sai numa das primeiras mesas, antes das impressões longas.",
+  "O porta-fusível, a barra de emenda e os 3 resistores da serial não têm lugar modelado: ficam soltos dentro do corpo, isolados com termo-retrátil.",
+  "Os comprimentos dos cabos (servos da cabeça, extensões e jumpers) foram estimados pelo modelo. A cabeça gira e inclina e puxa esses cabos: deixe folga e confira os dois extremos antes de fechar.",
+  "O robô apoia em 4 pontos (2 rodas e 2 esferas). Num piso irregular uma das esferas pode ficar no ar e o robô balançar.",
+  "As medidas marcadas como NC vêm de anúncios de loja. Meça a sua peça antes de imprimir a parte que encosta nela.",
+  "O estriado do micro servo tem passos de uns 17° (valor usual, não confirmado): o horn da boca pode não cair exatamente na posição de 90°. Escolha o dente mais próximo; o ajuste fino é no programa, na fase 2.",
+  "Calor: o Raspberry Pi fica fechado no corpo, que é de PLA e não tem abertura de ventilação. O PLA amolece perto de 60 °C e o Pi reduz a velocidade a partir de 80 °C. Cole os dissipadores e meça com o comando `vcgencmd measure_temp`. Se passar de 70 °C, abra furos de ventilação na porta traseira."
+ ]
+}

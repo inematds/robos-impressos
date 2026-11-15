@@ -163,7 +163,7 @@
    },
    "depois": {
     "referencia": "cubo",
-    "origem": "pecas/cubo",
+    "origem": "projetos/cubo",
     "data": "2026-11-14",
     "nota": "",
     "triangulos": 23758,
@@ -431,7 +431,7 @@
    },
    "depois": {
     "referencia": "dino",
-    "origem": "pecas/dino",
+    "origem": "projetos/dino",
     "data": "2026-11-14",
     "nota": "",
     "triangulos": 388694,
@@ -765,7 +765,7 @@
    },
    "depois": {
     "referencia": "capivara",
-    "origem": "pecas/capivara",
+    "origem": "projetos/capivara",
     "data": "2026-11-14",
     "nota": "",
     "triangulos": 442708,
@@ -864,7 +864,7 @@
   "cubo_rodas": {
    "depois": {
     "referencia": "cubo",
-    "origem": "pecas/cubo_rodas",
+    "origem": "projetos/cubo-rodas",
     "data": "2026-11-14",
     "nota": "",
     "triangulos": 37720,

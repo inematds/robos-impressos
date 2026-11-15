@@ -1,0 +1,28 @@
+{
+ "_nota": "Textos dos banners. PT é o original. EN/ES: as frases que já existiam nos banners publicados foram mantidas; as duas novas (sub_live, sub_grade: agora são quatro robôs) vieram do inema-traduz em 14/11/2026.",
+ "pt": {
+  "t1a": "SEU", "t1b": "ROBÔ", "t2": "IMPRESSO",
+  "sub_live": "Dinossauro, capivara, cubo ou cubo com rodas",
+  "sub_grade": "Quatro robôs para imprimir em casa: dinossauro, capivara, cubo e cubo com rodas",
+  "linha": "Peças 3D conferidas por script antes de gastar filamento",
+  "passos": ["Escolha o modelo", "Imprima as peças", "Encaixe os servos", "Monte a casca", "Cabeça que vira", "Pronto para a fase 2"],
+  "pe": "INEMA.CLUB · inematds.github.io/robos-impressos"
+ },
+ "en": {
+  "t1a": "YOUR", "t1b": "PRINTED", "t2": "ROBOT",
+  "sub_live": "Dinosaur, capybara, cube, or wheeled cube",
+  "sub_grade": "Four robots to print at home: dinosaur, capybara, cube, and wheeled cube",
+  "linha": "3D parts checked by script before you spend filament",
+  "passos": ["Pick a model", "Print the parts", "Fit the servos", "Close the shell", "Head that turns", "Ready for phase 2"],
+  "pe": "INEMA.CLUB · inematds.github.io/robos-impressos"
+ },
+ "es": {
+  "t1a": "TU", "t1b": "ROBOT", "t2": "IMPRESO",
+  "sub_live": "Dinosaurio, carpincho, cubo o cubo con ruedas",
+  "sub_grade": "Cuatro robots para imprimir en casa: dinosaurio, carpincho, cubo y cubo con ruedas",
+  "linha": "Piezas 3D revisadas por script antes de gastar filamento",
+  "passos": ["Elige el modelo", "Imprime las piezas", "Encaja los servos", "Cierra la carcasa", "Cabeza que gira", "Listo para la fase 2"],
+  "pe": "INEMA.CLUB · inematds.github.io/robos-impressos"
+ },
+ "capa": {"marca": "INEMA", "marca2": ".CLUB", "selo": "ROBÓTICA", "titulo": "Robôs impressos"}
+}

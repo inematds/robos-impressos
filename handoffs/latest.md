@@ -27,3 +27,21 @@ Depois: E3b dino → consolidação (`gerar todos` + `verificar todos`) → E4 n
 ## Contexto extra
 - Lista de compras do cubo já mandada ao Nei no v3 (msg 4711); ele já tem o Arduino.
 - Fase 2 (voz, câmera, sensores, localização em casa) está nas pendências do wifi; a mecânica só reserva espaço.
+
+## Comandos (estrutura nova, depois da reorganização em `comum/` + `projetos/`; valem sobre os `cad/…` citados acima)
+```
+.venv/bin/python comum/cad/gerar.py <id|todos>                # id: dino, capivara, cubo, cubo_rodas
+.venv/bin/python comum/cad/verificar.py <id|todos>            # 11 testes
+.venv/bin/python comum/cad/comparar.py <id> --sem-gravar      # régua de semelhança (precisa de referencia/)
+.venv/bin/python comum/cad/tabelas.py --docs                  # projetos/TABELAS.md + tabelas de PLANO.md e README*.md (sem --docs mexe também no guia)
+comum/cad/renders.sh <id>                                     # imagens em projetos/<robô>/imagens/
+# documentos de UM robô (<robô> = pasta: dino, capivara, cubo, cubo-rodas); fontes em guia/src/robos/<robô>.{dados,pt}.json
+.venv/bin/python guia/src/pagina_robo.py docs <robô> pt       # blocos GERADO dos .md em português
+.venv/bin/python guia/src/pagina_robo.py traduzir <robô>      # EN/ES pelo inema-traduz (só o que mudou)
+.venv/bin/python guia/src/pagina_robo.py docs <robô>          # *.en.md e *.es.md
+.venv/bin/python guia/src/pagina_robo.py esquema <robô>       # ligacao.<lg>.svg (cubo: desenho no próprio gerador; bichos: esquema_bicho.py; cubo-rodas: esquema_cubo_rodas.py)
+.venv/bin/python guia/src/pagina_robo.py zip <robô>           # projetos/<robô>/<robô>-stl.zip
+.venv/bin/python guia/src/pagina_robo.py conferir <robô>      # sem página no guia, confere só docs + zip
+.venv/bin/python guia/src/pagina_robo.py pagina <robô>        # guia/<robô>/ + en + es (etapa do guia)
+.venv/bin/python guia/src/traduzir_readme.py                  # README.en.md e README.es.md; depois tabelas.py --docs
+```

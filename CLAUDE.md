@@ -30,5 +30,6 @@ Fase 1 = mecânica e encaixe. Fase 2 (voz, câmera, sensores, localização em c
 Quando o Nei corrigir ou você notar um erro: antes de seguir, escreva a lição como uma linha no TOPO da seção Lessons abaixo.
 
 ## Lessons
+- Texto de montagem ou medida herdado de outro robô: conferir no modelo DESTE robô o furo, o caminho e o número (ex.: carregador da capivara fica fora da porta e não passa no furo de 7 mm; a folga sobre o Pi muda de 17 para 19 mm) antes de escrever "já vem soldado" ou "medida do modelo" (14/11/2026).
 - Casca recortada de malha: nenhum dos 11 testes vê buraco na casca nem peça abaixo do chão; depois de cada mudança de casca, render de 1200 px COM componentes + mapa em corte das juntas, e conferir no arquivo o parâmetro que a conta pediu (14/11/2026, E3b).
 - Sessão longa com subagentes cai junto com a sessão: commit a cada pacote verificado e estado no state.md, senão o trabalho some (14/11/2026).

@@ -17,7 +17,7 @@ Protocolo v1: projeção ortográfica, silhuetas com 400 px de altura, base na m
 - `antes`: .preview/v102/pecas/capivara · 2026-11-14 · tag v1.0.2
 - `malha-capivara-hy2mv-flb-s1`: referencia/malhas/capivara-hy2mv-flb-s1.glb · 2026-11-14
 - `malha-capivara-hy2mv-flb-s2`: referencia/malhas/capivara-hy2mv-flb-s2.glb · 2026-11-14
-- `depois`: pecas/capivara · 2026-11-14
+- `depois`: projetos/capivara · 2026-11-14
 
 ## cubo
 
@@ -27,7 +27,7 @@ Protocolo v1: projeção ortográfica, silhuetas com 400 px de altura, base na m
 | **média** | **0,755** | **0,773** |  | **0,797** | **0,805** |  |
 
 - `antes`: .preview/v102/pecas/cubo · 2026-11-14 · tag v1.0.2
-- `depois`: pecas/cubo · 2026-11-14
+- `depois`: projetos/cubo · 2026-11-14
 
 ## cubo_rodas
 
@@ -36,7 +36,7 @@ Protocolo v1: projeção ortográfica, silhuetas com 400 px de altura, base na m
 | tres-quartos | 0,669 | 0,709 | 45°/12° |
 | **média** | **0,669** | **0,709** |  |
 
-- `depois`: pecas/cubo_rodas · 2026-11-14
+- `depois`: projetos/cubo-rodas · 2026-11-14
 
 ## dino
 
@@ -51,4 +51,4 @@ Protocolo v1: projeção ortográfica, silhuetas com 400 px de altura, base na m
 - `antes`: .preview/v102/pecas/dino · 2026-11-14 · tag v1.0.2
 - `malha-dino-hy2mv-fl-s1`: referencia/malhas/dino-hy2mv-fl-s1.glb · 2026-11-14
 - `malha-dino-hy2mv-fl-s2`: referencia/malhas/dino-hy2mv-fl-s2.glb · 2026-11-14
-- `depois`: pecas/dino · 2026-11-14
+- `depois`: projetos/dino · 2026-11-14
