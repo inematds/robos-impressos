@@ -98,7 +98,8 @@ def construir() -> Modelo:
     # fase 2: sensor de queda (janela no piso, na frente) e 3 ToF (frente e 2 lados). A janela de cada ToF é CEGA: um
     # bolso em gota por DENTRO da parede, que deixa uma pele de 0,8 mm por fora (nada aparece de frente nem de 3/4; antes
     # eram 3 entalhes abertos de 14 x 5 mm na borda da base). Ela fica entre os 2 furos piloto do suporte do sensor, na
-    # mesma altura; quem montar o sensor na fase 2 abre a pele com broca de 6 mm, por dentro, guiada pelo bolso.
+    # mesma altura; quem montar o sensor na fase 2 vara a pele por dentro, no centro do bolso, com um prego quente (a
+    # furadeira não cabe na cuba: 124 mm entre as paredes) e alarga por FORA com broca de 6 mm.
     cortes.append(caixa(-7, 7, y1 - t - 9, y1 - t - 3, zc - 1, zf + 1) + BS.universal_z(0, y1 - t - 6, zc, zf))
     zj, dj, pele_j = zd0 - Q.tof_z, P.TOF.janela_d + 0.5, Q.tof_pele
     cortes.append(gota((0.0, y1 - t - 0.01, zj), (0, 1, 0), t - pele_j, dj, (0, 0, 1)))

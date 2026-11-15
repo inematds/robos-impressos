@@ -950,7 +950,7 @@
   {
    "item": "Sensor de distância ToF VL53L1X (placa pequena)",
    "qtd": "3",
-   "onde": "Por dentro da parede da base, 10 mm abaixo da borda de cima: um na frente e um de cada lado. Cada ponto tem 2 furos cegos para parafuso M2,5 e, entre eles, uma janela cega: por fora a parede é lisa, com 0,8 mm de plástico na frente da janela. Na instalação, fure essa pele por dentro com broca de 6 mm. Depois disso ficam 3 furos de 6 mm à vista na base.",
+   "onde": "Por dentro da parede da base, 10 mm abaixo da borda de cima: um na frente e um de cada lado. Cada ponto tem 2 furos cegos para parafuso M2,5 e, entre eles, uma janela cega: por fora a parede é lisa, com 0,8 mm de plástico na frente da janela. Na instalação, vare essa pele por dentro, no centro da janela, com um prego ou uma agulha quente: a furadeira não cabe dentro da base. O furinho marca o centro do lado de fora; alargue por fora com broca de 6 mm. Depois disso ficam 3 furos de 6 mm à vista na base.",
    "faixa": [
     40,
     110

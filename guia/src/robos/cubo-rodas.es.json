@@ -684,7 +684,7 @@
  "a_7579582f5c": "En la parte superior de la cabeza, el único lugar con 360° libres: 3 orificios ciegos por dentro y un rebaje ciego para el cable. La pared de 0,8 mm solo se perfora cuando se instala el sensor; hasta entonces, no se ve nada por fuera. Con él, el robot queda con 341 mm de altura.",
  "a_90e664f043": "posición de los 3 orificios en el cuerpo del sensor",
  "a_f654120d80": "Sensor de distancia ToF VL53L1X (placa pequeña)",
- "a_4bb8a3b23e": "Por dentro de la pared de la base, 10 mm por debajo del borde superior: uno al frente y uno a cada lado. Cada punto tiene 2 orificios ciegos para tornillos M2,5 y, entre ellos, una ventana ciega: por fuera, la pared es lisa, con 0,8 mm de plástico delante de la ventana. Durante la instalación, perfora esta capa desde adentro con una broca de 6 mm. Después, quedan 3 orificios de 6 mm a la vista en la base.",
+ "a_a6688199e9": "Por dentro de la pared de la base, 10 mm por debajo del borde superior: uno al frente y uno a cada lado. Cada punto tiene 2 agujeros ciegos para tornillos M2,5 y, entre ellos, una ventana ciega: por fuera, la pared es lisa, con 0,8 mm de plástico delante de la ventana. Durante la instalación, perfora esa capa desde dentro, en el centro de la ventana, con un clavo o una aguja caliente: el taladro no cabe dentro de la base. El pequeño agujero marca el centro por fuera; ensánchalo desde fuera con una broca de 6 mm. Después de eso, quedan 3 agujeros de 6 mm visibles en la base.",
  "a_cd55100aeb": "R$ 102,32",
  "a_c852a7043e": "tamaño de la placa (25 × 10,7 mm) y distancia entre los orificios",
  "a_6ce0598da5": "Sensor de caída (infrarrojo reflectivo, por ejemplo TCRT5000)",

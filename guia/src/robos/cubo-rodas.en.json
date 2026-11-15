@@ -684,7 +684,7 @@
  "a_7579582f5c": "At the top of the head, the only spot with 360° of clearance: 3 blind holes inside and a blind recess for the cable. The 0.8 mm shell is drilled only when the sensor is installed; until then, nothing is visible from the outside. With it, the robot is 341 mm tall.",
  "a_90e664f043": "position of the 3 holes in the sensor body",
  "a_f654120d80": "VL53L1X ToF distance sensor (small board)",
- "a_4bb8a3b23e": "Inside the base wall, 10 mm below the top edge: one at the front and one on each side. Each point has 2 blind holes for M2.5 screws and, between them, a blind window: the outside wall is smooth, with 0.8 mm of plastic in front of the window. During installation, drill through this skin from the inside with a 6 mm drill bit. After that, 3 visible 6 mm holes remain in the base.",
+ "a_a6688199e9": "On the inside of the base wall, 10 mm below the top edge: one at the front and one on each side. Each point has 2 blind holes for an M2.5 screw and, between them, a blind window: the outside wall is smooth, with 0.8 mm of plastic in front of the window. During installation, pierce this skin from the inside, in the center of the window, with a nail or a hot needle: the drill won’t fit inside the base. The small hole marks the center on the outside; widen it from the outside with a 6 mm drill bit. After that, 3 visible 6 mm holes remain in the base.",
  "a_cd55100aeb": "R$ 102,32",
  "a_c852a7043e": "board size (25 × 10.7 mm) and distance between the holes",
  "a_6ce0598da5": "Drop sensor (infrared reflective, such as TCRT5000)",
