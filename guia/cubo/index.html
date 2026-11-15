@@ -151,6 +151,10 @@
 .tabela.estreita{min-width:0}
 .tabela td b{font-family:Sora}
 .step p a,.nota a,.mini a{text-decoration:underline}
+.bal{min-width:0}.bal img{margin-bottom:10px;background:#999}
+.bal h4{font-family:Sora;font-size:1rem;margin:0}
+.bal ul{margin:.5em 0 0 1.1em;padding:0;color:var(--mut);font-size:.88rem}.bal li{margin:.3em 0}
+.legenda .cor{display:inline-block;width:.85em;height:.85em;border-radius:3px;margin:0 .35em 0 .9em;vertical-align:-1px;border:1px solid var(--line)}
 @media(max-width:720px){
   .glossario{grid-template-columns:1fr}
   .tabela-wrap.cartoes{border:0;overflow:visible}
@@ -212,7 +216,7 @@
   <p>O robô quadrado é um robô de mesa de 20 cm para você imprimir em casa e montar. A cabeça é um cubo com uma tela de 3,5 polegadas no rosto; ela gira quase uma volta inteira e inclina para cima e para baixo. Dentro vão um Raspberry Pi, um Arduino, dois servos e uma bateria que carrega por USB-C. Você precisa de uma impressora 3D com mesa de 256 mm, das peças da lista de compras e de um ferro de solda. Esta página cobre a fase 1: o corpo montado, os fios ligados e os dois servos no centro. A programação (rosto na tela, voz, câmera, IA) é a fase 2 e ainda não foi feita.</p>
   <figure style="margin:26px 0 0;max-width:760px;border-radius:16px;overflow:hidden;border:1px solid var(--line)"><img src="assets/cubo-vistas.jpg" alt="Quatro vistas do robô: frente, três quartos pelos dois lados e costas" style="display:block;width:100%"></figure>
   <p class="nota">Todas as imagens desta página são renders do modelo 3D real. Nada foi impresso ainda: o primeiro a imprimir é você, começando pela peça de teste. Achou uma palavra nova? Veja o <a href="#glossario">glossário</a>. Os outros robôs do projeto estão no <a href="../">guia geral dos robôs</a></p>
-  <div class="flow indice"><span><a href="#robo">O robô</a></span><span><a href="#comprar">Lista de compras</a></span><span><a href="#glossario">Glossário</a></span><span><a href="#baixar">Downloads</a></span><span><a href="#imprimir">Impressão</a></span><span><a href="#montar">Montagem</a></span><span><a href="#energia">Energia e ligação</a></span><span><a href="#fase2">Fase 2</a></span><span><a href="#verificacao">Verificação</a></span></div>
+  <div class="flow indice"><span><a href="#robo">O robô</a></span><span><a href="#comprar">Lista de compras</a></span><span><a href="#glossario">Glossário</a></span><span><a href="#baixar">Downloads</a></span><span><a href="#imprimir">Impressão</a></span><span><a href="#montar">Montagem</a></span><span><a href="#energia">Energia e ligação</a></span><span><a href="#fase2">Fase 2</a></span><span><a href="#semelhanca">Semelhança</a></span><span><a href="#verificacao">Verificação</a></span></div>
 </div></section>
 
 <!-- VIDEO: entra o explicavideo do projeto quando publicado -->
@@ -457,6 +461,22 @@
 <tr><td>Cupom de teste (teste-encaixe)</td><td data-l="Reforço" class="c">—</td><td data-l="O que é">cupom de folgas: janela do servo, 3 furos de inserto (3,9/4,0/4,1), eixo do motor TT, M3 passante/M3 piloto/M2,5/M2, 3 soquetes do pino (0,20/0,25/0,30); covinha = medida do projeto</td></tr>
 </tbody></table></div>
 </details>
+  <h3 class="sep3" id="balancos">Mapa de balanços: onde a peça fica sem apoio na impressão</h3>
+  <p class="sub">Na impressora, cada camada precisa de plástico embaixo. O mapa mostra as peças principais na posição em que vão na mesa e pinta de vermelho as faces que ficariam no ar. Peça sem vermelho imprime sem suporte. Nas outras, o cartão de cada peça diz onde o suporte vai.</p>
+  <details class="dobra titulo" open><summary><h4>Mapas das peças principais</h4> <small>(7 itens)</small></summary>
+<p class="mini">Cada imagem traz a mesma peça em três vistas, da esquerda para a direita: 1) por baixo, frente/direita; 2) por baixo, trás/esquerda; 3) por cima, como sai da mesa.</p>
+<p class="mini legenda">Cores do mapa:<span class="cor" style="background:#e0262c"></span>sem apoio (balanço livre, teto, ponte longa)<span class="cor" style="background:#f4c20d"></span>balanço tolerado (furo, ponte curta, beira)<span class="cor" style="background:#3d74d9"></span>face na mesa<span class="cor" style="background:#c9c9ce"></span>sem balanço</p>
+<div class="grid g2 balancos">
+<div class="card bal"><a href="assets/balancos/cubo-base.jpg" target="_blank" rel="noopener"><img class="shot" loading="lazy" src="assets/balancos/cubo-base.jpg" alt="Mapa de balanços: Base (base)"></a><h4>Base (base)</h4><p class="mini"><strong>ok sem suporte</strong></p><ul><li>Como vai na mesa: piso na mesa</li><li>Suporte: não</li><li>Área sem apoio: 0 mm² (0,0 % da área da peça). Limite para imprimir sem suporte: 247 mm²</li><li>Maior ponte (vão vencido sem apoio embaixo): 18,5 mm</li></ul></div>
+<div class="card bal"><a href="assets/balancos/cubo-cabeca-corpo.jpg" target="_blank" rel="noopener"><img class="shot" loading="lazy" src="assets/balancos/cubo-cabeca-corpo.jpg" alt="Mapa de balanços: Copo da cabeça (cabeca-corpo)"></a><h4>Copo da cabeça (cabeca-corpo)</h4><p class="mini"><strong>ok sem suporte</strong></p><ul><li>Como vai na mesa: costas na mesa, boca (frente) para cima, como um copo</li><li>Suporte: não</li><li>Área sem apoio: 0 mm² (0,0 % da área da peça). Limite para imprimir sem suporte: 241 mm²</li><li>Maior ponte (vão vencido sem apoio embaixo): —</li></ul></div>
+<div class="card bal"><a href="assets/balancos/cubo-tampa-base.jpg" target="_blank" rel="noopener"><img class="shot" loading="lazy" src="assets/balancos/cubo-tampa-base.jpg" alt="Mapa de balanços: Tampa da base (tampa-base)"></a><h4>Tampa da base (tampa-base)</h4><p class="mini"><strong>ok sem suporte</strong></p><ul><li>Como vai na mesa: de cabeça para baixo: a face de cima na mesa</li><li>Suporte: não</li><li>Área sem apoio: 0 mm² (0,0 % da área da peça). Limite para imprimir sem suporte: 96 mm²</li><li>Maior ponte (vão vencido sem apoio embaixo): —</li></ul></div>
+<div class="card bal"><a href="assets/balancos/cubo-quadro-cabeca.jpg" target="_blank" rel="noopener"><img class="shot" loading="lazy" src="assets/balancos/cubo-quadro-cabeca.jpg" alt="Mapa de balanços: Quadro da cabeça (quadro-cabeca)"></a><h4>Quadro da cabeça (quadro-cabeca)</h4><p class="mini"><strong>ok sem suporte</strong></p><ul><li>Como vai na mesa: frente da travessa na mesa, laterais para cima</li><li>Suporte: não</li><li>Área sem apoio: 0 mm² (0,0 % da área da peça). Limite para imprimir sem suporte: 62 mm²</li><li>Maior ponte (vão vencido sem apoio embaixo): —</li></ul></div>
+<div class="card bal"><a href="assets/balancos/cubo-cabeca-face.jpg" target="_blank" rel="noopener"><img class="shot" loading="lazy" src="assets/balancos/cubo-cabeca-face.jpg" alt="Mapa de balanços: Painel do rosto (cabeca-face)"></a><h4>Painel do rosto (cabeca-face)</h4><p class="mini"><strong>ok sem suporte</strong></p><ul><li>Como vai na mesa: face da frente (a que aparece) na mesa, pilares para cima</li><li>Suporte: não</li><li>Área sem apoio: 0 mm² (0,0 % da área da peça). Limite para imprimir sem suporte: 58 mm²</li><li>Maior ponte (vão vencido sem apoio embaixo): —</li></ul></div>
+<div class="card bal"><a href="assets/balancos/cubo-garfo.jpg" target="_blank" rel="noopener"><img class="shot" loading="lazy" src="assets/balancos/cubo-garfo.jpg" alt="Mapa de balanços: Garfo (garfo)"></a><h4>Garfo (garfo)</h4><p class="mini"><strong>ok sem suporte</strong></p><ul><li>Como vai na mesa: deitado, costas na mesa: as camadas correm do bloco para os braços</li><li>Suporte: não</li><li>Área sem apoio: 0 mm² (0,0 % da área da peça). Limite para imprimir sem suporte: 30 mm²</li><li>Maior ponte (vão vencido sem apoio embaixo): —</li></ul></div>
+<div class="card bal"><a href="assets/balancos/cubo-tubo-pescoco.jpg" target="_blank" rel="noopener"><img class="shot" loading="lazy" src="assets/balancos/cubo-tubo-pescoco.jpg" alt="Mapa de balanços: Tubo do pescoço (tubo-pescoco)"></a><h4>Tubo do pescoço (tubo-pescoco)</h4><p class="mini"><strong>ok sem suporte</strong></p><ul><li>Como vai na mesa: de cabeça para baixo: o topo (lado do garfo) na mesa, a flange cônica abre a 45°</li><li>Suporte: não</li><li>Área sem apoio: 0 mm² (0,0 % da área da peça). Limite para imprimir sem suporte: 30 mm²</li><li>Maior ponte (vão vencido sem apoio embaixo): —</li></ul></div>
+</div>
+</details>
+  <p class="nota">Entram no mapa as peças com suporte declarado, as de 50 g ou mais e as que levam carga: garfo, berço, tubo do pescoço e chassi. A área sem apoio é medida pelo teste 10 do verificador, sobre o mesmo STL que você baixa: são as faces viradas para baixo a mais de 45° que não nascem na mesa nem são ponte curta. O limite é o maior entre 30 mm² e 0,2 % da área da peça, e peça declarada sem suporte que passa dele reprova o robô. É uma conta de geometria: como o suporte se solta de verdade, só a impressão vai dizer.</p>
   <p class="nota">O mesmo guia de impressão, em texto: <a href="https://github.com/inematds/robos-impressos/blob/main/projetos/cubo/IMPRIMIR.md" target="_blank" rel="noopener">IMPRIMIR.md</a></p>
 </div></section>
 
@@ -625,6 +645,19 @@
 </tbody></table></div>
 </details>
   <p class="nota">A fase 2 (voz, câmera, sensores, IA) ainda não foi feita.</p>
+</div></section>
+
+<section id="semelhanca"><div class="wrap">
+  <span class="chip">Semelhança</span>
+  <h2>Quanto o robô ficou parecido com o desenho de referência</h2>
+  <p class="sub">O projeto partiu de um desenho de referência de cada robô. A medida compara só o contorno: a silhueta do modelo é posta sobre a do desenho, na mesma vista, e o número (IoU) é a área comum dividida pela área total das duas. Vai de 0 a 1 e, quanto maior, mais parecido o contorno. Cor, olhos e detalhes não entram.</p>
+  <div class="tabela-wrap estreita"><table class="tabela estreita">
+<thead><tr><th>Vista</th><th>Antes (v1.0.2)</th><th>Depois (esta versão)</th></tr></thead>
+<tbody>
+<tr><td>três quartos</td><td data-l="Antes (v1.0.2)" class="c">0,755</td><td data-l="Depois (esta versão)" class="c">0,797</td></tr>
+</tbody></table></div>
+<p class="nota">Alvo, definido antes de medir o depois: <strong>0,855</strong> (0,10 acima do antes, porque este robô não tem malha da imagem). <strong>Alvo não atingido</strong>. Com o servo de pan em pé e a engrenagem por cima dele, a base não fica mais baixa que cerca de 60 mm. No desenho, base e pescoço somam 20 % da altura; no robô, 41 %.</p>
+<p class="nota">Método e números completos: <a href="https://github.com/inematds/robos-impressos/blob/main/comparacao/semelhanca.md" target="_blank" rel="noopener">comparacao/semelhanca.md</a> (em português)</p>
 </div></section>
 
 <section id="verificacao"><div class="wrap">

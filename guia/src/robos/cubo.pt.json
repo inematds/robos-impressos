@@ -197,5 +197,6 @@
  "sv_leg10": "No robô, os 3 resistores ficam presos na barra de emenda, entre os bornes 3 e 2.",
  "sv_bat": "6 a 8,4 V",
  "sv_51": "5,1 V",
- "sv_6": "6 V"
+ "sv_6": "6 V",
+ "sem_extra": "Com o servo de pan em pé e a engrenagem por cima dele, a base não fica mais baixa que cerca de 60 mm. No desenho, base e pescoço somam 20 % da altura; no robô, 41 %."
 }

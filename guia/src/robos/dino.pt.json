@@ -209,5 +209,6 @@
  "sv_leg10": "No L298N, retire os jumpers ENA, ENB e o do regulador de 5 V.",
  "sv_leg10b": "O borne +12V do L298N recebe a tensão da bateria (6 a 8,4 V).",
  "sv_braco_d": "Micro servo do braço direito",
- "sv_braco_e": "Micro servo do braço esquerdo"
+ "sv_braco_e": "Micro servo do braço esquerdo",
+ "sem_extra": "O que ainda separa o robô da malha: a boca fechada, a faixa reta entre as pernas e os braços lisos."
 }

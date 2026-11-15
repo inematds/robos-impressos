@@ -207,5 +207,6 @@
  "sv_leg9": "No desenho, o divisor aparece ao lado do D1.",
  "sv_leg9b": "No robô, os 3 resistores ficam presos na barra de emenda, entre os bornes 3 e 2.",
  "sv_leg10": "No L298N, retire os jumpers ENA, ENB e o do regulador de 5 V.",
- "sv_leg10b": "O borne +12V do L298N recebe a tensão da bateria (6 a 8,4 V)."
+ "sv_leg10b": "O borne +12V do L298N recebe a tensão da bateria (6 a 8,4 V).",
+ "sem_extra": "O robô ficou praticamente no teto da malha. O que ainda separa os dois: o laço da bandana na nuca, que ficou de fora, e a faceta chata no lugar dele."
 }

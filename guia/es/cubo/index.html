@@ -151,6 +151,10 @@
 .tabela.estreita{min-width:0}
 .tabela td b{font-family:Sora}
 .step p a,.nota a,.mini a{text-decoration:underline}
+.bal{min-width:0}.bal img{margin-bottom:10px;background:#999}
+.bal h4{font-family:Sora;font-size:1rem;margin:0}
+.bal ul{margin:.5em 0 0 1.1em;padding:0;color:var(--mut);font-size:.88rem}.bal li{margin:.3em 0}
+.legenda .cor{display:inline-block;width:.85em;height:.85em;border-radius:3px;margin:0 .35em 0 .9em;vertical-align:-1px;border:1px solid var(--line)}
 @media(max-width:720px){
   .glossario{grid-template-columns:1fr}
   .tabela-wrap.cartoes{border:0;overflow:visible}
@@ -212,7 +216,7 @@
   <p>El robot cuadrado es un robot de mesa de 20 cm para que lo imprimas en casa y lo montes. La cabeza es un cubo con una pantalla de 3,5 pulgadas en la cara; gira casi una vuelta completa y se inclina hacia arriba y hacia abajo. Dentro lleva una Raspberry Pi, un Arduino, dos servos y una batería que se carga por USB-C. Necesitas una impresora 3D con una cama de 256 mm, las piezas de la lista de compras y un soldador. Esta página cubre la fase 1: el cuerpo montado, los cables conectados y los dos servos en el centro. La programación (cara en la pantalla, voz, cámara, IA) es la fase 2 y todavía no está hecha.</p>
   <figure style="margin:26px 0 0;max-width:760px;border-radius:16px;overflow:hidden;border:1px solid var(--line)"><img src="../../cubo/assets/cubo-vistas.jpg" alt="Cuatro vistas del robot: de frente, en tres cuartos desde ambos lados y desde atrás" style="display:block;width:100%"></figure>
   <p class="nota">Todas las imágenes de esta página son renders del modelo 3D real. Todavía no se imprimió nada: tú serás quien imprima primero, empezando por la pieza de prueba. ¿Encontraste una palabra nueva? Consulta el <a href="#glossario">glosario</a>. Los otros robots del proyecto están en el <a href="../">guía general de los robots</a></p>
-  <div class="flow indice"><span><a href="#robo">El robot</a></span><span><a href="#comprar">Lista de compras</a></span><span><a href="#glossario">Glosario</a></span><span><a href="#baixar">Descargas</a></span><span><a href="#imprimir">Impresión</a></span><span><a href="#montar">Montaje</a></span><span><a href="#energia">Alimentación y conexión</a></span><span><a href="#fase2">Fase 2</a></span><span><a href="#verificacao">Verificación</a></span></div>
+  <div class="flow indice"><span><a href="#robo">El robot</a></span><span><a href="#comprar">Lista de compras</a></span><span><a href="#glossario">Glosario</a></span><span><a href="#baixar">Descargas</a></span><span><a href="#imprimir">Impresión</a></span><span><a href="#montar">Montaje</a></span><span><a href="#energia">Alimentación y conexión</a></span><span><a href="#fase2">Fase 2</a></span><span><a href="#semelhanca">Similitud</a></span><span><a href="#verificacao">Verificación</a></span></div>
 </div></section>
 
 <!-- VIDEO: entra o explicavideo do projeto quando publicado -->
@@ -457,6 +461,22 @@
 <tr><td>Cupón de prueba (teste-encaixe)</td><td data-l="Refuerzo" class="c">—</td><td data-l="Qué es">cupón de holguras: ventana del servo, 3 orificios para inserto roscado (3,9/4,0/4,1), eje del motor TT, M3 pasante/M3 piloto/M2,5/M2, 3 alojamientos del pin (0,20/0,25/0,30); hoyuelo = medida del diseño</td></tr>
 </tbody></table></div>
 </details>
+  <h3 class="sep3" id="balancos">Mapa de voladizos: dónde la pieza queda sin apoyo durante la impresión</h3>
+  <p class="sub">En la impresora, cada capa necesita plástico debajo. El mapa muestra las piezas principales en la posición en que van en la cama y marca en rojo las caras que quedarían en el aire. Las piezas sin rojo se imprimen sin soportes. En las demás, la tarjeta de cada pieza indica dónde van los soportes.</p>
+  <details class="dobra titulo" open><summary><h4>Mapas de las piezas principales</h4> <small>(7 elementos)</small></summary>
+<p class="mini">Cada imagen muestra la misma pieza desde tres vistas, de izquierda a derecha: 1) por debajo, frente/derecha; 2) por debajo, atrás/izquierda; 3) por arriba, como sale de la cama.</p>
+<p class="mini legenda">Colores del mapa:<span class="cor" style="background:#e0262c"></span>sin soporte (voladizo libre, techo, puente largo)<span class="cor" style="background:#f4c20d"></span>voladizo tolerado (agujero, puente corto, borde)<span class="cor" style="background:#3d74d9"></span>cara en la cama<span class="cor" style="background:#c9c9ce"></span>sin voladizo</p>
+<div class="grid g2 balancos">
+<div class="card bal"><a href="../../cubo/assets/balancos/cubo-base.jpg" target="_blank" rel="noopener"><img class="shot" loading="lazy" src="../../cubo/assets/balancos/cubo-base.jpg" alt="Mapa de voladizos: Base (base)"></a><h4>Base (base)</h4><p class="mini"><strong>bien sin soportes</strong></p><ul><li>Cómo va en la cama: piso sobre la cama</li><li>Soporte: no</li><li>Área sin apoyo: 0 mm² (0,0 % del área de la pieza). Límite para imprimir sin soportes: 247 mm²</li><li>Puente más largo (tramo impreso sin apoyo debajo): 18,5 mm</li></ul></div>
+<div class="card bal"><a href="../../cubo/assets/balancos/cubo-cabeca-corpo.jpg" target="_blank" rel="noopener"><img class="shot" loading="lazy" src="../../cubo/assets/balancos/cubo-cabeca-corpo.jpg" alt="Mapa de voladizos: Carcasa de la cabeza (cabeca-corpo)"></a><h4>Carcasa de la cabeza (cabeca-corpo)</h4><p class="mini"><strong>bien sin soportes</strong></p><ul><li>Cómo va en la cama: espalda sobre la cama, abertura (frente) hacia arriba, como un vaso</li><li>Soporte: no</li><li>Área sin apoyo: 0 mm² (0,0 % del área de la pieza). Límite para imprimir sin soportes: 241 mm²</li><li>Puente más largo (tramo impreso sin apoyo debajo): —</li></ul></div>
+<div class="card bal"><a href="../../cubo/assets/balancos/cubo-tampa-base.jpg" target="_blank" rel="noopener"><img class="shot" loading="lazy" src="../../cubo/assets/balancos/cubo-tampa-base.jpg" alt="Mapa de voladizos: Tapa de la base (tampa-base)"></a><h4>Tapa de la base (tampa-base)</h4><p class="mini"><strong>bien sin soportes</strong></p><ul><li>Cómo va en la cama: boca abajo: la cara superior sobre la cama</li><li>Soporte: no</li><li>Área sin apoyo: 0 mm² (0,0 % del área de la pieza). Límite para imprimir sin soportes: 96 mm²</li><li>Puente más largo (tramo impreso sin apoyo debajo): —</li></ul></div>
+<div class="card bal"><a href="../../cubo/assets/balancos/cubo-quadro-cabeca.jpg" target="_blank" rel="noopener"><img class="shot" loading="lazy" src="../../cubo/assets/balancos/cubo-quadro-cabeca.jpg" alt="Mapa de voladizos: Marco de la cabeza (quadro-cabeca)"></a><h4>Marco de la cabeza (quadro-cabeca)</h4><p class="mini"><strong>bien sin soportes</strong></p><ul><li>Cómo va en la cama: frente del travesaño sobre la cama, laterales hacia arriba</li><li>Soporte: no</li><li>Área sin apoyo: 0 mm² (0,0 % del área de la pieza). Límite para imprimir sin soportes: 62 mm²</li><li>Puente más largo (tramo impreso sin apoyo debajo): —</li></ul></div>
+<div class="card bal"><a href="../../cubo/assets/balancos/cubo-cabeca-face.jpg" target="_blank" rel="noopener"><img class="shot" loading="lazy" src="../../cubo/assets/balancos/cubo-cabeca-face.jpg" alt="Mapa de voladizos: Panel de la cara (cabeca-face)"></a><h4>Panel de la cara (cabeca-face)</h4><p class="mini"><strong>bien sin soportes</strong></p><ul><li>Cómo va en la cama: cara frontal (la que queda visible) sobre la cama, pilares hacia arriba</li><li>Soporte: no</li><li>Área sin apoyo: 0 mm² (0,0 % del área de la pieza). Límite para imprimir sin soportes: 58 mm²</li><li>Puente más largo (tramo impreso sin apoyo debajo): —</li></ul></div>
+<div class="card bal"><a href="../../cubo/assets/balancos/cubo-garfo.jpg" target="_blank" rel="noopener"><img class="shot" loading="lazy" src="../../cubo/assets/balancos/cubo-garfo.jpg" alt="Mapa de voladizos: Horquilla (garfo)"></a><h4>Horquilla (garfo)</h4><p class="mini"><strong>bien sin soportes</strong></p><ul><li>Cómo va en la cama: acostada, con la parte trasera sobre la cama: las capas van del bloque hacia los brazos</li><li>Soporte: no</li><li>Área sin apoyo: 0 mm² (0,0 % del área de la pieza). Límite para imprimir sin soportes: 30 mm²</li><li>Puente más largo (tramo impreso sin apoyo debajo): —</li></ul></div>
+<div class="card bal"><a href="../../cubo/assets/balancos/cubo-tubo-pescoco.jpg" target="_blank" rel="noopener"><img class="shot" loading="lazy" src="../../cubo/assets/balancos/cubo-tubo-pescoco.jpg" alt="Mapa de voladizos: Tubo del cuello (tubo-pescoco)"></a><h4>Tubo del cuello (tubo-pescoco)</h4><p class="mini"><strong>bien sin soportes</strong></p><ul><li>Cómo va en la cama: boca abajo: la parte superior (lado de la horquilla) sobre la cama, la brida cónica se abre a 45°</li><li>Soporte: no</li><li>Área sin apoyo: 0 mm² (0,0 % del área de la pieza). Límite para imprimir sin soportes: 30 mm²</li><li>Puente más largo (tramo impreso sin apoyo debajo): —</li></ul></div>
+</div>
+</details>
+  <p class="nota">Se incluyen en el mapa las piezas que requieren soportes, las de 50 g o más y las que soportan carga: horquilla, cuna, tubo del cuello y chasis. El área sin apoyo se mide con la prueba 10 del verificador, sobre el mismo STL que descargas: son las caras orientadas hacia abajo con más de 45° que no empiezan en la cama ni forman un puente corto. El límite es el mayor valor entre 30 mm² y 0,2 % del área de la pieza, y una pieza declarada sin soportes que lo supera hace que el robot no pase la verificación. Es un cálculo geométrico: solo la impresión dirá si los soportes se desprenden bien.</p>
   <p class="nota">La misma guía de impresión, en texto: <a href="https://github.com/inematds/robos-impressos/blob/main/projetos/cubo/IMPRIMIR.es.md" target="_blank" rel="noopener">IMPRIMIR.es.md</a></p>
 </div></section>
 
@@ -625,6 +645,19 @@
 </tbody></table></div>
 </details>
   <p class="nota">La fase 2 (voz, cámara, sensores, IA) todavía no se ha hecho.</p>
+</div></section>
+
+<section id="semelhanca"><div class="wrap">
+  <span class="chip">Similitud</span>
+  <h2>Qué tanto se parece el robot al dibujo de referencia</h2>
+  <p class="sub">El proyecto partió de un dibujo de referencia para cada robot. La medida compara solo el contorno: la silueta del modelo se superpone a la del dibujo desde la misma vista, y el número (IoU) es el área común dividida por el área total de ambas. Va de 0 a 1 y, cuanto mayor es, más se parecen los contornos. No se tienen en cuenta el color, los ojos ni los detalles.</p>
+  <div class="tabela-wrap estreita"><table class="tabela estreita">
+<thead><tr><th>Vista</th><th>Antes (v1.0.2)</th><th>Después (esta versión)</th></tr></thead>
+<tbody>
+<tr><td>tres cuartos</td><td data-l="Antes (v1.0.2)" class="c">0,755</td><td data-l="Después (esta versión)" class="c">0,797</td></tr>
+</tbody></table></div>
+<p class="nota">Objetivo, definido antes de medir el resultado: <strong>0,855</strong> (0,10 por encima del antes, porque este robot no tiene malla de la imagen). <strong>Objetivo no alcanzado</strong>. Con el servo de pan en posición vertical y el engranaje encima, la base no queda por debajo de unos 60 mm. En el diseño, la base y el cuello suman el 20 % de la altura; en el robot, el 41 %.</p>
+<p class="nota">Método y números completos: <a href="https://github.com/inematds/robos-impressos/blob/main/comparacao/semelhanca.md" target="_blank" rel="noopener">comparacao/semelhanca.md</a> (en portugués)</p>
 </div></section>
 
 <section id="verificacao"><div class="wrap">

@@ -151,6 +151,10 @@
 .tabela.estreita{min-width:0}
 .tabela td b{font-family:Sora}
 .step p a,.nota a,.mini a{text-decoration:underline}
+.bal{min-width:0}.bal img{margin-bottom:10px;background:#999}
+.bal h4{font-family:Sora;font-size:1rem;margin:0}
+.bal ul{margin:.5em 0 0 1.1em;padding:0;color:var(--mut);font-size:.88rem}.bal li{margin:.3em 0}
+.legenda .cor{display:inline-block;width:.85em;height:.85em;border-radius:3px;margin:0 .35em 0 .9em;vertical-align:-1px;border:1px solid var(--line)}
 @media(max-width:720px){
   .glossario{grid-template-columns:1fr}
   .tabela-wrap.cartoes{border:0;overflow:visible}
@@ -212,7 +216,7 @@
   <p>The square robot is a 20 cm desktop robot that you can print at home and assemble. Its head is a cube with a 3.5-inch screen on its face; it rotates almost all the way around and tilts up and down. Inside are a Raspberry Pi, an Arduino, two servos, and a battery that charges via USB-C. You need a 3D printer with a 256 mm build plate, the parts on the shopping list, and a soldering iron. This page covers phase 1: the body assembled, the wires connected, and both servos centered. Programming (screen face, voice, camera, AI) is phase 2 and has not been done yet.</p>
   <figure style="margin:26px 0 0;max-width:760px;border-radius:16px;overflow:hidden;border:1px solid var(--line)"><img src="../../cubo/assets/cubo-vistas.jpg" alt="Four views of the robot: front, three-quarter views from both sides, and back" style="display:block;width:100%"></figure>
   <p class="nota">All images on this page are renders of the actual 3D model. Nothing has been printed yet: you're the first to print it, starting with the test part. Found a new word? See the <a href="#glossario">glossary</a>. The project's other robots are at <a href="../">general robot guide</a></p>
-  <div class="flow indice"><span><a href="#robo">The robot</a></span><span><a href="#comprar">Shopping list</a></span><span><a href="#glossario">Glossary</a></span><span><a href="#baixar">Downloads</a></span><span><a href="#imprimir">Printing</a></span><span><a href="#montar">Assembly</a></span><span><a href="#energia">Power and wiring</a></span><span><a href="#fase2">Phase 2</a></span><span><a href="#verificacao">Verification</a></span></div>
+  <div class="flow indice"><span><a href="#robo">The robot</a></span><span><a href="#comprar">Shopping list</a></span><span><a href="#glossario">Glossary</a></span><span><a href="#baixar">Downloads</a></span><span><a href="#imprimir">Printing</a></span><span><a href="#montar">Assembly</a></span><span><a href="#energia">Power and wiring</a></span><span><a href="#fase2">Phase 2</a></span><span><a href="#semelhanca">Similarity</a></span><span><a href="#verificacao">Verification</a></span></div>
 </div></section>
 
 <!-- VIDEO: entra o explicavideo do projeto quando publicado -->
@@ -457,6 +461,22 @@
 <tr><td>Test coupon (teste-encaixe)</td><td data-l="Reinforcement" class="c">—</td><td data-l="What it is">clearance coupon: servo window, 3 insert holes (3.9/4.0/4.1), TT motor shaft, M3 through hole/M3 pilot/M2.5/M2, 3 pin sockets (0.20/0.25/0.30); dimple = design dimension</td></tr>
 </tbody></table></div>
 </details>
+  <h3 class="sep3" id="balancos">Overhang map: where the part has no support during printing</h3>
+  <p class="sub">On the printer, each layer needs plastic underneath it. The map shows the main parts in the position they’ll have on the build plate and marks in red the faces that would be in midair. Parts without red print without supports. For the others, each part’s card shows where the supports go.</p>
+  <details class="dobra titulo" open><summary><h4>Maps of the main parts</h4> <small>(7 items)</small></summary>
+<p class="mini">Each image shows the same part from three views, from left to right: 1) underneath, front/right; 2) underneath, rear/left; 3) on top, as it comes off the build plate.</p>
+<p class="mini legenda">Map colors:<span class="cor" style="background:#e0262c"></span>no support (free overhang, ceiling, long bridge)<span class="cor" style="background:#f4c20d"></span>overhang tolerated (hole, short bridge, edge)<span class="cor" style="background:#3d74d9"></span>face on the build plate<span class="cor" style="background:#c9c9ce"></span>no overhang</p>
+<div class="grid g2 balancos">
+<div class="card bal"><a href="../../cubo/assets/balancos/cubo-base.jpg" target="_blank" rel="noopener"><img class="shot" loading="lazy" src="../../cubo/assets/balancos/cubo-base.jpg" alt="Overhang map: Base (base)"></a><h4>Base (base)</h4><p class="mini"><strong>OK without supports</strong></p><ul><li>How it sits on the build plate: base on the build plate</li><li>Support: no</li><li>Unsupported area: 0 mm² (0.0 % of the part's area). Limit for printing without supports: 247 mm²</li><li>Longest bridge (span printed without support underneath): 18.5 mm</li></ul></div>
+<div class="card bal"><a href="../../cubo/assets/balancos/cubo-cabeca-corpo.jpg" target="_blank" rel="noopener"><img class="shot" loading="lazy" src="../../cubo/assets/balancos/cubo-cabeca-corpo.jpg" alt="Overhang map: Head shell (cabeca-corpo)"></a><h4>Head shell (cabeca-corpo)</h4><p class="mini"><strong>OK without supports</strong></p><ul><li>How it sits on the build plate: back on the build plate, opening (front) facing up, like a cup</li><li>Support: no</li><li>Unsupported area: 0 mm² (0.0 % of the part's area). Limit for printing without supports: 241 mm²</li><li>Longest bridge (span printed without support underneath): —</li></ul></div>
+<div class="card bal"><a href="../../cubo/assets/balancos/cubo-tampa-base.jpg" target="_blank" rel="noopener"><img class="shot" loading="lazy" src="../../cubo/assets/balancos/cubo-tampa-base.jpg" alt="Overhang map: Base cover (tampa-base)"></a><h4>Base cover (tampa-base)</h4><p class="mini"><strong>OK without supports</strong></p><ul><li>How it sits on the build plate: upside down: the top face on the build plate</li><li>Support: no</li><li>Unsupported area: 0 mm² (0.0 % of the part's area). Limit for printing without supports: 96 mm²</li><li>Longest bridge (span printed without support underneath): —</li></ul></div>
+<div class="card bal"><a href="../../cubo/assets/balancos/cubo-quadro-cabeca.jpg" target="_blank" rel="noopener"><img class="shot" loading="lazy" src="../../cubo/assets/balancos/cubo-quadro-cabeca.jpg" alt="Overhang map: Head frame (quadro-cabeca)"></a><h4>Head frame (quadro-cabeca)</h4><p class="mini"><strong>OK without supports</strong></p><ul><li>How it sits on the build plate: front of the crossbar on the build plate, sides facing up</li><li>Support: no</li><li>Unsupported area: 0 mm² (0.0 % of the part's area). Limit for printing without supports: 62 mm²</li><li>Longest bridge (span printed without support underneath): —</li></ul></div>
+<div class="card bal"><a href="../../cubo/assets/balancos/cubo-cabeca-face.jpg" target="_blank" rel="noopener"><img class="shot" loading="lazy" src="../../cubo/assets/balancos/cubo-cabeca-face.jpg" alt="Overhang map: Face panel (cabeca-face)"></a><h4>Face panel (cabeca-face)</h4><p class="mini"><strong>OK without supports</strong></p><ul><li>How it sits on the build plate: front face (the visible one) on the build plate, pillars facing up</li><li>Support: no</li><li>Unsupported area: 0 mm² (0.0 % of the part's area). Limit for printing without supports: 58 mm²</li><li>Longest bridge (span printed without support underneath): —</li></ul></div>
+<div class="card bal"><a href="../../cubo/assets/balancos/cubo-garfo.jpg" target="_blank" rel="noopener"><img class="shot" loading="lazy" src="../../cubo/assets/balancos/cubo-garfo.jpg" alt="Overhang map: Fork (garfo)"></a><h4>Fork (garfo)</h4><p class="mini"><strong>OK without supports</strong></p><ul><li>How it sits on the build plate: lying down, back on the build plate: the layers run from the block toward the arms</li><li>Support: no</li><li>Unsupported area: 0 mm² (0.0 % of the part's area). Limit for printing without supports: 30 mm²</li><li>Longest bridge (span printed without support underneath): —</li></ul></div>
+<div class="card bal"><a href="../../cubo/assets/balancos/cubo-tubo-pescoco.jpg" target="_blank" rel="noopener"><img class="shot" loading="lazy" src="../../cubo/assets/balancos/cubo-tubo-pescoco.jpg" alt="Overhang map: Neck tube (tubo-pescoco)"></a><h4>Neck tube (tubo-pescoco)</h4><p class="mini"><strong>OK without supports</strong></p><ul><li>How it sits on the build plate: upside down: top (fork side) on the build plate, conical flange opens at 45°</li><li>Support: no</li><li>Unsupported area: 0 mm² (0.0 % of the part's area). Limit for printing without supports: 30 mm²</li><li>Longest bridge (span printed without support underneath): —</li></ul></div>
+</div>
+</details>
+  <p class="nota">The map includes parts with declared supports, parts weighing 50 g or more, and load-bearing parts: fork, cradle, neck tube, and chassis. The unsupported area is measured by test 10 in the checker, using the same STL you download: these are faces pointing downward at more than 45° that do not start on the build plate or form a short bridge. The limit is the greater of 30 mm² and 0.2 % of the part's area, and a part declared support-free that exceeds it fails the robot. This is a geometry calculation: only printing will show how well the supports actually come off.</p>
   <p class="nota">The same print guide, in text: <a href="https://github.com/inematds/robos-impressos/blob/main/projetos/cubo/IMPRIMIR.en.md" target="_blank" rel="noopener">IMPRIMIR.en.md</a></p>
 </div></section>
 
@@ -625,6 +645,19 @@
 </tbody></table></div>
 </details>
   <p class="nota">Phase 2 (voice, camera, sensors, AI) hasn’t been built yet.</p>
+</div></section>
+
+<section id="semelhanca"><div class="wrap">
+  <span class="chip">Similarity</span>
+  <h2>How closely the robot matches the reference drawing</h2>
+  <p class="sub">The project started from a reference drawing for each robot. The measurement compares only the outline: the model's silhouette is placed over the drawing's silhouette from the same view, and the number (IoU) is the shared area divided by the total area of both. It ranges from 0 to 1; the higher it is, the closer the outlines match. Color, eyes, and details are not included.</p>
+  <div class="tabela-wrap estreita"><table class="tabela estreita">
+<thead><tr><th>View</th><th>Before (v1.0.2)</th><th>After (this version)</th></tr></thead>
+<tbody>
+<tr><td>three-quarter</td><td data-l="Before (v1.0.2)" class="c">0.755</td><td data-l="After (this version)" class="c">0.797</td></tr>
+</tbody></table></div>
+<p class="nota">Target, set before measuring the after version: <strong>0.855</strong> (0.10 above the before version, because this robot has no image mesh). <strong>Target not reached</strong>. With the pan servo upright and the gear on top of it, the base cannot be lower than about 60 mm. In the drawing, the base and neck make up 20% of the height; in the robot, 41%.</p>
+<p class="nota">Full method and numbers: <a href="https://github.com/inematds/robos-impressos/blob/main/comparacao/semelhanca.md" target="_blank" rel="noopener">comparacao/semelhanca.md</a> (in Portuguese)</p>
 </div></section>
 
 <section id="verificacao"><div class="wrap">

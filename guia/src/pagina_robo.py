@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Página própria de UM robô no guia (PT/EN/ES) + docs do robô nos 3 idiomas + esquema de ligação (SVG) + zip.
-Não toca nas outras páginas do guia (quem monta a entrada /guia/ continua sendo montar.py).
+Não toca nas outras páginas do guia (a entrada /guia/ é de montar.py; a evolução, de evolucao.py).
 
 Fontes:
   projetos/<robô>/montagem.json · mesas.json · verificacao.json  números das peças (comum/cad/gerar.py e verificar.py)
@@ -21,9 +21,11 @@ Uso (sempre com o venv do repo; troque `cubo` pelo robô):
   .venv/bin/python guia/src/pagina_robo.py esquema cubo [pt en es] ligacao.<lg>.svg (docs e guia/<robô>/assets/)
   .venv/bin/python guia/src/pagina_robo.py pagina cubo [pt en es] guia/cubo/, guia/en/cubo/, guia/es/cubo/
   .venv/bin/python guia/src/pagina_robo.py zip cubo               projetos/cubo/cubo-stl.zip
-  .venv/bin/python guia/src/pagina_robo.py entrada cubo           botão "página nova" no cartão do robô em /guia/ (+ en, es)
+  .venv/bin/python guia/src/pagina_robo.py imagens cubo           cópias dos renders e dos mapas de balanços em guia/cubo/assets/
   .venv/bin/python guia/src/pagina_robo.py conferir cubo          links, tags, vírgula decimal no inglês, notas internas, zip
 Ordem depois de mudar texto em português: docs pt → traduzir → docs → esquema → pagina → zip → conferir.
+A página também mostra o mapa de balanços (projetos/<robô>/imagens/balancos/indice.json) e os números de semelhança
+(comparacao/semelhanca.json). O guia inteiro (entrada, 4 robôs, evolução) de uma vez: .venv/bin/python guia/src/tudo.py
 """
 import hashlib
 import html
@@ -42,6 +44,7 @@ sys.path.insert(0, str(AQUI))
 sys.path.insert(0, str(RAIZ / "comum"))     # pacote `cad`: só o registro id → pasta (caminhos.py não importa numpy)
 from cad.caminhos import MODELOS  # noqa: E402
 import montar            # noqa: E402  (cabeça/CSS/rodapé do template do guia)
+import semelhanca as SEM  # noqa: E402  (IoU de comparacao/semelhanca.json, mesma conta do alvo das tabelas)
 import traduzir as TR    # noqa: E402  (pedido ao inema-traduz e conferência de tags)
 
 REPO = "https://github.com/inematds/robos-impressos"
@@ -62,6 +65,10 @@ ROBOS = {"cubo": _robo("cubo", "🤖"), "dino": _robo("dino", "🦖", "esquema_b
          "cubo-rodas": _robo("cubo_rodas", "🤖", "esquema_cubo_rodas")}
 CUPOM = "comum/pecas/stl/comum-teste-encaixe.stl"               # peça comum citada à mão nos docs
 IDIOMAS = ("pt", "en", "es")
+# mapa de balanços: a regra que comum/cad/mapas_balancos.py usou para escolher as peças (o texto para o leitor é a chave
+# bal_regra; se a regra mudar, o assert do Robo avisa) e a cor de cada item da legenda (as do render)
+BAL_REGRA = "peça com suporte declarado, ou >= 50 g, ou ponto de carga (garfo, berco, tubo-pescoco, chassi)"
+BAL_COR = {"vermelho": "#e0262c", "amarelo": "#f4c20d", "azul": "#3d74d9", "cinza": "#c9c9ce"}
 DOCS_LG = ("LISTA-DE-COMPRAS", "IMPRIMIR", "LIGACAO")            # docs que ganham versão .en.md e .es.md
 LEIA = {"pt": "LEIA-ME.md", "en": "README.en.md", "es": "LEEME.es.md"}   # o guia de impressão dentro do zip
 BANDEIRA = {"pt": "🇧🇷 Português", "en": "🇺🇸 English", "es": "🇪🇸 Español"}
@@ -117,6 +124,11 @@ class Robo:
         self.verif = ler(self.pasta / "verificacao.json")
         self.d = ler(AQUI / "robos" / f"{nome}.dados.json")
         self.pecas = {p["nome"]: p for p in self.mj["pecas"]}
+        bal = self.pasta / "imagens" / "balancos" / "indice.json"          # mapas de balanços (comum/cad/mapas_balancos.py)
+        self.bal = ler(bal) if bal.exists() else None
+        if self.bal:
+            assert self.bal["regra"] == BAL_REGRA, "a regra de escolha das peças do mapa de balanços mudou: reescreva bal_regra em _comum.pt.json e BAL_REGRA"
+            assert set(self.bal["cores"]) == set(BAL_COR), "cores do mapa de balanços mudaram: atualize BAL_COR"
         passos = {o["passo"] for o in self.mj["ordem_montagem"]}
         sobra = set(self.d["passos_nota"]) - passos
         assert not sobra, f"passos_nota com passo que não existe mais no modelo: {sorted(sobra)}"
@@ -220,6 +232,10 @@ def frases_auto(R):
         f += [g["termo"], g["def"]]
     for pr in R.d["preparos"]:
         f += [pr["titulo"]] + pr["passos"]
+    if R.bal:                                                       # mapa de balanços: tudo o que a página mostra do indice.json
+        f += list(R.bal["vistas"]) + list(R.bal["cores"].values())
+        for p in R.bal["pecas"]:
+            f += [p["veredito"], p["suporte"], p["orientacao"]]
     return {chave_auto(s): s for s in dict.fromkeys(f) if s and not re.fullmatch(r"[\d\s+.,×x–-]*", s)}
 
 
@@ -290,6 +306,8 @@ def _traduz(pt, dest, cache, lg, lote=36, extra=""):
                 assert not marc, f"marcadores [[ ]] diferentes em {marc}"
                 cr = [k for k in bloco if cod(out[k]) != cod(bloco[k])]
                 assert not cr, f"trecho entre crases diferente em {cr}"
+                capi = [k for k in bloco if lg == "es" and re.search("capibara", out[k], re.I)]
+                assert not capi, f'"capibara" no espanhol (o projeto usa "carpincho") em {capi}'
                 md = [k for k in bloco if k.startswith("d_") and (url(out[k]) != url(bloco[k]) or itens(out[k]) != itens(bloco[k]))]
                 assert not md, f"Markdown diferente (crases, links ou itens de lista) em {md}"
                 break
@@ -309,7 +327,32 @@ def _traduz(pt, dest, cache, lg, lote=36, extra=""):
     cache.write_text(json.dumps({k: marcas[k] for k in pt if k in marcas}))
 
 
+def herdar(R, lg):
+    """Texto com o MESMO português já traduzido na página de outro robô (mesma chave e mesmo hash) herda essa tradução:
+    os rótulos comuns ficam iguais nas 4 páginas e só o texto novo vai ao tradutor."""
+    pt, dest, cache = textos_pt(R), arq_lg(R, lg), arq_cache(R, lg)
+    feito = ler(dest) if dest.exists() else {}
+    marcas = ler(cache) if cache.exists() else {}
+    falta = [k for k in pt if k not in feito or marcas.get(k) != sha(pt[k])]
+    n = 0
+    for outro in ROBOS:
+        fo, co = AQUI / "robos" / f"{outro}.{lg}.json", AQUI / "robos" / f".cache.{outro}.{lg}.json"
+        if outro == R.nome or not falta or not (fo.exists() and co.exists()):
+            continue
+        do, mo = ler(fo), ler(co)
+        for k in list(falta):
+            if k in do and mo.get(k) == sha(pt[k]):
+                feito[k], marcas[k] = do[k], mo[k]
+                falta.remove(k)
+                n += 1
+    if n:
+        dest.write_text(json.dumps({k: feito[k] for k in pt if k in feito}, ensure_ascii=False, indent=1) + "\n")
+        cache.write_text(json.dumps({k: marcas[k] for k in pt if k in marcas}))
+        print(f"{lg}: {n} textos herdados de outro robô ({dest.name})", flush=True)
+
+
 def traduzir(R, lg):
+    herdar(R, lg)
     extra = ("\n- " + R.d["glossario_traducao"]) if R.d.get("glossario_traducao") else ""     # termos só deste robô
     _traduz(textos_pt(R), arq_lg(R, lg), arq_cache(R, lg), lg, extra=extra)
     _traduz(docs_pt(R), arq_lg(R, lg, True), arq_cache(R, lg, True), lg, extra=extra)
@@ -706,6 +749,10 @@ CSS = """
 .tabela.estreita{min-width:0}
 .tabela td b{font-family:Sora}
 .step p a,.nota a,.mini a{text-decoration:underline}
+.bal{min-width:0}.bal img{margin-bottom:10px;background:#999}
+.bal h4{font-family:Sora;font-size:1rem;margin:0}
+.bal ul{margin:.5em 0 0 1.1em;padding:0;color:var(--mut);font-size:.88rem}.bal li{margin:.3em 0}
+.legenda .cor{display:inline-block;width:.85em;height:.85em;border-radius:3px;margin:0 .35em 0 .9em;vertical-align:-1px;border:1px solid var(--line)}
 @media(max-width:720px){
   .glossario{grid-template-columns:1fr}
   .tabela-wrap.cartoes{border:0;overflow:visible}
@@ -734,6 +781,62 @@ def preparos_html(R, X):
     return "\n".join(o)
 
 
+def balancos_html(R, X, A):
+    """Mapa de balanços: legenda + um cartão por peça (imagem de 3 vistas, veredito e números do teste 10)."""
+    if not R.bal:
+        return ""
+    t, a, n = X.t, X.a, X.n
+    esc = lambda s: html.escape(s, quote=False)
+    vistas = "; ".join(f"{i}) {esc(a(v))}" for i, v in enumerate(R.bal["vistas"], 1))
+    cores = "".join(f'<span class="cor" style="background:{BAL_COR[k]}"></span>{esc(a(v))}' for k, v in R.bal["cores"].items())
+    o = []
+    for p in R.bal["pecas"]:
+        nome = esc(rotulo(R, X, p["peca"]))
+        img = f'{A}balancos/{p["imagem"]}'
+        ponte = f'{n(p["maior_ponte_mm"], 1)} mm' if p["maior_ponte_mm"] >= 0.05 else "—"
+        o.append(f'<div class="card bal"><a href="{img}" target="_blank" rel="noopener"><img class="shot" loading="lazy" src="{img}" alt="{html.escape(t("bal_alt"))} {html.escape(rotulo(R, X, p["peca"]))}"></a>'
+                 f'<h4>{nome}</h4><p class="mini"><strong>{esc(a(p["veredito"]))}</strong></p><ul>'
+                 f'<li>{esc(t("th_orient"))}: {H(a(p["orientacao"]))}</li>'
+                 f'<li>{esc(t("th_suporte"))}: {H(a(p["suporte"]))}</li>'
+                 f'<li>{esc(t("bal_area"))}: {n(p["sem_apoio_mm2"], 0)} mm² ({n(p["sem_apoio_pct"], 1)} % {esc(t("bal_da_peca"))}). {esc(t("bal_limite"))}: {n(p["limite_mm2"], 0)} mm²</li>'
+                 f'<li>{esc(t("bal_ponte"))}: {ponte}</li></ul></div>')
+    miolo = (f'<p class="mini">{esc(t("bal_vistas"))} {vistas}.</p>\n<p class="mini legenda">{esc(t("bal_cores"))}{cores}</p>\n'
+             f'<div class="grid g2 balancos">\n' + "\n".join(o) + "\n</div>")
+    return dobra(f'<h4>{esc(t("bal_dobra"))}</h4>', miolo, len(o), X, " titulo")
+
+
+def tem_evolucao(R):
+    """A página /guia/evolucao/ mostra este robô? (lista em guia/evolucao/assets/dados.json, de comum/cad/evolucao.py)"""
+    f = GUIA / "evolucao" / "assets" / "dados.json"
+    return f.exists() and R.cfg["id"] in ler(f)["bichos"]
+
+
+def semelhanca_html(R, X):
+    """Números de semelhança com o desenho de referência (só números: as imagens de referência ficam na página de evolução)."""
+    t, n = X.t, X.n
+    esc = lambda s: html.escape(s, quote=False)
+    m = SEM.medida(R.cfg["id"])
+    f = lambda v: "—" if v is None else n(v, 3)
+    cols = ["antes", "depois"] + (["teto"] if m["teto"] is not None else [])
+    cols = [c for c in cols if m[c] is not None]
+    cab = [t("sem_th_vista")] + [t("sem_th_" + c) for c in cols]
+    linhas = [[t("vista_" + v["vista"].replace("-", "_"))] + [f(v[c]) for c in cols] for v in m["vistas"]]
+    total = len(linhas) > 1
+    if total:
+        linhas.append([t("sem_media")] + [f(m[c]) for c in cols])
+    o = [tab_html(cab, linhas, total=total, estreita=True)]
+    if m["novo"]:
+        o.append(f'<p class="nota">{esc(t("sem_novo"))}</p>')
+    else:
+        como = t("sem_alvo_malha") if m["teto"] is not None else t("sem_alvo_fixo")
+        o.append(f'<p class="nota">{esc(t("sem_alvo"))} <strong>{f(m["alvo"])}</strong> ({esc(como)}). <strong>{esc(t("sem_ok" if m["atingiu"] else "sem_nao"))}</strong>.'
+                 + (f' {esc(t("sem_teto_p"))}' if m["teto"] is not None else "") + (f' {X.d["sem_extra"]}' if X.d.get("sem_extra") else "") + "</p>")
+    if tem_evolucao(R):
+        o.append(f'<p class="nota">{esc(t("sem_evo"))} <a href="../evolucao/#{R.cfg["id"]}">{esc(t("sem_evo_link"))}</a>.</p>')
+    o.append(f'<p class="nota">{esc(t("sem_md"))} <a href="{BLOB}comparacao/semelhanca.md" target="_blank" rel="noopener">comparacao/semelhanca.md</a> {esc(t("sem_md_pt"))}</p>')
+    return "\n".join(o)
+
+
 def pagina(R, lg):
     X = Tx(R, lg)
     head, script = montar.cabeca_rodape()
@@ -757,6 +860,7 @@ def pagina(R, lg):
              "LIGACOES": "\n".join(dobra(f'<h4>{esc(X.a(g["grupo"]))}</h4>', tab_html(*T[f"lig{i}"]), len(g["fios"]), X, " titulo") for i, g in enumerate(R.d["ligacoes"])),
              "RISCOS": "".join(f"<li>{H(X.a(r))}</li>" for r in R.d["riscos"]),
              "PREPAROS": preparos_html(R, X), "N_PREPAROS": str(len(R.d["preparos"])),
+             "BALANCOS": balancos_html(R, X, A), "SEMELHANCA": semelhanca_html(R, X),
              "GLOSSARIO": "".join(f'<div><dt>{esc(X.a(g["termo"]))}</dt><dd>{esc(X.a(g["def"]))}</dd></div>' for g in R.d["glossario"])}
     for nome in DOCS_LG:
         k = "DOC_" + nome.split("-")[0]
@@ -1028,19 +1132,18 @@ def imagens(R):
             im = im.resize((1200, round(im.height * 1200 / im.width)), Image.LANCZOS)
         im.save(dest / f.name, quality=84, optimize=True)
         print(f.name, im.size)
-
-
-def entrada(R):
-    """Só acrescenta, no cartão do robô da página de entrada (/guia/, /guia/en/, /guia/es/), o botão para a página
-    nova. Não regenera a entrada. O próximo montar.py apaga o botão: a E5d põe o link na estrutura (corpo.html)."""
-    for lg in IDIOMAS:
-        f = GUIA / ("index.html" if lg == "pt" else f"{lg}/index.html")
-        h = re.sub(rf'<!-- link-robo:{R.nome} -->.*?<!-- /link-robo -->', "", f.read_text(), flags=re.S)
-        botao = f'<!-- link-robo:{R.nome} --><p style="margin-top:12px"><a class="btn" href="{R.nome}/">{html.escape(Tx(R, lg).t("entrada_link"))}</a></p><!-- /link-robo -->'
-        n, k = re.subn(rf'(<div class="card"><img class="shot" src="[^"]*{R.cfg["id"]}-montado\.jpg".*?</p>)(</div>)', lambda mo: mo.group(1) + botao + mo.group(2), h, count=1, flags=re.S)
-        assert k == 1, f"{lg}: cartão do robô não encontrado na entrada"
-        f.write_text(n)
-        print(f.relative_to(RAIZ), "botão posto")
+    if R.bal:                                                       # mapas de balanços das peças do indice.json
+        (dest / "balancos").mkdir(exist_ok=True)
+        usados = {p["imagem"] for p in R.bal["pecas"]}
+        for f in sorted((dest / "balancos").glob("*.jpg")):
+            if f.name not in usados:
+                f.unlink()                                          # peça que saiu do mapa
+        for nome in sorted(usados):
+            im = Image.open(R.pasta / "imagens" / "balancos" / nome).convert("RGB")
+            if im.width > 1200:
+                im = im.resize((1200, round(im.height * 1200 / im.width)), Image.LANCZOS)
+            im.save(dest / "balancos" / nome, quality=84, optimize=True)
+        print(f"balancos: {len(usados)} mapas")
 
 
 if __name__ == "__main__":
@@ -1063,8 +1166,6 @@ if __name__ == "__main__":
         for lg in (lgs or IDIOMAS):
             esquema(R, lg)
             pagina(R, lg)
-    elif cmd == "entrada":
-        entrada(R)
     elif cmd == "conferir":
         sys.exit(0 if conferir(R) else 1)
     else:
