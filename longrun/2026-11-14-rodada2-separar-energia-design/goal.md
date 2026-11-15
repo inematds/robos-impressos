@@ -79,3 +79,5 @@
 12. **Página de referência da evolução da capivara e do dino** (didática): imagens antes (v1.0.2) × depois nas mesmas
     4 vistas + tabela de IoU por vista (antes, depois, teto da malha, alvo) + como ler o IoU. Fica em `/guia/evolucao/`
     (PT/EN/ES), feita na E5d depois da E3b. Imagens da referência do Nei só se ele autorizar (pergunta feita em 14/11).
+13. **(Nei, 15/11 madrugada)** "Faltou a imagem original antes. E faça dos 3: capi, dino e box. Também coloque a imagem de banner junto, antes, nesta seção Evolução do desenho — Os bichos ficaram mais parecidos com o desenho."
+    Pronto = na seção "Evolução do desenho" da ENTRADA (`/guia/` + en + es) e na página `/guia/evolucao/`: para capivara, dino E cubo, a imagem ORIGINAL de referência do Nei + render antes (v1.0.2) + render depois, lado a lado; tabela de IoU com o cubo também (antes 0,755 → depois); + o banner antigo (v1.0.2, feito por IA, com o dino errado) ao lado do banner novo (modelos reais), com legenda honesta. Nei autorizou as referências (decisions.md), inclusive a do cubo (`referencia/robo-quadrado.png`).
