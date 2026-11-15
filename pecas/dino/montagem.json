@@ -902,10 +902,10 @@
     113.7,
     129.4
    ],
-   "tris": 100868,
-   "plastico_cm3": 162.3,
-   "massa_g": 201.2,
-   "tempo_h": 7.59,
+   "tris": 99604,
+   "plastico_cm3": 162.4,
+   "massa_g": 201.3,
+   "tempo_h": 7.6,
    "obs": "pernas, barriga e peito; desce por cima do chassi; 2 M3 por trás (cobertos pela traseira); a borda de trás encaixa na traseira",
    "liso": true,
    "perimetros": 4,
@@ -1003,7 +1003,7 @@
       1.0,
       0.0,
       0.0,
-      -0.0005298566858087383
+      0.0
      ],
      [
       0.0,
@@ -1034,14 +1034,14 @@
    "comum": false,
    "macica": false,
    "dim": [
-    114.1,
+    120.6,
     100.5,
     56.1
    ],
-   "tris": 25460,
-   "plastico_cm3": 67.7,
-   "massa_g": 83.9,
-   "tempo_h": 3.21,
+   "tris": 25562,
+   "plastico_cm3": 69.2,
+   "massa_g": 85.8,
+   "tempo_h": 3.28,
    "obs": "gola: esfera em que a cabeça gira; assenta na borda do corpo; 3 M3 por cima, nos ressaltos do corpo (por dentro, antes da cabeça)",
    "liso": true,
    "perimetros": 4,
@@ -3710,9 +3710,9 @@
  "obs": {
   "parede_medida": {
    "corpo": {
-    "min": 2.3,
+    "min": 2.28,
     "med": 2.39,
-    "max": 2.79,
+    "max": 2.64,
     "amostras": 4000
    },
    "gola": {
@@ -3774,9 +3774,9 @@
  ],
  "parede_medida": {
   "corpo": {
-   "min": 2.3,
+   "min": 2.28,
    "med": 2.39,
-   "max": 2.79,
+   "max": 2.64,
    "amostras": 4000
   },
   "gola": {

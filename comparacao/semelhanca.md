@@ -42,7 +42,7 @@ Protocolo v1: projeção ortográfica, silhuetas com 400 px de altura, base na m
 
 | vista | antes: IoU | antes: ajustado | antes: az/el | malha-dino-hy2mv-fl-s1: IoU | malha-dino-hy2mv-fl-s1: ajustado | malha-dino-hy2mv-fl-s1: az/el | malha-dino-hy2mv-fl-s2: IoU | malha-dino-hy2mv-fl-s2: ajustado | malha-dino-hy2mv-fl-s2: az/el | depois: IoU | depois: ajustado | depois: az/el |
 |---|---:|---:|---|---:|---:|---|---:|---:|---|---:|---:|---|
-| frente | 0,875 | 0,875 | 0°/15° | 0,930 | 0,935 | 0°/20° | 0,942 | 0,942 | 0°/15° | 0,912 | 0,912 | 5°/10° |
+| frente | 0,875 | 0,875 | 0°/15° | 0,930 | 0,935 | 0°/20° | 0,942 | 0,942 | 0°/15° | 0,913 | 0,913 | 5°/10° |
 | tres-quartos-a | 0,808 | 0,817 | -65°/20° | 0,866 | 0,870 | -55°/15° | 0,888 | 0,888 | -55°/15° | 0,874 | 0,874 | -55°/15° |
 | tres-quartos-b | 0,787 | 0,824 | -45°/25° | 0,897 | 0,897 | -45°/20° | 0,889 | 0,889 | -50°/20° | 0,862 | 0,862 | -50°/20° |
 | lado | 0,786 | 0,788 | -70°/20° | 0,869 | 0,869 | -55°/5° | 0,870 | 0,884 | -75°/10° | 0,837 | 0,837 | -65°/10° |

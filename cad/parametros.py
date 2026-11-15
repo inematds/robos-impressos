@@ -385,7 +385,7 @@ DINO = NS(
     braco=NS(eixo=(47.0, 122.5), x_base=53.0, x_ponta=46.0, lim=(-15.0, 20.0), r_cubo=8.5, r_furo=10.5, encaixe=4.0,
              blobs=[((57.0, 47.0, 122.5), (12.0, 13.0, 12.0)), ((60.0, 66.0, 119.0), (9.0, 12.0, 10.0)), ((54.0, 83.0, 116.0), (9.0, 10.0, 9.0))],
              ombro=((45.0, 28.0, 100.0), (80.0, 72.0, 146.0)),                    # pele: saliência do ombro da malha além de x_base - 0,5 (sai)
-             mao=((30.0, 60.0, 104.0), (60.0, 96.0, 142.0)), mao_n=(0.87, 0.5, 0.0), mao_d=64.0),   # pele: antebraço e mão em relevo além do plano n·p = d (saem)
+             mao=((30.0, 62.0, 104.0), (60.0, 96.0, 142.0)), mao_n=(0.87, 0.5, 0.0), mao_d=64.0),   # pele: antebraço e mão em relevo além do plano n·p = d (saem)
     barriga=NS(caixa=((-32.0, 60.0, 63.0), (32.0, 130.0, 143.0)), plano_y=80.0),   # pele: barriga creme = o que a pele tem além do plano
     dedos=(((43.0, 88.5, 6.0), (0.0, 1.0, 0.0)), ((68.0, 88.5, 6.0), (0.0, 1.0, 0.0)), ((89.0, 66.0, 6.0), (1.0, 0.0, 0.0))),   # pele: (ponto, normal) do plano de cada dedo creme do pé direito
     dedo_r=9.0,

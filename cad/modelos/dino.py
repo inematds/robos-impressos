@@ -340,6 +340,7 @@ def construir() -> Modelo:
         c_, s_ = np.cos(th), np.sin(th)
         Q = np.stack([Pb[..., 0], oy + (Pb[..., 1] - oy) * c_ + (Pb[..., 2] - oz) * s_, oz - (Pb[..., 1] - oy) * s_ + (Pb[..., 2] - oz) * c_], axis=-1)
         varre = np.minimum(varre, f_braco(Q.astype(np.float32)))
+    varre = np.maximum(varre, (br.x_base - 1.0) - Pb[..., 0])      # o braço de verdade só existe de x_base para fora (o blob inteiro abriria um bolso no ombro)
     nx = len(base.eixos[0])
     sl_e = (slice(nx - sl_b[0].stop, nx - sl_b[0].start), sl_b[1], sl_b[2])          # o mesmo bloco, espelhado em X
 
@@ -432,7 +433,10 @@ def construir() -> Modelo:
     gola = CA.fatia_z(ext, zg, z_top) - esfera(C0, r_gola_in, seg=128)
     gola = gola - cil((C0[0], C0[1], zg - 1.0), tuple(C0), K.gola_boca_r - 0.5, seg=128)      # por baixo a boca tem o mesmo raio da de cima: a gola desce por cima do garfo
     for sx in (1, -1):                                  # acima dos ombros a face de baixo da gola sobe a 45° (o corpo foi afastado do que o braço varre)
-        gola = gola - (prisma([(sx * (br.x_base - 0.4), zg - 1.0), (sx * (br.x_base + 40.0), zg - 1.0), (sx * (br.x_base + 40.0), zg + 40.4)], "y", oy - 35.0, oy + 50.0))
+        gola = gola - (prisma([(sx * (br.x_base - 0.4), zg - 1.0), (sx * (br.x_base + 40.0), zg - 1.0), (sx * (br.x_base + 40.0), zg + 40.4)], "y", br.ombro[0][1] + DY, br.ombro[1][1] + DY))      # só na faixa do assento plano do ombro (fora dela a borda do corpo ficaria descoberta)
+    for sx in (1, -1):                                  # tampa sobre o ombro: o corte z_gola passa pelo alto da saliência do ombro, que é oca; sem ela ficava uma fresta aberta para dentro
+        xa, xb = sorted((sx * (K.gola_boca_r + 2.0), sx * (br.x_base - 0.5)))
+        gola = gola + caixa(xa, xb, br.ombro[0][1] + DY, br.ombro[1][1] + DY, zg, zg + 2.4)
     gola = maior_corpo(gola)
     for (gx, gy) in pos_g:                               # 3 M3 por cima: furo passante + rebaixo fundo (a chave entra pela boca da gola)
         gola = gola - cil((gx, gy, zg - 1), (gx, gy, zg + 4), F.m3_passante / 2, seg=24) - cil((gx, gy, zg + 3.0), (gx, gy, zg + 32.0), F.cabeca_m3_d / 2 + 0.2, seg=24)
