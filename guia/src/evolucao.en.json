@@ -38,7 +38,7 @@
  "ler4_t": "It's a thick ruler",
  "ler4_p": "The exact camera used in the drawing is unknown. So the ruler starts from a chosen angle for each view, tests nearby angles (up to 25° on either side, in steps of 5°), and keeps the best one. This accounts for a camera mismatch, but it can also hide small differences. One or two thousandths are noise; you can see a large difference in the images.",
  "ler5_t": "The ceiling",
- "ler5_p": "It's the raw 3D mesh, generated on the computer from the drawing and measured with the same ruler. It doesn't reach 1 because the drawing consists of four illustrations that don't match perfectly, while a mesh has only one shape. The robot still has wheels, cuts, and clearances: as a rule, it stays below the ceiling.",
+ "ler5_p": "It’s the raw 3D mesh, generated on the computer from the drawing and measured with the same ruler. It doesn’t even reach 1: the capybara’s score is [[CAPIVARA_TETO]] and the dinosaur’s is [[DINO_TETO]]. The robot still has wheels, cutouts, and gaps: as a rule, it stays below the ceiling.",
  "ler6_t": "The target",
  "ler6_p": "It was set before measuring the result, so no one could choose the target after seeing the outcome: halfway between the before and the ceiling. This rule applies to the average across the four views. The target for each view, shown in the tables, is the same calculation applied to that view.",
  "num_antes": "before (v1.0.2), average across views",

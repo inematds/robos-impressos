@@ -73,6 +73,7 @@ CSS_ENTRADA = """
 .nota a{text-decoration:underline}
 details.dobra summary{color:var(--amb)}
 nav .brand,nav .links a.sec{white-space:nowrap}
+@media(max-width:1240px){nav .links .sec{display:none}}
 @media(max-width:860px){.barra{grid-template-columns:118px 1fr 50px}}
 """
 

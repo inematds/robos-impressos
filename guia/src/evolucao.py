@@ -144,8 +144,9 @@ def pagina(lg):
              "NOTAS_ARRED": "\n  ".join(x for x in (nota_arred(id, tx, n) for id in bichos) if x)}
     for id in ("capivara", "dino", "cubo"):
         m = SEM.medida(id)
-        for k in ("antes", "depois", "alvo"):
-            fixos[f"{id.upper()}_{k.upper()}"] = n(m[k], 3)
+        for k in ("antes", "depois", "alvo", "teto"):
+            if m[k] is not None:
+                fixos[f"{id.upper()}_{k.upper()}"] = n(m[k], 3)
     for id, pasta in PASTA.items():
         j = P.ler(RAIZ / "projetos" / pasta / "montagem.json")["juntas"]
         fixos[f"{id.upper()}_PESCOCO"] = n(j["pan"]["origem"][2], 0)

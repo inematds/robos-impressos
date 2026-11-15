@@ -38,7 +38,7 @@
  "ler4_t": "Es una regla estricta",
  "ler4_p": "No se conoce la cámara exacta del dibujo. Por eso, la regla parte de un ángulo acordado para cada vista, prueba los ángulos vecinos (hasta 25° a cada lado, de 5 en 5) y se queda con el mejor. Esto perdona un error de cámara, pero también oculta diferencias pequeñas. Una o dos milésimas son ruido; las diferencias grandes se ven en las imágenes.",
  "ler5_t": "El techo",
- "ler5_p": "Es la malla 3D cruda, generada en la computadora a partir del dibujo y medida con la misma regla. No llega a 1 porque el dibujo consta de cuatro ilustraciones que no coinciden perfectamente entre sí, y una malla tiene una sola forma. El robot todavía tiene ruedas, cortes y holguras: por lo general, queda por debajo del techo.",
+ "ler5_p": "Es la malla 3D sin procesar, generada en la computadora a partir del dibujo y medida con la misma regla. Ni siquiera llega a 1: la del carpincho marca [[CAPIVARA_TETO]] y la del dinosaurio, [[DINO_TETO]]. El robot todavía tiene ruedas, cortes y holguras: por lo general, queda por debajo del techo.",
  "ler6_t": "El objetivo",
  "ler6_p": "Se definió antes de medir el resultado, para que nadie eligiera la meta mirando el resultado: la mitad del camino entre el antes y el techo. La regla se aplica al promedio de las cuatro vistas. El objetivo por vista, en las tablas, es el mismo cálculo aplicado a cada vista.",
  "num_antes": "antes (v1.0.2), promedio de las vistas",

@@ -2,6 +2,9 @@
 
 | data | o que quebrou | menor correção | prompt \| infra |
 |---|---|---|---|
+| 2026-11-15 | guia (E5d): as marcas de tradução da entrada e da evolução (`guia/src/.cache.*.json`) caíam no `.gitignore`; num clone, `evolucao.py pagina en` pararia por "texto sem tradução" e a entrada usaria tradução velha sem avisar | marcas em arquivo versionado (`textos.cache.<lg>.json`, `evolucao.cache.<lg>.json`) e `montar.py` passa a conferi-las | infra |
+| 2026-11-15 | guia, capivara em espanhol: 9 textos da página saíram com "capibara" e o resto do projeto diz "carpincho" (a regra estava no pedido ao tradutor e não foi seguida) | conferência no `_traduz`: "capibara" reprova o lote e pede de novo; 7 textos refeitos (2 ficaram: título do esquema e LEEME do zip, em `projetos/capivara/`) | prompt |
+| 2026-11-15 | guia, entrada em espanhol: entre 1181 e 1204 px o menu passava 2 px da largura da página (rótulos sem quebra de linha) | os links de seção do menu somem abaixo de 1240 px; medido com `scrollWidth` nas 18 páginas em 390, 760, 900, 1185 e 1280 px | prompt |
 | 2026-11-15 | dino (E5b2, tentativa não commitada): ombro em cone sobre faceta inclinada ficou mais fundo que o assento antigo; a sombra do micro servo furou a parede e o motor amarelo aparecia por 2 buracos; os 11 testes passavam | voltar ao assento plano em x_base − 0,6 e só abrir as faces da caixa a 45°; visto no render de 1200 px com componentes | prompt |
 | 2026-11-15 | dino: de frente, fenda escura de 3 mm entre cada braço e o corpo (o afastamento de 2 mm do que o braço varre valia também por baixo da base plana do braço) e tampa reta na gola | folga axial própria de 0,6 mm (`br.folga_ax`), furo do cubo de 21 para 18,2 mm, ombro inclinado na gola em vez da tampa | prompt |
 | 2026-11-15 | dino: a mancha do ToF lateral era um disco com furo concêntrico: de 3/4 parecia tampa de parafuso | contorno orgânico de 3 lobos, janela de 5 mm fora do centro | prompt |
