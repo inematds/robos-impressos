@@ -11,7 +11,7 @@ Fase 1 = mecânica e encaixe. Fase 2 (voz, câmera, sensores, localização em c
 - Gerar peças: `.venv/bin/python comum/cad/gerar.py <id|todos>`. Verificar: `.venv/bin/python comum/cad/verificar.py <id|todos>` (11 testes; 4 × `TUDO PASSOU`).
 - Outros: `comum/cad/depurar.py <id>`, `comum/cad/onde.py <id> [pose]`, `comum/cad/comum/imprimibilidade.py <id> [peça]`, `comum/cad/comparar.py <id> --sem-gravar` (sem a opção, regrava `comparacao/`), `comum/cad/tabelas.py`, `comum/cad/vistas.sh <id> <saida.png>`, `comum/cad/renders.sh <id>` (saída em `projetos/<robô>/imagens/`).
 - Página de um robô no guia: `.venv/bin/python guia/src/pagina_robo.py docs|pagina|zip|conferir <robô>` (não rodar `traduzir` sem necessidade: retraduz texto aprovado).
-- Depois de `gerar.py`: os 3MF saem com bytes diferentes a cada rodada (a geometria não muda). Se os STL não mudaram (`git status`), `git restore -- ':(glob)**/*.3mf' comum/pecas/stl` antes do commit.
+- Depois de `gerar.py`: os 3MF saem com bytes diferentes a cada rodada mesmo sem mudar a geometria, e os STL comuns do berço e da capa (`comum/pecas/stl/`) mudam em ruído de 1e-6 conforme o robô que os grava. Antes do commit: se NENHUM STL de `projetos/*/stl` mudou (`git status`), `git restore -- ':(glob)**/*.3mf'`; os 2 STL comuns só voltam (`git restore comum/pecas/stl`) se nada da geometria comum (garfo, berço, capa, cupom: `comum/cad/comum/base*.py`, `parametros.py`) foi tocado. Se a geometria mudou, commit de tudo (STL + 3MF + `montagem.json` + `verificacao.json`) junto.
 - Image-to-3D local (Hunyuan3D-2, GPU, sem API): `.venv-i23d` + `comum/cad/imagem3d.py`; trabalho de GPU por `~/projetos/wifi/scripts/fila-vaga gpu robos -- <cmd>`.
 
 ## Ao começar uma sessão

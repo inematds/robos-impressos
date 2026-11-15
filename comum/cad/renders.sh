@@ -3,7 +3,8 @@
 # Uso: comum/cad/renders.sh <modelo>     (usa a fila de render da máquina, se existir)
 set -euo pipefail
 CAD="$(cd "$(dirname "$0")" && pwd)"; RAIZ="$(cd "$CAD/../.." && pwd)"
-M="$1"; PASTA="$("$RAIZ/.venv/bin/python" "$CAD/caminhos.py" "$M")"   # id → projetos/<robô> (registro único)
+M="$("$RAIZ/.venv/bin/python" "$CAD/caminhos.py" --id "$1")"          # aceita id ou pasta; os arquivos saem com o id (<id>-montado.jpg)
+PASTA="$("$RAIZ/.venv/bin/python" "$CAD/caminhos.py" "$M")"           # id → projetos/<robô> (registro único)
 OUT="$PASTA/imagens"; mkdir -p "$OUT"
 FILA="$HOME/projetos/wifi/scripts/fila-vaga"
 r() { # r <json> <saida.png> args...

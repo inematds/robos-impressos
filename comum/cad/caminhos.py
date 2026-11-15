@@ -12,6 +12,7 @@ tem hífen. Robô novo = uma linha em MODELOS + `projetos/<pasta>/modelo.py` com
 
 Uso em shell (os .sh pegam a pasta por aqui):
   .venv/bin/python comum/cad/caminhos.py cubo_rodas      → /…/projetos/cubo-rodas
+  .venv/bin/python comum/cad/caminhos.py --id cubo-rodas → cubo_rodas (o id, venha o id ou o nome da pasta)
   .venv/bin/python comum/cad/caminhos.py                 → uma linha "id pasta" por robô
 """
 from __future__ import annotations
@@ -66,7 +67,9 @@ def construir(modelo: str):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1:
+    if len(sys.argv) > 2 and sys.argv[1] == "--id":
+        print(id_de(sys.argv[2]))
+    elif len(sys.argv) > 1:
         print(pasta(sys.argv[1]))
     else:
         for i, p in MODELOS.items():
