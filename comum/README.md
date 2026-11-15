@@ -71,6 +71,7 @@ Pastas: `dino`, `capivara`, `cubo`, `cubo-rodas`. O id do cubo que roda no códi
 .venv/bin/python guia/src/pagina_robo.py esquema <robô>        # esquema de ligação (SVG) nos 3 idiomas
 .venv/bin/python guia/src/pagina_robo.py zip <robô>            # <robô>-stl.zip
 .venv/bin/python guia/src/pagina_robo.py conferir <robô>       # links, idiomas e zip
+.venv/bin/python guia/src/tudo.py                         # o guia inteiro (entrada, página de cada robô, evolução) e as conferências
 comum/cad/vistas.sh <id> <saida.png> 600x600 40       # 4 vistas rápidas (Blender)
 comum/cad/renders.sh <id>                             # renders finais em projetos/<robô>/imagens/
 ```

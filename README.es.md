@@ -94,8 +94,8 @@ Leyenda: 🧠 tú · ⚙️ comando/script · 🤖 `claude -p`
 | 15 | Volver a generar los documentos del robot en portugués | `.venv/bin/python guia/src/pagina_robo.py docs <robô> pt` | ⚙️ |
 | 16 | Traducir al inglés y al español (solo lo que cambió) | `.venv/bin/python guia/src/pagina_robo.py traduzir <robô>` | ⚙️ |
 | 17 | Volver a generar los documentos traducidos, el esquema y el zip | `.venv/bin/python guia/src/pagina_robo.py docs <robô>`, después `esquema <robô>` y `zip <robô>` | ⚙️ |
-| 18 | Volver a generar la página del robot en la guía | `.venv/bin/python guia/src/pagina_robo.py pagina <robô>` | ⚙️ |
-| 19 | Revisar los enlaces, los idiomas y el zip | `.venv/bin/python guia/src/pagina_robo.py conferir <robô>` | ⚙️ |
+| 18 | Rehacer toda la guía (página de inicio, página de cada robot y página de evolución del diseño) y revisar todas las páginas | `.venv/bin/python guia/src/tudo.py` | ⚙️ |
+| 19 | O rehacer solo la página de un robot y revisar los enlaces, los idiomas y el zip | `.venv/bin/python guia/src/pagina_robo.py pagina <robô>` → `conferir <robô>` | ⚙️ |
 | 20 | Traducir este README | `.venv/bin/python guia/src/traduzir_readme.py && .venv/bin/python comum/cad/tabelas.py --docs` | ⚙️ |
 | 21 | Publicar | `git add`, `git commit` y `git push` (GitHub Pages) | 🧠 |
 

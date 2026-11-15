@@ -94,8 +94,8 @@ Legend: 🧠 you · ⚙️ command/script · 🤖 `claude -p`
 | 15 | Rebuild the robot documents in Portuguese | `.venv/bin/python guia/src/pagina_robo.py docs <robô> pt` | ⚙️ |
 | 16 | Translate into English and Spanish (only what changed) | `.venv/bin/python guia/src/pagina_robo.py traduzir <robô>` | ⚙️ |
 | 17 | Rebuild the translated documents, diagram, and zip | `.venv/bin/python guia/src/pagina_robo.py docs <robô>`, then `esquema <robô>` and `zip <robô>` | ⚙️ |
-| 18 | Rebuild the robot page in the guide | `.venv/bin/python guia/src/pagina_robo.py pagina <robô>` | ⚙️ |
-| 19 | Check links, languages, and zip | `.venv/bin/python guia/src/pagina_robo.py conferir <robô>` | ⚙️ |
+| 18 | Rebuild the entire guide (entry page, page for each robot, and design evolution page) and check every page | `.venv/bin/python guia/src/tudo.py` | ⚙️ |
+| 19 | Or rebuild just one robot’s page and check links, languages, and zip | `.venv/bin/python guia/src/pagina_robo.py pagina <robô>` → `conferir <robô>` | ⚙️ |
 | 20 | Translate this README | `.venv/bin/python guia/src/traduzir_readme.py && .venv/bin/python comum/cad/tabelas.py --docs` | ⚙️ |
 | 21 | Publish | `git add`, `git commit`, and `git push` (GitHub Pages) | 🧠 |
 
