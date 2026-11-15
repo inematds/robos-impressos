@@ -3,7 +3,7 @@
 Não toca nas outras páginas do guia (quem monta a entrada /guia/ continua sendo montar.py).
 
 Fontes:
-  pecas/<id>/montagem.json · mesas.json · verificacao.json     números das peças (gerados por cad/gerar.py e verificar.py)
+  projetos/<robô>/montagem.json · mesas.json · verificacao.json  números das peças (comum/cad/gerar.py e verificar.py)
   guia/src/robos/<robo>.dados.json     compras, parafusos, notas dos passos, rótulos das peças, LIGAÇÕES (fonte única do
                                        esquema, da tabela da página e do LIGACAO.md), glossário e riscos
   guia/src/robos/_comum.pt.json        rótulos iguais em todas as páginas de robô
@@ -36,6 +36,8 @@ AQUI = Path(__file__).resolve().parent
 GUIA = AQUI.parent
 RAIZ = GUIA.parent
 sys.path.insert(0, str(AQUI))
+sys.path.insert(0, str(RAIZ / "comum"))     # pacote `cad`: só o registro id → pasta (caminhos.py não importa numpy)
+from cad.caminhos import MODELOS  # noqa: E402
 import montar            # noqa: E402  (cabeça/CSS/rodapé do template do guia)
 import traduzir as TR    # noqa: E402  (pedido ao inema-traduz e conferência de tags)
 
@@ -45,8 +47,15 @@ RAW = REPO + "/raw/main/"
 BLOB = REPO + "/blob/main/"
 TREE = REPO + "/tree/main/"
 ML = "https://lista.mercadolivre.com.br/"
-# robô → onde estão os arquivos. Quando a E5a mover pecas/<id>/ para projetos/<robô>/, muda só aqui.
-ROBOS = {"cubo": dict(id="cubo", pecas="pecas/cubo", docs="projetos/cubo", emoji="🤖")}
+# página → robô. A chave é o nome da página (guia/<nome>/) e da pasta projetos/<nome>/; `id` é o id do modelo no código.
+# `pecas` (stl, mesas, montagem.json) e `docs` são a MESMA pasta do robô, tirada do registro único comum/cad/caminhos.py.
+def _robo(id, emoji):
+    p = f"projetos/{MODELOS[id]}"
+    return dict(id=id, pecas=p, docs=p, emoji=emoji)
+
+
+ROBOS = {"cubo": _robo("cubo", "🤖")}
+CUPOM = "comum/pecas/stl/comum-teste-encaixe.stl"               # peça comum citada à mão nos docs
 IDIOMAS = ("pt", "en", "es")
 DOCS_LG = ("LISTA-DE-COMPRAS", "IMPRIMIR", "LIGACAO")            # docs que ganham versão .en.md e .es.md
 LEIA = {"pt": "LEIA-ME.md", "en": "README.en.md", "es": "LEEME.es.md"}   # o guia de impressão dentro do zip
@@ -949,7 +958,7 @@ def imprimir_zip(R, lg):
     s = (R.docs / doc_url(R, "IMPRIMIR", lg)[1]).read_text()
     s = re.sub(r"<!-- GERADO:idiomas -->.*?<!-- /GERADO -->\n*", "", s, flags=re.S)
     pecas = R.cfg["pecas"]
-    cupom = "pecas/comum/stl/comum-teste-encaixe.stl"
+    cupom = CUPOM
     urls = []                                                               # links do GitHub ficam como estão
 
     def guarda(mo):
@@ -998,7 +1007,7 @@ def imagens(R):
     from PIL import Image
     dest = GUIA / R.nome / "assets"
     dest.mkdir(parents=True, exist_ok=True)
-    for f in sorted((RAIZ / "imagens").glob(f"{R.cfg['id']}-*.jpg")):
+    for f in sorted((R.pasta / "imagens").glob(f"{R.cfg['id']}-*.jpg")):
         im = Image.open(f).convert("RGB")
         if im.width > 1200:
             im = im.resize((1200, round(im.height * 1200 / im.width)), Image.LANCZOS)

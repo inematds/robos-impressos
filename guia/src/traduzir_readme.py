@@ -4,7 +4,7 @@ import re, subprocess, sys
 from pathlib import Path
 RAIZ = Path(__file__).resolve().parents[2]
 PT = (RAIZ / "README.md").read_text()
-# tabelas geradas saem do texto (cad/tabelas.py as recoloca já traduzidas)
+# tabelas geradas saem do texto (comum/cad/tabelas.py as recoloca já traduzidas)
 PT = re.sub(r"(<!-- TABELA:[a-z:]+ -->).*?(<!-- /TABELA -->)", r"\1\n\2", PT, flags=re.S)
 CFG = {"en": ("inglês", "capybara", "What it is", "(in Portuguese)"), "es": ("espanhol neutro da América Latina", "carpincho", "Qué es", "(en portugués)")}
 for lg in (sys.argv[1:] or ["en", "es"]):

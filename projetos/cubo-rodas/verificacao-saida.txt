@@ -1,0 +1,13 @@
+== verificação: cubo_rodas (Robô quadrado que roda)
+  [PASSOU] 1 contagem: 15 peças distintas, 19 no total (esperado 19); faltando 0; sobrando 0
+  [PASSOU] 2 malha: 15 STL fechados, 1 corpo cada
+  [PASSOU] 3 mesa: todas cabem em 256 x 256 x 256 mm; maior dimensão 182.0 mm (base-rodas)
+  [PASSOU] 4 parede: modelo sem casca orgânica (paredes são sólidos exatos ≥ 2,4 mm)
+  [PASSOU] 5 interferência: 41 sólidos (18 impressos + 23 componentes), 11 poses, 0 sobreposições; 1 encaixe(s) previsto(s) fora da conta: engrenagem-servo x servo-pan MG996R (horn do servo fica no rebaixo da engrenagem)
+  [PASSOU] 6 teste negativo: 'quadro-cabeca' deslocada 3 mm em X → 2 sobreposições acusadas (tem que ser > 0)
+  [PASSOU] 7 peça solta: as 18 peças montadas encostam (≤ 1.5 mm) em outra
+  [PASSOU] 8 equilíbrio: massa estimada 2214 g; CG neutro em x=1.0 y=-41.1 z=127.4 mm, margem 41.1 mm (tomba com 18°); pior pose 'pan+170+tilt-baixo': margem 37.6 mm (17°); mínimo exigido 10 mm
+  [PASSOU] 9 caminho: 26 passos (montagem + abertura para manutenção), cada peça entra ou sai pela direção declarada sem atravessar o que está montado
+  [PASSOU] 10 imprimibilidade: 15 peças distintas: 15 saem sem suporte; 0 com suporte declarado; 0 REPROVADA(S) (declaradas sem suporte, mas com área sem apoio acima de max(30 mm², 0.2 % da área) a mais de 45° ou ponto que nasce no ar)
+  [PASSOU] 11 negativo impr.: 'deck' na orientação declarada: 0 mm² sem apoio (limite 106); girada 180° em X → 19084 mm² = 36.1 % (acusou; tem que acusar)
+  => cubo_rodas: TUDO PASSOU

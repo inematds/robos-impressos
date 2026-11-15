@@ -1,6 +1,6 @@
 # Semelhança com as imagens de referência (IoU de silhueta)
 
-Gerado por `cad/comparar.py` (não edite à mão). IoU = área comum ÷ área total das duas silhuetas, de 0 a 1: quanto maior, mais parecido o contorno. Mede só o CONTORNO em cada vista, não cor nem detalhe.
+Gerado por `comum/cad/comparar.py` (não edite à mão). IoU = área comum ÷ área total das duas silhuetas, de 0 a 1: quanto maior, mais parecido o contorno. Mede só o CONTORNO em cada vista, não cor nem detalhe.
 
 Protocolo v1: projeção ortográfica, silhuetas com 400 px de altura, base na mesma linha e centro horizontal coincidente; melhor azimute em nominal ± 25° (passo 5°) e elevação em nominal ± 10° (passo 5°). Entram as peças impressas + rodas/esfera, pose neutra. "Ajustado" = número secundário, deixando escala (±12%) e posição variarem.
 

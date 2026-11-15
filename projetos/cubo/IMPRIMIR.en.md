@@ -16,9 +16,9 @@ Page with the same tables: https://inematds.github.io/robos-impressos/guia/en/cu
 
 ## The files are already in print orientation
 
-- Each STL in `pecas/cubo/stl/` is laid out as it should be printed: the bed-contact face is at Z = 0. Open it in your slicer and
+- Each STL in `projetos/cubo/stl/` is laid out as it should be printed: the bed-contact face is at Z = 0. Open it in your slicer and
   print without rotating it.
-- Each 3MF in `pecas/cubo/mesas/` contains the parts for one color, already arranged on a 256 mm build plate.
+- Each 3MF in `projetos/cubo/mesas/` contains the parts for one color, already arranged on a 256 mm build plate.
 - Everything at once: [cubo-stl.zip](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo/cubo-stl.zip)
   (the STL files, the 3MF build plates, the Arduino program, and the guides).
 - How it was checked (14/11/2026): for each STL, the part bounding box matches the "on build plate" size in the table below,
@@ -29,7 +29,7 @@ Page with the same tables: https://inematds.github.io/robos-impressos/guia/en/cu
 
 ## 1. Print the test coupon first
 
-**Nothing in this project has been printed yet.** The test coupon (`pecas/comum/stl/comum-teste-encaixe.stl`, 70 × 34 × 8 mm,
+**Nothing in this project has been printed yet.** The test coupon (`comum/pecas/stl/comum-teste-encaixe.stl`, 70 × 34 × 8 mm,
 less than 1 hour) is on build plate 06, with the 4 Raspberry Pi spacers. On the square robot, test these on it:
 
 - one M3 threaded insert in each of the 3 holes (3.9, 4.0, and 4.1 mm);
@@ -41,8 +41,8 @@ advanced mode enabled) opens or closes every hole in the part: a positive value 
 ([source: Bambu Studio code](https://github.com/bambulab/BambuStudio/blob/master/src/libslic3r/PrintConfig.cpp)).
 The source doesn’t say whether the value applies per side or to the diameter: start with 0.05 mm and print the test coupon again. The coupon decides.
 
-If you work with the code, you can change the value in the `FOLGA` block in `cad/parametros.py` and generate the parts again
-(`.venv/bin/python cad/gerar.py cubo`).
+If you work with the code, you can change the value in the `FOLGA` block in `comum/cad/parametros.py` and generate the parts again
+(`.venv/bin/python comum/cad/gerar.py cubo`).
 
 Three notes:
 
@@ -57,13 +57,13 @@ First, the small parts that fit together; last, the two long prints.
 <!-- GERADO:mesas -->
 | Order | Build plate file | Material and color | Parts | Filament (g) | Time (h) | Why this order |
 |---|---|---|---|---|---|---|
-| 1 | [cubo-mesa-06-pla-cinza.3mf](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-06-pla-cinza.3mf) | PLA gray | Test coupon (teste-encaixe), 4 × Raspberry Pi spacer (espacador-pi) | 15 | 0.9 | Start here. The test coupon shows whether the inserts and M3 screws fit with the right clearance on YOUR printer. Less than 1 hour. |
-| 2 | [cubo-mesa-04-petg-prata.3mf](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-04-petg-prata.3mf) | PETG silver | Neck tube (tubo-pescoco), Neck gear (engrenagem-pescoco) | 24 | 1.1 | Neck tube and gear: small parts that already test the fit with the tie rods. |
-| 3 | [cubo-mesa-01-petg-amarelo.3mf](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-01-petg-amarelo.3mf) | PETG yellow | Head frame (quadro-cabeca), Servo gear (engrenagem-servo) | 88 | 3.3 | Head frame and servo gear: check whether the servo fits in the slot and whether the two gears turn together without binding. |
-| 4 | [cubo-mesa-03-petg-grafite.3mf](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-03-petg-grafite.3mf) | PETG graphite | Base cover (tampa-base), Rear door (porta-traseira), Fork (garfo) | 129 | 5.0 | Lid, door, and fork. On the fork, check that the M5 screw threads into the hole in the fork arm; with the previous frame on the workbench, check that the head tilts without getting stuck. |
-| 5 | [cubo-mesa-02-petg-grafite.3mf](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-02-petg-grafite.3mf) | PETG graphite | Base (base) | 222 | 8.2 | Base: the longest print in PETG. |
-| 6 | [cubo-mesa-07-pla-preto.3mf](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-07-pla-preto.3mf) | PLA black | Face panel (cabeca-face) | 53 | 2.0 | Face panel: the visible side goes on the build plate, so clean the build plate well first. |
-| 7 | [cubo-mesa-05-pla-branco.3mf](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-05-pla-branco.3mf) | PLA white | Head shell (cabeca-corpo) | 204 | 7.7 | Head cup: the longest print in PLA. Leave it for last, once the printer is dialed in. |
+| 1 | [cubo-mesa-06-pla-cinza.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo/mesas/cubo-mesa-06-pla-cinza.3mf) | PLA gray | Test coupon (teste-encaixe), 4 × Raspberry Pi spacer (espacador-pi) | 15 | 0.9 | Start here. The test coupon shows whether the inserts and M3 screws fit with the right clearance on YOUR printer. Less than 1 hour. |
+| 2 | [cubo-mesa-04-petg-prata.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo/mesas/cubo-mesa-04-petg-prata.3mf) | PETG silver | Neck tube (tubo-pescoco), Neck gear (engrenagem-pescoco) | 24 | 1.1 | Neck tube and gear: small parts that already test the fit with the tie rods. |
+| 3 | [cubo-mesa-01-petg-amarelo.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo/mesas/cubo-mesa-01-petg-amarelo.3mf) | PETG yellow | Head frame (quadro-cabeca), Servo gear (engrenagem-servo) | 88 | 3.3 | Head frame and servo gear: check whether the servo fits in the slot and whether the two gears turn together without binding. |
+| 4 | [cubo-mesa-03-petg-grafite.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo/mesas/cubo-mesa-03-petg-grafite.3mf) | PETG graphite | Base cover (tampa-base), Rear door (porta-traseira), Fork (garfo) | 129 | 5.0 | Lid, door, and fork. On the fork, check that the M5 screw threads into the hole in the fork arm; with the previous frame on the workbench, check that the head tilts without getting stuck. |
+| 5 | [cubo-mesa-02-petg-grafite.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo/mesas/cubo-mesa-02-petg-grafite.3mf) | PETG graphite | Base (base) | 222 | 8.2 | Base: the longest print in PETG. |
+| 6 | [cubo-mesa-07-pla-preto.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo/mesas/cubo-mesa-07-pla-preto.3mf) | PLA black | Face panel (cabeca-face) | 53 | 2.0 | Face panel: the visible side goes on the build plate, so clean the build plate well first. |
+| 7 | [cubo-mesa-05-pla-branco.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo/mesas/cubo-mesa-05-pla-branco.3mf) | PLA white | Head shell (cabeca-corpo) | 204 | 7.7 | Head cup: the longest print in PLA. Leave it for last, once the printer is dialed in. |
 | **Total** |  |  |  | **735** | **28.2** |  |
 <!-- /GERADO -->
 
@@ -75,18 +75,18 @@ parentheses is the file name.
 <!-- GERADO:pecas -->
 | Part | File | Qty | Material and color | Size on the build plate (mm) | How it sits on the build plate | Support | Walls | Infill | Filament (g) | Time (h) |
 |---|---|---|---|---|---|---|---|---|---|---|
-| Base (base) | [cubo-base.stl](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/stl/cubo-base.stl) | 1 | PETG graphite | 158 × 146 × 56.5 | base on the build plate | no | 4 | 20 % | 222 | 8.2 |
-| Base cover (tampa-base) | [cubo-tampa-base.stl](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/stl/cubo-tampa-base.stl) | 1 | PETG graphite | 158 × 146 × 18 | upside down: the top face on the build plate | no | 4 | 25 % | 101 | 3.8 |
-| Rear door (porta-traseira) | [cubo-porta-traseira.stl](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/stl/cubo-porta-traseira.stl) | 1 | PETG graphite | 45.4 × 52.6 × 5 | outside face on the build plate | no | 3 | 20 % | 9 | 0.4 |
-| Neck tube (tubo-pescoco) | [cubo-tubo-pescoco.stl](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/stl/cubo-tubo-pescoco.stl) | 1 | PETG silver | 40 × 40 × 32.6 | upside down: top (fork side) on the build plate, conical flange opens at 45° | no | 5 | 40 % | 16 | 0.7 |
-| Neck gear (engrenagem-pescoco) | [cubo-engrenagem-pescoco.stl](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/stl/cubo-engrenagem-pescoco.stl) | 1 | PETG silver | 36 × 36 × 8 | lying flat | no | 5 | 60 % | 8 | 0.4 |
-| Servo gear (engrenagem-servo) | [cubo-engrenagem-servo.stl](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/stl/cubo-engrenagem-servo.stl) | 1 | PETG yellow | 69 × 69 × 8 | upside down: top face on the build plate, horn recess facing up | no | 5 | 60 % | 23 | 0.9 |
-| Fork (garfo) | [cubo-garfo.stl](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/stl/cubo-garfo.stl) | 1 | PETG graphite | 44 × 41.9 × 24 | lying down, back on the build plate: the layers run from the block toward the arms | no | 5 | 40 % | 19 | 0.8 |
-| Head frame (quadro-cabeca) | [cubo-quadro-cabeca.stl](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/stl/cubo-quadro-cabeca.stl) | 1 | PETG yellow | 129.2 × 74.6 × 63.7 | front of the crossbar on the build plate, sides facing up | no | 4 | 30 % | 65 | 2.4 |
-| Head shell (cabeca-corpo) | [cubo-cabeca-corpo.stl](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/stl/cubo-cabeca-corpo.stl) | 1 | PLA white | 136 × 118 × 102 | back on the build plate, opening (front) facing up, like a cup | no | 3 | 15 % | 204 | 7.7 |
-| Face panel (cabeca-face) | [cubo-cabeca-face.stl](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/stl/cubo-cabeca-face.stl) | 1 | PLA black | 129.9 × 111.9 × 34.2 | front face (the visible one) on the build plate, pillars facing up | no | 3 | 20 % | 53 | 2.0 |
-| Raspberry Pi spacer (espacador-pi) | [cubo-espacador-pi.stl](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/stl/cubo-espacador-pi.stl) | 4 | PLA gray | 6 × 6 × 5 | upright | no | 3 | 15 % | <1 | 0.3 |
-| Test coupon (teste-encaixe) | [comum-teste-encaixe.stl](https://github.com/inematds/robos-impressos/raw/main/pecas/comum/stl/comum-teste-encaixe.stl) | 1 | PLA gray | 70 × 34 × 8 | lying flat | no | 3 | 15 % | 15 | 0.6 |
+| Base (base) | [cubo-base.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo/stl/cubo-base.stl) | 1 | PETG graphite | 158 × 146 × 56.5 | base on the build plate | no | 4 | 20 % | 222 | 8.2 |
+| Base cover (tampa-base) | [cubo-tampa-base.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo/stl/cubo-tampa-base.stl) | 1 | PETG graphite | 158 × 146 × 18 | upside down: the top face on the build plate | no | 4 | 25 % | 101 | 3.8 |
+| Rear door (porta-traseira) | [cubo-porta-traseira.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo/stl/cubo-porta-traseira.stl) | 1 | PETG graphite | 45.4 × 52.6 × 5 | outside face on the build plate | no | 3 | 20 % | 9 | 0.4 |
+| Neck tube (tubo-pescoco) | [cubo-tubo-pescoco.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo/stl/cubo-tubo-pescoco.stl) | 1 | PETG silver | 40 × 40 × 32.6 | upside down: top (fork side) on the build plate, conical flange opens at 45° | no | 5 | 40 % | 16 | 0.7 |
+| Neck gear (engrenagem-pescoco) | [cubo-engrenagem-pescoco.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo/stl/cubo-engrenagem-pescoco.stl) | 1 | PETG silver | 36 × 36 × 8 | lying flat | no | 5 | 60 % | 8 | 0.4 |
+| Servo gear (engrenagem-servo) | [cubo-engrenagem-servo.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo/stl/cubo-engrenagem-servo.stl) | 1 | PETG yellow | 69 × 69 × 8 | upside down: top face on the build plate, horn recess facing up | no | 5 | 60 % | 23 | 0.9 |
+| Fork (garfo) | [cubo-garfo.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo/stl/cubo-garfo.stl) | 1 | PETG graphite | 44 × 41.9 × 24 | lying down, back on the build plate: the layers run from the block toward the arms | no | 5 | 40 % | 19 | 0.8 |
+| Head frame (quadro-cabeca) | [cubo-quadro-cabeca.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo/stl/cubo-quadro-cabeca.stl) | 1 | PETG yellow | 129.2 × 74.6 × 63.7 | front of the crossbar on the build plate, sides facing up | no | 4 | 30 % | 65 | 2.4 |
+| Head shell (cabeca-corpo) | [cubo-cabeca-corpo.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo/stl/cubo-cabeca-corpo.stl) | 1 | PLA white | 136 × 118 × 102 | back on the build plate, opening (front) facing up, like a cup | no | 3 | 15 % | 204 | 7.7 |
+| Face panel (cabeca-face) | [cubo-cabeca-face.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo/stl/cubo-cabeca-face.stl) | 1 | PLA black | 129.9 × 111.9 × 34.2 | front face (the visible one) on the build plate, pillars facing up | no | 3 | 20 % | 53 | 2.0 |
+| Raspberry Pi spacer (espacador-pi) | [cubo-espacador-pi.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo/stl/cubo-espacador-pi.stl) | 4 | PLA gray | 6 × 6 × 5 | upright | no | 3 | 15 % | <1 | 0.3 |
+| Test coupon (teste-encaixe) | [comum-teste-encaixe.stl](https://github.com/inematds/robos-impressos/raw/main/comum/pecas/stl/comum-teste-encaixe.stl) | 1 | PLA gray | 70 × 34 × 8 | lying flat | no | 3 | 15 % | 15 | 0.6 |
 | **Total** |  | **15** |  |  |  |  |  |  | **735** | **28.2** |
 <!-- /GERADO -->
 

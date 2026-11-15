@@ -236,7 +236,7 @@
   </div>
   <div class="grid g2" style="margin-top:22px">
     <div class="card"><h3>✅ Lo que garantiza el script</h3><ul><li>Cada archivo es un sólido cerrado, de una sola pieza.</li><li>Todas las piezas caben en la cama de 256 × 256 × 256 mm.</li><li>Ninguna pieza ocupa el lugar de otra ni de un componente (servo, motor, placa, batería), con la cabeza, la boca y los brazos en los extremos.</li><li>Cada pieza puede llegar a su lugar: el script coloca una por una, en el orden de montaje, e indica si choca con lo que ya está montado.</li><li>Ninguna pieza queda suspendida en el aire, y el centro de gravedad cae dentro de los apoyos, con holgura.</li><li>La prueba también se prueba: una pieza se desplaza 3 mm a propósito y el script debe indicarlo.</li></ul></div>
-    <div class="card"><h3>⚠️ Lo que solo la impresión puede revelar</h3><ul><li>Nadie ha impreso ni montado estas piezas todavía.</li><li>El tiempo y el filamento son estimaciones por volumen.</li><li>Algunas medidas de componentes no tienen una fuente oficial (pestañas de los servos, orificios del controlador del motor). Están marcadas con NC en el archivo <code>cad/parametros.py</code> y en la sección 4 de <a href="https://github.com/inematds/robos-impressos/blob/main/PLANO.md">PLANO.md</a> (en portugués): mide tu pieza con un calibrador y, si es diferente, cambia el número y vuelve a generar las piezas.</li><li>El script no prueba la resistencia, ni si el destornillador llega a cada tornillo, ni el ajuste de 3 mm de los servos en los brazos y la boca.</li></ul></div>
+    <div class="card"><h3>⚠️ Lo que solo la impresión puede revelar</h3><ul><li>Nadie ha impreso ni montado estas piezas todavía.</li><li>El tiempo y el filamento son estimaciones por volumen.</li><li>Algunas medidas de componentes no tienen una fuente oficial (pestañas de los servos, orificios del controlador del motor). Están marcadas con NC en el archivo <code>comum/cad/parametros.py</code> y en la sección 4 de <a href="https://github.com/inematds/robos-impressos/blob/main/PLANO.md">PLANO.md</a> (en portugués): mide tu pieza con un calibrador y, si es diferente, cambia el número y vuelve a generar las piezas.</li><li>El script no prueba la resistencia, ni si el destornillador llega a cada tornillo, ni el ajuste de 3 mm de los servos en los brazos y la boca.</li></ul></div>
   </div>
 </div></section>
 
@@ -270,9 +270,9 @@
   <h2>Piezas generadas por código, no dibujadas a mano</h2>
   <p class="sub">Todo sale de un archivo de medidas. Si cambias el servo o la holgura de tu impresora, cambias un número y vuelves a generar las piezas.</p>
   <div class="grid g3">
-    <div class="card"><h3>📐 Un archivo de medidas</h3><p><code>cad/parametros.py</code> guarda las holguras, las medidas de cada componente (con la fuente al lado) y la forma de cada robot.</p></div>
-    <div class="card"><h3>🔍 Verificador con 9 pruebas</h3><p><code>cad/verificar.py</code> lee los STL exportados y rechaza piezas abiertas, piezas demasiado grandes, paredes delgadas, piezas que atraviesan otras, piezas que no pueden entrar en su lugar y robots que se vuelcan.</p></div>
-    <div class="card"><h3>🦴 Esqueleto común</h3><p>El chasis, las bandejas, la horquilla y la cuna del cuello usan los mismos archivos en el dinosaurio y el carpincho (<code>pecas/comum/</code>).</p></div>
+    <div class="card"><h3>📐 Un archivo de medidas</h3><p><code>comum/cad/parametros.py</code> guarda las holguras, las medidas de cada componente (con la fuente al lado) y la forma de cada robot.</p></div>
+    <div class="card"><h3>🔍 Verificador con 9 pruebas</h3><p><code>comum/cad/verificar.py</code> lee los STL exportados y rechaza piezas abiertas, piezas demasiado grandes, paredes delgadas, piezas que atraviesan otras, piezas que no pueden entrar en su lugar y robots que se vuelcan.</p></div>
+    <div class="card"><h3>🦴 Esqueleto común</h3><p>El chasis, las bandejas, la horquilla y la cuna del cuello usan los mismos archivos en el dinosaurio y el carpincho (<code>comum/pecas/</code>).</p></div>
   </div>
 </div></section>
 
@@ -281,11 +281,11 @@
   <h2>De las medidas a los archivos de impresión</h2>
   <p class="sub">La piel de los animales es una suma de formas redondeadas convertida en una malla; los agujeros, alojamientos y cortes se hacen encima con operaciones exactas.</p>
   <div class="flow">
-    <span>cad/parametros.py</span><span class="arr">→</span>
-    <span>cad/gerar.py</span><span class="arr">→</span>
-    <span>pecas/&lt;modelo&gt;/stl + 3mf + montagem.json</span><span class="arr">→</span>
-    <span>cad/verificar.py</span><span class="arr">→</span>
-    <span>cad/renders.sh</span>
+    <span>comum/cad/parametros.py</span><span class="arr">→</span>
+    <span>comum/cad/gerar.py</span><span class="arr">→</span>
+    <span>projetos/&lt;modelo&gt;/stl + 3mf + montagem.json</span><span class="arr">→</span>
+    <span>comum/cad/verificar.py</span><span class="arr">→</span>
+    <span>comum/cad/renders.sh</span>
   </div>
   <div class="grid g3" style="margin-top:22px">
     <div class="card"><h3>Generar</h3><p>Crea STL y 3MF de cada pieza, ya orientada para imprimir, el ensamblaje completo (<code>montagem.glb</code>) y la distribución en camas.</p></div>
@@ -314,34 +314,34 @@
   <p class="sub">Los comandos son los del repositorio. El orden completo de montaje, con cada tornillo, está en <a href="https://github.com/inematds/robos-impressos/blob/main/PLANO.md">PLANO.md</a> (en portugués).</p>
 
   <div class="step"><div class="b">1</div><div>
-    <h3>Descarga el proyecto</h3><p>Los archivos de impresión ya están listos en la carpeta <code>pecas/</code>, en STL y 3MF. Si solo quieres imprimir, descarga el ZIP (unos 80 MB), descomprímelo y abre los archivos en el laminador: no necesitas terminal ni Python. Las carpetas <code>componentes/</code> solo muestran el contorno de las piezas compradas: no las imprimas.</p>
+    <h3>Descarga el proyecto</h3><p>Los archivos de impresión ya están listos en la carpeta <code>projetos/</code>, en STL y 3MF. Si solo quieres imprimir, descarga el ZIP (unos 80 MB), descomprímelo y abre los archivos en el laminador: no necesitas terminal ni Python. Las carpetas <code>componentes/</code> solo muestran el contorno de las piezas compradas: no las imprimas.</p>
     <p><a class="btn" href="https://github.com/inematds/robos-impressos/archive/refs/heads/main.zip">Descargar todo en ZIP</a></p>
     <p class="mini">Si vas a cambiar medidas y generar las piezas de nuevo, puedes clonar el repositorio con git desde una terminal:</p>
 <pre><span class="k">git clone</span> <span class="s">https://github.com/inematds/robos-impressos.git</span>
 <span class="k">cd</span> robos-impressos
-<span class="k">ls</span> pecas/dino/stl pecas/capivara/stl pecas/cubo/stl pecas/comum/stl</pre>
+<span class="k">ls</span> projetos/dino/stl projetos/capivara/stl projetos/cubo/stl comum/pecas/stl</pre>
   </div></div>
   <div class="step"><div class="b">2</div><div>
-    <h3>Imprime la pieza de prueba</h3><p>Imprime la pieza de prueba y, para el dinosaurio o el carpincho, un pasador guía (<code>pecas/comum/stl/comum-pino-guia.stl</code>). El dibujo de abajo muestra cada agujero visto desde arriba. Junto a la ventana del micro servo hay tres agujeros para insertos (3,9, 4,0 y 4,1 mm) y, en la punta, el agujero más grande, para el eje del motor amarillo (el eje debe girar libremente). En la otra fila están los tres alojamientos del pasador guía (holguras de 0,20, 0,25 y 0,30 mm) y cuatro agujeros para tornillos: M3 de paso libre, M3 que hace rosca en el plástico (M3* en el dibujo), M2,5 y M2. El proyecto usa el agujero de 4,0 mm y el alojamiento de 0,25 mm, los del medio, marcados con un hoyuelo (● en el dibujo). El inserto M3 (el casquillo de latón que se coloca en caliente con un soldador y queda roscado) debe entrar firme; el pasador debe entrar ajustado, sin martillarlo. El micro servo debe entrar en la ventana con la mano, sin forzarlo ni quedar flojo. Los tornillos deben pasar libremente por el agujero M3 de paso libre y hacer rosca en los otros tres. Si todo encaja, continúa. Si el agujero o el alojamiento vecino encaja mejor, o si el servo queda apretado, ajusta la holgura en <code>cad/parametros.py</code>, en el bloque <code>FOLGA</code> (<code>componente</code> para el servo, <code>encaixe</code> para el pasador, <code>inserto_d</code> para el inserto), y vuelve a generar desde el paso 3: solo entonces necesitarás Python.</p>
+    <h3>Imprime la pieza de prueba</h3><p>Imprime la pieza de prueba y, para el dinosaurio o el carpincho, un pasador guía (<code>comum/legado/stl/comum-pino-guia.stl</code>). El dibujo de abajo muestra cada agujero visto desde arriba. Junto a la ventana del micro servo hay tres agujeros para insertos (3,9, 4,0 y 4,1 mm) y, en la punta, el agujero más grande, para el eje del motor amarillo (el eje debe girar libremente). En la otra fila están los tres alojamientos del pasador guía (holguras de 0,20, 0,25 y 0,30 mm) y cuatro agujeros para tornillos: M3 de paso libre, M3 que hace rosca en el plástico (M3* en el dibujo), M2,5 y M2. El proyecto usa el agujero de 4,0 mm y el alojamiento de 0,25 mm, los del medio, marcados con un hoyuelo (● en el dibujo). El inserto M3 (el casquillo de latón que se coloca en caliente con un soldador y queda roscado) debe entrar firme; el pasador debe entrar ajustado, sin martillarlo. El micro servo debe entrar en la ventana con la mano, sin forzarlo ni quedar flojo. Los tornillos deben pasar libremente por el agujero M3 de paso libre y hacer rosca en los otros tres. Si todo encaja, continúa. Si el agujero o el alojamiento vecino encaja mejor, o si el servo queda apretado, ajusta la holgura en <code>comum/cad/parametros.py</code>, en el bloque <code>FOLGA</code> (<code>componente</code> para el servo, <code>encaixe</code> para el pasador, <code>inserto_d</code> para el inserto), y vuelve a generar desde el paso 3: solo entonces necesitarás Python.</p>
 <pre><span class="c"># abre este archivo en el laminador</span>
-pecas/comum/stl/comum-teste-encaixe.stl</pre>
+comum/pecas/stl/comum-teste-encaixe.stl</pre>
     <a href="../assets/teste-encaixe.png" target="_blank" rel="noopener"><img class="shot" src="../assets/teste-encaixe.png" alt="Dibujo de la pieza de prueba vista desde arriba, con la medida de cada agujero" style="max-width:640px;background:#fff"></a>
     <p class="mini">toca el dibujo para ampliarlo</p>
-    <p class="mini"><a href="https://github.com/inematds/robos-impressos/blob/main/pecas/comum/stl/comum-teste-encaixe.stl">ver la pieza de prueba en GitHub (botón de descarga en la página)</a></p>
+    <p class="mini"><a href="https://github.com/inematds/robos-impressos/blob/main/comum/pecas/stl/comum-teste-encaixe.stl">ver la pieza de prueba en GitHub (botón de descarga en la página)</a></p>
   </div></div>
   <div class="step"><div class="b">3</div><div>
     <h3>Genera y verifica (solo si cambiaste alguna medida)</h3><p>El primer comando recrea todas las piezas; el segundo ejecuta las 9 pruebas y termina con un error si alguna falla.</p>
 <pre><span class="k">python3</span> -m venv .venv
 <span class="k">.venv/bin/pip</span> install -r requirements.txt
 <span class="c"># toma pocos minutos</span>
-<span class="k">.venv/bin/python</span> cad/gerar.py todos
-<span class="k">.venv/bin/python</span> cad/verificar.py todos</pre>
+<span class="k">.venv/bin/python</span> comum/cad/gerar.py todos
+<span class="k">.venv/bin/python</span> comum/cad/verificar.py todos</pre>
     <p class="mini">Estos comandos son para Linux y macOS. En Windows, usa <code>python</code> en lugar de <code>python3</code>, <code>dir</code> en lugar de <code>ls</code>, <code>.venv\Scripts\pip</code> en lugar de <code>.venv/bin/pip</code> y <code>.venv\Scripts\python</code> en lugar de <code>.venv/bin/python</code>.</p>
   </div></div>
   <div class="step"><div class="b">4</div><div>
-    <h3>Imprime las camas</h3><p>Cada cama de impresión de abajo corresponde a una impresión: las piezas ya están acomodadas, agrupadas por color y material, en un archivo 3MF con la geometría (el archivo no incluye configuración de laminado y todavía no se abrió en un laminador; si el tuyo no lo abre, usa los archivos STL por separado de <code>pecas/&lt;modelo&gt;/stl</code> y de <code>pecas/comum/stl</code> (chasis, bandejas y piezas del cuello de los animales), junto con la tabla). El nombre del archivo es <code>&lt;modelo&gt;-mesa-NN-material-cor.3mf</code>. Punto de partida aún no probado: capa de 0,2 mm, boquilla de 0,4 mm, 3 paredes y 15 % de relleno. Las carcasas redondeadas requieren soportes tipo árbol; el esqueleto se imprime sin soportes, excepto <code>berco-tilt</code>. La pieza de prueba y los pasadores guía se repiten en la cama gris: si ya los imprimiste, quítalos de la placa. Los colores son solo visuales: lo mínimo es un rollo de PETG para el esqueleto y uno de PLA para la carcasa. En las tablas, <code>mesa-cabeca</code> es el nombre de una pieza (la que sostiene la cabeza por dentro).</p>
+    <h3>Imprime las camas</h3><p>Cada cama de impresión de abajo corresponde a una impresión: las piezas ya están acomodadas, agrupadas por color y material, en un archivo 3MF con la geometría (el archivo no incluye configuración de laminado y todavía no se abrió en un laminador; si el tuyo no lo abre, usa los archivos STL por separado de <code>projetos/&lt;modelo&gt;/stl</code> y de <code>comum/pecas/stl</code> (chasis, bandejas y piezas del cuello de los animales), junto con la tabla). El nombre del archivo es <code>&lt;modelo&gt;-mesa-NN-material-cor.3mf</code>. Punto de partida aún no probado: capa de 0,2 mm, boquilla de 0,4 mm, 3 paredes y 15 % de relleno. Las carcasas redondeadas requieren soportes tipo árbol; el esqueleto se imprime sin soportes, excepto <code>berco-tilt</code>. La pieza de prueba y los pasadores guía se repiten en la cama gris: si ya los imprimiste, quítalos de la placa. Los colores son solo visuales: lo mínimo es un rollo de PETG para el esqueleto y uno de PLA para la carcasa. En las tablas, <code>mesa-cabeca</code> es el nombre de una pieza (la que sostiene la cabeza por dentro).</p>
 <pre><span class="c"># un archivo 3MF por cama de impresión, en cada modelo</span>
-pecas/dino/mesas/     pecas/capivara/mesas/     pecas/cubo/mesas/</pre>
+projetos/dino/mesas/     projetos/capivara/mesas/     projetos/cubo/mesas/</pre>
     <h4 class="sep4">🦖 Dinosaurio</h4>
     <img class="shot" src="../assets/dino-mesas.jpg" alt="Render de las camas de impresión, con las piezas acomodadas y separadas por color">
 <!-- TABELA:mesas:dino -->
@@ -534,7 +534,7 @@ pecas/dino/mesas/     pecas/capivara/mesas/     pecas/cubo/mesas/</pre>
     <figure><img src="../assets/cubo-esqueleto.jpg" alt="Estructura del robot cuadrado sin la carcasa"><figcaption>Robot cuadrado sin la carcasa de la cabeza: marco, Raspberry Pi y pantalla</figcaption></figure>
   </div>
   <h3 class="sep3">Salida del verificador</h3>
-  <p class="sub">Resumen de lo que muestra el script, en portugués. El texto completo está en <code>pecas/verificacao-saida.txt</code>.</p>
+  <p class="sub">Resumen de lo que muestra el script, en portugués. El texto completo está en <code>projetos/verificacao-saida.txt</code>.</p>
 <pre class="saida">== dino
   [PASSOU] 1 contagem: 30 peças distintas, 38 no total (esperado 38); faltando 0; sobrando 0
   [PASSOU] 2 malha: 30 STL fechados, 1 corpo cada

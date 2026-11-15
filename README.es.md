@@ -16,7 +16,7 @@ Plan detallado (decisiones, piezas, fuentes de las medidas, montaje tornillo por
 
 | Dinosaurio | Carpincho | Robot cuadrado |
 |---|---|---|
-| ![dinossauro](imagens/dino-montado.jpg) | ![capivara](imagens/capivara-montado.jpg) | ![robô quadrado](imagens/cubo-montado.jpg) |
+| ![dinossauro](projetos/dino/imagens/dino-montado.jpg) | ![capivara](projetos/capivara/imagens/capivara-montado.jpg) | ![robô quadrado](projetos/cubo/imagens/cubo-montado.jpg) |
 
 Las imágenes son **renders** de las piezas del proyecto. El banner es una ilustración hecha con IA.
 
@@ -35,16 +35,16 @@ Las imágenes son **renders** de las piezas del proyecto. El banner es una ilust
 | Ruta | Contenido |
 |---|---|
 | `PLANO.md` | Decisiones de diseño, lista de piezas, fuentes de las medidas, montaje y lo que ya está preparado para la fase 2 |
-| `cad/parametros.py` | **Todas las medidas** en un solo archivo: holguras, componentes (con la fuente), forma de cada robot |
-| `cad/gerar.py` | Genera STL, 3MF, `montagem.json`, `montagem.glb` y `mesas.json` de cada modelo |
-| `cad/verificar.py` | 9 pruebas de los archivos exportados (malla cerrada, cabe en la cama, pared, interferencia, pieza suelta, equilibrio, ruta de montaje) |
-| `cad/comum/` | Estructura común (chasis, bandejas, cuello), carcasa de los animales, componentes y geometría |
-| `cad/modelos/` | `dino.py`, `capivara.py`, `cubo.py` |
-| `pecas/<modelo>/stl` y `3mf` | Piezas de cada modelo, ya en posición de impresión |
-| `pecas/<modelo>/mesas/` | Un 3MF por cama de impresión (piezas agrupadas por color y material) |
-| `pecas/comum/` | Piezas iguales en los dos animales (chasis, bandejas, horquilla, soporte, cubierta de la esfera, pasador, buje, pieza de prueba) |
-| `pecas/TABELAS.md` | Tablas de piezas y resultado del verificador (generadas) |
-| `imagens/` | Renders: ensamblado, cuatro vistas, explotado, estructura y camas |
+| `comum/cad/parametros.py` | **Todas las medidas** en un solo archivo: holguras, componentes (con la fuente), forma de cada robot |
+| `comum/cad/gerar.py` | Genera STL, 3MF, `montagem.json`, `montagem.glb` y `mesas.json` de cada modelo |
+| `comum/cad/verificar.py` | 9 pruebas de los archivos exportados (malla cerrada, cabe en la cama, pared, interferencia, pieza suelta, equilibrio, ruta de montaje) |
+| `comum/cad/comum/` | Estructura común (chasis, bandejas, cuello), carcasa de los animales, componentes y geometría |
+| `projetos/<modelo>/modelo.py` | El modelo de cada robot: `dino`, `capivara`, `cubo`, `cubo-rodas` |
+| `projetos/<modelo>/stl` y `3mf` | Piezas de cada modelo, ya en posición de impresión |
+| `projetos/<modelo>/mesas/` | Un 3MF por cama de impresión (piezas agrupadas por color y material) |
+| `comum/pecas/` | Piezas iguales en los dos animales (chasis, bandejas, horquilla, soporte, cubierta de la esfera, pasador, buje, pieza de prueba) |
+| `projetos/TABELAS.md` | Tablas de piezas y resultado del verificador (generadas) |
+| `projetos/<modelo>/imagens/` | Renders: ensamblado, cuatro vistas, explotado, estructura y camas |
 | `guia/` | Página de la guía en PT, `guia/en/` y `guia/es/` (generada por `guia/src/montar.py`) |
 
 ## Los tres modelos en una línea
@@ -61,16 +61,16 @@ Leyenda: 🧠 tú · ⚙️ comando/script · 🤖 `claude -p`
 |---|---|---|---|
 | 1 | Descargar el proyecto (o el [ZIP](https://github.com/inematds/robos-impressos/archive/refs/heads/main.zip), si solo vas a imprimir) | `git clone https://github.com/inematds/robos-impressos.git && cd robos-impressos` | ⚙️ |
 | 2 | Elegir el modelo y leer la lista de piezas | [PLANO.md › Peças impressas](PLANO.md#2-peças-impressas) (en portugués) | 🧠 |
-| 3 | Imprimir la pieza de prueba y revisar el servo, el inserto roscado y el pasador | `pecas/comum/stl/comum-teste-encaixe.stl` en el slicer | 🧠 |
-| 4 | Medir los componentes marcados **NC** y corregir las medidas | editar `cad/parametros.py` | 🧠 |
+| 3 | Imprimir la pieza de prueba y revisar el servo, el inserto roscado y el pasador | `comum/pecas/stl/comum-teste-encaixe.stl` en el slicer | 🧠 |
+| 4 | Medir los componentes marcados **NC** y corregir las medidas | editar `comum/cad/parametros.py` | 🧠 |
 | 5 | Crear el entorno Python 3.12+ (solo si vas a generar todo de nuevo) | `python3 -m venv .venv && .venv/bin/pip install -r requirements.txt` | ⚙️ |
-| 6 | Generar las piezas | `.venv/bin/python cad/gerar.py todos` | ⚙️ |
-| 7 | Verificar (debe terminar con "TUDO PASSOU") | `.venv/bin/python cad/verificar.py todos` | ⚙️ |
-| 8 | Actualizar las tablas y los renders | `.venv/bin/python cad/tabelas.py && cad/renders.sh dino` | ⚙️ |
-| 9 | Imprimir por color: un 3MF por cama | `pecas/<modelo>/mesas/*.3mf` en el slicer | 🧠 |
+| 6 | Generar las piezas | `.venv/bin/python comum/cad/gerar.py todos` | ⚙️ |
+| 7 | Verificar (debe terminar con "TUDO PASSOU") | `.venv/bin/python comum/cad/verificar.py todos` | ⚙️ |
+| 8 | Actualizar las tablas y los renders | `.venv/bin/python comum/cad/tabelas.py && comum/cad/renders.sh dino` | ⚙️ |
+| 9 | Imprimir por color: un 3MF por cama | `projetos/<modelo>/mesas/*.3mf` en el slicer | 🧠 |
 | 10 | Comprar los componentes | [PLANO.md › Peças compradas](PLANO.md#3-peças-compradas-estimativa-de-preço-nov2026-lojas-brasileiras) (en portugués) | 🧠 |
 | 11 | Armar de adentro hacia afuera | [PLANO.md › Montagem](PLANO.md#6-montagem-passo-a-passo) (en portugués) | 🧠 |
-| 12 | Cambió la guía: volver a generarla y traducirla | `python3 guia/src/montar.py && python3 guia/src/traduzir.py && python3 guia/src/montar.py && .venv/bin/python cad/tabelas.py` | ⚙️ |
+| 12 | Cambió la guía: volver a generarla y traducirla | `python3 guia/src/montar.py && python3 guia/src/traduzir.py && python3 guia/src/montar.py && .venv/bin/python comum/cad/tabelas.py` | ⚙️ |
 | 13 | Publicar | `git add -A && git commit && git push` (GitHub Pages) | 🧠 |
 
 Actualmente, ningún paso usa `claude -p`.

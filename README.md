@@ -16,7 +16,7 @@ Plano detalhado (decisões, peças, fontes das medidas, montagem parafuso por pa
 
 | Dinossauro | Capivara | Robô quadrado |
 |---|---|---|
-| ![dinossauro](imagens/dino-montado.jpg) | ![capivara](imagens/capivara-montado.jpg) | ![robô quadrado](imagens/cubo-montado.jpg) |
+| ![dinossauro](projetos/dino/imagens/dino-montado.jpg) | ![capivara](projetos/capivara/imagens/capivara-montado.jpg) | ![robô quadrado](projetos/cubo/imagens/cubo-montado.jpg) |
 
 As imagens são **renders** das peças do projeto. O banner é uma ilustração feita por IA.
 
@@ -35,16 +35,16 @@ As imagens são **renders** das peças do projeto. O banner é uma ilustração 
 | Caminho | Conteúdo |
 |---|---|
 | `PLANO.md` | Decisões de projeto, lista de peças, fontes das medidas, montagem e o que já está preparado para a fase 2 |
-| `cad/parametros.py` | **Todas as medidas** num arquivo só: folgas, componentes (com a fonte), forma de cada robô |
-| `cad/gerar.py` | Gera STL, 3MF, `montagem.json`, `montagem.glb` e `mesas.json` de cada modelo |
-| `cad/verificar.py` | 9 testes sobre os arquivos exportados (malha fechada, cabe na mesa, parede, interferência, peça solta, equilíbrio, caminho de montagem) |
-| `cad/comum/` | Esqueleto comum (chassi, bandejas, pescoço), casca dos bichos, componentes e geometria |
-| `cad/modelos/` | `dino.py`, `capivara.py`, `cubo.py` |
-| `pecas/<modelo>/stl` e `3mf` | Peças de cada modelo, já na posição de impressão |
-| `pecas/<modelo>/mesas/` | Um 3MF por mesa de impressão (peças juntas por cor e material) |
-| `pecas/comum/` | Peças iguais nos dois bichos (chassi, bandejas, garfo, berço, capa da esfera, pino, bucha, peça de teste) |
-| `pecas/TABELAS.md` | Tabelas de peças e saída do verificador (geradas) |
-| `imagens/` | Renders: montado, quatro vistas, explodido, esqueleto e mesas |
+| `comum/cad/parametros.py` | **Todas as medidas** num arquivo só: folgas, componentes (com a fonte), forma de cada robô |
+| `comum/cad/gerar.py` | Gera STL, 3MF, `montagem.json`, `montagem.glb` e `mesas.json` de cada modelo |
+| `comum/cad/verificar.py` | 9 testes sobre os arquivos exportados (malha fechada, cabe na mesa, parede, interferência, peça solta, equilíbrio, caminho de montagem) |
+| `comum/cad/comum/` | Esqueleto comum (chassi, bandejas, pescoço), casca dos bichos, componentes e geometria |
+| `projetos/<modelo>/modelo.py` | O modelo de cada robô: `dino`, `capivara`, `cubo`, `cubo-rodas` |
+| `projetos/<modelo>/stl` e `3mf` | Peças de cada modelo, já na posição de impressão |
+| `projetos/<modelo>/mesas/` | Um 3MF por mesa de impressão (peças juntas por cor e material) |
+| `comum/pecas/` | Peças iguais nos dois bichos (chassi, bandejas, garfo, berço, capa da esfera, pino, bucha, peça de teste) |
+| `projetos/TABELAS.md` | Tabelas de peças e saída do verificador (geradas) |
+| `projetos/<modelo>/imagens/` | Renders: montado, quatro vistas, explodido, esqueleto e mesas |
 | `guia/` | Página do guia em PT, `guia/en/` e `guia/es/` (montada por `guia/src/montar.py`) |
 
 ## Os três modelos em uma linha
@@ -61,16 +61,16 @@ Legenda: 🧠 você · ⚙️ comando/script · 🤖 `claude -p`
 |---|---|---|---|
 | 1 | Baixar o projeto (ou o [ZIP](https://github.com/inematds/robos-impressos/archive/refs/heads/main.zip), se for só imprimir) | `git clone https://github.com/inematds/robos-impressos.git && cd robos-impressos` | ⚙️ |
 | 2 | Escolher o modelo e ler a lista de peças | [PLANO.md › Peças impressas](PLANO.md#2-peças-impressas) | 🧠 |
-| 3 | Imprimir a peça de teste e conferir servo, inserto e pino | `pecas/comum/stl/comum-teste-encaixe.stl` no fatiador | 🧠 |
-| 4 | Medir os componentes marcados **NC** e corrigir as medidas | editar `cad/parametros.py` | 🧠 |
+| 3 | Imprimir a peça de teste e conferir servo, inserto e pino | `comum/pecas/stl/comum-teste-encaixe.stl` no fatiador | 🧠 |
+| 4 | Medir os componentes marcados **NC** e corrigir as medidas | editar `comum/cad/parametros.py` | 🧠 |
 | 5 | Criar o ambiente Python 3.12+ (só se for gerar de novo) | `python3 -m venv .venv && .venv/bin/pip install -r requirements.txt` | ⚙️ |
-| 6 | Gerar as peças | `.venv/bin/python cad/gerar.py todos` | ⚙️ |
-| 7 | Verificar (tem que terminar em "TUDO PASSOU") | `.venv/bin/python cad/verificar.py todos` | ⚙️ |
-| 8 | Atualizar tabelas e renders | `.venv/bin/python cad/tabelas.py && cad/renders.sh dino` | ⚙️ |
-| 9 | Imprimir por cor: um 3MF por mesa | `pecas/<modelo>/mesas/*.3mf` no fatiador | 🧠 |
+| 6 | Gerar as peças | `.venv/bin/python comum/cad/gerar.py todos` | ⚙️ |
+| 7 | Verificar (tem que terminar em "TUDO PASSOU") | `.venv/bin/python comum/cad/verificar.py todos` | ⚙️ |
+| 8 | Atualizar tabelas e renders | `.venv/bin/python comum/cad/tabelas.py && comum/cad/renders.sh dino` | ⚙️ |
+| 9 | Imprimir por cor: um 3MF por mesa | `projetos/<modelo>/mesas/*.3mf` no fatiador | 🧠 |
 | 10 | Comprar os componentes | [PLANO.md › Peças compradas](PLANO.md#3-peças-compradas-estimativa-de-preço-nov2026-lojas-brasileiras) | 🧠 |
 | 11 | Montar de dentro para fora | [PLANO.md › Montagem](PLANO.md#6-montagem-passo-a-passo) | 🧠 |
-| 12 | Mudou o guia: remontar e traduzir | `python3 guia/src/montar.py && python3 guia/src/traduzir.py && python3 guia/src/montar.py && .venv/bin/python cad/tabelas.py` | ⚙️ |
+| 12 | Mudou o guia: remontar e traduzir | `python3 guia/src/montar.py && python3 guia/src/traduzir.py && python3 guia/src/montar.py && .venv/bin/python comum/cad/tabelas.py` | ⚙️ |
 | 13 | Publicar | `git add -A && git commit && git push` (GitHub Pages) | 🧠 |
 
 Nenhum passo usa `claude -p` hoje.

@@ -1,17 +1,20 @@
 #!/usr/bin/env python3
 """Monta o guia nos 3 idiomas a partir de corpo.html (estrutura única) + textos.<idioma>.json.
-A estrutura é a mesma por construção; só os textos mudam. Depois rode cad/tabelas.py para preencher as tabelas.
+A estrutura é a mesma por construção; só os textos mudam. Depois rode comum/cad/tabelas.py para preencher as tabelas.
 
 Uso: python3 guia/src/montar.py
 """
 import json
 import re
+import sys
 from pathlib import Path
 
 AQUI = Path(__file__).resolve().parent
 GUIA = AQUI.parent
 RAIZ = GUIA.parent
 TEMPLATE = Path.home() / ".claude/skills/projetos-landing-guia/assets/template.html"
+sys.path.insert(0, str(RAIZ / "comum"))
+from cad.caminhos import MODELOS as PASTAS  # noqa: E402  (registro único id → pasta em projetos/)
 MODELOS = ["dino", "capivara", "cubo"]
 NOME = {"pt": {"dino": "Dinossauro", "capivara": "Capivara", "cubo": "Robô quadrado"},
         "en": {"dino": "Dinosaur", "capivara": "Capybara", "cubo": "Square robot"},
@@ -59,7 +62,7 @@ def cabeca_rodape():
 def numeros():
     tot, parede, maior, horas = 0, 9.9, 0.0, {}
     for m in MODELOS:
-        mj = json.loads((RAIZ / "pecas" / m / "montagem.json").read_text())
+        mj = json.loads((RAIZ / "projetos" / PASTAS[m] / "montagem.json").read_text())
         tot += sum(p["qtd"] for p in mj["pecas"])
         for v in mj.get("parede_medida", {}).values():
             parede = min(parede, v["min"])
@@ -71,7 +74,7 @@ def numeros():
 def saida_verif():
     o = []
     for m in MODELOS:
-        v = json.loads((RAIZ / "pecas" / m / "verificacao.json").read_text())
+        v = json.loads((RAIZ / "projetos" / PASTAS[m] / "verificacao.json").read_text())
         o.append(f"== {m}")
         for k, x in v["testes"].items():
             o.append(f"  [{'PASSOU' if x['ok'] else 'FALHOU'}] {k}: {x['texto']}")

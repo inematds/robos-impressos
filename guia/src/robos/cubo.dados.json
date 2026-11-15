@@ -1,5 +1,5 @@
 {
- "_": "Dados do robô quadrado de mesa que NÃO saem do montagem.json: lista de compras (usa / comprar), parafusos, notas dos passos, ordem de impressão, rótulos das peças, ligações elétricas (fonte única do esquema SVG, da tabela da página e do LIGACAO.md), glossário e riscos. Fonte: cad/modelos/cubo.py, cad/comum/quadrado.py, cad/parametros.py. Quem lê: guia/src/pagina_robo.py.",
+ "_": "Dados do robô quadrado de mesa que NÃO saem do montagem.json: lista de compras (usa / comprar), parafusos, notas dos passos, ordem de impressão, rótulos das peças, ligações elétricas (fonte única do esquema SVG, da tabela da página e do LIGACAO.md), glossário e riscos. Fonte: projetos/cubo/modelo.py, comum/cad/comum/quadrado.py, comum/cad/parametros.py. Quem lê: guia/src/pagina_robo.py.",
  "preco_data": "14/11/2026",
  "preco_fonte": "usinainfo.com.br",
  "compras": [

@@ -16,7 +16,7 @@ Detailed plan (decisions, parts, measurement sources, assembly screw by screw, p
 
 | Dinosaur | Capybara | Square robot |
 |---|---|---|
-| ![dinosaur](imagens/dino-montado.jpg) | ![capybara](imagens/capivara-montado.jpg) | ![square robot](imagens/cubo-montado.jpg) |
+| ![dinosaur](projetos/dino/imagens/dino-montado.jpg) | ![capybara](projetos/capivara/imagens/capivara-montado.jpg) | ![square robot](projetos/cubo/imagens/cubo-montado.jpg) |
 
 The images are **renders** of the project parts. The banner is an AI-generated illustration.
 
@@ -35,16 +35,16 @@ The images are **renders** of the project parts. The banner is an AI-generated i
 | Path | Contents |
 |---|---|
 | `PLANO.md` | Project decisions, parts list, measurement sources, assembly, and what’s already prepared for phase 2 |
-| `cad/parametros.py` | **All measurements** in one file: clearances, components (with sources), each robot’s shape |
-| `cad/gerar.py` | Generates STL, 3MF, `montagem.json`, `montagem.glb`, and `mesas.json` for each model |
-| `cad/verificar.py` | 9 tests for exported files (watertight mesh, fits the build plate, walls, interference, loose parts, balance, assembly path) |
-| `cad/comum/` | Shared framework (chassis, trays, neck), animal shells, components, and geometry |
-| `cad/modelos/` | `dino.py`, `capivara.py`, `cubo.py` |
-| `pecas/<modelo>/stl` e `3mf` | Parts for each model, already positioned for printing |
-| `pecas/<modelo>/mesas/` | One 3MF per build plate (parts grouped by color and material) |
-| `pecas/comum/` | Parts shared by both animals (chassis, trays, fork, cradle, ball cover, pin, bushing, test piece) |
-| `pecas/TABELAS.md` | Parts tables and verifier output (generated) |
-| `imagens/` | Renders: assembled, four views, exploded, skeleton, and build plates |
+| `comum/cad/parametros.py` | **All measurements** in one file: clearances, components (with sources), each robot’s shape |
+| `comum/cad/gerar.py` | Generates STL, 3MF, `montagem.json`, `montagem.glb`, and `mesas.json` for each model |
+| `comum/cad/verificar.py` | 9 tests for exported files (watertight mesh, fits the build plate, walls, interference, loose parts, balance, assembly path) |
+| `comum/cad/comum/` | Shared framework (chassis, trays, neck), animal shells, components, and geometry |
+| `projetos/<modelo>/modelo.py` | The model of each robot: `dino`, `capivara`, `cubo`, `cubo-rodas` |
+| `projetos/<modelo>/stl` e `3mf` | Parts for each model, already positioned for printing |
+| `projetos/<modelo>/mesas/` | One 3MF per build plate (parts grouped by color and material) |
+| `comum/pecas/` | Parts shared by both animals (chassis, trays, fork, cradle, ball cover, pin, bushing, test piece) |
+| `projetos/TABELAS.md` | Parts tables and verifier output (generated) |
+| `projetos/<modelo>/imagens/` | Renders: assembled, four views, exploded, skeleton, and build plates |
 | `guia/` | Guide page in PT, `guia/en/`, and `guia/es/` (built by `guia/src/montar.py`) |
 
 ## The three models at a glance
@@ -61,16 +61,16 @@ Legend: 🧠 you · ⚙️ command/script · 🤖 `claude -p`
 |---|---|---|---|
 | 1 | Download the project (or the [ZIP](https://github.com/inematds/robos-impressos/archive/refs/heads/main.zip) if you only want to print) | `git clone https://github.com/inematds/robos-impressos.git && cd robos-impressos` | ⚙️ |
 | 2 | Choose a model and read the parts list | [PLANO.md › Peças impressas](PLANO.md#2-peças-impressas) (in Portuguese) | 🧠 |
-| 3 | Print the test piece and check the servo, threaded insert, and pin | `pecas/comum/stl/comum-teste-encaixe.stl` in your slicer | 🧠 |
-| 4 | Measure the components marked **NC** and correct the measurements | edit `cad/parametros.py` | 🧠 |
+| 3 | Print the test piece and check the servo, threaded insert, and pin | `comum/pecas/stl/comum-teste-encaixe.stl` in your slicer | 🧠 |
+| 4 | Measure the components marked **NC** and correct the measurements | edit `comum/cad/parametros.py` | 🧠 |
 | 5 | Create the Python 3.12+ environment (only if regenerating) | `python3 -m venv .venv && .venv/bin/pip install -r requirements.txt` | ⚙️ |
-| 6 | Generate the parts | `.venv/bin/python cad/gerar.py todos` | ⚙️ |
-| 7 | Verify (the process must end with "TUDO PASSOU") | `.venv/bin/python cad/verificar.py todos` | ⚙️ |
-| 8 | Update tables and renders | `.venv/bin/python cad/tabelas.py && cad/renders.sh dino` | ⚙️ |
-| 9 | Print by color: one 3MF per build plate | `pecas/<modelo>/mesas/*.3mf` in your slicer | 🧠 |
+| 6 | Generate the parts | `.venv/bin/python comum/cad/gerar.py todos` | ⚙️ |
+| 7 | Verify (the process must end with "TUDO PASSOU") | `.venv/bin/python comum/cad/verificar.py todos` | ⚙️ |
+| 8 | Update tables and renders | `.venv/bin/python comum/cad/tabelas.py && comum/cad/renders.sh dino` | ⚙️ |
+| 9 | Print by color: one 3MF per build plate | `projetos/<modelo>/mesas/*.3mf` in your slicer | 🧠 |
 | 10 | Buy the components | [PLANO.md › Peças compradas](PLANO.md#3-peças-compradas-estimativa-de-preço-nov2026-lojas-brasileiras) (in Portuguese) | 🧠 |
 | 11 | Assemble from the inside out | [PLANO.md › Montagem](PLANO.md#6-montagem-passo-a-passo) (in Portuguese) | 🧠 |
-| 12 | If the guide changes: rebuild and translate it | `python3 guia/src/montar.py && python3 guia/src/traduzir.py && python3 guia/src/montar.py && .venv/bin/python cad/tabelas.py` | ⚙️ |
+| 12 | If the guide changes: rebuild and translate it | `python3 guia/src/montar.py && python3 guia/src/traduzir.py && python3 guia/src/montar.py && .venv/bin/python comum/cad/tabelas.py` | ⚙️ |
 | 13 | Publish | `git add -A && git commit && git push` (GitHub Pages) | 🧠 |
 
 No step currently uses `claude -p`.

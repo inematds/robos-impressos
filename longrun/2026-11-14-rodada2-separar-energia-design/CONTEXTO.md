@@ -96,3 +96,32 @@ fora, a tigela de boca para cima apoia num ponto e a parede externa nasce quase 
 em face VISÍVEL). O que resolve os dois lados é imprimir a casca "em pé" como um vaso (corte horizontal, anéis cujas
 paredes sobem perto da vertical), com a base plana na mesa, fechando o topo em ogiva ou em peça separada (calota/tampa).
 O verificador agora tem 11 testes (10 imprimibilidade, 11 negativo da imprimibilidade).
+
+## ACRÉSCIMO 3 (E5a, 15/11): ESTRUTURA NOVA — vale sobre os caminhos e comandos escritos acima
+O repo foi reorganizado. Onde este arquivo (e o canal, os briefs e o FALHAS.md) diz o caminho da esquerda, leia o da direita:
+
+| antes | agora |
+|---|---|
+| `cad/…` (scripts, `parametros.py`, `comum/`, `peles/`) | `comum/cad/…` |
+| `cad/modelos/<id>.py` | `projetos/<robô>/modelo.py` |
+| `pecas/<id>/{stl,3mf,mesas,componentes}/`, `montagem.json`, `montagem.glb`, `mesas.json`, `verificacao.json` | `projetos/<robô>/…` (mesmos nomes) |
+| `pecas/comum/{stl,3mf}/` (garfo-pescoco, berco-tilt, capa-esfera, teste-encaixe) | `comum/pecas/{stl,3mf}/` |
+| `pecas/comum/…` chassi, bandeja-pi, bandeja-uno, pino-guia, bucha-eixo (órfãos) | `comum/legado/{stl,3mf}/` |
+| `imagens/<id>-*.jpg` | `projetos/<robô>/imagens/<id>-*.jpg` |
+| `pecas/TABELAS.md`, `pecas/verificacao-saida.txt` | `projetos/TABELAS.md`, `projetos/verificacao-saida.txt` (+ um por robô) |
+| `pecas/LEIAME.md` | `comum/README.md` |
+
+`<robô>` = pasta: `dino`, `capivara`, `cubo`, `cubo-rodas`. O id no código, em `parametros.py` e no nome dos STL continua
+`cubo_rodas`. Registro ÚNICO id → pasta: `comum/cad/caminhos.py` (`MODELOS`, `pasta(id)`, `construir(id)`, `rel_comum`).
+O pacote Python continua `cad` (`from cad import parametros`, `from cad.comum.geo import …`): a raiz de import é `comum/`.
+```
+.venv/bin/python comum/cad/gerar.py <id|todos>
+.venv/bin/python comum/cad/verificar.py <id|todos>
+.venv/bin/python comum/cad/depurar.py <id>            .venv/bin/python comum/cad/onde.py <id> [pose]
+.venv/bin/python comum/cad/comum/imprimibilidade.py <id> [peça]
+.venv/bin/python comum/cad/comparar.py <id> --sem-gravar        # sem a opção, regrava comparacao/ e referencia/comparacao/
+.venv/bin/python comum/cad/tabelas.py
+comum/cad/vistas.sh <id> <saida.png> 600x600 40 --sem-componentes
+comum/cad/renders.sh <id>                              # saída em projetos/<robô>/imagens/
+.venv/bin/python guia/src/pagina_robo.py docs|pagina|zip|conferir <robô>
+```

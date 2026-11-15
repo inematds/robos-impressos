@@ -10,7 +10,7 @@ Três robôs impressos em 3D numa **Bambu Lab A1** (mesa de 256 × 256 × 256 mm
 
 **Fase 1 = só mecânica:** peças, encaixes, lugar de cada componente, parafusos. Nada de fiação, firmware ou IA.
 **Nada disto foi impresso nem montado ainda.** O que existe é um protótipo digital conferido por script
-(`cad/verificar.py`). Tempo, filamento e preço são **estimativas**. As imagens do guia são renders das peças, não fotos.
+(`comum/cad/verificar.py`). Tempo, filamento e preço são **estimativas**. As imagens do guia são renders das peças, não fotos.
 
 Por que o repo se chama `robos-impressos` e não `dinobot`: o pedido começou com o dinossauro e virou três modelos
 que dividem as mesmas peças e o mesmo verificador. Um nome neutro evita ter uma capivara dentro de um "dinobot".
@@ -74,7 +74,7 @@ que dividem as mesmas peças e o mesmo verificador. Um nome neutro evita ter uma
 - **Bichos:** o **chassi** (uma peça só, PETG) é piso + rack + deck. Ele segura motores, bateria, placas e o servo de pan.
   As cascas (PLA) só cobrem: saem todas sem desmontar o esqueleto.
 - **Mesmo esqueleto nos dois bichos:** chassi, bandejas, garfo, berço, capa da esfera, pinos e bucha são **os mesmos STL**
-  (`pecas/comum/`). Só a casca e a mesa da cabeça mudam.
+  (`comum/pecas/`). Só a casca e a mesa da cabeça mudam.
 - **Cubo:** a base é caixa e estrutura ao mesmo tempo; a cabeça tem um **quadro** interno (PETG) que segura o Pi, o servo
   de tilt e o eixo, e a casca branca entra por trás.
 
@@ -112,13 +112,13 @@ que dividem as mesmas peças e o mesmo verificador. Um nome neutro evita ter uma
 - Folga de encaixe: 0,25 mm (parâmetro `FOLGA.encaixe`). Imprima primeiro o `comum-teste-encaixe.stl`
   (janela do micro servo, 3 furos de inserto, furo do eixo do motor TT, furos M3/M2,5/M2, 3 soquetes de pino; a covinha marca a medida do projeto) e ajuste antes das peças grandes.
 - Cascas orgânicas (torso, crânio, mandíbula, painéis) pedem **suporte em árvore**. Pernas, coxas, cauda e rabo só sob as 2 orelhas de parafuso.
-- Cada STL já sai deitado na posição de imprimir. `pecas/<modelo>/mesas/` tem um 3MF por mesa (peças juntas por cor e material); a lista está em `mesas.json`.
+- Cada STL já sai deitado na posição de imprimir. `projetos/<modelo>/mesas/` tem um 3MF por mesa (peças juntas por cor e material); a lista está em `mesas.json`.
 
 ---
 
 ## 2. Peças impressas
 
-Números gerados de `pecas/<modelo>/montagem.json` por `cad/tabelas.py`. Tempo e filamento: volume de plástico ÷ vazão
+Números gerados de `projetos/<modelo>/montagem.json` por `comum/cad/tabelas.py`. Tempo e filamento: volume de plástico ÷ vazão
 média de 6 mm³/s (suposição conservadora) e densidade do filamento; peça maciça conta 1,6 mm de casca + 15 % de miolo.
 **Não há fatiador nesta máquina: trate como ordem de grandeza** e confira no Bambu Studio. Suportes não entram na conta.
 
@@ -257,7 +257,7 @@ Ferramentas: chaves Phillips e Allen 2,5, ferro de solda (insertos), paquímetro
 
 ## 4. Fontes das medidas dos componentes
 
-Todas as medidas estão em `cad/parametros.py`, cada uma com a marca **P** (fabricante), **T** (loja/terceiro) ou
+Todas as medidas estão em `comum/cad/parametros.py`, cada uma com a marca **P** (fabricante), **T** (loja/terceiro) ou
 **NC** (não confirmada em fonte lida: valor usual de mercado, **meça a sua peça**). Clones variam; os bolsos têm
 0,4 mm de folga por lado e, onde dá, rasgo em vez de furo.
 
@@ -289,7 +289,7 @@ Todas as medidas estão em `cad/parametros.py`, cada uma com a marca **P** (fabr
 
 ---
 
-## 5. Verificação (saída real de `cad/verificar.py`)
+## 5. Verificação (saída real de `comum/cad/verificar.py`)
 
 O script lê os **STL exportados** e o `montagem.json`. São 9 testes:
 
@@ -301,7 +301,7 @@ O script lê os **STL exportados** e o `montagem.json`. São 9 testes:
   manutenção (cabeça, traseira, costas, bandejas) e confere que cada uma sai. Foi este teste que mostrou que a mesa da
   cabeça não entrava no crânio, que as rodas têm de ir depois do torso e que as costas não saíam com a chave no caminho.
 
-Saída completa da última rodada: [`pecas/verificacao-saida.txt`](pecas/verificacao-saida.txt).
+Saída completa da última rodada: [`projetos/verificacao-saida.txt`](projetos/verificacao-saida.txt).
 
 ### Dinossauro
 <!-- TABELA:verif:dino -->
@@ -358,11 +358,11 @@ peças e a qualidade de impressão das cascas com suporte. O caminho de montagem
 
 ### 6.1 Bichos (dino e capivara)
 
-A ordem abaixo é a mesma que o teste 9 do verificador percorre (`ordem_bicho` em `cad/comum/base.py`).
+A ordem abaixo é a mesma que o teste 9 do verificador percorre (`ordem_bicho` em `comum/cad/comum/base.py`).
 
 | # | Etapa | Parafusos | Atenção |
 |---|---|---|---|
-| 0 | Imprima `comum-teste-encaixe.stl` e teste servo, insertos e pino | — | Ajuste `FOLGA` em `cad/parametros.py` e gere de novo se algo ficar duro ou frouxo |
+| 0 | Imprima `comum-teste-encaixe.stl` e teste servo, insertos e pino | — | Ajuste `FOLGA` em `comum/cad/parametros.py` e gere de novo se algo ficar duro ou frouxo |
 | 1 | Insertos M3 a quente: chassi (2 postes da frente, 1 atrás do deck, 2 da esfera), garfo (1), berço (2 no topo da coluna), mesa (1), bandejas (1 cada), crânio (3), torso-frente (1 + 2 do painel), torso-costas (2), pernas (2 cada), cauda/rabo (2) | 25 insertos | Ferro a ~230 °C em PETG; não afunde além da face |
 | 2 | Motores TT nas paredes do chassi, por fora, motor para cima | 2× M3×25 + porca e arruela por motor (rasgos) | O rasgo aceita 12,3 a 17,6 mm entre furos. A ponta interna do eixo passa pelo furo da parede |
 | 3 | Esfera no soquete da lança + `capa-esfera` por baixo | 2× M3×8 | A esfera tem que girar solta |
@@ -432,14 +432,14 @@ a saída é LiPo 2S maior ou alongar o piso (parâmetro `BASE.piso_y`).
 
 ```bash
 python3 -m venv .venv && .venv/bin/pip install -r requirements.txt   # Python 3.12 ou mais novo
-.venv/bin/python cad/gerar.py todos        # STL, 3MF, montagem.json, montagem.glb, mesas/
-.venv/bin/python cad/verificar.py todos    # os 9 testes; sai com código 1 se algum falhar
-.venv/bin/python cad/tabelas.py            # reescreve as tabelas dos documentos
-cad/renders.sh dino                        # imagens (precisa do Blender)
+.venv/bin/python comum/cad/gerar.py todos        # STL, 3MF, montagem.json, montagem.glb, mesas/
+.venv/bin/python comum/cad/verificar.py todos    # os 9 testes; sai com código 1 se algum falhar
+.venv/bin/python comum/cad/tabelas.py            # reescreve as tabelas dos documentos
+comum/cad/renders.sh dino                        # imagens (precisa do Blender)
 ```
 
-Um quarto modelo entra como `cad/modelos/<nome>.py` + uma seção em `cad/parametros.py`; se for um bicho que roda,
-reaproveita `cad/comum/base.py` (esqueleto) e `cad/comum/bicho.py` (casca, cabeça, painéis).
+Um modelo novo entra como `projetos/<nome>/modelo.py` + uma linha no registro `comum/cad/caminhos.py` + uma seção em `comum/cad/parametros.py`; se for um bicho que roda,
+reaproveita `comum/cad/comum/base.py` (esqueleto) e `comum/cad/comum/bicho.py` (casca, cabeça, painéis).
 
 ---
 
@@ -449,7 +449,7 @@ reaproveita `cad/comum/base.py` (esqueleto) e `cad/comum/bicho.py` (casca, cabe�
   cabeça, por isso a cabeça sai antes das costas. Melhoria prevista: transformar o topo da esfera numa peça própria, presa à frente.
 - **3MF por mesa** ainda não foi aberto num fatiador (só relido por script).
 - **Imprimir e montar.** Nada foi testado em plástico. Comece pelo cupom de teste e por uma peça pequena de cada tipo.
-- **Medidas NC** da tabela 4: medir com paquímetro e corrigir `cad/parametros.py`.
+- **Medidas NC** da tabela 4: medir com paquímetro e corrigir `comum/cad/parametros.py`.
 - **Altura:** os bichos ficaram com ~33 cm, não 30. O que manda é a pilha bateria + Uno com shield + Pi sob o servo de pan.
 - **Fatiar** para ter tempo e filamento de verdade.
 - **Vídeo explicativo do guia:** ainda não gravado.

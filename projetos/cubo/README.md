@@ -22,8 +22,8 @@ no computador (resultado no fim).
 | Ligar os fios | [LIGACAO.md](LIGACAO.md) · [English](LIGACAO.en.md) · [Español](LIGACAO.es.md) |
 | Pôr os servos no centro | [firmware/centrar_servos/centrar_servos.ino](firmware/centrar_servos/centrar_servos.ino) |
 | Baixar tudo | [cubo-stl.zip](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo/cubo-stl.zip) (STL, 3MF das mesas, sketch e guias nos 3 idiomas) |
-| STL, 3MF, mesas | `pecas/cubo/stl/`, `pecas/cubo/3mf/`, `pecas/cubo/mesas/` (+ `pecas/comum/stl/comum-teste-encaixe.stl`) |
-| Modelo | `cad/modelos/cubo.py`, `cad/comum/quadrado.py`, seção `CUBO` de `cad/parametros.py` |
+| STL, 3MF, mesas | `projetos/cubo/stl/`, `projetos/cubo/3mf/`, `projetos/cubo/mesas/` (+ `comum/pecas/stl/comum-teste-encaixe.stl`) |
+| Modelo | `projetos/cubo/modelo.py`, `comum/cad/comum/quadrado.py`, seção `CUBO` de `comum/cad/parametros.py` |
 
 ## Montagem
 
@@ -105,7 +105,7 @@ bancada.
 
 ## Verificação
 
-Saída real de `.venv/bin/python cad/verificar.py cubo` (cópia completa em `verificacao-saida.txt`):
+Saída real de `.venv/bin/python comum/cad/verificar.py cubo` (cópia completa em `verificacao-saida.txt`):
 
 <!-- GERADO:verificacao -->
 ```
@@ -127,8 +127,8 @@ Saída real de `.venv/bin/python cad/verificar.py cubo` (cópia completa em `ver
 ## Como regenerar
 
 ```
-.venv/bin/python cad/gerar.py cubo                      # STL, 3MF, mesas, montagem.json
-.venv/bin/python cad/verificar.py cubo                  # 11 testes
+.venv/bin/python comum/cad/gerar.py cubo                      # STL, 3MF, mesas, montagem.json
+.venv/bin/python comum/cad/verificar.py cubo                  # 11 testes
 .venv/bin/python guia/src/pagina_robo.py docs cubo pt   # blocos GERADO destes arquivos
 .venv/bin/python guia/src/pagina_robo.py traduzir cubo  # EN e ES pelo inema-traduz (só o que mudou)
 .venv/bin/python guia/src/pagina_robo.py docs cubo      # versões .en.md e .es.md
@@ -144,7 +144,7 @@ Os arquivos `*.en.md`, `*.es.md` e `ligacao.*.svg` são gerados: mude o texto em
 
 - Imprimir e montar: comece pelo cupom de teste.
 - Testar a parte elétrica na bancada (nenhum fio foi ligado ainda).
-- Medidas NC dos componentes (tela, abas e horn do MG996R, chave, boca do USB-C): medir e corrigir `cad/parametros.py`.
+- Medidas NC dos componentes (tela, abas e horn do MG996R, chave, boca do USB-C): medir e corrigir `comum/cad/parametros.py`.
 - Abrir os 3MF das mesas no Bambu Studio.
 - O cupom de teste é comum aos outros robôs: não testa a janela do MG996R nem o furo do pino M5 (falta um cupom próprio do robô quadrado).
 - O plugue USB-C que alimenta o Raspberry Pi não está no modelo 3D: conferir se cabe ao lado do Pi, dentro da cabeça.

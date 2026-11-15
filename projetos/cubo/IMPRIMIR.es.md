@@ -16,9 +16,9 @@ Página con las mismas tablas: https://inematds.github.io/robos-impressos/guia/e
 
 ## Los archivos ya están en la posición de impresión
 
-- Cada STL de `pecas/cubo/stl/` está acostado como debe imprimirse: la cara de apoyo en Z = 0. Ábrelo en el laminador e
+- Cada STL de `projetos/cubo/stl/` está acostado como debe imprimirse: la cara de apoyo en Z = 0. Ábrelo en el laminador e
   imprímelo sin girarlo.
-- Cada 3MF de `pecas/cubo/mesas/` incluye las piezas de un color, ya ordenadas en una cama de 256 mm.
+- Cada 3MF de `projetos/cubo/mesas/` incluye las piezas de un color, ya ordenadas en una cama de 256 mm.
 - Todo de una vez: [cubo-stl.zip](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo/cubo-stl.zip)
   (los STL, los 3MF de las camas, el programa de Arduino y las guías).
 - Cómo se verificó (14/11/2026): en cada STL, el tamaño de la caja de la pieza coincide con el tamaño "en la cama" de la tabla siguiente, el
@@ -29,7 +29,7 @@ Página con las mismas tablas: https://inematds.github.io/robos-impressos/guia/e
 
 ## 1. Imprime primero el cupón de prueba
 
-**Todavía no se ha impreso nada de este proyecto.** El cupón de prueba (`pecas/comum/stl/comum-teste-encaixe.stl`, 70 × 34 × 8 mm,
+**Todavía no se ha impreso nada de este proyecto.** El cupón de prueba (`comum/pecas/stl/comum-teste-encaixe.stl`, 70 × 34 × 8 mm,
 menos de 1 hora) está en la cama 06, con los 4 espaciadores del Raspberry Pi. En el robot cuadrado, prueba en él:
 
 - un inserto M3 en cada uno de los 3 orificios (3,9, 4,0 y 4,1 mm);
@@ -41,8 +41,8 @@ modo avanzado activado) abre o cierra todos los agujeros de la pieza: un valor p
 ([fuente: código de Bambu Studio](https://github.com/bambulab/BambuStudio/blob/master/src/libslic3r/PrintConfig.cpp)).
 La fuente no indica si el valor cuenta por lado o por diámetro: empieza con 0,05 mm e imprime el cupón de prueba de nuevo. El cupón decide.
 
-Si trabajas con el código, puedes cambiar el valor en el bloque `FOLGA` de `cad/parametros.py` y volver a generar las piezas
-(`.venv/bin/python cad/gerar.py cubo`).
+Si trabajas con el código, puedes cambiar el valor en el bloque `FOLGA` de `comum/cad/parametros.py` y volver a generar las piezas
+(`.venv/bin/python comum/cad/gerar.py cubo`).
 
 Tres avisos:
 
@@ -57,13 +57,13 @@ Primero, las piezas pequeñas que encajan entre sí; al final, las dos impresion
 <!-- GERADO:mesas -->
 | Orden | Archivo de la cama | Material y color | Piezas | Filamento (g) | Tiempo (h) | Por qué va en este orden |
 |---|---|---|---|---|---|---|
-| 1 | [cubo-mesa-06-pla-cinza.3mf](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-06-pla-cinza.3mf) | PLA gris | Cupón de prueba (teste-encaixe), 4 × Espaciador de Raspberry Pi (espacador-pi) | 15 | 0,9 | Empieza por aquí. El cupón de prueba muestra si los insertos y los tornillos M3 entran con la holgura correcta en TU impresora. Menos de 1 hora. |
-| 2 | [cubo-mesa-04-petg-prata.3mf](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-04-petg-prata.3mf) | PETG plateado | Tubo del cuello (tubo-pescoco), Engranaje del cuello (engrenagem-pescoco) | 24 | 1,1 | Tubo y engranaje del cuello: piezas pequeñas que ya prueban el ajuste con las varillas de unión. |
-| 3 | [cubo-mesa-01-petg-amarelo.3mf](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-01-petg-amarelo.3mf) | PETG amarillo | Marco de la cabeza (quadro-cabeca), Engranaje del servo (engrenagem-servo) | 88 | 3,3 | Marco de la cabeza y engranaje del servo: comprueba si el servo entra en la ranura y si los dos engranajes giran juntos sin trabarse. |
-| 4 | [cubo-mesa-03-petg-grafite.3mf](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-03-petg-grafite.3mf) | PETG grafito | Tapa de la base (tampa-base), Puerta trasera (porta-traseira), Horquilla (garfo) | 129 | 5,0 | Tapa, puerta y horquilla. En la horquilla, comprueba que el tornillo M5 enrosque en el orificio del brazo de la horquilla; con el marco de la mesa anterior, verifica que la cabeza se incline sin trabarse. |
-| 5 | [cubo-mesa-02-petg-grafite.3mf](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-02-petg-grafite.3mf) | PETG grafito | Base (base) | 222 | 8,2 | Base: la impresión más larga en PETG. |
-| 6 | [cubo-mesa-07-pla-preto.3mf](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-07-pla-preto.3mf) | PLA negro | Panel de la cara (cabeca-face) | 53 | 2,0 | Panel de la cara: la cara visible va en la cama, así que limpia bien la cama antes. |
-| 7 | [cubo-mesa-05-pla-branco.3mf](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-05-pla-branco.3mf) | PLA blanco | Carcasa de la cabeza (cabeca-corpo) | 204 | 7,7 | Copa de la cabeza: la impresión más larga en PLA. Déjala para el final, cuando la impresora ya esté ajustada. |
+| 1 | [cubo-mesa-06-pla-cinza.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo/mesas/cubo-mesa-06-pla-cinza.3mf) | PLA gris | Cupón de prueba (teste-encaixe), 4 × Espaciador de Raspberry Pi (espacador-pi) | 15 | 0,9 | Empieza por aquí. El cupón de prueba muestra si los insertos y los tornillos M3 entran con la holgura correcta en TU impresora. Menos de 1 hora. |
+| 2 | [cubo-mesa-04-petg-prata.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo/mesas/cubo-mesa-04-petg-prata.3mf) | PETG plateado | Tubo del cuello (tubo-pescoco), Engranaje del cuello (engrenagem-pescoco) | 24 | 1,1 | Tubo y engranaje del cuello: piezas pequeñas que ya prueban el ajuste con las varillas de unión. |
+| 3 | [cubo-mesa-01-petg-amarelo.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo/mesas/cubo-mesa-01-petg-amarelo.3mf) | PETG amarillo | Marco de la cabeza (quadro-cabeca), Engranaje del servo (engrenagem-servo) | 88 | 3,3 | Marco de la cabeza y engranaje del servo: comprueba si el servo entra en la ranura y si los dos engranajes giran juntos sin trabarse. |
+| 4 | [cubo-mesa-03-petg-grafite.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo/mesas/cubo-mesa-03-petg-grafite.3mf) | PETG grafito | Tapa de la base (tampa-base), Puerta trasera (porta-traseira), Horquilla (garfo) | 129 | 5,0 | Tapa, puerta y horquilla. En la horquilla, comprueba que el tornillo M5 enrosque en el orificio del brazo de la horquilla; con el marco de la mesa anterior, verifica que la cabeza se incline sin trabarse. |
+| 5 | [cubo-mesa-02-petg-grafite.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo/mesas/cubo-mesa-02-petg-grafite.3mf) | PETG grafito | Base (base) | 222 | 8,2 | Base: la impresión más larga en PETG. |
+| 6 | [cubo-mesa-07-pla-preto.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo/mesas/cubo-mesa-07-pla-preto.3mf) | PLA negro | Panel de la cara (cabeca-face) | 53 | 2,0 | Panel de la cara: la cara visible va en la cama, así que limpia bien la cama antes. |
+| 7 | [cubo-mesa-05-pla-branco.3mf](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo/mesas/cubo-mesa-05-pla-branco.3mf) | PLA blanco | Carcasa de la cabeza (cabeca-corpo) | 204 | 7,7 | Copa de la cabeza: la impresión más larga en PLA. Déjala para el final, cuando la impresora ya esté ajustada. |
 | **Total** |  |  |  | **735** | **28,2** |  |
 <!-- /GERADO -->
 
@@ -75,18 +75,18 @@ paréntesis es el nombre del archivo.
 <!-- GERADO:pecas -->
 | Pieza | Archivo | Cant. | Material y color | Tamaño en la cama (mm) | Cómo va en la cama | Soporte | Paredes | Relleno | Filamento (g) | Tiempo (h) |
 |---|---|---|---|---|---|---|---|---|---|---|
-| Base (base) | [cubo-base.stl](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/stl/cubo-base.stl) | 1 | PETG grafito | 158 × 146 × 56,5 | piso sobre la cama | no | 4 | 20 % | 222 | 8,2 |
-| Tapa de la base (tampa-base) | [cubo-tampa-base.stl](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/stl/cubo-tampa-base.stl) | 1 | PETG grafito | 158 × 146 × 18 | boca abajo: la cara superior sobre la cama | no | 4 | 25 % | 101 | 3,8 |
-| Puerta trasera (porta-traseira) | [cubo-porta-traseira.stl](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/stl/cubo-porta-traseira.stl) | 1 | PETG grafito | 45,4 × 52,6 × 5 | cara exterior sobre la cama | no | 3 | 20 % | 9 | 0,4 |
-| Tubo del cuello (tubo-pescoco) | [cubo-tubo-pescoco.stl](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/stl/cubo-tubo-pescoco.stl) | 1 | PETG plateado | 40 × 40 × 32,6 | boca abajo: la parte superior (lado de la horquilla) sobre la cama, la brida cónica se abre a 45° | no | 5 | 40 % | 16 | 0,7 |
-| Engranaje del cuello (engrenagem-pescoco) | [cubo-engrenagem-pescoco.stl](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/stl/cubo-engrenagem-pescoco.stl) | 1 | PETG plateado | 36 × 36 × 8 | acostada | no | 5 | 60 % | 8 | 0,4 |
-| Engranaje del servo (engrenagem-servo) | [cubo-engrenagem-servo.stl](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/stl/cubo-engrenagem-servo.stl) | 1 | PETG amarillo | 69 × 69 × 8 | boca abajo: la cara superior sobre la cama, el hueco del horn hacia arriba | no | 5 | 60 % | 23 | 0,9 |
-| Horquilla (garfo) | [cubo-garfo.stl](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/stl/cubo-garfo.stl) | 1 | PETG grafito | 44 × 41,9 × 24 | acostada, con la parte trasera sobre la cama: las capas van del bloque hacia los brazos | no | 5 | 40 % | 19 | 0,8 |
-| Marco de la cabeza (quadro-cabeca) | [cubo-quadro-cabeca.stl](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/stl/cubo-quadro-cabeca.stl) | 1 | PETG amarillo | 129,2 × 74,6 × 63,7 | frente del travesaño sobre la cama, laterales hacia arriba | no | 4 | 30 % | 65 | 2,4 |
-| Carcasa de la cabeza (cabeca-corpo) | [cubo-cabeca-corpo.stl](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/stl/cubo-cabeca-corpo.stl) | 1 | PLA blanco | 136 × 118 × 102 | espalda sobre la cama, abertura (frente) hacia arriba, como un vaso | no | 3 | 15 % | 204 | 7,7 |
-| Panel de la cara (cabeca-face) | [cubo-cabeca-face.stl](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/stl/cubo-cabeca-face.stl) | 1 | PLA negro | 129,9 × 111,9 × 34,2 | cara frontal (la que queda visible) sobre la cama, pilares hacia arriba | no | 3 | 20 % | 53 | 2,0 |
-| Espaciador de Raspberry Pi (espacador-pi) | [cubo-espacador-pi.stl](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/stl/cubo-espacador-pi.stl) | 4 | PLA gris | 6 × 6 × 5 | de pie | no | 3 | 15 % | <1 | 0,3 |
-| Cupón de prueba (teste-encaixe) | [comum-teste-encaixe.stl](https://github.com/inematds/robos-impressos/raw/main/pecas/comum/stl/comum-teste-encaixe.stl) | 1 | PLA gris | 70 × 34 × 8 | acostada | no | 3 | 15 % | 15 | 0,6 |
+| Base (base) | [cubo-base.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo/stl/cubo-base.stl) | 1 | PETG grafito | 158 × 146 × 56,5 | piso sobre la cama | no | 4 | 20 % | 222 | 8,2 |
+| Tapa de la base (tampa-base) | [cubo-tampa-base.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo/stl/cubo-tampa-base.stl) | 1 | PETG grafito | 158 × 146 × 18 | boca abajo: la cara superior sobre la cama | no | 4 | 25 % | 101 | 3,8 |
+| Puerta trasera (porta-traseira) | [cubo-porta-traseira.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo/stl/cubo-porta-traseira.stl) | 1 | PETG grafito | 45,4 × 52,6 × 5 | cara exterior sobre la cama | no | 3 | 20 % | 9 | 0,4 |
+| Tubo del cuello (tubo-pescoco) | [cubo-tubo-pescoco.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo/stl/cubo-tubo-pescoco.stl) | 1 | PETG plateado | 40 × 40 × 32,6 | boca abajo: la parte superior (lado de la horquilla) sobre la cama, la brida cónica se abre a 45° | no | 5 | 40 % | 16 | 0,7 |
+| Engranaje del cuello (engrenagem-pescoco) | [cubo-engrenagem-pescoco.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo/stl/cubo-engrenagem-pescoco.stl) | 1 | PETG plateado | 36 × 36 × 8 | acostada | no | 5 | 60 % | 8 | 0,4 |
+| Engranaje del servo (engrenagem-servo) | [cubo-engrenagem-servo.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo/stl/cubo-engrenagem-servo.stl) | 1 | PETG amarillo | 69 × 69 × 8 | boca abajo: la cara superior sobre la cama, el hueco del horn hacia arriba | no | 5 | 60 % | 23 | 0,9 |
+| Horquilla (garfo) | [cubo-garfo.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo/stl/cubo-garfo.stl) | 1 | PETG grafito | 44 × 41,9 × 24 | acostada, con la parte trasera sobre la cama: las capas van del bloque hacia los brazos | no | 5 | 40 % | 19 | 0,8 |
+| Marco de la cabeza (quadro-cabeca) | [cubo-quadro-cabeca.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo/stl/cubo-quadro-cabeca.stl) | 1 | PETG amarillo | 129,2 × 74,6 × 63,7 | frente del travesaño sobre la cama, laterales hacia arriba | no | 4 | 30 % | 65 | 2,4 |
+| Carcasa de la cabeza (cabeca-corpo) | [cubo-cabeca-corpo.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo/stl/cubo-cabeca-corpo.stl) | 1 | PLA blanco | 136 × 118 × 102 | espalda sobre la cama, abertura (frente) hacia arriba, como un vaso | no | 3 | 15 % | 204 | 7,7 |
+| Panel de la cara (cabeca-face) | [cubo-cabeca-face.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo/stl/cubo-cabeca-face.stl) | 1 | PLA negro | 129,9 × 111,9 × 34,2 | cara frontal (la que queda visible) sobre la cama, pilares hacia arriba | no | 3 | 20 % | 53 | 2,0 |
+| Espaciador de Raspberry Pi (espacador-pi) | [cubo-espacador-pi.stl](https://github.com/inematds/robos-impressos/raw/main/projetos/cubo/stl/cubo-espacador-pi.stl) | 4 | PLA gris | 6 × 6 × 5 | de pie | no | 3 | 15 % | <1 | 0,3 |
+| Cupón de prueba (teste-encaixe) | [comum-teste-encaixe.stl](https://github.com/inematds/robos-impressos/raw/main/comum/pecas/stl/comum-teste-encaixe.stl) | 1 | PLA gris | 70 × 34 × 8 | acostada | no | 3 | 15 % | 15 | 0,6 |
 | **Total** |  | **15** |  |  |  |  |  |  | **735** | **28,2** |
 <!-- /GERADO -->
 

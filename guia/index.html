@@ -236,7 +236,7 @@
   </div>
   <div class="grid g2" style="margin-top:22px">
     <div class="card"><h3>✅ O que o script garante</h3><ul><li>Cada arquivo é um sólido fechado, de um corpo só.</li><li>Toda peça cabe na mesa de 256 × 256 × 256 mm.</li><li>Nenhuma peça ocupa o lugar de outra nem de um componente (servo, motor, placa, bateria), com a cabeça, a boca e os braços nos extremos.</li><li>Cada peça consegue chegar ao seu lugar: o script traz uma por uma, na ordem de montagem, e acusa se ela esbarra no que já está montado.</li><li>Nenhuma peça fica solta no ar, e o centro de gravidade cai dentro dos apoios, com folga.</li><li>O próprio teste é testado: uma peça é deslocada 3 mm de propósito e o script tem que acusar.</li></ul></div>
-    <div class="card"><h3>⚠️ O que só a impressão vai dizer</h3><ul><li>Ninguém imprimiu nem montou estas peças ainda.</li><li>Tempo e filamento são estimativas por volume.</li><li>Algumas medidas de componentes não têm fonte oficial (abas dos servos, furos do driver do motor). Elas estão marcadas com NC no arquivo <code>cad/parametros.py</code> e na seção 4 do <a href="https://github.com/inematds/robos-impressos/blob/main/PLANO.md">PLANO.md</a> (em português): meça a sua peça com paquímetro e, se for diferente, troque o número e gere as peças de novo.</li><li>O script não testa resistência, nem se a chave de fenda alcança cada parafuso, nem o encaixe de 3 mm dos servos nos braços e na boca.</li></ul></div>
+    <div class="card"><h3>⚠️ O que só a impressão vai dizer</h3><ul><li>Ninguém imprimiu nem montou estas peças ainda.</li><li>Tempo e filamento são estimativas por volume.</li><li>Algumas medidas de componentes não têm fonte oficial (abas dos servos, furos do driver do motor). Elas estão marcadas com NC no arquivo <code>comum/cad/parametros.py</code> e na seção 4 do <a href="https://github.com/inematds/robos-impressos/blob/main/PLANO.md">PLANO.md</a> (em português): meça a sua peça com paquímetro e, se for diferente, troque o número e gere as peças de novo.</li><li>O script não testa resistência, nem se a chave de fenda alcança cada parafuso, nem o encaixe de 3 mm dos servos nos braços e na boca.</li></ul></div>
   </div>
 </div></section>
 
@@ -270,9 +270,9 @@
   <h2>Peças geradas por código, não desenhadas à mão</h2>
   <p class="sub">Tudo sai de um arquivo de medidas. Mudou o servo ou a folga da sua impressora, você muda um número e gera de novo.</p>
   <div class="grid g3">
-    <div class="card"><h3>📐 Um arquivo de medidas</h3><p><code>cad/parametros.py</code> guarda folgas, medidas de cada componente (com a fonte ao lado) e a forma de cada robô.</p></div>
-    <div class="card"><h3>🔍 Verificador com 9 testes</h3><p><code>cad/verificar.py</code> lê os STL exportados e reprova peça aberta, peça grande demais, parede fina, peça atravessando outra, peça que não consegue entrar no lugar e robô que tomba.</p></div>
-    <div class="card"><h3>🦴 Esqueleto comum</h3><p>Chassi, bandejas, garfo e berço do pescoço são os mesmos arquivos no dinossauro e na capivara (<code>pecas/comum/</code>).</p></div>
+    <div class="card"><h3>📐 Um arquivo de medidas</h3><p><code>comum/cad/parametros.py</code> guarda folgas, medidas de cada componente (com a fonte ao lado) e a forma de cada robô.</p></div>
+    <div class="card"><h3>🔍 Verificador com 9 testes</h3><p><code>comum/cad/verificar.py</code> lê os STL exportados e reprova peça aberta, peça grande demais, parede fina, peça atravessando outra, peça que não consegue entrar no lugar e robô que tomba.</p></div>
+    <div class="card"><h3>🦴 Esqueleto comum</h3><p>Chassi, bandejas, garfo e berço do pescoço são os mesmos arquivos no dinossauro e na capivara (<code>comum/pecas/</code>).</p></div>
   </div>
 </div></section>
 
@@ -281,11 +281,11 @@
   <h2>Das medidas aos arquivos de impressão</h2>
   <p class="sub">A pele dos bichos é uma soma de formas arredondadas, transformada em malha; furos, bolsos e cortes são operações exatas por cima.</p>
   <div class="flow">
-    <span>cad/parametros.py</span><span class="arr">→</span>
-    <span>cad/gerar.py</span><span class="arr">→</span>
-    <span>pecas/&lt;modelo&gt;/stl + 3mf + montagem.json</span><span class="arr">→</span>
-    <span>cad/verificar.py</span><span class="arr">→</span>
-    <span>cad/renders.sh</span>
+    <span>comum/cad/parametros.py</span><span class="arr">→</span>
+    <span>comum/cad/gerar.py</span><span class="arr">→</span>
+    <span>projetos/&lt;modelo&gt;/stl + 3mf + montagem.json</span><span class="arr">→</span>
+    <span>comum/cad/verificar.py</span><span class="arr">→</span>
+    <span>comum/cad/renders.sh</span>
   </div>
   <div class="grid g3" style="margin-top:22px">
     <div class="card"><h3>Gerar</h3><p>Cria STL e 3MF de cada peça já na orientação de impressão, a montagem completa (<code>montagem.glb</code>) e a divisão em mesas.</p></div>
@@ -314,34 +314,34 @@
   <p class="sub">Os comandos são os do repositório. A ordem completa de montagem, com cada parafuso, está no <a href="https://github.com/inematds/robos-impressos/blob/main/PLANO.md">PLANO.md</a> (em português).</p>
 
   <div class="step"><div class="b">1</div><div>
-    <h3>Baixe o projeto</h3><p>Os arquivos de impressão já estão prontos na pasta <code>pecas/</code>, em STL e 3MF. Se só quer imprimir, baixe o ZIP (uns 80 MB), descompacte e abra os arquivos no fatiador: não precisa de terminal nem de Python. As pastas <code>componentes/</code> são só o contorno das peças compradas: não imprima.</p>
+    <h3>Baixe o projeto</h3><p>Os arquivos de impressão já estão prontos na pasta <code>projetos/</code>, em STL e 3MF. Se só quer imprimir, baixe o ZIP (uns 80 MB), descompacte e abra os arquivos no fatiador: não precisa de terminal nem de Python. As pastas <code>componentes/</code> são só o contorno das peças compradas: não imprima.</p>
     <p><a class="btn" href="https://github.com/inematds/robos-impressos/archive/refs/heads/main.zip">Baixar tudo em ZIP</a></p>
     <p class="mini">Quem vai mudar medidas e gerar as peças de novo pode clonar com o git, num terminal:</p>
 <pre><span class="k">git clone</span> <span class="s">https://github.com/inematds/robos-impressos.git</span>
 <span class="k">cd</span> robos-impressos
-<span class="k">ls</span> pecas/dino/stl pecas/capivara/stl pecas/cubo/stl pecas/comum/stl</pre>
+<span class="k">ls</span> projetos/dino/stl projetos/capivara/stl projetos/cubo/stl comum/pecas/stl</pre>
   </div></div>
   <div class="step"><div class="b">2</div><div>
-    <h3>Imprima a peça de teste</h3><p>Imprima a peça de teste e, para o dinossauro ou a capivara, um pino-guia (<code>pecas/comum/stl/comum-pino-guia.stl</code>). O desenho abaixo mostra cada furo, visto de cima. Ao lado da janela do micro servo ficam três furos de inserto (3,9, 4,0 e 4,1 mm) e, na ponta, o furo maior, do eixo do motor amarelo (o eixo tem que girar solto). Na outra fileira ficam três soquetes do pino-guia (folgas de 0,20, 0,25 e 0,30 mm) e quatro furos de parafuso: M3 que passa livre, M3 que faz rosca no plástico (M3* no desenho), M2,5 e M2. O projeto usa o furo de 4,0 mm e o soquete de 0,25 mm, os do meio, marcados com uma covinha (● no desenho). O inserto M3 (a bucha de latão que entra a quente, com ferro de solda, e vira rosca) tem que entrar firme; o pino tem que entrar justo, sem martelar. O micro servo tem que entrar na janela com a mão, sem forçar e sem ficar sambando. Os parafusos têm que passar soltos no furo M3 livre e fazer rosca nos outros três. Se tudo isso servir, siga em frente. Se o furo ou o soquete vizinho servir melhor, ou se o servo ficar apertado, ajuste a folga em <code>cad/parametros.py</code>, no bloco <code>FOLGA</code> (<code>componente</code> para o servo, <code>encaixe</code> para o pino, <code>inserto_d</code> para o inserto), e gere de novo pelo passo 3: só aí você precisa do Python.</p>
+    <h3>Imprima a peça de teste</h3><p>Imprima a peça de teste e, para o dinossauro ou a capivara, um pino-guia (<code>comum/legado/stl/comum-pino-guia.stl</code>). O desenho abaixo mostra cada furo, visto de cima. Ao lado da janela do micro servo ficam três furos de inserto (3,9, 4,0 e 4,1 mm) e, na ponta, o furo maior, do eixo do motor amarelo (o eixo tem que girar solto). Na outra fileira ficam três soquetes do pino-guia (folgas de 0,20, 0,25 e 0,30 mm) e quatro furos de parafuso: M3 que passa livre, M3 que faz rosca no plástico (M3* no desenho), M2,5 e M2. O projeto usa o furo de 4,0 mm e o soquete de 0,25 mm, os do meio, marcados com uma covinha (● no desenho). O inserto M3 (a bucha de latão que entra a quente, com ferro de solda, e vira rosca) tem que entrar firme; o pino tem que entrar justo, sem martelar. O micro servo tem que entrar na janela com a mão, sem forçar e sem ficar sambando. Os parafusos têm que passar soltos no furo M3 livre e fazer rosca nos outros três. Se tudo isso servir, siga em frente. Se o furo ou o soquete vizinho servir melhor, ou se o servo ficar apertado, ajuste a folga em <code>comum/cad/parametros.py</code>, no bloco <code>FOLGA</code> (<code>componente</code> para o servo, <code>encaixe</code> para o pino, <code>inserto_d</code> para o inserto), e gere de novo pelo passo 3: só aí você precisa do Python.</p>
 <pre><span class="c"># abra este arquivo no fatiador</span>
-pecas/comum/stl/comum-teste-encaixe.stl</pre>
+comum/pecas/stl/comum-teste-encaixe.stl</pre>
     <a href="assets/teste-encaixe.png" target="_blank" rel="noopener"><img class="shot" src="assets/teste-encaixe.png" alt="Desenho da peça de teste vista de cima, com a medida de cada furo" style="max-width:640px;background:#fff"></a>
     <p class="mini">toque no desenho para ampliar</p>
-    <p class="mini"><a href="https://github.com/inematds/robos-impressos/blob/main/pecas/comum/stl/comum-teste-encaixe.stl">ver a peça de teste no GitHub (botão de download na página)</a></p>
+    <p class="mini"><a href="https://github.com/inematds/robos-impressos/blob/main/comum/pecas/stl/comum-teste-encaixe.stl">ver a peça de teste no GitHub (botão de download na página)</a></p>
   </div></div>
   <div class="step"><div class="b">3</div><div>
     <h3>Gere e confira (só se mudou alguma medida)</h3><p>O primeiro comando recria todas as peças; o segundo roda os 9 testes e termina com erro se algum falhar.</p>
 <pre><span class="k">python3</span> -m venv .venv
 <span class="k">.venv/bin/pip</span> install -r requirements.txt
 <span class="c"># leva poucos minutos</span>
-<span class="k">.venv/bin/python</span> cad/gerar.py todos
-<span class="k">.venv/bin/python</span> cad/verificar.py todos</pre>
+<span class="k">.venv/bin/python</span> comum/cad/gerar.py todos
+<span class="k">.venv/bin/python</span> comum/cad/verificar.py todos</pre>
     <p class="mini">Estes comandos são de Linux e macOS. No Windows, use <code>python</code> no lugar de <code>python3</code>, <code>dir</code> no lugar de <code>ls</code>, <code>.venv\Scripts\pip</code> no lugar de <code>.venv/bin/pip</code> e <code>.venv\Scripts\python</code> no lugar de <code>.venv/bin/python</code>.</p>
   </div></div>
   <div class="step"><div class="b">4</div><div>
-    <h3>Imprima as mesas</h3><p>Cada mesa abaixo é uma impressão: as peças já estão deitadas, juntas por cor e material, num arquivo 3MF com a geometria (o arquivo não leva configuração de fatiamento, e ainda não foi aberto num fatiador; se o seu não abrir, use os STL avulsos de <code>pecas/&lt;modelo&gt;/stl</code> e de <code>pecas/comum/stl</code> (chassi, bandejas e peças do pescoço dos bichos) e a tabela). O nome do arquivo é <code>&lt;modelo&gt;-mesa-NN-material-cor.3mf</code>. Ponto de partida, ainda não testado: camada de 0,2 mm, bico de 0,4 mm, 3 paredes e 15 % de preenchimento. As cascas arredondadas pedem suporte em árvore; o esqueleto imprime sem suporte, menos o <code>berco-tilt</code>. A peça de teste e os pinos-guia se repetem na mesa cinza: se já imprimiu, apague do prato. As cores são só aparência: o mínimo é um rolo de PETG para o esqueleto e um de PLA para a casca. Nas tabelas, <code>mesa-cabeca</code> é o nome de uma peça (a que sustenta a cabeça por dentro).</p>
+    <h3>Imprima as mesas</h3><p>Cada mesa abaixo é uma impressão: as peças já estão deitadas, juntas por cor e material, num arquivo 3MF com a geometria (o arquivo não leva configuração de fatiamento, e ainda não foi aberto num fatiador; se o seu não abrir, use os STL avulsos de <code>projetos/&lt;modelo&gt;/stl</code> e de <code>comum/pecas/stl</code> (chassi, bandejas e peças do pescoço dos bichos) e a tabela). O nome do arquivo é <code>&lt;modelo&gt;-mesa-NN-material-cor.3mf</code>. Ponto de partida, ainda não testado: camada de 0,2 mm, bico de 0,4 mm, 3 paredes e 15 % de preenchimento. As cascas arredondadas pedem suporte em árvore; o esqueleto imprime sem suporte, menos o <code>berco-tilt</code>. A peça de teste e os pinos-guia se repetem na mesa cinza: se já imprimiu, apague do prato. As cores são só aparência: o mínimo é um rolo de PETG para o esqueleto e um de PLA para a casca. Nas tabelas, <code>mesa-cabeca</code> é o nome de uma peça (a que sustenta a cabeça por dentro).</p>
 <pre><span class="c"># um arquivo 3MF por mesa, em cada modelo</span>
-pecas/dino/mesas/     pecas/capivara/mesas/     pecas/cubo/mesas/</pre>
+projetos/dino/mesas/     projetos/capivara/mesas/     projetos/cubo/mesas/</pre>
     <h4 class="sep4">🦖 Dinossauro</h4>
     <img class="shot" src="assets/dino-mesas.jpg" alt="Render das mesas de impressão, com as peças deitadas e separadas por cor">
 <!-- TABELA:mesas:dino -->
@@ -534,7 +534,7 @@ pecas/dino/mesas/     pecas/capivara/mesas/     pecas/cubo/mesas/</pre>
     <figure><img src="assets/cubo-esqueleto.jpg" alt="Estrutura do robô quadrado sem a casca"><figcaption>Robô quadrado sem a casca da cabeça: quadro, Raspberry Pi e tela</figcaption></figure>
   </div>
   <h3 class="sep3">Saída do verificador</h3>
-  <p class="sub">Resumo do que o script imprime, em português. O texto completo está em <code>pecas/verificacao-saida.txt</code>.</p>
+  <p class="sub">Resumo do que o script imprime, em português. O texto completo está em <code>projetos/verificacao-saida.txt</code>.</p>
 <pre class="saida">== dino
   [PASSOU] 1 contagem: 30 peças distintas, 38 no total (esperado 38); faltando 0; sobrando 0
   [PASSOU] 2 malha: 30 STL fechados, 1 corpo cada

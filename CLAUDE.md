@@ -7,8 +7,12 @@ Fase 1 = mecânica e encaixe. Fase 2 (voz, câmera, sensores, localização em c
 - Repo: `inematds/robos-impressos` (público). Autor dos commits: `inematds <inematds@gmail.com>`.
 - Guia: https://inematds.github.io/robos-impressos/guia/ (PT, `/en/`, `/es/`). Portal: entrada id 10225.
 - Referências visuais do Nei: `referencia/` (fora do repo público; não publicar sem o Nei decidir).
-- Gerar peças: `.venv/bin/python cad/gerar.py todos`. Verificar: `.venv/bin/python cad/verificar.py todos`.
-- Image-to-3D local (Hunyuan3D-2, GPU, sem API): `.venv-i23d` + `cad/imagem3d.py`; trabalho de GPU por `~/projetos/wifi/scripts/fila-vaga gpu robos -- <cmd>`.
+- Estrutura (desde 14/11/2026): `projetos/<robô>/` = um robô inteiro (`modelo.py`, `stl/`, `3mf/`, `mesas/`, `componentes/`, `imagens/`, `montagem.json`, `verificacao.json`, `verificacao-saida.txt`, docs); `comum/cad/` = todo o código; `comum/pecas/` = peças iguais em mais de um robô; `comum/legado/` = peças da v1.0.2 que nenhum robô usa. Pastas: `dino`, `capivara`, `cubo`, `cubo-rodas` (id no código: `cubo_rodas`). Registro único id → pasta: `comum/cad/caminhos.py`.
+- Gerar peças: `.venv/bin/python comum/cad/gerar.py <id|todos>`. Verificar: `.venv/bin/python comum/cad/verificar.py <id|todos>` (11 testes; 4 × `TUDO PASSOU`).
+- Outros: `comum/cad/depurar.py <id>`, `comum/cad/onde.py <id> [pose]`, `comum/cad/comum/imprimibilidade.py <id> [peça]`, `comum/cad/comparar.py <id> --sem-gravar` (sem a opção, regrava `comparacao/`), `comum/cad/tabelas.py`, `comum/cad/vistas.sh <id> <saida.png>`, `comum/cad/renders.sh <id>` (saída em `projetos/<robô>/imagens/`).
+- Página de um robô no guia: `.venv/bin/python guia/src/pagina_robo.py docs|pagina|zip|conferir <robô>` (não rodar `traduzir` sem necessidade: retraduz texto aprovado).
+- Depois de `gerar.py`: os 3MF saem com bytes diferentes a cada rodada (a geometria não muda). Se os STL não mudaram (`git status`), `git restore -- ':(glob)**/*.3mf' comum/pecas/stl` antes do commit.
+- Image-to-3D local (Hunyuan3D-2, GPU, sem API): `.venv-i23d` + `comum/cad/imagem3d.py`; trabalho de GPU por `~/projetos/wifi/scripts/fila-vaga gpu robos -- <cmd>`.
 
 ## Ao começar uma sessão
 1. Ler `handoffs/latest.md`.
