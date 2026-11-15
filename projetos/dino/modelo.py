@@ -188,7 +188,7 @@ def _bandeja_uno(E) -> Peca:
         m = m - furo((x, y, zt + 0.6), (0, 0, 1), K.esq.uno_espacador + e, F.m3_piloto)
     return Peca("bandeja-uno", m, material="PETG", cor="amarelo", macica=True, explode=(0, -150, 0), perimetros=4, infill=25,
                 orientacao="placa na mesa, pilares para cima", reforco="placa de 3 mm; trilho na parede esquerda e apoio no topo da parede direita",
-                obs="bandeja do Arduino Uno + shield, atravessado (nível de cima); sai por trás, sem a traseira; 4 M3x8 auto-atarraxantes")
+                obs="bandeja do Arduino Uno + shield, atravessado (nível de cima); sai por trás, sem a traseira; 4 M3x8 Allen direto no plástico")
 
 
 def _pos_uno(E):

@@ -83,7 +83,7 @@
  "teste_alt": "Desenho da peça de teste com os furos de inserto e de parafuso",
  "imp1_mini": "Clique na imagem para ampliar. Nada deste projeto foi impresso ainda, por isso este teste vem antes de tudo.",
  "imp2_t": "Imprima as mesas nesta ordem",
- "imp2_p": "Primeiro as peças pequenas que se encaixam umas nas outras, por último as impressões longas. Cada linha tem o link direto do arquivo.",
+ "imp2_p": "Primeiro as peças pequenas que se encaixam umas nas outras, por último as impressões longas. O número no nome do arquivo não é a ordem de impressão: siga as linhas da tabela, de cima para baixo. Cada linha tem o link direto do arquivo.",
  "mesas_alt": "As mesas de impressão vistas de cima, com as peças arrumadas por cor",
  "imp2_mini": "As cores são sugestão. Trocar a cor não muda nada; trocar PETG por PLA nas peças de força muda.",
  "imp3_t": "Configure cada peça",

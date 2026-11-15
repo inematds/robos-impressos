@@ -227,7 +227,7 @@
  "teste_alt": "Drawing of the test coupon with threaded insert and screw holes",
  "imp1_mini": "Click the image to enlarge. Nothing in this project has been printed yet, so this test comes first.",
  "imp2_t": "Print the build plates in this order",
- "imp2_p": "Print the small parts and skeleton first, then the long shell prints last. Each row has a direct link to the file.",
+ "imp2_p": "Print the small parts and skeleton first, and the long shell prints last. The number in the file name is not the print order: follow the table rows from top to bottom. Each row has a direct link to the file.",
  "mesas_alt": "The build plates viewed from above, with the parts arranged by color",
  "imp2_mini": "The colors are suggestions. Changing the color makes no difference; changing PETG to PLA for load-bearing parts does.",
  "imp3_t": "Configure each part",

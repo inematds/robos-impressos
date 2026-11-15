@@ -90,7 +90,7 @@ def bicho_html(id, b, tx, n, A, porque=""):
     o += ["  </div>", f'  <p class="nota">{res}</p>']
     if b.get("referencia"):
         o += [f'  <h3 class="sep3">{esc(t("h_ref"))}</h3>', f'  <p class="sub">{esc(t("ref_p"))}</p>',
-              f'  <figure class="ref"><a href="{A}{b["referencia"]}" target="_blank" rel="noopener"><img loading="lazy" src="{A}{b["referencia"]}" alt="{html.escape(t("ref_alt_" + id))}"></a><figcaption>{esc(t("ref_cap"))}</figcaption></figure>']
+              f'  <figure class="ref"><a href="{A}{b["referencia"]}" target="_blank" rel="noopener"><img src="{A}{b["referencia"]}" alt="{html.escape(t("ref_alt_" + id))}"></a><figcaption>{esc(t("ref_cap"))}</figcaption></figure>']
     o += [f'  <h3 class="sep3">{esc(t("h_vistas"))}</h3>', f'  <p class="sub">{esc(t("vistas_p"))}</p>', '  <div class="vistas">']
     linhas, acima = [], []
     for v in b["vistas"]:
@@ -122,7 +122,7 @@ def bicho_html(id, b, tx, n, A, porque=""):
     o += [f'  <h3 class="sep3">{esc(t("h_regua"))}</h3>', f'  <p class="sub">{esc(t("regua_p"))}</p>', f'  <div class="regua{" uma" if larga else ""}">']
     for k in ("antes", "depois"):
         img = A + b["regua_" + k]
-        o.append(f'    <figure><a href="{img}" target="_blank" rel="noopener"><img loading="lazy" src="{img}" alt="{html.escape(t("regua_alt"))} {html.escape(t("regua_" + k))}"></a>'
+        o.append(f'    <figure><a href="{img}" target="_blank" rel="noopener"><img src="{img}" alt="{html.escape(t("regua_alt"))} {html.escape(t("regua_" + k))}"></a>'
                  f'<figcaption><b>{esc(t("regua_" + k))}</b></figcaption></figure>')
     rodas = any(x.startswith("componente roda") for x in P.ler(RAIZ / "comparacao" / "semelhanca.json")["resultados"][id]["depois"]["entram"])
     o += ["  </div>", f'  <p class="nota">{esc(t("regua_nota"))}' + (f' {esc(t("regua_nota_rodas"))}' if rodas else "") + "</p>",

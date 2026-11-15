@@ -227,7 +227,7 @@
  "teste_alt": "Dibujo de la pieza de prueba con los orificios para insertos y tornillos",
  "imp1_mini": "Haz clic en la imagen para ampliarla. Todavía no se ha impreso nada de este proyecto, por eso esta prueba va antes que todo.",
  "imp2_t": "Imprime las camas en este orden",
- "imp2_p": "Primero las piezas pequeñas que encajan entre sí y, al final, las dos impresiones largas. Cada línea tiene el enlace directo al archivo.",
+ "imp2_p": "Primero, las piezas pequeñas que encajan entre sí; al final, las dos impresiones largas. El número en el nombre del archivo no indica el orden de impresión: sigue las filas de la tabla, de arriba hacia abajo. Cada fila tiene el enlace directo al archivo.",
  "mesas_alt": "Las camas de impresión vistas desde arriba, con las piezas ordenadas por color",
  "imp2_mini": "Los colores son una sugerencia. Cambiar el color no cambia nada; cambiar PETG por PLA en las piezas que soportan fuerza sí.",
  "imp3_t": "Configura cada pieza",

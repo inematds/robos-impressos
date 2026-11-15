@@ -43,7 +43,7 @@
  "leg_g": "in both",
  "formula": "IoU = green ÷ (green + red + blue)",
  "ler1_t": "The scale goes from 0 to 1",
- "ler1_p": "At 1, the two outlines are identical. At 0, they do not touch at all. On this page, [[CAPIVARA_ANTES]] is the long-necked capybara, and [[CAPIVARA_DEPOIS]] is the capybara whose differences remain along the edge and the bandana bow.",
+ "ler1_p": "At 1, the two outlines are identical. At 0, they don’t touch at all. On this page, [[CAPIVARA_ANTES]] is the long-necked capybara, and [[CAPIVARA_DEPOIS]] is the capybara where the difference ended up in the edge and the bandana knot. Based on the examples on this page, at around 0.85 and above, the silhouette already resembles the drawing.",
  "ler2_t": "What the ruler sees",
  "ler2_p": "Only the outline, in each drawing view: four for the animals, one for the square robot. Before comparing, both silhouettes are given the same height, their bases are placed on the same line, and their centers are aligned. The robot’s actual size is not part of the calculation.",
  "ler3_t": "What the ruler doesn't see",

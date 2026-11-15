@@ -43,7 +43,7 @@
  "leg_g": "en ambos",
  "formula": "IoU = verde ÷ (verde + rojo + azul)",
  "ler1_t": "La escala va de 0 a 1",
- "ler1_p": "Con 1, los dos contornos son idénticos. Con 0, ni siquiera se tocan. En esta página, [[CAPIVARA_ANTES]] es el carpincho de cuello largo y [[CAPIVARA_DEPOIS]] es el carpincho cuya diferencia quedó en el borde y el lazo del pañuelo.",
+ "ler1_p": "Con 1, los dos contornos son idénticos. Con 0, ni siquiera se tocan. En esta página, [[CAPIVARA_ANTES]] es el carpincho de cuello largo y [[CAPIVARA_DEPOIS]] es el carpincho cuya diferencia quedó en el borde y el lazo del pañuelo. Según los ejemplos de esta página, desde aproximadamente 0,85 en adelante, la silueta ya recuerda al dibujo.",
  "ler2_t": "Lo que ve la regla",
  "ler2_p": "Solo el contorno, en cada vista del dibujo: cuatro en los animales y una en el robot cuadrado. Antes de comparar, las dos siluetas quedan con la misma altura, la base en la misma línea y el centro alineado. El tamaño real del robot no entra en el cálculo.",
  "ler3_t": "Lo que la regla no ve",

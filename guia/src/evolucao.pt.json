@@ -43,7 +43,7 @@
  "leg_g": "nos dois",
  "formula": "IoU = verde ÷ (verde + vermelho + azul)",
  "ler1_t": "A escala vai de 0 a 1",
- "ler1_p": "Com 1, os dois contornos são idênticos. Com 0, eles nem se tocam. Nesta página, [[CAPIVARA_ANTES]] é a capivara de pescoço comprido e [[CAPIVARA_DEPOIS]] é a capivara em que a diferença ficou na borda e no laço da bandana.",
+ "ler1_p": "Com 1, os dois contornos são idênticos. Com 0, eles nem se tocam. Nesta página, [[CAPIVARA_ANTES]] é a capivara de pescoço comprido e [[CAPIVARA_DEPOIS]] é a capivara em que a diferença ficou na borda e no laço da bandana. Pelos exemplos desta página, de cerca de 0,85 para cima a silhueta já lembra o desenho.",
  "ler2_t": "O que a régua vê",
  "ler2_p": "Só o contorno, em cada vista do desenho: quatro nos bichos, uma no robô quadrado. Antes de comparar, as duas silhuetas ficam com a mesma altura, a base na mesma linha e o centro alinhado. O tamanho real do robô não entra na conta.",
  "ler3_t": "O que a régua não vê",

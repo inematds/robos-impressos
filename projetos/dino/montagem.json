@@ -2062,7 +2062,7 @@
    "plastico_cm3": 9.3,
    "massa_g": 11.8,
    "tempo_h": 0.51,
-   "obs": "bandeja do Arduino Uno + shield, atravessado (nível de cima); sai por trás, sem a traseira; 4 M3x8 auto-atarraxantes",
+   "obs": "bandeja do Arduino Uno + shield, atravessado (nível de cima); sai por trás, sem a traseira; 4 M3x8 Allen direto no plástico",
    "liso": true,
    "perimetros": 4,
    "infill": 25,

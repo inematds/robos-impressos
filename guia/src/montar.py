@@ -96,9 +96,10 @@ CSS_TRIO = """
 
 
 def figuras(figs, classe="trio"):
-    """Figuras lado a lado; cada uma (src, alt, legenda em HTML). A imagem abre em tamanho grande."""
+    """Figuras lado a lado; cada uma (src, alt, legenda em HTML). A imagem abre em tamanho grande.
+    Sem loading="lazy": são a prova da seção e têm de estar lá na impressão, na captura e no leitor sem JavaScript."""
     return (f'<div class="{classe}">' + "".join(
-        f'<figure><a href="{src}" target="_blank" rel="noopener"><img loading="lazy" src="{src}" alt="{html.escape(alt)}"></a><figcaption>{cap}</figcaption></figure>'
+        f'<figure><a href="{src}" target="_blank" rel="noopener"><img src="{src}" alt="{html.escape(alt)}"></a><figcaption>{cap}</figcaption></figure>'
         for src, alt, cap in figs) + "</div>")
 
 
@@ -176,6 +177,8 @@ def montar(lg):
         pi = [it for bl in r.d["compras"] for it in bl["itens"] if it["item"].startswith("Raspberry Pi") and "adiar esta compra" in it["para"]]
         if pi:
             por[m]["PI"] = n(100 * sum(pi[0]["faixa"]) / sum(C["pecas"]))
+        # "precisa soldar" é o que a página de cada robô diz no topo (hero_fatos); o cartão repete
+        assert "precisa soldar" in P.ler(AQUI / "robos" / f"{m}.pt.json")["hero_fatos"], f"{m}: a página não diz mais 'precisa soldar': reveja card_solda"
         for k, v in por[m].items():
             fixos[f"{PREF[m].upper()}_{k}"] = v
 
@@ -191,7 +194,8 @@ def montar(lg):
         cart.append(f'    <div class="card"><a href="{m}/"><img class="shot" src="{A}{R[m].cfg["id"]}-montado.jpg" alt="{html.escape(t(p + "_alt"))}"></a>'
                     f'<h3>{R[m].cfg["emoji"]} {esc(nome[m])}</h3><p class="selo{" facil" if m == facil else ""}">{esc(sub(t(p + "_nivel")))}</p><p>{t(p + "_txt")}</p>'
                     f'<p class="fatos">{esc(sub(t("card_fatos")))}</p><p class="fatos">{esc(sub(t("card_tempo")))}</p><p class="custo">{esc(sub(t("card_custo")))}</p>'
-                    + (f'<p class="mini">{esc(sub(t("card_pi")))}</p>' if "PI" in por[m] else "") +
+                    f'<p class="mini">{esc(t("card_solda"))}<br>{esc(sub(t("card_pi_depois" if "PI" in por[m] else "card_pi_agora")))}</p>'
+                    + (f'<p class="mini">{esc(t("card_simples"))}</p>' if m == facil else "") +
                     f'<p class="ir"><a class="btn" href="{m}/">{esc(t(p + "_link"))}</a></p></div>')
     fixos["CARTOES"] = "\n".join(cart)
     lk = lambda m, anc, txt: f'<a href="{m}/{anc}">{esc(txt)}</a>'
@@ -236,6 +240,10 @@ def montar(lg):
     paredes = [v["min"] for m in MODELOS for v in R[m].mj.get("parede_medida", {}).values()]
     horas = {m: R[m].horas() for m in MODELOS}
     fixos["N_PECAS"] = str(sum(R[m].n_pecas() for m in MODELOS))
+    custos = [R[m].custo()["pecas"] for m in MODELOS]
+    fixos["CUSTO_MIN"], fixos["CUSTO_MAX"] = str(min(c[0] for c in custos)), str(max(c[1] for c in custos))
+    # "o preço é parecido" (cartão do mais simples): vale enquanto o mais simples custar pelo menos 90 % do mais barato dos bichos
+    assert custos[MODELOS.index(facil)][0] >= 0.9 * min(R[m].custo()["pecas"][0] for m in ("dino", "capivara")), "o mais simples ficou bem mais barato: reescreva card_simples"
     fixos["N_PAREDE"] = n(min(paredes), 2)
     fixos["N_MAIOR"] = n(max(max(p["dim"]) for m in MODELOS for p in R[m].mj["pecas"]))
     fixos["BARRAS"] = "\n    ".join(f'<div class="barra"><span>{esc(nome[m])}</span><i style="width:{horas[m] / max(horas.values()) * 100:.0f}%"></i><b>~{n(horas[m])} h</b></div>' for m in MODELOS)
