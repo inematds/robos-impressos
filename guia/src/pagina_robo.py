@@ -426,8 +426,8 @@ def faixa(f):
 def rotulo(R, X, nome):
     """Nome exibido de uma peça: rótulo traduzido + nome do arquivo entre parênteses. Na página, a peça chamada "mesa"
     (a mesa da cabeça dos bichos) leva a palavra "peça", para não ser lida como mesa de impressão."""
-    marca = f', {X.t("th_peca").lower()}' if X.pagina and nome.startswith("mesa-") else ""
-    return f'{X.a(R.d["rotulos"][nome])}{marca} ({nome})'
+    marca = f'{X.t("th_peca").lower()}: ' if X.pagina and nome.startswith("mesa-") else ""
+    return f'{X.a(R.d["rotulos"][nome])} ({marca}{nome})'
 
 
 def tabelas(R, X):
@@ -773,7 +773,7 @@ CSS = """
 .step .solda{margin:12px 0 16px}
 .solda h4{font-family:Sora;font-size:1rem;margin:0;color:var(--txt)}
 .solda .mini{margin-top:.8em}
-.oq{font-size:.82em;white-space:nowrap;text-decoration:underline}
+.oq{font-size:.86em;white-space:nowrap;text-decoration:underline}
 .testes{margin:.6em 0 0 1.1em;padding:0;color:var(--mut);font-size:.9rem}
 .testes li{margin:.4em 0}.testes strong{color:var(--txt)}
 .testes b.ok{color:var(--amb);font-weight:600;white-space:nowrap}.testes b.nao{color:#e0262c;white-space:nowrap}

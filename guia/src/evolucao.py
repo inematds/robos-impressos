@@ -34,8 +34,9 @@ CSS = """
 .par img,.ref img,.regua img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line);background:#e9e9ee}
 .par figcaption,.regua figcaption{font-size:.86rem;color:var(--mut);margin-top:6px;text-align:center}
 .par figcaption b,.regua figcaption b{font-family:Sora;color:var(--txt)}
-.par.capa{gap:0}.par.capa div{position:relative}.par.capa img{border:0;border-radius:0}
+.par.capa{gap:0;grid-template-columns:repeat(3,minmax(0,1fr))}.par.capa div{position:relative}.par.capa img{border:0;border-radius:0}
 .par.capa span{position:absolute;left:10px;top:10px;background:rgba(12,12,16,.78);color:#fff;font:600 .78rem Sora,sans-serif;padding:.25em .6em;border-radius:8px}
+@media(max-width:560px){.par.capa span{left:5px;top:5px;font-size:.75rem;padding:.2em .45em}}
 .vistas{display:grid;grid-template-columns:1fr;gap:16px;max-width:980px}
 .vista h4{font-family:Sora;font-size:1rem;margin:0 0 10px}
 .ref{max-width:720px}.ref figcaption{font-size:.82rem;color:var(--mut);margin-top:8px}
@@ -48,6 +49,8 @@ CSS = """
 .bicho .numero b{font-size:1.9rem}
 .lista{color:var(--mut)}
 #quadrados .cta{display:flex;gap:12px;flex-wrap:wrap}
+nav .brand,nav .links a.sec{white-space:nowrap}
+@media(max-width:1240px){nav .links .sec{display:none}}
 .regua.uma{grid-template-columns:1fr;max-width:980px}
 @media(max-width:860px){.regua{grid-template-columns:1fr}}
 @media(max-width:560px){.vista.card{padding-left:12px;padding-right:12px}}
@@ -166,7 +169,7 @@ def pagina(lg):
     banner = montar.figuras([(A + bn["antes"][lg], tx["bn_alt_antes"], f'<b>{esc(tx["bn_antes"])}</b>: {esc(tx["bn_antes_p"])}'),
                              (fundo + "assets/" + bn["depois"][lg], tx["bn_alt_depois"], f'<b>{esc(tx["bn_depois"])}</b>: {esc(tx["bn_depois_p"])}')], "bn")
     fixos = {"LANG": f'<span class="lang">{lang}</span>', "A": A, "G": "../", "REPO": P.REPO, "BLOB": P.BLOB, "VERSAO": montar.VERSAO,
-             "HERO_ANTES": capa["imagem_antes"], "HERO_DEPOIS": capa["imagem_depois"],
+             "HERO_REF": capa["imagem_ref"], "HERO_ANTES": capa["imagem_antes"], "HERO_DEPOIS": capa["imagem_depois"],
              "BANNER": banner,
              "BICHOS": "\n\n".join(bicho_html(id, b, tx, n, A, porque.get(id, "")) for id, b in bichos.items()),
              "NOTAS_ARRED": "\n  ".join(x for x in (nota_arred(id, tx, n) for id in bichos) if x)}

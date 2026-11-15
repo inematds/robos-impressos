@@ -152,7 +152,7 @@
 .step .solda{margin:12px 0 16px}
 .solda h4{font-family:Sora;font-size:1rem;margin:0;color:var(--txt)}
 .solda .mini{margin-top:.8em}
-.oq{font-size:.82em;white-space:nowrap;text-decoration:underline}
+.oq{font-size:.86em;white-space:nowrap;text-decoration:underline}
 .testes{margin:.6em 0 0 1.1em;padding:0;color:var(--mut);font-size:.9rem}
 .testes li{margin:.4em 0}.testes strong{color:var(--txt)}
 .testes b.ok{color:var(--amb);font-weight:600;white-space:nowrap}.testes b.nao{color:#e0262c;white-space:nowrap}
@@ -191,8 +191,9 @@
 .par img,.ref img,.regua img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line);background:#e9e9ee}
 .par figcaption,.regua figcaption{font-size:.86rem;color:var(--mut);margin-top:6px;text-align:center}
 .par figcaption b,.regua figcaption b{font-family:Sora;color:var(--txt)}
-.par.capa{gap:0}.par.capa div{position:relative}.par.capa img{border:0;border-radius:0}
+.par.capa{gap:0;grid-template-columns:repeat(3,minmax(0,1fr))}.par.capa div{position:relative}.par.capa img{border:0;border-radius:0}
 .par.capa span{position:absolute;left:10px;top:10px;background:rgba(12,12,16,.78);color:#fff;font:600 .78rem Sora,sans-serif;padding:.25em .6em;border-radius:8px}
+@media(max-width:560px){.par.capa span{left:5px;top:5px;font-size:.75rem;padding:.2em .45em}}
 .vistas{display:grid;grid-template-columns:1fr;gap:16px;max-width:980px}
 .vista h4{font-family:Sora;font-size:1rem;margin:0 0 10px}
 .ref{max-width:720px}.ref figcaption{font-size:.82rem;color:var(--mut);margin-top:8px}
@@ -205,6 +206,8 @@
 .bicho .numero b{font-size:1.9rem}
 .lista{color:var(--mut)}
 #quadrados .cta{display:flex;gap:12px;flex-wrap:wrap}
+nav .brand,nav .links a.sec{white-space:nowrap}
+@media(max-width:1240px){nav .links .sec{display:none}}
 .regua.uma{grid-template-columns:1fr;max-width:980px}
 @media(max-width:860px){.regua{grid-template-columns:1fr}}
 @media(max-width:560px){.vista.card{padding-left:12px;padding-right:12px}}
@@ -221,10 +224,10 @@
     <a class="pro" href="https://inema.pro" target="_blank" rel="noopener">PRO</a>
   </span>
   <div class="links">
-    <a class="sec" href="#ler">Cómo leer el número</a>
+    <a class="sec" href="#ler">El número</a>
     <a class="sec" href="#capivara">Carpincho</a>
     <a class="sec" href="#dino">Dinosaurio</a>
-    <a class="sec" href="#cubo">Robot cuadrado</a>
+    <a class="sec" href="#cubo">Cuadrado</a>
     <a class="sec" href="#metodo">Método</a>
     <span class="lang"><a href="../../evolucao/">PT</a><a href="../../en/evolucao/">EN</a><a class="on" href="./">ES</a></span>
     <button class="tgl" id="themeToggle" aria-label="Alternar tema claro/oscuro" title="Alternar tema claro/oscuro">🌙</button>
@@ -247,10 +250,11 @@
     </div>
     <figure>
       <div class="par capa">
-        <div><img src="../../evolucao/assets/capivara-antes-tres-quartos.jpg" alt="Render del carpincho en la versión 1.0.2, en tres cuartos: cuello largo y cuerpo erguido"><span>antes (v1.0.2)</span></div>
-        <div><img src="../../evolucao/assets/capivara-depois-tres-quartos.jpg" alt="Render del carpincho en la versión 1.1.2, en tres cuartos: cuerpo en forma de pera, cabeza pegada al cuerpo y pañuelo verde"><span>después (v1.1.2)</span></div>
+        <div><img src="../../evolucao/assets/capivara-ref-tres-quartos.jpg" alt="Dibujo de referencia del carpincho, en tres cuartos: cuerpo naranja en forma de pera, cabeza pegada al cuerpo y bandana verde"><span>dibujo</span></div>
+        <div><img src="../../evolucao/assets/capivara-antes-tres-quartos.jpg" alt="Render del carpincho en la versión 1.0.2, en tres cuartos: cuello largo y cuerpo erguido"><span>antes</span></div>
+        <div><img src="../../evolucao/assets/capivara-depois-tres-quartos.jpg" alt="Render del carpincho en la versión 1.1.2, en tres cuartos: cuerpo en forma de pera, cabeza pegada al cuerpo y pañuelo verde"><span>después</span></div>
       </div>
-      <figcaption class="mini">El carpincho en tres cuartos, con la misma cámara. Son renders del modelo, no fotos: todavía no se imprimió nada.</figcaption>
+      <figcaption class="mini">El carpincho en tres cuartos: el dibujo de referencia, el render de antes (v1.0.2) y el de después (v1.1.2), ambos con la misma cámara. Los renders son del modelo, no son fotos: todavía no se imprimió nada.</figcaption>
     </figure>
   </div>
 </header>
