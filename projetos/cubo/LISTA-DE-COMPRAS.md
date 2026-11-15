@@ -34,13 +34,14 @@ O que ainda não foi testado. Leia antes de gastar.
 - O porta-fusível, a barra de emenda e os 3 resistores da serial não têm lugar modelado: ficam soltos nos fios, isolados com termo-retrátil.
 - As medidas marcadas como NC vêm de anúncios de loja. Meça a sua peça antes de imprimir a parte que encosta nela.
 - A passagem dos 8 fios pelo furo do garfo e pelo rasgo do fundo da cabeça nunca foi ensaiada com as peças impressas.
+- Calor: o Raspberry Pi 4 fica fechado na cabeça, que é de PLA e não tem abertura de ventilação. O PLA amolece perto de 60 °C e o Pi reduz a velocidade a partir de 80 °C. Cole os dissipadores e meça com o comando `vcgencmd measure_temp`. Se passar de 70 °C, imprima o copo da cabeça em PETG ou abra furos de ventilação atrás.
 <!-- /GERADO -->
 
 ## Quanto custa
 
 <!-- GERADO:custo -->
-- Peças da fase 1 (sem filamento e sem ferramentas): **R$ 880–1865**.
-- Do zero (peças, 2 rolos de filamento e todas as ferramentas): **R$ 1264–2830**.
+- Peças da fase 1 (sem filamento e sem ferramentas): **R$ 886–1891**.
+- Do zero (peças, 2 rolos de filamento e todas as ferramentas): **R$ 1270–2856**.
 - Só os 2 rolos de filamento (1 de PETG e 1 de PLA): R$ 170–290.
 - Se você já tem o Arduino Uno, desconte: R$ 43–90.
 - Se você já tem todas as ferramentas, desconte: R$ 214–675.
@@ -60,8 +61,9 @@ O que ainda não foi testado. Leia antes de gastar.
 | [Extensão de servo de 30 cm (cabo extensor de 3 fios, macho-fêmea)](https://lista.mercadolivre.com.br/extensao-servo-30cm) | 1 / 1 | Leva o cabo do servo de tilt, que fica na cabeça, pelo pescoço até o shield, que fica na base, com folga para a cabeça girar. NC: comprimento do cabo de fábrica do servo (em geral 30 cm). | R$ 5–15 (cada) | não conferido |
 | [Arduino Uno R3](https://lista.mercadolivre.com.br/arduino-uno-r3) (você talvez já tenha) | 1 / 1 | Comanda os 2 servos. Fica no piso da base, em 4 ressaltos. | R$ 43–90 (cada) | R$ 43,28 a R$ 89,95 |
 | [Sensor Shield V5.0 para Arduino](https://lista.mercadolivre.com.br/sensor-shield-v5-arduino) | 1 / 1 | Encaixa em cima do Uno e dá os conectores de 3 pinos dos servos, com alimentação separada pelo borne azul. O pino de 5 V do Arduino fica no conector POWER do shield. NC: há versões do shield com os pinos em outro lugar; meça antes de ligar. | R$ 11–35 (cada) | R$ 18,13 |
-| [Resistor de 1 kΩ, 1/4 W](https://lista.mercadolivre.com.br/resistor-1k-1-4w) | 3 / 1 pacote de 10 | Divisor de tensão na serial: baixa os 5 V do Arduino para os 3,3 V que o Raspberry Pi aceita. | R$ 1–5 (pacote) | não conferido |
-| [Barra de pinos fêmea de 2 fileiras, passo 2,54 mm (2 × 20)](https://lista.mercadolivre.com.br/barra-pinos-femea-2x20-2.54mm) | 1 pedaço de 2 × 2 / 1 barra | Conector baixo para os pinos 31 a 34 do Raspberry Pi, que ficam embaixo da tela. O fio Dupont comum não cabe em pé ali. NC: folga entre o Pi e a placa da tela (17,5 mm no modelo). | R$ 3–10 (cada) | não conferido |
+| [Resistor de 1 kΩ, 1/4 W](https://lista.mercadolivre.com.br/resistor-1k-1-4w) | 3 / 1 pacote de 10 | Divisor de tensão na serial: baixa os 5 V do Arduino para os 3,3 V que o Raspberry Pi aceita. Os 3 ficam presos na barra de emenda, na base. | R$ 1–5 (pacote) | não conferido |
+| [Barra de pinos fêmea de 2 fileiras, passo 2,54 mm (2 × 20)](https://lista.mercadolivre.com.br/barra-pinos-femea-2x20-2.54mm) | 1 pedaço de 2 × 2 / 1 barra | Conector baixo para os pinos 31 a 34 do Raspberry Pi, que ficam embaixo da tela. O fio Dupont comum não cabe em pé ali. Você corta o pedaço e solda os 3 fios da serial nele, no preparo 3. NC: folga entre o Pi e a placa da tela (17,5 mm no modelo). | R$ 3–10 (cada) | não conferido |
+| [Kit de dissipadores adesivos para Raspberry Pi 4](https://lista.mercadolivre.com.br/dissipador-raspberry-pi-4-kit) | 1 kit / 1 kit | O Raspberry Pi fica fechado dentro da cabeça, que é de PLA e não tem abertura de ventilação. Os dissipadores colados nos chips baixam a temperatura. NC: altura do dissipador: tem de caber nos 17,5 mm entre o Pi e a tela. | R$ 8–25 (kit) | não conferido |
 
 ### Energia
 
@@ -69,7 +71,7 @@ O que ainda não foi testado. Leia antes de gastar.
 |---|---|---|---|---|
 | [Bateria 18650 de íon de lítio 3,7 V (célula solta)](https://lista.mercadolivre.com.br/bateria-18650-3.7v) | 2 / 2 | Pack 2S: 7,4 V nominais (8,4 V cheio). Compre as duas iguais, novas e de marca conhecida. | R$ 13–45 (cada) | R$ 26,08 o kit com 2 |
 | [Suporte para 2 baterias 18650 lado a lado, com fios](https://lista.mercadolivre.com.br/suporte-2-baterias-18650) | 1 / 1 | Segura as 2 células em série. Desliza no berço da base e sai pela porta de trás. NC: o berço aceita até 78 × 41 × 22 mm. | R$ 5–15 (cada) | R$ 6,22 |
-| [Porta-fusível de fio para fusível de vidro 5 × 20 mm, com fusível de 3 A](https://lista.mercadolivre.com.br/porta-fusivel-5x20-fio) | 1 / 1 (e 1 fusível de reserva) | No fio positivo, logo depois do suporte das baterias. É de 3 A porque a chave é de 3 A: numa sobrecarga, o fusível abre antes de a chave esquentar. Não tem lugar modelado: fica solto no fio. | R$ 4–12 (conjunto) | não conferido |
+| [Porta-fusível de fio para fusível de vidro 5 × 20 mm, com fusível retardado de 3 A (marcado T3A ou T3,15A)](https://lista.mercadolivre.com.br/porta-fusivel-5x20-fio) | 1 / 1 (e 1 fusível de reserva) | No fio positivo, logo depois do suporte das baterias. É de 3 A porque a chave é de 3 A: numa sobrecarga, o fusível abre antes de a chave esquentar. É retardado porque a partida dos servos e a carga do capacitor dão picos de uma fração de segundo, que queimariam um fusível rápido sem haver defeito. Não tem lugar modelado: fica solto no fio. | R$ 4–12 (conjunto) | não conferido |
 | [Placa de proteção BMS 2S 10 A (modelo 10A2S, ~24 × 11 mm)](https://lista.mercadolivre.com.br/bms-2s-10a-18650) | 1 / 1 | Corta a descarga funda, a sobrecarga e o curto. Vai soldada nos fios da bateria, presa com fita dupla-face. NC: nome impresso das ilhas de solda. Na placa da loja consultada só o verso tem nomes: B+, B1 (meio), B− e C−. Pela foto, a C− é a saída negativa (o papel da P− de outras placas) e a saída positiva é a própria B+; é leitura de foto, confira com o multímetro. | R$ 8–20 (cada) | não conferido |
 | [Carregador USB-C 2S/3S com balanceamento (LX-USC-V2)](https://lista.mercadolivre.com.br/carregador-usb-c-2s-18650-balanceamento) | 1 / 1 | Carrega o pack sem abrir o robô. As ilhas de solda são B+, BM e B−. A BM pede um 3º fio, soldado no ponto do meio do suporte (entre as duas células). NC: tamanho da boca USB-C na janela de trás (9,2 × 3,4 mm). | R$ 15–30 (cada) | R$ 17,90 |
 | [Conversor step-down LM2596 ajustável (placa azul, 3 A)](https://lista.mercadolivre.com.br/modulo-step-down-lm2596) | 1 / 1 | Baixa a tensão do pack para os 5 V do Raspberry Pi e do Arduino. Ajuste para 5,1 V com o multímetro ANTES de ligar qualquer placa. A placa aguenta cerca de 2 A contínuos sem dissipador. O XL4015 não serve aqui: pede no mínimo 8 V. NC: os 2 A contínuos são o valor usual desta placa, sem ficha que confirme. | R$ 8–20 (cada) | R$ 10,22 |
@@ -79,8 +81,8 @@ O que ainda não foi testado. Leia antes de gastar.
 | [Adaptador USB-C macho com bornes (2 pinos)](https://lista.mercadolivre.com.br/adaptador-usb-c-macho-borne) | 1 / 1 | Leva os 5 V do conversor até a entrada USB-C do Raspberry Pi (os pinos de 5 V do GPIO ficam embaixo da tela). O plugue não está no modelo 3D: confira se ele cabe ao lado do Pi, dentro da cabeça. | R$ 8–20 (cada) | R$ 13,11 |
 | [Fio flexível 22 AWG (0,33 mm²): vermelho, preto e uma terceira cor](https://lista.mercadolivre.com.br/fio-flexivel-22awg-vermelho-preto) | cerca de 1 m de vermelho, 1 m de preto e 30 cm de amarelo / 2 m de vermelho, 2 m de preto, 1 m de amarelo | A parte de energia que fica na base. O amarelo é o 3º fio, do ponto do meio do pack. | R$ 12–30 (total) | R$ 22,40 (5 m bicolor) |
 | [Fio flexível 20 AWG (0,5 mm²), vermelho e preto](https://lista.mercadolivre.com.br/fio-flexivel-20awg-vermelho-preto) | cerca de 50 cm de cada cor / 1 m de cada cor | Só o par de 5,1 V que sobe pelo pescoço até o Raspberry Pi. Fio mais grosso perde menos tensão no caminho; com fio fino o Pi acusa subtensão. | R$ 5–15 (total) | não conferido |
-| [Barra de bornes de emenda (tipo sindal), 2 vias, para fio fino](https://lista.mercadolivre.com.br/barra-bornes-sindal-12-vias) | 2 vias / 1 barra de 12 vias | Reparte os 5,1 V dentro da base. De um lado entram os 2 fios curtos que vêm do conversor; do outro saem os 2 fios que sobem ao Raspberry Pi e os 2 que vão ao Arduino. Sem ela seria preciso soldar com o robô montado. Não tem lugar modelado: fica solta. | R$ 3–10 (barra) | não conferido |
-| [Jumpers Dupont de 20 cm (kits com 20: um fêmea-fêmea, um macho-fêmea)](https://lista.mercadolivre.com.br/jumper-dupont-20cm) | cerca de 8 fios / 2 kits de 20 | Sinais da serial e os 5 V do Arduino. Para descer pelo pescoço, emende dois jumpers macho-fêmea: 20 cm não chegam da cabeça ao Arduino. | R$ 6–12 (kit) | R$ 6,61 o kit |
+| [Barra de bornes de emenda (tipo sindal), 2 vias, para fio fino](https://lista.mercadolivre.com.br/barra-bornes-sindal-12-vias) | 3 vias / 1 barra de 12 vias | Fica na base e evita soldar com o robô montado. Borne 1: os 5,1 V. Borne 2: o negativo. Borne 3: o fio azul da serial e os resistores do divisor. De um lado entram os fios que vêm do conversor; do outro, os que sobem ao Raspberry Pi e os que vão ao Arduino. Não tem lugar modelado: fica solta. | R$ 3–10 (barra) | não conferido |
+| [Jumpers Dupont fêmea-fêmea de 40 cm (kit com 40)](https://lista.mercadolivre.com.br/jumper-dupont-femea-femea-40cm) | 6 fios / 1 kit de 40 | São 6: 3 da serial (verde, azul e preto, do Raspberry Pi até a base), 2 que levam os 5,1 V e o negativo da barra de emenda ao Arduino e 1 cortado ao meio para o divisor. Os de 20 cm não chegam da cabeça à base. | R$ 10–25 (kit) | não conferido |
 
 ### Fixação
 
@@ -186,7 +188,7 @@ Nada disto é necessário para imprimir, montar e ligar. As peças já têm o lu
 ## Glossário
 
 <!-- GERADO:glossario -->
-- **GPIO:** A fileira de 40 pinos do Raspberry Pi, onde se ligam a tela e os fios de sinal.
+- **GPIO:** A fileira de 40 pinos do Raspberry Pi, onde se ligam a tela e os fios de sinal. Neste guia, "pino 32" é a posição do pino na fileira; "GPIO12" é o nome do sinal que sai por ele.
 - **UBEC:** Conversor pequeno, usado em aeromodelos, que baixa a tensão da bateria para um valor fixo. Aqui, 6 V para os servos.
 - **BMS:** Placa de proteção da bateria de lítio. Desliga a bateria antes de ela descarregar demais, carregar demais ou entrar em curto.
 - **2S:** Duas células de lítio ligadas em série, uma depois da outra. As tensões somam: de 6 V (vazio) a 8,4 V (cheio).
@@ -199,6 +201,13 @@ Nada disto é necessário para imprimir, montar e ligar. As peças já têm o lu
 - **UART (serial):** Ligação de dados simples: um fio para falar (TX) e um para ouvir (RX). É por ela que o Raspberry Pi manda ordens ao Arduino.
 - **Jumper SEL:** Capinha de plástico sobre 2 pinos do Sensor Shield, ao lado do borne azul, com a marca SEL. Posta, ela liga os 5 V do Arduino aos conectores dos servos. Retirada, os servos recebem só o que entra pelo borne azul.
 - **Borne:** Conector de parafuso: o fio entra no furo e o parafuso aperta. No Sensor Shield é o bloco azul marcado GND e VCC.
+- **Sketch:** O nome que a Arduino dá a um programa. Você abre o arquivo na Arduino IDE e grava na placa pelo cabo USB.
+- **Shield:** Placa que encaixa por cima do Arduino, nos pinos dele, e acrescenta conectores. Aqui, o Sensor Shield dá os conectores dos servos.
+- **AWG:** Medida da grossura do fio. Quanto menor o número, mais grosso: o 20 AWG é mais grosso que o 22 AWG.
+- **GND:** O negativo do circuito, também chamado de terra. Todos os negativos do robô são ligados entre si.
+- **Dupont:** Fio fino que já vem com um conector de encaixe em cada ponta, do tamanho dos pinos das placas. Também é chamado de jumper.
+- **Step-down:** Conversor que baixa a tensão. Aqui, o LM2596 baixa a tensão da bateria para 5,1 V.
+- **Termo-retrátil:** Tubinho de plástico que encolhe com calor. Você veste sobre a emenda de solda e aquece: ele aperta e isola.
 <!-- /GERADO -->
 
 Como ligar tudo o que está nesta lista: [LIGACAO.md](LIGACAO.md). Como imprimir: [IMPRIMIR.md](IMPRIMIR.md).

@@ -199,6 +199,8 @@ def frases_auto(R):
             f += [w["de"], w["para"], w["cor"], w["fio"], w["nota"]]
     for g in R.d["glossario"]:
         f += [g["termo"], g["def"]]
+    for pr in R.d["preparos"]:
+        f += [pr["titulo"]] + pr["passos"]
     return {chave_auto(s): s for s in dict.fromkeys(f) if s and not re.fullmatch(r"[\d\s+.,×x–-]*", s)}
 
 
@@ -267,7 +269,9 @@ def _traduz(pt, dest, cache, lg, lote=36):
                 assert not ruins, f"tags diferentes em {ruins}"
                 marc = [k for k in bloco if sorted(re.findall(r"\[\[\w+\]\]", out[k])) != sorted(re.findall(r"\[\[\w+\]\]", bloco[k]))]
                 assert not marc, f"marcadores [[ ]] diferentes em {marc}"
-                md = [k for k in bloco if k.startswith("d_") and (cod(out[k]) != cod(bloco[k]) or url(out[k]) != url(bloco[k]) or itens(out[k]) != itens(bloco[k]))]
+                cr = [k for k in bloco if cod(out[k]) != cod(bloco[k])]
+                assert not cr, f"trecho entre crases diferente em {cr}"
+                md = [k for k in bloco if k.startswith("d_") and (url(out[k]) != url(bloco[k]) or itens(out[k]) != itens(bloco[k]))]
                 assert not md, f"Markdown diferente (crases, links ou itens de lista) em {md}"
                 break
             except Exception as e:
@@ -402,6 +406,11 @@ def tabelas(R, X):
     return T
 
 
+def H(s):
+    """Texto dos dados → HTML: escapa e troca `trecho` por <code>trecho</code>."""
+    return re.sub(r"`([^`]+)`", r"<code>\1</code>", html.escape(s, quote=False))
+
+
 def cel_html(c):
     if isinstance(c, tuple):
         if c[0] == "b":
@@ -409,7 +418,7 @@ def cel_html(c):
         return f'<a href="{html.escape(c[2])}" target="_blank" rel="noopener">{html.escape(c[1], quote=False)}</a>'
     if isinstance(c, list):
         return "".join(cel_html(x) for x in c)
-    return html.escape(c, quote=False)
+    return H(c)
 
 
 def cel_md(c):
@@ -498,7 +507,7 @@ def esquema_svg(X):
         o.append(f'<circle cx="{x}" cy="{y}" r="4.6" fill="{COR[cor]}" stroke="#fff" stroke-width="1"/>')
 
     # ---- fundo, título, zonas
-    o.append('<rect x="0" y="0" width="760" height="1046" fill="#ffffff"/>')
+    o.append('<rect x="0" y="0" width="760" height="1086" fill="#ffffff"/>')
     txt(20, 28, t("sv_titulo"), 17, peso=700)
     txt(20, 47, t("sv_aviso"), 12, cor="#a14a00", peso=600)
     tr = ' stroke-dasharray="6 5"'
@@ -538,7 +547,7 @@ def esquema_svg(X):
     fio([(400, 620), (400, 840)], "p")                                   # G ↔ pino 34 (GND)
     fio([(530, 877), (540, 877)], "c", 9)                                # tela encaixada no Pi
     for x, y, c in ((326, 140, "a"), (505, 106, "v"), (555, 174, "p"), (520, 300, "p"), (430, 280, "v"),
-                    (430, 440, "v"), (520, 440, "p"), (300, 692, "z"), (400, 692, "p")):
+                    (430, 440, "v"), (520, 440, "p"), (400, 692, "p")):
         no(x, y, c)
     # ---- faixa do pescoço (texto por cima dos fios)
     txt(545, 776, t("sv_pescoco"), 11, anc="middle", cor="#3b3d4a", peso=700)
@@ -601,6 +610,8 @@ def esquema_svg(X):
     txt(400, 611, "G", 11, anc="middle", peso=700)
     caixa(279, 642, 42, 22, fundo="#fff", borda="#3b3d4a", raio=3)
     txt(300, 657, t("sv_r1"), 10.5, anc="middle", peso=600)
+    caixa(288, 682, 24, 20, fundo="#fff4d6", borda="#a17400", raio=4)
+    txt(282, 696, t("sv_b3"), 10.5, anc="end", cor="#6b4e00", peso=600)
     caixa(326, 681, 62, 22, fundo="#fff", borda="#3b3d4a", raio=3)
     txt(357, 696, t("sv_r2"), 10.5, anc="middle", peso=600)
     caixa(98, 421, 76, 36, fundo="#fff4d6", borda="#a17400", raio=4)
@@ -632,8 +643,9 @@ def esquema_svg(X):
         txt(x + 32, y, t(chave), 11.5)
     txt(20, 1012, t("sv_leg7"), 11.5, peso=600)
     txt(20, 1032, t("sv_leg8"), 11.5, peso=600)
+    txt(20, 1052, t("sv_leg9") + " " + t("sv_leg10"), 11.5, peso=600) if len(t("sv_leg9") + t("sv_leg10")) < 118 else (txt(20, 1052, t("sv_leg9"), 11.5, peso=600), txt(20, 1072, t("sv_leg10"), 11.5, peso=600))
     corpo = "\n".join(o)
-    return ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 1046" width="760" height="1046" '
+    return ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 1086" width="760" height="1086" '
             f'font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" role="img"><title>{e(t("sv_titulo"))}</title>\n{corpo}\n</svg>\n')
 
 
@@ -687,6 +699,18 @@ CSS = """
 """
 
 
+def preparos_html(R, X):
+    """Os preparos da bancada: mesma lista numerada do LIGACAO.md (R.d["preparos"]); a frase de abertura (prepN_p) e a
+    nota do fim (prepN_b) são textos da página."""
+    o = []
+    for n, pr in enumerate(R.d["preparos"], 1):
+        intro, fim = X.d.get(f"prep{n}_p"), X.d.get(f"prep{n}_b")
+        o.append(f'<div class="step" id="preparo{n}"><div class="b">{n}</div><div><h3>{H(X.a(pr["titulo"]))}</h3>'
+                 + (f"<p>{intro}</p>" if intro else "") + "<ol>" + "".join(f"<li>{H(X.a(x))}</li>" for x in pr["passos"]) + "</ol>"
+                 + (f'<p class="mini">{fim}</p>' if fim else "") + "</div></div>")
+    return "\n".join(o)
+
+
 def pagina(R, lg):
     X = Tx(R, lg)
     head, script = montar.cabeca_rodape()
@@ -708,7 +732,8 @@ def pagina(R, lg):
              "SAIDA_VERIF": html.escape(saida_verif(R), quote=False),
              "COMPRAS": "\n".join(dobra(f'<h3>{esc(X.a(bl["bloco"]))}</h3>', tab_html(*T[f"compras{i}"]), len(bl["itens"]), X, " titulo") for i, bl in enumerate(R.d["compras"])),
              "LIGACOES": "\n".join(dobra(f'<h4>{esc(X.a(g["grupo"]))}</h4>', tab_html(*T[f"lig{i}"]), len(g["fios"]), X, " titulo") for i, g in enumerate(R.d["ligacoes"])),
-             "RISCOS": "".join(f"<li>{esc(X.a(r))}</li>" for r in R.d["riscos"]),
+             "RISCOS": "".join(f"<li>{H(X.a(r))}</li>" for r in R.d["riscos"]),
+             "PREPAROS": preparos_html(R, X), "N_PREPAROS": str(len(R.d["preparos"])),
              "GLOSSARIO": "".join(f'<div><dt>{esc(X.a(g["termo"]))}</dt><dd>{esc(X.a(g["def"]))}</dd></div>' for g in R.d["glossario"])}
     for nome in DOCS_LG:
         k = "DOC_" + nome.split("-")[0]
@@ -823,9 +848,10 @@ def conferir(R):
                 if f"{R.nome}/{u}" not in nomes:
                     falha(f"zip/{n}: link relativo quebrado {u}")
     for lg in IDIOMAS:
-        leia = zipfile.ZipFile(z).read(f"{R.nome}/{LEIA[lg]}").decode()
-        if f'{R.cfg["pecas"]}/stl/' in re.sub(r"https?://[^\s)]+", "", leia.split("\n\n", 4)[-1]):
-            falha(f"zip/{LEIA[lg]}: ainda manda abrir {R.cfg['pecas']}/stl/")
+        arq = doc_url(R, "IMPRIMIR", lg)[1]
+        corpo = zipfile.ZipFile(z).read(f"{R.nome}/{arq}").decode() if f"{R.nome}/{arq}" in nomes else ""
+        if not corpo or f'{R.cfg["pecas"]}/stl/' in re.sub(r"https?://[^\s)]+", "", corpo.split("\n\n", 3)[-1]):
+            falha(f"zip/{arq}: falta ou ainda manda abrir {R.cfg['pecas']}/stl/")
     print("conferir:", "OK" if ok else "FALHOU", conta["pt"])
     return ok
 
@@ -841,6 +867,8 @@ def blocos(R, X):
     Bk["ligacoes"] = "\n\n".join(f'### {a(g["grupo"])}\n\n' + tab_md(*T[f"lig{i}"]) for i, g in enumerate(R.d["ligacoes"]))
     Bk["glossario"] = "\n".join(f'- **{a(g["termo"])}:** {a(g["def"])}' for g in R.d["glossario"])
     Bk["riscos"] = "\n".join(f"- {a(r)}" for r in R.d["riscos"])
+    for n, pr in enumerate(R.d["preparos"], 1):
+        Bk[f"prep{n}"] = "\n".join(f"{i}. {a(x)}" for i, x in enumerate(pr["passos"], 1))
     Bk["custo"] = (f"- {t('doc_custo_1')} **{rs('pecas')}**.\n- {t('doc_custo_2')} **{rs('zero')}**.\n- {t('doc_custo_3')} {rs('fil')}.\n"
                    f"- {t('doc_custo_4')} {rs('tem')}.\n- {t('doc_custo_5')} {rs('ferr')}.")
     Bk["verificacao"] = "```\n" + saida_verif(R) + "\n```"
@@ -904,6 +932,16 @@ def docs(R, lgs=IDIOMAS):
 
 
 def leia_zip(R, lg):
+    """LEIA-ME curto do zip: o que tem em cada pasta e a ordem dos guias (que têm o mesmo nome dos do repositório)."""
+    X = Tx(R, lg)
+    nome = lambda n: doc_url(R, n, lg)[1]
+    site = SITE + ("" if lg == "pt" else lg + "/") + R.nome + "/"
+    return (f"{X.t('zip_1')}\n\n{X.t('zip_2')}\n\n{X.t('zip_3')}\n\n"
+            f"1. [{nome('IMPRIMIR')}]({nome('IMPRIMIR')}): {X.t('zip_g1')}\n2. [{nome('LISTA-DE-COMPRAS')}]({nome('LISTA-DE-COMPRAS')}): {X.t('zip_g2')}\n"
+            f"3. [{nome('LIGACAO')}]({nome('LIGACAO')}): {X.t('zip_g3')}\n\n{X.t('zip_4')} {site}\n")
+
+
+def imprimir_zip(R, lg):
     """O guia de impressão como ele vale DENTRO do zip: mesmos textos do IMPRIMIR, com os caminhos do zip."""
     X = Tx(R, lg)
     s = (R.docs / doc_url(R, "IMPRIMIR", lg)[1]).read_text()
@@ -919,10 +957,8 @@ def leia_zip(R, lg):
     s = re.sub(r"https?://[^\s)]+", guarda, s)
     s = s.replace(cupom, "stl/comum-teste-encaixe.stl").replace(f"{pecas}/stl/", "stl/").replace(f"{pecas}/mesas/", "mesas/")
     s = re.sub(r"\0(\d+)\0", lambda mo: urls[int(mo.group(1))], s)
-    site = SITE + ("" if lg == "pt" else lg + "/") + R.nome + "/"
-    cab = (f"{X.t('zip_1')}\n\n{X.t('zip_2')}\n\n{X.t('zip_3')} {X.t('zip_4')} {site}\n\n"
-           f"{X.t('zip_5')} `{pecas}/stl/`, `{pecas}/mesas/`, `{cupom}`.\n\n")
-    return cab + s
+    i = s.index("\n", s.index("# ")) + 1                                    # logo depois do título
+    return s[:i] + f"\n{X.t('zip_5')} `{pecas}/stl/`, `{pecas}/mesas/`, `{cupom}`.\n" + s[i:]
 
 
 def zipar(R):
@@ -939,12 +975,10 @@ def zipar(R):
         itens.append((str(f.relative_to(R.docs)), f.read_bytes()))
     for lg in IDIOMAS:
         itens.append((LEIA[lg], leia_zip(R, lg).encode()))
+        itens.append((doc_url(R, "IMPRIMIR", lg)[1], imprimir_zip(R, lg).encode()))
         for nome in ("LISTA-DE-COMPRAS", "LIGACAO"):
             f = R.docs / doc_url(R, nome, lg)[1]
-            texto = f.read_text()
-            for k in IDIOMAS:                                # no zip o guia de impressão tem outro nome
-                texto = texto.replace(f"({doc_url(R, 'IMPRIMIR', k)[1]})", f"({LEIA[k]})").replace(f"[{doc_url(R, 'IMPRIMIR', k)[1]}]", f"[{LEIA[k]}]")
-            itens.append((f.name, texto.encode()))
+            itens.append((f.name, f.read_bytes()))
         itens.append((f"ligacao.{lg}.svg", (R.docs / f"ligacao.{lg}.svg").read_bytes()))
     buf = io.BytesIO()
     with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED, compresslevel=9) as z:

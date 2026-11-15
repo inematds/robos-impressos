@@ -12,12 +12,15 @@ que está aqui, vale o nome da placa.
 
 Página com o mesmo esquema: https://inematds.github.io/robos-impressos/guia/cubo/#energia
 
+Toda a solda do robô é feita na bancada, nos preparos 1, 2 e 3. Na montagem só há bornes e encaixes. Os passos
+numerados dos 4 preparos são os mesmos da página.
+
 ## Segurança com bateria de lítio
 
 - **Polaridade:** vermelho no positivo, preto no negativo. Meça com o multímetro antes de cada ligação nova. Fio invertido queima a placa na hora.
 - **Ajuste antes de ligar a carga:** LM2596 em 5,1 V e UBEC em 6 V, medidos com o multímetro, sem o Raspberry Pi, sem o Arduino e sem os servos ligados.
 - **Curto pega fogo:** solde com as células FORA do suporte e isole cada emenda com termo-retrátil. Nenhum metal pode ficar à mostra.
-- **Fusível:** 3 A, no fio positivo, a poucos centímetros do suporte das baterias.
+- **Fusível:** 3 A, retardado (marcado T3A), no fio positivo, a poucos centímetros do suporte das baterias.
 - **Células iguais:** as duas 18650 da mesma marca, do mesmo modelo e novas. Célula amassada, inchada ou quente vai para a coleta de pilhas, não para o robô.
 - **Primeira carga:** fique por perto, com o robô sobre uma superfície que não queima.
 
@@ -33,6 +36,14 @@ Página com o mesmo esquema: https://inematds.github.io/robos-impressos/guia/cub
 Por que o Arduino recebe os 5,1 V do LM2596, e não a tensão da bateria: a entrada VIN do Arduino Uno pede de 7 a 12 V
 ([ficha do Arduino Uno R3](https://docs.arduino.cc/resources/datasheets/A000066-datasheet.pdf)) e o pack passa boa
 parte da descarga abaixo de 7 V.
+
+## A barra de emenda
+
+É uma barra de bornes de parafuso (tipo sindal) que fica solta na base. Você usa 3 bornes dela:
+
+- **Borne 1, os 5,1 V:** de um lado, o fio vermelho que vem do LM2596. Do outro, o fio vermelho que sobe ao Raspberry Pi e o jumper que vai ao pino 5V do Arduino.
+- **Borne 2, o negativo:** de um lado, o fio preto do LM2596 e uma ponta do par de resistores. Do outro, o fio preto que sobe ao Raspberry Pi e o jumper que vai ao pino GND do Arduino.
+- **Borne 3, a serial:** de um lado, os resistores do divisor. Do outro, o fio azul que desce do Raspberry Pi.
 
 ## Tabela de ligações, fio a fio
 
@@ -80,42 +91,51 @@ parte da descarga abaixo de 7 V.
 
 | De | Para | Cor | Fio | Atenção |
 |---|---|---|---|---|
-| Raspberry Pi: pino 32 (GPIO12, TX) | Pelo pescoço, até o pino S do D0 (RX) do Sensor Shield | verde | Dupont | Direto: os 3,3 V do Pi já valem como nível alto para o Arduino. |
-| Pino S do D1 (TX) do Sensor Shield | Resistor de 1 kΩ e, depois dele, pelo pescoço até o pino 33 (GPIO13, RX) do Raspberry Pi | azul | Dupont | Nunca ligue o D1 direto no Pi: são 5 V num pino de 3,3 V. |
-| Ponto entre o resistor de 1 kΩ e o fio azul | 2 resistores de 1 kΩ em série e, depois deles, um pino G (GND) do Sensor Shield | preto | pernas dos resistores | Os 3 resistores formam o divisor: 5 V viram 3,3 V. |
-| Raspberry Pi: pino 34 (GND) | Pelo pescoço, até um pino G (GND) do Sensor Shield | preto | Dupont |  |
+| Raspberry Pi: pino 32 (GPIO12, TX), no conector baixo 2 × 2 | Pelo pescoço, até o pino S do D0 (RX) do Sensor Shield | verde | jumper de 40 cm: uma ponta soldada no conector 2 × 2, a outra com o conector fêmea | Direto: os 3,3 V do Pi já valem como nível alto para o Arduino. |
+| Raspberry Pi: pino 34 (GND), no conector baixo 2 × 2 | Pelo pescoço, até o pino G do D0 do Sensor Shield | preto | jumper de 40 cm: uma ponta soldada no conector 2 × 2, a outra com o conector fêmea |  |
+| Raspberry Pi: pino 33 (GPIO13, RX), no conector baixo 2 × 2 | Pelo pescoço, até o borne 3 da barra de emenda | azul | jumper de 40 cm: uma ponta soldada no conector 2 × 2, a outra cortada e descascada | Este fio nunca vai direto no D1: são 5 V num pino de 3,3 V. |
+| Barra de emenda, borne 3 | Resistor de 1 kΩ e, depois dele, pino S do D1 (TX) do Sensor Shield | azul | metade de um jumper, soldada na perna do resistor, com o conector fêmea no shield | Montado na bancada, no preparo 3. |
+| Barra de emenda, borne 3 | 2 resistores de 1 kΩ em série e, depois deles, borne 2 da barra (negativo) | sem fio | pernas dos resistores | Os 3 resistores formam o divisor: 5 V viram 3,3 V. |
 | Tela MPI3501 | Encaixada nos pinos 1 a 26 do Raspberry Pi | sem fio | conector da própria tela | Usa SPI e os 5 V dos pinos 2 e 4. |
 <!-- /GERADO -->
 
 ## Preparo 1: solde a energia e ajuste as duas tensões
 
-Faça na bancada, antes de montar o robô, com a base impressa ao lado servindo de gabarito do comprimento dos fios.
+Faça na bancada, com a base impressa ao lado. A chave é a primeira peça a entrar na base, e entra antes de ser soldada
+no resto. Os nomes das ilhas mudam de placa para placa. No carregador são B+, BM e B−. Na placa de proteção da loja
+consultada só o verso tem nomes: B+, B1 (meio), B− e C−. Pela foto, a C− é a saída negativa e a saída positiva é a
+própria B+; é leitura de foto, não confirmada: confira com o multímetro.
 
+<!-- GERADO:prep1 -->
 1. Solde o 3º fio (amarelo) na lâmina de metal que une as duas células, com as células fora do suporte.
-2. Ligue o suporte, o fusível, a placa de proteção e o carregador, conforme a tabela. Os nomes das ilhas mudam de placa para placa. No carregador são B+, BM e B−. Na placa de proteção da loja consultada só o verso tem nomes: B+, B1 (meio), B− e C−. Pela foto, a C− é a saída negativa e a saída positiva é a própria B+; é leitura de foto, não confirmada: confira com o multímetro.
-3. Encaixe a chave no recorte da base, por fora, com os fios passando pelo recorte, e solde-a no positivo.
-4. Ligue as entradas do LM2596 e do UBEC. Na saída do LM2596, solde 2 fios curtos (20 AWG) que terminam na barra de emenda. Não ligue mais nada nas saídas.
-5. Ponha as células no suporte, conferindo o lado do positivo, e ligue a chave.
-6. Com o multímetro na saída do LM2596, gire o parafuso de ajuste com a chave de fenda até marcar 5,1 V. São várias voltas.
-7. Meça a saída do UBEC: tem de marcar 6 V. Se marcar 5 V, mude o jumper dele para 6 V.
-8. Desligue a chave.
+2. Solde 2 fios vermelhos de 10 cm nos 2 terminais da chave. Passe as pontas livres pelo recorte da base, de fora para dentro, e encaixe a chave no recorte. Faça isso ANTES de soldar a chave no resto: ligada ao chicote, ela não passa pelo recorte de 13,5 × 9 mm.
+3. Com a base ao lado servindo de gabarito do comprimento dos fios, ligue o suporte, o fusível, a placa de proteção e o carregador, conforme a tabela de ligações.
+4. Solde uma ponta da chave na saída positiva da placa de proteção. Solde a outra na entrada IN+ do LM2596 e no fio vermelho de entrada do UBEC. Os negativos das duas entradas vão na saída negativa da placa de proteção.
+5. Na saída do LM2596, solde 2 fios curtos de 20 AWG e aperte as outras pontas na barra de emenda: o vermelho no borne 1, o preto no borne 2. Não ligue mais nada nas saídas.
+6. Ponha as células no suporte, conferindo o lado do positivo, e ligue a chave.
+7. Com o multímetro na barra de emenda, gire o parafuso de ajuste do LM2596 com a chave de fenda até marcar 5,1 V. São várias voltas.
+8. Meça a saída do UBEC: tem de marcar 6 V. Se marcar 5 V, mude o jumper dele para 6 V.
+9. Desligue a chave.
+<!-- /GERADO -->
 
 ## Preparo 2: grave o programa e ponha os 2 servos em 90°
 
 O programa é o sketch [centrar_servos.ino](firmware/centrar_servos/centrar_servos.ino). Ele leva os dois servos para
 o centro e os mantém lá.
 
-1. Abra o sketch na Arduino IDE. Ligue o Arduino Uno ao computador pelo cabo USB, sem o shield e sem bateria.
-2. Em Ferramentas, escolha a placa Arduino Uno e a porta em que ela apareceu. Clique em Carregar.
+<!-- GERADO:prep2 -->
+1. Abra o sketch `centrar_servos.ino` na Arduino IDE. Ligue o Arduino Uno ao computador pelo cabo USB, sem o shield e sem bateria.
+2. No menu Ferramentas, escolha a placa Arduino Uno e a porta em que ela apareceu. Clique em Carregar.
 3. Tire o cabo USB, encaixe o Sensor Shield no Uno e retire o jumper SEL do shield: é a capinha de plástico sobre 2 pinos, ao lado do borne azul.
 4. Ligue o cabo USB de novo, só para medir com o multímetro: o pino 5V do conector POWER do shield tem de marcar cerca de 5 V, e o pino V do D9 tem de marcar 0 V.
 5. Se o V do D9 marcar 5 V, o jumper SEL ainda está posto. Se o seu shield não tiver o conector POWER, use o pino + do conector COM e meça do mesmo jeito. Um pino errado aqui põe os 6 V dos servos no Raspberry Pi.
 6. Tire o cabo USB.
-7. Ligue os 6 V do UBEC no borne azul (VCC e GND) e o capacitor de 1000 µF no mesmo borne.
-8. Leve os 5,1 V da barra de emenda ao pino 5V do conector POWER do shield, e o negativo ao pino GND do mesmo conector. Use 2 jumpers Dupont: corte uma ponta de cada um, descasque e aperte na barra; a ponta fêmea encaixa no pino.
-9. Ligue o servo de pan no D9 e o servo de tilt no D10.
+7. Ligue os 6 V do UBEC no borne azul (VCC e GND) e o capacitor de 1000 µF no mesmo borne, com a perna comprida no VCC.
+8. Pegue 2 jumpers de 40 cm, corte o conector de uma ponta de cada um e descasque. Aperte um no borne 1 da barra de emenda e encaixe o conector dele no pino 5V do conector POWER; o outro vai do borne 2 ao pino GND do mesmo conector.
+9. Ligue o servo de pan no D9 e o servo de tilt no D10: fio marrom ou preto no G, vermelho no V, laranja ou amarelo no S.
 10. Ligue a chave: os dois servos vão para o centro (90°) e o LED do Uno pisca uma vez por segundo.
-11. Desligue. Daqui em diante não gire os eixos dos servos com a mão.
+11. Desligue a chave. Daqui em diante não gire os eixos dos servos com a mão.
+<!-- /GERADO -->
 
 Três avisos:
 
@@ -126,11 +146,35 @@ Três avisos:
 O sketch compila para o Arduino Uno (arduino-cli, core arduino:avr 1.8.8, biblioteca Servo 1.3.0). Ele ainda não foi
 rodado num robô montado.
 
-## Preparo 3: grave o cartão microSD e instale o driver da tela
+## Preparo 3: faça o cabo da serial e o divisor de resistores
+
+O Raspberry Pi fica na cabeça e o Arduino na base. Os dois conversam por 3 fios que descem pelo pescoço: verde, azul
+e preto. Neste preparo você solda esses 3 fios num conector baixo, que entra nos pinos do Pi, e monta o divisor de 3
+resistores na barra de emenda. São 6 jumpers de 40 cm no robô inteiro: 3 neste cabo, 1 cortado ao meio para o
+divisor e 2 que levam energia ao Arduino (preparo 2). Um kit de 40 sobra.
+
+<!-- GERADO:prep3 -->
+1. Com o alicate de corte, corte da barra de pinos fêmea um pedaço de 2 × 2: 2 fileiras com 2 furos cada. É o conector baixo que vai nos pinos 31 a 34 do Raspberry Pi.
+2. Separe 3 jumpers de 40 cm: um verde, um azul e um preto (ou marque 3 de outra cor com fita). Corte o conector de UMA ponta de cada um e descasque 3 mm.
+3. Ache os pinos no Raspberry Pi: o pino 1 é o do canto, do lado do cartão microSD, na fileira de dentro. Os ímpares ficam na fileira de dentro e os pares na fileira da borda. Os pinos 31 e 32 são o 16º par; os pinos 33 e 34, o 17º.
+4. Solde as 3 pontas nos terminais do conector 2 × 2, com os fios saindo deitados, para o lado: o verde no furo que vai entrar no pino 32, o azul no do pino 33, o preto no do pino 34. O terminal do pino 31 fica vazio. Vista um pedaço de termo-retrátil fino em cada solda.
+5. No fio azul, corte também o conector da outra ponta e descasque 6 mm: essa ponta vai num borne. O verde e o preto ficam com o conector fêmea, que encaixa no shield.
+6. Agora o divisor. Solde 2 resistores de 1 kΩ um no outro, perna com perna, e cubra a emenda com termo-retrátil. Esse par vale 2 kΩ.
+7. Corte um jumper ao meio. Solde a ponta cortada de uma das metades numa perna do 3º resistor e cubra com termo-retrátil. O conector fêmea dessa metade é o que vai no D1.
+8. Na barra de emenda, do lado do conversor, aperte no borne 3 a perna livre do 3º resistor junto com uma ponta do par de 2 kΩ. Aperte a outra ponta do par no borne 2, junto com o fio preto que já está lá. Dobre a ponta de cada perna antes de apertar, para o parafuso morder.
+9. Confira com o multímetro, em ohms: entre o conector fêmea do jumper do D1 e o borne 3, cerca de 1 kΩ; entre o borne 3 e o borne 2, cerca de 2 kΩ.
+10. Guarde o cabo: o conector 2 × 2 entra no Raspberry Pi na montagem, antes da tela. Na base, o azul vai no borne 3 da barra, o verde no pino S do D0 e o preto no pino G do D0, tudo por borne ou encaixe, sem solda.
+<!-- /GERADO -->
+
+Por que um conector baixo: os pinos 31 a 34 ficam embaixo da placa da tela, onde sobram cerca de 17,5 mm (medida não
+confirmada). O conector Dupont comum, de 14 mm, não cabe em pé.
+
+## Preparo 4: grave o cartão microSD, instale o driver da tela e ligue a serial
 
 O cartão é gravado no seu computador, com um leitor de cartão microSD. Depois você fala com o Raspberry Pi pela rede,
 por SSH: digita os comandos no seu computador e eles rodam no Pi.
 
+<!-- GERADO:prep4 -->
 1. Instale no computador o Raspberry Pi Imager, o programa gratuito da Raspberry Pi, e ponha o cartão no leitor.
 2. No Imager, escolha o modelo do seu Pi, o sistema Raspberry Pi OS (64-bit) e o cartão.
 3. Antes de gravar, abra as configurações do Imager: dê um nome ao Pi (por exemplo `robo`), crie um usuário e uma senha, ponha o nome e a senha do seu Wi-Fi e ative o SSH. Grave.
@@ -138,20 +182,18 @@ por SSH: digita os comandos no seu computador e eles rodam no Pi.
 5. No computador, abra o terminal: no Windows é o programa PowerShell; no Mac e no Linux, o Terminal.
 6. Digite `ssh usuario@robo.local`, trocando `usuario` e `robo` pelos nomes que você criou. Responda `yes` na primeira vez e digite a senha.
 7. Se `robo.local` não responder, abra a página do seu roteador, ache o Pi na lista de aparelhos ligados e use o número dele (o endereço IP), por exemplo `ssh usuario@192.168.0.50`.
-8. Quando o terminal mostrar o nome do Pi, você está dentro dele. Digite os três comandos abaixo, um por linha, com Enter depois de cada um. O Pi precisa estar na internet.
-
-```
-git clone https://github.com/goodtft/LCD-show.git
-cd LCD-show
-sudo ./LCD35-show
-```
-
-O Pi reinicia sozinho e a tela acende. Depois desligue o Pi com `sudo poweroff`, espere o LED verde parar e tire a tela para a montagem.
+8. Quando o terminal mostrar o nome do Pi, você está dentro dele. Digite os três comandos do driver, um por linha, com Enter depois de cada um: `git clone https://github.com/goodtft/LCD-show.git`, depois `cd LCD-show`, depois `sudo ./LCD35-show`. O Pi precisa estar na internet. Ele reinicia sozinho e a tela acende.
+9. Entre de novo por SSH e ligue a serial, DEPOIS do script da tela, porque ele reescreve o arquivo de configuração. Digite `sudo nano /boot/firmware/config.txt`, vá até o fim do arquivo e acrescente uma linha: `dtoverlay=uart5` no Raspberry Pi 4, ou `dtoverlay=uart4-pi5` no Raspberry Pi 5. Salve com Ctrl+O e Enter, saia com Ctrl+X.
+10. Digite `sudo poweroff`, espere o LED verde do Pi parar de piscar, tire a fonte e desencaixe a tela: ela volta na montagem.
+<!-- /GERADO -->
 
 A tela é a MPI3501: 3,5 polegadas, 480 × 320, controlador ILI9486, ligada por SPI nos pinos 1 a 26. Fontes:
 [página da MPI3501 na lcdwiki](http://www.lcdwiki.com/3.5inch_RPi_Display) (modelo, pinos e driver) e
 documentação da Raspberry Pi, no GitHub: [SSH](https://github.com/raspberrypi/documentation/blob/master/documentation/asciidoc/computers/remote-access/ssh.adoc) e [como achar o endereço do Pi](https://github.com/raspberrypi/documentation/blob/master/documentation/asciidoc/computers/remote-access/find-your-ip-address.adoc).
 Não testado na bancada: o fabricante lista testes até o Raspberry Pi 3B+, e o script troca o arquivo de configuração do Pi.
+
+A linha da serial vem da [lista de overlays do firmware do Raspberry Pi](https://github.com/raspberrypi/firmware/blob/master/boot/overlays/README).
+Depois de reiniciar, o nome da porta aparece com `ls /dev/ttyAMA*`. O programa que usa essa serial é da fase 2.
 
 Plano B, também não testado, se a tela ficar branca ou apagada:
 
@@ -160,31 +202,14 @@ Plano B, também não testado, se a tela ficar branca ou apagada:
 
 ## Como o Raspberry Pi conversa com o Arduino
 
-O Raspberry Pi fica na cabeça e o Arduino na base. O furo de cabos do pescoço tem 9 mm e um plugue USB não passa por
-ele. Por isso os dois conversam por uma serial (UART) de 3 fios soltos, que passam pelo furo.
+O furo de cabos do pescoço tem 9 mm e um plugue USB não passa por ele. Por isso os dois conversam por uma serial
+(UART) de 3 fios soltos.
 
 - **No Arduino:** pinos D0 (RX) e D1 (TX), que são a serial de verdade da placa. Ela não atrapalha o sinal dos servos.
 - **No Raspberry Pi:** pino 32 (GPIO12, TX), pino 33 (GPIO13, RX) e pino 34 (GND). A tela ocupa os pinos 1 a 26; estes três ficam livres.
+- **Número do pino e número do GPIO:** "pino 32" é a posição na fileira de 40 pinos, contada a partir do canto do cartão microSD. "GPIO12" é o nome do sinal que sai por esse pino. Os dois números não são iguais.
 - **Tensão:** o Arduino trabalha em 5 V e o Pi em 3,3 V. O fio que vai do Arduino para o Pi passa por um divisor de 3 resistores de 1 kΩ, que baixa 5 V para 3,3 V. O fio que vai do Pi para o Arduino é direto.
-- **Por que resistores e não um módulo conversor de nível:** o divisor resolve com 3 resistores no fio, sem mais uma placa solta na base. O módulo também serve: o lado de 3,3 V dele (LV) vai no pino 3V3 do conector POWER do shield e o lado de 5 V (HV) no pino 5V.
-
-Como montar o divisor: solde um resistor de 1 kΩ no fio que sai do D1. Na outra perna dele, solde o fio azul que sobe
-para o pino 33 do Pi e mais dois resistores de 1 kΩ em série, que terminam num pino G do shield. Cubra tudo com
-termo-retrátil.
-
-Como ligar no Pi: os pinos 31 a 34 ficam embaixo da placa da tela, onde sobram cerca de 17,5 mm (medida não
-confirmada). O conector Dupont comum, de 14 mm, não cabe em pé. Corte um pedaço de 2 × 2 da barra de pinos fêmea,
-solde os 3 fios de lado nos terminais dele e encaixe nos pinos 31 a 34 antes de pôr a tela.
-
-Para ligar a serial no sistema do Pi, acrescente uma linha no fim do arquivo `/boot/firmware/config.txt`, DEPOIS de
-instalar o driver da tela, porque o script do driver reescreve esse arquivo:
-
-- Raspberry Pi 4: `dtoverlay=uart5`
-- Raspberry Pi 5: `dtoverlay=uart4-pi5`
-
-Fonte: [lista de overlays do firmware do Raspberry Pi](https://github.com/raspberrypi/firmware/blob/master/boot/overlays/README).
-Depois de reiniciar, veja o nome da porta com `ls /dev/ttyAMA*`. Não testado na bancada. O programa que usa essa
-serial é da fase 2.
+- **Por que resistores e não um módulo conversor de nível:** o divisor resolve com 3 resistores presos na barra de emenda, sem mais uma placa solta na base. O módulo também serve: o lado de 3,3 V dele (LV) vai no pino 3V3 do conector POWER do shield e o lado de 5 V (HV) no pino 5V.
 
 ## Os 8 fios que passam pelo pescoço
 
@@ -192,14 +217,14 @@ São 8 fios: 2 de energia (5,1 V do Raspberry Pi, 20 AWG), 3 da serial e os 3 do
 ligados dentro da cabeça ANTES do copo, porque depois o Raspberry Pi fica fechado. E não podem ficar pendurados por
 baixo do garfo nessa hora, porque o fundo do copo passa por baixo dele. A ordem é esta:
 
-1. Com a cabeça ainda aberta (quadro, tela, servo de tilt e garfo no lugar), parafuse os 2 fios de 5,1 V no adaptador USB-C e encaixe-o no Raspberry Pi.
-2. Confira o conector baixo da serial nos pinos 31 a 34. Ele entra antes da tela, já com os 3 fios soldados.
+1. Na montagem do Raspberry Pi, antes da tela, encaixe o conector baixo do cabo da serial nos pinos 31 a 34.
+2. Com a cabeça ainda aberta (quadro, tela, servo de tilt e garfo no lugar), parafuse os 2 fios de 5,1 V no adaptador USB-C e encaixe-o no Raspberry Pi.
 3. Ligue a extensão de 30 cm no cabo do servo de tilt.
 4. Desça os 8 fios pelo furo de 9 mm do garfo, de cima para baixo. Primeiro o conector da extensão, que tem 7,6 mm de largura e passa justo.
 5. Pare quando as pontas ficarem rentes à face de baixo do garfo. Deixe uns 5 cm de fio sobrando dentro da cabeça: ela inclina em volta do garfo.
 6. Feche a cabeça com o copo. Com a pinça, puxe as pontas dos 8 fios para fora pelo rasgo do fundo do copo.
 7. Enfie os fios pelo tubo do pescoço e assente a cabeça sobre ele.
-8. Na base, com a chave desligada: os 2 fios de 5,1 V na barra de emenda, a extensão no D10 e os 3 da serial conforme a tabela.
+8. Na base, com a chave desligada e sem solda: os 2 fios de 5,1 V nos bornes 1 e 2 da barra de emenda; o fio azul no borne 3; o conector do verde no pino S do D0 e o do preto no pino G do D0; o jumper do divisor no pino S do D1; a extensão do servo no D10.
 
 Deixe cerca de 10 cm de folga dentro da base: o pescoço gira quase uma volta e torce os fios. Esta passagem nunca foi
 ensaiada com as peças impressas.
@@ -211,18 +236,28 @@ Os valores abaixo são calculados a partir das fichas, não medidos.
 - Uso normal: cerca de 2 A saindo do pack. O Raspberry Pi puxa cerca de 1 A em 5,1 V e os servos menos de 1 A em 6 V.
 - Pico: cerca de 5 A, com o LM2596 em 2 A, o UBEC nos 3 A de limite e o pack em 6,5 V.
 - Chave KCD11-101: 3 A em 250 V~ e 6 A em 125 V~ ([ficha de loja](https://eletronicamaker.com.br/produto/mini-chave-gangorra-kcd11-101-liga-desliga-3a-250v-vm-c)). A ficha não traz valor para corrente contínua.
-- Fusível de 3 A: é o menor valor da chave. O uso normal fica abaixo dele. Um pico de segundos não o abre; uma sobrecarga que dura abre o fusível antes de a chave esquentar (comportamento usual de fusível de vidro, medida não confirmada).
+- Fusível de 3 A: é o menor valor da chave. O uso normal fica abaixo dele, e uma sobrecarga que dura abre o fusível antes de a chave esquentar.
+- Fusível retardado (marcado T3A ou T3,15A): a partida dos servos e a carga do capacitor de 1000 µF dão picos de uma fração de segundo. Um fusível rápido pode abrir nesses picos sem haver defeito; o retardado aguenta o pico curto e abre na sobrecarga que dura (comportamento usual desse tipo de fusível, medida não confirmada).
 - Se o fusível abrir com o robô em uso normal, não ponha um maior: meça a corrente e procure o que está forçando.
 - Fio 22 AWG (0,33 mm²) na energia da base. Fio 20 AWG (0,5 mm²) no par de 5,1 V que sobe até o Raspberry Pi: com 2 A, a queda calculada nesse trecho é de 0,06 V.
 - O LM2596 aguenta cerca de 2 A contínuos sem dissipador (valor usual, medida não confirmada). Use o Raspberry Pi 4, ou o Pi 5 sem acessórios USB.
 - Se o Raspberry Pi acusar subtensão, encurte o par de 5,1 V e confira o ajuste. Para ver, digite `vcgencmd get_throttled` no Pi: a resposta boa é `throttled=0x0`.
 - O programa da fase 2 não pode deixar os dois servos forçando ao mesmo tempo no fim do curso.
 
+## Calor dentro da cabeça
+
+O Raspberry Pi 4 fica fechado na cabeça, que é de PLA e não tem abertura de ventilação. É um risco não medido.
+
+- O PLA amolece perto de 60 °C (valor usual, medida não confirmada).
+- O Pi reduz a velocidade quando o processador fica entre 80 e 85 °C ([documentação da Raspberry Pi](https://github.com/raspberrypi/documentation/blob/master/documentation/asciidoc/computers/raspberry-pi/frequency-management.adoc)).
+- Cole os dissipadores adesivos nos chips do Pi antes de montá-lo.
+- Com o robô ligado há meia hora, digite `vcgencmd measure_temp` no Pi. Se passar de 70 °C, imprima o copo da cabeça em PETG ou abra furos de ventilação na parede de trás.
+
 ## Primeira vez que você liga o robô montado
 
 1. Chave desligada. Com o multímetro em continuidade, confira que o positivo e o negativo do pack não estão em curto.
-2. Antes de emendar os 2 fios que descem do Raspberry Pi, ligue a chave e meça na barra de emenda, do lado do conversor: 5,1 V, com o vermelho no positivo. Meça 6 V no borne azul. Desligue.
-3. Emende os fios do Pi na barra, vermelho com vermelho e preto com preto, e ligue a chave de novo.
+2. Antes de apertar na barra os 2 fios que descem do Raspberry Pi, ligue a chave e meça na barra de emenda, do lado do conversor: 5,1 V entre os bornes 1 e 2, com o vermelho no positivo. Meça 6 V no borne azul. Desligue.
+3. Aperte os fios do Pi na barra, vermelho no borne 1 e preto no borne 2, e ligue a chave de novo.
 4. O LED do Arduino pisca, os dois servos seguram o centro, o LED de energia do Raspberry Pi acende e, em cerca de 1 minuto, a tela mostra o sistema.
 5. Se nada acender, desligue e confira o fusível.
 
@@ -238,12 +273,13 @@ Os valores abaixo são calculados a partir das fichas, não medidos.
 - O porta-fusível, a barra de emenda e os 3 resistores da serial não têm lugar modelado: ficam soltos nos fios, isolados com termo-retrátil.
 - As medidas marcadas como NC vêm de anúncios de loja. Meça a sua peça antes de imprimir a parte que encosta nela.
 - A passagem dos 8 fios pelo furo do garfo e pelo rasgo do fundo da cabeça nunca foi ensaiada com as peças impressas.
+- Calor: o Raspberry Pi 4 fica fechado na cabeça, que é de PLA e não tem abertura de ventilação. O PLA amolece perto de 60 °C e o Pi reduz a velocidade a partir de 80 °C. Cole os dissipadores e meça com o comando `vcgencmd measure_temp`. Se passar de 70 °C, imprima o copo da cabeça em PETG ou abra furos de ventilação atrás.
 <!-- /GERADO -->
 
 ## Glossário
 
 <!-- GERADO:glossario -->
-- **GPIO:** A fileira de 40 pinos do Raspberry Pi, onde se ligam a tela e os fios de sinal.
+- **GPIO:** A fileira de 40 pinos do Raspberry Pi, onde se ligam a tela e os fios de sinal. Neste guia, "pino 32" é a posição do pino na fileira; "GPIO12" é o nome do sinal que sai por ele.
 - **UBEC:** Conversor pequeno, usado em aeromodelos, que baixa a tensão da bateria para um valor fixo. Aqui, 6 V para os servos.
 - **BMS:** Placa de proteção da bateria de lítio. Desliga a bateria antes de ela descarregar demais, carregar demais ou entrar em curto.
 - **2S:** Duas células de lítio ligadas em série, uma depois da outra. As tensões somam: de 6 V (vazio) a 8,4 V (cheio).
@@ -256,6 +292,13 @@ Os valores abaixo são calculados a partir das fichas, não medidos.
 - **UART (serial):** Ligação de dados simples: um fio para falar (TX) e um para ouvir (RX). É por ela que o Raspberry Pi manda ordens ao Arduino.
 - **Jumper SEL:** Capinha de plástico sobre 2 pinos do Sensor Shield, ao lado do borne azul, com a marca SEL. Posta, ela liga os 5 V do Arduino aos conectores dos servos. Retirada, os servos recebem só o que entra pelo borne azul.
 - **Borne:** Conector de parafuso: o fio entra no furo e o parafuso aperta. No Sensor Shield é o bloco azul marcado GND e VCC.
+- **Sketch:** O nome que a Arduino dá a um programa. Você abre o arquivo na Arduino IDE e grava na placa pelo cabo USB.
+- **Shield:** Placa que encaixa por cima do Arduino, nos pinos dele, e acrescenta conectores. Aqui, o Sensor Shield dá os conectores dos servos.
+- **AWG:** Medida da grossura do fio. Quanto menor o número, mais grosso: o 20 AWG é mais grosso que o 22 AWG.
+- **GND:** O negativo do circuito, também chamado de terra. Todos os negativos do robô são ligados entre si.
+- **Dupont:** Fio fino que já vem com um conector de encaixe em cada ponta, do tamanho dos pinos das placas. Também é chamado de jumper.
+- **Step-down:** Conversor que baixa a tensão. Aqui, o LM2596 baixa a tensão da bateria para 5,1 V.
+- **Termo-retrátil:** Tubinho de plástico que encolhe com calor. Você veste sobre a emenda de solda e aquece: ele aperta e isola.
 <!-- /GERADO -->
 
 O que comprar: [LISTA-DE-COMPRAS.md](LISTA-DE-COMPRAS.md). Como imprimir: [IMPRIMIR.md](IMPRIMIR.md).

@@ -68,7 +68,10 @@
  "doc_custo_5": "Se você já tem todas as ferramentas, desconte:",
  "zip_1": "Arquivos do robô quadrado de mesa (robos-impressos).",
  "zip_2": "Pasta stl = uma peça por arquivo, já deitada na posição de impressão. Pasta mesas = arquivos 3MF com as peças já arrumadas por cor. Pasta firmware = programa do Arduino que põe os servos no centro.",
- "zip_3": "Comece pela mesa 06 (cupom de teste). Lista de compras e esquema de ligação estão nos outros arquivos de texto deste zip.",
+ "zip_3": "Guias deste zip, na ordem de uso:",
+ "zip_g1": "como imprimir. Comece pela mesa 06, que tem o cupom de teste.",
+ "zip_g2": "o que comprar, com quantidade, preço estimado e link.",
+ "zip_g3": "como ligar os fios, com o esquema e os preparos da bancada. O programa do Arduino está na pasta firmware.",
  "zip_4": "Guia na internet:",
  "zip_5": "Os caminhos abaixo são os deste zip. No repositório do GitHub os mesmos arquivos ficam em:"
 }
