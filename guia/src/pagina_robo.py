@@ -53,6 +53,12 @@ RAW = REPO + "/raw/main/"
 BLOB = REPO + "/blob/main/"
 TREE = REPO + "/tree/main/"
 ML = "https://lista.mercadolivre.com.br/"
+# tutorial público de solda, em português (conferido em 15/11/2026: a página abre e ensina o básico, com fotos)
+SOLDA_URL = "https://blog.fazedores.com/como-soldar-aprenda-a-fazer-uma-solda-perfeita/"
+# tempo de montagem: ESTIMATIVA por contagem (nada foi montado ainda). Minutos por item e folga (mín, máx) sobre a soma.
+MONT_MIN = {"bancada": 7, "passo": 6, "fio": 3, "inserto": 2}
+MONT_FOLGA = (0.8, 1.5)
+GLO_LINK = ("UBEC", "BMS", "2S", "3S")       # termos do glossário que ganham "o que é isso?" na 1ª vez que aparecem em #comprar
 # página → robô. A chave é o nome da página (guia/<nome>/) e da pasta projetos/<nome>/; `id` é o id do modelo no código.
 # `pecas` (stl, mesas, montagem.json) e `docs` são a MESMA pasta do robô, tirada do registro único comum/cad/caminhos.py.
 # `esquema` = módulo de guia/src/ com svg(X, R) (esquema de ligação do robô); None = o desenho do cubo, que mora neste arquivo.
@@ -165,6 +171,18 @@ class Robo:
 
     def n_pecas(self):
         return sum(p["qtd"] for p in self.mj["pecas"])
+
+    def n_servos(self):
+        return sum(1 for c in self.mj["componentes"] if c["nome"].startswith("servo-"))
+
+    def horas_montagem(self):
+        """(mín, máx) em horas, do preparo na bancada ao robô fechado. ESTIMATIVA por contagem (MONT_MIN por passo de
+        bancada, passo de montagem, fio da tabela de ligações e inserto), com a folga MONT_FOLGA. Nada foi montado ainda."""
+        minutos = (MONT_MIN["bancada"] * sum(len(p["passos"]) for p in self.d["preparos"])
+                   + MONT_MIN["passo"] * (sum(1 for o in self.mj["ordem_montagem"] if not o.get("sai")) + len(self.d["passos_extra"]))
+                   + MONT_MIN["fio"] * sum(len(g["fios"]) for g in self.d["ligacoes"])
+                   + MONT_MIN["inserto"] * self.d["insertos"])
+        return tuple(round(minutos * f / 60) for f in MONT_FOLGA)
 
     def por_cor(self):
         o = {}
@@ -371,12 +389,15 @@ def _carrega(pt, dest, cache, lg):
 class Tx:
     """Textos de um idioma. t(chave) = texto manual; a(frase em PT) = a mesma frase no idioma; n(x) = número."""
 
-    def __init__(self, R, lg):
+    def __init__(self, R, lg, pagina=False):
         self.lg = lg
+        self.pagina = pagina              # True só na página do guia: os docs e o zip continuam com o rótulo comum
         self.pt = textos_pt(R)
         self.d = self.pt if lg == "pt" else _carrega(self.pt, arq_lg(R, lg), arq_cache(R, lg), lg)
 
     def t(self, k):
+        if self.pagina and "pag_" + k in self.d:
+            return self.d["pag_" + k]
         return self.d[k]
 
     def a(self, s):
@@ -403,8 +424,10 @@ def faixa(f):
 
 
 def rotulo(R, X, nome):
-    """Nome exibido de uma peça: rótulo traduzido + nome do arquivo entre parênteses."""
-    return f'{X.a(R.d["rotulos"][nome])} ({nome})'
+    """Nome exibido de uma peça: rótulo traduzido + nome do arquivo entre parênteses. Na página, a peça chamada "mesa"
+    (a mesa da cabeça dos bichos) leva a palavra "peça", para não ser lida como mesa de impressão."""
+    marca = f', {X.t("th_peca").lower()}' if X.pagina and nome.startswith("mesa-") else ""
+    return f'{X.a(R.d["rotulos"][nome])}{marca} ({nome})'
 
 
 def tabelas(R, X):
@@ -747,6 +770,13 @@ CSS = """
 .step ol li{margin:.45em 0}
 .topo{position:fixed;right:14px;bottom:14px;width:40px;height:40px;border-radius:50%;background:var(--amb);color:#1a1206;opacity:.88;font:800 1.2rem/40px Sora,sans-serif;text-align:center;box-shadow:0 4px 14px rgba(0,0,0,.35);z-index:50}
 .tabela.estreita{min-width:0}
+.step .solda{margin:12px 0 16px}
+.solda h4{font-family:Sora;font-size:1rem;margin:0;color:var(--txt)}
+.solda .mini{margin-top:.8em}
+.oq{font-size:.82em;white-space:nowrap;text-decoration:underline}
+.testes{margin:.6em 0 0 1.1em;padding:0;color:var(--mut);font-size:.9rem}
+.testes li{margin:.4em 0}.testes strong{color:var(--txt)}
+.testes b.ok{color:var(--amb);font-weight:600;white-space:nowrap}.testes b.nao{color:#e0262c;white-space:nowrap}
 .tabela td b{font-family:Sora}
 .step p a,.nota a,.mini a{text-decoration:underline}
 .bal{min-width:0}.bal img{margin-bottom:10px;background:#999}
@@ -773,10 +803,13 @@ def preparos_html(R, X):
     """Os preparos da bancada: mesma lista numerada do LIGACAO.md (R.d["preparos"]); a frase de abertura (prepN_p) e a
     nota do fim (prepN_b) são textos da página."""
     o = []
+    assert R.d["preparos"][0]["titulo"].startswith("Solde"), "o quadro 'Nunca soldou?' entra no preparo 1, que tem de ser o da solda"
+    solda = (f'<div class="card aviso solda"><h4>🔰 {X.t("solda_t")}</h4><ul>{X.t("solda_li")}</ul>'
+             f'<p class="mini">{X.t("solda_link_p")} <a href="{SOLDA_URL}" target="_blank" rel="noopener">{X.t("solda_link_txt")}</a> {X.t("solda_fonte")}</p></div>')
     for n, pr in enumerate(R.d["preparos"], 1):
         intro, fim = X.d.get(f"prep{n}_p"), X.d.get(f"prep{n}_b")
         o.append(f'<div class="step" id="preparo{n}"><div class="b">{n}</div><div><h3>{H(X.a(pr["titulo"]))}</h3>'
-                 + (f"<p>{intro}</p>" if intro else "") + "<ol>" + "".join(f"<li>{H(X.a(x))}</li>" for x in pr["passos"]) + "</ol>"
+                 + (f"<p>{intro}</p>" if intro else "") + (solda if n == 1 else "") + "<ol>" + "".join(f"<li>{H(X.a(x))}</li>" for x in pr["passos"]) + "</ol>"
                  + (f'<p class="mini">{fim}</p>' if fim else "") + "</div></div>")
     return "\n".join(o)
 
@@ -837,8 +870,48 @@ def semelhanca_html(R, X):
     return "\n".join(o)
 
 
+def slug(s):
+    import unicodedata
+    return re.sub(r"[^a-z0-9]+", "-", unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode().lower()).strip("-")
+
+
+def resumo_testes(R, X):
+    """Uma linha por teste do verificador, no idioma da página (a saída do programa é sempre em português)."""
+    testes = list(R.verif["testes"].items())
+    assert f"vt_{len(testes)}" in X.d and f"vt_{len(testes) + 1}" not in X.d, "os resumos vt_N de _comum.pt.json não batem com o verificador"
+    o = []
+    for i, (k, x) in enumerate(testes, 1):
+        assert k.split()[0] == str(i), f"teste fora de ordem: {k}"
+        o.append(f'<li><strong>{i}. {X.t(f"vt_{i}")}:</strong> {X.t(f"vt_{i}_p")} <b class="{"ok" if x["ok"] else "nao"}">{"✓" if x["ok"] else "✗"} {X.t("ver_passou" if x["ok"] else "ver_falhou")}</b></li>')
+    return "".join(o)
+
+
+def liga_glossario(secao, R, X):
+    """Na seção dada, a 1ª vez que aparece cada termo de GLO_LINK que está no glossário ganha um link "o que é isso?".
+    Se o termo está dentro de um link (o nome do item, que abre a busca), o link do glossário vem logo depois dele."""
+    termos = [g["termo"] for g in R.d["glossario"] if g["termo"] in GLO_LINK]
+    partes = re.split(r"(<[^>]+>)", secao)
+    for termo in termos:
+        link = f' <a class="oq" href="#glo-{slug(termo)}">({X.t("oq")})</a>'
+        dentro = 0
+        for i, x in enumerate(partes):
+            if x.startswith("<"):
+                dentro += x.startswith("<a ") - x.startswith("</a")
+                continue
+            mo = re.search(r"(?<![\w-])" + re.escape(termo) + r"(?!\w)", x)
+            if not mo:
+                continue
+            if dentro:                                            # dentro de um <a>: depois do </a> que o fecha
+                j = next(k for k in range(i + 1, len(partes)) if partes[k].startswith("</a"))
+                partes[j] += link
+            else:
+                partes[i] = x[:mo.end()] + link + x[mo.end():]
+            break
+    return "".join(partes)
+
+
 def pagina(R, lg):
-    X = Tx(R, lg)
+    X = Tx(R, lg, pagina=True)
     head, script = montar.cabeca_rodape()
     corpo = (AQUI / "robo.html").read_text()
     T = tabelas(R, X)
@@ -855,13 +928,13 @@ def pagina(R, lg):
              "N_HORAS": X.n(R.horas(), 0), "N_GRAMAS": X.n(R.gramas(), 0), "N_INSERTOS": str(R.d["insertos"]), "N_TESTES": str(len(R.verif["testes"])),
              "CUSTO": rs("pecas"), "CUSTO_TEM": rs("tem"), "CUSTO_ZERO": rs("zero"), "CUSTO_FIL": rs("fil"), "CUSTO_FERR": rs("ferr"),
              "PRECO_DATA": R.d["preco_data"], "PRECO_FONTE": R.d["preco_fonte"],
-             "SAIDA_VERIF": html.escape(saida_verif(R), quote=False),
+             "SAIDA_VERIF": html.escape(saida_verif(R), quote=False), "VER_RESUMO": resumo_testes(R, X),
              "COMPRAS": "\n".join(dobra(f'<h3>{esc(X.a(bl["bloco"]))}</h3>', tab_html(*T[f"compras{i}"]), len(bl["itens"]), X, " titulo") for i, bl in enumerate(R.d["compras"])),
              "LIGACOES": "\n".join(dobra(f'<h4>{esc(X.a(g["grupo"]))}</h4>', tab_html(*T[f"lig{i}"]), len(g["fios"]), X, " titulo") for i, g in enumerate(R.d["ligacoes"])),
              "RISCOS": "".join(f"<li>{H(X.a(r))}</li>" for r in R.d["riscos"]),
              "PREPAROS": preparos_html(R, X), "N_PREPAROS": str(len(R.d["preparos"])),
              "BALANCOS": balancos_html(R, X, A), "SEMELHANCA": semelhanca_html(R, X),
-             "GLOSSARIO": "".join(f'<div><dt>{esc(X.a(g["termo"]))}</dt><dd>{esc(X.a(g["def"]))}</dd></div>' for g in R.d["glossario"])}
+             "GLOSSARIO": "".join(f'<div id="glo-{slug(g["termo"])}"><dt>{esc(X.a(g["termo"]))}</dt><dd>{esc(X.a(g["def"]))}</dd></div>' for g in R.d["glossario"])}
     for nome in DOCS_LG:
         k = "DOC_" + nome.split("-")[0]
         fixos[k], fixos[k + "_NOME"] = doc_url(R, nome, lg)
@@ -883,6 +956,14 @@ def pagina(R, lg):
     for _ in range(2):                          # 2 passadas: texto pode conter [[N_...]]
         corpo = re.sub(r"\[\[([A-Za-z0-9_]+)\]\]", troca, corpo)
     assert not faltam, f"{lg}: textos faltando {sorted(faltam)}"
+    # glossário à mão: "o que é isso?" na 1ª vez que UBEC, BMS e 2S/3S aparecem no quadro de riscos ou na lista de compras
+    i = corpo.index('<section id="comprar">')
+    j = corpo.index("</section>", i)
+    corpo = corpo[:i] + liga_glossario(corpo[i:j], R, X) + corpo[j:]
+    if lg == "pt":      # "mesa" tem 3 sentidos no português (o móvel, a da impressora e a peça): a numerada é a de impressão
+        fora_de_tag = r"(?![^<]*>)"
+        corpo = re.sub(r"\b([Mm])esa (\d\d)\b" + fora_de_tag, r"\1esa de impressão \2", corpo)
+        corpo = re.sub(r"\b(\d+) mesas\b" + fora_de_tag, r"\1 mesas de impressão", corpo)
     head = head.replace("{{PROJETO}} — {{TAGLINE}}", X.t("titulo")).replace("{{META_DESCRICAO}}", html.escape(X.t("meta"))).replace("{{SLUG}}", "robos-impressos")
     for k in ("en/", "es/", ""):                # hreflang desta página, não o da entrada do guia
         head = head.replace(f'/guia/{k}">', f'/guia/{k}{R.nome}/">')

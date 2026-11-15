@@ -149,6 +149,13 @@
 .step ol li{margin:.45em 0}
 .topo{position:fixed;right:14px;bottom:14px;width:40px;height:40px;border-radius:50%;background:var(--amb);color:#1a1206;opacity:.88;font:800 1.2rem/40px Sora,sans-serif;text-align:center;box-shadow:0 4px 14px rgba(0,0,0,.35);z-index:50}
 .tabela.estreita{min-width:0}
+.step .solda{margin:12px 0 16px}
+.solda h4{font-family:Sora;font-size:1rem;margin:0;color:var(--txt)}
+.solda .mini{margin-top:.8em}
+.oq{font-size:.82em;white-space:nowrap;text-decoration:underline}
+.testes{margin:.6em 0 0 1.1em;padding:0;color:var(--mut);font-size:.9rem}
+.testes li{margin:.4em 0}.testes strong{color:var(--txt)}
+.testes b.ok{color:var(--amb);font-weight:600;white-space:nowrap}.testes b.nao{color:#e0262c;white-space:nowrap}
 .tabela td b{font-family:Sora}
 .step p a,.nota a,.mini a{text-decoration:underline}
 .bal{min-width:0}.bal img{margin-bottom:10px;background:#999}
@@ -182,6 +189,10 @@
 .robos .card{display:flex;flex-direction:column}
 .robos .card h3{font-size:1.05rem}
 .robos .fatos{font-family:Sora;font-weight:600;font-size:.84rem;color:var(--txt);margin:.9em 0 0}
+.robos .fatos+.fatos{margin-top:.35em}
+.robos .selo{display:inline-block;align-self:flex-start;font:600 .76rem Sora,sans-serif;color:var(--txt);border:1px solid var(--line);border-radius:999px;padding:.3em .8em;margin:.1em 0 .7em}
+.robos .selo.facil{color:#1a1206;background:var(--amb);border-color:var(--amb)}
+.robos .card .mini{margin-top:.6em}
 .robos .custo{font-size:.84rem;color:var(--amb);margin:.4em 0 0;font-family:Sora;font-weight:600}
 .robos .card .ir{margin-top:auto;padding-top:14px}
 .robos .card .btn{display:block;text-align:center;font-size:.88rem}
@@ -254,21 +265,22 @@ nav .brand,nav .links a.sec{white-space:nowrap}
   <h2>Choose yours</h2>
   <p class="sub">Each robot has its own page with everything you need: shopping list, files, printing, assembly, and connections.</p>
   <div class="grid g4 robos">
-    <div class="card"><a href="dino/"><img class="shot" src="../assets/dino-montado.jpg" alt="Render of the dinosaur robot: green body with a cream belly, blue crests, two little arms, and wheels inside its thighs"></a><h3>🦖 Dinosaur</h3><p>Moves on two wheels hidden in its thighs, with a support ball at the back. Turns and tilts its head, opens its mouth, and moves both arms.</p><p class="mini">5 servos + 2 motors</p><p class="fatos">30 cm tall · 34 printed parts · about 40 h of printing</p><p class="custo">R$ 889–1953 in parts, excluding filament and tools (estimate)</p><p class="ir"><a class="btn" href="dino/">Open the dinosaur page</a></p></div>
-    <div class="card"><a href="capivara/"><img class="shot" src="../assets/capivara-montado.jpg" alt="Render of the robot capybara: pear-shaped orange body, green bandana around its neck, brown muzzle, and a wide head close to its body"></a><h3>🦫 Capybara</h3><p>Sitting, with a green bandana. Moves on two wheels hidden in its hips and two support balls at the front, under its paws. Turns and tilts its head and opens its mouth.</p><p class="mini">3 servos + 2 motors</p><p class="fatos">30 cm tall · 32 printed parts · about 44 h of printing</p><p class="custo">R$ 856–1857 in parts, excluding filament and tools (estimate)</p><p class="ir"><a class="btn" href="capivara/">Open the capybara page</a></p></div>
-    <div class="card"><a href="cubo/"><img class="shot" src="../assets/cubo-montado.jpg" alt="Render of the square desktop robot: white cube head with a dark panel and a screen showing two eyes, on a low gray base"></a><h3>🤖 Square desktop robot</h3><p>For a desk; it doesn't move on wheels. Its head is a cube with a 3.5-inch screen for a face: it turns almost a full rotation and tilts up and down.</p><p class="mini">2 servos + 3.5-inch screen</p><p class="fatos">20 cm tall · 15 printed parts · about 28 h of printing</p><p class="custo">R$ 886–1891 in parts, excluding filament and tools (estimate)</p><p class="ir"><a class="btn" href="cubo/">Open the desktop robot page</a></p></div>
-    <div class="card"><a href="cubo-rodas/"><img class="shot" src="../assets/cubo_rodas-montado.jpg" alt="Render of the square robot on wheels: white cube head with a dark panel and a screen showing two eyes, a slim neck, and a white body on a gray base with two wheels"></a><h3>🤖 Square robot on wheels</h3><p>The same cube head, with a 5-inch screen, on a base with two 85 mm wheels and motors with encoders. It turns and tilts its head and moves across the floor.</p><p class="mini">2 servos + 2 motors with encoders + 5-inch screen</p><p class="fatos">31 cm tall · 19 printed parts · about 43 h of printing</p><p class="custo">R$ 1353–2944 in parts, excluding filament and tools (estimate)</p><p class="ir"><a class="btn" href="cubo-rodas/">Open the robot on wheels page</a></p></div>
+    <div class="card"><a href="dino/"><img class="shot" src="../assets/dino-montado.jpg" alt="Render of the dinosaur robot: green body with a cream belly, blue crests, two little arms, and wheels inside its thighs"></a><h3>🦖 Dinosaur</h3><p class="selo">Advanced: 34 parts, 5 servos, and 2 motors</p><p>Moves on two wheels hidden in its thighs, with a support ball at the back. Turns and tilts its head, opens its mouth, and moves both arms.</p><p class="fatos">30 cm tall · 34 printed parts</p><p class="fatos">Printing: about 40 h · Assembly: 8–15 h (estimate)</p><p class="custo">R$ 889–1953 in parts, excluding filament and tools (estimate)</p><p class="mini">The Raspberry Pi, about 44% of this cost, can wait: phase 1 can be assembled without it.</p><p class="ir"><a class="btn" href="dino/">Open the dinosaur page</a></p></div>
+    <div class="card"><a href="capivara/"><img class="shot" src="../assets/capivara-montado.jpg" alt="Render of the robot capybara: pear-shaped orange body, green bandana around its neck, brown muzzle, and a wide head close to its body"></a><h3>🦫 Capybara</h3><p class="selo">Advanced: 32 parts, 3 servos, and 2 motors</p><p>Sitting, with a green bandana. Moves on two wheels hidden in its hips and two support balls at the front, under its paws. Turns and tilts its head and opens its mouth.</p><p class="fatos">30 cm tall · 32 printed parts</p><p class="fatos">Printing: about 44 h · Assembly: 8–14 h (estimate)</p><p class="custo">R$ 856–1857 in parts, excluding filament and tools (estimate)</p><p class="mini">The Raspberry Pi, about 46% of this cost, can wait: phase 1 can be assembled without it.</p><p class="ir"><a class="btn" href="capivara/">Open the capybara page</a></p></div>
+    <div class="card"><a href="cubo/"><img class="shot" src="../assets/cubo-montado.jpg" alt="Render of the square desktop robot: white cube head with a dark panel and a screen showing two eyes, on a low gray base"></a><h3>🤖 Square desktop robot</h3><p class="selo facil">The simplest: 15 parts, 2 servos, no wheels</p><p>For a desk; it doesn't move on wheels. Its head is a cube with a 3.5-inch screen for a face: it turns almost a full rotation and tilts up and down.</p><p class="fatos">20 cm tall · 15 printed parts</p><p class="fatos">Printing: about 28 h · Assembly: 7–13 h (estimate)</p><p class="custo">R$ 886–1891 in parts, excluding filament and tools (estimate)</p><p class="ir"><a class="btn" href="cubo/">Open the desktop robot page</a></p></div>
+    <div class="card"><a href="cubo-rodas/"><img class="shot" src="../assets/cubo_rodas-montado.jpg" alt="Render of the square robot on wheels: white cube head with a dark panel and a screen showing two eyes, a slim neck, and a white body on a gray base with two wheels"></a><h3>🤖 Square robot on wheels</h3><p class="selo">Advanced: 19 parts, 2 servos, and 2 motors with encoders</p><p>The same cube head, with a 5-inch screen, on a base with two 85 mm wheels and motors with encoders. It turns and tilts its head and moves across the floor.</p><p class="fatos">31 cm tall · 19 printed parts</p><p class="fatos">Printing: about 43 h · Assembly: 9–17 h (estimate)</p><p class="custo">R$ 1353–2944 in parts, excluding filament and tools (estimate)</p><p class="ir"><a class="btn" href="cubo-rodas/">Open the robot on wheels page</a></p></div>
   </div>
   <p class="arraste">↔ on mobile, drag the table sideways</p>
   <div class="tabela-wrap"><table class="tabela">
-<thead><tr><th>Robot</th><th>Height (cm)</th><th>Printed parts</th><th>Build plates (prints)</th><th>Filament (g)</th><th>Printing (h)</th><th>Phase 1 parts (R$)</th><th>Starting from scratch (R$)</th></tr></thead>
+<thead><tr><th>Robot</th><th>Level</th><th>Height (cm)</th><th>Printed parts</th><th>Servos</th><th>Build plates (prints)</th><th>Filament (g)</th><th>Printing (h)</th><th>Assembly (h, estimate)</th><th>Phase 1 parts (R$)</th><th>Starting from scratch (R$)</th></tr></thead>
 <tbody>
-<tr><td><a href="dino/">Dinosaur</a></td><td>30</td><td>34</td><td>12</td><td>1002</td><td>40</td><td>889–1953</td><td>1273–2918</td></tr>
-<tr><td><a href="capivara/">Capybara</a></td><td>30</td><td>32</td><td>11</td><td>1129</td><td>44</td><td>856–1857</td><td>1240–2822</td></tr>
-<tr><td><a href="cubo/">Square desktop robot</a></td><td>20</td><td>15</td><td>7</td><td>735</td><td>28</td><td>886–1891</td><td>1270–2856</td></tr>
-<tr><td><a href="cubo-rodas/">Square robot on wheels</a></td><td>31</td><td>19</td><td>8</td><td>1143</td><td>43</td><td>1353–2944</td><td>1737–3909</td></tr>
+<tr><td><a href="dino/">Dinosaur</a></td><td>advanced</td><td>30</td><td>34</td><td>5</td><td>12</td><td>1002</td><td>40</td><td>8–15</td><td>889–1953</td><td>1273–2918</td></tr>
+<tr><td><a href="capivara/">Capybara</a></td><td>advanced</td><td>30</td><td>32</td><td>3</td><td>11</td><td>1129</td><td>44</td><td>8–14</td><td>856–1857</td><td>1240–2822</td></tr>
+<tr><td><a href="cubo/">Square desktop robot</a></td><td>the simplest</td><td>20</td><td>15</td><td>2</td><td>7</td><td>735</td><td>28</td><td>7–13</td><td>886–1891</td><td>1270–2856</td></tr>
+<tr><td><a href="cubo-rodas/">Square robot on wheels</a></td><td>advanced</td><td>31</td><td>19</td><td>2</td><td>8</td><td>1143</td><td>43</td><td>9–17</td><td>1353–2944</td><td>1737–3909</td></tr>
 </tbody></table></div>
-  <p class="nota">Filament and time are volume-based estimates, without a slicer. Prices are in Brazilian reais, as ranges: “phase 1 parts” does not include filament or tools; “starting from scratch” adds the parts, 2 filament spools, and all tools. Each robot’s page explains where each price came from.</p>
+  <p class="nota">Assembly time is estimated by counting tasks, from workbench prep to the closed robot: 7 min per workbench task, 6 min per assembly step, 3 min per wire, and 2 min per insert, with a margin of 20% less and 50% more. Nothing has been assembled yet. The simplest is the robot with the fewest parts and servos, with no wheels or motors; the other three require more soldering, more wires, and more adjustments.</p>
+  <p class="nota">Filament and printing time are volume-based estimates, without a slicer. Prices are in Brazilian reais, shown as ranges: "phase 1 parts" does not include filament or tools; "from scratch" adds the parts, 2 rolls of filament, and all tools. Each robot's page says where each price came from.</p>
 </div></section>
 
 <section id="como"><div class="wrap">

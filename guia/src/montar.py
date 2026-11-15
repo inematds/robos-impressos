@@ -57,6 +57,10 @@ CSS_ENTRADA = """
 .robos .card{display:flex;flex-direction:column}
 .robos .card h3{font-size:1.05rem}
 .robos .fatos{font-family:Sora;font-weight:600;font-size:.84rem;color:var(--txt);margin:.9em 0 0}
+.robos .fatos+.fatos{margin-top:.35em}
+.robos .selo{display:inline-block;align-self:flex-start;font:600 .76rem Sora,sans-serif;color:var(--txt);border:1px solid var(--line);border-radius:999px;padding:.3em .8em;margin:.1em 0 .7em}
+.robos .selo.facil{color:#1a1206;background:var(--amb);border-color:var(--amb)}
+.robos .card .mini{margin-top:.6em}
 .robos .custo{font-size:.84rem;color:var(--amb);margin:.4em 0 0;font-family:Sora;font-weight:600}
 .robos .card .ir{margin-top:auto;padding-top:14px}
 .robos .card .btn{display:block;text-align:center;font-size:.88rem}
@@ -164,19 +168,30 @@ def montar(lg):
     for m in MODELOS:
         r, C = R[m], R[m].custo()
         com = [p["nome"] for p in r.mj["pecas"] if p["suporte"].startswith("sim")]
+        mont = r.horas_montagem()                    # ESTIMATIVA por contagem de passos (pagina_robo.MONT_MIN): nada foi montado ainda
         por[m] = dict(ALTURA=n(r.altura() / 10), PECAS=str(r.n_pecas()), MESAS=str(len(r.mesas)), HORAS=n(r.horas()), GRAMAS=n(r.gramas()),
-                      CUSTO="R$ " + rs(C["pecas"]), DIF=str(len(r.mj["pecas"])), SEM=str(len(r.mj["pecas"]) - len(com)), COM=str(len(com)))
+                      CUSTO="R$ " + rs(C["pecas"]), DIF=str(len(r.mj["pecas"])), SEM=str(len(r.mj["pecas"]) - len(com)), COM=str(len(com)),
+                      SERVOS=str(r.n_servos()), MONT=f"{mont[0]}–{mont[1]}")
+        # o Raspberry Pi pode ficar para depois? só onde a lista de compras do robô diz isso (hoje: os dois bichos)
+        pi = [it for bl in r.d["compras"] for it in bl["itens"] if it["item"].startswith("Raspberry Pi") and "adiar esta compra" in it["para"]]
+        if pi:
+            por[m]["PI"] = n(100 * sum(pi[0]["faixa"]) / sum(C["pecas"]))
         for k, v in por[m].items():
             fixos[f"{PREF[m].upper()}_{k}"] = v
 
-    # --- cartões dos robôs
+    # --- cartões dos robôs: selo de nível (com peças e servos), horas de impressão e de montagem, custo
+    #     "o mais simples" = o de menos peças e menos servos, sem rodas; se isso mudar, os selos <robô>_nivel têm de ser reescritos
+    facil = min(MODELOS, key=lambda m: R[m].n_pecas())
+    assert facil == "cubo" and facil not in RODAM and R[facil].n_servos() == min(R[m].n_servos() for m in MODELOS), "mudou o robô mais simples: reescreva os selos *_nivel"
+    assert all(m in RODAM or m == facil for m in MODELOS), "robô sem rodas que não é o mais simples: falta o selo dele"
     cart = []
     for m in MODELOS:
         p = PREF[m]
         sub = lambda s: re.sub(r"\[\[R_([A-Z]+)\]\]", lambda mo: por[m][mo.group(1)], s)
         cart.append(f'    <div class="card"><a href="{m}/"><img class="shot" src="{A}{R[m].cfg["id"]}-montado.jpg" alt="{html.escape(t(p + "_alt"))}"></a>'
-                    f'<h3>{R[m].cfg["emoji"]} {esc(nome[m])}</h3><p>{t(p + "_txt")}</p><p class="mini">{esc(t(p + "_mini"))}</p>'
-                    f'<p class="fatos">{esc(sub(t("card_fatos")))}</p><p class="custo">{esc(sub(t("card_custo")))}</p>'
+                    f'<h3>{R[m].cfg["emoji"]} {esc(nome[m])}</h3><p class="selo{" facil" if m == facil else ""}">{esc(sub(t(p + "_nivel")))}</p><p>{t(p + "_txt")}</p>'
+                    f'<p class="fatos">{esc(sub(t("card_fatos")))}</p><p class="fatos">{esc(sub(t("card_tempo")))}</p><p class="custo">{esc(sub(t("card_custo")))}</p>'
+                    + (f'<p class="mini">{esc(sub(t("card_pi")))}</p>' if "PI" in por[m] else "") +
                     f'<p class="ir"><a class="btn" href="{m}/">{esc(t(p + "_link"))}</a></p></div>')
     fixos["CARTOES"] = "\n".join(cart)
     lk = lambda m, anc, txt: f'<a href="{m}/{anc}">{esc(txt)}</a>'
@@ -184,9 +199,13 @@ def montar(lg):
     fixos["LINKS_FASE2"] = ", ".join(lk(m, "#fase2", nome[m]) for m in MODELOS)
 
     # --- tabelas
-    fixos["TAB_RESUMO"] = tab([t(k) for k in ("rs_robo", "rs_altura", "rs_pecas", "rs_mesas", "rs_g", "rs_h", "rs_custo", "rs_zero")],
-                              [[lk(m, "", nome[m]), por[m]["ALTURA"], por[m]["PECAS"], por[m]["MESAS"], por[m]["GRAMAS"], por[m]["HORAS"],
+    fixos["TAB_RESUMO"] = tab([t(k) for k in ("rs_robo", "rs_nivel", "rs_altura", "rs_pecas", "rs_servos", "rs_mesas", "rs_g", "rs_h", "rs_mont", "rs_custo", "rs_zero")],
+                              [[lk(m, "", nome[m]), esc(t("nivel_facil" if m == facil else "nivel_avancado")), por[m]["ALTURA"], por[m]["PECAS"], por[m]["SERVOS"],
+                                por[m]["MESAS"], por[m]["GRAMAS"], por[m]["HORAS"], por[m]["MONT"],
                                 rs(R[m].custo()["pecas"]), rs(R[m].custo()["zero"])] for m in MODELOS])
+    for k, v in P.MONT_MIN.items():
+        fixos["M_" + k.upper()] = str(v)
+    fixos["M_FOLGA_MENOS"], fixos["M_FOLGA_MAIS"] = n(round((1 - P.MONT_FOLGA[0]) * 100)), n(round((P.MONT_FOLGA[1] - 1) * 100))
     j = {m: R[m].mj["juntas"] for m in MODELOS}
     fixos["TAB_MOV"] = tab([t("mv_h0")] + [esc(nome[m]) for m in MODELOS],
                            [[t("mv_1")] + [graus(j[m]["pan"]["lim"], n) for m in MODELOS],

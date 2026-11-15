@@ -149,6 +149,13 @@
 .step ol li{margin:.45em 0}
 .topo{position:fixed;right:14px;bottom:14px;width:40px;height:40px;border-radius:50%;background:var(--amb);color:#1a1206;opacity:.88;font:800 1.2rem/40px Sora,sans-serif;text-align:center;box-shadow:0 4px 14px rgba(0,0,0,.35);z-index:50}
 .tabela.estreita{min-width:0}
+.step .solda{margin:12px 0 16px}
+.solda h4{font-family:Sora;font-size:1rem;margin:0;color:var(--txt)}
+.solda .mini{margin-top:.8em}
+.oq{font-size:.82em;white-space:nowrap;text-decoration:underline}
+.testes{margin:.6em 0 0 1.1em;padding:0;color:var(--mut);font-size:.9rem}
+.testes li{margin:.4em 0}.testes strong{color:var(--txt)}
+.testes b.ok{color:var(--amb);font-weight:600;white-space:nowrap}.testes b.nao{color:#e0262c;white-space:nowrap}
 .tabela td b{font-family:Sora}
 .step p a,.nota a,.mini a{text-decoration:underline}
 .bal{min-width:0}.bal img{margin-bottom:10px;background:#999}
@@ -182,6 +189,10 @@
 .robos .card{display:flex;flex-direction:column}
 .robos .card h3{font-size:1.05rem}
 .robos .fatos{font-family:Sora;font-weight:600;font-size:.84rem;color:var(--txt);margin:.9em 0 0}
+.robos .fatos+.fatos{margin-top:.35em}
+.robos .selo{display:inline-block;align-self:flex-start;font:600 .76rem Sora,sans-serif;color:var(--txt);border:1px solid var(--line);border-radius:999px;padding:.3em .8em;margin:.1em 0 .7em}
+.robos .selo.facil{color:#1a1206;background:var(--amb);border-color:var(--amb)}
+.robos .card .mini{margin-top:.6em}
 .robos .custo{font-size:.84rem;color:var(--amb);margin:.4em 0 0;font-family:Sora;font-weight:600}
 .robos .card .ir{margin-top:auto;padding-top:14px}
 .robos .card .btn{display:block;text-align:center;font-size:.88rem}
@@ -254,21 +265,22 @@ nav .brand,nav .links a.sec{white-space:nowrap}
   <h2>Escolha o seu</h2>
   <p class="sub">Cada robô tem uma página própria com tudo dele: lista de compras, arquivos, impressão, montagem e ligação.</p>
   <div class="grid g4 robos">
-    <div class="card"><a href="dino/"><img class="shot" src="assets/dino-montado.jpg" alt="Render do dinossauro-robô: corpo verde com barriga creme, cristas azuis, dois bracinhos e as rodas dentro das coxas"></a><h3>🦖 Dinossauro</h3><p>Roda sobre duas rodas escondidas nas coxas e uma esfera de apoio atrás. Vira e inclina a cabeça, abre a boca e mexe os dois braços.</p><p class="mini">5 servos + 2 motores</p><p class="fatos">30 cm de altura · 34 peças impressas · cerca de 40 h de impressão</p><p class="custo">R$ 889–1953 em peças, sem filamento nem ferramentas (estimativa)</p><p class="ir"><a class="btn" href="dino/">Abrir a página do dinossauro</a></p></div>
-    <div class="card"><a href="capivara/"><img class="shot" src="assets/capivara-montado.jpg" alt="Render da capivara-robô: corpo laranja em forma de pera, bandana verde no pescoço, focinho marrom e cabeça larga encostada no corpo"></a><h3>🦫 Capivara</h3><p>Sentada, de bandana verde. Roda sobre duas rodas escondidas nas ancas e duas esferas de apoio na frente, sob as patas. Vira e inclina a cabeça e abre a boca.</p><p class="mini">3 servos + 2 motores</p><p class="fatos">30 cm de altura · 32 peças impressas · cerca de 44 h de impressão</p><p class="custo">R$ 856–1857 em peças, sem filamento nem ferramentas (estimativa)</p><p class="ir"><a class="btn" href="capivara/">Abrir a página da capivara</a></p></div>
-    <div class="card"><a href="cubo/"><img class="shot" src="assets/cubo-montado.jpg" alt="Render do robô quadrado de mesa: cabeça branca em cubo com painel escuro e tela mostrando dois olhos, sobre uma base cinza baixa"></a><h3>🤖 Robô quadrado de mesa</h3><p>De mesa, não roda. A cabeça é um cubo com tela de 3,5 polegadas no rosto: gira quase uma volta inteira e inclina para cima e para baixo.</p><p class="mini">2 servos + tela de 3,5 polegadas</p><p class="fatos">20 cm de altura · 15 peças impressas · cerca de 28 h de impressão</p><p class="custo">R$ 886–1891 em peças, sem filamento nem ferramentas (estimativa)</p><p class="ir"><a class="btn" href="cubo/">Abrir a página do robô de mesa</a></p></div>
-    <div class="card"><a href="cubo-rodas/"><img class="shot" src="assets/cubo_rodas-montado.jpg" alt="Render do robô quadrado que roda: cabeça branca em cubo com painel escuro e tela mostrando dois olhos, pescoço fino e um corpo branco sobre uma base cinza com duas rodas"></a><h3>🤖 Robô quadrado que roda</h3><p>A mesma cabeça em cubo, com tela de 5 polegadas, sobre uma base com duas rodas de 85 mm e motores com encoder. Gira e inclina a cabeça e anda pelo chão.</p><p class="mini">2 servos + 2 motores com encoder + tela de 5 polegadas</p><p class="fatos">31 cm de altura · 19 peças impressas · cerca de 43 h de impressão</p><p class="custo">R$ 1353–2944 em peças, sem filamento nem ferramentas (estimativa)</p><p class="ir"><a class="btn" href="cubo-rodas/">Abrir a página do robô que roda</a></p></div>
+    <div class="card"><a href="dino/"><img class="shot" src="assets/dino-montado.jpg" alt="Render do dinossauro-robô: corpo verde com barriga creme, cristas azuis, dois bracinhos e as rodas dentro das coxas"></a><h3>🦖 Dinossauro</h3><p class="selo">Avançado: 34 peças, 5 servos e 2 motores</p><p>Roda sobre duas rodas escondidas nas coxas e uma esfera de apoio atrás. Vira e inclina a cabeça, abre a boca e mexe os dois braços.</p><p class="fatos">30 cm de altura · 34 peças impressas</p><p class="fatos">Impressão: cerca de 40 h · Montagem: 8–15 h (estimativa)</p><p class="custo">R$ 889–1953 em peças, sem filamento nem ferramentas (estimativa)</p><p class="mini">O Raspberry Pi, cerca de 44 % desse custo, pode ficar para depois: a fase 1 pode ser montada sem ele.</p><p class="ir"><a class="btn" href="dino/">Abrir a página do dinossauro</a></p></div>
+    <div class="card"><a href="capivara/"><img class="shot" src="assets/capivara-montado.jpg" alt="Render da capivara-robô: corpo laranja em forma de pera, bandana verde no pescoço, focinho marrom e cabeça larga encostada no corpo"></a><h3>🦫 Capivara</h3><p class="selo">Avançado: 32 peças, 3 servos e 2 motores</p><p>Sentada, de bandana verde. Roda sobre duas rodas escondidas nas ancas e duas esferas de apoio na frente, sob as patas. Vira e inclina a cabeça e abre a boca.</p><p class="fatos">30 cm de altura · 32 peças impressas</p><p class="fatos">Impressão: cerca de 44 h · Montagem: 8–14 h (estimativa)</p><p class="custo">R$ 856–1857 em peças, sem filamento nem ferramentas (estimativa)</p><p class="mini">O Raspberry Pi, cerca de 46 % desse custo, pode ficar para depois: a fase 1 pode ser montada sem ele.</p><p class="ir"><a class="btn" href="capivara/">Abrir a página da capivara</a></p></div>
+    <div class="card"><a href="cubo/"><img class="shot" src="assets/cubo-montado.jpg" alt="Render do robô quadrado de mesa: cabeça branca em cubo com painel escuro e tela mostrando dois olhos, sobre uma base cinza baixa"></a><h3>🤖 Robô quadrado de mesa</h3><p class="selo facil">O mais simples: 15 peças, 2 servos, sem rodas</p><p>De mesa, não roda. A cabeça é um cubo com tela de 3,5 polegadas no rosto: gira quase uma volta inteira e inclina para cima e para baixo.</p><p class="fatos">20 cm de altura · 15 peças impressas</p><p class="fatos">Impressão: cerca de 28 h · Montagem: 7–13 h (estimativa)</p><p class="custo">R$ 886–1891 em peças, sem filamento nem ferramentas (estimativa)</p><p class="ir"><a class="btn" href="cubo/">Abrir a página do robô de mesa</a></p></div>
+    <div class="card"><a href="cubo-rodas/"><img class="shot" src="assets/cubo_rodas-montado.jpg" alt="Render do robô quadrado que roda: cabeça branca em cubo com painel escuro e tela mostrando dois olhos, pescoço fino e um corpo branco sobre uma base cinza com duas rodas"></a><h3>🤖 Robô quadrado que roda</h3><p class="selo">Avançado: 19 peças, 2 servos e 2 motores com encoder</p><p>A mesma cabeça em cubo, com tela de 5 polegadas, sobre uma base com duas rodas de 85 mm e motores com encoder. Gira e inclina a cabeça e anda pelo chão.</p><p class="fatos">31 cm de altura · 19 peças impressas</p><p class="fatos">Impressão: cerca de 43 h · Montagem: 9–17 h (estimativa)</p><p class="custo">R$ 1353–2944 em peças, sem filamento nem ferramentas (estimativa)</p><p class="ir"><a class="btn" href="cubo-rodas/">Abrir a página do robô que roda</a></p></div>
   </div>
   <p class="arraste">↔ no celular, arraste a tabela para o lado</p>
   <div class="tabela-wrap"><table class="tabela">
-<thead><tr><th>Robô</th><th>Altura (cm)</th><th>Peças impressas</th><th>Mesas (impressões)</th><th>Filamento (g)</th><th>Impressão (h)</th><th>Peças da fase 1 (R$)</th><th>Do zero (R$)</th></tr></thead>
+<thead><tr><th>Robô</th><th>Nível</th><th>Altura (cm)</th><th>Peças impressas</th><th>Servos</th><th>Mesas (impressões)</th><th>Filamento (g)</th><th>Impressão (h)</th><th>Montagem (h, estimativa)</th><th>Peças da fase 1 (R$)</th><th>Do zero (R$)</th></tr></thead>
 <tbody>
-<tr><td><a href="dino/">Dinossauro</a></td><td>30</td><td>34</td><td>12</td><td>1002</td><td>40</td><td>889–1953</td><td>1273–2918</td></tr>
-<tr><td><a href="capivara/">Capivara</a></td><td>30</td><td>32</td><td>11</td><td>1129</td><td>44</td><td>856–1857</td><td>1240–2822</td></tr>
-<tr><td><a href="cubo/">Robô quadrado de mesa</a></td><td>20</td><td>15</td><td>7</td><td>735</td><td>28</td><td>886–1891</td><td>1270–2856</td></tr>
-<tr><td><a href="cubo-rodas/">Robô quadrado que roda</a></td><td>31</td><td>19</td><td>8</td><td>1143</td><td>43</td><td>1353–2944</td><td>1737–3909</td></tr>
+<tr><td><a href="dino/">Dinossauro</a></td><td>avançado</td><td>30</td><td>34</td><td>5</td><td>12</td><td>1002</td><td>40</td><td>8–15</td><td>889–1953</td><td>1273–2918</td></tr>
+<tr><td><a href="capivara/">Capivara</a></td><td>avançado</td><td>30</td><td>32</td><td>3</td><td>11</td><td>1129</td><td>44</td><td>8–14</td><td>856–1857</td><td>1240–2822</td></tr>
+<tr><td><a href="cubo/">Robô quadrado de mesa</a></td><td>o mais simples</td><td>20</td><td>15</td><td>2</td><td>7</td><td>735</td><td>28</td><td>7–13</td><td>886–1891</td><td>1270–2856</td></tr>
+<tr><td><a href="cubo-rodas/">Robô quadrado que roda</a></td><td>avançado</td><td>31</td><td>19</td><td>2</td><td>8</td><td>1143</td><td>43</td><td>9–17</td><td>1353–2944</td><td>1737–3909</td></tr>
 </tbody></table></div>
-  <p class="nota">Filamento e tempo são estimativas por volume, sem fatiador. Preços em reais, em faixa: "peças da fase 1" não inclui filamento nem ferramentas; "do zero" soma as peças, 2 rolos de filamento e todas as ferramentas. A página de cada robô diz de onde saiu cada preço.</p>
+  <p class="nota">O tempo de montagem é uma estimativa por contagem, do preparo na bancada ao robô fechado: 7 min por passo de bancada, 6 min por passo de montagem, 3 min por fio e 2 min por inserto, com folga de 20 % para menos e 50 % para mais. Nada foi montado ainda. O mais simples é o robô com menos peças e menos servos, sem rodas nem motores; os outros três pedem mais solda, mais fios e mais ajuste.</p>
+  <p class="nota">Filamento e tempo de impressão são estimativas por volume, sem fatiador. Preços em reais, em faixa: "peças da fase 1" não inclui filamento nem ferramentas; "do zero" soma as peças, 2 rolos de filamento e todas as ferramentas. A página de cada robô diz de onde saiu cada preço.</p>
 </div></section>
 
 <section id="como"><div class="wrap">
