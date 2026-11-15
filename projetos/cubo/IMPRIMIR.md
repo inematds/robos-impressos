@@ -6,6 +6,12 @@
 
 Impressora de referência: Bambu Lab A1 (mesa de 256 × 256 × 256 mm), bico de 0,4 mm, camada de 0,2 mm.
 
+Sugestão de ajuste, ainda não testada com estas peças:
+
+- Placa PEI texturizada para os dois materiais.
+- No Bambu Studio, perfil Generic PLA para o PLA e Generic PETG para o PETG, com as temperaturas que o perfil traz.
+- Valores usuais, para você conferir: PLA com bico a 220 °C e mesa a 55–65 °C; PETG com bico a 250–255 °C e mesa a 70–80 °C. O [guia de filamentos da Bambu](https://wiki.bambulab.com/en/general/filament-guide-material-table) dá de 240 a 270 °C para o bico no PETG.
+
 Página com as mesmas tabelas: https://inematds.github.io/robos-impressos/guia/cubo/#imprimir
 
 ## Os arquivos já estão na posição de impressão
@@ -29,16 +35,21 @@ menos de 1 hora) está na mesa 06, com os 4 espaçadores do Raspberry Pi. No rob
 - um inserto M3 em cada um dos 3 furos (3,9, 4,0 e 4,1 mm);
 - um parafuso M3 no furo passante (3,4 mm) e outro no furo de rosquear direto no plástico (2,7 mm).
 
-A covinha marca a medida que o projeto usa. Se outra medida ficar melhor na sua impressora, mude o valor no bloco
-`FOLGA` de `cad/parametros.py` e gere as peças de novo (`.venv/bin/python cad/gerar.py cubo`).
+A covinha marca a medida que o projeto usa. Se outro furo ficar melhor na sua impressora, você não precisa refazer as
+peças: no Bambu Studio, a compensação de furo X-Y (aba Qualidade, grupo Precisão) abre ou fecha todos os furos da peça.
+Com +0,05 mm, o furo de 4,0 sai como o de 4,1; com −0,05 mm, como o de 3,9. Imprima o cupom de novo para confirmar.
+
+Quem mexe no código pode mudar o valor no bloco `FOLGA` de `cad/parametros.py` e gerar as peças de novo
+(`.venv/bin/python cad/gerar.py cubo`).
 
 Três avisos:
 
 - O cupom é comum aos outros robôs do projeto. A janela de servo dele é do micro servo (SG90/MG90S) e os soquetes de
   pino e o furo do motor TT são dos outros robôs: o robô quadrado não usa nenhum dos três. Os furos M2,5 e M2 do cupom
   são de rosquear no plástico; no robô quadrado o Raspberry Pi usa furo passante com porca.
-- O encaixe do servo MG996R e o furo do pino M5 não estão no cupom. Você confere os dois na mesa 01 (quadro da
-  cabeça), a terceira da ordem abaixo, antes das impressões longas.
+- O encaixe do servo MG996R e a rosca do parafuso M5 não estão no cupom. O servo você confere no quadro da cabeça
+  (mesa 01, a terceira da ordem abaixo). A rosca do M5 fica no braço do garfo (mesa 03, a quarta). As duas saem antes
+  das impressões longas.
 - O cupom sai em PLA, mas 12 dos 16 insertos ficam em peças de PETG. Imprima um segundo cupom em PETG.
 
 ## 2. Ordem sugerida das mesas
@@ -51,7 +62,7 @@ Primeiro as peças pequenas que se encaixam umas nas outras; por último as duas
 | 1 | [cubo-mesa-06-pla-cinza.3mf](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-06-pla-cinza.3mf) | PLA cinza | Cupom de teste (teste-encaixe), 4 × Espaçador do Raspberry Pi (espacador-pi) | 15 | 0,9 | Comece por aqui. O cupom de teste mostra se os insertos e os parafusos M3 entram com a folga certa na SUA impressora. Menos de 1 hora. |
 | 2 | [cubo-mesa-04-petg-prata.3mf](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-04-petg-prata.3mf) | PETG prata | Tubo do pescoço (tubo-pescoco), Engrenagem do pescoço (engrenagem-pescoco) | 24 | 1,1 | Tubo e engrenagem do pescoço: peças pequenas que já testam o encaixe com os tirantes. |
 | 3 | [cubo-mesa-01-petg-amarelo.3mf](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-01-petg-amarelo.3mf) | PETG amarelo | Quadro da cabeça (quadro-cabeca), Engrenagem do servo (engrenagem-servo) | 88 | 3,3 | Quadro da cabeça e engrenagem do servo: confira se o servo entra no rasgo e se as duas engrenagens rodam juntas sem prender. |
-| 4 | [cubo-mesa-03-petg-grafite.3mf](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-03-petg-grafite.3mf) | PETG grafite | Tampa da base (tampa-base), Porta traseira (porta-traseira), Garfo (garfo) | 129 | 5,0 | Tampa, porta e garfo. |
+| 4 | [cubo-mesa-03-petg-grafite.3mf](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-03-petg-grafite.3mf) | PETG grafite | Tampa da base (tampa-base), Porta traseira (porta-traseira), Garfo (garfo) | 129 | 5,0 | Tampa, porta e garfo. No garfo, confira se o parafuso M5 rosqueia no furo do braço; com o quadro da mesa anterior, veja se a cabeça inclina sem prender. |
 | 5 | [cubo-mesa-02-petg-grafite.3mf](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-02-petg-grafite.3mf) | PETG grafite | Base (base) | 222 | 8,2 | Base: a impressão mais longa em PETG. |
 | 6 | [cubo-mesa-07-pla-preto.3mf](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-07-pla-preto.3mf) | PLA preto | Painel do rosto (cabeca-face) | 53 | 2,0 | Painel do rosto: a face que aparece vai na mesa, então limpe bem a mesa antes. |
 | 7 | [cubo-mesa-05-pla-branco.3mf](https://github.com/inematds/robos-impressos/raw/main/pecas/cubo/mesas/cubo-mesa-05-pla-branco.3mf) | PLA branco | Copo da cabeça (cabeca-corpo) | 204 | 7,7 | Copo da cabeça: a impressão mais longa em PLA. Deixe por último, com a impressora já ajustada. |

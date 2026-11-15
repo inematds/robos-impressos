@@ -108,10 +108,19 @@ class Robo:
         assert len(self.d["ordem_impressao"]) == len(self.mesas), "ordem_impressao não cobre todas as mesas"
         assert sum(p["qtd"] for p in self.d["parafusos"] if "inserto" in p["rosca"]) == self.d["insertos"], "insertos: tabela de parafusos não bate"
         assert set(self.d["rotulos"]) == set(self.pecas), "rotulos: falta ou sobra peça"
+        for x in self.d["passos_extra"]:
+            assert x["antes"] in passos, f"passos_extra: passo '{x['antes']}' não existe no modelo"
         # gramas e horas EXIBIDOS por peça (a linha soma as cópias): as 3 tabelas saem daqui e fecham no mesmo total
         nomes = [p["nome"] for p in self.mj["pecas"]]
         self.g = dict(zip(nomes, reparte([p["massa_g"] * p["qtd"] for p in self.mj["pecas"]], 0)))
         self.h = dict(zip(nomes, reparte([p["tempo_h"] * p["qtd"] for p in self.mj["pecas"]], 1)))
+        # as linhas de filamento da lista de compras são digitadas: têm de bater com as peças
+        for bl in self.d["compras"]:
+            for it in bl["itens"]:
+                c = it.get("confere")
+                if c:
+                    cores = [(g, k) for k, (g, _) in self.por_cor() if k[0] == c["material"]]
+                    assert round(sum(g for g, _ in cores)) == c["g"] and len(cores) == c["cores"], f'filamento {c["material"]}: a lista diz {c["g"]} g em {c["cores"]} cores, as peças dão {sum(g for g, _ in cores):.0f} g em {len(cores)}'
 
     def caminho(self, p):
         """Caminho no repo do arquivo de uma peça (o montagem.json guarda relativo à pasta do modelo)."""
@@ -144,20 +153,19 @@ class Robo:
         return g, round(h, 1), itens
 
     def custo(self):
-        """(mín, máx) da fase 1 sem ferramentas; (mín, máx) do que o dono talvez já tenha; (mín, máx) do filamento pelo peso."""
-        a = b = ta = tb = 0
+        """Faixas (mín, máx) em R$: 'pecas' = fase 1 sem filamento nem ferramentas; 'tem' = o que o dono talvez já tenha
+        (dentro de 'pecas'); 'fil' = 1 rolo de cada material; 'ferr' = ferramentas não opcionais; 'zero' = pecas + fil + ferr."""
+        o = {k: [0, 0] for k in ("pecas", "tem", "fil", "ferr")}
         for bl in self.d["compras"]:
-            if bl.get("ferramenta"):
-                continue
+            onde = "ferr" if bl.get("ferramenta") else "fil" if bl.get("filamento") else "pecas"
             for it in bl["itens"]:
-                a += it["faixa"][0] * it["n"]
-                b += it["faixa"][1] * it["n"]
-                if it.get("tem"):
-                    ta += it["faixa"][0] * it["n"]
-                    tb += it["faixa"][1] * it["n"]
-        kg = self.gramas() / 1000
-        fa, fb = self.d["filamento_preco_kg"]
-        return (a, b), (ta, tb), (round(fa * kg), round(fb * kg))
+                if it.get("opcional"):
+                    continue
+                for k in [onde] + (["tem"] if it.get("tem") else []):
+                    o[k][0] += it["faixa"][0] * it["n"]
+                    o[k][1] += it["faixa"][1] * it["n"]
+        o["zero"] = [o["pecas"][i] + o["fil"][i] + o["ferr"][i] for i in (0, 1)]
+        return o
 
 
 # ------------------------------------------------------------------ textos (manual + automático) e tradução
@@ -173,6 +181,8 @@ def frases_auto(R):
     for o in R.mj["ordem_montagem"]:
         f.append(o["passo"])
     f += list(R.d["passos_nota"].values()) + list(R.d["rotulos"].values()) + list(R.d["riscos"])
+    for x in R.d["passos_extra"]:
+        f += [x["passo"], x["vem"], x["nota"]]
     for bl in R.d["compras"]:
         f.append(bl["bloco"])
         for it in bl["itens"]:
@@ -374,6 +384,9 @@ def tabelas(R, X):
     T["parafusos"] = ([t("th_onde"), t("th_qtd"), t("th_parafuso"), t("th_rosca")], [[a(p["onde"]), str(p["qtd"]), a(p["tipo"]), a(p["rosca"])] for p in R.d["parafusos"]])
     mont, abre = [], []
     for o in R.mj["ordem_montagem"]:
+        for x in R.d["passos_extra"]:
+            if x["antes"] == o["passo"]:
+                mont.append([str(len(mont) + 1), a(x["passo"]), a(x["vem"]), a(x["nota"])])
         d = tuple(int(round(v)) for v in o["dir"])
         if o.get("sai"):
             abre.append([str(len(abre) + 1), a(o["passo"]), a(R.d["passos_nota"].get(o["passo"], ""))])
@@ -407,6 +420,11 @@ def cel_md(c):
     return c.replace("|", "\\|")
 
 
+def dobra(titulo_html, miolo, n, X, classe=""):
+    """Bloco recolhível: aberto no HTML (sem JavaScript nada some); o script da página fecha abaixo de 720 px."""
+    return (f'<details class="dobra{classe}" open><summary>{titulo_html} <small>({n} {X.t("itens" if classe else "linhas")})</small></summary>\n{miolo}\n</details>')
+
+
 def tab_html(cab, linhas, total=False, junta=False, estreita=False):
     """Tabela que vira cartões no celular (cada linha um cartão, cada célula com o nome da coluna).
     junta=True funde a 1ª coluna (número) na 2ª; estreita=True fica tabela mesmo no celular (poucas colunas curtas)."""
@@ -437,6 +455,7 @@ def tab_md(cab, linhas, total=False):
 
 
 COM_TOTAL = {"pecas", "filamento", "mesas"}
+DOBRA = {"pecas", "reforcos", "parafusos", "fase2"}          # tabelas longas: recolhidas no celular
 JUNTA = {"passos", "abrir", "mesas"}
 ESTREITA = {"filamento"}
 
@@ -535,14 +554,14 @@ def esquema_svg(X):
     caixa(236, 94, 78, 24, fundo="#fff4d6", borda="#a17400", raio=5)
     txt(275, 110, t("sv_fusivel"), 11, anc="middle", peso=600)
     caixa(340, 92, 160, 96)
-    for y, a, b in ((110, "B+", "P+"), (144, "BM", ""), (179, "B−", "P−")):
+    for y, a, b in ((110, "B+", "P+"), (144, "BM/B1", ""), (179, "B−", "P−/C−")):
         txt(347, y, a, 11, peso=700)
         txt(493, y, b, 11, anc="end", peso=700)
-    txt(424, 136, t("sv_bms"), 12, anc="middle", peso=700)
-    txt(424, 152, t("sv_bms2"), 11, anc="middle", cor="#4c4f5c")
+    txt(440, 129, t("sv_bms"), 12, anc="middle", peso=700)
+    txt(440, 158, t("sv_bms2"), 11, anc="middle", cor="#4c4f5c")
     caixa(570, 92, 176, 96)
-    for y, a, c in ((110, "+", COR["v"]), (144, t("sv_meio"), "#8a6500"), (179, "−", "#1a1a22")):
-        txt(577, y, a, 11 if len(a) > 1 else 14, peso=700, cor=c)
+    for y, a, c in ((110, "B+", COR["v"]), (144, "BM", "#8a6500"), (179, "B−", "#1a1a22")):
+        txt(577, y, a, 11, peso=700, cor=c)
     txt(672, 136, t("sv_carregador"), 12, anc="middle", peso=700)
     txt(672, 152, t("sv_carregador2"), 10.5, anc="middle", cor="#4c4f5c")
     caixa(460, 222, 90, 30, fundo="#e8eaf0")
@@ -569,7 +588,7 @@ def esquema_svg(X):
     txt(475, 423, t("sv_capn"), 10.5, anc="middle", cor="#3565a8", peso=600)
     caixa(60, 470, 570, 150, fundo="#eef6ee", borda="#2f6b3a")
     txt(110, 488, t("sv_5v"), 11, anc="middle", peso=700)
-    txt(160, 488, "G", 11, anc="middle", peso=700)
+    txt(166, 488, "GND", 11, anc="middle", peso=700)
     txt(430, 488, "VCC", 11, anc="middle", peso=700)
     txt(520, 488, "GND", 11, anc="middle", peso=700)
     txt(475, 504, t("sv_borne"), 10.5, anc="middle", cor="#3565a8", peso=600)
@@ -584,6 +603,8 @@ def esquema_svg(X):
     txt(300, 657, t("sv_r1"), 10.5, anc="middle", peso=600)
     caixa(326, 681, 62, 22, fundo="#fff", borda="#3b3d4a", raio=3)
     txt(357, 696, t("sv_r2"), 10.5, anc="middle", peso=600)
+    caixa(22, 664, 38, 22, fundo="#fff4d6", borda="#a17400", raio=4)
+    txt(66, 679, t("sv_emenda"), 10.5, cor="#6b4e00", peso=600)
     caixa(660, 478, 90, 44, fundo="#fdebd9", borda="#a8581a")
     txt(705, 504, t("sv_pan"), 11, anc="middle", peso=700)
     txt(692, 700, t("sv_ext"), 11, anc="end", cor="#a8581a", peso=600)
@@ -637,6 +658,15 @@ CSS = """
 .esquema{display:block;background:#fff;border:1px solid var(--line);border-radius:12px;padding:6px;margin:18px 0 0;max-width:820px}
 .esquema img{display:block;width:100%;height:auto}
 .sep4{font-family:Sora;font-size:1rem;margin:26px 0 0;color:var(--txt)}
+.dobra{margin:26px 0 0}
+.dobra summary{cursor:pointer;font-family:Sora;font-size:.9rem;color:var(--mut);padding:.5em 0;list-style-position:outside}
+.dobra summary h3,.dobra summary h4{display:inline;font-family:Sora;color:var(--txt);margin:0 .3em 0 .2em}
+.dobra summary h3{font-size:1.17rem}.dobra summary h4{font-size:1rem}
+.dobra summary small{font-weight:400;color:var(--mut)}
+.dobra .tabela-wrap{margin-top:8px}
+.step ol{margin:.2em 0 .8em 1.25em;padding:0;color:var(--mut)}
+.step ol li{margin:.45em 0}
+.topo{position:fixed;right:16px;bottom:16px;width:44px;height:44px;border-radius:50%;background:var(--amb);color:#1a1206;font:800 1.3rem/44px Sora,sans-serif;text-align:center;box-shadow:0 4px 14px rgba(0,0,0,.35);z-index:50}
 .tabela.estreita{min-width:0}
 .tabela td b{font-family:Sora}
 .step p a,.nota a,.mini a{text-decoration:underline}
@@ -666,16 +696,17 @@ def pagina(R, lg):
     fundo = "../" if lg == "pt" else "../../"                      # da página até guia/
     A = "assets/" if lg == "pt" else f"../../{R.nome}/assets/"     # imagens do robô ficam em guia/<robô>/assets/
     lang = "".join(f'<a{" class=\"on\"" if k == lg else ""} href="{"./" if k == lg else fundo + ("" if k == "pt" else k + "/") + R.nome + "/"}">{k.upper()}</a>' for k in IDIOMAS)
-    (ca, cb), (ta, tb), (fa, fb) = R.custo()
+    C = R.custo()
+    rs = lambda k: f"R$ {C[k][0]}–{C[k][1]}"
     fixos = {"LANG": f'<span class="lang">{lang}</span>', "LG": lg, "A": A, "GA": fundo + "assets/", "G": "../", "RAW": RAW, "BLOB": BLOB, "TREE": TREE, "REPO": REPO,
              "EMOJI": R.cfg["emoji"], "ID": R.cfg["id"], "PECAS": R.cfg["pecas"], "DOCS": R.cfg["docs"], "ZIP": RAW + f'{R.cfg["docs"]}/{R.nome}-stl.zip',
              "N_ALTURA": X.n(R.mj["obs"]["altura_mm"] / 10, 0), "N_PECAS": str(R.n_pecas()), "N_DISTINTAS": str(len(R.mj["pecas"])), "N_MESAS": str(len(R.mesas)),
              "N_HORAS": X.n(R.horas(), 0), "N_GRAMAS": X.n(R.gramas(), 0), "N_INSERTOS": str(R.d["insertos"]), "N_TESTES": str(len(R.verif["testes"])),
-             "CUSTO": f"R$ {ca}–{cb}", "CUSTO_TEM": f"R$ {ta}–{tb}", "CUSTO_SEM": f"R$ {ca - ta}–{cb - tb}", "CUSTO_FIL": f"R$ {fa}–{fb}",
+             "CUSTO": rs("pecas"), "CUSTO_TEM": rs("tem"), "CUSTO_ZERO": rs("zero"), "CUSTO_FIL": rs("fil"), "CUSTO_FERR": rs("ferr"),
              "PRECO_DATA": R.d["preco_data"], "PRECO_FONTE": R.d["preco_fonte"],
              "SAIDA_VERIF": html.escape(saida_verif(R), quote=False),
-             "COMPRAS": "\n".join(f'<h3 class="sep3">{esc(X.a(bl["bloco"]))}</h3>\n' + tab_html(*T[f"compras{i}"]) for i, bl in enumerate(R.d["compras"])),
-             "LIGACOES": "\n".join(f'<h4 class="sep4">{esc(X.a(g["grupo"]))}</h4>\n' + tab_html(*T[f"lig{i}"]) for i, g in enumerate(R.d["ligacoes"])),
+             "COMPRAS": "\n".join(dobra(f'<h3>{esc(X.a(bl["bloco"]))}</h3>', tab_html(*T[f"compras{i}"]), len(bl["itens"]), X, " titulo") for i, bl in enumerate(R.d["compras"])),
+             "LIGACOES": "\n".join(dobra(f'<h4>{esc(X.a(g["grupo"]))}</h4>', tab_html(*T[f"lig{i}"]), len(g["fios"]), X, " titulo") for i, g in enumerate(R.d["ligacoes"])),
              "RISCOS": "".join(f"<li>{esc(X.a(r))}</li>" for r in R.d["riscos"]),
              "GLOSSARIO": "".join(f'<div><dt>{esc(X.a(g["termo"]))}</dt><dd>{esc(X.a(g["def"]))}</dd></div>' for g in R.d["glossario"])}
     for nome in DOCS_LG:
@@ -683,7 +714,8 @@ def pagina(R, lg):
         fixos[k], fixos[k + "_NOME"] = doc_url(R, nome, lg)
     for k, v in T.items():
         if not k.startswith(("compras", "lig")):
-            fixos["TAB_" + k.upper()] = tab_html(*v, total=k in COM_TOTAL, junta=k in JUNTA, estreita=k in ESTREITA)
+            h = tab_html(*v, total=k in COM_TOTAL, junta=k in JUNTA, estreita=k in ESTREITA)
+            fixos["TAB_" + k.upper()] = dobra(esc(X.t("dobra_tabela")), h, len(v[1]) - (k in COM_TOTAL), X) if k in DOBRA else h
     faltam = set()
 
     def troca(mo):
@@ -801,15 +833,15 @@ def conferir(R):
 def blocos(R, X):
     T = tabelas(R, X)
     t, a = X.t, X.a
-    (ca, cb), (ta, tb), (fa, fb) = R.custo()
+    C = R.custo()
+    rs = lambda k: f"R$ {C[k][0]}–{C[k][1]}"
     Bk = {k: tab_md(*v, total=k in COM_TOTAL) for k, v in T.items() if not k.startswith(("compras", "lig"))}
     Bk["compras"] = "\n\n".join(f'### {a(bl["bloco"])}\n\n' + tab_md(*T[f"compras{i}"]) for i, bl in enumerate(R.d["compras"]))
     Bk["ligacoes"] = "\n\n".join(f'### {a(g["grupo"])}\n\n' + tab_md(*T[f"lig{i}"]) for i, g in enumerate(R.d["ligacoes"]))
     Bk["glossario"] = "\n".join(f'- **{a(g["termo"])}:** {a(g["def"])}' for g in R.d["glossario"])
     Bk["riscos"] = "\n".join(f"- {a(r)}" for r in R.d["riscos"])
-    Bk["custo"] = (f"- {t('doc_custo_1')} **R$ {ca}–{cb}**.\n"
-                   f"- {t('doc_custo_2')} **R$ {ca - ta}–{cb - tb}**.\n"
-                   f"- {t('doc_custo_3')} R$ {fa}–{fb} ({X.n(R.gramas(), 0)} g; R$ {R.d['filamento_preco_kg'][0]}–{R.d['filamento_preco_kg'][1]} {t('doc_custo_3b')}).")
+    Bk["custo"] = (f"- {t('doc_custo_1')} **{rs('pecas')}**.\n- {t('doc_custo_2')} **{rs('zero')}**.\n- {t('doc_custo_3')} {rs('fil')}.\n"
+                   f"- {t('doc_custo_4')} {rs('tem')}.\n- {t('doc_custo_5')} {rs('ferr')}.")
     Bk["verificacao"] = "```\n" + saida_verif(R) + "\n```"
     Bk["numeros"] = (f"- Altura montado: {X.n(R.mj['obs']['altura_mm'], 1)} mm.\n- Peças impressas: {R.n_pecas()} ({len(R.mj['pecas'])} arquivos diferentes), em {len(R.mesas)} mesas.\n"
                      f"- Filamento: {X.n(R.gramas(), 0)} g. Tempo de impressão: {X.n(R.horas(), 1)} h. As duas contas são estimativas por volume, sem fatiador.\n"

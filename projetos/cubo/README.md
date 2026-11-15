@@ -63,16 +63,17 @@ indicado sem bater no que já está montado. Os passos com "(bancada)" são feit
 | 6 | alto-falante nos trilhos da parede de trás | por cima | Fase 2: é opcional agora, pode pular. |
 | 7 | engrenagem do servo no horn | por cima | Horn redondo no rebaixo da engrenagem, 4 × M2 × 8 pelos rasgos e o parafuso central do servo pelo furo de 6 mm. Não gire o eixo: ele está em 90°. |
 | 8 | bateria (pela porta de trás) | por trás | Chave desligada. Confira a polaridade com o multímetro antes de ligar. |
-| 9 | Raspberry Pi e espaçadores no quadro (bancada) | pela frente | 4 × M2,5 × 12 com porca; os 4 espaçadores ficam entre o Pi e a travessa. O cartão microSD já gravado (preparo 3) entra antes. Encaixe o conector baixo da serial nos pinos 31 a 34 antes de pôr a tela. |
+| 9 | Raspberry Pi e espaçadores no quadro (bancada) | pela frente | 4 × M2,5 × 12 com porca; os 4 espaçadores ficam entre o Pi e a travessa. O cartão microSD já gravado (preparo 3) entra antes. Encaixe agora o conector baixo da serial nos pinos 31 a 34, já com os 3 fios soldados: depois que a tela entra, ele não entra mais. |
 | 10 | tela, painel do rosto e câmera pela frente; 4 M3 por trás do quadro, ANTES do servo (bancada) | pela frente | A tela encaixa nos pinos 1 a 26 do Pi. A câmera é da fase 2: é opcional agora, e o furo dela fica vazio. 4 × M3 × 8 por trás da travessa, nos insertos dos pilares do painel. Depois que o servo entra, esses parafusos ficam sem acesso. |
 | 11 | servo de tilt no rasgo do quadro, por trás; 4 parafusos pela esquerda (bancada) | por trás | 4 × M3 × 12. O servo já está em 90° (preparo 2). Os 2 parafusos de cima são apertados pelos furos de acesso da lateral esquerda. |
 | 12 | garfo (com o horn já preso no braço) no eixo do tilt, por baixo; parafuso central do horn pelo furo do pino; pino M5 (bancada) | por baixo | Prenda o horn no braço direito do garfo com 4 × M2 × 8. Com o servo em 90°, encaixe o garfo apontando para baixo, com o rosto na vertical. O parafuso central do horn entra pelo furo do pino. Por último, o M5 × 16: aperte até encostar e volte um quarto de volta, porque a cabeça gira nele. |
-| 13 | copo da cabeça por trás; 4 M3 na parede de trás (bancada) | por trás | 4 × M3 × 8. |
-| 14 | tubo do pescoço na tampa, por cima (bancada) | por cima | A flange cônica apoia na tampa. |
-| 15 | engrenagem do pescoço por baixo da tampa (bancada) | por baixo | Alinhe os 3 furos com os do tubo. |
-| 16 | cabeça sobre o tubo; 3 tirantes M3 por baixo (bancada) | por cima | Passe os 8 fios pelo furo de 9 mm do pescoço ANTES de fechar: primeiro a extensão do servo de tilt (o conector de 3 pinos passa justo), depois os 2 fios de 5 V do Pi e os 3 fios da serial. Deixe 10 cm de folga para o giro. 3 × M3 × 45 por baixo da engrenagem, até os insertos do garfo. |
-| 17 | tampa + pescoço + cabeça sobre a base; 4 M3 por baixo | por cima | Ligue os fios que desceram pelo pescoço (tabela de ligações). Com a cabeça olhando para a frente e o servo de pan em 90°, engrene os dentes. 4 × M3 × 10 por baixo, com a chave Allen longa. |
-| 18 | porta traseira (1 M3) | por trás | 1 × M3 × 8 na orelha da tampa; o pé da porta encosta nos 2 batentes do piso. |
+| 13 | fiação da cabeça, antes de fechar com o copo (bancada) | fios, de cima para baixo | É a última vez que você alcança o Raspberry Pi. 1) Parafuse os 2 fios de 5,1 V (20 AWG) no adaptador USB-C, vermelho no + e preto no −, e encaixe o adaptador na porta USB-C do Pi. 2) Confira o conector baixo da serial nos pinos 31 a 34 (ele entrou antes da tela). 3) Ligue a extensão de 30 cm no cabo do servo de tilt. 4) Desça os 8 fios pelo furo de 9 mm do garfo, de cima para baixo, primeiro o conector da extensão. Pare quando as pontas ficarem rentes à face de baixo do garfo. 5) Deixe uma barriga de uns 5 cm de fio dentro da cabeça: ela inclina em volta do garfo e os fios dobram ali. |
+| 14 | copo da cabeça por trás; 4 M3 na parede de trás (bancada) | por trás | O fundo do copo passa por baixo do garfo: confira que nenhum fio sobra para fora do furo do garfo. 4 × M3 × 8. Depois, com a pinça, puxe as pontas dos 8 fios para fora pelo rasgo do fundo do copo. |
+| 15 | tubo do pescoço na tampa, por cima (bancada) | por cima | A flange cônica apoia na tampa. |
+| 16 | engrenagem do pescoço por baixo da tampa (bancada) | por baixo | Alinhe os 3 furos com os do tubo. |
+| 17 | cabeça sobre o tubo; 3 tirantes M3 por baixo (bancada) | por cima | Enfie os 8 fios pelo tubo do pescoço, de cima para baixo, e só então assente a cabeça, sem prender fio entre o garfo e o tubo. 3 × M3 × 45 por baixo da engrenagem, até os insertos do garfo. |
+| 18 | tampa + pescoço + cabeça sobre a base; 4 M3 por baixo | por cima | Chave desligada. Ligue os fios que desceram pelo pescoço: os 2 de 5,1 V na barra de emenda, a extensão do servo de tilt no D10 e os 3 da serial (tabela de ligações). Deixe 10 cm de folga para o giro. Com a cabeça olhando para a frente e o servo de pan em 90°, engrene os dentes. 4 × M3 × 10 por baixo, com a chave Allen longa. |
+| 19 | porta traseira (1 M3) | por trás | 1 × M3 × 8 na orelha da tampa; o pé da porta encosta nos 2 batentes do piso. |
 <!-- /GERADO -->
 
 ## Abrir para manutenção
@@ -89,9 +90,9 @@ Trocar a bateria ou mexer nas placas não exige desmontar a cabeça.
 
 ## Energia e ligação
 
-Pack 2S (2 × 18650, 6 a 8,4 V) → fusível de 5 A → placa de proteção BMS 2S → chave → duas linhas separadas:
+Pack 2S (2 × 18650, 6 a 8,4 V) → fusível de 3 A → placa de proteção BMS 2S → chave (KCD11-101, 3 A) → duas linhas separadas:
 
-- **5,1 V do Raspberry Pi e do Arduino:** conversor LM2596. Mantém os 5 V até o pack cair a cerca de 6,5 V.
+- **5,1 V do Raspberry Pi e do Arduino:** conversor LM2596 (cerca de 2 A contínuos). Mantém os 5 V até o pack cair a cerca de 6,5 V. O Arduino recebe pelo pino 5V do conector POWER do Sensor Shield.
 - **6 V dos 2 servos:** UBEC de 3 A, pelo borne azul do Sensor Shield (jumper SEL retirado), com capacitor de 1000 µF.
 - **Carga:** módulo USB-C com balanceamento, antes da chave, com a boca numa janela atrás da base e um 3º fio no
   ponto que une as duas células.
@@ -148,4 +149,5 @@ Os arquivos `*.en.md`, `*.es.md` e `ligacao.*.svg` são gerados: mude o texto em
 - O plugue USB-C que alimenta o Raspberry Pi não está no modelo 3D: conferir se cabe ao lado do Pi, dentro da cabeça.
 - Os pinos 31 a 34 do Raspberry Pi ficam embaixo da tela: conferir se o conector baixo da serial cabe.
 - Com o Arduino parafusado na base o cabo USB não entra: para regravar é preciso soltar os 4 parafusos dele.
-- Porta-fusível, resistores da serial, amplificador de áudio e microfones ainda não têm fixação modelada.
+- Porta-fusível, barra de emenda, resistores da serial, amplificador de áudio e microfones ainda não têm fixação modelada.
+- A passagem dos 8 fios pelo garfo e pelo rasgo do fundo da cabeça nunca foi ensaiada (o rasgo do copo é fechado: os fios só saem depois de o copo entrar).
