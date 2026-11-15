@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Antes e depois: a capivara e o dinossauro ao lado do desenho de referência — robos-impressos</title>
+<meta name="description" content="A capivara e o dinossauro do robos-impressos antes (v1.0.2) e depois (v1.1.2), ao lado do desenho de referência: imagens nas mesmas vistas, medida de semelhança por vista (IoU), teto, alvo e o que mudou no esqueleto.">
+<link rel="alternate" hreflang="pt-BR" href="https://inematds.github.io/robos-impressos/guia/evolucao/">
+<link rel="alternate" hreflang="en" href="https://inematds.github.io/robos-impressos/guia/en/evolucao/">
+<link rel="alternate" hreflang="es" href="https://inematds.github.io/robos-impressos/guia/es/evolucao/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0c10; --bg2:#14141b; --card:#16161e; --line:#272730;
+    --txt:#e9e9ee; --mut:#9a9aa6; --amb:#E2A23B; --amb2:#f0c070; --sky:#38bdf8; --pro:#cbd5e1;
+    color-scheme:dark;
+  }
+  body.light{
+    --bg:#f6f7f9; --bg2:#eceef2; --card:#ffffff; --line:#e1e3ea;
+    --txt:#1a1a22; --mut:#5b5b68; --amb:#b9791d; --amb2:#a16207; --sky:#0369a1; --pro:#b45309;
+    color-scheme:light;
+  }
+  body.light .hero .glow{opacity:.5}
+  body.light pre{background:#0e0e14;color:#d6d6e0}
+  body.light pre .c{color:#8a8a98}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:Sora,sans-serif;line-height:1.15;margin:0}
+  a{color:var(--amb);text-decoration:none}
+  code,pre{font-family:"JetBrains Mono",monospace}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 22px}
+  .mut{color:var(--mut)} .amb{color:var(--amb)}
+  .chip{display:inline-block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amb);font-weight:600;font-family:Sora}
+  nav{position:sticky;top:0;z-index:30;backdrop-filter:blur(12px);background:rgba(12,12,16,.78);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;gap:22px;height:60px}
+  nav .brand{display:flex;align-items:center;gap:8px;font-family:Sora;font-weight:800;letter-spacing:-.02em;color:var(--amb)}
+  nav .brand .emoji{font-size:1.25rem}
+  nav .sep{color:var(--mut);opacity:.45}
+  nav .inema{color:var(--sky);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .inema:hover{filter:brightness(1.15)}
+  nav .pro{color:var(--pro);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .pro:hover{filter:brightness(1.15)}
+  nav .clubpro{display:inline-flex;align-items:center;gap:6px}
+  nav .links{margin-left:auto;display:flex;align-items:center;gap:20px;font-size:.92rem}
+  nav .links a.sec{color:var(--mut)} nav .links a.sec:hover{color:var(--txt)}
+  .lang{display:inline-flex;gap:2px;font-family:Sora;font-size:.78rem}
+  .lang a{color:var(--mut);padding:.2em .45em;border-radius:6px} .lang a.on{color:var(--amb);background:rgba(226,162,59,.12)}
+  .tgl{background:var(--bg2);border:1px solid var(--line);color:var(--txt);width:38px;height:38px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:1.05rem}
+  .tgl:hover{border-color:var(--amb)}
+  .btn{display:inline-block;background:var(--amb);color:#1a1206;font-weight:600;padding:.6em 1.05em;border-radius:10px;font-family:Sora}
+  .btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+  @media(max-width:760px){nav .links a.sec{display:none}}
+  @media(max-width:520px){nav .wrap{gap:8px;padding:8px 14px;height:auto;flex-wrap:wrap} nav .links{gap:8px;margin-left:0;width:100%;justify-content:space-between} nav .btn{padding:.45em .7em;font-size:.82rem} .tgl{width:34px;height:34px}}
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero .glow{position:absolute;inset:-40% -20% auto auto;width:70%;height:600px;background:radial-gradient(closest-side,rgba(226,162,59,.22),transparent 70%);pointer-events:none}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:74px 22px}
+  .hero h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;letter-spacing:-.025em}
+  .hero p.lead{font-size:1.18rem;color:var(--mut);margin:1.1em 0 1.6em;max-width:34ch}
+  .hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .hero figure{margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000}
+  .hero figure img{width:100%;height:auto;display:block}
+  .resumo{padding:38px 0 34px;border-bottom:1px solid var(--line)}
+  .resumo p{font-size:1.12rem;line-height:1.7;max-width:74ch;margin:.55em 0 0}
+  @media(max-width:780px){.hero .wrap{grid-template-columns:1fr;padding:48px 22px}}
+  section{padding:62px 0;border-bottom:1px solid var(--line)}
+  section h2{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:800;letter-spacing:-.02em}
+  section .sub{color:var(--mut);margin:.6em 0 2em;max-width:62ch}
+  .grid{display:grid;gap:16px}
+  .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:820px){.g3,.g4{grid-template-columns:1fr 1fr}}
+  @media(max-width:540px){.g2,.g3,.g4{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .card h3{font-size:1.05rem;margin-bottom:.4em}
+  .card p{color:var(--mut);font-size:.92rem;margin:0}
+  .num{display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border-radius:8px;background:rgba(226,162,59,.14);color:var(--amb);font-family:Sora;font-weight:800;font-size:.9rem;margin-bottom:.7em}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+  .flow span{background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:.45em .9em;font-size:.85rem;font-family:Sora;font-weight:600}
+  .flow .arr{color:var(--amb);border:none;background:none;padding:0 .1em}
+  pre{background:#0a0a0e;border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow:auto;font-size:.86rem;line-height:1.6;color:#d6d6e0}
+  pre .c{color:#6f6f7c} pre .k{color:var(--amb2)} pre .s{color:#9ece6a}
+  .step{display:grid;grid-template-columns:46px minmax(0,1fr);gap:16px;margin-bottom:26px}
+  .step>div,.card{min-width:0}
+  p code,li code,td code{overflow-wrap:anywhere}
+  .step .b{width:46px;height:46px;border-radius:12px;background:var(--amb);color:#1a1206;font-family:Sora;font-weight:800;font-size:1.25rem;display:flex;align-items:center;justify-content:center}
+  .step h3{font-size:1.12rem;margin-bottom:.3em}
+  .step p{color:var(--mut);margin:.2em 0 .7em}
+  .ex{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:680px){.ex{grid-template-columns:1fr}}
+  .ex figure{margin:0;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  .ex figure img{width:100%;height:auto;display:block}
+  .ex figcaption{padding:12px 14px;font-size:.88rem;color:var(--mut);background:var(--card)}
+  .phase{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .phase:last-child{border:none}
+  .phase .tag{flex:0 0 92px;font-family:Sora;font-weight:800;color:var(--amb)}
+  .phase .d strong{display:block;margin-bottom:.2em}
+  .phase .d span{color:var(--mut);font-size:.92rem}
+  footer{padding:46px 0;text-align:center;color:var(--mut);font-size:.9rem}
+  .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:.3em .8em;font-size:.78rem;color:var(--mut);margin:0 4px}
+
+  .techhead{background:var(--bg2);border-top:3px solid var(--amb);padding:58px 0 8px}
+  .techhead h2{font-family:Sora;margin:.3em 0 0}
+  .techzone{background:var(--bg2)}
+  .nota{font-size:.88rem;color:var(--mut);margin-top:14px;max-width:80ch}
+  .mini{font-size:.82rem;color:var(--mut);margin:.4em 0 0}
+  .shot{display:block;width:100%;border-radius:12px;border:1px solid var(--line);margin:0 0 14px;background:#e9e9ee}
+  .g2{grid-template-columns:repeat(2,1fr)} .g4{grid-template-columns:repeat(4,1fr)}
+  .numero{text-align:center} .numero b{display:block;font-family:Sora;font-size:2.1rem;color:var(--amb);line-height:1.15} .numero span{display:block;font-size:.9rem;color:var(--mut);margin-top:6px}
+  .arraste{display:none;font-size:.8rem;color:var(--mut);margin:18px 0 -14px}
+  .sep4{font-family:Sora;margin:22px 0 10px}
+  #pecas,#compras,section{scroll-margin-top:76px} .hero figcaption.mini{padding:8px 12px 10px}
+  .glossario{margin:18px 0 0;display:grid;grid-template-columns:max-content 1fr;gap:8px 18px} .glossario dt{font-weight:700;color:var(--amb)} .glossario dd{margin:0}
+  .tabela-wrap{overflow-x:auto;margin:22px 0 6px;border:1px solid var(--line);border-radius:12px}
+  .tabela{border-collapse:collapse;width:100%;font-size:.9rem;min-width:560px}
+  .tabela th,.tabela td{padding:8px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+  .tabela th{font-family:Sora;font-size:.82rem;color:var(--mut);background:var(--bg2)}
+  .tabela tr:last-child td{border-bottom:0}
+  .barras{margin-top:22px} .barra{display:grid;grid-template-columns:150px 1fr 60px;gap:10px;align-items:center;margin:8px 0;font-size:.92rem}
+  .barra i{display:block;height:16px;border-radius:8px;background:var(--amb)}
+  .lista{margin:.4em 0 0 1.2em;padding:0} .lista li{margin:.3em 0}
+  .sep3{font-family:Sora;margin:34px 0 0}
+  pre.saida{white-space:pre-wrap;font-size:.8rem;line-height:1.5}
+  .card ul{margin:.5em 0 0 1.1em;padding:0} .card li{margin:.35em 0}
+  @media(max-width:1180px){nav .links .sec{display:none}}
+  @media(max-width:860px){.g2,.g4{grid-template-columns:1fr}.barra{grid-template-columns:110px 1fr 50px}.arraste{display:block}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:.74rem}figcaption.mini{padding:8px 4px 0}.glossario{grid-template-columns:1fr;gap:2px 0}.glossario dd{margin:0 0 10px}}
+
+.fase{margin:-.5em 0 1.5em;padding:.7em .95em;border-left:3px solid var(--amb);background:var(--bg2);border-radius:0 10px 10px 0;font-size:.98rem;max-width:46ch}
+.fatos{font-family:Sora;font-weight:600;font-size:.95rem;color:var(--amb);margin:-.7em 0 1.5em}
+.aviso{border-color:var(--amb);margin-top:22px}
+.aviso ul{margin:.6em 0 0 1.1em;padding:0;color:var(--mut);font-size:.92rem}
+.aviso li{margin:.45em 0}
+.aviso li strong{color:var(--txt)}
+.glossario{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:22px 0 0}
+.glossario div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;min-width:0}
+.glossario dt{font-family:Sora;font-weight:700;color:var(--amb)}
+.glossario dd{margin:.3em 0 0;color:var(--mut);font-size:.92rem}
+.esquema{display:block;background:#fff;border:1px solid var(--line);border-radius:12px;padding:6px;margin:18px 0 0;max-width:820px}
+.esquema img{display:block;width:100%;height:auto}
+.sep4{font-family:Sora;font-size:1rem;margin:26px 0 0;color:var(--txt)}
+.dobra{margin:26px 0 0}
+.dobra summary{cursor:pointer;font-family:Sora;font-size:.9rem;color:var(--mut);padding:.5em 0;list-style-position:outside}
+.dobra summary h3,.dobra summary h4{display:inline;font-family:Sora;color:var(--txt);margin:0 .3em 0 .2em}
+.dobra summary h3{font-size:1.17rem}.dobra summary h4{font-size:1rem}
+.dobra summary small{font-weight:400;color:var(--mut)}
+.dobra .tabela-wrap{margin-top:8px}
+.step ol{margin:.2em 0 .8em 1.25em;padding:0;color:var(--mut)}
+.step ol li{margin:.45em 0}
+.topo{position:fixed;right:14px;bottom:14px;width:40px;height:40px;border-radius:50%;background:var(--amb);color:#1a1206;opacity:.88;font:800 1.2rem/40px Sora,sans-serif;text-align:center;box-shadow:0 4px 14px rgba(0,0,0,.35);z-index:50}
+.tabela.estreita{min-width:0}
+.tabela td b{font-family:Sora}
+.step p a,.nota a,.mini a{text-decoration:underline}
+.bal{min-width:0}.bal img{margin-bottom:10px;background:#999}
+.bal h4{font-family:Sora;font-size:1rem;margin:0}
+.bal ul{margin:.5em 0 0 1.1em;padding:0;color:var(--mut);font-size:.88rem}.bal li{margin:.3em 0}
+.legenda .cor{display:inline-block;width:.85em;height:.85em;border-radius:3px;margin:0 .35em 0 .9em;vertical-align:-1px;border:1px solid var(--line)}
+@media(max-width:720px){
+  .glossario{grid-template-columns:1fr}
+  .tabela-wrap.cartoes{border:0;overflow:visible}
+  .tabela.cartoes{min-width:0;display:block}
+  .tabela.cartoes thead{display:none}
+  .tabela.cartoes tbody{display:block}
+  .tabela.cartoes tr{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:0 0 10px}
+  .tabela.cartoes td{display:block;border:0;padding:4px 0;overflow-wrap:anywhere}
+  .tabela.cartoes td.c{display:inline-block;margin-right:18px}
+  .tabela.cartoes td:empty{display:none}
+  .tabela.cartoes td[data-l]::before{content:attr(data-l) ": ";font-family:Sora;font-size:.7rem;font-weight:600;color:var(--mut);text-transform:uppercase;letter-spacing:.05em}
+  .tabela.cartoes td:first-child{font-weight:600;font-size:1rem;padding-bottom:6px}
+}
+
+.par{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.par figure,.ref,.regua figure{margin:0}
+.par img,.ref img,.regua img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line);background:#e9e9ee}
+.par figcaption,.regua figcaption{font-size:.86rem;color:var(--mut);margin-top:6px;text-align:center}
+.par figcaption b,.regua figcaption b{font-family:Sora;color:var(--txt)}
+.par.capa{gap:0}.par.capa div{position:relative}.par.capa img{border:0;border-radius:0}
+.par.capa span{position:absolute;left:10px;top:10px;background:rgba(12,12,16,.78);color:#fff;font:600 .78rem Sora,sans-serif;padding:.25em .6em;border-radius:8px}
+.vistas{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.vista h4{font-family:Sora;font-size:1rem;margin:0 0 10px}
+.ref{max-width:720px}.ref figcaption{font-size:.82rem;color:var(--mut);margin-top:8px}
+.regua{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.regua img{background:#fff}
+.iou svg{display:block;width:100%;max-width:440px;height:auto;margin:0 auto 12px}
+.iou .legenda{color:var(--txt);font-size:.92rem;line-height:1.9}
+.iou .legenda .cor{margin-left:0}
+.formula{font-family:Sora;font-weight:600;color:var(--amb)!important;margin-top:.8em!important;font-size:1rem!important}
+.bicho .numero b{font-size:1.9rem}
+.lista{color:var(--mut)}
+#quadrados .cta{display:flex;gap:12px;flex-wrap:wrap}
+@media(max-width:860px){.vistas,.regua{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a class="brand" href="../"><span class="emoji">🦖</span> robos-impressos</a>
+  <span class="sep">|</span>
+  <span class="clubpro">
+    <a class="inema" href="https://inema.club" target="_blank" rel="noopener">INEMA.CLUB</a>
+    <span class="sep">-</span>
+    <a class="pro" href="https://inema.pro" target="_blank" rel="noopener">PRO</a>
+  </span>
+  <div class="links">
+    <a class="sec" href="#ler">Como ler o número</a>
+    <a class="sec" href="#capivara">Capivara</a>
+    <a class="sec" href="#dino">Dinossauro</a>
+    <a class="sec" href="#metodo">Método</a>
+    <span class="lang"><a class="on" href="./">PT</a><a href="../en/evolucao/">EN</a><a href="../es/evolucao/">ES</a></span>
+    <button class="tgl" id="themeToggle" aria-label="Alternar tema claro/escuro" title="Alternar tema claro/escuro">🌙</button>
+    <a class="btn" href="https://github.com/inematds/robos-impressos" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</div></nav>
+
+<header class="hero" id="top">
+  <div class="glow"></div>
+  <div class="wrap">
+    <div>
+      <span class="chip">Evolução do desenho · v1.0.2 → v1.1.2</span>
+      <h1>O robô ficou <span class="amb">parecido com o desenho</span>? Veja vista por vista, com número</h1>
+      <p class="lead">Você escolhe um robô pela cara dele. Só que entre o desenho e a peça impressa entram motor, bateria e parafuso, e o bicho pode sair bem diferente do que você viu: na primeira versão, a capivara saiu de pescoço comprido. Aqui você vê a capivara e o dinossauro antes e depois, ao lado do desenho de referência, e aprende a ler a régua que mede o quanto eles se aproximaram.</p>
+      <div class="cta">
+        <a class="btn" href="#capivara">Ver a capivara</a>
+        <a class="btn ghost" href="#dino">Ver o dinossauro</a>
+        <a class="btn ghost" href="#ler">Como ler o número</a>
+      </div>
+    </div>
+    <figure>
+      <div class="par capa">
+        <div><img src="assets/capivara-antes-tres-quartos.jpg" alt="Render da capivara na versão 1.0.2, em três quartos: pescoço comprido e corpo em pé"><span>antes (v1.0.2)</span></div>
+        <div><img src="assets/capivara-depois-tres-quartos.jpg" alt="Render da capivara na versão 1.1.2, em três quartos: corpo em pera, cabeça encostada no corpo e bandana verde"><span>depois (v1.1.2)</span></div>
+      </div>
+      <figcaption class="mini">A capivara em três quartos, na mesma câmera. São renders do modelo, não fotos: nada foi impresso ainda.</figcaption>
+    </figure>
+  </div>
+</header>
+
+<section id="resumo" class="resumo"><div class="wrap">
+  <span class="chip">Em resumo</span>
+  <p>Os dois bichos do robos-impressos nasceram de um desenho de referência. Na versão 1.0.2 a casca era desenhada com formas arredondadas simples, por cima de um esqueleto comum aos dois, e o resultado ficou longe do desenho. Na versão 1.1.2 a forma passou a vir de uma malha 3D, gerada no computador a partir do próprio desenho, e o esqueleto de cada bicho foi refeito para caber dentro dela. Para saber se melhorou de verdade, e não só no olho, o projeto mede o contorno do robô contra o contorno do desenho, vista por vista. A capivara foi de 0,777 para 0,920 e o dinossauro, de 0,814 para 0,871, numa escala de 0 a 1. Esta página mostra as imagens, os números e também o que o número não enxerga.</p>
+  <p class="nota">As imagens do robô são renders: imagens de computador feitas a partir dos arquivos de impressão. O desenho de referência é uma ilustração e aparece aqui só para a comparação. Os outros robôs e as páginas de cada um estão no <a href="../">guia geral dos robôs</a>.</p>
+</div></section>
+
+<section id="ler"><div class="wrap">
+  <span class="chip">Como ler o número</span>
+  <h2>IoU: quanto de um contorno cai em cima do outro</h2>
+  <p class="sub">IoU é a sigla, em inglês, de "interseção sobre união". Você põe a silhueta do robô em cima da silhueta do desenho e divide a área que as duas têm em comum pela área que as duas ocupam juntas.</p>
+  <div class="grid g2">
+    <div class="card iou">
+      <svg viewBox="0 0 440 240" role="img" aria-label="Duas silhuetas sobrepostas: a parte só do desenho em vermelho, a parte só do robô em azul e a parte comum em verde">
+        <defs><clipPath id="ref"><ellipse cx="170" cy="118" rx="125" ry="96"/></clipPath></defs>
+        <ellipse cx="170" cy="118" rx="125" ry="96" fill="#e24b4b"/>
+        <ellipse cx="262" cy="130" rx="130" ry="92" fill="#4672e8"/>
+        <ellipse cx="262" cy="130" rx="130" ry="92" fill="#96cd96" clip-path="url(#ref)"/>
+      </svg>
+      <p class="legenda"><span class="cor" style="background:#e24b4b"></span>só no desenho de referência<br><span class="cor" style="background:#4672e8"></span>só no robô<br><span class="cor" style="background:#96cd96"></span>nos dois</p>
+      <p class="formula">IoU = verde ÷ (verde + vermelho + azul)</p>
+    </div>
+    <div class="grid">
+      <div class="card"><h3>A escala vai de 0 a 1</h3><p>Com 1, os dois contornos são idênticos. Com 0, eles nem se tocam. Nesta página, 0,777 é a capivara de pescoço comprido e 0,920 é a capivara em que a diferença ficou na borda e no laço da bandana.</p></div>
+      <div class="card"><h3>O que a régua vê</h3><p>Só o contorno, em quatro vistas. Antes de comparar, as duas silhuetas ficam com a mesma altura, a base na mesma linha e o centro alinhado. O tamanho real do robô não entra na conta.</p></div>
+    </div>
+  </div>
+  <div class="grid g2" style="margin-top:16px">
+    <div class="card"><h3>O que a régua não vê</h3><p>Cor, olhos, boca, costuras, furos e tudo o que fica dentro do contorno. Dois robôs bem diferentes de frente podem ter o mesmo número. Por isso as imagens estão aqui: o número confirma o que o olho vê, não substitui.</p></div>
+    <div class="card"><h3>É uma régua grossa</h3><p>A câmera exata do desenho não é conhecida. Então a régua parte de um ângulo combinado para cada vista, testa os ângulos vizinhos (até 25° para cada lado, de 5 em 5) e fica com o melhor. Isso perdoa um erro de câmera, mas também esconde diferença pequena. Um ou dois milésimos são ruído; diferença grande você enxerga nas imagens.</p></div>
+    <div class="card"><h3>O teto</h3><p>É a malha 3D crua, gerada no computador a partir do desenho e medida com a mesma régua. Ela não chega a 1 porque o desenho são quatro ilustrações, que não batem perfeitamente entre si, e uma malha tem uma forma só. O robô ainda tem rodas, cortes e folgas: em regra, fica abaixo do teto.</p></div>
+    <div class="card"><h3>O alvo</h3><p>Foi definido antes de medir o depois, para ninguém escolher a meta olhando o resultado: metade do caminho entre o antes e o teto. A regra vale para a média das quatro vistas. O alvo por vista, nas tabelas, é a mesma conta aplicada a cada vista.</p></div>
+  </div>
+</div></section>
+
+<section id="capivara" class="bicho"><div class="wrap">
+  <span class="chip">🦫 Capivara</span>
+  <h2>Capivara: de pescoço comprido a pera compacta</h2>
+  <p class="sub">O desenho é uma pera: corpo largo embaixo e a cabeça encostada nele, sem pescoço. O esqueleto antigo não deixava.</p>
+  <div class="grid g4">
+    <div class="card numero"><b>0,777</b><span>antes (v1.0.2), média das vistas</span></div>
+    <div class="card numero"><b>0,920</b><span>depois (v1.1.2)</span></div>
+    <div class="card numero"><b>0,926</b><span>teto: a malha crua do desenho</span></div>
+    <div class="card numero"><b>0,852</b><span>alvo: metade do caminho</span></div>
+  </div>
+  <p class="nota"><strong>Alvo atingido.</strong> O robô percorreu 96 % do caminho entre o antes e o teto.</p>
+  <h3 class="sep3">O desenho de referência</h3>
+  <p class="sub">É a ilustração de onde o robô partiu, em quatro vistas. A régua compara o robô com cada uma delas.</p>
+  <figure class="ref"><a href="assets/capivara-referencia.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/capivara-referencia.jpg" alt="Desenho de referência da capivara em quatro vistas: frente, três quartos, lado e costas. Corpo laranja em forma de pera, focinho marrom, bandana verde com laço na nuca e um aro azul na coxa"></a><figcaption>Ilustração de referência do projeto. Não é foto nem render.</figcaption></figure>
+  <h3 class="sep3">Antes e depois, nas mesmas vistas</h3>
+  <p class="sub">Renders do modelo, na mesma câmera, lado a lado. Embaixo de cada imagem está o IoU daquela vista.</p>
+  <div class="vistas">
+    <div class="card vista"><h4>frente</h4><div class="par"><figure><img loading="lazy" src="assets/capivara-antes-frente.jpg" alt="Render de antes (v1.0.2), vista: frente"><figcaption>antes · IoU <b>0,783</b></figcaption></figure><figure><img loading="lazy" src="assets/capivara-depois-frente.jpg" alt="Render de depois (v1.1.2), vista: frente"><figcaption>depois · IoU <b>0,944</b></figcaption></figure></div></div>
+    <div class="card vista"><h4>três quartos</h4><div class="par"><figure><img loading="lazy" src="assets/capivara-antes-tres-quartos.jpg" alt="Render de antes (v1.0.2), vista: três quartos"><figcaption>antes · IoU <b>0,784</b></figcaption></figure><figure><img loading="lazy" src="assets/capivara-depois-tres-quartos.jpg" alt="Render de depois (v1.1.2), vista: três quartos"><figcaption>depois · IoU <b>0,908</b></figcaption></figure></div></div>
+    <div class="card vista"><h4>lado</h4><div class="par"><figure><img loading="lazy" src="assets/capivara-antes-lado.jpg" alt="Render de antes (v1.0.2), vista: lado"><figcaption>antes · IoU <b>0,736</b></figcaption></figure><figure><img loading="lazy" src="assets/capivara-depois-lado.jpg" alt="Render de depois (v1.1.2), vista: lado"><figcaption>depois · IoU <b>0,906</b></figcaption></figure></div></div>
+    <div class="card vista"><h4>costas</h4><div class="par"><figure><img loading="lazy" src="assets/capivara-antes-costas.jpg" alt="Render de antes (v1.0.2), vista: costas"><figcaption>antes · IoU <b>0,803</b></figcaption></figure><figure><img loading="lazy" src="assets/capivara-depois-costas.jpg" alt="Render de depois (v1.1.2), vista: costas"><figcaption>depois · IoU <b>0,925</b></figcaption></figure></div></div>
+  </div>
+  <h3 class="sep3">Os números, vista por vista</h3>
+  <p class="arraste">↔ no celular, arraste a tabela para o lado</p>
+  <div class="tabela-wrap"><table class="tabela">
+    <thead><tr><th>Vista</th><th>Antes (v1.0.2)</th><th>Depois (v1.1.2)</th><th>Teto</th><th>Alvo</th><th>Ganho</th></tr></thead>
+    <tbody>
+      <tr><td>frente</td><td>0,783</td><td>0,944</td><td>0,943</td><td>0,863</td><td>+0,161</td></tr>
+      <tr><td>três quartos</td><td>0,784</td><td>0,908</td><td>0,911</td><td>0,848</td><td>+0,124</td></tr>
+      <tr><td>lado</td><td>0,736</td><td>0,906</td><td>0,925</td><td>0,831</td><td>+0,170</td></tr>
+      <tr><td>costas</td><td>0,803</td><td>0,925</td><td>0,927</td><td>0,865</td><td>+0,122</td></tr>
+      <tr><td><strong>média</strong></td><td><strong>0,777</strong></td><td><strong>0,920</strong></td><td><strong>0,926</strong></td><td><strong>0,852</strong></td><td><strong>+0,143</strong></td></tr>
+    </tbody></table></div>
+  <p class="nota">Vista em que o robô marca um pouco mais que o teto: frente. A diferença é de milésimos e está dentro do ruído da régua, que escolhe o melhor ângulo vizinho para cada modelo.</p>
+  <h3 class="sep3">A régua, lado a lado</h3>
+  <p class="sub">É a imagem que o programa de medida grava. Cada linha é uma vista: à esquerda o desenho de referência, no meio o modelo na câmera que a régua escolheu, à direita as duas silhuetas sobrepostas. Vermelho é o que só o desenho tem, azul o que só o robô tem, verde o que os dois têm.</p>
+  <div class="regua">
+    <figure><a href="assets/capivara-regua-antes.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/capivara-regua-antes.jpg" alt="Régua de semelhança, com o desenho, o modelo e as silhuetas sobrepostas em cada vista: Antes (v1.0.2)"></a><figcaption><b>Antes (v1.0.2)</b></figcaption></figure>
+    <figure><a href="assets/capivara-regua-depois.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/capivara-regua-depois.jpg" alt="Régua de semelhança, com o desenho, o modelo e as silhuetas sobrepostas em cada vista: Depois (v1.1.2)"></a><figcaption><b>Depois (v1.1.2)</b></figcaption></figure>
+  </div>
+  <p class="nota">Toque na imagem para ampliar. O texto dentro destas imagens está em português. No modelo do meio, a régua pinta as rodas por cima da casca; no robô elas ficam escondidas. O valor "ajustado" é uma segunda medida, com uma pequena folga de escala e de posição: as tabelas desta página usam o IoU sem ajuste. A média escrita no título da imagem pode diferir da tabela em 1 milésimo, por arredondamento.</p>
+  <h3 class="sep3">O que mudou por dentro, e por quê</h3>
+  <div class="grid g2" style="margin-top:22px">
+    <div class="card"><h3>A forma vem do desenho</h3><p>Antes, a casca era desenhada com formas arredondadas simples. Agora uma malha 3D gerada a partir do desenho virou a pele do robô: a casca é essa pele com 2,4 mm de parede, cortada em peças.</p></div>
+    <div class="card"><h3>Esqueleto baixo, só dela</h3><p>No esqueleto antigo, comum aos dois bichos, a junta do pescoço ficava a 185 mm do chão: daí o pescoço comprido. No novo ela desceu para 150 mm, com o servo que vira a cabeça deitado de lado.</p></div>
+    <div class="card"><h3>Apoio na frente</h3><p>A cabeça é grande e fica à frente, e o peso foi junto: o centro de massa cai à frente do eixo das rodas. A esfera de apoio, que era uma só e ficava atrás, virou duas, na frente, sob as patas.</p></div>
+    <div class="card"><h3>Casca em vasos</h3><p>O torso em duas metades, com pernas e traseiro separados, deu lugar a três peças grandes: corpo inteiro, porta traseira e gola. Cada uma tem a base plana na mesa e paredes que sobem perto da vertical, e por isso imprime quase sem suporte. A gola é a própria bandana verde.</p></div>
+  </div>
+  <p class="nota">O que ainda separa a capivara do desenho: o laço da bandana na nuca, que ficou de fora porque a cabeça, ao inclinar para cima, passa pelo lugar dele, e a faceta chata que ficou ali. Lista de compras, arquivos e montagem estão na <a href="../capivara/">página da capivara</a>.</p>
+</div></section>
+
+<section id="dino" class="bicho"><div class="wrap">
+  <span class="chip">🦖 Dinossauro</span>
+  <h2>Dinossauro: pernas na frente, cauda atrás e as rodas dentro das coxas</h2>
+  <p class="sub">O dinossauro já partia mais perto do desenho, e a malha dele tem teto mais baixo: sobrava menos caminho para andar.</p>
+  <div class="grid g4">
+    <div class="card numero"><b>0,814</b><span>antes (v1.0.2), média das vistas</span></div>
+    <div class="card numero"><b>0,871</b><span>depois (v1.1.2)</span></div>
+    <div class="card numero"><b>0,897</b><span>teto: a malha crua do desenho</span></div>
+    <div class="card numero"><b>0,855</b><span>alvo: metade do caminho</span></div>
+  </div>
+  <p class="nota"><strong>Alvo atingido.</strong> O robô percorreu 69 % do caminho entre o antes e o teto.</p>
+  <h3 class="sep3">O desenho de referência</h3>
+  <p class="sub">É a ilustração de onde o robô partiu, em quatro vistas. A régua compara o robô com cada uma delas.</p>
+  <figure class="ref"><a href="assets/dino-referencia.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/dino-referencia.jpg" alt="Desenho de referência do dinossauro em quatro vistas: frente, dois ângulos de três quartos e lado. Corpo verde, barriga creme, olhos azuis grandes, espinhos azuis nas costas e cauda"></a><figcaption>Ilustração de referência do projeto. Não é foto nem render.</figcaption></figure>
+  <h3 class="sep3">Antes e depois, nas mesmas vistas</h3>
+  <p class="sub">Renders do modelo, na mesma câmera, lado a lado. Embaixo de cada imagem está o IoU daquela vista.</p>
+  <div class="vistas">
+    <div class="card vista"><h4>frente</h4><div class="par"><figure><img loading="lazy" src="assets/dino-antes-frente.jpg" alt="Render de antes (v1.0.2), vista: frente"><figcaption>antes · IoU <b>0,875</b></figcaption></figure><figure><img loading="lazy" src="assets/dino-depois-frente.jpg" alt="Render de depois (v1.1.2), vista: frente"><figcaption>depois · IoU <b>0,913</b></figcaption></figure></div></div>
+    <div class="card vista"><h4>três quartos (a)</h4><div class="par"><figure><img loading="lazy" src="assets/dino-antes-tres-quartos-a.jpg" alt="Render de antes (v1.0.2), vista: três quartos (a)"><figcaption>antes · IoU <b>0,808</b></figcaption></figure><figure><img loading="lazy" src="assets/dino-depois-tres-quartos-a.jpg" alt="Render de depois (v1.1.2), vista: três quartos (a)"><figcaption>depois · IoU <b>0,874</b></figcaption></figure></div></div>
+    <div class="card vista"><h4>três quartos (b)</h4><div class="par"><figure><img loading="lazy" src="assets/dino-antes-tres-quartos-b.jpg" alt="Render de antes (v1.0.2), vista: três quartos (b)"><figcaption>antes · IoU <b>0,787</b></figcaption></figure><figure><img loading="lazy" src="assets/dino-depois-tres-quartos-b.jpg" alt="Render de depois (v1.1.2), vista: três quartos (b)"><figcaption>depois · IoU <b>0,862</b></figcaption></figure></div></div>
+    <div class="card vista"><h4>lado</h4><div class="par"><figure><img loading="lazy" src="assets/dino-antes-lado.jpg" alt="Render de antes (v1.0.2), vista: lado"><figcaption>antes · IoU <b>0,786</b></figcaption></figure><figure><img loading="lazy" src="assets/dino-depois-lado.jpg" alt="Render de depois (v1.1.2), vista: lado"><figcaption>depois · IoU <b>0,837</b></figcaption></figure></div></div>
+  </div>
+  <h3 class="sep3">Os números, vista por vista</h3>
+  <p class="arraste">↔ no celular, arraste a tabela para o lado</p>
+  <div class="tabela-wrap"><table class="tabela">
+    <thead><tr><th>Vista</th><th>Antes (v1.0.2)</th><th>Depois (v1.1.2)</th><th>Teto</th><th>Alvo</th><th>Ganho</th></tr></thead>
+    <tbody>
+      <tr><td>frente</td><td>0,875</td><td>0,913</td><td>0,942</td><td>0,908</td><td>+0,038</td></tr>
+      <tr><td>três quartos (a)</td><td>0,808</td><td>0,874</td><td>0,888</td><td>0,848</td><td>+0,066</td></tr>
+      <tr><td>três quartos (b)</td><td>0,787</td><td>0,862</td><td>0,889</td><td>0,838</td><td>+0,075</td></tr>
+      <tr><td>lado</td><td>0,786</td><td>0,837</td><td>0,870</td><td>0,828</td><td>+0,051</td></tr>
+      <tr><td><strong>média</strong></td><td><strong>0,814</strong></td><td><strong>0,871</strong></td><td><strong>0,897</strong></td><td><strong>0,855</strong></td><td><strong>+0,057</strong></td></tr>
+    </tbody></table></div>
+  <h3 class="sep3">A régua, lado a lado</h3>
+  <p class="sub">É a imagem que o programa de medida grava. Cada linha é uma vista: à esquerda o desenho de referência, no meio o modelo na câmera que a régua escolheu, à direita as duas silhuetas sobrepostas. Vermelho é o que só o desenho tem, azul o que só o robô tem, verde o que os dois têm.</p>
+  <div class="regua">
+    <figure><a href="assets/dino-regua-antes.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/dino-regua-antes.jpg" alt="Régua de semelhança, com o desenho, o modelo e as silhuetas sobrepostas em cada vista: Antes (v1.0.2)"></a><figcaption><b>Antes (v1.0.2)</b></figcaption></figure>
+    <figure><a href="assets/dino-regua-depois.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/dino-regua-depois.jpg" alt="Régua de semelhança, com o desenho, o modelo e as silhuetas sobrepostas em cada vista: Depois (v1.1.2)"></a><figcaption><b>Depois (v1.1.2)</b></figcaption></figure>
+  </div>
+  <p class="nota">Toque na imagem para ampliar. O texto dentro destas imagens está em português. No modelo do meio, a régua pinta as rodas por cima da casca; no robô elas ficam escondidas. O valor "ajustado" é uma segunda medida, com uma pequena folga de escala e de posição: as tabelas desta página usam o IoU sem ajuste. A média escrita no título da imagem pode diferir da tabela em 1 milésimo, por arredondamento.</p>
+  <h3 class="sep3">O que mudou por dentro, e por quê</h3>
+  <div class="grid g2" style="margin-top:22px">
+    <div class="card"><h3>A forma vem do desenho</h3><p>Como na capivara, a casca deixou de ser desenhada com formas simples: é a pele da malha 3D gerada a partir do desenho, com 2,4 mm de parede, cortada em peças.</p></div>
+    <div class="card"><h3>Esqueleto só dele, com as rodas dentro das coxas</h3><p>Na forma nova as pernas ficam na frente e a cauda atrás. O eixo das rodas passa pelas coxas e a casca cobre as rodas. Com o esqueleto da capivara, o dinossauro tombaria para trás.</p></div>
+    <div class="card"><h3>Apoio atrás e pescoço mais curto</h3><p>O centro de massa fica atrás do eixo das rodas, então a esfera de apoio fica atrás, sob a raiz da cauda. A junta do pescoço desceu de 185 para 164 mm do chão, para o pescoço ficar curto como no desenho.</p></div>
+    <div class="card"><h3>Casca em vasos e boca quase reta</h3><p>Corpo, traseira e gola imprimem em pé, com a borda plana na mesa, no lugar do torso em duas metades. A malha vinha de boca aberta: o vão foi fechado e a boca abre 12°. A mandíbula fica rente à esfera do pescoço, e cada grau a mais faria o queixo recuar contra ela.</p></div>
+  </div>
+  <p class="nota">O que ainda separa o dinossauro da malha: a boca fechada, a faixa reta entre as pernas e os braços lisos. Lista de compras, arquivos e montagem estão na <a href="../dino/">página do dinossauro</a>.</p>
+</div></section>
+
+<section id="metodo"><div class="wrap">
+  <span class="chip">Método</span>
+  <h2>Como a medida é feita</h2>
+  <p class="sub">O protocolo é o mesmo para o antes, o depois e a malha. Se a régua mudasse no meio, os números não se comparariam.</p>
+  <ol class="lista"><li>Cada vista do desenho vira uma silhueta: o personagem recortado do fundo.</li><li>O modelo é desenhado sem perspectiva, só com as peças impressas, as rodas e a esfera de apoio, na pose neutra e sem os componentes da fase 2.</li><li>As duas silhuetas ficam com a mesma altura (400 pixels), a base na mesma linha e o centro alinhado.</li><li>A régua parte do ângulo combinado para a vista, testa os vizinhos (25° para cada lado, de 5 em 5, e cinco alturas de câmera) e guarda o maior IoU.</li><li>O número de cada bicho é a média simples das vistas.</li></ol>
+  <p class="nota">Dinossauro: o alvo é 0,855. A conta usa os valores sem arredondar (0,8137 e 0,8972). Feita com os números já arredondados das tabelas (0,814 e 0,897), ela daria 0,856: a diferença é só de arredondamento.</p>
+  <p class="nota">Os números saem de <code>comparacao/semelhanca.json</code>, gravado pelo programa <code>comum/cad/comparar.py</code>. A tabela completa, com o ângulo escolhido em cada vista, está em <a href="https://github.com/inematds/robos-impressos/blob/main/comparacao/semelhanca.md" target="_blank" rel="noopener">comparacao/semelhanca.md</a> (em português).</p>
+  <p class="nota">Para repetir a medida são necessárias as imagens de referência. Elas não fazem parte do repositório: só as mostradas nesta página foram publicadas.</p>
+</div></section>
+
+<section id="quadrados"><div class="wrap">
+  <span class="chip">Os outros dois robôs</span>
+  <h2>Os robôs quadrados têm número, mas não têm esta história</h2>
+  <p class="sub">O robô quadrado de mesa foi medido em uma vista só e não teve malha: ficou em 0,797 (era 0,755), abaixo do alvo de 0,855. O robô quadrado que roda é novo e não tem desenho próprio. O número e a explicação estão na página de cada um.</p>
+  <div class="cta">
+    <a class="btn ghost" href="../cubo/#semelhanca">Robô quadrado de mesa</a>
+    <a class="btn ghost" href="../cubo-rodas/#semelhanca">Robô quadrado que roda</a>
+    <a class="btn" href="../">Voltar ao guia dos quatro robôs</a>
+  </div>
+</div></section>
+
+<footer>
+  <div class="wrap">
+    <div class="pill">Python · trimesh · manifold3d</div><div class="pill">Blender (renders)</div><div class="pill">Bambu Lab A1 · PLA + PETG</div>
+    <p style="margin-top:18px">robos-impressos · v1.1.2 · conteúdo aberto e gratuito ·
+      <a href="../">guia geral dos robôs</a> ·
+      <a href="https://github.com/inematds/robos-impressos">inematds/robos-impressos</a> ·
+      <a href="https://inema.club">INEMA.CLUB</a></p>
+  </div>
+</footer>
+<a class="topo" href="#top" aria-label="Voltar ao topo" title="Voltar ao topo">↑</a>
+<script>(function(){var t=document.querySelector(".topo");function f(){t.style.display=window.scrollY>700?"block":"none"}f();window.addEventListener("scroll",f,{passive:true})})()</script>
+
+<script>
+  (function(){
+    var KEY='robos-impressos-theme'; // troque robos-impressos pelo nome do projeto
+    var b=document.body, t=document.getElementById('themeToggle');
+    if(localStorage.getItem(KEY)==='light'){ b.classList.add('light'); t.textContent='☀️'; }
+    t.addEventListener('click',function(){
+      var light=b.classList.toggle('light');
+      t.textContent=light?'☀️':'🌙';
+      localStorage.setItem(KEY, light?'light':'dark');
+    });
+  })();
+</script>
+</body>
+</html>
