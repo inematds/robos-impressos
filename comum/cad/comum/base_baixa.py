@@ -246,7 +246,7 @@ def bandeja_uno(E) -> Peca:
     m, _ = _bandeja(E, 1, E.uno_y[0], E.uno_y[1], pos_uno(E), 3.5, F.m3_piloto, (0, (E.uno_y[0] + E.uno_y[1]) / 2, 22, 30))
     return Peca("bandeja-uno", m, material="PETG", cor="amarelo", macica=True, explode=(0, -150, 0), perimetros=4, infill=25,
                 orientacao="placa na mesa, pilares para cima", reforco="placa de 3 mm apoiada nos dois trilhos em todo o comprimento do rack",
-                obs="bandeja deslizante do Arduino Uno + shield (nível de cima); sai por trás, pela porta; 4 M3x8 auto-atarraxantes")
+                obs="bandeja deslizante do Arduino Uno + shield (nível de cima); sai por trás, pela porta; 4 M3x8 Allen direto no plástico")
 
 
 # ------------------------------------------------------------------ pescoço (peças comuns de base.py, transladadas)

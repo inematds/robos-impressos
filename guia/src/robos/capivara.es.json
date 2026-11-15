@@ -411,7 +411,7 @@
  "a_ab83d0a440": "placa sobre la cama, pilares hacia arriba",
  "a_c33cf9b6f7": "placa de 3 mm apoyada en ambos rieles a lo largo de todo el rack",
  "a_db16b01ba8": "bandeja deslizante para Raspberry Pi 4/5 (nivel inferior); sale por detrás, por la abertura; 4 tornillos autorroscantes M2,5x8",
- "a_17783500bb": "bandeja deslizante del Arduino Uno + shield (nivel superior); sale por detrás, por la puerta; 4 M3x8 autorroscantes",
+ "a_692d32747c": "bandeja deslizante del Arduino Uno + shield (nivel superior); sale por detrás, por la puerta; 4 M3x8 Allen directamente en el plástico",
  "a_c774c25ac0": "sí (1,8 mm bajo la base, alrededor del anillo de centrado del horn; soportes normales, fuera de la vista)",
  "a_93cc05681a": "base sobre la cama, montantes hacia arriba",
  "a_01798371a1": "NO imprimas las capas a lo largo de los montantes: la carga del tilt flexiona los montantes en el plano de las capas; por eso, 5 perímetros y 40 % de relleno",

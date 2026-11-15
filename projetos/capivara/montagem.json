@@ -1844,7 +1844,7 @@
    "plastico_cm3": 12.3,
    "massa_g": 15.6,
    "tempo_h": 0.65,
-   "obs": "bandeja deslizante do Arduino Uno + shield (nível de cima); sai por trás, pela porta; 4 M3x8 auto-atarraxantes",
+   "obs": "bandeja deslizante do Arduino Uno + shield (nível de cima); sai por trás, pela porta; 4 M3x8 Allen direto no plástico",
    "liso": true,
    "perimetros": 4,
    "infill": 25,

@@ -411,7 +411,7 @@
  "a_ab83d0a440": "plate on the build plate, pillars facing up",
  "a_c33cf9b6f7": "3 mm plate resting on both rails along the full length of the rack",
  "a_db16b01ba8": "Raspberry Pi 4/5 sliding tray (bottom level); slides out at the back through the door; 4 M2.5x8 self-tapping screws",
- "a_17783500bb": "sliding Arduino Uno + shield tray (upper level); comes out at the back through the door; 4 M3x8 self-tapping screws",
+ "a_692d32747c": "sliding tray for Arduino Uno + shield (top level); slides out through the rear door; 4 M3x8 Allen screws directly into the plastic",
  "a_c774c25ac0": "yes (1.8 mm under the base, around the servo horn centring ring; normal supports, out of sight)",
  "a_93cc05681a": "base on the build plate, uprights facing up",
  "a_01798371a1": "NO layers along the uprights: the tilt load bends the uprights in the layer plane, so use 5 perimeters and 40% infill",
