@@ -60,7 +60,8 @@ GLOSSARIO = ('- "horn" (a peça que encaixa no eixo do servo) fica "horn": "serv
              '"termo-retrátil" = heat-shrink tubing / tubo termorretráctil. "esquema de ligação" = wiring diagram / esquema de conexión. '
              '"não testado na bancada" = not bench-tested / no probado en el banco de trabajo. '
              '"robô quadrado de mesa" = square desktop robot / robot cuadrado de mesa; "robô de mesa" = desktop robot / robot de mesa (nunca "tabletop"). '
-             'Faixa de preço "R$ 10 a R$ 20" = "R$ 10 to R$ 20" / "R$ 10 a R$ 20".\n'
+             'Faixa de preço "R$ 10 a R$ 20" = "R$ 10 to R$ 20" / "R$ 10 a R$ 20". '
+             '"barra de emenda" (a barra de bornes tipo sindal) = terminal block / barra de conexión, sempre com esse nome; "borne 1" = terminal 1 / borne 1.\n'
              '- Não traduza: Sensor Shield, UBEC, BMS, LM2596, GPIO, Dupont, SEL, VCC, GND, COM, IIC, NC, Mercado Livre, Raspberry Pi Imager, Raspberry Pi OS, Arduino IDE, LCD-show, MPI3501.')
 MD_REGRA = ('- Os valores com chave "d_" são trechos de Markdown: mantenha idênticos os marcadores (#, -, 1., **, >), o que estiver entre crases, '
             'os nomes de arquivo, os caminhos e as URLs dos links; traduza só o texto.')

@@ -36,9 +36,9 @@ Why the Arduino gets 5.1 V from the LM2596 instead of the battery voltage: the A
 ([Arduino Uno R3 datasheet](https://docs.arduino.cc/resources/datasheets/A000066-datasheet.pdf)), and the pack stays below 7 V for a good
 part of its discharge.
 
-## The terminal strip
+## The terminal block
 
-It is a screw terminal strip (sindal type) that sits loose in the base. You use 3 of its terminals:
+It is a screw terminal block (sindal type) that sits loose in the base. You use 3 of its terminals:
 
 - **Terminal 1, the 5.1 V:** on one side, the red wire from the LM2596. On the other, the red wire going up to the Raspberry Pi and the jumper going to the + pin of the shield's COM connector.
 - **Terminal 2, the negative:** on one side, the black wire from the LM2596 and one end of the resistor pair. On the other, the black wire going up to the Raspberry Pi and the jumper going to the − pin of the COM connector.
@@ -92,9 +92,9 @@ It is a screw terminal strip (sindal type) that sits loose in the base. You use 
 |---|---|---|---|---|
 | Raspberry Pi: pin 32 (GPIO12, TX), on the lower 2 × 2 connector | Through the neck to the S pin of D0 (RX) on the Sensor Shield | green | 40 cm jumper: one end soldered to the 2 × 2 connector, the other with the female connector | Direct: the Pi's 3.3 V already counts as a high level for Arduino. |
 | Raspberry Pi: pin 34 (GND), on the lower 2 × 2 connector | Through the neck, to the G pin on D0 of the Sensor Shield | black | 40 cm jumper: one end soldered to the 2 × 2 connector, the other with the female connector |  |
-| Raspberry Pi: pin 33 (GPIO13, RX), on the lower 2 × 2 connector | Through the neck, to terminal 3 on the terminal strip | blue | 40 cm jumper: one end soldered to the 2 × 2 connector, the other cut and stripped | This wire never goes straight to D1: that’s 5 V on a 3.3 V pin. |
-| Terminal strip, terminal 3 | 1 kΩ resistor and, after it, the S pin on D1 (TX) of the Sensor Shield | blue | Half a jumper, soldered to the resistor lead, with the female connector on the shield | Assembled on the workbench, in prep step 3. |
-| Terminal strip, terminal 3 | 2 1 kΩ resistors in series and, after them, terminal 2 on the terminal strip (negative) | no wire | resistor leads | The 3 resistors form the voltage divider: 5 V becomes 3.3 V. |
+| Raspberry Pi: pin 33 (GPIO13, RX), on the lower 2 × 2 connector | Through the neck, to terminal 3 on the terminal block | blue | 40 cm jumper: one end soldered to the 2 × 2 connector, the other cut and stripped | This wire never goes straight to D1: that’s 5 V on a 3.3 V pin. |
+| Terminal block, terminal 3 | 1 kΩ resistor and, after it, the S pin on D1 (TX) of the Sensor Shield | blue | Half a jumper, soldered to the resistor lead, with the female connector on the shield | Assembled on the workbench, in prep step 3. |
+| Terminal block, terminal 3 | 2 1 kΩ resistors in series and, after them, terminal 2 on the block (negative) | no wire | resistor leads | The 3 resistors form the voltage divider: 5 V becomes 3.3 V. |
 | MPI3501 screen | Fitted onto Raspberry Pi pins 1 to 26 | no wire | the screen's own connector | Uses SPI and the 5 V from pins 2 and 4. |
 <!-- /GERADO -->
 
@@ -108,7 +108,7 @@ the COM connector with 4 upright pins (TX, RX, −, and +) and the SEL jumper be
 <!-- GERADO:prep1 -->
 1. Solder the 3rd wire (yellow) to the metal strip joining the two cells, with the cells out of the holder.
 2. Solder 2 red 10 cm wires to the 2 switch terminals. Pass the free ends through the cutout in the base, from the outside in, and fit the switch into the cutout. Do this BEFORE soldering the switch to the rest of the wiring: once connected to the wiring harness, it won’t fit through the 13.5 × 9 mm cutout.
-3. With the base beside you as a guide for wire lengths, connect the support, fuse, protection board, and charger according to the wiring table.
+3. With the base beside you as a guide for wire lengths, connect the holder, fuse, protection board, and charger according to the wiring table. Leave about 8 cm of slack in the holder wires so you can pull it out through the rear door when it’s time to replace the cells.
 4. Solder one end of the switch to the protection board’s positive output. Solder the other end to the LM2596 IN+ input and the UBEC red input wire. Connect the negatives of both inputs to the protection board’s negative output.
 5. At the LM2596 output, solder 2 short 20 AWG wires and tighten their other ends in the terminal block: red in screw terminal 1, black in screw terminal 2. Do not connect anything else to the outputs.
 6. Put the cells in the holder, checking which side is positive, and turn on the switch.
@@ -130,11 +130,11 @@ the center and holds them there.
 5. If the D9 V pin reads 5 V, the SEL jumper is still in place. If the COM + pin does not read 5 V, your shield differs from the store photo: look for another pin labeled + or 5V that reads 5 V with SEL removed. A wrong pin here sends the servos' 6 V to the Raspberry Pi.
 6. Unplug the USB cable.
 7. Connect the UBEC’s 6 V to the blue screw terminal (VCC and GND) and the 1000 µF capacitor to the same terminal, with its long lead in VCC.
-8. Take 2 40 cm jumper wires, cut the connector off one end of each, and strip the wires. Tighten one into terminal 1 on the terminal block, opposite the converter, and plug its connector into the + pin of the COM connector. The other goes from terminal 2 to the − pin of the same connector.
+8. Take 2 40 cm jumper wires, cut the connector off one end of each, and strip the wires. Clamp one in terminal 1 of the terminal block, opposite the converter, and plug its connector into the + pin on the COM connector. Connect the other from terminal 2 to the − pin on the same connector. Leave the TX and RX pins beside it empty: 5 V on one of them reaches the Raspberry Pi through the serial wire.
 9. Connect the pan servo to D9 and the tilt servo to D10: brown or black wire to G, red to V, orange or yellow to S.
 10. Turn on the switch: both servos move to the center (90°) and the Uno LED blinks once per second.
 11. Turn off the switch. From now on, do not turn the servo shafts by hand.
-12. Disconnect the test setup because the Uno is screwed onto the base without the shield: unplug the 2 servos from D9 and D10, remove the UBEC wires and capacitor from the blue screw terminal, remove the 2 jumpers from the COM connector, and unplug the shield. Everything goes back in place during assembly.
+12. Undo the test connections for assembly: remove the 2 servos from D9 and D10, disconnect the UBEC wires and capacitor from the blue screw terminal, and remove the 2 jumpers from the COM connector. If the shield covers the Uno mounting holes, remove it too. Take the 2 cells out of the holder: they go back in during assembly, at the battery step.
 <!-- /GERADO -->
 
 Three notes:
@@ -148,10 +148,13 @@ run on an assembled robot.
 
 ## Prep step 3: make the serial cable and resistor divider
 
-The Raspberry Pi goes in the head and the Arduino in the base. They communicate over 3 wires that run down through the neck: green, blue,
-and black. In this prep step, you solder these 3 wires to a low-profile connector that plugs into the Pi pins, and build the 3-resistor
-divider on the terminal strip. The whole robot uses 6 40 cm jumpers: 3 in this cable, 1 cut in half for the
-divider, and 2 that carry power to the Arduino (prep step 2). One 40 cm jumper will be left over from a kit.
+The Raspberry Pi sits in the head and the Arduino in the base. They communicate through 3 wires that run down the neck: green, blue
+and black. In this prep step, you solder these 3 wires to a low-profile connector that fits into the Pi pins, and build the 3-
+resistor divider on the terminal block. The whole robot uses 6 40 cm jumpers: 3 in this cable, 1 cut in half for the
+divider, and 2 that supply power to the Arduino (prep step 2). One 40 cm kit is left over. The length is tight: based on the model, it’s
+about 21 cm in a straight line from the Pi pins to the shield, plus 15 cm of slack (estimate). If you run short, splice
+a piece of jumper onto the base end, using solder and heat-shrink tubing, during this prep step. Do this prep step with the
+cells out of the holder.
 
 <!-- GERADO:prep3 -->
 1. With the wire cutters, cut a 2 × 2 piece from the female pin header: 2 rows with 2 holes each. This is the low-profile connector that goes on Raspberry Pi pins 31 to 34.
@@ -222,14 +225,14 @@ There are 8 wires: 2 power wires (5.1 V from the Raspberry Pi, 20 AWG), 3 serial
 connected inside the head BEFORE the head shell, because the Raspberry Pi is enclosed afterward. They also can’t hang down
 under the fork at this point, because the bottom of the head shell passes beneath it. Follow this order:
 
-1. When assembling the Raspberry Pi, before installing the display, plug the serial cable's low-profile connector into pins 31 to 34.
-2. With the head still open (frame, display, tilt servo, and fork in place), screw the 2 5.1 V wires into the USB-C adapter and plug it into the Raspberry Pi.
+1. When assembling the Raspberry Pi, before installing the screen, plug the low-profile connector on the serial cable into pins 31 to 34.
+2. With the head still open (frame, screen, tilt servo, and fork in place), screw the 2 5.1 V wires into the USB-C adapter and plug it into the Raspberry Pi.
 3. Connect the 30 cm extension to the tilt servo cable.
-4. Feed the 8 wires through the fork's 9 mm hole, from top to bottom. Feed the extension connector first; it is 7.6 mm wide and fits snugly.
-5. Stop when the wire ends are flush with the underside of the fork. Leave about 5 cm of extra wire inside the head: it tilts around the fork.
-6. Close the head with the head shell. Use tweezers to pull the ends of the 8 wires out through the opening in the bottom of the shell.
-7. Feed the wires through the neck tube and seat the head on top of it.
-8. In the base, with the switch off and no soldering: connect the 2 5.1 V wires to terminals 1 and 2 of the terminal strip; the blue wire to terminal 3; the green connector to the S pin on D0 and the black connector to the G pin on D0; the divider jumper to the S pin on D1; and the servo extension to D10.
+4. Feed the 8 wires down through the fork’s 9 mm hole, from top to bottom. Start with the extension connector, which is 7.6 mm wide and fits snugly.
+5. Stop when the ends are flush with the underside of the fork. Leave about 5 cm of extra wire inside the head: it tilts around the fork.
+6. Close the head with the head shell. Use tweezers to pull the ends of the 8 wires out through the slot in the bottom of the shell.
+7. Feed the wires through the neck tube and seat the head on it.
+8. At the base, with the switch off and without soldering: connect the 2 5.1 V wires to terminals 1 and 2 of the terminal block; the blue wire to terminal 3; the green wire’s connector to pin S on D0 and the black wire’s connector to pin G on D0; the divider jumper to pin S on D1; the servo extension to D10.
 
 Leave about 10 cm of slack inside the base: the neck turns almost one full rotation and twists the wires. This routing has never been
 tested with the printed parts.
@@ -260,11 +263,11 @@ The Raspberry Pi 4 is enclosed in the head, which is made of PLA and has no vent
 
 ## First time you turn on the assembled robot
 
-1. Switch off. Set the multimeter to continuity and check that the pack's positive and negative terminals are not shorted.
-2. Before tightening the 2 wires coming down from the Raspberry Pi into the terminal strip, switch on and measure at the terminal strip, on the converter side: 5.1 V between terminals 1 and 2, with red on positive. Measure 6 V at the blue wire. Switch off.
-3. Tighten the Pi wires into the terminal strip, red to terminal 1 and black to terminal 2, then switch on again.
-4. The Arduino LED blinks, both servos hold the middle point, the Raspberry Pi power LED lights up, and in about 1 minute the display shows the system.
-5. If nothing lights up, switch off and check the fuse.
+1. Switch off. Set the multimeter to continuity and check that the pack’s positive and negative terminals are not shorted.
+2. Before tightening the 2 wires coming down from the Raspberry Pi into the terminal block, switch on and measure at the terminal block, on the converter side: 5.1 V between terminals 1 and 2, with the red probe on positive. Measure 6 V at the blue terminal. Switch off.
+3. Tighten the Pi wires into the terminal block, red to terminal 1 and black to terminal 2, then switch on again.
+4. The Arduino LED flashes, both servos hold the center position, the Raspberry Pi power LED turns on, and, in about 1 minute, the screen shows the system.
+5. If nothing turns on, switch off and check the fuse.
 
 ## What has not been tested yet
 
@@ -275,7 +278,7 @@ The Raspberry Pi 4 is enclosed in the head, which is made of PLA and has no vent
 - Raspberry Pi pins 31 to 34 are under the screen board. The clearance there (17.5 mm in the model) is unconfirmed: if the low-profile connector doesn't fit, the 3 serial wires will have to be soldered.
 - The test coupon does not check the MG996R servo window or the M5 screw thread. Check the servo window in the head frame (build plate 01). The M5 thread is in the fork arm (build plate 03). Both are printed before the long print jobs.
 - With the Arduino screwed to the base, the USB cable won't fit: there is about 10 mm of clearance to the wall. To reprogram it, you need to remove its 4 screws.
-- The fuse holder, splice bar, and 3 serial resistors don’t have modeled locations: they sit loose among the wires, insulated with heat-shrink tubing.
+- The fuse holder, terminal block, and 3 serial resistors have no modeled mounting spot: they hang loose on the wires, insulated with heat-shrink tubing.
 - Measurements marked NC come from store listings. Measure your part before printing the section that touches it.
 - The path for the 8 wires through the fork hole and the slot in the bottom of the head shell has never been tested with printed parts.
 - Heat: the Raspberry Pi 4 is enclosed in the head, which is made of PLA and has no ventilation opening. PLA softens near 60 °C, and the Pi throttles starting at 80 °C. Attach the heatsinks and measure with the `vcgencmd measure_temp` command. If it goes above 70 °C, print the head shell in PETG or open ventilation holes at the back.

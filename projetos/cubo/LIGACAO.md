@@ -110,7 +110,7 @@ o conector COM com 4 pinos em pé (TX, RX, − e +) e o jumper SEL ao lado do bo
 <!-- GERADO:prep1 -->
 1. Solde o 3º fio (amarelo) na lâmina de metal que une as duas células, com as células fora do suporte.
 2. Solde 2 fios vermelhos de 10 cm nos 2 terminais da chave. Passe as pontas livres pelo recorte da base, de fora para dentro, e encaixe a chave no recorte. Faça isso ANTES de soldar a chave no resto: ligada ao chicote, ela não passa pelo recorte de 13,5 × 9 mm.
-3. Com a base ao lado servindo de gabarito do comprimento dos fios, ligue o suporte, o fusível, a placa de proteção e o carregador, conforme a tabela de ligações.
+3. Com a base ao lado servindo de gabarito do comprimento dos fios, ligue o suporte, o fusível, a placa de proteção e o carregador, conforme a tabela de ligações. Deixe uns 8 cm de folga nos fios do suporte, para ele sair pela porta de trás na hora de trocar as células.
 4. Solde uma ponta da chave na saída positiva da placa de proteção. Solde a outra na entrada IN+ do LM2596 e no fio vermelho de entrada do UBEC. Os negativos das duas entradas vão na saída negativa da placa de proteção.
 5. Na saída do LM2596, solde 2 fios curtos de 20 AWG e aperte as outras pontas na barra de emenda: o vermelho no borne 1, o preto no borne 2. Não ligue mais nada nas saídas.
 6. Ponha as células no suporte, conferindo o lado do positivo, e ligue a chave.
@@ -132,11 +132,11 @@ o centro e os mantém lá.
 5. Se o V do D9 marcar 5 V, o jumper SEL ainda está posto. Se o + do COM não marcar 5 V, o seu shield é diferente do da foto da loja: procure outro pino marcado + ou 5V que marque 5 V com o SEL retirado. Um pino errado aqui põe os 6 V dos servos no Raspberry Pi.
 6. Tire o cabo USB.
 7. Ligue os 6 V do UBEC no borne azul (VCC e GND) e o capacitor de 1000 µF no mesmo borne, com a perna comprida no VCC.
-8. Pegue 2 jumpers de 40 cm, corte o conector de uma ponta de cada um e descasque. Aperte um no borne 1 da barra de emenda, do lado oposto ao do conversor, e encaixe o conector dele no pino + do conector COM. O outro vai do borne 2 ao pino − do mesmo conector.
+8. Pegue 2 jumpers de 40 cm, corte o conector de uma ponta de cada um e descasque. Aperte um no borne 1 da barra de emenda, do lado oposto ao do conversor, e encaixe o conector dele no pino + do conector COM. O outro vai do borne 2 ao pino − do mesmo conector. Os pinos TX e RX, ao lado, ficam vazios: 5 V num deles chegam ao Raspberry Pi pelo fio da serial.
 9. Ligue o servo de pan no D9 e o servo de tilt no D10: fio marrom ou preto no G, vermelho no V, laranja ou amarelo no S.
 10. Ligue a chave: os dois servos vão para o centro (90°) e o LED do Uno pisca uma vez por segundo.
 11. Desligue a chave. Daqui em diante não gire os eixos dos servos com a mão.
-12. Desfaça as ligações de teste, porque o Uno é parafusado na base sem o shield: tire os 2 servos do D9 e do D10, solte do borne azul os fios do UBEC e o capacitor, tire os 2 jumpers do conector COM e desencaixe o shield. Tudo volta ao lugar na montagem.
+12. Desfaça as ligações de teste para a montagem: tire os 2 servos do D9 e do D10, solte do borne azul os fios do UBEC e o capacitor e tire os 2 jumpers do conector COM. Se o shield cobrir os furos de fixação do Uno, desencaixe-o também. Tire as 2 células do suporte: elas só voltam na montagem, no passo da bateria.
 <!-- /GERADO -->
 
 Três avisos:
@@ -153,7 +153,10 @@ rodado num robô montado.
 O Raspberry Pi fica na cabeça e o Arduino na base. Os dois conversam por 3 fios que descem pelo pescoço: verde, azul
 e preto. Neste preparo você solda esses 3 fios num conector baixo, que entra nos pinos do Pi, e monta o divisor de 3
 resistores na barra de emenda. São 6 jumpers de 40 cm no robô inteiro: 3 neste cabo, 1 cortado ao meio para o
-divisor e 2 que levam energia ao Arduino (preparo 2). Um kit de 40 sobra.
+divisor e 2 que levam energia ao Arduino (preparo 2). Um kit de 40 sobra. O comprimento fica justo: pelo modelo são
+cerca de 21 cm em linha reta dos pinos do Pi até o shield, mais 15 cm de folgas (estimativa). Se faltar fio, emende
+um pedaço de jumper na ponta da base, com solda e termo-retrátil, ainda neste preparo. Faça este preparo com as
+células fora do suporte.
 
 <!-- GERADO:prep3 -->
 1. Com o alicate de corte, corte da barra de pinos fêmea um pedaço de 2 × 2: 2 fileiras com 2 furos cada. É o conector baixo que vai nos pinos 31 a 34 do Raspberry Pi.

@@ -26,20 +26,20 @@ numerados de los 4 preparativos son los mismos que aparecen en la página.
 
 ## Qué alimenta cada componente
 
-- **Pack 2S:** dos celdas 18650 en serie, de 6 V (vacío) a 8,4 V (lleno). Pasa por el fusible y por la placa de protección (BMS).
+- **Pack 2S:** dos celdas 18650 en serie, de 6 V (vacío) a 8,4 V (cargado). Pasa por el fusible y por la placa de protección (BMS).
 - **Cargador USB-C:** queda conectado a la salida de la placa de protección, antes del interruptor. El robot se carga apagado, con una fuente USB-C de 15 W o más.
 - **Interruptor:** corta el positivo que va a los dos convertidores.
-- **LM2596, ajustado en 5,1 V:** la salida llega a una regleta de conexión en la base. De allí salen el par que alimenta la Raspberry Pi (mediante el adaptador USB-C con bornes) y el par que alimenta el Arduino (por los pines + y − del conector COM del Sensor Shield).
-- **UBEC en 6 V:** alimenta solo los 2 servos, por el borne azul del Sensor Shield, con el jumper SEL retirado.
+- **LM2596, ajustado a 5,1 V:** la salida va a una barra de conexión en la base. De ella salen el par que alimenta la Raspberry Pi (por el adaptador USB-C con bornes) y el par que alimenta el Arduino (por los pines + y − del conector COM del Sensor Shield).
+- **UBEC a 6 V:** alimenta solo los 2 servos, por el borne azul del Sensor Shield, con el jumper SEL retirado.
 - **Negativo (GND):** es uno solo para todo el robot.
 
 Por qué el Arduino recibe los 5,1 V del LM2596 y no el voltaje de la batería: la entrada VIN del Arduino Uno requiere de 7 a 12 V
 ([ficha del Arduino Uno R3](https://docs.arduino.cc/resources/datasheets/A000066-datasheet.pdf)) y el pack pasa buena
 parte de la descarga por debajo de 7 V.
 
-## La barra de empalme
+## La barra de conexión
 
-Es una barra de bornes de tornillo (tipo regleta) que queda suelta en la base. Usas 3 bornes de ella:
+Es una barra de bornes de tornillo (tipo sindal) que queda suelta en la base. Usas 3 bornes:
 
 - **Borne 1, los 5,1 V:** de un lado, el cable rojo que viene del LM2596. Del otro, el cable rojo que sube a la Raspberry Pi y el jumper que va al pin + del conector COM del shield.
 - **Borne 2, el negativo:** de un lado, el cable negro del LM2596 y un extremo del par de resistencias. Del otro, el cable negro que sube a la Raspberry Pi y el jumper que va al pin − del conector COM.
@@ -110,7 +110,7 @@ el conector COM con 4 pines verticales (TX, RX, − y +) y el jumper SEL al lado
 <!-- GERADO:prep1 -->
 1. Suelda el 3.er cable (amarillo) a la lámina de metal que une las dos celdas, con las celdas fuera del soporte.
 2. Suelda 2 cables rojos de 10 cm a los 2 terminales del interruptor. Pasa los extremos libres por el recorte de la base, de afuera hacia adentro, y encaja el interruptor en el recorte. Hazlo ANTES de soldar el interruptor al resto: conectado al mazo de cables, no pasa por el recorte de 13,5 × 9 mm.
-3. Con la base al lado como plantilla para medir los cables, conecta el soporte, el fusible, la placa de protección y el cargador según la tabla de conexiones.
+3. Con la base al lado como guía para medir el largo de los cables, conecta el soporte, el fusible, la placa de protección y el cargador según la tabla de conexiones. Deja unos 8 cm de holgura en los cables del soporte para que salga por la puerta trasera cuando cambies las celdas.
 4. Suelda un extremo del interruptor a la salida positiva de la placa de protección. Suelda el otro a la entrada IN+ del LM2596 y al cable rojo de entrada del UBEC. Los negativos de ambas entradas van a la salida negativa de la placa de protección.
 5. En la salida del LM2596, suelda 2 cables cortos de 20 AWG y aprieta los otros extremos en la barra de conexión: el rojo en el borne 1 y el negro en el borne 2. No conectes nada más a las salidas.
 6. Pon las celdas en el soporte, verificando el lado positivo, y enciende el interruptor.
@@ -132,11 +132,11 @@ al centro y los mantiene allí.
 5. Si el pin V de D9 marca 5 V, el jumper SEL todavía está puesto. Si el + de COM no marca 5 V, tu shield es diferente al de la foto de la tienda: busca otro pin marcado + o 5V que marque 5 V con el SEL retirado. Un pin equivocado aquí lleva los 6 V de los servos a la Raspberry Pi.
 6. Desconecta el cable USB.
 7. Conecta los 6 V del UBEC al borne azul (VCC y GND) y el capacitor de 1000 µF al mismo borne, con la pata larga en VCC.
-8. Toma 2 jumpers de 40 cm, corta el conector de un extremo de cada uno y pela los cables. Aprieta uno en el borne 1 de la barra de conexión, del lado opuesto al convertidor, y conecta su conector al pin + del conector COM. El otro va del borne 2 al pin − del mismo conector.
+8. Toma 2 jumpers de 40 cm, corta el conector de un extremo de cada uno y pela los cables. Aprieta uno en el borne 1 de la barra de conexión, del lado opuesto al conversor, y encaja su conector en el pin + del conector COM. El otro va del borne 2 al pin − del mismo conector. Los pines TX y RX de al lado quedan vacíos: los 5 V de uno de ellos llegan al Raspberry Pi por el cable serial.
 9. Conecta el servo de pan al D9 y el servo de tilt al D10: cable marrón o negro a G, rojo a V, naranja o amarillo a S.
 10. Enciende el interruptor: los dos servos se colocan en el centro (90°) y el LED del Uno parpadea una vez por segundo.
 11. Apaga el interruptor. A partir de ahora, no gires los ejes de los servos con la mano.
-12. Deshaz las conexiones de prueba porque el Uno se atornilla a la base sin el shield: desconecta los 2 servos de D9 y D10, suelta del borne azul los cables del UBEC y el capacitor, quita los 2 jumpers del conector COM y desconecta el shield. Todo vuelve a su lugar durante el montaje.
+12. Deshaz las conexiones de prueba para el montaje: quita los 2 servos del D9 y del D10, suelta del borne azul los cables del UBEC y el capacitor, y quita los 2 jumpers del conector COM. Si el shield cubre los orificios de fijación del Uno, retíralo también. Quita las 2 celdas del soporte: solo vuelven a colocarse durante el montaje, en el paso de la batería.
 <!-- /GERADO -->
 
 Tres avisos:
@@ -150,10 +150,13 @@ probado en un robot montado.
 
 ## Preparativo 3: prepara el cable serial y el divisor de resistores
 
-El Raspberry Pi va en la cabeza y el Arduino en la base. Se comunican por 3 cables que bajan por el cuello: verde, azul
-y negro. En este preparativo sueldas estos 3 cables a un conector bajo, que va en los pines del Pi, y montas el divisor de 3
-resistores en la barra de empalme. Hay 6 jumpers de 40 cm en todo el robot: 3 en este cable, 1 cortado por la mitad para el
-divisor y 2 que llevan energía al Arduino (preparativo 2). Te sobrará un kit de 40.
+La Raspberry Pi queda en la cabeza y el Arduino en la base. Se comunican por 3 cables que bajan por el cuello: verde, azul
+y negro. En este preparativo sueldas estos 3 cables a un conector bajo, que se conecta a los pines de la Pi, y montas el divisor de 3
+resistencias en la barra de conexión. Son 6 jumpers de 40 cm en todo el robot: 3 en este cable, 1 cortado por la mitad para el
+divisor y 2 que llevan energía al Arduino (preparativo 2). Sobra un kit de 40. El largo queda justo: según el modelo, hay
+cerca de 21 cm en línea recta desde los pines de la Pi hasta el shield, más 15 cm de holgura (estimación). Si falta cable, empalma
+un tramo de jumper en la punta de la base, con soldadura y tubo termorretráctil, todavía en este preparativo. Haz este preparativo con las
+celdas fuera del soporte.
 
 <!-- GERADO:prep3 -->
 1. Con el alicate de corte, corta de la barra de pines hembra una pieza de 2 × 2: 2 filas con 2 orificios cada una. Es el conector bajo que va en los pines 31 a 34 del Raspberry Pi.
@@ -212,11 +215,11 @@ Plan B, tampoco probado, si la pantalla queda blanca o apagada:
 El agujero para cables del cuello tiene 9 mm y un conector USB no pasa por ahí. Por eso se comunican mediante una serial
 (UART) de 3 cables sueltos.
 
-- **En el Arduino:** pines D0 (RX) y D1 (TX), que son el puerto serial real de la placa. No interfiere con la señal de los servos.
+- **En el Arduino:** pines D0 (RX) y D1 (TX), que son el puerto serie real de la placa. No interfieren con la señal de los servos.
 - **En la Raspberry Pi:** pin 32 (GPIO12, TX), pin 33 (GPIO13, RX) y pin 34 (GND). La pantalla ocupa los pines 1 a 26; estos tres quedan libres.
 - **Número del pin y número del GPIO:** "pin 32" es la posición en la fila de 40 pines, contada desde la esquina de la tarjeta microSD. "GPIO12" es el nombre de la señal que sale por ese pin. Los dos números no son iguales.
-- **Voltaje:** el Arduino funciona con 5 V y la Pi con 3,3 V. El cable que va del Arduino a la Pi pasa por un divisor de 3 resistencias de 1 kΩ, que baja de 5 V a 3,3 V. El cable que va de la Pi al Arduino es directo.
-- **Por qué usar resistencias y no un módulo conversor de nivel:** el divisor se arma con 3 resistencias conectadas a la regleta, sin agregar otra placa suelta en la base. El módulo también serviría, pero necesita un pin de 3,3 V: en la foto del shield aparece la marca 3V3, pero no se puede confirmar si hay un pin vertical ahí.
+- **Voltaje:** el Arduino funciona a 5 V y la Pi a 3,3 V. El cable que va del Arduino a la Pi pasa por un divisor de 3 resistencias de 1 kΩ, que baja de 5 V a 3,3 V. El cable que va de la Pi al Arduino es directo.
+- **Por qué usar resistencias y no un módulo convertidor de nivel:** el divisor funciona con 3 resistencias sujetas a la barra de conexión, sin otra placa suelta en la base. El módulo también serviría, pero requiere un pin de 3,3 V: en la foto del shield se ve la marca 3V3, pero no se puede confirmar si hay un pin vertical allí.
 
 ## Los 8 cables que pasan por el cuello
 
@@ -224,14 +227,14 @@ Son 8 cables: 2 de alimentación (5,1 V de Raspberry Pi, 20 AWG), 3 de la conexi
 conectarse dentro de la cabeza ANTES del copo, porque después Raspberry Pi queda encerrado. Tampoco pueden quedar colgando por
 debajo de la horquilla en ese momento, porque la parte inferior del copo pasa por debajo de ella. Este es el orden:
 
-1. Al montar el Raspberry Pi, antes de la pantalla, conecta el conector bajo del cable serial a los pines 31 a 34.
-2. Con la cabeza todavía abierta (marco, pantalla, servo de inclinación y horquilla en su lugar), atornilla los 2 cables de 5,1 V al adaptador USB-C y conéctalo al Raspberry Pi.
-3. Conecta la extensión de 30 cm al cable del servo de inclinación.
+1. Al montar la Raspberry Pi, antes de la pantalla, conecta el conector bajo del cable serial a los pines 31 a 34.
+2. Con la cabeza todavía abierta (marco, pantalla, servo de tilt y horquilla en su lugar), atornilla los 2 cables de 5,1 V al adaptador USB-C y conéctalo a la Raspberry Pi.
+3. Conecta la extensión de 30 cm al cable del servo de tilt.
 4. Baja los 8 cables por el agujero de 9 mm de la horquilla, de arriba hacia abajo. Primero, el conector de la extensión, que tiene 7,6 mm de ancho y pasa justo.
 5. Detente cuando las puntas queden al ras de la cara inferior de la horquilla. Deja unos 5 cm de cable sobrante dentro de la cabeza: se inclina alrededor de la horquilla.
 6. Cierra la cabeza con la carcasa. Con las pinzas, saca las puntas de los 8 cables por la ranura del fondo de la carcasa.
-7. Pasa los cables por el tubo del cuello y asienta la cabeza sobre él.
-8. En la base, con el interruptor apagado y sin soldar: los 2 cables de 5,1 V en los bornes 1 y 2 de la barra de empalme; el cable azul en el borne 3; el conector verde en el pin S de D0 y el negro en el pin G de D0; el jumper del divisor en el pin S de D1; la extensión del servo en D10.
+7. Pasa los cables por el tubo del cuello y coloca la cabeza sobre él.
+8. En la base, con el interruptor apagado y sin soldar: los 2 cables de 5,1 V a los bornes 1 y 2 de la barra de conexión; el cable azul al borne 3; el conector del verde al pin S de D0 y el del negro al pin G de D0; el jumper del divisor al pin S de D1; la extensión del servo a D10.
 
 Deja unos 10 cm de holgura dentro de la base: el cuello gira casi una vuelta y tuerce los cables. Este paso nunca se ha
 ensayado con las piezas impresas.
@@ -262,10 +265,10 @@ El Raspberry Pi 4 queda encerrado en la cabeza, que es de PLA y no tiene abertur
 
 ## La primera vez que enciendes el robot montado
 
-1. Interruptor apagado. Con el multímetro en modo de continuidad, comprueba que el positivo y el negativo del pack no estén en cortocircuito.
-2. Antes de apretar en la barra los 2 cables que bajan del Raspberry Pi, enciende el interruptor y mide en la barra de empalme, del lado del convertidor: 5,1 V entre los bornes 1 y 2, con el rojo en el positivo. Mide 6 V en el borne azul. Apaga.
-3. Aprieta los cables del Pi en la barra, rojo en el borne 1 y negro en el borne 2, y vuelve a encender el interruptor.
-4. El LED del Arduino parpadea, los dos servos mantienen el centro, se enciende el LED de energía del Raspberry Pi y, en aproximadamente 1 minuto, la pantalla muestra el sistema.
+1. Interruptor apagado. Con el multímetro en continuidad, comprueba que el positivo y el negativo del pack no estén en cortocircuito.
+2. Antes de apretar en la barra los 2 cables que bajan de la Raspberry Pi, enciende el interruptor y mide en la barra de conexión, del lado del convertidor: 5,1 V entre los bornes 1 y 2, con la punta roja en el positivo. Mide 6 V en el borne azul. Apaga.
+3. Aprieta los cables de la Pi en la barra, rojo en el borne 1 y negro en el borne 2, y vuelve a encender el interruptor.
+4. El LED del Arduino parpadea, los dos servos mantienen el centro, el LED de encendido de la Raspberry Pi se ilumina y, en aproximadamente 1 minuto, la pantalla muestra el sistema.
 5. Si no se enciende nada, apaga y revisa el fusible.
 
 ## Lo que todavía no se probó
@@ -277,7 +280,7 @@ El Raspberry Pi 4 queda encerrado en la cabeza, que es de PLA y no tiene abertur
 - Los pines 31 a 34 de la Raspberry Pi quedan debajo de la placa de la pantalla. El espacio libre allí (17,5 mm en el modelo) es una medida sin confirmar: si el conector bajo no cabe, habrá que soldar los 3 cables de la serial.
 - El cupón de prueba no verifica la ventana del servo MG996R ni la rosca del tornillo M5. Comprueba la ventana del servo en el marco de la cabeza (mesa 01). La rosca para el M5 está en el brazo de la horquilla (mesa 03). Ambas se revisan antes de las impresiones largas.
 - Con el Arduino atornillado a la base, el cable USB no entra: quedan unos 10 mm hasta la pared. Para volver a grabar el programa, hay que quitarle los 4 tornillos.
-- El portafusible, la barra de empalme y las 3 resistencias de la serie no tienen un lugar modelado: quedan sueltos en los cables, aislados con tubo termorretráctil.
+- El portafusibles, la barra de conexión y las 3 resistencias de la conexión serial no tienen un espacio modelado: quedan sueltos entre los cables, aislados con tubo termorretráctil.
 - Las medidas marcadas como NC provienen de anuncios de tiendas. Mide tu pieza antes de imprimir la parte que hace contacto con ella.
 - Nunca se probó el paso de los 8 cables por el agujero de la horquilla y la ranura de la parte inferior de la cabeza con las piezas impresas.
 - Calor: Raspberry Pi 4 queda encerrado en la cabeza, que es de PLA y no tiene abertura de ventilación. El PLA se ablanda cerca de los 60 °C y el Pi reduce la velocidad a partir de los 80 °C. Pega los disipadores y mide con el comando `vcgencmd measure_temp`. Si supera los 70 °C, imprime la carcasa de la cabeza en PETG o abre orificios de ventilación atrás.
