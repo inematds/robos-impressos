@@ -26,4 +26,5 @@ Fase 1 = mecânica e encaixe. Fase 2 (voz, câmera, sensores, localização em c
 Quando o Nei corrigir ou você notar um erro: antes de seguir, escreva a lição como uma linha no TOPO da seção Lessons abaixo.
 
 ## Lessons
+- Casca recortada de malha: nenhum dos 11 testes vê buraco na casca nem peça abaixo do chão; depois de cada mudança de casca, render de 1200 px COM componentes + mapa em corte das juntas, e conferir no arquivo o parâmetro que a conta pediu (14/11/2026, E3b).
 - Sessão longa com subagentes cai junto com a sessão: commit a cada pacote verificado e estado no state.md, senão o trabalho some (14/11/2026).
