@@ -237,7 +237,7 @@
 
 <section id="resumo" class="resumo"><div class="wrap">
   <span class="chip">In brief</span>
-  <p>The two creatures in robos-impressos started from a reference drawing. In version 1.0.2, the shell was drawn with simple rounded shapes over a skeleton shared by both, and the result looked far from the drawing. In version 1.1.2, the shape began to come from a 3D mesh generated on the computer from the drawing itself, and each creature’s skeleton was redesigned to fit inside it. To find out whether it really improved, and not just by eye, the project measures the robot’s outline against the drawing’s outline, view by view. The capybara went from 0.777 to 0.920, and the dinosaur from 0.814 to 0.871, on a scale from 0 to 1. This page shows the images, the numbers, and what the number cannot see.</p>
+  <p>The two creatures in robos-impressos started from a reference drawing. In version 1.0.2, the shell was drawn with simple rounded shapes over a skeleton shared by both, and the result looked far from the drawing. In version 1.1.2, the shape began to come from a 3D mesh generated on the computer from the drawing itself, and each creature’s skeleton was redesigned to fit inside it. To find out whether it really improved, and not just by eye, the project measures the robot’s outline against the drawing’s outline, view by view. The capybara went from 0.777 to 0.920, and the dinosaur from 0.814 to 0.872, on a scale from 0 to 1. This page shows the images, the numbers, and what the number cannot see.</p>
   <p class="nota">The robot images are renders: computer images made from the print files. The reference drawing is an illustration and appears here only for comparison. The other robots and their individual pages are in the <a href="../">general robots guide</a>.</p>
 </div></section>
 
@@ -326,32 +326,32 @@
   <p class="sub">The dinosaur already started closer to the drawing, and its mesh has a lower ceiling: there was less room left to walk.</p>
   <div class="grid g4">
     <div class="card numero"><b>0.814</b><span>before (v1.0.2), average across views</span></div>
-    <div class="card numero"><b>0.871</b><span>after (v1.1.2)</span></div>
+    <div class="card numero"><b>0.872</b><span>after (v1.1.2)</span></div>
     <div class="card numero"><b>0.897</b><span>ceiling: the raw mesh from the drawing</span></div>
     <div class="card numero"><b>0.855</b><span>target: halfway between them</span></div>
   </div>
-  <p class="nota"><strong>Target reached.</strong> The robot covered 69 % of the distance between before and the ceiling.</p>
+  <p class="nota"><strong>Target reached.</strong> The robot covered 70 % of the distance between before and the ceiling.</p>
   <h3 class="sep3">The reference drawing</h3>
   <p class="sub">It's the illustration the robot was based on, shown in four views. The ruler compares the robot with each one.</p>
   <figure class="ref"><a href="../../evolucao/assets/dino-referencia.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../../evolucao/assets/dino-referencia.jpg" alt="Reference drawing of the dinosaur in four views: front, two three-quarter angles, and side. Green body, cream belly, large blue eyes, blue spikes on the back, and tail"></a><figcaption>Project reference illustration. Not a photo or render.</figcaption></figure>
   <h3 class="sep3">Before and after, in the same views</h3>
   <p class="sub">Model renders, from the same camera, side by side. The IoU for each view is below its image.</p>
   <div class="vistas">
-    <div class="card vista"><h4>front</h4><div class="par"><figure><img loading="lazy" src="../../evolucao/assets/dino-antes-frente.jpg" alt="Before render (v1.0.2), view: front"><figcaption>before · IoU <b>0.875</b></figcaption></figure><figure><img loading="lazy" src="../../evolucao/assets/dino-depois-frente.jpg" alt="After render (v1.1.2), view: front"><figcaption>after · IoU <b>0.913</b></figcaption></figure></div></div>
+    <div class="card vista"><h4>front</h4><div class="par"><figure><img loading="lazy" src="../../evolucao/assets/dino-antes-frente.jpg" alt="Before render (v1.0.2), view: front"><figcaption>before · IoU <b>0.875</b></figcaption></figure><figure><img loading="lazy" src="../../evolucao/assets/dino-depois-frente.jpg" alt="After render (v1.1.2), view: front"><figcaption>after · IoU <b>0.910</b></figcaption></figure></div></div>
     <div class="card vista"><h4>three-quarter (a)</h4><div class="par"><figure><img loading="lazy" src="../../evolucao/assets/dino-antes-tres-quartos-a.jpg" alt="Before render (v1.0.2), view: three-quarter (a)"><figcaption>before · IoU <b>0.808</b></figcaption></figure><figure><img loading="lazy" src="../../evolucao/assets/dino-depois-tres-quartos-a.jpg" alt="After render (v1.1.2), view: three-quarter (a)"><figcaption>after · IoU <b>0.874</b></figcaption></figure></div></div>
     <div class="card vista"><h4>three-quarter (b)</h4><div class="par"><figure><img loading="lazy" src="../../evolucao/assets/dino-antes-tres-quartos-b.jpg" alt="Before render (v1.0.2), view: three-quarter (b)"><figcaption>before · IoU <b>0.787</b></figcaption></figure><figure><img loading="lazy" src="../../evolucao/assets/dino-depois-tres-quartos-b.jpg" alt="After render (v1.1.2), view: three-quarter (b)"><figcaption>after · IoU <b>0.862</b></figcaption></figure></div></div>
-    <div class="card vista"><h4>side</h4><div class="par"><figure><img loading="lazy" src="../../evolucao/assets/dino-antes-lado.jpg" alt="Before render (v1.0.2), view: side"><figcaption>before · IoU <b>0.786</b></figcaption></figure><figure><img loading="lazy" src="../../evolucao/assets/dino-depois-lado.jpg" alt="After render (v1.1.2), view: side"><figcaption>after · IoU <b>0.837</b></figcaption></figure></div></div>
+    <div class="card vista"><h4>side</h4><div class="par"><figure><img loading="lazy" src="../../evolucao/assets/dino-antes-lado.jpg" alt="Before render (v1.0.2), view: side"><figcaption>before · IoU <b>0.786</b></figcaption></figure><figure><img loading="lazy" src="../../evolucao/assets/dino-depois-lado.jpg" alt="After render (v1.1.2), view: side"><figcaption>after · IoU <b>0.842</b></figcaption></figure></div></div>
   </div>
   <h3 class="sep3">The numbers, view by view</h3>
   <p class="arraste">↔ on your phone, drag the table sideways</p>
   <div class="tabela-wrap"><table class="tabela">
     <thead><tr><th>View</th><th>Before (v1.0.2)</th><th>After (v1.1.2)</th><th>Ceiling</th><th>Target</th><th>Gain</th></tr></thead>
     <tbody>
-      <tr><td>front</td><td>0.875</td><td>0.913</td><td>0.942</td><td>0.908</td><td>+0.038</td></tr>
+      <tr><td>front</td><td>0.875</td><td>0.910</td><td>0.942</td><td>0.908</td><td>+0.035</td></tr>
       <tr><td>three-quarter (a)</td><td>0.808</td><td>0.874</td><td>0.888</td><td>0.848</td><td>+0.066</td></tr>
       <tr><td>three-quarter (b)</td><td>0.787</td><td>0.862</td><td>0.889</td><td>0.838</td><td>+0.075</td></tr>
-      <tr><td>side</td><td>0.786</td><td>0.837</td><td>0.870</td><td>0.828</td><td>+0.051</td></tr>
-      <tr><td><strong>average</strong></td><td><strong>0.814</strong></td><td><strong>0.871</strong></td><td><strong>0.897</strong></td><td><strong>0.855</strong></td><td><strong>+0.057</strong></td></tr>
+      <tr><td>side</td><td>0.786</td><td>0.842</td><td>0.870</td><td>0.828</td><td>+0.056</td></tr>
+      <tr><td><strong>average</strong></td><td><strong>0.814</strong></td><td><strong>0.872</strong></td><td><strong>0.897</strong></td><td><strong>0.855</strong></td><td><strong>+0.058</strong></td></tr>
     </tbody></table></div>
   <h3 class="sep3">The ruler, side by side</h3>
   <p class="sub">This is the image saved by the measurement program. Each row is a view: the reference drawing on the left, the model in the camera view selected by the ruler in the middle, and the two silhouettes overlaid on the right. Red is what only the drawing has, blue is what only the robot has, and green is what they share.</p>

@@ -237,7 +237,7 @@
 
 <section id="resumo" class="resumo"><div class="wrap">
   <span class="chip">Em resumo</span>
-  <p>Os dois bichos do robos-impressos nasceram de um desenho de referência. Na versão 1.0.2 a casca era desenhada com formas arredondadas simples, por cima de um esqueleto comum aos dois, e o resultado ficou longe do desenho. Na versão 1.1.2 a forma passou a vir de uma malha 3D, gerada no computador a partir do próprio desenho, e o esqueleto de cada bicho foi refeito para caber dentro dela. Para saber se melhorou de verdade, e não só no olho, o projeto mede o contorno do robô contra o contorno do desenho, vista por vista. A capivara foi de 0,777 para 0,920 e o dinossauro, de 0,814 para 0,871, numa escala de 0 a 1. Esta página mostra as imagens, os números e também o que o número não enxerga.</p>
+  <p>Os dois bichos do robos-impressos nasceram de um desenho de referência. Na versão 1.0.2 a casca era desenhada com formas arredondadas simples, por cima de um esqueleto comum aos dois, e o resultado ficou longe do desenho. Na versão 1.1.2 a forma passou a vir de uma malha 3D, gerada no computador a partir do próprio desenho, e o esqueleto de cada bicho foi refeito para caber dentro dela. Para saber se melhorou de verdade, e não só no olho, o projeto mede o contorno do robô contra o contorno do desenho, vista por vista. A capivara foi de 0,777 para 0,920 e o dinossauro, de 0,814 para 0,872, numa escala de 0 a 1. Esta página mostra as imagens, os números e também o que o número não enxerga.</p>
   <p class="nota">As imagens do robô são renders: imagens de computador feitas a partir dos arquivos de impressão. O desenho de referência é uma ilustração e aparece aqui só para a comparação. Os outros robôs e as páginas de cada um estão no <a href="../">guia geral dos robôs</a>.</p>
 </div></section>
 
@@ -326,32 +326,32 @@
   <p class="sub">O dinossauro já partia mais perto do desenho, e a malha dele tem teto mais baixo: sobrava menos caminho para andar.</p>
   <div class="grid g4">
     <div class="card numero"><b>0,814</b><span>antes (v1.0.2), média das vistas</span></div>
-    <div class="card numero"><b>0,871</b><span>depois (v1.1.2)</span></div>
+    <div class="card numero"><b>0,872</b><span>depois (v1.1.2)</span></div>
     <div class="card numero"><b>0,897</b><span>teto: a malha crua do desenho</span></div>
     <div class="card numero"><b>0,855</b><span>alvo: metade do caminho</span></div>
   </div>
-  <p class="nota"><strong>Alvo atingido.</strong> O robô percorreu 69 % do caminho entre o antes e o teto.</p>
+  <p class="nota"><strong>Alvo atingido.</strong> O robô percorreu 70 % do caminho entre o antes e o teto.</p>
   <h3 class="sep3">O desenho de referência</h3>
   <p class="sub">É a ilustração de onde o robô partiu, em quatro vistas. A régua compara o robô com cada uma delas.</p>
   <figure class="ref"><a href="assets/dino-referencia.jpg" target="_blank" rel="noopener"><img loading="lazy" src="assets/dino-referencia.jpg" alt="Desenho de referência do dinossauro em quatro vistas: frente, dois ângulos de três quartos e lado. Corpo verde, barriga creme, olhos azuis grandes, espinhos azuis nas costas e cauda"></a><figcaption>Ilustração de referência do projeto. Não é foto nem render.</figcaption></figure>
   <h3 class="sep3">Antes e depois, nas mesmas vistas</h3>
   <p class="sub">Renders do modelo, na mesma câmera, lado a lado. Embaixo de cada imagem está o IoU daquela vista.</p>
   <div class="vistas">
-    <div class="card vista"><h4>frente</h4><div class="par"><figure><img loading="lazy" src="assets/dino-antes-frente.jpg" alt="Render de antes (v1.0.2), vista: frente"><figcaption>antes · IoU <b>0,875</b></figcaption></figure><figure><img loading="lazy" src="assets/dino-depois-frente.jpg" alt="Render de depois (v1.1.2), vista: frente"><figcaption>depois · IoU <b>0,913</b></figcaption></figure></div></div>
+    <div class="card vista"><h4>frente</h4><div class="par"><figure><img loading="lazy" src="assets/dino-antes-frente.jpg" alt="Render de antes (v1.0.2), vista: frente"><figcaption>antes · IoU <b>0,875</b></figcaption></figure><figure><img loading="lazy" src="assets/dino-depois-frente.jpg" alt="Render de depois (v1.1.2), vista: frente"><figcaption>depois · IoU <b>0,910</b></figcaption></figure></div></div>
     <div class="card vista"><h4>três quartos (a)</h4><div class="par"><figure><img loading="lazy" src="assets/dino-antes-tres-quartos-a.jpg" alt="Render de antes (v1.0.2), vista: três quartos (a)"><figcaption>antes · IoU <b>0,808</b></figcaption></figure><figure><img loading="lazy" src="assets/dino-depois-tres-quartos-a.jpg" alt="Render de depois (v1.1.2), vista: três quartos (a)"><figcaption>depois · IoU <b>0,874</b></figcaption></figure></div></div>
     <div class="card vista"><h4>três quartos (b)</h4><div class="par"><figure><img loading="lazy" src="assets/dino-antes-tres-quartos-b.jpg" alt="Render de antes (v1.0.2), vista: três quartos (b)"><figcaption>antes · IoU <b>0,787</b></figcaption></figure><figure><img loading="lazy" src="assets/dino-depois-tres-quartos-b.jpg" alt="Render de depois (v1.1.2), vista: três quartos (b)"><figcaption>depois · IoU <b>0,862</b></figcaption></figure></div></div>
-    <div class="card vista"><h4>lado</h4><div class="par"><figure><img loading="lazy" src="assets/dino-antes-lado.jpg" alt="Render de antes (v1.0.2), vista: lado"><figcaption>antes · IoU <b>0,786</b></figcaption></figure><figure><img loading="lazy" src="assets/dino-depois-lado.jpg" alt="Render de depois (v1.1.2), vista: lado"><figcaption>depois · IoU <b>0,837</b></figcaption></figure></div></div>
+    <div class="card vista"><h4>lado</h4><div class="par"><figure><img loading="lazy" src="assets/dino-antes-lado.jpg" alt="Render de antes (v1.0.2), vista: lado"><figcaption>antes · IoU <b>0,786</b></figcaption></figure><figure><img loading="lazy" src="assets/dino-depois-lado.jpg" alt="Render de depois (v1.1.2), vista: lado"><figcaption>depois · IoU <b>0,842</b></figcaption></figure></div></div>
   </div>
   <h3 class="sep3">Os números, vista por vista</h3>
   <p class="arraste">↔ no celular, arraste a tabela para o lado</p>
   <div class="tabela-wrap"><table class="tabela">
     <thead><tr><th>Vista</th><th>Antes (v1.0.2)</th><th>Depois (v1.1.2)</th><th>Teto</th><th>Alvo</th><th>Ganho</th></tr></thead>
     <tbody>
-      <tr><td>frente</td><td>0,875</td><td>0,913</td><td>0,942</td><td>0,908</td><td>+0,038</td></tr>
+      <tr><td>frente</td><td>0,875</td><td>0,910</td><td>0,942</td><td>0,908</td><td>+0,035</td></tr>
       <tr><td>três quartos (a)</td><td>0,808</td><td>0,874</td><td>0,888</td><td>0,848</td><td>+0,066</td></tr>
       <tr><td>três quartos (b)</td><td>0,787</td><td>0,862</td><td>0,889</td><td>0,838</td><td>+0,075</td></tr>
-      <tr><td>lado</td><td>0,786</td><td>0,837</td><td>0,870</td><td>0,828</td><td>+0,051</td></tr>
-      <tr><td><strong>média</strong></td><td><strong>0,814</strong></td><td><strong>0,871</strong></td><td><strong>0,897</strong></td><td><strong>0,855</strong></td><td><strong>+0,057</strong></td></tr>
+      <tr><td>lado</td><td>0,786</td><td>0,842</td><td>0,870</td><td>0,828</td><td>+0,056</td></tr>
+      <tr><td><strong>média</strong></td><td><strong>0,814</strong></td><td><strong>0,872</strong></td><td><strong>0,897</strong></td><td><strong>0,855</strong></td><td><strong>+0,058</strong></td></tr>
     </tbody></table></div>
   <h3 class="sep3">A régua, lado a lado</h3>
   <p class="sub">É a imagem que o programa de medida grava. Cada linha é uma vista: à esquerda o desenho de referência, no meio o modelo na câmera que a régua escolheu, à direita as duas silhuetas sobrepostas. Vermelho é o que só o desenho tem, azul o que só o robô tem, verde o que os dois têm.</p>

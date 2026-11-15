@@ -237,7 +237,7 @@
 
 <section id="resumo" class="resumo"><div class="wrap">
   <span class="chip">En resumen</span>
-  <p>Los dos animales de robos-impressos surgieron de un dibujo de referencia. En la versión 1.0.2, la carcasa se diseñó con formas redondeadas simples sobre un esqueleto común a ambos, y el resultado quedó lejos del dibujo. En la versión 1.1.2, la forma pasó a partir de una malla 3D, generada en la computadora a partir del propio dibujo, y se rehízo el esqueleto de cada animal para que cupiera dentro de ella. Para saber si realmente mejoró, y no solo a simple vista, el proyecto mide el contorno del robot frente al contorno del dibujo, vista por vista. El carpincho pasó de 0,777 a 0,920 y el dinosaurio, de 0,814 a 0,871, en una escala de 0 a 1. Esta página muestra las imágenes, los números y también lo que el número no puede ver.</p>
+  <p>Los dos animales de robos-impressos surgieron de un dibujo de referencia. En la versión 1.0.2, la carcasa se diseñó con formas redondeadas simples sobre un esqueleto común a ambos, y el resultado quedó lejos del dibujo. En la versión 1.1.2, la forma pasó a partir de una malla 3D, generada en la computadora a partir del propio dibujo, y se rehízo el esqueleto de cada animal para que cupiera dentro de ella. Para saber si realmente mejoró, y no solo a simple vista, el proyecto mide el contorno del robot frente al contorno del dibujo, vista por vista. El carpincho pasó de 0,777 a 0,920 y el dinosaurio, de 0,814 a 0,872, en una escala de 0 a 1. Esta página muestra las imágenes, los números y también lo que el número no puede ver.</p>
   <p class="nota">Las imágenes del robot son renders: imágenes de computadora hechas a partir de los archivos de impresión. El dibujo de referencia es una ilustración y aparece aquí solo para comparar. Los otros robots y las páginas de cada uno están en la <a href="../">guía general de los robots</a>.</p>
 </div></section>
 
@@ -326,32 +326,32 @@
   <p class="sub">El dinosaurio ya partía de una forma más cercana al dibujo, y su malla tiene un techo más bajo: quedaba menos recorrido para avanzar.</p>
   <div class="grid g4">
     <div class="card numero"><b>0,814</b><span>antes (v1.0.2), promedio de las vistas</span></div>
-    <div class="card numero"><b>0,871</b><span>después (v1.1.2)</span></div>
+    <div class="card numero"><b>0,872</b><span>después (v1.1.2)</span></div>
     <div class="card numero"><b>0,897</b><span>techo: la malla cruda del dibujo</span></div>
     <div class="card numero"><b>0,855</b><span>objetivo: la mitad del camino</span></div>
   </div>
-  <p class="nota"><strong>Objetivo alcanzado.</strong> El robot recorrió 69 % del camino entre el antes y el techo.</p>
+  <p class="nota"><strong>Objetivo alcanzado.</strong> El robot recorrió 70 % del camino entre el antes y el techo.</p>
   <h3 class="sep3">El dibujo de referencia</h3>
   <p class="sub">Es la ilustración de la que partió el robot, en cuatro vistas. La regla compara el robot con cada una de ellas.</p>
   <figure class="ref"><a href="../../evolucao/assets/dino-referencia.jpg" target="_blank" rel="noopener"><img loading="lazy" src="../../evolucao/assets/dino-referencia.jpg" alt="Dibujo de referencia del dinosaurio en cuatro vistas: de frente, dos ángulos de tres cuartos y de lado. Cuerpo verde, vientre color crema, ojos azules grandes, espinas azules en el lomo y cola"></a><figcaption>Ilustración de referencia del proyecto. No es una foto ni un render.</figcaption></figure>
   <h3 class="sep3">Antes y después, en las mismas vistas</h3>
   <p class="sub">Renders del modelo, con la misma cámara, uno al lado del otro. Debajo de cada imagen está el IoU de esa vista.</p>
   <div class="vistas">
-    <div class="card vista"><h4>de frente</h4><div class="par"><figure><img loading="lazy" src="../../evolucao/assets/dino-antes-frente.jpg" alt="Render de antes (v1.0.2), vista: de frente"><figcaption>antes · IoU <b>0,875</b></figcaption></figure><figure><img loading="lazy" src="../../evolucao/assets/dino-depois-frente.jpg" alt="Render de después (v1.1.2), vista: de frente"><figcaption>después · IoU <b>0,913</b></figcaption></figure></div></div>
+    <div class="card vista"><h4>de frente</h4><div class="par"><figure><img loading="lazy" src="../../evolucao/assets/dino-antes-frente.jpg" alt="Render de antes (v1.0.2), vista: de frente"><figcaption>antes · IoU <b>0,875</b></figcaption></figure><figure><img loading="lazy" src="../../evolucao/assets/dino-depois-frente.jpg" alt="Render de después (v1.1.2), vista: de frente"><figcaption>después · IoU <b>0,910</b></figcaption></figure></div></div>
     <div class="card vista"><h4>tres cuartos (a)</h4><div class="par"><figure><img loading="lazy" src="../../evolucao/assets/dino-antes-tres-quartos-a.jpg" alt="Render de antes (v1.0.2), vista: tres cuartos (a)"><figcaption>antes · IoU <b>0,808</b></figcaption></figure><figure><img loading="lazy" src="../../evolucao/assets/dino-depois-tres-quartos-a.jpg" alt="Render de después (v1.1.2), vista: tres cuartos (a)"><figcaption>después · IoU <b>0,874</b></figcaption></figure></div></div>
     <div class="card vista"><h4>tres cuartos (b)</h4><div class="par"><figure><img loading="lazy" src="../../evolucao/assets/dino-antes-tres-quartos-b.jpg" alt="Render de antes (v1.0.2), vista: tres cuartos (b)"><figcaption>antes · IoU <b>0,787</b></figcaption></figure><figure><img loading="lazy" src="../../evolucao/assets/dino-depois-tres-quartos-b.jpg" alt="Render de después (v1.1.2), vista: tres cuartos (b)"><figcaption>después · IoU <b>0,862</b></figcaption></figure></div></div>
-    <div class="card vista"><h4>de lado</h4><div class="par"><figure><img loading="lazy" src="../../evolucao/assets/dino-antes-lado.jpg" alt="Render de antes (v1.0.2), vista: de lado"><figcaption>antes · IoU <b>0,786</b></figcaption></figure><figure><img loading="lazy" src="../../evolucao/assets/dino-depois-lado.jpg" alt="Render de después (v1.1.2), vista: de lado"><figcaption>después · IoU <b>0,837</b></figcaption></figure></div></div>
+    <div class="card vista"><h4>de lado</h4><div class="par"><figure><img loading="lazy" src="../../evolucao/assets/dino-antes-lado.jpg" alt="Render de antes (v1.0.2), vista: de lado"><figcaption>antes · IoU <b>0,786</b></figcaption></figure><figure><img loading="lazy" src="../../evolucao/assets/dino-depois-lado.jpg" alt="Render de después (v1.1.2), vista: de lado"><figcaption>después · IoU <b>0,842</b></figcaption></figure></div></div>
   </div>
   <h3 class="sep3">Los números, vista por vista</h3>
   <p class="arraste">↔ en el celular, arrastra la tabla hacia un lado</p>
   <div class="tabela-wrap"><table class="tabela">
     <thead><tr><th>Vista</th><th>Antes (v1.0.2)</th><th>Después (v1.1.2)</th><th>Techo</th><th>Objetivo</th><th>Ganancia</th></tr></thead>
     <tbody>
-      <tr><td>de frente</td><td>0,875</td><td>0,913</td><td>0,942</td><td>0,908</td><td>+0,038</td></tr>
+      <tr><td>de frente</td><td>0,875</td><td>0,910</td><td>0,942</td><td>0,908</td><td>+0,035</td></tr>
       <tr><td>tres cuartos (a)</td><td>0,808</td><td>0,874</td><td>0,888</td><td>0,848</td><td>+0,066</td></tr>
       <tr><td>tres cuartos (b)</td><td>0,787</td><td>0,862</td><td>0,889</td><td>0,838</td><td>+0,075</td></tr>
-      <tr><td>de lado</td><td>0,786</td><td>0,837</td><td>0,870</td><td>0,828</td><td>+0,051</td></tr>
-      <tr><td><strong>promedio</strong></td><td><strong>0,814</strong></td><td><strong>0,871</strong></td><td><strong>0,897</strong></td><td><strong>0,855</strong></td><td><strong>+0,057</strong></td></tr>
+      <tr><td>de lado</td><td>0,786</td><td>0,842</td><td>0,870</td><td>0,828</td><td>+0,056</td></tr>
+      <tr><td><strong>promedio</strong></td><td><strong>0,814</strong></td><td><strong>0,872</strong></td><td><strong>0,897</strong></td><td><strong>0,855</strong></td><td><strong>+0,058</strong></td></tr>
     </tbody></table></div>
   <h3 class="sep3">La regla, lado a lado</h3>
   <p class="sub">Es la imagen que guarda el programa de medición. Cada fila es una vista: a la izquierda, el dibujo de referencia; en el medio, el modelo en la cámara que eligió la regla; a la derecha, las dos siluetas superpuestas. El rojo es lo que solo tiene el dibujo, el azul, lo que solo tiene el robot, y el verde, lo que tienen ambos.</p>
